@@ -1,5 +1,5 @@
-{{ mykey }}
 
+{{ mykey }}
 <h1> Welcome to TSP Billing  Application  </h1>
 
 <h4> This application  has been designed with microservice architecture  </h4>
@@ -14,17 +14,18 @@
 </ul> 
 
 
- <form action="{% url 'login' }" , method='POST'>
+ <form action="{% url 'dashapp:index' %}"  method="post">
   <div class="imgcontainer">
-    <img src="img_avatar2.png" alt="Avatar" class="avatar">
+   
+{% csrf_token %} 
   </div>
 
   <div class="container">
     <label for="username"><b>Username</b></label>
-    <input type="text" placeholder="Enter Username" name="username" required>
+    <input type="text" placeholder="Enter Username" name="username" >
 
     <label for="password"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="password" required>
+    <input type="password" placeholder="Enter Password" name="password" >
 
     <button type="submit">Login</button>
     
