@@ -4,6 +4,7 @@ from django.shortcuts import render
 from tokenleaderclient.configs.config_handler import Configs    
 from  tokenleaderclient.client.client import Client 
 from micros1client.client   import MSClient
+from linkinvclient.client import LIClient
 import json
 
 
@@ -82,3 +83,15 @@ def list_users(request):
         result = render(request, 'list_users.html', template_data)
         #return HttpResponse(json.dumps(list_users))
         return result
+    
+    
+def list_links(request):
+    if request.method == 'GET': 
+        tlclient = prep_tlclient_from_session(request)
+        lic = LIClient(tlclient)
+        list_links = lic.list_links()
+        template_data = {"list_links": list_links.get('message') } 
+        result = render(request, 'list_links.html', template_data)
+        #return HttpResponse(json.dumps(list_links))
+        return result
+    
