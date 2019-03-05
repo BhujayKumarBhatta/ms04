@@ -68,7 +68,7 @@ def login(request):
             else:
                 template_data = {"service_catalog": auth_result.get('service_catalog' ),
                                 "user_details": verified_token.get('payload').get('sub'),
-                                "user_name": uname }           
+                                }           
                 
                 result = render(request, 'home.html', template_data)
             
