@@ -1,0 +1,36 @@
+
+
+<h1> Welcome {{ user_details.username }}, for visiting the TSP Billing  Application  </h1>
+<table>
+<tr>
+  <th>email </th> 
+  <th>Role List</th> 
+  <th>Role</th>
+  <th>Organization</th>   
+  <th>Unit</th>  
+  <th>Department</th> 
+  <th>Work Function Context</th> 
+</tr> 
+
+<tr>
+<td>{{ user_details.email }}</td> 
+<td>{{ user_details.roles }} </td>
+<td>
+{% for role in user_details.roles %} 
+{{ role }} 
+{% endfor %}
+</td> 
+<td> {{ user_details.wfc.org }} </td> 
+<td> {{ user_details.wfc.orgunit}} </td> 
+<td> {{ user_details.wfc.department}} </td> 
+<td> {{ user_details.wfc.name}} </td> 
+
+</tr>
+
+</table>
+
+
+
+
+
+
