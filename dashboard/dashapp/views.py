@@ -7,9 +7,6 @@ from micros1client.client   import MSClient
 import json
 
 
-tlclient = None
-# c = MSClient(tlclient)
-
 '''
 How the auth_result look
 {'service_catalog': 
@@ -31,6 +28,15 @@ How the auth_result look
 '''
 
 
+def prep_tlclient_from_session(request):
+    if 'uname' in request.session and 'psword' in request.session:
+        uname = request.session['uname']
+        psword = request.session['psword']
+        auth_config = Configs(tlusr=uname, tlpwd=psword )
+        tlclient = Client(auth_config) 
+        return   tlclient 
+            
+
 # Create your views here.
 def login(request):    
     if request.method == 'GET':   
@@ -40,8 +46,10 @@ def login(request):
     elif request.method == 'POST':
         uname = request.POST.get('username', '')
         psword = request.POST.get('password', '')
+        request.session['uname'] = uname
+        request.session['psword'] = psword
         auth_config = Configs(tlusr=uname, tlpwd=psword )
-        tlclient = Client(auth_config)
+        tlclient = Client(auth_config)        
         auth_result = tlclient.get_token()        
         auth_result_json = json.dumps(auth_result)
         if auth_result.get('status') != 'success':
@@ -66,4 +74,11 @@ def login(request):
     return result
 
 
-    
+def list_users(request):
+    if request.method == 'GET': 
+        tlclient = prep_tlclient_from_session(request)
+        list_users = tlclient.list_users()
+        template_data = {"list_users": list_users.get('status') } 
+        result = render(request, 'home.html', template_data)
+        #return HttpResponse(json.dumps(list_users))
+        return result

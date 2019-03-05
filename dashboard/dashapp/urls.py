@@ -20,5 +20,5 @@ from . import views
 app_name = 'dashapp'
 urlpatterns = [
     path('', views.login, name='login'),
-#     path('', views.index, name='index'),
+    path('list_users', views.list_users, name='list_users'),
 ]
