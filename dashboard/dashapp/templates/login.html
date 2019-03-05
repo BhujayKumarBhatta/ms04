@@ -1,35 +1,70 @@
+{% load i18n %}
+{% load l10n %}
+{% load static %}
 
 
-<h1> Welcome to TSP Billing  Application  </h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>TSP Billing | Login</title>
+	<meta charset="UTF-8">	 
+ 	<link rel='stylesheet' type='text/css' href='{% static "dashapp/css/util.css" %}'>
+	<link rel="stylesheet" type="text/css" href='{% static "dashapp/css/main.css" %}'>
 
-<h4> This application  has been designed with microservice architecture  </h4>
+</head>
+<body>
 
-<h4> All the inforations and actions on this dashboard will be coming from the following microservices</h4>
+    <div class="limiter">
+        <div class="imgcontainer">
+            
+        </div>
+        <div class="container-login100">
+            <div class="wrap-login100">
+                <div class="login100-form-title" style="background-image: url(images/bg-01.jpg);">
+                    <span class="login100-form-title-1">
+                        Sign In
+                    </span>
+                </div>
 
-<ul>
-  <li>Tokenleader - For authentication , authorization and storing users details</li>
-  <li>Inventory - For maintaining the inventories</li>
-  <li>Invoice - upload  and compare the invoice data  with inventory for validation and forward to paypocess</li>
-  <li> paypocess - For updating the payment status </li> cd 
-</ul> 
+                <form class="login100-form validate-form" action="{% url 'dashapp:login' %}"  method="post">
+                {% csrf_token %} 
+                    <div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
+                        <span class="label-input100">Username</span>
+                        <input class="input100" type="text" name="username" placeholder="Enter username">
+                        <span class="focus-input100"></span>
+                    </div>
 
+                    <div class="wrap-input100 validate-input m-b-18" data-validate="Password is required">
+                        <span class="label-input100">Password</span>
+                        <input class="input100" type="password" name="password" placeholder="Enter password">
+                        <span class="focus-input100"></span>
+                    </div>
 
- <form action="{% url 'dashapp:login' %}"  method="post">
-  <div class="imgcontainer">
-   
-{% csrf_token %} 
-  </div>
+                    <div class="flex-sb-m w-full p-b-30">
+                        <div class="contact100-form-checkbox">
+                            <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
+                            <label class="label-checkbox100" for="ckb1">
+                                Remember me
+                            </label>
+                        </div>
 
-  <div class="container">
-    <label for="username"><b>Username</b></label>
-    <input type="text" placeholder="Enter Username" name="username" >
+                        <div>
+                            <a href="#" class="txt1">
+                                Forgot Password?
+                            </a>
+                        </div>
+                    </div>
 
-    <label for="password"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="password" >
+                    <div class="container-login100-form-btn">
+                        <button class="login100-form-btn" type="submit">
+                            Login
+                        </button>
+                    </div>
 
-    <button type="submit">Login</button>
-    
-  </div>
-</form> 
-
-<h2>{{ mykey }} </h2>
+                </form>
+            </div>
+        </div>
+    </div>
+    <h2>{{ mykey }} </h2>
+</body>
+</html>

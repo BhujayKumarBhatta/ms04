@@ -1,0 +1,35 @@
+
+
+<h1> Welcome to TSP Billing  Application  </h1>
+
+<h4> This application  has been designed with microservice architecture  </h4>
+
+<h4> All the inforations and actions on this dashboard will be coming from the following microservices</h4>
+
+<ul>
+  <li>Tokenleader - For authentication , authorization and storing users details</li>
+  <li>Inventory - For maintaining the inventories</li>
+  <li>Invoice - upload  and compare the invoice data  with inventory for validation and forward to paypocess</li>
+  <li> paypocess - For updating the payment status </li> cd 
+</ul> 
+
+
+ <form action="{% url 'dashapp:login' %}"  method="post">
+  <div class="imgcontainer">
+   
+{% csrf_token %} 
+  </div>
+
+  <div class="container">
+    <label for="username"><b>Username</b></label>
+    <input type="text" placeholder="Enter Username" name="username" >
+
+    <label for="password"><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" name="password" >
+
+    <button type="submit">Login</button>
+    
+  </div>
+</form> 
+
+<h2>{{ mykey }} </h2>
