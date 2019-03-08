@@ -488,7 +488,7 @@
                     <ul class="nav navbar-nav navbar-right">
 
                         <li class="dropdown">
-                            <a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#"><i class="glyphicon glyphicon-user"></i> User <span class="caret"></span></a>
+                            <a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#"><i class="glyphicon glyphicon-user"></i>  {{ user_details.username }} <span class="caret"></span></a>
                             <ul id="g-account-menu" class="dropdown-menu" role="menu">
                                 <li><a href="#">My Profile</a></li>
                             </ul>
@@ -548,7 +548,7 @@
                                     <div id="dropdown-lvl1" class="panel-collapse collapse">
                                         <div class="panel-body">
                                             <ul class="nav navbar-nav">
-                                                <li><a href="#">Users</a></li>
+                                                <li><a href="{% url 'dashapp:list_users'  %}"> List Users  </a></li>
                                                 <li><a href="#">Add User</a></li>
                                             </ul>
                                         </div>
@@ -562,14 +562,12 @@
                                     <div id="dropdown-lvl2" class="panel-collapse collapse">
                                         <div class="panel-body">
                                             <ul class="nav navbar-nav">
-                                                <li><a href="#">List Links</a></li>
+                                                <li><a href="{% url 'dashapp:list_links'  %}"> List Links  </a></li>
                                                 <li><a href="#">Add Link</a></li>
                                             </ul>
                                         </div>
                                     </div>
                                 </li>
-
-
                                 <li><a href="#"><span class="glyphicon glyphicon-send"></span> Invoice</a></li>
                                 <li class="active"><a href="#"><span class="glyphicon glyphicon-plane"></span> PO</a></li>
                                 <!--<li><a href="#"><span class="glyphicon glyphicon-cloud"></span> Link</a></li>-->
