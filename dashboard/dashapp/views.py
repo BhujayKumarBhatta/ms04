@@ -70,7 +70,7 @@ def login(request):
                                 "user_details": verified_token.get('payload').get('sub'),
                                 }           
                 
-                result = render(request, 'home2.html', template_data)
+                result = render(request, 'home.html', template_data)
             
     return result
 
