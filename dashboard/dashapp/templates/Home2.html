@@ -50,28 +50,30 @@
 
 
         <!--<script type="text/javascript">
-            $('#M0Home').click(function (evt) {
-                window.location.href = 'Default.aspx';
-            });
-            $('#M0Home2').click(function (evt) {
-                window.location.href = '../Default.aspx';
-            });
-            $('#M1InvCompare').click(function (evt) {
-                window.location.href = '../InvoieCompare.aspx';
-            });
-            $('#M2InvAppr').click(function (evt) {
-                window.location.href = '../ManageInvoiceApproval.aspx';
-            });
-            $('#M2InvAppr').click(function (evt) {
-                window.location.href = '../ManageInvoiceApproval.aspx';
-            });
-            $('#M3UserLoginLog').click(function (evt) {
-                window.location.href = '../Audit/UserLoginLog.aspx';
-            });
-            $('#M4InvUpload').click(function (evt) {
-                window.location.href = '../Audit/ExcelInvoice.aspx';
-            });
-        </script>-->
+        $('#M0Home').click(function (evt) {
+            window.location.href = 'Default.aspx';
+        });
+        $('#M0Home2').click(function (evt) {
+            window.location.href = '../Default.aspx';
+        });
+        $('#M1InvCompare').click(function (evt) {
+            window.location.href = '../InvoieCompare.aspx';
+        });
+        $('#M2InvAppr').click(function (evt) {
+            window.location.href = '../ManageInvoiceApproval.aspx';
+        });
+        $('#M2InvAppr').click(function (evt) {
+            window.location.href = '../ManageInvoiceApproval.aspx';
+        });
+        $('#M3UserLoginLog').click(function (evt) {
+            window.location.href = '../Audit/UserLoginLog.aspx';
+        });
+        $('#M4InvUpload').click(function (evt) {
+            window.location.href = '../Audit/ExcelInvoice.aspx';
+        });
+    </script>-->
+        <a href="{% url 'dashapp:list_users'  %}"> List Users  </a> <br>
+        <a href="{% url 'dashapp:list_links'  %}"> List Links  </a> <br>
     </div>
 </body>
 </html>
