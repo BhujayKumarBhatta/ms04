@@ -96,8 +96,9 @@ def list_links(request):
         return result
 
 
-def TestingParams(request):
-    _param1 = request.GET['from']
-    _param2 = request.GET['name']
-    response = 'You are name is :' + _param1 + ' and from :' + _param2
-    return HttpResponse(response)    
+def list_test(request):
+    if request.method == 'GET': 
+        _param1 = request.GET['from']
+        _param2 = request.GET['name']
+        response = 'You are name is :' + _param1 + ' and from :' + _param2
+        return HttpResponse(response)    
