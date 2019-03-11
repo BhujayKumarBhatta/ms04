@@ -33,7 +33,7 @@ def prep_tlclient_from_session(request):
     if 'uname' in request.session and 'psword' in request.session:
         uname = request.session['uname']
         psword = request.session['psword']
-        auth_config = Configs(tlusr=uname, tlpwd=psword )
+        auth_config = Configs(tlusr=uname, tlpwd=psword)
         tlclient = Client(auth_config) 
         return   tlclient 
             
@@ -49,7 +49,7 @@ def login(request):
         psword = request.POST.get('password', '')
         request.session['uname'] = uname
         request.session['psword'] = psword
-        auth_config = Configs(tlusr=uname, tlpwd=psword )
+        auth_config = Configs(tlusr=uname, tlpwd=psword)
         tlclient = Client(auth_config)        
         auth_result = tlclient.get_token()        
         auth_result_json = json.dumps(auth_result)
@@ -58,7 +58,7 @@ def login(request):
             template_data = {"mykey": txt }          
             result = render(request, 'login.html', template_data)            
         else:       
-            #result =  HttpResponse(auth_result_json)
+            #result = HttpResponse(auth_result_json)
             verified_token = tlclient.verify_token(auth_result.get('auth_token'))
             if verified_token.get('status') == 'Invalid token':
                 txt = verified_token.get('message')  
@@ -66,7 +66,7 @@ def login(request):
                 result = render(request, 'login.html', template_data) 
                 
             else:
-                template_data = {"service_catalog": auth_result.get('service_catalog' ),
+                template_data = {"service_catalog": auth_result.get('service_catalog'),
                                 "user_details": verified_token.get('payload').get('sub'),
                                 }           
                 
@@ -94,4 +94,10 @@ def list_links(request):
         result = render(request, 'list_links.html', template_data)
         #return HttpResponse(json.dumps(list_links))
         return result
-    
+
+
+def TestingParams(request):
+    _param1 = request.GET['from']
+    _param2 = request.GET['name']
+    response = 'You are name is :' + _param1 + ' and from :' + _param2
+    return HttpResponse(response)    
