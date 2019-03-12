@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.shortcuts import render
 from tokenleaderclient.configs.config_handler import Configs    
-from  tokenleaderclient.client.client import Client 
+from tokenleaderclient.client.client import Client 
 from micros1client.client   import MSClient
 from linkinvclient.client import LIClient
 import json

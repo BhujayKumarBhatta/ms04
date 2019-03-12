@@ -1,0 +1,13 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\dashboard",
+    "\\dashboard\\dashapp",
+    "\\dashboard\\dashapp\\static\\dashapp",
+    "\\dashboard\\dashapp\\static\\dashapp\\styles",
+    "\\dashboard\\dashapp\\templates",
+    "\\dashboard\\dashboard"
+  ],
+  "SelectedNode": "\\dashboard\\dashapp\\views.py",
+  "PreviewInSolutionExplorer": false
+}

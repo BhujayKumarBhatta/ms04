@@ -3,25 +3,25 @@
 
 <table>
 
-<tr>
-  <th>serial_no </th>
-  <th>division_name </th> 
-  <th>link_type</th> 
-  <th>circuit_ID</th>
-  <th>fa_end</th>   
-  <th>bandwidth</th>   
-</tr>
+    <tr>
+        <th>serial_no </th>
+        <th>division_name </th>
+        <th>link_type</th>
+        <th>circuit_ID</th>
+        <th>fa_end</th>
+        <th>bandwidth</th>
+    </tr>
 
-{% for link in list_links %}
-<tr>
-<td>{{ link.serial_no }}</td>
-<td>{{ link.division_name }}</td> 
-<td>{{ link.link_type }} </td>
-<td> {{ link.circuit_ID }} </td> 
-<td> {{ link.fa_end}} </td> 
-<td> {{ link.bandwidth}} </td> 
-</tr>
-{% endfor %}
+    {% for link in list_links %}
+    <tr>
+        <td>{{ link.serial_no }}</td>
+        <td>{{ link.division_name }}</td>
+        <td>{{ link.link_type }} </td>
+        <td> {{ link.circuit_ID }} </td>
+        <td> {{ link.fa_end}} </td>
+        <td> {{ link.bandwidth}} </td>
+    </tr>
+    {% endfor %}
 </table>
 
 
