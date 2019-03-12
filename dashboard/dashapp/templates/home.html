@@ -609,40 +609,42 @@
                     </nav>
                 </div>
                 <!-- UIsers List -->
-                {% if list_users is not null %}
-                <table>
-                    <tr>
-                        <th>username </th>
-                        <th>email </th>
-                        <th>Role List</th>
-                        <th>Role</th>
-                        <th>Organization</th>
-                        <th>Unit</th>
-                        <th>Department</th>
-                        <th>Work Function Context</th>
-                    </tr>
-                    {% for user in list_users %}
-                    <tr>
-                        <td>{{ user.username }}</td>
-                        <td>{{ user.email }}</td>
-                        <td>{{ user.roles }} </td>
-                        <td>
-                            {% for role in user.roles %}
-                            {{ role }}
-                            {% endfor %}
-                        </td>
-                        <td> {{ user.wfc.org }} </td>
-                        <td> {{ user.wfc.orgunit}} </td>
-                        <td> {{ user.wfc.department}} </td>
-                        <td> {{ user.wfc.name}} </td>
-                    </tr>
-                    {% endfor %}
-                </table>
-                {% endif %}
 
 
                 <div class="container-fluid" style="width:100%;padding-top:28px">
                     <div class="side-body">
+                        {% if list_users is not null %}
+                        <table>
+                            <tr>
+                                <th>username </th>
+                                <th>email </th>
+                                <th>Role List</th>
+                                <th>Role</th>
+                                <th>Organization</th>
+                                <th>Unit</th>
+                                <th>Department</th>
+                                <th>Work Function Context</th>
+                            </tr>
+                            {% for user in list_users %}
+                            <tr>
+                                <td>{{ user.username }}</td>
+                                <td>{{ user.email }}</td>
+                                <td>{{ user.roles }} </td>
+                                <td>
+                                    {% for role in user.roles %}
+                                    {{ role }}
+                                    {% endfor %}
+                                </td>
+                                <td> {{ user.wfc.org }} </td>
+                                <td> {{ user.wfc.orgunit}} </td>
+                                <td> {{ user.wfc.department}} </td>
+                                <td> {{ user.wfc.name}} </td>
+                            </tr>
+                            {% endfor %}
+                        </table>
+                        {% endif %}
+
+
                         <h1> Main Content here </h1>
                         <pre> Resize the screen to view the left slide menu </pre>
                         <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
