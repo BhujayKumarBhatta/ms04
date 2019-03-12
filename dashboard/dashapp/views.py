@@ -80,7 +80,7 @@ def list_users(request):
         tlclient = prep_tlclient_from_session(request)
         list_users = tlclient.list_users()
         template_data = {"list_users": list_users.get('status') } 
-        result = render(request, 'list_users.html', template_data)
+        result = render(request, 'home.html', template_data)
         #return HttpResponse(json.dumps(list_users))
         return result
     

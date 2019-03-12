@@ -611,7 +611,6 @@
                 <!-- UIsers List -->
                 {% if list_users is not null %}
                 <table>
-
                     <tr>
                         <th>username </th>
                         <th>email </th>
@@ -622,7 +621,6 @@
                         <th>Department</th>
                         <th>Work Function Context</th>
                     </tr>
-
                     {% for user in list_users %}
                     <tr>
                         <td>{{ user.username }}</td>
@@ -637,7 +635,6 @@
                         <td> {{ user.wfc.orgunit}} </td>
                         <td> {{ user.wfc.department}} </td>
                         <td> {{ user.wfc.name}} </td>
-
                     </tr>
                     {% endfor %}
                 </table>
