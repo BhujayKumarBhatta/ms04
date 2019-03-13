@@ -94,6 +94,24 @@ def adduser(request):
         #return HttpResponse(json.dumps(list_users))
         return result
 
+def invoice(request):
+    if request.method == 'GET': 
+        #tlclient = prep_tlclient_from_session(request)
+        #list_users = tlclient.list_users()
+        template_data = {"INVOICE": "TRUE" }  
+        result = render(request, 'home.html', template_data)
+        #return HttpResponse(json.dumps(list_users))
+        return result
+
+def po(request):
+    if request.method == 'GET': 
+        #tlclient = prep_tlclient_from_session(request)
+        #list_users = tlclient.list_users()
+        template_data = {"PO": "TRUE" }  
+        result = render(request, 'home.html', template_data)
+        #return HttpResponse(json.dumps(list_users))
+        return result
+
     
     
 def list_links(request):

@@ -617,6 +617,10 @@
                         {% include 'list_users.html' %}
                         {% elif ADDUSER is not null %}
                         {% include 'AddUser.html' %}
+                        {% elif INVOICE is not null %}
+                        {% include 'invoice.html' %}
+                        {% elif PO is not null %}
+                        {% include 'invoice.html' %}
                         {% else %}
                         <h1> Main Content here </h1>
                         <pre> Resize the screen to view the left slide menu </pre>
@@ -633,7 +637,7 @@
             </div>
         </div>
 
-       
+
     </div>
     <!--<div>
         <div class="w3-sidebar w3-bar-block w3-border-right" style="display: none" id="mySidebar">
