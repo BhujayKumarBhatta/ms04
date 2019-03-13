@@ -613,9 +613,9 @@
 
                 <div class="container-fluid" style="width:100%;padding-top:28px">
                     <div class="side-body">
-                        {% if list_users is not null %} 
+                        {% if list_users is not null %}
                         {% include 'list_users.html' %}
-                        {% if template_data is not null  %}
+                        {% elif template_data is not null  %}
                             {% if template_data.ADDUSER is not null %}
                                 {% include 'list_users.html' %}
                             {% endif %}
