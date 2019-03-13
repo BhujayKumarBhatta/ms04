@@ -615,10 +615,8 @@
                     <div class="side-body">
                         {% if list_users is not null %}
                         {% include 'list_users.html' %}
-                        {% elif template_data is not null  %}
-                            {% if template_data.ADDUSER is not null %}
-                                {% include 'list_users.html' %}
-                            {% endif %}
+                        {% elif template_data is not null and if ADDUSER is not null %}                        
+                        {% include 'list_users.html' %}                        
                         {% else %}
                         <h1> Main Content here </h1>
                         <pre> Resize the screen to view the left slide menu </pre>
