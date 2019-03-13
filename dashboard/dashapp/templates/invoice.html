@@ -5,7 +5,7 @@
     }
 
     .bgimg {
-        background-image: url('{% static "dashapp/images/underconstruction.jpg" %}');
+        /*background-image: url('{% static "dashapp/images/underconstruction.jpg" %}');*/
         height: 100%;
         background-position: center;
         background-size: cover;
@@ -42,18 +42,18 @@
 </style>
 <div>
 
-    <div class="bgimg">
-        <div class="topleft">
-            <p>TSP Billing</p>
-        </div>
-        <div class="middle">
-            <h1>COMING SOON</h1>
-            <hr>
-            <p>24 days left</p>
-        </div>
-        <div class="bottomleft">
-            <p>Some text</p>
-        </div>
+    <div class="bgimg" style="background-image: url({% static " dashapp/images/underconstruction.jpg" %});">
+    <div class="topleft">
+        <p>TSP Billing</p>
     </div>
+    <div class="middle">
+        <h1>COMING SOON</h1>
+        <hr>
+        <p>24 days left</p>
+    </div>
+    <div class="bottomleft">
+        <p>Some text</p>
+    </div>
+</div>
 
 </div>
