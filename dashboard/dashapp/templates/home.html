@@ -614,15 +614,15 @@
                 <div class="container-fluid" style="width:100%;padding-top:28px">
                     <div class="side-body">
                         {% if list_users is not null %}
-                        {% include 'list_users.html' %}
+                            {% include 'list_users.html' %}
                         {% elif list_links is not null %}
-                        {% include 'list_links.html' %}
+                            {% include 'list_links.html' %}
                         {% elif ADDUSER is not null %}
-                        {% include 'AddUser.html' %}
+                            {% include 'AddUser.html' %}
                         {% elif INVOICE is not null %}
-                        {% include 'invoice.html' %}
+                            {% include 'invoice.html' %}
                         {% elif PO is not null %}
-                        {% include 'invoice.html' %}
+                            {% include 'invoice.html' %}
                         {% else %}
                         <h1> Main Content here </h1>
                         <pre> Resize the screen to view the left slide menu </pre>
