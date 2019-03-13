@@ -44,7 +44,7 @@
             </tr>
         </thead>
         <tbody>
-            {% for user in list_users %}
+            {% for user in list_links %}
             <tr>
                 <td>{{ link.serial_no }}</td>
                 <td>{{ link.division_name }}</td>
@@ -52,7 +52,7 @@
                 <td> {{ link.circuit_ID }} </td>
                 <td> {{ link.bandwidth}} </td>
                 <td> {{ link.fa_end}} </td>
-                
+
 
             </tr>
             {% endfor %}
