@@ -23,4 +23,5 @@ urlpatterns = [
     path('list_users', views.list_users, name='list_users'),
     path('list_links', views.list_links, name='list_links'),
     path('list_test', views.list_test, name='list_test'),
+    path('adduser', views.adduser, name='adduser'),
 ]
