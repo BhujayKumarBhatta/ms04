@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.shortcuts import render
 from tokenleaderclient.configs.config_handler import Configs    
-from  tokenleaderclient.client.client import Client 
+from tokenleaderclient.client.client import Client 
 from micros1client.client   import MSClient
 from linkinvclient.client import LIClient
 import json
@@ -33,7 +33,7 @@ def prep_tlclient_from_session(request):
     if 'uname' in request.session and 'psword' in request.session:
         uname = request.session['uname']
         psword = request.session['psword']
-        auth_config = Configs(tlusr=uname, tlpwd=psword )
+        auth_config = Configs(tlusr=uname, tlpwd=psword)
         tlclient = Client(auth_config) 
         return   tlclient 
             
@@ -49,7 +49,7 @@ def login(request):
         psword = request.POST.get('password', '')
         request.session['uname'] = uname
         request.session['psword'] = psword
-        auth_config = Configs(tlusr=uname, tlpwd=psword )
+        auth_config = Configs(tlusr=uname, tlpwd=psword)
         tlclient = Client(auth_config)        
         auth_result = tlclient.get_token()        
         auth_result_json = json.dumps(auth_result)
@@ -58,7 +58,7 @@ def login(request):
             template_data = {"mykey": txt }          
             result = render(request, 'login.html', template_data)            
         else:       
-            #result =  HttpResponse(auth_result_json)
+            #result = HttpResponse(auth_result_json)
             verified_token = tlclient.verify_token(auth_result.get('auth_token'))
             if verified_token.get('status') == 'Invalid token':
                 txt = verified_token.get('message')  
@@ -66,7 +66,7 @@ def login(request):
                 result = render(request, 'login.html', template_data) 
                 
             else:
-                template_data = {"service_catalog": auth_result.get('service_catalog' ),
+                template_data = {"service_catalog": auth_result.get('service_catalog'),
                                 "user_details": verified_token.get('payload').get('sub'),
                                 }           
                 
@@ -80,9 +80,38 @@ def list_users(request):
         tlclient = prep_tlclient_from_session(request)
         list_users = tlclient.list_users()
         template_data = {"list_users": list_users.get('status') } 
-        result = render(request, 'list_users.html', template_data)
+        result = render(request, 'home.html', template_data)
         #return HttpResponse(json.dumps(list_users))
         return result
+
+
+def adduser(request):
+    if request.method == 'GET': 
+        #tlclient = prep_tlclient_from_session(request)
+        #list_users = tlclient.list_users()
+        template_data = {"ADDUSER": "TRUE" }  
+        result = render(request, 'home.html', template_data)
+        #return HttpResponse(json.dumps(list_users))
+        return result
+
+def invoice(request):
+    if request.method == 'GET': 
+        #tlclient = prep_tlclient_from_session(request)
+        #list_users = tlclient.list_users()
+        template_data = {"INVOICE": "TRUE" }  
+        result = render(request, 'home.html', template_data)
+        #return HttpResponse(json.dumps(list_users))
+        return result
+
+def po(request):
+    if request.method == 'GET': 
+        #tlclient = prep_tlclient_from_session(request)
+        #list_users = tlclient.list_users()
+        template_data = {"PO": "TRUE" }  
+        result = render(request, 'home.html', template_data)
+        #return HttpResponse(json.dumps(list_users))
+        return result
+
     
     
 def list_links(request):
@@ -91,7 +120,14 @@ def list_links(request):
         lic = LIClient(tlclient)
         list_links = lic.list_links()
         template_data = {"list_links": list_links.get('message') } 
-        result = render(request, 'list_links.html', template_data)
+        result = render(request, 'home.html', template_data)
         #return HttpResponse(json.dumps(list_links))
         return result
-    
+
+
+def list_test(request):
+    if request.method == 'GET': 
+        _param1 = request.GET['from']
+        _param2 = request.GET['name']
+        response = 'You are name is :' + _param1 + ' and from :' + _param2
+        return HttpResponse(response)    

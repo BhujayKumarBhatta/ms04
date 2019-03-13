@@ -1,10 +1,18 @@
-﻿<!DOCTYPE html>
+﻿{% load i18n %}
+{% load l10n %}
+{% load static %}
+<!DOCTYPE html>
 <html>
 <head runat="server">
     <title>TSP Billing</title>
-    <link href="styles/grids-responsive-min.css" rel="stylesheet" />
-    <link href="styles/W3_Menu.css" rel="stylesheet" />
-    <script src="../styles/jquery.min.js" type="text/javascript"></script>
+
+    <link rel="stylesheet" type="text/css" href='{% static "dashapp/styles/grids-responsive-min.css" %}'>
+    <link rel="stylesheet" type="text/css" href='{% static "dashapp/styles/W3_Menu.css" %}'>
+    <script src='{% static "dashapp/styles/jquery.min.js" %}' type="text/javascript"></script>
+    <!--<link href="styles/grids-responsive-min.css" rel="stylesheet" />
+        <link href="styles/W3_Menu.css" rel="stylesheet" />
+    <script src="../styles/jquery.min.js" type="text/javascript"></script>-->
+
 </head>
 <body>
 
@@ -42,28 +50,30 @@
 
 
         <!--<script type="text/javascript">
-            $('#M0Home').click(function (evt) {
-                window.location.href = 'Default.aspx';
-            });
-            $('#M0Home2').click(function (evt) {
-                window.location.href = '../Default.aspx';
-            });
-            $('#M1InvCompare').click(function (evt) {
-                window.location.href = '../InvoieCompare.aspx';
-            });
-            $('#M2InvAppr').click(function (evt) {
-                window.location.href = '../ManageInvoiceApproval.aspx';
-            });
-            $('#M2InvAppr').click(function (evt) {
-                window.location.href = '../ManageInvoiceApproval.aspx';
-            });
-            $('#M3UserLoginLog').click(function (evt) {
-                window.location.href = '../Audit/UserLoginLog.aspx';
-            });
-            $('#M4InvUpload').click(function (evt) {
-                window.location.href = '../Audit/ExcelInvoice.aspx';
-            });
-        </script>-->
+        $('#M0Home').click(function (evt) {
+            window.location.href = 'Default.aspx';
+        });
+        $('#M0Home2').click(function (evt) {
+            window.location.href = '../Default.aspx';
+        });
+        $('#M1InvCompare').click(function (evt) {
+            window.location.href = '../InvoieCompare.aspx';
+        });
+        $('#M2InvAppr').click(function (evt) {
+            window.location.href = '../ManageInvoiceApproval.aspx';
+        });
+        $('#M2InvAppr').click(function (evt) {
+            window.location.href = '../ManageInvoiceApproval.aspx';
+        });
+        $('#M3UserLoginLog').click(function (evt) {
+            window.location.href = '../Audit/UserLoginLog.aspx';
+        });
+        $('#M4InvUpload').click(function (evt) {
+            window.location.href = '../Audit/ExcelInvoice.aspx';
+        });
+    </script>-->
+        <a href="{% url 'dashapp:list_users'  %}"> List Users  </a> <br>
+        <a href="{% url 'dashapp:list_links'  %}"> List Links  </a> <br>
     </div>
 </body>
 </html>
