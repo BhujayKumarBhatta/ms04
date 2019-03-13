@@ -1,7 +1,4 @@
-
-
-
-<table>
+<!--<table>
 
     <tr>
         <th>serial_no </th>
@@ -20,13 +17,55 @@
         <td> {{ link.circuit_ID }} </td>
         <td> {{ link.fa_end}} </td>
         <td> {{ link.bandwidth}} </td>
+
     </tr>
     {% endfor %}
-</table>
+</table>-->
 
 
 
 
-<h4> Home Page  href link</h4>
 
 
+<div class="table-responsive">
+    <div class="tim-row" id="tutorial">
+        <h4 class="text-left">List of Links</h4>
+        <legend></legend>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Serial No</th>
+                <th>Division</th>
+                <th>Link type</th>
+                <th> Circuit ID</th>
+                <th> Bandwidth</th>
+                <th> fa_end</th>                
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in list_users %}
+            <tr>
+                <td>{{ link.serial_no }}</td>
+                <td>{{ link.division_name }}</td>
+                <td>{{ link.link_type }} </td>
+                <td> {{ link.circuit_ID }} </td>
+                <td> {{ link.bandwidth}} </td>
+                <td> {{ link.fa_end}} </td>
+                
+
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+
+<!--{'bandwidth': '256 Kbps', 'circuit_ID': 'VSAT ID : 18999', 'division_name': 'ILTD'
+    , 'fa_end': 'Pl               ot No 20 Ongole 1 Opp: Tobbacco Board, Pernamitta
+    , Ongole Mandal, Prakasam District, AP\r\nOLD HCL VSAT ID:-GS               
+    BL-1146', 'link_type': 'VSAT', 'serial_no': 'S000002210'} -->
