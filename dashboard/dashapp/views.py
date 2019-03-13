@@ -83,6 +83,17 @@ def list_users(request):
         result = render(request, 'home.html', template_data)
         #return HttpResponse(json.dumps(list_users))
         return result
+
+
+def adduser(request):
+    if request.method == 'GET': 
+        #tlclient = prep_tlclient_from_session(request)
+        #list_users = tlclient.list_users()
+        template_data = {"ADDUSER": "TRUE" }  
+        result = render(request, 'home.html', template_data)
+        #return HttpResponse(json.dumps(list_users))
+        return result
+
     
     
 def list_links(request):

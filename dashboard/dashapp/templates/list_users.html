@@ -40,16 +40,14 @@
 
 <div class="table-responsive">
     <div class="tim-row" id="tutorial">
-        <h5 class="text-center">Short Description and Usage</h5>
-        <legend></legend>
-        
+        <h4 class="text-left">Short Description and Usage</h4>
+        <legend></legend>        
     </div>
     <table class="table">
         <thead>
             <tr>
                 <th>User Name</th>
-                <th>Email</th>
-                <th>Role List</th>
+                <th>Email</th>                
                 <th>Role</th>
                 <th> Organization</th>
                 <th> Unit</th>
@@ -61,8 +59,7 @@
             {% for user in list_users %}
             <tr>
                 <td>{{ user.username }}</td>
-                <td>{{ user.email }}</td>
-                <td>{{ user.roles }} </td>
+                <td>{{ user.email }}</td>                 
                 <td>
                     {% for role in user.roles %}
                     {{ role }}
