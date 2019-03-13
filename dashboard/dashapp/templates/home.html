@@ -615,7 +615,7 @@
                     <div class="side-body">
                         {% if list_users is not null %}
                         {% include 'list_users.html' %}
-                        {% elif template_data is not null and if ADDUSER is not null %}                        
+                        {% elif ADDUSER is not null %}                        
                         {% include 'adduser.html' %}                        
                         {% else %}
                         <h1> Main Content here </h1>
