@@ -7,7 +7,7 @@
     }
 
     .table-wrapper {
-        width: 700px;
+        width: 100%;
         margin: 30px auto;
         background: #fff;
         padding: 20px;
@@ -15,8 +15,8 @@
     }
 
     .table-title {
-        padding-bottom: 10px;
-        margin: 0 0 10px;
+        padding-bottom: 5px;
+        margin: 0 0 5px;
     }
 
         .table-title h2 {
@@ -169,7 +169,7 @@ $(document).ready(function(){
     </div>
     <table class="table table-bordered">
         <thead>
-            <tr style="font-size:10px">
+            <tr style="font-size:12px">
                 <th>User Name</th>
                 <th>Email</th>
                 <th>Role</th>
@@ -183,7 +183,7 @@ $(document).ready(function(){
         <tbody>
 
             {% for user in list_users %}
-            <tr style="font-size:10px">
+            <tr style="font-size:11px">
                 <td>{{ user.username }}</td>
                 <td>{{ user.email }}</td>
                 <td>
