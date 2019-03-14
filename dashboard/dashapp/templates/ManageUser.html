@@ -170,7 +170,7 @@ $(document).ready(function(){
             </div>
             <table class="table table-bordered">
                 <thead>
-                    <tr>
+                    <tr style="font-size:10px">
                         <th>User Name</th>
                         <th>Email</th>
                         <th>Role</th>
@@ -184,7 +184,7 @@ $(document).ready(function(){
                 <tbody>
                      
                     {% for user in list_users %}
-                    <tr>
+                    <tr style="font-size:8px">
                         <td>{{ user.username }}</td>
                         <td>{{ user.email }}</td>
                         <td>
