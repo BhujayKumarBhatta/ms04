@@ -622,20 +622,16 @@
                 <div class="container-fluid" style="width:100%;padding-top:28px">
                     <div class="side-body">
                         {% if list_users is not null %}
-                            {% block title %}Manage User{% endblock %}
-                            {% include 'list_users.html' %}
+                        
+                        {% include 'list_users.html' %}
                         {% elif list_links is not null %}
-                            {% block title %}Manage Link{% endblock %}
-                            {% include 'list_links.html' %}
+                        {% include 'list_links.html' %}
                         {% elif ADDUSER is not null %}
-                            {% block title %}Add User Link{% endblock %}
-                            {% include 'AddUser.html' %}
+                        {% include 'AddUser.html' %}
                         {% elif INVOICE is not null %}
-                            {% block title %}Invoice{% endblock %}
-                            {% include 'invoice.html' %}
+                        {% include 'invoice.html' %}
                         {% elif PO is not null %}
-                            {% block title %}Purchase Order{% endblock %}
-                         {% include 'ManageUser.html' %}
+                        {% include 'ManageUser.html' %}
                         {% else %}
                         <h1> Main Content here </h1>
                         <pre> Resize the screen to view the left slide menu </pre>
