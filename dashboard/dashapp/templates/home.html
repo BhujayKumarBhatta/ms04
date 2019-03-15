@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head runat="server">
-    <title>TSP Billing</title>
+    <title>TSP Billing | {% block title %}{% endblock %} </title>
 
     <!--<script src='{% static "dashapp/styles/jquery.min.js" %}' type="text/javascript"></script>
     <link rel="stylesheet" type="text/css" href='{% static "dashapp/styles/W3_Menu.css" %}'>
@@ -622,15 +622,20 @@
                 <div class="container-fluid" style="width:100%;padding-top:28px">
                     <div class="side-body">
                         {% if list_users is not null %}
-                        {% include 'list_users.html' %}
+                            {% block title %}Manage User{% endblock %}
+                            {% include 'list_users.html' %}
                         {% elif list_links is not null %}
-                        {% include 'list_links.html' %}
+                            {% block title %}Manage Link{% endblock %}
+                            {% include 'list_links.html' %}
                         {% elif ADDUSER is not null %}
-                        {% include 'AddUser.html' %}
+                            {% block title %}Add User Link{% endblock %}
+                            {% include 'AddUser.html' %}
                         {% elif INVOICE is not null %}
-                        {% include 'invoice.html' %}
+                            {% block title %}Invoice{% endblock %}
+                            {% include 'invoice.html' %}
                         {% elif PO is not null %}
-                        {% include 'ManageUser.html' %}
+                            {% block title %}Purchase Order{% endblock %}
+                         {% include 'ManageUser.html' %}
                         {% else %}
                         <h1> Main Content here </h1>
                         <pre> Resize the screen to view the left slide menu </pre>
