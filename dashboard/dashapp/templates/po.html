@@ -1,0 +1,22 @@
+
+
+<ul>
+    for href, caption in [('index.html', 'Index'),
+    ('about.html', 'About')]:
+    <li><a href="{{ href }}">{{ caption }}</a></li>
+    endfor
+</ul>
+
+<table>
+    {% for record in Menu %}
+    <tr>
+        <td><ul><li><a href="{{ attribute.url }}">{{ attribute.Name }}</a></li></ul></td>
+        {% for attribute in record.submenu() %}
+    
+        <td>...</td>
+        <td><ul><li><a href="{{ attribute.url }}">{{ attribute.Name }}</a></li></ul></td>
+        {% endfor %}
+    
+    </tr>
+    {% endfor %}
+</table>
