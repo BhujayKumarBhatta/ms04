@@ -20,11 +20,11 @@
         </div>
         <div class="container-login100">
             <div class="wrap-login100">
-                <div class="login100-form-title"  >
-                    <span class="login100-form-title-1">
-                        Sign In
-                    </span>
-                </div>
+                <div class="login100-form-title" style="background-image: url({% static " dashapp/images/bg-01.jpg" %});">
+                <span class="login100-form-title-1">
+                    Sign In
+                </span>
+            </div>
 
                 <form class="login100-form validate-form" action="{% url 'dashapp:login' %}"  method="post">
                 {% csrf_token %} 
