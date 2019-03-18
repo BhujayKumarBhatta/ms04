@@ -164,8 +164,8 @@
     <table class="table table-bordered">
         <thead>
             <tr style="font-size:12px">
-                <th>Circuit ID</th>
-                <th>Tax Name</th>
+                <th>Loggen user Email</th>
+                <th>ARC</th>
                 <th>Division</th>
                 <th> Customer</th>
                 <th> User</th>
@@ -177,8 +177,8 @@
 
             {% for Inv in list_invoices %}
             <tr style="font-size:11px">
-                <td>{{ Inv.Circuit ID }}</td>
-                <td>{{ Inv.Tax Name }}</td>
+                <td>{{ Inv.logged_in_user_email }}</td>
+                <td>{{ Inv.ARC }}</td>
                 <td>{{ Inv.Division }} </td>
                 <td> {{ Inv.Customer_Name }} </td>
                 <td> {{ Inv.logged_in_user_org_unit}} </td>
