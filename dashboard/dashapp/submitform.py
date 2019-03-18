@@ -1,7 +1,9 @@
 from django.forms import widgets
 from django.core.exceptions import ValidationError
-from djng.forms import fields
-from djng.styling.bootstrap3.forms import Bootstrap3Form
+#from djng.forms import fields
+from django.forms import fields
+#from djng.styling.bootstrap3.forms import Bootstrap3Form
+from django.styling.bootstrap3.forms import Bootstrap3Form
 
 def validate_password(value):
     # Just for demo. Do not validate passwords like this!
