@@ -150,14 +150,14 @@ def list_invoices(request):
     if request.method == 'GET': 
         tlclient = prep_tlclient_from_session(request)
         invClient = MSClient(tlclient) 
-        list_invoices = invClient.list_invoices('all','all')
-        
+        list_invoices = invClient.list_invoices('all','all')        
         list_invoices = json.loads(list_invoices)
         
         #list_invoices = JSON.parse(JSON.stringify(list_invoices).replace(/\s(?=\w+":)/g, ""))
-        new_json = (re.sub(r'\s(?=\w+":)',"",str(json.dumps(list_invoices))))
+        
 
-
+        new_json = {x.translate({32: None}): y for x, y in list_invoices.items()}
+ 
         #list_invoices = invClient.list()
         template_data = {"list_invoices": new_json } 
         result = render(request, 'home.html', template_data)        
