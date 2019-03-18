@@ -145,7 +145,7 @@ def list_test(request):
 
     
 ### Manage Invoice Upload #####################
-## List All Invoice
+## List All Invoice 
 def list_invoices(request):
     if request.method == 'GET': 
         tlclient = prep_tlclient_from_session(request)
