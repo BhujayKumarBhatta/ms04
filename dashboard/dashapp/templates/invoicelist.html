@@ -165,11 +165,28 @@
         <thead>
             <tr style="font-size:12px">
                 <th>Circuit ID</th>
-                <th>ARC</th>
+                <th>Tax Name</th>
                 <th>Division</th>
                 <th> Customer</th>
                 <th> User</th>
+                <th> Invoice No</th>
+                <th> Full Site  Address</th>
+                <th> GST No</th>
                 <th> State</th>
+                <th> Billing Date_From</th>
+                <th> City</th>
+                <th> logged_in_user_org</th>
+                <th> Premise Name</th>
+                <th> processing_status</th>
+                <th> Customer_id</th>
+                <th> Premise No</th>
+                <th> Billing Date_TO</th>
+                <th> logged_in_user_dept</th>
+                <th> Speed</th>
+                <th> REMARKS</th>
+                <th> logged_in_user_email</th>
+                <th> Invoice Date</th>
+                <th> SERXICE_TYPE</th>
             </tr>
 
         </thead>
@@ -177,12 +194,30 @@
 
             {% for Inv in list_invoices %}
             <tr style="font-size:11px">
-                <td>{{ Inv.CircuitID }}</td>
-                <td>{{ Inv.ARC }}</td>
+                <td>{{ Inv.Circuit ID }}</td>
+                <td>{{ Inv.Tax Name }}</td>
                 <td>{{ Inv.Division }} </td>
                 <td> {{ Inv.Customer_Name }} </td>
                 <td> {{ Inv.logged_in_user_org_unit}} </td>
+                <td> {{ Inv.Invoice No}} </td>
+                <td> {{ Inv.Full Site  Address}} </td>
+                <td> {{ Inv.GST No}} </td>
                 <td> {{ Inv.State}} </td>
+                <td> {{ Inv.Billing Date_From}} </td>
+                <td> {{ Inv.City}} </td>
+                <td> {{ Inv.logged_in_user_org}} </td>
+                <td> {{ Inv.Premise Name}} </td>
+                <td> {{ Inv.processing_status}} </td>
+                <td> {{ Inv.Customer_id}} </td>
+                <td> {{ Inv.Premise No}} </td>
+                <td> {{ Inv.Billing Date_TO}} </td>
+                <td> {{ Inv.logged_in_user_dept}} </td>
+                <td> {{ Inv.Speed}} </td>
+                <td> {{ Inv.REMARKS}} </td>
+                <td> {{ Inv.logged_in_user_email}} </td>
+                <td> {{ Inv.Invoice Date}} </td>
+                <td> {{ Inv.SERXICE_TYPE}} </td>
+
             </tr>
             {% endfor %}
 
