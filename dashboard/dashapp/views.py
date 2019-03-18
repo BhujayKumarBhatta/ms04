@@ -154,9 +154,12 @@ def list_invoices(request):
         
         list_invoices = json.loads(list_invoices)
         
-        
+        #list_invoices = JSON.parse(JSON.stringify(list_invoices).replace(/\s(?=\w+":)/g, ""))
+        new_json = (re.sub(r'\s(?=\w+":)',"",str(json.dumps(list_invoices))))
+
+
         #list_invoices = invClient.list()
-        template_data = {"list_invoices": list_invoices } 
+        template_data = {"list_invoices": new_json } 
         result = render(request, 'home.html', template_data)        
         return result
 ## Upload Invoice******
