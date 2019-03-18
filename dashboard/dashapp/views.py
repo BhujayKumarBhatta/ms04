@@ -123,6 +123,15 @@ def po(request):
         #return HttpResponse(json.dumps(list_users))
         return result
 
+def invoice_upload(request):
+    if request.method == 'GET': 
+        #tlclient = prep_tlclient_from_session(request)
+        #list_users = tlclient.list_users()
+        template_data = {"INVICE_UPLOAD": "TRUE" }  
+        result = render(request, 'home.html', template_data)
+        #return HttpResponse(json.dumps(list_users))
+        return result
+
     
     
 def list_links(request):
@@ -145,7 +154,7 @@ def list_test(request):
 
     
 ### Manage Invoice Upload #####################
-## List All Invoice 
+## List All Invoice
 def list_invoices(request):
     if request.method == 'GET': 
         tlclient = prep_tlclient_from_session(request)
@@ -153,10 +162,12 @@ def list_invoices(request):
         list_invoices = invClient.list_invoices('all','all')        
         new_json = json.loads(list_invoices)
         
-        #list_invoices = JSON.parse(JSON.stringify(list_invoices).replace(/\s(?=\w+":)/g, ""))
+        #list_invoices =
+        #JSON.parse(JSON.stringify(list_invoices).replace(/\s(?=\w+":)/g, ""))
         
 
-        #new_json = {x.translate({32: None}): y for x, y in list_invoices.items()}
+        #new_json = {x.translate({32: None}): y for x, y in
+        #list_invoices.items()}
  
         #list_invoices = invClient.list()
         template_data = {"list_invoices": new_json } 

@@ -577,40 +577,55 @@
                                         </div>
                                     </div>
                                 </li>
+                                <li class="panel panel-default" id="dropdown">
+                                    <a data-toggle="collapse" href="#dropdown-lvl2">
+                                        <span class="glyphicon glyphicon-user"></span> Manage Invoice <span class="caret"></span>
+                                    </a>
+                                    <!-- Dropdown level 1 -->
+                                    <div id="dropdown-lvl2" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <ul class="nav navbar-nav">
+                                                <li><a href="{% url 'dashapp:invoice_upload'  %}"> Upload Invoice  </a></li>
+                                                <li><a href="{% url 'dashapp:invoice'  %}"> List Invoice  </a></li>
+                                                
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
                                 <li><a href="{% url 'dashapp:invoice'  %}"><span class="glyphicon glyphicon-send"></span> Invoice</a></li>
                                 <li><a href="{% url 'dashapp:invoice'  %}"><span class="glyphicon glyphicon-plane"></span> PO</a></li>
                                 <!--<li><a href="#"><span class="glyphicon glyphicon-cloud"></span> Link</a></li>-->
                                 <!-- Dropdown-->
                                 <!--<li class="panel panel-default" id="dropdown">
-                                    <a data-toggle="collapse" href="#dropdown-lvl1">
-                                        <span class="glyphicon glyphicon-user"></span> Sub Level <span class="caret"></span>
-                                    </a>
+        <a data-toggle="collapse" href="#dropdown-lvl1">
+            <span class="glyphicon glyphicon-user"></span> Sub Level <span class="caret"></span>
+        </a>
 
-                                    <div id="dropdown-lvl1" class="panel-collapse collapse">
-                                        <div class="panel-body">
-                                            <ul class="nav navbar-nav">
-                                                <li><a href="#">Link</a></li>
-                                                <li><a href="#">Link</a></li>
-                                                <li><a href="#">Link</a></li>
+        <div id="dropdown-lvl1" class="panel-collapse collapse">
+            <div class="panel-body">
+                <ul class="nav navbar-nav">
+                    <li><a href="#">Link</a></li>
+                    <li><a href="#">Link</a></li>
+                    <li><a href="#">Link</a></li>
 
-                                                <li class="panel panel-default" id="dropdown">
-                                                    <a data-toggle="collapse" href="#dropdown-lvl2">
-                                                        <span class="glyphicon glyphicon-off"></span> Sub Level <span class="caret"></span>
-                                                    </a>
-                                                    <div id="dropdown-lvl2" class="panel-collapse collapse">
-                                                        <div class="panel-body">
-                                                            <ul class="nav navbar-nav">
-                                                                <li><a href="#">Link</a></li>
-                                                                <li><a href="#">Link</a></li>
-                                                                <li><a href="#">Link</a></li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </li>-->
+                    <li class="panel panel-default" id="dropdown">
+                        <a data-toggle="collapse" href="#dropdown-lvl2">
+                            <span class="glyphicon glyphicon-off"></span> Sub Level <span class="caret"></span>
+                        </a>
+                        <div id="dropdown-lvl2" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <ul class="nav navbar-nav">
+                                    <li><a href="#">Link</a></li>
+                                    <li><a href="#">Link</a></li>
+                                    <li><a href="#">Link</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </li>-->
                                 <!--<li><a href="#"><span class="glyphicon glyphicon-signal"></span> Link</a></li>-->
                             </ul>
                         </div><!-- /.navbar-collapse -->
@@ -628,6 +643,8 @@
                         {% include 'list_links.html' %}
                         {% elif ADDUSER is not null %}
                         {% include 'AddUser.html' %}
+                        {% elif INVICE_UPLOAD is not null %}
+                        {% include 'invoice_upload.html' %}
                         {% elif list_invoices is not null %}
                         {% include 'invoicelist.html' %}
                         {% elif PO is not null %}

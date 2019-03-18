@@ -18,11 +18,10 @@ from django.urls import path
 from . import views
 
 app_name = 'dashapp'
-urlpatterns = [
-    path('', views.login, name='login'),
+urlpatterns = [path('', views.login, name='login'),
     path('list_users', views.list_users, name='list_users'),
     path('list_links', views.list_links, name='list_links'),
     path('list_test', views.list_test, name='list_test'),
     path('adduser', views.adduser, name='adduser'),
     path('list_invoices', views.list_invoices, name='invoice'),
-]
+    path('invoice_upload', views.invoice_upload, name='invoice_upload')]
