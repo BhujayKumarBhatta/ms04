@@ -8,6 +8,7 @@ from linkinvclient.client import LIClient
 from django.views.generic.edit import FormView
 #from django.core.urlresolvers import reverse_lazy
 from django.urls import reverse_lazy
+import json
  
 
 
@@ -39,7 +40,6 @@ How the auth_result look
 #    template_name = 'subscribe-form.html'
 #    form_class = SubscribeForm
 #    success_url = reverse_lazy('form_data_valid')
-
 def prep_tlclient_from_session(request):
     if 'uname' in request.session and 'psword' in request.session:
         uname = request.session['uname']
@@ -145,14 +145,25 @@ def list_test(request):
 
     
 ### Manage Invoice Upload #####################
+## List All Invoice
 def list_invoices(request):
     if request.method == 'GET': 
         tlclient = prep_tlclient_from_session(request)
         invClient = MSClient(tlclient) 
         list_invoices = invClient.list_invoices('all','all')
+        list_invoices = json.load(list_invoices)
         #list_invoices = invClient.list()
         template_data = {"list_invoices": list_invoices.get('message') } 
         result = render(request, 'home.html', template_data)        
         return result
+## Upload Invoice******
+#def list_invoices(request):
+#    if request.method == 'GET': 
+#        tlclient = prep_tlclient_from_session(request)
+#        invClient = MSClient(tlclient) 
+#        invClient.upload_xl('file Loaction')        
+#        template_data = {"list_invoices": list_invoices.get('status') } 
+#        result = render(request, 'home.html', template_data)        
+#        return result
 
 ### End Invoice #####################
