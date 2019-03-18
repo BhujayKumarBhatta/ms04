@@ -149,8 +149,8 @@ def list_invoices(request):
     if request.method == 'GET': 
         tlclient = prep_tlclient_from_session(request)
         invClient = MSClient(tlclient) 
-        #list_invoices = invClient.list_invoices()
-        list_invoices = invClient.list()
+        list_invoices = invClient.list_invoices('all','')
+        #list_invoices = invClient.list()
         template_data = {"list_invoices": list_invoices.get('message') } 
         result = render(request, 'home.html', template_data)        
         return result
