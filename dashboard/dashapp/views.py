@@ -5,6 +5,9 @@ from tokenleaderclient.configs.config_handler import Configs
 from tokenleaderclient.client.client import Client 
 from micros1client.client   import MSClient
 from linkinvclient.client import LIClient
+from django.views.generic.edit import FormView
+from django.core.urlresolvers import reverse_lazy
+
 import json
 
 
@@ -27,6 +30,12 @@ How the auth_result look
 'auth_token': 'AA'}
 
 '''
+
+
+class SubscribeView(FormView):
+    template_name = 'subscribe-form.html'
+    form_class = SubscribeForm
+    success_url = reverse_lazy('form_data_valid')
 
 
 def prep_tlclient_from_session(request):
