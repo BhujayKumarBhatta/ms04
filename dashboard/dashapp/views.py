@@ -151,12 +151,12 @@ def list_invoices(request):
         tlclient = prep_tlclient_from_session(request)
         invClient = MSClient(tlclient) 
         list_invoices = invClient.list_invoices('all','all')        
-        list_invoices = json.loads(list_invoices)
+        new_json = json.loads(list_invoices)
         
         #list_invoices = JSON.parse(JSON.stringify(list_invoices).replace(/\s(?=\w+":)/g, ""))
         
 
-        new_json = {x.translate({32: None}): y for x, y in list_invoices.items()}
+        #new_json = {x.translate({32: None}): y for x, y in list_invoices.items()}
  
         #list_invoices = invClient.list()
         template_data = {"list_invoices": new_json } 
