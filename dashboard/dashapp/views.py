@@ -10,6 +10,7 @@ from django.views.generic.edit import FormView
 from django.urls import reverse_lazy
  
 
+
 import json
 
 
@@ -38,7 +39,6 @@ How the auth_result look
 #    template_name = 'subscribe-form.html'
 #    form_class = SubscribeForm
 #    success_url = reverse_lazy('form_data_valid')
-
 
 def prep_tlclient_from_session(request):
     if 'uname' in request.session and 'psword' in request.session:
@@ -141,4 +141,16 @@ def list_test(request):
         _param1 = request.GET['from']
         _param2 = request.GET['name']
         response = 'You are name is :' + _param1 + ' and from :' + _param2
-        return HttpResponse(response)    
+        return HttpResponse(response)   
+
+    
+### Manage Invoice Upload #####################
+def list_invoices(request):
+    if request.method == 'GET': 
+        invClient = MSClient(tlclient) 
+        list_invoices = invClient.list_invoices()
+        template_data = {"list_invoices": list_invoices.get('message') } 
+        result = render(request, 'home.html', template_data)        
+        return result
+
+### End Invoice #####################

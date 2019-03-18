@@ -622,14 +622,14 @@
                 <div class="container-fluid" style="width:100%;padding-top:28px">
                     <div class="side-body">
                         {% if list_users is not null %}
-                        
+
                         {% include 'list_users.html' %}
                         {% elif list_links is not null %}
                         {% include 'list_links.html' %}
                         {% elif ADDUSER is not null %}
                         {% include 'AddUser.html' %}
-                        {% elif INVOICE is not null %}
-                        {% include 'invoice.html' %}
+                        {% elif list_invoices is not null %}
+                        {% include 'invoicelist.html' %}
                         {% elif PO is not null %}
                         {% include 'ManageUser.html' %}
                         {% else %}
