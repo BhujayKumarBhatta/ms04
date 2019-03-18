@@ -8,7 +8,7 @@ from linkinvclient.client import LIClient
 from django.views.generic.edit import FormView
 #from django.core.urlresolvers import reverse_lazy
 from django.urls import reverse_lazy
-import submitform
+from submitform import SubscribeForm
 
 import json
 
@@ -36,7 +36,7 @@ How the auth_result look
 
 class SubscribeView(FormView):
     template_name = 'subscribe-form.html'
-    form_class = submitform.SubscribeForm()
+    form_class = SubscribeForm()
     success_url = reverse_lazy('form_data_valid')
 
 
