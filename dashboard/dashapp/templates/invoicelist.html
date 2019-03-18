@@ -175,16 +175,16 @@
         </thead>
         <tbody>
 
-            {% for Inv in list_invoices %}
+            
             <tr style="font-size:11px">
-                <td>{{ Inv.processing_status }}</td>
-                <td>{{ Inv.ARC }}</td>
-                <td>{{ Inv.Division }} </td>
-                <td> {{ Inv.Customer_Name }} </td>
-                <td> {{ Inv.logged_in_user_org_unit}} </td>
-                <td> {{ Inv.State}} </td>
+                <td>{{ list_invoices.processing_status }}</td>
+                <td>{{ list_invoices.ARC }}</td>
+                <td>{{ list_invoices.Division }} </td>
+                <td> {{ list_invoices.Customer_Name }} </td>
+                <td> {{ list_invoices.logged_in_user_org_unit}} </td>
+                <td> {{ list_invoices.State}} </td>
             </tr>
-            {% endfor %}
+           
 
         </tbody>
     </table>
