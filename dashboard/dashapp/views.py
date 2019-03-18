@@ -36,7 +36,7 @@ How the auth_result look
 
 class SubscribeView(FormView):
     template_name = 'subscribe-form.html'
-    form_class = SubscribeForm()
+    form_class = SubscribeForm
     success_url = reverse_lazy('form_data_valid')
 
 
