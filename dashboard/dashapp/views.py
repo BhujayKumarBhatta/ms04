@@ -6,7 +6,9 @@ from tokenleaderclient.client.client import Client
 from micros1client.client   import MSClient
 from linkinvclient.client import LIClient
 from django.views.generic.edit import FormView
-from django.core.urlresolvers import reverse_lazy
+#from django.core.urlresolvers import reverse_lazy
+from django.urls import reverse_lazy
+
 
 import json
 
