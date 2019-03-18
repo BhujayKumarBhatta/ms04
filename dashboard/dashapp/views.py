@@ -8,7 +8,7 @@ from linkinvclient.client import LIClient
 from django.views.generic.edit import FormView
 #from django.core.urlresolvers import reverse_lazy
 from django.urls import reverse_lazy
-from . import submitform
+ 
 
 import json
 
@@ -34,10 +34,10 @@ How the auth_result look
 '''
 
 
-class SubscribeView(FormView):
-    template_name = 'subscribe-form.html'
-    form_class = SubscribeForm
-    success_url = reverse_lazy('form_data_valid')
+#class SubscribeView(FormView):
+#    template_name = 'subscribe-form.html'
+#    form_class = SubscribeForm
+#    success_url = reverse_lazy('form_data_valid')
 
 
 def prep_tlclient_from_session(request):
