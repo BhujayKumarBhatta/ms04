@@ -151,7 +151,10 @@ def list_invoices(request):
         tlclient = prep_tlclient_from_session(request)
         invClient = MSClient(tlclient) 
         list_invoices = invClient.list_invoices('all','all')
-        list_invoices = json.load(list_invoices)
+        
+        list_invoices = json.loads(list_invoices)
+        
+        
         #list_invoices = invClient.list()
         template_data = {"list_invoices": list_invoices.get('message') } 
         result = render(request, 'home.html', template_data)        
