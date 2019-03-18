@@ -151,7 +151,7 @@ def list_invoices(request):
         invClient = MSClient(tlclient) 
         list_invoices = invClient.list_invoices('all','all')
         #list_invoices = invClient.list()
-        template_data = {"list_invoices": list_invoices.get() } 
+        template_data = {"list_invoices": list_invoices } 
         result = render(request, 'home.html', template_data)        
         return result
 
