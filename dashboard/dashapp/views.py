@@ -8,7 +8,7 @@ from linkinvclient.client import LIClient
 from django.views.generic.edit import FormView
 #from django.core.urlresolvers import reverse_lazy
 from django.urls import reverse_lazy
-from submitform import SubscribeForm
+from . import SubscribeForm
 
 import json
 
