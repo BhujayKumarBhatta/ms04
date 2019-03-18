@@ -156,7 +156,7 @@ def list_invoices(request):
         
         
         #list_invoices = invClient.list()
-        template_data = {"list_invoices": list_invoices.get('message') } 
+        template_data = {"list_invoices": list_invoices } 
         result = render(request, 'home.html', template_data)        
         return result
 ## Upload Invoice******
