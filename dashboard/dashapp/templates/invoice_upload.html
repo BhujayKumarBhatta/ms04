@@ -6,18 +6,18 @@
         </div>
     </div>
     <br /><br />
- 
+
     <form method="post" class="md-form" enctype="multipart/form-data">
         {% csrf_token %}
         <!--<input type="file" name="myfile">
         <button type="submit">Upload</button>-->
-        <div class="file-field" style="width:400px" >
+        <div class="file-field" style="width:400px">
             <div class="btn btn-primary btn-sm float-left" style="width:400px">
                 <span>Choose Invoice file </span>
-                <input type="file" name="myfile" style="width:400px">
+                <input type="file" name="myfile" style="width:350px">
             </div><br />
             <div class="file-path-wrapper" align="right">
-                <input class="file-path validate" type="submit" placeholder="Upload Invoice xl file">
+                <input class="file-path validate" type="submit" placeholder="Upload Invoice xl file" style="width:150px">
             </div>
         </div>
     </form>
@@ -30,19 +30,19 @@
 
     {% endblock %}
 
-    </div>
+</div>
 
-    <!--{'db_message': None
-    , 'final_message': None
-    , 'checking_message_list': ['file extention check passed'
-    , 'check_no_empty_cell_within_data_area=passed'
-    , 'check_within_max_row=passed'
-    , 'check_date_format=passed'
-    , 'check_cloumn_heading=passed'
-    , 'check_no_duplicate_invoice_no=passed'
-    , 'file extention check passed'
-    , 'blank value is not accepted in the column'
-    , 'check_within_max_row=passed'
-    , 'check_date_format=passed'
-    , "excel format not correct
-    , the invoice excel must have the folowing headers ['SL No', 'TSP', 'Customer_id', 'Customer_Name ', 'Invoice No', 'Account No', 'Circuit ID', 'Speed', 'ARC', 'GST No', 'Division', 'Billing Date_From', 'Billing Date_TO', 'Invoice Date', 'Tax Name', 'Total', 'SERXICE_TYPE', 'City', 'State', 'PIN', 'Premise No', 'Premise Name', 'Site ID', 'Full Site Address', ' REMARKS']", 'check_no_duplicate_invoice_no=passed', 'file extention check passed', 'blank value is not accepted in the column', 'check_within_max_row=passed', 'check_date_format=passed', "excel format not correct, the invoice excel must have the folowing headers ['SL No', 'TSP', 'Customer_id', 'Customer_Name ', 'Invoice No', 'Account No', 'Circuit ID', 'Speed', 'ARC', 'GST No', 'Division', 'Billing Date_From', 'Billing Date_TO', 'Invoice Date', 'Tax Name', 'Total', 'SERXICE_TYPE', 'City', 'State', 'PIN', 'Premise No', 'Premise Name', 'Site ID', 'Full Site Address', ' REMARKS']", 'check_no_duplicate_invoice_no=passed']}-->
+<!--{'db_message': None
+, 'final_message': None
+, 'checking_message_list': ['file extention check passed'
+, 'check_no_empty_cell_within_data_area=passed'
+, 'check_within_max_row=passed'
+, 'check_date_format=passed'
+, 'check_cloumn_heading=passed'
+, 'check_no_duplicate_invoice_no=passed'
+, 'file extention check passed'
+, 'blank value is not accepted in the column'
+, 'check_within_max_row=passed'
+, 'check_date_format=passed'
+, "excel format not correct
+, the invoice excel must have the folowing headers ['SL No', 'TSP', 'Customer_id', 'Customer_Name ', 'Invoice No', 'Account No', 'Circuit ID', 'Speed', 'ARC', 'GST No', 'Division', 'Billing Date_From', 'Billing Date_TO', 'Invoice Date', 'Tax Name', 'Total', 'SERXICE_TYPE', 'City', 'State', 'PIN', 'Premise No', 'Premise Name', 'Site ID', 'Full Site Address', ' REMARKS']", 'check_no_duplicate_invoice_no=passed', 'file extention check passed', 'blank value is not accepted in the column', 'check_within_max_row=passed', 'check_date_format=passed', "excel format not correct, the invoice excel must have the folowing headers ['SL No', 'TSP', 'Customer_id', 'Customer_Name ', 'Invoice No', 'Account No', 'Circuit ID', 'Speed', 'ARC', 'GST No', 'Division', 'Billing Date_From', 'Billing Date_TO', 'Invoice Date', 'Tax Name', 'Total', 'SERXICE_TYPE', 'City', 'State', 'PIN', 'Premise No', 'Premise Name', 'Site ID', 'Full Site Address', ' REMARKS']", 'check_no_duplicate_invoice_no=passed']}-->
