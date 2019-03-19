@@ -1,46 +1,49 @@
- 
- 
-
 {% block content %}
-<br /><br />
-<h2>Under Construction</h2>
-
-<form method="post" class="md-form" enctype="multipart/form-data">
-    {% csrf_token %}
-    <!--<input type="file" name="myfile">
-    <button type="submit">Upload</button>-->
-    <div class="file-field">
-        <div class="btn btn-primary btn-sm float-left">
-            <span>Choose file</span>
-            <input type="file" name="myfile">
-        </div>
-        <div class="file-path-wrapper">
-            <input class="file-path validate" type="submit" placeholder="Upload your file">
+<div class="table-wrapper">
+    <div class="table-title">
+        <div class="row">
+            <div class="col-sm-8"><h3>Link <b>Details</b></h3></div>
         </div>
     </div>
-</form>
+    <br /><br />
+    <h2>Under Construction</h2>
 
-  {% if uploaded_file_url %}
-<p>File uploaded at: <a href="{{ uploaded_file_url }}">{{ uploaded_file_url }}</a></p>
-<p>File uploaded at: <a href="{{ uploaded_file_url }}">{{ UPLOAD_STATUS }}</a></p>
-  {% endif %}
+    <form method="post" class="md-form" enctype="multipart/form-data">
+        {% csrf_token %}
+        <!--<input type="file" name="myfile">
+        <button type="submit">Upload</button>-->
+        <div class="file-field">
+            <div class="btn btn-primary btn-sm float-left">
+                <span>Choose file</span>
+                <input type="file" name="myfile">
+            </div>
+            <div class="file-path-wrapper">
+                <input class="file-path validate" type="submit" placeholder="Upload your file">
+            </div>
+        </div>
+    </form>
+
+    {% if uploaded_file_url %}
+    <p>File uploaded at: <a href="{{ uploaded_file_url }}">{{ uploaded_file_url }}</a></p>
+    <p>File uploaded at: <a href="{{ uploaded_file_url }}">{{ UPLOAD_STATUS }}</a></p>
+    {% endif %}
 
 
-{% endblock %}
+    {% endblock %}
 
- 
+    </div>
 
-<!--{'db_message': None
-, 'final_message': None
-, 'checking_message_list': ['file extention check passed'
-, 'check_no_empty_cell_within_data_area=passed'
-, 'check_within_max_row=passed'
-, 'check_date_format=passed'
-, 'check_cloumn_heading=passed'
-, 'check_no_duplicate_invoice_no=passed'
-, 'file extention check passed'
-, 'blank value is not accepted in the column'
-, 'check_within_max_row=passed'
-, 'check_date_format=passed'
-, "excel format not correct
-, the invoice excel must have the folowing headers ['SL No', 'TSP', 'Customer_id', 'Customer_Name ', 'Invoice No', 'Account No', 'Circuit ID', 'Speed', 'ARC', 'GST No', 'Division', 'Billing Date_From', 'Billing Date_TO', 'Invoice Date', 'Tax Name', 'Total', 'SERXICE_TYPE', 'City', 'State', 'PIN', 'Premise No', 'Premise Name', 'Site ID', 'Full Site Address', ' REMARKS']", 'check_no_duplicate_invoice_no=passed', 'file extention check passed', 'blank value is not accepted in the column', 'check_within_max_row=passed', 'check_date_format=passed', "excel format not correct, the invoice excel must have the folowing headers ['SL No', 'TSP', 'Customer_id', 'Customer_Name ', 'Invoice No', 'Account No', 'Circuit ID', 'Speed', 'ARC', 'GST No', 'Division', 'Billing Date_From', 'Billing Date_TO', 'Invoice Date', 'Tax Name', 'Total', 'SERXICE_TYPE', 'City', 'State', 'PIN', 'Premise No', 'Premise Name', 'Site ID', 'Full Site Address', ' REMARKS']", 'check_no_duplicate_invoice_no=passed']}-->
+    <!--{'db_message': None
+    , 'final_message': None
+    , 'checking_message_list': ['file extention check passed'
+    , 'check_no_empty_cell_within_data_area=passed'
+    , 'check_within_max_row=passed'
+    , 'check_date_format=passed'
+    , 'check_cloumn_heading=passed'
+    , 'check_no_duplicate_invoice_no=passed'
+    , 'file extention check passed'
+    , 'blank value is not accepted in the column'
+    , 'check_within_max_row=passed'
+    , 'check_date_format=passed'
+    , "excel format not correct
+    , the invoice excel must have the folowing headers ['SL No', 'TSP', 'Customer_id', 'Customer_Name ', 'Invoice No', 'Account No', 'Circuit ID', 'Speed', 'ARC', 'GST No', 'Division', 'Billing Date_From', 'Billing Date_TO', 'Invoice Date', 'Tax Name', 'Total', 'SERXICE_TYPE', 'City', 'State', 'PIN', 'Premise No', 'Premise Name', 'Site ID', 'Full Site Address', ' REMARKS']", 'check_no_duplicate_invoice_no=passed', 'file extention check passed', 'blank value is not accepted in the column', 'check_within_max_row=passed', 'check_date_format=passed', "excel format not correct, the invoice excel must have the folowing headers ['SL No', 'TSP', 'Customer_id', 'Customer_Name ', 'Invoice No', 'Account No', 'Circuit ID', 'Speed', 'ARC', 'GST No', 'Division', 'Billing Date_From', 'Billing Date_TO', 'Invoice Date', 'Tax Name', 'Total', 'SERXICE_TYPE', 'City', 'State', 'PIN', 'Premise No', 'Premise Name', 'Site ID', 'Full Site Address', ' REMARKS']", 'check_no_duplicate_invoice_no=passed']}-->
