@@ -202,7 +202,7 @@ def invoice_upload(request):
         #Calling Upload Function
         message = invClient.upload_xl("/home/ubuntu/dashboard/dashboard" + uploaded_file_url)  
         
-        result = render(request, 'invoice_upload.html', { 'uploaded_file_url': uploaded_file_url,"VIEW_UPLOAD": "TRUE","UPLOAD_STATUS":message})
+        result = render(request, 'home.html', { 'uploaded_file_url': uploaded_file_url,"VIEW_UPLOAD": "TRUE","UPLOAD_STATUS":message})
     if request.method == 'GET':          
         template_data = {"VIEW_UPLOAD": "TRUE" }  
         result = render(request, 'home.html', template_data) 

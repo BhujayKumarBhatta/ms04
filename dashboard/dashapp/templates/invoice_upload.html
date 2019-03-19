@@ -1,3 +1,107 @@
+<style type="text/css">
+    body {
+        color: #404E67;
+        background: #F5F7FA;
+        font-family: 'Open Sans', sans-serif;
+    }
+
+    .table-wrapper {
+        width: 100%;
+        margin: 10px auto;
+        background: #fff;
+        padding: 5px;
+        box-shadow: 0 1px 1px rgba(0,0,0,.05);
+    }
+
+    .table-title {
+        padding-bottom: 5px;
+        margin: 0 0 5px;
+    }
+
+        .table-title h2 {
+            margin: 6px 0 0;
+            font-size: 22px;
+        }
+
+        .table-title .add-new {
+            float: right;
+            height: 30px;
+            font-weight: bold;
+            font-size: 12px;
+            text-shadow: none;
+            min-width: 100px;
+            border-radius: 50px;
+            line-height: 13px;
+        }
+
+            .table-title .add-new i {
+                margin-right: 4px;
+            }
+
+    table.table {
+        table-layout: inherit;
+    }
+
+        table.table tr th, table.table tr td {
+            border-color: #e9e9e9;
+        }
+
+        table.table th i {
+            font-size: 13px;
+            margin: 0 5px;
+            cursor: pointer;
+        }
+
+        table.table th:last-child {
+            width: 100px;
+        }
+
+        table.table td a {
+            cursor: pointer;
+            display: inline-block;
+            margin: 0 5px;
+            min-width: 24px;
+        }
+
+            table.table td a.add {
+                color: #27C46B;
+            }
+
+            table.table td a.edit {
+                color: #FFC107;
+            }
+
+            table.table td a.delete {
+                color: #E34724;
+            }
+
+        table.table td i {
+            font-size: 19px;
+        }
+
+        table.table td a.add i {
+            font-size: 24px;
+            margin-right: -1px;
+            position: relative;
+            top: 3px;
+        }
+
+        table.table .form-control {
+            height: 32px;
+            line-height: 32px;
+            box-shadow: none;
+            border-radius: 2px;
+        }
+
+            table.table .form-control.error {
+                border-color: #f50000;
+            }
+
+        table.table td .add {
+            display: none;
+        }
+</style>
+
 {% block content %}
 <br /><br />
 <h2>Under Construction</h2>
@@ -9,9 +113,26 @@
 </form>
 
   {% if uploaded_file_url %}
-        <p>File uploaded at: <a href="{{ uploaded_file_url }}">{{ uploaded_file_url }}</a></p>
-        <p>File uploaded at: <a href="{{ uploaded_file_url }}">{{ UPLOAD_STATUS }}</a></p>
+<p>File uploaded at: <a href="{{ uploaded_file_url }}">{{ uploaded_file_url }}</a></p>
+<p>File uploaded at: <a href="{{ uploaded_file_url }}">{{ UPLOAD_STATUS }}</a></p>
   {% endif %}
 
 
 {% endblock %}
+
+
+
+<!--{'db_message': None
+, 'final_message': None
+, 'checking_message_list': ['file extention check passed'
+, 'check_no_empty_cell_within_data_area=passed'
+, 'check_within_max_row=passed'
+, 'check_date_format=passed'
+, 'check_cloumn_heading=passed'
+, 'check_no_duplicate_invoice_no=passed'
+, 'file extention check passed'
+, 'blank value is not accepted in the column'
+, 'check_within_max_row=passed'
+, 'check_date_format=passed'
+, "excel format not correct
+, the invoice excel must have the folowing headers ['SL No', 'TSP', 'Customer_id', 'Customer_Name ', 'Invoice No', 'Account No', 'Circuit ID', 'Speed', 'ARC', 'GST No', 'Division', 'Billing Date_From', 'Billing Date_TO', 'Invoice Date', 'Tax Name', 'Total', 'SERXICE_TYPE', 'City', 'State', 'PIN', 'Premise No', 'Premise Name', 'Site ID', 'Full Site Address', ' REMARKS']", 'check_no_duplicate_invoice_no=passed', 'file extention check passed', 'blank value is not accepted in the column', 'check_within_max_row=passed', 'check_date_format=passed', "excel format not correct, the invoice excel must have the folowing headers ['SL No', 'TSP', 'Customer_id', 'Customer_Name ', 'Invoice No', 'Account No', 'Circuit ID', 'Speed', 'ARC', 'GST No', 'Division', 'Billing Date_From', 'Billing Date_TO', 'Invoice Date', 'Tax Name', 'Total', 'SERXICE_TYPE', 'City', 'State', 'PIN', 'Premise No', 'Premise Name', 'Site ID', 'Full Site Address', ' REMARKS']", 'check_no_duplicate_invoice_no=passed']}-->

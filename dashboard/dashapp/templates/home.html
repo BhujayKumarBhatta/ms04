@@ -641,7 +641,7 @@
                         {% include 'list_links.html' %}
                         {% elif ADDUSER is not null %}
                         {% include 'AddUser.html' %}
-                        {% elif VIEW_UPLOAD is not null %}
+                        {% elif VIEW_UPLOAD is not null or uploaded_file_url is not null %}
                         {% include 'invoice_upload.html' %}
                         {% elif list_invoices is not null %}
                         {% include 'invoicelist.html' %}
