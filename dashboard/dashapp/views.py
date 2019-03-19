@@ -179,6 +179,7 @@ def list_invoices(request):
         template_data = {"list_invoices": new_json } 
         result = render(request, 'home.html', template_data)        
         return result
+
 ## Upload Invoice******
 def invoice_upload(request):
     if request.method == 'POST' and request.FILES['myfile']:
@@ -186,21 +187,30 @@ def invoice_upload(request):
         fs = FileSystemStorage()
         filename = fs.save(myfile.name, myfile)
         uploaded_file_url = fs.url(filename)
-        return render(request, 'invoice_upload.html', {
-            'uploaded_file_url': uploaded_file_url
-        })
-    return render(request, 'invoice_upload.html')
+        #Calling Micrios client t Upload to DB
+        tlclient = prep_tlclient_from_session(request)
+        invClient = MSClient(tlclient) 
+        #Calling Upload Function    
+        message = invClient.upload_xl(uploaded_file_url)  
+        template_data= {"UPLOAD_STATUS": message }
+        if not message:
+            template_data= {"UPLOAD_STATUS": "TRUE" }
+        result = render(request, 'home.html', template_data)        
+
+        return result
+
+#return render(request, 'invoice_upload.html', { 'uploaded_file_url': uploaded_file_url})
+#return render(request, 'invoice_upload.html')
 
 
 ### End Invoice #####################
 
-def simple_upload(request):
-    if request.method == 'POST' and request.FILES['myfile']:
-        myfile = request.FILES['myfile']
-        fs = FileSystemStorage()
-        filename = fs.save(myfile.name, myfile)
-        uploaded_file_url = fs.url(filename)
-        return render(request, 'simple_upload.html', {
-            'uploaded_file_url': uploaded_file_url
-        })
-    return render(request, 'simple_upload.html')
+
+#def simple_upload(request):
+#    if request.method == 'POST' and request.FILES['myfile']:
+#        myfile = request.FILES['myfile']
+#        fs = FileSystemStorage()
+#        filename = fs.save(myfile.name, myfile)
+#        uploaded_file_url = fs.url(filename)
+#        return render(request, 'simple_upload.html', {'uploaded_file_url': uploaded_file_url})
+#    return render(request, 'simple_upload.html')
