@@ -181,26 +181,23 @@ def list_invoices(request):
         return result
 
 ## Upload Invoice******
+
+def view_upload(request):
+   if request.method == 'GET':          
+        template_data = {"VIEW_UPLOAD": "TRUE" }  
+        result = render(request, 'home.html', template_data)        
+        return result
+
+
+
 def invoice_upload(request):
     if request.method == 'POST' and request.FILES['myfile']:
         myfile = request.FILES['myfile']
         fs = FileSystemStorage()
         filename = fs.save(myfile.name, myfile)
         uploaded_file_url = fs.url(filename)
-        #Calling Micrios client t Upload to DB
-        tlclient = prep_tlclient_from_session(request)
-        invClient = MSClient(tlclient) 
-        #Calling Upload Function    
-        message = invClient.upload_xl(uploaded_file_url)  
-        template_data= {"UPLOAD_STATUS": message }
-        if not message:
-            template_data= {"UPLOAD_STATUS": "TRUE" }
-        result = render(request, 'home.html', template_data)        
-
-        return result
-
-#return render(request, 'invoice_upload.html', { 'uploaded_file_url': uploaded_file_url})
-#return render(request, 'invoice_upload.html')
+        return render(request, 'invoice_upload.html', { 'uploaded_file_url': uploaded_file_url})
+    return render(request, 'invoice_upload.html')
 
 
 ### End Invoice #####################

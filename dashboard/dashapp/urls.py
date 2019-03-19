@@ -28,7 +28,8 @@ urlpatterns = [path('', views.login, name='login'),
     path('list_test', views.list_test, name='list_test'),
     path('adduser', views.adduser, name='adduser'),
     path('list_invoices', views.list_invoices, name='invoice'),
-    path('invoice_upload', views.invoice_upload, name='invoice_upload')]
+    path('invoice_upload', views.invoice_upload, name='invoice_upload'),
+    path('view_upload', views.view_upload, name='view_upload')]
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
