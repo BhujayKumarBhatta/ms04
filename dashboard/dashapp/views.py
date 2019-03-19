@@ -200,7 +200,7 @@ def invoice_upload(request):
         tlclient = prep_tlclient_from_session(request)
         invClient = MSClient(tlclient) 
         #Calling Upload Function
-        message = invClient.upload_xl("./dashboard/dashboard/media/" + uploaded_file_url)  
+        message = invClient.upload_xl("~/dashboard/dashboard/media/" + uploaded_file_url)  
         
         result = render(request, 'invoice_upload.html', { 'uploaded_file_url': uploaded_file_url,"VIEW_UPLOAD": "TRUE","UPLOAD_STATUS":message})
     if request.method == 'GET':          
