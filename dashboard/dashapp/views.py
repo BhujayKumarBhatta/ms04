@@ -8,6 +8,12 @@ from linkinvclient.client import LIClient
 from django.views.generic.edit import FormView
 #from django.core.urlresolvers import reverse_lazy
 from django.urls import reverse_lazy
+#File Storage
+from django.conf import settings
+from django.core.files.storage import FileSystemStorage
+
+
+
 import json
  
 
@@ -174,13 +180,27 @@ def list_invoices(request):
         result = render(request, 'home.html', template_data)        
         return result
 ## Upload Invoice******
-#def list_invoices(request):
-#    if request.method == 'GET': 
-#        tlclient = prep_tlclient_from_session(request)
-#        invClient = MSClient(tlclient) 
-#        invClient.upload_xl('file Loaction')        
-#        template_data = {"list_invoices": list_invoices.get('status') } 
-#        result = render(request, 'home.html', template_data)        
-#        return result
+def invoice_upload(request):
+    if request.method == 'POST' and request.FILES['myfile']:
+        myfile = request.FILES['myfile']
+        fs = FileSystemStorage()
+        filename = fs.save(myfile.name, myfile)
+        uploaded_file_url = fs.url(filename)
+        return render(request, 'invoice_upload.html', {
+            'uploaded_file_url': uploaded_file_url
+        })
+    return render(request, 'invoice_upload.html')
+
 
 ### End Invoice #####################
+
+def simple_upload(request):
+    if request.method == 'POST' and request.FILES['myfile']:
+        myfile = request.FILES['myfile']
+        fs = FileSystemStorage()
+        filename = fs.save(myfile.name, myfile)
+        uploaded_file_url = fs.url(filename)
+        return render(request, 'simple_upload.html', {
+            'uploaded_file_url': uploaded_file_url
+        })
+    return render(request, 'simple_upload.html')
