@@ -196,7 +196,14 @@ def invoice_upload(request):
         fs = FileSystemStorage()
         filename = fs.save(myfile.name, myfile)
         uploaded_file_url = fs.url(filename)
-        result = render(request, 'invoice_upload.html', { 'uploaded_file_url': uploaded_file_url,"VIEW_UPLOAD": "TRUE"})
+
+        #Calling Micrios client t Upload to DB
+        tlclient = prep_tlclient_from_session(request)
+        invClient = MSClient(tlclient) 
+        #Calling Upload Function    
+        message = invClient.upload_xl(uploaded_file_url)  
+        
+        result = render(request, 'invoice_upload.html', { 'uploaded_file_url': uploaded_file_url,"VIEW_UPLOAD": "TRUE","UPLOAD_STATUS":message})
     if request.method == 'GET':          
         template_data = {"VIEW_UPLOAD": "TRUE" }  
         result = render(request, 'home.html', template_data) 
