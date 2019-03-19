@@ -196,8 +196,11 @@ def invoice_upload(request):
         fs = FileSystemStorage()
         filename = fs.save(myfile.name, myfile)
         uploaded_file_url = fs.url(filename)
-        return render(request, 'invoice_upload.html', { 'uploaded_file_url': uploaded_file_url})
-    return render(request, 'invoice_upload.html')
+        result = render(request, 'invoice_upload.html', { 'uploaded_file_url': uploaded_file_url})
+    if request.method == 'GET':          
+        template_data = {"VIEW_UPLOAD": "TRUE" }  
+        result = render(request, 'home.html', template_data) 
+    return result
 
 
 ### End Invoice #####################
