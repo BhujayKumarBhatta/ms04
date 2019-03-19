@@ -2,7 +2,7 @@
 <div class="table-wrapper">
     <div class="table-title">
         <div class="row">
-            <div class="col-sm-8"><h3>Link <b>Details</b></h3></div>
+            <div class="col-sm-8"><h3>Invoice <b>Upload</b></h3></div>
         </div>
     </div>
     <br /><br />
@@ -23,13 +23,13 @@
     </form>
 
     {% if uploaded_file_url %}
-    <p>File uploaded at: <a href="{{ uploaded_file_url }}">{{ uploaded_file_url }}</a></p>
-    <p>File uploaded at: <a href="{{ uploaded_file_url }}">{{ UPLOAD_STATUS }}</a></p>
+    <p>
+        File Uploaded Successfully
+        <br />File uploaded Path: <a href="{{ uploaded_file_url }}">{{ uploaded_file_url }}</a>
+    </p>
+    <p>  <a href="{{ uploaded_file_url }}">{{ UPLOAD_STATUS }}</a></p>
     {% endif %}
-
-
     {% endblock %}
-
 </div>
 
 <!--{'db_message': None
