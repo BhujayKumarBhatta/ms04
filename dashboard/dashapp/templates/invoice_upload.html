@@ -6,19 +6,18 @@
         </div>
     </div>
     <br /><br />
-    <h2>Under Construction</h2>
-
+ 
     <form method="post" class="md-form" enctype="multipart/form-data">
         {% csrf_token %}
         <!--<input type="file" name="myfile">
         <button type="submit">Upload</button>-->
-        <div class="file-field">
-            <div class="btn btn-primary btn-sm float-left">
-                <span>Choose file</span>
+        <div class="file-field" style="width:450px" >
+            <div class="btn btn-primary btn-sm float-left" style="width:400px">
+                <span>Choose Invoice File file</span>
                 <input type="file" name="myfile">
             </div><br />
             <div class="file-path-wrapper" align="right">
-                <input class="file-path validate" type="submit" placeholder="Upload your file">
+                <input class="file-path validate" type="submit" placeholder="Upload Invoice xl file">
             </div>
         </div>
     </form>
