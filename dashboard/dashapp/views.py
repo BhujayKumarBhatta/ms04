@@ -181,7 +181,6 @@ def list_invoices(request):
         return result
 
 ## Upload Invoice******
-
 def view_upload(request):
    if request.method == 'GET':          
         template_data = {"VIEW_UPLOAD": "TRUE" }  
@@ -200,8 +199,8 @@ def invoice_upload(request):
         #Calling Micrios client t Upload to DB
         tlclient = prep_tlclient_from_session(request)
         invClient = MSClient(tlclient) 
-        #Calling Upload Function    
-        message = invClient.upload_xl(uploaded_file_url)  
+        #Calling Upload Function
+        message = invClient.upload_xl("./dashboard/dashboard/media/" + uploaded_file_url)  
         
         result = render(request, 'invoice_upload.html', { 'uploaded_file_url': uploaded_file_url,"VIEW_UPLOAD": "TRUE","UPLOAD_STATUS":message})
     if request.method == 'GET':          
