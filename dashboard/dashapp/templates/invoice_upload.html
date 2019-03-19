@@ -108,8 +108,20 @@
 
 <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    <input type="file" name="myfile">
-    <button type="submit">Upload</button>
+    <!--<input type="file" name="myfile">
+    <button type="submit">Upload</button>-->
+    <div class="form-group">
+        <div class="input-group input-file" name="myfile">
+            <input type="text" class="form-control" placeholder='Choose a file...' />
+            <span class="input-group-btn">
+                <button class="btn btn-default btn-choose" type="button">Choose</button>
+            </span>
+        </div>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary pull-right" disabled>Submit</button>
+        <button type="reset" class="btn btn-danger">Reset</button>
+    </div>
 </form>
 
   {% if uploaded_file_url %}
@@ -119,6 +131,7 @@
 
 
 {% endblock %}
+
 
 
 
