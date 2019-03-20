@@ -37,7 +37,12 @@
             {{key}}: {{val}}
         </li>
     </ul>
-       <table>
+    {% if UPLOAD_STATUS %}
+        File Extention :
+     
+    {% endif %}
+
+    <table>
         <tr>
             <th ng-repeat="(key, val) in UPLOAD_STATUS[0]">{{key}}</th>
         </tr>
@@ -52,7 +57,7 @@
 
 <!--{'db_message': None
 , 'final_message': None
-, 'checking_message_list': 
+, 'checking_message_list':
 ['file extention check passed'
 , 'check_no_empty_cell_within_data_area=passed'
 , 'check_within_max_row=passed'
@@ -65,3 +70,11 @@
 , 'check_date_format=passed'
 , "excel format not correct
 , the invoice excel must have the folowing headers ['SL No', 'TSP', 'Customer_id', 'Customer_Name ', 'Invoice No', 'Account No', 'Circuit ID', 'Speed', 'ARC', 'GST No', 'Division', 'Billing Date_From', 'Billing Date_TO', 'Invoice Date', 'Tax Name', 'Total', 'SERXICE_TYPE', 'City', 'State', 'PIN', 'Premise No', 'Premise Name', 'Site ID', 'Full Site Address', ' REMARKS']", 'check_no_duplicate_invoice_no=passed', 'file extention check passed', 'blank value is not accepted in the column', 'check_within_max_row=passed', 'check_date_format=passed', "excel format not correct, the invoice excel must have the folowing headers ['SL No', 'TSP', 'Customer_id', 'Customer_Name ', 'Invoice No', 'Account No', 'Circuit ID', 'Speed', 'ARC', 'GST No', 'Division', 'Billing Date_From', 'Billing Date_TO', 'Invoice Date', 'Tax Name', 'Total', 'SERXICE_TYPE', 'City', 'State', 'PIN', 'Premise No', 'Premise Name', 'Site ID', 'Full Site Address', ' REMARKS']", 'check_no_duplicate_invoice_no=passed']}-->
+<!--Empty Data Check :
+ {% if UPLOAD_STATUS.checking_message_list.check_no_empty_cell_within_data_area = "passed" %} Successful {% else%} Failed {% endif %}
+ Maximum Row :
+ {% if UPLOAD_STATUS.checking_message_list.check_within_max_row = "passed" %} Successful {% else%} Failed {% endif %}
+ Date Format :
+ {% if UPLOAD_STATUS.checking_message_list.check_date_format = "passed" %} Successful {% else%} Failed {% endif %}
+ Column Headins :
+ {% if UPLOAD_STATUS.checking_message_list.check_cloumn_heading = "passed" %} Successful {% else%} Failed {% endif %}-->
