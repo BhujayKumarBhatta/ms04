@@ -221,31 +221,24 @@ list of oranizations : {{template_data.list_org}}
     <table class="table table-bordered">
         <thead>
             <tr style="font-size:12px">
-                <th>User Name</th>
-                <th>Email</th>
-                <th>Role</th>
-                <th>Organization</th>
-                <th>Unit</th>
-                <th>Deparment</th>
-                <th>WFC</th>
-                <th>Actions</th>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Auth Backend</th>
+                <th>work_func_id </th>
+                
             </tr>
         </thead>
         <tbody>
             {{template_data.list_org}}
-            {% for user in list_org %}
+            {{template_data.status}}
+            {% for Org in list_org %}
             <tr style="font-size:11px">
-                <td>{{ user.username }}</td>
-                <td>{{ user.email }}</td>
-                <td>
-                    {% for role in user.roles %}
-                    {{ role }}
-                    {% endfor %}
-                </td>
-                <td> {{ user.wfc.org }} </td>
-                <td> {{ user.wfc.orgunit}} </td>
-                <td> {{ user.wfc.department}} </td>
-                <td> {{ user.wfc.name}} </td>
+                <td>{{ Org.id  }}</td>
+                <td>{{ Org.name  }}</td>
+                <td> {{ Org.orgtype  }} </td>
+                <td> {{ Org.auth_backend }} </td>
+                <td> {{ Org.work_func_id }} </td>
                 <td>
                     <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
                     <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
