@@ -157,7 +157,7 @@
     });
 </script>
 
-{% if list_users %}
+{% if list_users is not null %}
 <div class="table-wrapper">
     <div class="table-title">
         <div class="row">
@@ -206,7 +206,7 @@
         </tbody>
     </table>
 </div>
-{% elif %}
+{% elif list_org is not null %} 
 <div class="table-wrapper">
     <div class="table-title">
         <div class="row">
