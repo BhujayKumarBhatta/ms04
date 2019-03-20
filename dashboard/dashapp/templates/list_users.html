@@ -217,8 +217,7 @@
 <!--organizations-->
     {% if list_org is not null %}
         list of oranizations : {{ list_org }}
-{{ list_org.status }}
-    {% endif %}
+     {% endif %}
 
 <div class="table-wrapper">
     <div class="table-title">
@@ -251,18 +250,83 @@
     </table>
 </div>
 
-1.  {% for org in list_org %}
-<li>{{ org.status  }}</li>
-<li>{{ org.status.name  }}</li>
-<li>{{ org.name  }}</li>
-{% endfor %}
+{% endif %}
 
- 2. {% for org in list_org.status %}
-<li>{{ org.status  }}</li>
-<li>{{ org.status.name  }}</li>
-<li>{{ org.name  }}</li>
-<li>{{ name  }}</li>
-{% endfor %}
+{% elif list_dept is not null %}
+<!--Department-->
+    {% if list_org is not null %}
+        list of Department : {{ list_dept }}
+     {% endif %}
+
+<div class="table-wrapper">
+    <div class="table-title">
+        <div class="row">
+            <div class="col-sm-8"><h3>Department <b>Details</b></h3></div>
+            <div class="col-sm-4">
+                <button type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i> Add New</button>
+            </div>
+        </div>
+    </div>
+    <table class="table table-bordered">
+        <thead>
+            <tr style="font-size:12px">
+                <th>Name</th>
+                <th>Actions </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for org in list_dept %}
+            <tr style="font-size:11px">
+                <td>{{ org.name  }}</td>
+                <td>
+                    <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
+                    <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+                    <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endif %}
+{% elif list_role is not null %}
+<!--Role-->
+    {% if list_role is not null %}
+        list of Role : {{ list_role }}
+     {% endif %}
+
+<div class="table-wrapper">
+    <div class="table-title">
+        <div class="row">
+            <div class="col-sm-8"><h3>Role <b>Details</b></h3></div>
+            <div class="col-sm-4">
+                <button type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i> Add New</button>
+            </div>
+        </div>
+    </div>
+    <table class="table table-bordered">
+        <thead>
+            <tr style="font-size:12px">
+                <th>Name</th>
+                <th>Actions </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for org in list_role %}
+            <tr style="font-size:11px">
+                <td>{{ org.name  }}</td>
+                <td>
+                    <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
+                    <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+                    <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
 {% endif %}
 
 
