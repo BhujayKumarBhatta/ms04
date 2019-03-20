@@ -24,10 +24,21 @@
 
     {% if uploaded_file_url %}
     <p>
-        File Uploaded Successfully
+        File Uploaded Successfully.
+
         <br />File uploaded Path: <a href="{{ uploaded_file_url }}">{{ uploaded_file_url }}</a>
+
+
     </p>
-    <p>  <a href="{{ uploaded_file_url }}">{{ UPLOAD_STATUS }}</a></p>
+    <p>  <!--<a href="{{ uploaded_file_url }}">{{ UPLOAD_STATUS }}</a>--></p>
+
+    <ul ng-repeat="item in UPLOAD_STATUS">
+        <li ng-repeat="(key, val) in item">
+            {{key}}: {{val}}
+        </li>
+    </ul>
+
+
     {% endif %}
     {% endblock %}
 </div>
