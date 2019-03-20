@@ -37,19 +37,20 @@
             {{key}}: {{val}}
         </li>
     </ul>
+
     File Extention :
-    {% if UPLOAD_STATUS.checking_message_list.fileextentioncheck = "passed" %} Successful {% else%} Failed {% endif %}
-    Empty Data Check :
+    {% if UPLOAD_STATUS and UPLOAD_STATUS.checking_message_list.fileextentioncheck = "passed" %} Successful {% else%} Failed {% endif %}
+    <!--Empty Data Check :
     {% if UPLOAD_STATUS.checking_message_list.check_no_empty_cell_within_data_area = "passed" %} Successful {% else%} Failed {% endif %}
     Maximum Row :
     {% if UPLOAD_STATUS.checking_message_list.check_within_max_row = "passed" %} Successful {% else%} Failed {% endif %}
     Date Format :
     {% if UPLOAD_STATUS.checking_message_list.check_date_format = "passed" %} Successful {% else%} Failed {% endif %}
     Column Headins :
-    {% if UPLOAD_STATUS.checking_message_list.check_cloumn_heading = "passed" %} Successful {% else%} Failed {% endif %}
+    {% if UPLOAD_STATUS.checking_message_list.check_cloumn_heading = "passed" %} Successful {% else%} Failed {% endif %}-->
     <table>
         <tr>
-            <th ng-repeat="(key, val) in UPLOAD_STATUS[0]">{{key}}</th> 
+            <th ng-repeat="(key, val) in UPLOAD_STATUS[0]">{{key}}</th>
         </tr>
         <tr ng-repeat="item in items">
             <td ng-repeat="(key, val) in item">{{val}}</td>
