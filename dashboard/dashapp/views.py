@@ -180,14 +180,14 @@ def list_invoices(request):
         result = render(request, 'home.html', template_data)        
         return result
 
-## Upload Invoice******
+## Navigate to Upload Invoice******
 def view_upload(request):
    if request.method == 'GET':          
         template_data = {"VIEW_UPLOAD": "TRUE" }  
         result = render(request, 'home.html', template_data)        
         return result
 
-
+## Upload Invoice******
 
 def invoice_upload(request):
     if request.method == 'POST' and request.FILES['myfile']:
@@ -201,8 +201,8 @@ def invoice_upload(request):
         invClient = MSClient(tlclient) 
         #Calling Upload Function
         message = invClient.upload_xl("/home/ubuntu/dashboard/dashboard" + uploaded_file_url)  
-        
-        result = render(request, 'home.html', { 'uploaded_file_url': uploaded_file_url,"VIEW_UPLOAD": "TRUE","UPLOAD_STATUS":message})
+        new_json = json.loads(message)
+        result = render(request, 'home.html', { 'uploaded_file_url': uploaded_file_url,"VIEW_UPLOAD": "TRUE","UPLOAD_STATUS":new_json})
     if request.method == 'GET':          
         template_data = {"VIEW_UPLOAD": "TRUE" }  
         result = render(request, 'home.html', template_data) 
