@@ -253,12 +253,14 @@
 
 1.  {% for org in list_org %}
 <li>{{ org.status  }}</li>
+<li>{{ org.status.name  }}</li>
 <li>{{ org.name  }}</li>
 {% endfor %}
 
  2. {% for org in status %}
-<li>{{ status.name  }}</li>
-{% endfor %}
+<li>{{ org.status  }}</li>
+<li>{{ org.status.name  }}</li>
+<li>{{ org.name  }}</li>{% endfor %}
 {% endif %}
 
 
