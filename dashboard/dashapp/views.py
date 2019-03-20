@@ -126,7 +126,7 @@ def list_role(request):
         tlclient = prep_tlclient_from_session(request)
         list_role = tlclient.list_role()
         list_role = json.dumps(list_role)
-        template_data = {"list_role": list_role.get('status') } 
+        template_data = {"list_role": list_role } 
         result = render(request, 'home.html', template_data)         
         return result
 
