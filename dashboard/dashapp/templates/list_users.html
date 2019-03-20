@@ -217,14 +217,8 @@
 <!--organizations-->
 {% if list_org is not null %}
     list of oranizations : {{ list_org }}
-{{template_data.list_org}}
-{{template_data.status}}
-{{template_data.list_org.status}}
-{{template_data}}
-{% endif %}
-{{template_data.list_org}}
-{{template_data.status}}
-{{template_data}}
+ {% endif %}
+ 
 <div class="table-wrapper">
     <div class="table-title">
         <div class="row">
@@ -242,9 +236,9 @@
             </tr>
         </thead>
         <tbody>
-            {% for Org in list_org.status %}
+            {% for org in list_org.status %}
             <tr style="font-size:11px">
-                <td>{{ Org.name  }}</td>
+                <td>{{ org.name  }}</td>
                 <td>
                     <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
                     <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
