@@ -207,7 +207,11 @@
     </table>
 </div>
 {% elif list_org is not null %}
+{% if list_org is not null %}
 list of oranizations : {{template_data.list_org}}
+{% endif %}
+{{template_data.list_org}}
+{{template_data.status}}
 {{template_data}}
 <div class="table-wrapper">
     <div class="table-title">
@@ -226,12 +230,11 @@ list of oranizations : {{template_data.list_org}}
                 <th>Type</th>
                 <th>Auth Backend</th>
                 <th>work_func_id </th>
-                
+                <th>Actions </th>
             </tr>
         </thead>
         <tbody>
-            {{template_data.list_org}}
-            {{template_data.status}}
+
             {% for Org in list_org %}
             <tr style="font-size:11px">
                 <td>{{ Org.id  }}</td>

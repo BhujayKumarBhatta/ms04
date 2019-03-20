@@ -639,7 +639,7 @@
 
                 <div class="container-fluid" style="width:100%;padding-top:28px">
                     <div class="side-body">
-                        {% if list_users is not null or list_org is not null%}
+                        {% if list_users is not null or list_org is not null or list_role is not null or list_ou is not null or list_dept is not null%}
                         {% include 'list_users.html' %}
                         {% elif list_links is not null %}
                         {% include 'list_links.html' %}
