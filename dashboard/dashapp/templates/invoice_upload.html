@@ -49,7 +49,7 @@
     {% if UPLOAD_STATUS.checking_message_list.check_cloumn_heading = "passed" %} Successful {% else%} Failed {% endif %}
     <table>
         <tr>
-            <th ng-repeat="(key, val) in UPLOAD_STATUS[0]">{{key}}</th>
+            <th ng-repeat="(key, val) in UPLOAD_STATUS[0]">{{key}}</th> 
         </tr>
         <tr ng-repeat="item in items">
             <td ng-repeat="(key, val) in item">{{val}}</td>
