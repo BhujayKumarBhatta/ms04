@@ -91,7 +91,7 @@ def login(request):
             
     return result
 
-
+## Token Leader Module ****************************************************
 def list_users(request):
     if request.method == 'GET': 
         tlclient = prep_tlclient_from_session(request)
@@ -99,6 +99,38 @@ def list_users(request):
         template_data = {"list_users": list_users.get('status') } 
         result = render(request, 'home.html', template_data)
         #return HttpResponse(json.dumps(list_users))
+        return result
+
+def list_org(request):
+    if request.method == 'GET': 
+        tlclient = prep_tlclient_from_session(request)
+        list_org = tlclient.list_org()
+        template_data = {"list_org": list_org.get('status') } 
+        result = render(request, 'home.html', template_data)         
+        return result
+
+def list_dept(request):
+    if request.method == 'GET': 
+        tlclient = prep_tlclient_from_session(request)
+        list_dept = tlclient.list_dept()
+        template_data = {"list_dept": list_dept.get('status') } 
+        result = render(request, 'home.html', template_data)         
+        return result
+
+def list_role(request):
+    if request.method == 'GET': 
+        tlclient = prep_tlclient_from_session(request)
+        list_role = tlclient.list_role()
+        template_data = {"list_role": list_role.get('status') } 
+        result = render(request, 'home.html', template_data)         
+        return result
+
+def list_ou(request):
+    if request.method == 'GET': 
+        tlclient = prep_tlclient_from_session(request)
+        list_ou = tlclient.list_ou()
+        template_data = {"list_ou": list_role.get('status') } 
+        result = render(request, 'home.html', template_data)         
         return result
 
 
@@ -111,6 +143,7 @@ def adduser(request):
         #return HttpResponse(json.dumps(list_users))
         return result
 
+## End ****************************************************
 def invoice(request):
     if request.method == 'GET': 
         #tlclient = prep_tlclient_from_session(request)
@@ -188,7 +221,6 @@ def view_upload(request):
         return result
 
 ## Upload Invoice******
-
 def invoice_upload(request):
     if request.method == 'POST' and request.FILES['myfile']:
         myfile = request.FILES['myfile']
