@@ -557,10 +557,10 @@
                                         <div class="panel-body">
                                             <ul class="nav navbar-nav">
                                                 <li><a href="{% url 'dashapp:list_users'  %}"> List Users  </a></li>
-                                                <li><a href="{% url 'dashapp:list_org'  %}"> List Users  </a></li>
-                                                <li><a href="{% url 'dashapp:list_dept'  %}"> List Users  </a></li>
-                                                <li><a href="{% url 'dashapp:list_role'  %}"> List Users  </a></li>
-                                                <li><a href="{% url 'dashapp:list_ou'  %}"> List Users  </a></li>
+                                                <li><a href="{% url 'dashapp:list_org'  %}"> List Organization  </a></li>
+                                                <li><a href="{% url 'dashapp:list_dept'  %}"> List Deartment  </a></li>
+                                                <li><a href="{% url 'dashapp:list_role'  %}"> List Role  </a></li>
+                                                <li><a href="{% url 'dashapp:list_ou'  %}"> List OU  </a></li>
                                                 <li><a href="{% url 'dashapp:adduser'  %}">Add User</a></li>
                                             </ul>
                                         </div>
@@ -639,7 +639,7 @@
 
                 <div class="container-fluid" style="width:100%;padding-top:28px">
                     <div class="side-body">
-                        {% if list_users is not null %}
+                        {% if list_users is not null or list_org is not null%}
                         {% include 'list_users.html' %}
                         {% elif list_links is not null %}
                         {% include 'list_links.html' %}
