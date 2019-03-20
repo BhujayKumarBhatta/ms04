@@ -1,3 +1,7 @@
+{% load i18n %}
+{% load l10n %}
+{% load static %}
+
 
 <style type="text/css">
     body {
@@ -158,10 +162,10 @@
 </script>
 
 {% if list_users is not null %}
-{{template_data.list_users}}
-{{template_data.status}}
-{{template_data.list_users.status}}
-{{template_data}}
+{{ template_data.list_users }}
+{{ template_data.status }}
+{{ template_data.list_users.status }}
+{{ template_data }}
 
 <div class="table-wrapper">
     <div class="table-title">
