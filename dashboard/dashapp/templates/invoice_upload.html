@@ -35,18 +35,18 @@
     <ul ng-repeat="item in UPLOAD_STATUS.checking_message_list">
         <li ng-repeat="(key, val) in item">
             {{key}}: {{val}}
-        </li> 
+        </li>
     </ul>
     File Extention :
-    {% if checking_message_list.fileextentioncheck = 'passed' %} Successful {% else%} Failed {% endif %}
+    {% if UPLOAD_STATUS.checking_message_list.fileextentioncheck = 'passed' %} Successful {% else%} Failed {% endif %}
     Empty Data Check :
-    {% if checking_message_list.check_no_empty_cell_within_data_area = 'passed' %} Successful {% else%} Failed {% endif %}
+    {% if UPLOAD_STATUS.checking_message_list.check_no_empty_cell_within_data_area = 'passed' %} Successful {% else%} Failed {% endif %}
     Maximum Row :
-    {% if checking_message_list.check_within_max_row = 'passed' %} Successful {% else%} Failed {% endif %}
+    {% if UPLOAD_STATUS.checking_message_list.check_within_max_row = 'passed' %} Successful {% else%} Failed {% endif %}
     Date Format :
-    {% if checking_message_list.check_date_format = 'passed' %} Successful {% else%} Failed {% endif %}
+    {% if UPLOAD_STATUS.checking_message_list.check_date_format = 'passed' %} Successful {% else%} Failed {% endif %}
     Column Headins :
-    {% if checking_message_list.check_cloumn_heading = 'passed' %} Successful {% else%} Failed {% endif %}
+    {% if UPLOAD_STATUS.checking_message_list.check_cloumn_heading = 'passed' %} Successful {% else%} Failed {% endif %}
     <table>
         <tr>
             <th ng-repeat="(key, val) in UPLOAD_STATUS[0]">{{key}}</th>
