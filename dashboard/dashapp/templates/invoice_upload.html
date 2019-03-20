@@ -30,13 +30,9 @@
 
 
     </p>
-    <p>  <a href="{{ uploaded_file_url }}">{{ UPLOAD_STATUS }}</a></p>
+    <p>  <a href="#">{{ UPLOAD_STATUS }}</a></p>
 
-    <ul ng-repeat="item in UPLOAD_STATUS.checking_message_list">
-        <li ng-repeat="(key, val) in item">
-            {{key}}: {{val}}
-        </li>
-    </ul>
+    
      
      
     {% if checking_message_list.check_no_empty_cell_within_data_area == "passed" %}
