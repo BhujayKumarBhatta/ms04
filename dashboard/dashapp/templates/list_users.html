@@ -257,10 +257,12 @@
 <li>{{ org.name  }}</li>
 {% endfor %}
 
- 2. {% for org in status %}
+ 2. {% for org in list_org.status %}
 <li>{{ org.status  }}</li>
 <li>{{ org.status.name  }}</li>
-<li>{{ org.name  }}</li>{% endfor %}
+<li>{{ org.name  }}</li>
+<li>{{ name  }}</li>
+{% endfor %}
 {% endif %}
 
 
