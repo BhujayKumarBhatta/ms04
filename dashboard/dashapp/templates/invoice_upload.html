@@ -28,18 +28,18 @@
 
         <br />File uploaded Path: <a href="{{ uploaded_file_url }}">{{ uploaded_file_url }}</a>
 
-
+        {'db_message': None, 'final_message': None, 'checking_message_list
     </p>
-    <p>  <a href="{{ uploaded_file_url }}">{{ UPLOAD_STATUS }}</a></p>
+     
 
-    <ul ng-repeat="item in UPLOAD_STATUS">
+    <ul ng-repeat="item in UPLOAD_STATUS.checking_message_list">
         <li ng-repeat="(key, val) in item">
             {{key}}: {{val}}
         </li>
     </ul>
     <table>
         <tr>
-            <th ng-repeat="(key, val) in UPLOAD_STATUS[0]">{{key}}</th>
+            <th ng-repeat="(key, val) in UPLOAD_STATUS.checking_message_list">{{key}}</th>
         </tr>
         <tr ng-repeat="item in items">
             <td ng-repeat="(key, val) in item">{{val}}</td>
