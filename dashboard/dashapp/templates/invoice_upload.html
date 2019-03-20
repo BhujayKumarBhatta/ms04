@@ -37,8 +37,9 @@
             {{key}}: {{val}}
         </li>
     </ul>
-
-    {% if checking_message_list.check_no_empty_cell_within_data_area == "passed" %}
+    1. {% UPLOAD_STATUS.checking_message_list.check_no_empty_cell_within_data_area %}
+    2. {% checking_message_list.check_no_empty_cell_within_data_area %}
+    3. {% if checking_message_list.check_no_empty_cell_within_data_area == "passed" %}
     Successful
     {% else%}
     Failed
