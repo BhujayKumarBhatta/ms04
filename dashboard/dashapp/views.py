@@ -107,7 +107,7 @@ def list_org(request):
         list_org = tlclient.list_org()
         list_org = json.dumps(list_org)
         #list_org = json.loads(list_org)
-        template_data = {"list_org": list_org.get('status') } 
+        template_data = {"list_org": list_org } 
         result = render(request, 'home.html', template_data)         
         return result
 
