@@ -200,9 +200,12 @@ def invoice_upload(request):
         tlclient = prep_tlclient_from_session(request)
         invClient = MSClient(tlclient) 
         #Calling Upload Function
-        message = invClient.upload_xl("/home/ubuntu/dashboard/dashboard" + uploaded_file_url)  
-        new_json = json.loads(message)
-        result = render(request, 'home.html', { 'uploaded_file_url': uploaded_file_url,"VIEW_UPLOAD": "TRUE","UPLOAD_STATUS":new_json})
+        message = invClient.upload_xl("/home/ubuntu/dashboard/dashboard" + uploaded_file_url)          
+        message = json.dumps(message)
+        loaded_message = json.loads(message)
+
+
+        result = render(request, 'home.html', { 'uploaded_file_url': uploaded_file_url,"VIEW_UPLOAD": "TRUE","UPLOAD_STATUS":loaded_message})
     if request.method == 'GET':          
         template_data = {"VIEW_UPLOAD": "TRUE" }  
         result = render(request, 'home.html', template_data) 
