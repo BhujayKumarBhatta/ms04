@@ -116,7 +116,8 @@ def list_dept(request):
         tlclient = prep_tlclient_from_session(request)
         list_dept = tlclient.list_dept()
         list_dept = json.dumps(list_dept)
-        template_data = {"list_dept": list_dept.get('status') } 
+        list_dept = json.loads(list_dept)
+        template_data = {"list_dept": list_dept } 
         result = render(request, 'home.html', template_data)         
         return result
 
