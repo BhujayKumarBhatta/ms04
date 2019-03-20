@@ -37,10 +37,14 @@
             {{key}}: {{val}}
         </li>
     </ul>
-    {% if UPLOAD_STATUS %}
-        File Extention :
-     
+
+    {% if UPLOAD_STATUS.checking_message_list.check_no_empty_cell_within_data_area.passed %}
+    Successful
+    {% else%}
+    Failed
     {% endif %}
+
+
 
     <table>
         <tr>
