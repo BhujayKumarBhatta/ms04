@@ -114,6 +114,7 @@ def list_dept(request):
     if request.method == 'GET': 
         tlclient = prep_tlclient_from_session(request)
         list_dept = tlclient.list_dept()
+        list_dept = json.dumps(list_dept)
         template_data = {"list_dept": list_dept.get('status') } 
         result = render(request, 'home.html', template_data)         
         return result
@@ -122,6 +123,7 @@ def list_role(request):
     if request.method == 'GET': 
         tlclient = prep_tlclient_from_session(request)
         list_role = tlclient.list_role()
+        list_role = json.dumps(list_role)
         template_data = {"list_role": list_role.get('status') } 
         result = render(request, 'home.html', template_data)         
         return result
@@ -130,6 +132,7 @@ def list_ou(request):
     if request.method == 'GET': 
         tlclient = prep_tlclient_from_session(request)
         list_ou = tlclient.list_ou()
+        list_ou = json.dumps(list_ou)
         template_data = {"list_ou": list_role.get('status') } 
         result = render(request, 'home.html', template_data)         
         return result
