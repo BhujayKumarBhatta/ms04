@@ -215,10 +215,11 @@
 </div>
 {% elif list_org is not null %}
 <!--organizations-->
-{% if list_org is not null %}
-    list of oranizations : {{ list_org }}
- {% endif %}
- 
+    {% if list_org is not null %}
+        list of oranizations : {{ list_org }}
+        {{ list_org.status }}
+    {% endif %}
+
 <div class="table-wrapper">
     <div class="table-title">
         <div class="row">
