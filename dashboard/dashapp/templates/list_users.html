@@ -179,7 +179,7 @@
     <table class="table table-bordered">
         <thead>
             <tr style="font-size:12px">
-                <th>User Name</th>
+                <th>Name</th>
                 <th>Email</th>
                 <th>Role</th>
                 <th>Organization</th>
@@ -239,23 +239,17 @@ list of oranizations : {{template_data.list_org}}
     <table class="table table-bordered">
         <thead>
             <tr style="font-size:12px">
-                <th>ID</th>
+
                 <th>Name</th>
-                <th>Type</th>
-                <th>Auth Backend</th>
-                <th>work_func_id </th>
+
                 <th>Actions </th>
             </tr>
         </thead>
         <tbody>
 
-            {% for Org in list_org %}
+            {% for Org in list_org.status %}
             <tr style="font-size:11px">
-                <td>{{ Org.id  }}</td>
                 <td>{{ Org.name  }}</td>
-                <td> {{ Org.orgtype  }} </td>
-                <td> {{ Org.auth_backend }} </td>
-                <td> {{ Org.work_func_id }} </td>
                 <td>
                     <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
                     <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
