@@ -93,7 +93,7 @@ def login(request):
 
 ## Token Leader Module ****************************************************
 def list_users(request):
-    if request.method == 'GET': 
+    if request.method == 'GET':  
         tlclient = prep_tlclient_from_session(request)
         list_users = tlclient.list_users()
         template_data = {"list_users": list_users.get('status') } 
