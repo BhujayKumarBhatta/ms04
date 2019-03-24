@@ -13,16 +13,29 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-
+#### For File Upload
+from django.conf import settings
+from django.conf.urls.static import static
+## End
 from django.urls import path
 from . import views
 
 app_name = 'dashapp'
-urlpatterns = [
-    path('', views.login, name='login'),
-    path('list_users', views.list_users, name='list_users'),
+urlpatterns = [path('', views.login, name='login'),
+    #Infops DB
     path('list_links', views.list_links, name='list_links'),
     path('list_test', views.list_test, name='list_test'),
+    #Token Leader
+    path('list_users', views.list_users, name='list_users'),
     path('adduser', views.adduser, name='adduser'),
-    path('invoice', views.invoice, name='invoice'),
-]
+    path('list_org', views.list_org, name='list_org'),
+    path('list_dept', views.list_dept, name='list_dept'),
+    path('list_role', views.list_role, name='list_role'),
+    path('list_ou', views.list_ou, name='list_ou'),
+    #Invoice
+    path('list_invoices', views.list_invoices, name='invoice'),
+    path('invoice_upload', views.invoice_upload, name='invoice_upload'),
+    path('view_upload', views.view_upload, name='view_upload')]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
