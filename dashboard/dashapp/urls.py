@@ -24,7 +24,7 @@ app_name = 'dashapp'
 urlpatterns = [path('', views.login, name='login'),
     #Infops DB
     path('list_links', views.list_links, name='list_links'),
-    path('list_test', views.list_test, name='list_test'),
+    path('list_test', views.list_links, name='list_test'),      
     #Token Leader
     path('list_users', views.list_users, name='list_users'),
     path('adduser', views.adduser, name='adduser'),
