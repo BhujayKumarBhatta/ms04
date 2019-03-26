@@ -220,7 +220,7 @@
         {% for Inv in list_invoices%}
         <tr data-id="{{ Inv.current_doc.xldata.invoiceno}}" data-parent="0" data-level="1">
             
-            <td data-column="name">{{ Inv.current_doc.xldata.invoiceno}} </td>
+            <td data-column="name" style="width:100px">{{ Inv.current_doc.xldata.invoiceno}} </td>
             <td>{{ Inv.current_doc.xldata.circuitid }}</td>
             <td>{{ Inv.current_doc.xldata.division }} </td>
             <td>{{ Inv.current_doc.xldata.taxname }}</td>
