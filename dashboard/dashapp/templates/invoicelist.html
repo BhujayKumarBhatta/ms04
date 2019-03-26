@@ -109,9 +109,7 @@
             display: none;
         }
 
-    .container {
-        margin: 150px auto;
-    }
+   
 
     .treegrid-indent {
         width: 0px;
@@ -222,7 +220,7 @@
 
         {% for Inv in list_invoices%}
         <tr data-id="{{ Inv.current_doc.xldata.invoiceno}}" data-parent="0" data-level="1">
-            
+
             <td data-column="name">{{ Inv.current_doc.xldata.invoiceno}} </td>
             <td>{{ Inv.current_doc.xldata.circuitid }}</td>
             <td>{{ Inv.current_doc.xldata.division }} </td>
@@ -287,17 +285,17 @@
             <td>{{ Inv.older_history.servicetype}} </td>
         </tr>
         {% endfor %}
-
         </tbody>
-
     </table>
+
+    <script src='{% static "dashapp/styles/Bootstrapv337.js" %}' type="text/javascript"></script>
+    <script src='{% static "dashapp/styles/jquery-1.12.4.min.js" %}' type="text/javascript"></script>
+    <script src='{% static "dashapp/styles/javascript.js" %}' type="text/javascript"></script>
 </div>
 
    
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 
-    <script src='{% static "dashapp/styles/Bootstrapv337.js" %}' type="text/javascript"></script>
-    <script src='{% static "dashapp/styles/jquery-1.12.4.min.js" %}' type="text/javascript"></script>
-    <script src='{% static "dashapp/styles/javascript.js" %}' type="text/javascript"></script>
+  
 
  
