@@ -35,7 +35,8 @@ urlpatterns = [path('', views.login, name='login'),
     #Invoice
     path('list_invoices', views.list_invoices, name='invoice'),
     path('invoice_upload', views.invoice_upload, name='invoice_upload'),
-    path('view_upload', views.view_upload, name='view_upload')]
+    path('view_upload', views.view_upload, name='view_upload'),
+    path('view_update_upload', views.view_update_upload, name='view_update_upload')]
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

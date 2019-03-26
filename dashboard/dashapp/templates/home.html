@@ -595,7 +595,8 @@
                                     <div id="dropdown-lvl3" class="panel-collapse collapse">
                                         <div class="panel-body">
                                             <ul class="nav navbar-nav">
-                                                <li><a href="{% url 'dashapp:invoice_upload'  %}"> Upload Invoice  </a></li>
+                                                <li><a href="{% url 'dashapp:invoice_upload'  %}"> Invoice Upload   </a></li>
+                                                <li><a href="{% url 'dashapp:view_update_upload'  %}"> Update Invoice Upload</a></li>
                                                 <li><a href="{% url 'dashapp:invoice'  %}"> List Invoice  </a></li>
                                             </ul>
                                         </div>
@@ -653,6 +654,8 @@
                         {% include 'AddUser.html' %}
                         {% elif VIEW_UPLOAD is not null or uploaded_file_url is not null %}
                         {% include 'invoice_upload.html' %}
+                        {% elif VIEW_UPDATE_UPLOAD is not null or uploaded_file_url is not null %}
+                        {% include 'invoice_update_upload.html' %}
                         {% elif list_invoices is not null %}
                         {% include 'invoicelist.html' %}
                         {% elif PO is not null %}
