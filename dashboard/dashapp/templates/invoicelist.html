@@ -166,27 +166,22 @@
     <table class="table table-bordered">
         <thead>
             <tr style="font-size:12px">
+            	<th> Invoice No</th>
                 <th>Circuit ID</th>
-                <th>Tax Name</th>
                 <th>Division</th>
-                <th> Customer</th>
-                <th> User</th>
-                <th> Invoice No</th>
+                <th>Tax Name</th>   
                 <th> Full Site  Address</th>
                 <th> GST No</th>
                 <th> State</th>
                 <th> Billing Date_From</th>
-                <th> City</th>
-                <th> logged_in_user_org</th>
+                <th> City</th>                
                 <th> Premise Name</th>
                 <th> processing_status</th>
                 <th> Customer_id</th>
                 <th> Premise No</th>
-                <th> Billing Date_TO</th>
-                <th> logged_in_user_dept</th>
+                <th> Billing Date_TO</th>                
                 <th> Speed</th>
-                <th> REMARKS</th>
-                <th> logged_in_user_email</th>
+                <th> REMARKS</th>                
                 <th> Invoice Date</th>
                 <th> SERXICE_TYPE</th>
             </tr>
@@ -198,29 +193,26 @@
 
             {% for Inv in list_invoices%}
             <tr style="font-size:11px">
-                <td>{{ Inv.circuitid }}</td>
-                <td>{{ Inv.taxname }}</td>
-                <td>{{ Inv.division }} </td>
-                <td>{{ Inv.customername }} </td>
-                <td>{{ Inv.logged_in_user_org_unit}} </td>
-                <td>{{ Inv.invoiceno}} </td>
-                <td>{{ Inv.fullsiteaddress}} </td>
-                <td>{{ Inv.gstno}} </td>
-                <td>{{ Inv.State}} </td>
-                <td>{{ Inv.billingdatefrom}} </td>
-                <td>{{ Inv.city}} </td>
-                <td>{{ Inv.logged_in_user_org}} </td>
-                <td>{{ Inv.PremiseName}} </td>
+                <td>{{ Inv.current_doc.xldata.invoiceno}} </td>
+                <td>{{ Inv.current_doc.xldata.circuitid }}</td>
+                <td>{{ Inv.current_doc.xldata.division }} </td>
+                <td>{{ Inv.current_doc.xldata.taxname }}</td>                
+                <td>{{ Inv.current_doc.xldata.customername }} </td>               
+                
+                <td>{{ Inv.current_doc.xldata.fullsitedddress}} </td>
+                <td>{{ Inv.current_doc.xldata.gstno}} </td>
+                <td>{{ Inv.current_doc.xldata.state}} </td>
+                <td>{{ Inv.current_doc.xldata.billingdatefrom}} </td>
+                <td>{{ Inv.current_doc.xldata.city}} </td>                
+                <td>{{ Inv.current_doc.xldata.premisename}} </td>
                 <td>{{ Inv.processing_status}} </td>
-                <td>{{ Inv.customerid}} </td>
-                <td>{{ Inv.premisename}} </td>
-                <td>{{ Inv.billingdateto}} </td>
-                <td>{{ Inv.logged_in_user_dept}} </td>
-                <td>{{ Inv.speed}} </td>
-                <td>{{ Inv.remarks}} </td>
-                <td>{{ Inv.logged_in_user_email}} </td>
-                <td>{{ Inv.invoicedate}} </td>
-                <td>{{ Inv.servicetype}} </td>
+                <td>{{ Inv.Customer_id}} </td>
+                <td>{{ Inv.current_doc.xldata.premiseno}} </td>
+                <td>{{ Inv.current_doc.xldata.billingdateto}} </td>               
+                <td>{{ Inv.current_doc.xldata.speed}} </td>
+                <td>{{ Inv.REMARKS}} </td>                
+                <td>{{ Inv.InvoiceDate}} </td>
+                <td>{{ Inv.SERXICE_TYPE}} </td>
             </tr>
 
 
@@ -229,6 +221,3 @@
         </tbody>
     </table>
 </div>
-{{ list_invoices.history_list }}
-#################################################
-{{list_invoices}}

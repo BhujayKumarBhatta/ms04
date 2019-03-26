@@ -11,9 +11,9 @@ Flask-Testing==0.7.1
 idna==2.7
 itsdangerous==1.1.0
 Jinja2==2.10
-linkinvclient==1
+linkinvclient==1.1
 MarkupSafe==1.1.1
-micros1client==1
+micros1client==1.3
 pkg-resources==0.0.0
 pycparser==2.19
 PyJWT==1.7.0
@@ -21,6 +21,7 @@ pytz==2018.9
 PyYAML==3.13
 requests==2.20.1
 six==1.11.0
-tokenleaderclient==0.9
+tokenleaderclient==1.3
 urllib3==1.24.1
 Werkzeug==0.14.1
+
