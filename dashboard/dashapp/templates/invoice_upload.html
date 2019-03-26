@@ -25,32 +25,33 @@
     </form>
 
 
-<div class="table-wrapper">
-    <div class="table-title">
-        <div class="row">
-            <div class="col-sm-8"><h3>Upload status</h3></div>
+    <div class="table-wrapper">
+        <div class="table-title">
+            <div class="row">
+                <div class="col-sm-8"><h3>Upload status</h3></div>
+            </div>
         </div>
+        <table class="table table-bordered">
+            <thead>
+                <tr style="font-size:12px">
+                    <th> Invoice No</th>
+                    <th>Upload status</th>
+                </tr>
+
+            </thead>
+            <tbody>
+
+                {% for s in UPLOAD_STATUS %}
+                <tr style="font-size:11px">
+                    <td>{{ s.invoice_num }} </td>
+                    <td> {{ s.status }}</td>
+                </tr>
+                {% endfor %}
+
+            </tbody>
+        </table>
     </div>
-    <table class="table table-bordered">
-        <thead>
-            <tr style="font-size:12px">
-            	<th> Invoice No</th>
-                <th>Upload status</th>                
-            </tr>
-
-        </thead>
-        <tbody>
-        
-        {% for s in UPLOAD_STATUS %}
-			<tr style="font-size:11px">
-			<td>{{ s.invoice_num }} </td> <td> {{ s.status }}</td>		
-			</tr>
-		{% endfor %}
-        
-        </tbody>
-    </table>
-</div>
 
 
-
-{% endblock %}
+    {{UPLOAD_STATUS}}
+    {% endblock %}
