@@ -74,6 +74,14 @@ def view_upload(request):
     result = tspinv.view_upload(request)
     return reault
 
+def view_update_upload(request):
+    result = tspinv.view_update_upload(request)
+    return result
+
+def invoice_Update_upload(request):
+    result = tspinv.invoice_Update_upload(request)    
+    return result
+
 
 def list_test(request):
     result = linkv.list_test(request)  
