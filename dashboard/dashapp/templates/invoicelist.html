@@ -196,7 +196,7 @@
 
 
 
-            {% for Inv in list_invoices.xldata%}
+            {% for Inv in list_invoices%}
             <tr style="font-size:11px">
                 <td>{{ Inv.circuitid }}</td>
                 <td>{{ Inv.taxname }}</td>
@@ -229,4 +229,4 @@
 </div>
 
 
-{{xldata}}
+{{list_invoices}}
