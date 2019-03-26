@@ -262,18 +262,18 @@
             <th>Invoice Number</th>
             <th>Circuit ID</th>
             {% for Inv in list_invoices%}
-            {{% i=i+0 %}}
-            <tr data-id={{i}} data-parent="0" data-level="1">
+
+            <tr data-id={{ Inv.current_doc.xldata.invoiceno}} data-parent="0" data-level="1">
                 <td data-column="name">Node 1</td>
                 <td>{{ Inv.current_doc.xldata.invoiceno}}</td>
                 <td>{{ Inv.current_doc.xldata.circuitid }}</td>
             </tr>
-            <tr data-id={{i+1}} data-parent={{i}} data-level="2">
+            <tr data-id={{ Inv.current_doc.xldata.invoiceno +1 }} data-parent={{ Inv.current_doc.xldata.invoiceno}} data-level="2">
                 <td data-column="name">Node 1 Child</td>
                 <td>{{ Inv.current_doc.xldata.invoiceno}}</td>
                 <td>{{ Inv.current_doc.xldata.circuitid }}</td>
             </tr>
-            <tr data-id={{i+2}} data-parent={{i}} data-level="2">
+            <tr data-id={{ Inv.current_doc.xldata.invoiceno +1}} data-parent={{ Inv.current_doc.xldata.invoiceno}} data-level="2">
                 <td data-column="name">Node 1 Child</td>
                 <td>{{ Inv.current_doc.xldata.invoiceno}}</td>
                 <td>{{ Inv.current_doc.xldata.circuitid }}</td>
