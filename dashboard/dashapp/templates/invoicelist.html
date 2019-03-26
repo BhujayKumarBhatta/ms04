@@ -194,32 +194,34 @@
 
         </thead>
         <tbody>
-
-            {% for Inv in list_invoices %}
+            
+             
+            <!--{% for Inv in list_invoices %}-->
+            {% for Inv in history_list.xldata%}
             <tr style="font-size:11px">
-                <td>{{ Inv.CircuitID }}</td>
-                <td>{{ Inv.TaxName }}</td>
-                <td>{{ Inv.Division }} </td>
-                <td>{{ Inv.Customer_Name }} </td>
-                <td>{{ Inv.logged_in_user_org_unit}} </td>
-                <td>{{ Inv.InvoiceNo}} </td>
-                <td>{{ Inv.FullSiteAddress}} </td>
-                <td>{{ Inv.GSTNo}} </td>
+                <td>{{ Inv.circuitid }}</td>
+                <td>{{ Inv.taxname }}</td>
+                <td>{{ Inv.division }} </td>
+                <td>{{ Inv.customername }} </td>
+                        <td>{{ Inv.logged_in_user_org_unit}} </td>
+                <td>{{ Inv.invoiceno}} </td>
+                <td>{{ Inv.fullsiteaddress}} </td>
+                <td>{{ Inv.gstno}} </td>
                 <td>{{ Inv.State}} </td>
-                <td>{{ Inv.BillingDate_From}} </td>
-                <td>{{ Inv.City}} </td>
+                <td>{{ Inv.billingdatefrom}} </td>
+                <td>{{ Inv.city}} </td>
                 <td>{{ Inv.logged_in_user_org}} </td>
                 <td>{{ Inv.PremiseName}} </td>
                 <td>{{ Inv.processing_status}} </td>
-                <td>{{ Inv.Customer_id}} </td>
-                <td>{{ Inv.PremiseNo}} </td>
-                <td>{{ Inv.BillingDate_TO}} </td>
+                <td>{{ Inv.customerid}} </td>
+                <td>{{ Inv.premisename}} </td>
+                <td>{{ Inv.billingdateto}} </td>
                 <td>{{ Inv.logged_in_user_dept}} </td>
-                <td>{{ Inv.Speed}} </td>
-                <td>{{ Inv.REMARKS}} </td>
+                <td>{{ Inv.speed}} </td>
+                <td>{{ Inv.remarks}} </td>
                 <td>{{ Inv.logged_in_user_email}} </td>
-                <td>{{ Inv.InvoiceDate}} </td>
-                <td>{{ Inv.SERXICE_TYPE}} </td>
+                <td>{{ Inv.invoicedate}} </td>
+                <td>{{ Inv.servicetype}} </td>
             </tr>
             {% endfor %}
 
