@@ -203,25 +203,24 @@
         <th>Circuit ID</th>
         <th>Division</th>
         <th>Tax Name</th>
-        <th> Full Site  Address</th>
-        <th> GST No</th>
-        <th> State</th>
-        <th> Billing Date_From</th>
-        <th> City</th>
-        <th> Premise Name</th>
-        <th> processing_status</th>
-        <th> Customer_id</th>
-        <th> Premise No</th>
-        <th> Billing Date_TO</th>
-        <th> Speed</th>
-        <th> REMARKS</th>
-        <th> Invoice Date</th>
-        <th> SERXICE_TYPE</th>
-
+        <th>Full Address</th>
+        <th>GST No</th>
+        <th>State</th>
+        <th>Billing Date_From</th>
+        <th>City</th>
+        <th>Premise Name</th>
+        <th>processing_status</th>
+        <th>Customer_id</th>
+        <th>Premise No</th>
+        <th>Billing Date_TO</th>
+        <th>Speed</th>
+        <th>Remarks</th>
+        <th>Invoice Date</th>
+        <th>Service Type</th>
         {% for Inv in list_invoices%}
         <tr data-id="{{ Inv.current_doc.xldata.invoiceno}}" data-parent="0" data-level="1">
-
-            <td data-column="name">{{ Inv.current_doc.xldata.invoiceno}} </td>
+            <td></td>
+            <td data-column="name" >{{ Inv.current_doc.xldata.invoiceno}} </td>
             <td>{{ Inv.current_doc.xldata.circuitid }}</td>
             <td>{{ Inv.current_doc.xldata.division }} </td>
             <td>{{ Inv.current_doc.xldata.taxname }}</td>
