@@ -26,7 +26,7 @@ def list_invoices(request):
         invClient = MSClient(tlclient) 
         list_invoices = invClient.list_invoices_clo('all','all')  
         template_data = {"list_invoices": list_invoices } 
-        result = render(request, 'home.html', template_data)        
+        result = render(request, 'invoicelist.html', template_data)        
         return result
 
 ## Navigate to Upload Invoice******
