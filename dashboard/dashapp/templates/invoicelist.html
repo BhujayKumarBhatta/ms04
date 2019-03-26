@@ -156,8 +156,7 @@
     });
 </script>
 
-{{template_data}}
-{{list_invoices}}
+
 <div class="table-wrapper">
     <div class="table-title">
         <div class="row">
@@ -194,16 +193,16 @@
 
         </thead>
         <tbody>
-            
-             
-             
+
+
+
             {% for Inv in history_list.xldata%}
             <tr style="font-size:11px">
                 <td>{{ Inv.circuitid }}</td>
                 <td>{{ Inv.taxname }}</td>
                 <td>{{ Inv.division }} </td>
                 <td>{{ Inv.customername }} </td>
-                        <td>{{ Inv.logged_in_user_org_unit}} </td>
+                <td>{{ Inv.logged_in_user_org_unit}} </td>
                 <td>{{ Inv.invoiceno}} </td>
                 <td>{{ Inv.fullsiteaddress}} </td>
                 <td>{{ Inv.gstno}} </td>
@@ -228,3 +227,6 @@
         </tbody>
     </table>
 </div>
+
+
+{{list_invoices}}
