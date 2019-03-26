@@ -257,97 +257,33 @@
         <table id="tree-table" class="table table-hover table-bordered">
 
             <tbody>
-                <tr style="font-size:12px">
-                    <th>#</th>
-                    <th> Invoice No</th>
-                    <th>Circuit ID</th>
-                    <th>Division</th>
-                    <th>Tax Name</th>
-                    <th>Customrer Name</th>
-                    <th> Full Site  Address</th>
-                    <th> GST No</th>
-                    <th> State</th>
-                    <th> Billing Date_From</th>
-                    <th> City</th>
-                    <th> Premise Name</th>
-                    <th> processing_status</th>
-                    <th> Customer_id</th>
-                    <th> Premise No</th>
-                    <th> Billing Date_TO</th>
-                    <th> Speed</th>
-                    <th> REMARKS</th>
-                    <th> Invoice Date</th>
-                    <th> SERXICE_TYPE</th>
-                </tr>
-                {% for Inv in list_invoices%}
-                <tr style="font-size:11px" data-id="1" data-parent="0" data-level="1">
-                    <td>{{ Inv.current_doc.xldata.invoiceno}} </td>
-                    <td>{{ Inv.current_doc.xldata.circuitid }}</td>
-                    <td>{{ Inv.current_doc.xldata.division }} </td>
-                    <td>{{ Inv.current_doc.xldata.taxname }}</td>
-                    <td>{{ Inv.current_doc.xldata.customername }} </td>
-                    <td>{{ Inv.current_doc.xldata.fullsitedddress}} </td>
-                    <td>{{ Inv.current_doc.xldata.gstno}} </td>
-                    <td>{{ Inv.current_doc.xldata.state}} </td>
-                    <td>{{ Inv.current_doc.xldata.billingdatefrom}} </td>
-                    <td>{{ Inv.current_doc.xldata.city}} </td>
-                    <td>{{ Inv.current_doc.xldata.premisename}} </td>
-                    <td>{{ Inv.processing_status}} </td>
-                    <td>{{ Inv.Customer_id}} </td>
-                    <td>{{ Inv.current_doc.xldata.premiseno}} </td>
-                    <td>{{ Inv.current_doc.xldata.billingdateto}} </td>
-                    <td>{{ Inv.current_doc.xldata.speed}} </td>
-                    <td>{{ Inv.REMARKS}} </td>
-                    <td>{{ Inv.InvoiceDate}} </td>
-                    <td>{{ Inv.SERXICE_TYPE}} </td>
-                </tr>
-                {% endfor %}
-                {% for Inv in list_invoices%}
-                <tr style="font-size:11px" data-id="2" data-parent="1" data-level="2">
-                    <td>{{ Inv.current_doc.xldata.invoiceno}} </td>
-                    <td>{{ Inv.current_doc.xldata.circuitid }}</td>
-                    <td>{{ Inv.current_doc.xldata.division }} </td>
-                    <td>{{ Inv.current_doc.xldata.taxname }}</td>
-                    <td>{{ Inv.current_doc.xldata.customername }} </td>
-                    <td>{{ Inv.current_doc.xldata.fullsitedddress}} </td>
-                    <td>{{ Inv.current_doc.xldata.gstno}} </td>
-                    <td>{{ Inv.current_doc.xldata.state}} </td>
-                    <td>{{ Inv.current_doc.xldata.billingdatefrom}} </td>
-                    <td>{{ Inv.current_doc.xldata.city}} </td>
-                    <td>{{ Inv.current_doc.xldata.premisename}} </td>
-                    <td>{{ Inv.processing_status}} </td>
-                    <td>{{ Inv.Customer_id}} </td>
-                    <td>{{ Inv.current_doc.xldata.premiseno}} </td>
-                    <td>{{ Inv.current_doc.xldata.billingdateto}} </td>
-                    <td>{{ Inv.current_doc.xldata.speed}} </td>
-                    <td>{{ Inv.REMARKS}} </td>
-                    <td>{{ Inv.InvoiceDate}} </td>
-                    <td>{{ Inv.SERXICE_TYPE}} </td>
-                </tr>
-                {% endfor %}
-                {% for Inv in list_invoices%}
-                <tr style="font-size:11px" data-id="3" data-parent="1" data-level="2">
-                    <td>{{ Inv.current_doc.xldata.invoiceno}} </td>
-                    <td>{{ Inv.current_doc.xldata.circuitid }}</td>
-                    <td>{{ Inv.current_doc.xldata.division }} </td>
-                    <td>{{ Inv.current_doc.xldata.taxname }}</td>
-                    <td>{{ Inv.current_doc.xldata.customername }} </td>
-                    <td>{{ Inv.current_doc.xldata.fullsitedddress}} </td>
-                    <td>{{ Inv.current_doc.xldata.gstno}} </td>
-                    <td>{{ Inv.current_doc.xldata.state}} </td>
-                    <td>{{ Inv.current_doc.xldata.billingdatefrom}} </td>
-                    <td>{{ Inv.current_doc.xldata.city}} </td>
-                    <td>{{ Inv.current_doc.xldata.premisename}} </td>
-                    <td>{{ Inv.processing_status}} </td>
-                    <td>{{ Inv.Customer_id}} </td>
-                    <td>{{ Inv.current_doc.xldata.premiseno}} </td>
-                    <td>{{ Inv.current_doc.xldata.billingdateto}} </td>
-                    <td>{{ Inv.current_doc.xldata.speed}} </td>
-                    <td>{{ Inv.REMARKS}} </td>
-                    <td>{{ Inv.InvoiceDate}} </td>
-                    <td>{{ Inv.SERXICE_TYPE}} </td>
-                </tr>
-                {% endfor %}
+            <th>#</th>
+            <th>Test</th>
+
+            <tr data-id="1" data-parent="0" data-level="1">
+                <td data-column="name">Node 1</td>
+                <td>Additional info</td>
+            </tr>
+            <tr data-id="2" data-parent="1" data-level="2">
+                <td data-column="name">Node 1</td>
+                <td>Additional info</td>
+            </tr>
+            <tr data-id="3" data-parent="1" data-level="2">
+                <td data-column="name">Node 1</td>
+                <td>Additional info</td>
+            </tr>
+            <tr data-id="4" data-parent="3" data-level="3">
+                <td data-column="name">Node 1</td>
+                <td>Additional info</td>
+            </tr>
+            <tr data-id="5" data-parent="3" data-level="3">
+                <td data-column="name">Node 1</td>
+                <td>Additional info</td>
+            </tr>
+
+
+
+
             </tbody>
 
         </table>
