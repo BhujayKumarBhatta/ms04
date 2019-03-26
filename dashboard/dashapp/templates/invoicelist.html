@@ -185,67 +185,7 @@
 </script>
 
 
-<div class="table-wrapper">
-    <div class="table-title">
-        <div class="row">
-            <div class="col-sm-8"><h3>Invoice <b>Details</b></h3></div>
-        </div>
-    </div>
-    <table class="table table-bordered">
-        <thead>
-            <tr style="font-size:12px">
-                <th> Invoice No</th>
-                <th>Circuit ID</th>
-                <th>Division</th>
-                <th>Tax Name</th>
-                <th> Full Site  Address</th>
-                <th> GST No</th>
-                <th> State</th>
-                <th> Billing Date_From</th>
-                <th> City</th>
-                <th> Premise Name</th>
-                <th> processing_status</th>
-                <th> Customer_id</th>
-                <th> Premise No</th>
-                <th> Billing Date_TO</th>
-                <th> Speed</th>
-                <th> REMARKS</th>
-                <th> Invoice Date</th>
-                <th> SERXICE_TYPE</th>
-            </tr>
-
-        </thead>
-        <tbody>
-
-
-
-            {% for Inv in list_invoices%}
-            <tr style="font-size:11px">
-                <td>{{ Inv.current_doc.xldata.invoiceno}} </td>
-                <td>{{ Inv.current_doc.xldata.circuitid }}</td>
-                <td>{{ Inv.current_doc.xldata.division }} </td>
-                <td>{{ Inv.current_doc.xldata.taxname }}</td>
-                <td>{{ Inv.current_doc.xldata.customername }} </td>
-                <td>{{ Inv.current_doc.xldata.fullsitedddress}} </td>
-                <td>{{ Inv.current_doc.xldata.gstno}} </td>
-                <td>{{ Inv.current_doc.xldata.state}} </td>
-                <td>{{ Inv.current_doc.xldata.billingdatefrom}} </td>
-                <td>{{ Inv.current_doc.xldata.city}} </td>
-                <td>{{ Inv.current_doc.xldata.premisename}} </td>
-                <td>{{ Inv.current_doc.processing_status}} </td>
-                <td>{{ Inv.current_doc.Customer_id}} </td>
-                <td>{{ Inv.current_doc.xldata.premiseno}} </td>
-                <td>{{ Inv.current_doc.xldata.billingdateto}} </td>
-                <td>{{ Inv.current_doc.xldata.speed}} </td>
-                <td>{{ Inv.current_doc.remarks}} </td>
-                <td>{{ Inv.current_doc.InvoiceDate}} </td>
-                <td>{{ Inv.current_doc.servicetype}} </td>
-            </tr>
-            {% endfor %}
-
-        </tbody>
-    </table>
-</div>
+ 
 
 
 
