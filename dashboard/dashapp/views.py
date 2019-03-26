@@ -217,6 +217,7 @@ def list_invoices(request):
         #list_invoices.items()}
  
         #list_invoices = invClient.list()
+        template_data = None
         template_data = {"list_invoices": new_jsoninvoices } 
         result = render(request, 'home.html', template_data)        
         return result
