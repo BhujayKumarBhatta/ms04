@@ -1,6 +1,11 @@
 {% load i18n %}
 {% load l10n %}
 {% load static %}
+
+<head>
+
+
+</head>
 <style type="text/css">
     body {
         color: #404E67;
@@ -103,6 +108,25 @@
         table.table td .add {
             display: none;
         }
+    .container {
+        margin: 150px auto;
+    }
+
+    .treegrid-indent {
+        width: 0px;
+        height: 16px;
+        display: inline-block;
+        position: relative;
+    }
+
+    .treegrid-expander {
+        width: 0px;
+        height: 16px;
+        display: inline-block;
+        position: relative;
+        left: -17px;
+        cursor: pointer;
+    }
 </style>
 <script type="text/javascript">
     $(document).ready(function () {
@@ -235,7 +259,6 @@
             <tbody>
             <th>#</th>
             <th>Test</th>
-
 
             <tr data-id="1" data-parent="0" data-level="1">
                 <td data-column="name">Node 1</td>
