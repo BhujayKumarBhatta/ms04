@@ -262,7 +262,7 @@
             <th>Invoice Number</th>
             <th>Circuit ID</th>
             {% for Inv in list_invoices%}
-            {{i=i+0}}
+            {{% i=i+0 %}}
             <tr data-id={{i}} data-parent="0" data-level="1">
                 <td data-column="name">Node 1</td>
                 <td>{{ Inv.current_doc.xldata.invoiceno}}</td>
