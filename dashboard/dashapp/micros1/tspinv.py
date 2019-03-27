@@ -117,10 +117,8 @@ def invoice_Update_upload(request):
                             { 'uploaded_file_url': uploaded_file_url,
                              "VIEW_UPDATE_UPLOAD": "TRUE", 
                              "UPLOAD_UPDATE_STATUS":loaded_message})
-        return render(request, 'home.html', {
-            'uploaded_file_url': uploaded_file_url
-        })
-     if request.method == 'GET':          
+        return result
+    if request.method == 'GET':          
         template_data = {"VIEW_UPDATE_UPLOAD": "TRUE" }  
         result = render(request, 'home.html', template_data)        
         return result
