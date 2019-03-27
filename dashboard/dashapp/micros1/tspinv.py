@@ -111,8 +111,9 @@ def invoice_update_upload(request):
         #loaded_message = json.loads(message)# Only gives json Object str
         
 
-        template_data = { "uploadedupdate_file_url": uploaded_file_url
-                         ,"VIEW_UPDATE_UPLOAD": "TRUE"}
+        template_data = { "uploadedupdate_file_url" : uploaded_file_url
+                         ,"VIEW_UPDATE_UPLOAD" : "TRUE"
+                         ,"UPLOAD_UPDATE_STATUS" : message}
         result = render(request, 'home.html',template_data)
         return result
     if request.method == 'GET':          
