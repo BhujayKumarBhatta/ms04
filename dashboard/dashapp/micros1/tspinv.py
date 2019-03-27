@@ -109,12 +109,11 @@ def invoice_Update_upload(request):
         message = ms1Client.update_invoice(uploaded_file_url)      
         message = json.dumps(message)
         loaded_message = json.loads(message)
-        for a, b in loaded_message: 
-            loaded_message.setdefault(a, []).append(b)
+        
 
         template_data = { "uploaded_file_url": uploaded_file_url,
                               "VIEW_UPDATE_UPLOAD": "TRUE", 
-                              "UPLOAD_UPDATE_STATUS":message}
+                              "UPLOAD_UPDATE_STATUS":loaded_message}
         result = render(request, 'home.html',loaded_message)
         return result
     if request.method == 'GET':          
