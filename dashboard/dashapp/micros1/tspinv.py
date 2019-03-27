@@ -97,7 +97,7 @@ def view_update_upload(request):
 #        template_data = {"VIEW_UPDATE_UPLOAD": "TRUE" }
 #        result = render(request, 'home.html', template_data)
 #    return result
-def invoice_Update_upload(request):
+def invoice_update_upload(request):
     if request.method == 'POST' and request.FILES['myfile']:
         myfile = request.FILES['myfile']        
         fs = FileSystemStorage(location = '/tmp/media/',file_permissions_mode =  0o644)
@@ -111,8 +111,8 @@ def invoice_Update_upload(request):
         #loaded_message = json.loads(message)# Only gives json Object str
         
 
-        template_data = { 'uploaded_file_url': uploaded_file_url
-                         ,'VIEW_UPDATE_UPLOAD': "TRUE"}
+        template_data = { "uploaded_file_url": uploaded_file_url
+                         ,"VIEW_UPDATE_UPLOAD": "TRUE"}
         result = render(request, 'home.html',template_data)
         return result
     if request.method == 'GET':          
