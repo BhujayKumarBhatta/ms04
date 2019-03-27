@@ -88,8 +88,8 @@ def invoice_Update_upload(request):
         message = ms1Client.update_invoice(uploaded_file_url)      
         message = json.dumps(message)
         loaded_message = json.loads(message)
-        if isinstance(loaded_message, list):
-            fs.delete(fname)
+        #if isinstance(loaded_message, list):
+        #    fs.delete(fname)
         result = render(request, 'home.html', 
                             { 'uploaded_file_url': uploaded_file_url,
                              "VIEW_UPDATE_UPLOAD": "TRUE", 
