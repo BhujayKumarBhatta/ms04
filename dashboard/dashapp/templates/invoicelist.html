@@ -198,28 +198,31 @@
     <table id="tree-table" class="table table-hover table-bordered" width="100%">
 
         <tbody>
-        
-        <th>Invoice Number</th>
-        <th>Circuit ID</th>
-        <th>Division</th>
-        <th>Tax Name</th>
-        <th>Full Address</th>
-        <th>GST No</th>
-        <th>State</th>
-        <th>Billing Date_From</th>
-        <th>City</th>
-        <th>Premise Name</th>
-        <th>processing_status</th>
-        <th>Customer_id</th>
-        <th>Premise No</th>
-        <th>Billing Date_TO</th>
-        <th>Speed</th>
-        <th>Remarks</th>
-        <th>Invoice Date</th>
-        <th>Service Type</th>
+        <thead>
+            <tr style="font-size:12px">
+                <th>Invoice Number</th>
+                <th>Circuit ID</th>
+                <th>Division</th>
+                <th>Tax Name</th>
+                <th>Full Address</th>
+                <th>GST No</th>
+                <th>State</th>
+                <th>Billing Date_From</th>
+                <th>City</th>
+                <th>Premise Name</th>
+                <th>processing_status</th>
+                <th>Customer_id</th>
+                <th>Premise No</th>
+                <th>Billing Date_TO</th>
+                <th>Speed</th>
+                <th>Remarks</th>
+                <th>Invoice Date</th>
+                <th>Service Type</th>
+            </tr>
+        </thead>
         {% for Inv in list_invoices%}
-        <tr data-id="{{ Inv.current_doc.xldata.invoiceno}}" data-parent="0" data-level="1">
-            
+        <tr data-id="{{ Inv.current_doc.xldata.invoiceno}}" data-parent="0" data-level="1" style="font-size:11px">
+
             <td data-column="name" style="width:150px">{{ Inv.current_doc.xldata.invoiceno}} </td>
             <td>{{ Inv.current_doc.xldata.circuitid }}</td>
             <td>{{ Inv.current_doc.xldata.division }} </td>
@@ -240,7 +243,7 @@
             <td>{{ Inv.current_doc.InvoiceDate}} </td>
             <td>{{ Inv.current_doc.servicetype}} </td>
         </tr>
-        <tr data-id="{{ Inv.circuitid }}" data-parent="{{Inv.current_doc.xldata.invoiceno}}" data-level="2">
+        <tr data-id="{{ Inv.circuitid }}" data-parent="{{Inv.current_doc.xldata.invoiceno}}" data-level="2" style="font-size:11px">
             <td style="width:150px">{{ Inv.last_doc.xldata.invoiceno}} </td>
             <td>{{ Inv.last_doc.xldata.circuitid }}</td>
             <td>{{ Inv.last_doc.xldata.division }} </td>
@@ -261,8 +264,8 @@
             <td>{{ Inv.last_doc.InvoiceDate}} </td>
             <td>{{ Inv.last_doc.servicetype}} </td>
         </tr>
-        <tr data-id="{{ Inv.circuitid}}" data-parent="{{ Inv.current_doc.xldata.invoiceno}}" data-level="2">
-            
+        <tr data-id="{{ Inv.circuitid}}" data-parent="{{ Inv.current_doc.xldata.invoiceno}}" data-level="2" style="font-size:11px">
+
             <td style="width:150px">{{ Inv.older_history.xldata.invoiceno}} </td>
             <td>{{ Inv.older_history.xldata.circuitid }}</td>
             <td>{{ Inv.older_history.xldata.division }} </td>
