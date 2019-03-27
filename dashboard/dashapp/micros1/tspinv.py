@@ -112,9 +112,9 @@ def invoice_Update_upload(request):
         #message = json.dumps(message)
         #loaded_message = json.loads(message)
         
-        result = render(request, 'home.html', 
+        result = render(request, 'invoicelist.html', 
                             { 'uploaded_file_url': uploaded_file_url,
-                             "VIEW_UPDATE_UPLOAD": "TRUE" })
+                             "VIEW_UPDATE_UPLOAD": "TRUE"})
         return result
     if request.method == 'GET':          
         template_data = {"VIEW_UPDATE_UPLOAD": "TRUE" }  
