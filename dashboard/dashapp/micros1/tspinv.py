@@ -103,7 +103,7 @@ def view_update_upload(request):
 def invoice_Update_upload(request):
     if request.method == 'POST' and request.FILES['myfile']:
         myfile = request.FILES['myfile']
-        fs = FileSystemStorage()
+        fs = FileSystemStorage() 
         filename = fs.save(myfile.name, myfile)
         uploaded_file_url = fs.url(filename)
 
