@@ -5,7 +5,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from tokenleaderclient.configs.config_handler import Configs    
 from tokenleaderclient.client.client import Client 
-from micros1client.client   import MSClient
+from micros1client.client import MSClient
 from linkinvclient.client import LIClient
 from django.views.generic.edit import FormView
 #from django.core.urlresolvers import reverse_lazy
@@ -106,15 +106,16 @@ def invoice_Update_upload(request):
         filename = fs.save(myfile.name, myfile)
         uploaded_file_url = fs.url(filename)
 
-        #tlclient = tllogin.prep_tlclient_from_session(request)
-        #ms1Client = MSClient(tlclient)        
-        #message = ms1Client.update_invoice(uploaded_file_url)      
-        #message = json.dumps(message)
-        #loaded_message = json.loads(message)
+        tlclient = tllogin.prep_tlclient_from_session(request)
+        ms1Client = MSClient(tlclient)        
+        message = ms1Client.update_invoice(uploaded_file_url)      
+        message = json.dumps(message)
+        loaded_message = json.loads(message)
         
-        result = render(request, 'invoicelist.html', 
+        result = render(request, 'home.html', 
                             { 'uploaded_file_url': uploaded_file_url,
-                             "VIEW_UPDATE_UPLOAD": "TRUE"})
+                             "VIEW_UPDATE_UPLOAD": "TRUE", 
+                             "UPLOAD_UPDATE_STATUS":loaded_message})
         return result
     if request.method == 'GET':          
         template_data = {"VIEW_UPDATE_UPLOAD": "TRUE" }  
