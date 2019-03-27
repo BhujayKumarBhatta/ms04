@@ -24,7 +24,7 @@
 
 
     {{UPLOAD_UPDATE_STATUS}}
-
+  List ---   {{ UPLOAD_UPDATE_STATUS|make_list }}
 
     <div class="table-wrapper">
         <div class="table-title">
@@ -42,9 +42,9 @@
             </thead>
             <tbody>
 
-               
 
-                {% for i in 20 %}
+
+                {% for i in UPLOAD_UPDATE_STATUS %}
                 <tr style="font-size:11px">
                     <td>{{ UPLOAD_UPDATE_STATUS[i] }} </td>
                     <td> {{ i+1 }}</td>
