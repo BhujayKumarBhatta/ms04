@@ -119,9 +119,8 @@ def invoice_Update_upload(request):
         return result
     if request.method == 'GET':          
         template_data = {"VIEW_UPDATE_UPLOAD": "TRUE" }  
-        result = render(request, 'home.html', template_data)        
-        return result
-    return render(request, 'home.html')
+        result = render(request, 'home.html', template_data)   
+    return result
 
 # 
 # 
