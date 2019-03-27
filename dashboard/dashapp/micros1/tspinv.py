@@ -113,14 +113,14 @@ def invoice_Update_upload(request):
         loaded_message = json.loads(message)
         result = render(request, 'invoicelist.html', 
                             { 'uploaded_file_url': uploaded_file_url,
-                             "VIEW_UPDATE_UPLOAD": "TRUE"})
+                             "VIEW_UPDATE_UPLOAD": "from Upload Update"})
         #result = render(request, 'home.html', 
         #                    { 'uploaded_file_url': uploaded_file_url,
         #                     "VIEW_UPDATE_UPLOAD": "TRUE", 
         #                     "UPLOAD_UPDATE_STATUS":loaded_message})
         return result
     if request.method == 'GET':          
-        template_data = {"VIEW_UPDATE_UPLOAD": "TRUE" }  
+        template_data = {"VIEW_UPDATE_UPLOAD": "from view upload" }  
         result = render(request, 'home.html', template_data)   
     return result
 
