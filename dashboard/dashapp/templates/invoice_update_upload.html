@@ -44,10 +44,10 @@
 
                
 
-                {% for i in UPLOAD_UPDATE_STATUS %}
+                {% for i in 20 %}
                 <tr style="font-size:11px">
                     <td>{{ UPLOAD_UPDATE_STATUS[i] }} </td>
-                    <td> {{  UPLOAD_UPDATE_STATUS[i+1] }}</td>
+                    <td> {{ i+1 }}</td>
                 </tr>
                 {% endfor %}
 
