@@ -24,11 +24,8 @@
 
 
     {{UPLOAD_UPDATE_STATUS}}
-   
-    uploaded_file_url-{{uploadedupdate_file_url}}
-    {{template_data.uploadedupdate_file_url}}
-    {{VIEW_UPDATE_UPLOAD}}
-    {{context}}
+
+
     <div class="table-wrapper">
         <div class="table-title">
             <div class="row">
@@ -45,10 +42,13 @@
             </thead>
             <tbody>
 
-                {% for s in UPLOAD_UPDATE_STATUS %}
+                {% length = len(UPLOAD_UPDATE_STATUS)%}
+
+
+                {% for i in UPLOAD_UPDATE_STATUS %}
                 <tr style="font-size:11px">
-                    <td>{{ s }} </td>
-                    <td> {{ s }}</td>
+                    <td>{{ UPLOAD_UPDATE_STATUS[i] }} </td>
+                    <td> {{  UPLOAD_UPDATE_STATUS[i+1] }}</td>
                 </tr>
                 {% endfor %}
 
