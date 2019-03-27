@@ -78,7 +78,7 @@ def view_update_upload(request):
     result = tspinv.view_update_upload(request)
     return result
 
-def invoice_Update_upload(request):
+def invoice_update_upload(request):
     result = tspinv.invoice_update_upload(request)    
     return result
 
