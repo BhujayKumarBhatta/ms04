@@ -107,13 +107,13 @@ def invoice_Update_upload(request):
         tlclient = tllogin.prep_tlclient_from_session(request)
         ms1Client = MSClient(tlclient)        
         message = ms1Client.update_invoice(uploaded_file_url)      
-        #message = json.dumps(message)
-        loaded_message = json.loads(message)
+        message = json.dumps(message)
+        #loaded_message = json.loads(message)# Only gives json Object str
         
 
         template_data = { "uploaded_file_url": uploaded_file_url,
                               "VIEW_UPDATE_UPLOAD": "TRUE", 
-                              "UPLOAD_UPDATE_STATUS":loaded_message}
+                              "UPLOAD_UPDATE_STATUS":message}
         result = render(request, 'home.html',template_data)
         return result
     if request.method == 'GET':          
