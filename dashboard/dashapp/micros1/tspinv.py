@@ -77,27 +77,26 @@ def view_update_upload(request):
 #        myfile = request.FILES['myfile']
 #        data = request.FILES['myfile'].read()
 #        fs = FileSystemStorage(location = '/tmp/media/',
-#                               file_permissions_mode =  0o644) 
+#                               file_permissions_mode = 0o644)
 #        fname = secure_filename(myfile.name)
-#        filename = fs.save(fname, myfile)        
+#        filename = fs.save(fname, myfile)
 #        uploaded_file_url = fs.url(filename)
 #        #Calling Micrios client to Update to DB
 #        tlclient = tllogin.prep_tlclient_from_session(request)
-#        ms1Client = MSClient(tlclient)        
-#        message = ms1Client.update_invoice(uploaded_file_url)      
+#        ms1Client = MSClient(tlclient)
+#        message = ms1Client.update_invoice(uploaded_file_url)
 #        message = json.dumps(message)
 #        loaded_message = json.loads(message)
 #        #if isinstance(loaded_message, list):
-#        #    fs.delete(fname)
+#        # fs.delete(fname)
 #        template_data = { 'uploaded_file_url': uploaded_file_url,
-#                             "VIEW_UPDATE_UPLOAD": "TRUE", 
+#                             "VIEW_UPDATE_UPLOAD": "TRUE",
 #                             "UPLOAD_UPDATE_STATUS":loaded_message}
 #        result = render(request, 'home.html',template_data)
-#    if request.method == 'GET':          
-#        template_data = {"VIEW_UPDATE_UPLOAD": "TRUE" }  
-#        result = render(request, 'home.html', template_data) 
+#    if request.method == 'GET':
+#        template_data = {"VIEW_UPDATE_UPLOAD": "TRUE" }
+#        result = render(request, 'home.html', template_data)
 #    return result
-
 
 def invoice_Update_upload(request):
     if request.method == 'POST' and request.FILES['myfile']:
@@ -113,9 +112,9 @@ def invoice_Update_upload(request):
         loaded_message = json.loads(message)
         
         result = render(request, 'home.html', 
-                            { 'uploaded_file_url': uploaded_file_url,
-                              'VIEW_UPDATE_UPLOAD': 'TRUE', 
-                              'UPLOAD_UPDATE_STATUS':loaded_message})
+                            { "uploaded_file_url": uploaded_file_url,
+                              "VIEW_UPDATE_UPLOAD": "TRUE", 
+                              "UPLOAD_UPDATE_STATUS":loaded_message})
         return result
     if request.method == 'GET':          
         template_data = {"VIEW_UPDATE_UPLOAD": "from view upload" }  
