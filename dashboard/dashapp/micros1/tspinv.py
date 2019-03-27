@@ -111,7 +111,7 @@ def invoice_Update_upload(request):
         message = ms1Client.update_invoice(uploaded_file_url)      
         message = json.dumps(message)
         loaded_message = json.loads(message)
-        result = render(request, 'home.html', 
+        result = render(request, 'invoicelist.html', 
                             { 'uploaded_file_url': uploaded_file_url,
                              "VIEW_UPDATE_UPLOAD": "TRUE"})
         #result = render(request, 'home.html', 
