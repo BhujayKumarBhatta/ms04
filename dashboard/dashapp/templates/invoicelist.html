@@ -195,7 +195,7 @@
             <div class="col-sm-8"><h3>Invoice <b>Details</b></h3></div>
         </div>
     </div>
-    <table id="tree-table" class="table table-hover table-bordered" width="100%">
+    <table id="tree-table" class="table table-hover table-bordered" width="1000">
 
         <tbody>
         <thead>
@@ -223,7 +223,7 @@
         {% for Inv in list_invoices%}
         <tr data-id="{{ Inv.current_doc.xldata.invoiceno}}" data-parent="0" data-level="1" style="font-size:11px">
 
-            <td data-column="name" style="width:150px;height:50px">{{ Inv.current_doc.xldata.invoiceno}} </td>
+            <td data-column="name" style="width:150px">{{ Inv.current_doc.xldata.invoiceno}} </td>
             <td>{{ Inv.current_doc.xldata.circuitid }}</td>
             <td>{{ Inv.current_doc.xldata.division }} </td>
             <td>{{ Inv.current_doc.xldata.taxname }}</td>
