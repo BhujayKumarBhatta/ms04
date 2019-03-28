@@ -47,20 +47,20 @@
             <td>
                 {% if UPLOAD_RESULT is not null %}
                 <div runat="server" id="divSuccess" class="success" visible="false" style="width: 100%; padding-left: 50px; text-align: left">
-                    Invoice Uload is successfull.
+                    Invoice file Upload is successfull.<br />
+                    File Name : {% uploaded_file_url %}
                 </div>
                 {% elif EXCEPTION is not null %}
                 <div runat="server" id="divError" class="error" visible="false" style="width: 100%; padding-left: 50px; text-align: left">
-                    There is been an error while uploading a file, Please check the file format.
+                    There is been an error while uploading a file, Please check the file format. <br />
+                    {% elif EXCEPTION_INFO is not null %}
+                    {{EXCEPTION_INFO}}
+                    {% endif %}
                 </div>
                 {% endif %}
             </td>
         </tr>
     </table>
-
-
-
-
 
     <form method="post" class="md-form" enctype="multipart/form-data">
         {% csrf_token %}
