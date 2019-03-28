@@ -108,7 +108,7 @@ def invoice_update_upload(request):
         ms1Client = MSClient(tlclient)        
         message = ms1Client.update_invoice(uploaded_file_url)      
         message = json.dumps(message)
-        #loaded_message = json.loads(message)# Only gives json Object str
+        loaded_message = json.loads(message)# Only gives json Object str
         
 
         template_data = { "uploadedupdate_file_url" : uploaded_file_url
