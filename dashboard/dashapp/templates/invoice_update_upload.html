@@ -27,14 +27,14 @@
     List ---   {{ UPLOAD_UPDATE_STATUS|make_list }}
 
 
-    {%if EXCEPTION is not null %}
+    {% if EXCEPTION is not null %}
 
     <div class="row">
         <div class="col-sm-8" style="font-size:12px">
             <h4>Error: There is an eeror while Uploading the file, Please check format.</h4>
         </div>
     </div>
-    {% elif %}
+    {% else %}
     <div class="table-wrapper">
         <div class="table-title">
             <div class="row">
