@@ -21,8 +21,8 @@ from dashapp.tokenleader import tlviews
 from dashapp.micros1 import tspinv
 
 
-from micros1.models import Invoice
-from micros1.invoiceForm import invoiceForm
+from dashapp.micros1.models import Invoice
+from dashapp.micros1.invoiceForm import invoiceForm
 
 
 def login(request):
