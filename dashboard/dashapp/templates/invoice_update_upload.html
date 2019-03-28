@@ -34,7 +34,7 @@
             <h4>Error: There is an eeror while Uploading the file, Please check format.</h4>
         </div>
     </div>
-    {% else %}
+    {% endif UPLOAD_RESULT is not null%}
     <div class="table-wrapper">
         <div class="table-title">
             <div class="row">
@@ -63,7 +63,6 @@
             </tbody>
         </table>
     </div>
-    {% endif %}
 
     {% endblock %}
 
