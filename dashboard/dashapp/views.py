@@ -63,6 +63,10 @@ def adduser(request):
 def list_invoices(request):
     result = tspinv.list_invoices(request)
     return result
+
+def list_invoices_rcom(request):
+    result = tspinv.list_invoice_rcom(request)
+    return result
     
     
 def invoice_upload(request):

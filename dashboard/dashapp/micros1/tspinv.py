@@ -30,6 +30,15 @@ def list_invoices(request):
         result = render(request, 'home.html', template_data)        
         return result
 
+def list_invoice_rcom(request):
+    if request.method == 'GET': 
+        tlclient = tllogin.prep_tlclient_from_session(request)
+        invClient = MSClient(tlclient) 
+        list_invoices = invClient.list_invoices_clo('all','all')  
+        template_data = {"list_invoices": list_invoices,"IS_RCOM":"TRUE" } 
+        result = render(request, 'home.html', template_data)        
+        return result
+
 ## Navigate to Upload Invoice******
 def view_upload(request):
    if request.method == 'GET':          
