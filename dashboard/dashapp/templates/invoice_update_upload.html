@@ -30,7 +30,12 @@
     {%if EXCEPTION is not null %}
 
     <div class="row">
-        <div class="col-sm-8"><h3>{{EXCEPTION}}</h3></div>
+        type(inst)
+        <div class="col-sm-8" style="font-size:12px">
+            Exception Type : <h4>{{type(EXCEPTION)}}</h4>
+            Exception Args : <h4>{{EXCEPTION.args}}</h4>
+            Exception  : <h4>{{EXCEPTION}}</h4>
+        </div>
     </div>
     {% endif %}
     <div class="table-wrapper">
