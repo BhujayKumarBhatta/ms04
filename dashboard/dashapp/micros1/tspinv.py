@@ -98,27 +98,30 @@ def view_update_upload(request):
 #        result = render(request, 'home.html', template_data)
 #    return result
 def invoice_update_upload(request):
-    if request.method == 'POST' and request.FILES['myfile']:
-        myfile = request.FILES['myfile']        
-        fs = FileSystemStorage(location = '/tmp/media/',file_permissions_mode =  0o644)
-        filename = fs.save(myfile.name, myfile)
-        uploaded_file_url = fs.url(filename)
+    try:
+        if request.method == 'POST' and request.FILES['myfile']:
+            myfile = request.FILES['myfile']        
+            fs = FileSystemStorage(location = '/tmp/media/',file_permissions_mode =  0o644)
+            filename = fs.save(myfile.name, myfile)
+            uploaded_file_url = fs.url(filename)
 
-        tlclient = tllogin.prep_tlclient_from_session(request)
-        ms1Client = MSClient(tlclient)        
-        Upload_result = ms1Client.update_invoice(uploaded_file_url)      
-        message = json.dumps(Upload_result)
-        loaded_message = json.loads(message)# Only gives json Object str
-        
+            tlclient = tllogin.prep_tlclient_from_session(request)
+            ms1Client = MSClient(tlclient)        
+            Upload_result = ms1Client.update_invoice(uploaded_file_url)      
+            message = json.dumps(Upload_result)
+            loaded_message = json.loads(message)# Only gives json Object str
 
-        template_data = { "uploadedupdate_file_url" : uploaded_file_url
-                         ,"VIEW_UPDATE_UPLOAD" : "TRUE"
-                         ,"UPLOAD_UPDATE_STATUS" : message,"UPLOAD_RESULT" : Upload_result}
-        result = render(request, 'home.html',template_data)
-        return result
-    if request.method == 'GET':          
-        template_data = {"VIEW_UPDATE_UPLOAD": "from view upload" }  
-        result = render(request, 'home.html', template_data)   
+            template_data = { "uploadedupdate_file_url" : uploaded_file_url
+                             ,"VIEW_UPDATE_UPLOAD" : "TRUE"
+                             ,"UPLOAD_UPDATE_STATUS" : message,"UPLOAD_RESULT" : Upload_result}
+            result = render(request, 'home.html',template_data)
+            return result
+        if request.method == 'GET':          
+            template_data = {"VIEW_UPDATE_UPLOAD": "from view upload" }  
+            result = render(request, 'home.html', template_data)       
+    except Exception as exception:
+        template_data = {"VIEW_UPDATE_UPLOAD": "from view upload","EXCEPTION" :exception }  
+        result = render(request, 'home.html', template_data) 
     return result
 
 # 

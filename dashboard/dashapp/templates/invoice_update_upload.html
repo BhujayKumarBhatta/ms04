@@ -26,6 +26,13 @@
     UPLOAD_UPDATE_STATUS -- {{UPLOAD_UPDATE_STATUS}}
     List ---   {{ UPLOAD_UPDATE_STATUS|make_list }}
 
+
+    {%if EXCEPTION is not null %}
+
+    <div class="row">
+        <div class="col-sm-8"><h3>{{EXCEPTION}}</h3></div>
+    </div>
+    {% endif %}
     <div class="table-wrapper">
         <div class="table-title">
             <div class="row">
