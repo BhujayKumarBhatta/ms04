@@ -1,4 +1,39 @@
 {% block content %}
+
+<style type="text/css">
+    .info, .success, .warning, .error, .validation {
+        border: 1px solid;
+        margin: 10px 0px;
+        padding: 5px 5px 10px 50px;
+        background-repeat: no-repeat;
+        background-position: 10px center;
+    }
+
+    .info {
+        color: #00529B;
+        background-color: #BDE5F8;
+        background-image: url('info.png');
+    }
+
+    .success {
+        color: #4F8A10;
+        background-color: #DFF2BF;
+        background-image: url('success.png');
+    }
+
+    .warning {
+        color: #9F6000;
+        background-color: #FEEFB3;
+        background-image: url('warning.png');
+    }
+
+    .error {
+        color: #D8000C;
+        background-color: #FFBABA;
+        background-image: url('error.png');
+    }
+</style>
+
 <div class="table-wrapper">
     <div class="table-title">
         <div class="row">
@@ -6,6 +41,26 @@
         </div>
     </div>
     <br /><br />
+
+    <table align="center" width="90%" style="padding-left: 150px">
+        <tr>
+            <td>
+                {% if UPLOAD_RESULT is not null %}
+                <div runat="server" id="divSuccess" class="success" visible="false" style="width: 100%; padding-left: 50px; text-align: left">
+                    Invoice Uload is successfull.
+                </div>
+                {% elif EXCEPTION is not null %}
+                <div runat="server" id="divError" class="error" visible="false" style="width: 100%; padding-left: 50px; text-align: left">
+                    There is been an error while uploading a file, Please check the file format.
+                </div>
+                {% endif %}
+            </td>
+        </tr>
+    </table>
+
+
+
+
 
     <form method="post" class="md-form" enctype="multipart/form-data">
         {% csrf_token %}
@@ -30,9 +85,7 @@
     {% if EXCEPTION is not null %}
 
     <div class="row">
-        <div class="col-sm-8" style="font-size:12px">
-            <h4>Error: There is an eeror while Uploading the file, Please check format.</h4>
-        </div>
+
     </div>
     {% elif UPLOAD_RESULT is not null%}
     <div class="table-wrapper">
@@ -88,3 +141,4 @@
     , '524656535 skipped, no changes to update'
     , '452748796 skipped, no changes to update'
     , '769680 skipped, no changes to update']-->
+</div>
