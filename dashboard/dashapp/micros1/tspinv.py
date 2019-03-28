@@ -121,7 +121,7 @@ def invoice_update_upload(request):
             template_data = {"VIEW_UPDATE_UPLOAD": "from view upload" }  
             result = render(request, 'home.html', template_data)       
     except Exception as exception:
-        template_data = {"VIEW_UPDATE_UPLOAD": "from view upload","EXCEPTION" :exception }  
+        template_data = {"VIEW_UPDATE_UPLOAD": "from view upload","EXCEPTION" :exception,"EXCEPTION_INFO" : sys.exc_info()[0] }  
         result = render(request, 'home.html', template_data) 
     return result
 
