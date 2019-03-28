@@ -220,73 +220,74 @@
                 <th>Service Type</th>
             </tr>
         </thead>
-        {% for Inv in list_invoices%}
-        <tr data-id="{{ Inv.current_doc.xldata.invoiceno}}" data-parent="0" data-level="1" style="font-size:11px">
+        <tbody>
+            {% for Inv in list_invoices%}
+            <tr data-id="{{ Inv.current_doc.xldata.invoiceno}}" data-parent="0" data-level="1" style="font-size:11px">
 
-            <td data-column="name" style="width:150px">{{ Inv.current_doc.xldata.invoiceno}} </td>
-            <td>{{ Inv.current_doc.xldata.circuitid }}</td>
-            <td>{{ Inv.current_doc.xldata.division }} </td>
-            <td>{{ Inv.current_doc.xldata.taxname }}</td>
-            <td>{{ Inv.current_doc.xldata.customername }} </td>
-            <td>{{ Inv.current_doc.xldata.fullsitedddress}} </td>
-            <td>{{ Inv.current_doc.xldata.gstno}} </td>
-            <td>{{ Inv.current_doc.xldata.state}} </td>
-            <td>{{ Inv.current_doc.xldata.billingdatefrom}} </td>
-            <td>{{ Inv.current_doc.xldata.city}} </td>
-            <td>{{ Inv.current_doc.xldata.premisename}} </td>
-            <td>{{ Inv.current_doc.processing_status}} </td>
-            <td>{{ Inv.current_doc.Customer_id}} </td>
-            <td>{{ Inv.current_doc.xldata.premiseno}} </td>
-            <td>{{ Inv.current_doc.xldata.billingdateto}} </td>
-            <td>{{ Inv.current_doc.xldata.speed}} </td>
-            <td>{{ Inv.current_doc.remarks}} </td>
-            <td>{{ Inv.current_doc.InvoiceDate}} </td>
-            <td>{{ Inv.current_doc.servicetype}} </td>
-        </tr>
-        <tr data-id="{{ Inv.circuitid }}" data-parent="{{Inv.current_doc.xldata.invoiceno}}" data-level="2" style="font-size:11px">
-            <td style="width:150px">{{ Inv.last_doc.xldata.invoiceno}} </td>
-            <td>{{ Inv.last_doc.xldata.circuitid }}</td>
-            <td>{{ Inv.last_doc.xldata.division }} </td>
-            <td>{{ Inv.last_doc.xldata.taxname }}</td>
-            <td>{{ Inv.last_doc.xldata.customername }} </td>
-            <td>{{ Inv.last_doc.xldata.fullsitedddress}} </td>
-            <td>{{ Inv.last_doc.xldata.gstno}} </td>
-            <td>{{ Inv.last_doc.xldata.state}} </td>
-            <td>{{ Inv.last_doc.xldata.billingdatefrom}} </td>
-            <td>{{ Inv.last_doc.xldata.city}} </td>
-            <td>{{ Inv.last_doc.xldata.premisename}} </td>
-            <td>{{ Inv.last_doc.processing_status}} </td>
-            <td>{{ Inv.last_doc.Customer_id}} </td>
-            <td>{{ Inv.last_doc.xldata.premiseno}} </td>
-            <td>{{ Inv.last_doc.xldata.billingdateto}} </td>
-            <td>{{ Inv.last_doc.xldata.speed}} </td>
-            <td>{{ Inv.last_doc.remarks}} </td>
-            <td>{{ Inv.last_doc.InvoiceDate}} </td>
-            <td>{{ Inv.last_doc.servicetype}} </td>
-        </tr>
-        <tr data-id="{{ Inv.circuitid}}1" data-parent="{{ Inv.current_doc.xldata.invoiceno}}" data-level="2" style="font-size:11px">
+                <td data-column="name" style="width:150px">{{ Inv.current_doc.xldata.invoiceno}} </td>
+                <td>{{ Inv.current_doc.xldata.circuitid }}</td>
+                <td>{{ Inv.current_doc.xldata.division }} </td>
+                <td>{{ Inv.current_doc.xldata.taxname }}</td>
+                <td>{{ Inv.current_doc.xldata.customername }} </td>
+                <td>{{ Inv.current_doc.xldata.fullsitedddress}} </td>
+                <td>{{ Inv.current_doc.xldata.gstno}} </td>
+                <td>{{ Inv.current_doc.xldata.state}} </td>
+                <td>{{ Inv.current_doc.xldata.billingdatefrom}} </td>
+                <td>{{ Inv.current_doc.xldata.city}} </td>
+                <td>{{ Inv.current_doc.xldata.premisename}} </td>
+                <td>{{ Inv.current_doc.processing_status}} </td>
+                <td>{{ Inv.current_doc.Customer_id}} </td>
+                <td>{{ Inv.current_doc.xldata.premiseno}} </td>
+                <td>{{ Inv.current_doc.xldata.billingdateto}} </td>
+                <td>{{ Inv.current_doc.xldata.speed}} </td>
+                <td>{{ Inv.current_doc.remarks}} </td>
+                <td>{{ Inv.current_doc.InvoiceDate}} </td>
+                <td>{{ Inv.current_doc.servicetype}} </td>
+            </tr>
+            <tr data-id="{{ Inv.current_doc.xldata.circuitid }}_rcom" data-parent="{{Inv.current_doc.xldata.invoiceno}}" data-level="2" style="font-size:11px">
+                <td style="width:150px">{{ Inv.current_doc.xldata.invoiceno}}</td>
+                <td>{{ Inv.last_doc.xldata.circuitid }}</td>
+                <td>{{ Inv.last_doc.xldata.division }} </td>
+                <td><input type="text" class="form-control" id="taxname"></td>
+                <td><input type="text" class="form-control" id="customername"></td>
+                <td><input type="text" class="form-control" id="address"></td>
+                <td><input type="text" class="form-control" id="gstno"></td>
+                <td><input type="text" class="form-control" id="state"></td>
+                <td><input type="text" class="form-control" id="billingdatefrom"></td>
+                <td><input type="text" class="form-control" id="city"></td>
+                <td><input type="text" class="form-control" id="premisename"></td>
+                <td>{{ Inv.current_doc.processing_status}} </td>
+                <td>{{ Inv.current_doc.Customer_id}} </td>
+                <td><input type="text" class="form-control" id="premiseno"></td>
+                <td><input type="text" class="form-control" id="billingdateto"></td>
+                <td><input type="text" class="form-control" id="speed"></td>
+                <td><input type="text" class="form-control" id="remarks"></td>
+                <td><input type="text" class="form-control" id="invoicedate"></td>
+                <td><input type="text" class="form-control" id="servicetype"></td>
+            </tr>
+            <tr data-id="{{ Inv.circuitid}}1" data-parent="{{ Inv.current_doc.xldata.invoiceno}}" data-level="2" style="font-size:11px">
 
-            <td style="width:150px">{{ Inv.older_history.xldata.invoiceno}} </td>
-            <td>{{ Inv.older_history.xldata.circuitid }}</td>
-            <td>{{ Inv.older_history.xldata.division }} </td>
-            <td>{{ Inv.older_history.xldata.taxname }}</td>
-            <td>{{ Inv.older_history.xldata.customername }} </td>
-            <td>{{ Inv.older_history.xldata.fullsitedddress}} </td>
-            <td>{{ Inv.older_history.xldata.gstno}} </td>
-            <td>{{ Inv.older_history.xldata.state}} </td>
-            <td>{{ Inv.older_history.xldata.billingdatefrom}} </td>
-            <td>{{ Inv.older_history.xldata.city}} </td>
-            <td>{{ Inv.older_history.xldata.premisename}} </td>
-            <td>{{ Inv.older_history.processing_status}} </td>
-            <td>{{ Inv.older_history.Customer_id}} </td>
-            <td>{{ Inv.older_history.xldata.premiseno}} </td>
-            <td>{{ Inv.older_history.xldata.billingdateto}} </td>
-            <td>{{ Inv.older_history.xldata.speed}} </td>
-            <td>{{ Inv.older_history.remarks}} </td>
-            <td>{{ Inv.older_history.InvoiceDate}} </td>
-            <td>{{ Inv.older_history.servicetype}} </td>
-        </tr>
-        {% endfor %}
+                <td style="width:150px">{{ Inv.older_history.xldata.invoiceno}} </td>
+                <td>{{ Inv.older_history.xldata.circuitid }}</td>
+                <td>{{ Inv.older_history.xldata.division }} </td>
+                <td>{{ Inv.older_history.xldata.taxname }}</td>
+                <td>{{ Inv.older_history.xldata.customername }} </td>
+                <td>{{ Inv.older_history.xldata.fullsitedddress}} </td>
+                <td>{{ Inv.older_history.xldata.gstno}} </td>
+                <td>{{ Inv.older_history.xldata.state}} </td>
+                <td>{{ Inv.older_history.xldata.billingdatefrom}} </td>
+                <td>{{ Inv.older_history.xldata.city}} </td>
+                <td>{{ Inv.older_history.xldata.premisename}} </td>
+                <td>{{ Inv.older_history.processing_status}} </td>
+                <td>{{ Inv.older_history.Customer_id}} </td>
+                <td>{{ Inv.older_history.xldata.premiseno}} </td>
+                <td>{{ Inv.older_history.xldata.billingdateto}} </td>
+                <td>{{ Inv.older_history.xldata.speed}} </td>
+                <td>{{ Inv.older_history.remarks}} </td>
+                <td>{{ Inv.older_history.InvoiceDate}} </td>
+                <td>{{ Inv.older_history.servicetype}} </td>
+            </tr>
+            {% endfor %}
         </tbody>
     </table>
 
