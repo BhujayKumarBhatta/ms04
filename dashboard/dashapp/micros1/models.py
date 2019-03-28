@@ -1,5 +1,5 @@
 from django.db import models
-from dashapp.micros1.models import Invoice
+ 
 
 
 class Invoice(models.Model):
