@@ -195,6 +195,7 @@
             <div class="col-sm-8"><h3>Invoice <b>Details</b></h3></div>
         </div>
     </div>
+    {{list_invoices}}
     <table id="tree-table" class="table table-hover table-bordered" width="1000">
 
 
@@ -244,7 +245,7 @@
                 <td>{{ Inv.current_doc.InvoiceDate}} </td>
                 <td>{{ Inv.current_doc.servicetype}} </td>
             </tr>
-            <tr data-id="{{ Inv.current_doc.xldata.customername }}_test" data-parent="{{Inv.current_doc.xldata.invoiceno}}" data-level="2" style="font-size:11px">
+            <tr data-id="{{ Inv.current_doc.xldata.circuitid }}_lastrow1" data-parent="{{Inv.current_doc.xldata.invoiceno}}" data-level="2" style="font-size:11px">
                 <td style="width:150px">{{ Inv.last_doc.xldata.invoiceno}} </td>
                 <td>{{ Inv.last_doc.xldata.circuitid }}</td>
                 <td>{{ Inv.last_doc.xldata.division }} </td>
@@ -265,7 +266,7 @@
                 <td>{{ Inv.last_doc.InvoiceDate}} </td>
                 <td>{{ Inv.last_doc.servicetype}} </td>
             </tr>
-            <tr data-id="{{ Inv.current_doc.xldata.customername }}_test2" data-parent="{{ Inv.current_doc.xldata.invoiceno}}" data-level="2" style="font-size:11px">
+            <tr data-id="{{ Inv.current_doc.xldata.circuitid }}-lastrow2" data-parent="{{ Inv.current_doc.xldata.invoiceno}}" data-level="2" style="font-size:11px">
 
                 <td style="width:150px">{{ Inv.older_history.xldata.invoiceno}} </td>
                 <td>{{ Inv.older_history.xldata.circuitid }}</td>
