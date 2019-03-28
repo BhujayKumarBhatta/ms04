@@ -37,7 +37,10 @@ urlpatterns = [path('', views.login, name='login'),
     path('list_invoices_rcom', views.list_invoices_rcom, name='list_invoices_rcom'),    
     path('invoice_upload', views.invoice_upload, name='invoice_upload'),
     path('view_upload', views.view_upload, name='view_upload'),
-    path('invoice_update_upload', views.invoice_update_upload, name='invoice_update_upload')]
+    path('invoice_update_upload', views.invoice_update_upload, name='invoice_update_upload')
+    ,path('add_model', views.add_model, name='add_model')]
+
+
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
