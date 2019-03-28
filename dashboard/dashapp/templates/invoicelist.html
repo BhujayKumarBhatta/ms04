@@ -195,7 +195,6 @@
             <div class="col-sm-8"><h3>Invoice <b>Details</b></h3></div>
         </div>
     </div>
-    {{list_invoices}}
     <table id="tree-table" class="table table-hover table-bordered" width="1000">
 
 
@@ -245,28 +244,7 @@
                 <td>{{ Inv.current_doc.InvoiceDate}} </td>
                 <td>{{ Inv.current_doc.servicetype}} </td>
             </tr>
-            <tr data-id="{{ Inv.current_doc.xldata.circuitid }}_rcom" data-parent="{{Inv.current_doc.xldata.invoiceno}}" data-level="2" style="font-size:11px">
-                <td style="width:150px">{{ Inv.current_doc.xldata.invoiceno}}</td>
-                <td>{{ Inv.last_doc.xldata.circuitid }}</td>
-                <td>{{ Inv.last_doc.xldata.division }} </td>
-                <td><input type="text" class="form-control" id="taxname"></td>
-                <td><input type="text" class="form-control" id="customername"></td>
-                <td><input type="text" class="form-control" id="address"></td>
-                <td><input type="text" class="form-control" id="gstno"></td>
-                <td><input type="text" class="form-control" id="state"></td>
-                <td><input type="text" class="form-control" id="billingdatefrom"></td>
-                <td><input type="text" class="form-control" id="city"></td>
-                <td><input type="text" class="form-control" id="premisename"></td>
-                <td>{{ Inv.current_doc.processing_status}} </td>
-                <td>{{ Inv.current_doc.Customer_id}} </td>
-                <td><input type="text" class="form-control" id="premiseno"></td>
-                <td><input type="text" class="form-control" id="billingdateto"></td>
-                <td><input type="text" class="form-control" id="speed"></td>
-                <td><input type="text" class="form-control" id="remarks"></td>
-                <td><input type="text" class="form-control" id="invoicedate"></td>
-                <td><input type="text" class="form-control" id="servicetype"></td>
-            </tr>
-            <tr data-id="{{ Inv.current_doc.xldata.circuitid }}_lastrow1" data-parent="{{Inv.current_doc.xldata.invoiceno}}" data-level="2" style="font-size:11px">
+            <tr data-id="{{ Inv.current_doc.xldata.circuitid }}_audit1" data-parent="{{Inv.current_doc.xldata.invoiceno}}" data-level="2" style="font-size:11px">
                 <td style="width:150px">{{ Inv.last_doc.xldata.invoiceno}} </td>
                 <td>{{ Inv.last_doc.xldata.circuitid }}</td>
                 <td>{{ Inv.last_doc.xldata.division }} </td>
@@ -287,7 +265,7 @@
                 <td>{{ Inv.last_doc.InvoiceDate}} </td>
                 <td>{{ Inv.last_doc.servicetype}} </td>
             </tr>
-            <tr data-id="{{ Inv.current_doc.xldata.circuitid }}-lastrow2" data-parent="{{ Inv.current_doc.xldata.invoiceno}}" data-level="2" style="font-size:11px">
+            <tr data-id="{{ Inv.current_doc.xldata.circuitid }}_test2" data-parent="{{ Inv.current_doc.xldata.invoiceno}}" data-level="2" style="font-size:11px">
 
                 <td style="width:150px">{{ Inv.older_history.xldata.invoiceno}} </td>
                 <td>{{ Inv.older_history.xldata.circuitid }}</td>
