@@ -98,24 +98,24 @@ def list_test(request):
 
 ######Invoice Model Form Testing
 
+#def add_model(request):
+ 
+#    if request.method == "POST":
+#        form = invoiceForm(request.POST)
+#        if form.is_valid():
+#            model_instance = form.save(commit=False)
+#            model_instance.timestamp = timezone.now()
+#            model_instance.save()
+#            return redirect('/')
+ 
+#    else:
+ 
+#        form = invoiceForm() 
+#        return render(request, "invoicetemplate.html", {'form': form})
+
+
+
 def add_model(request):
- 
-    if request.method == "POST":
-        form = invoiceForm(request.POST)
-        if form.is_valid():
-            model_instance = form.save(commit=False)
-            model_instance.timestamp = timezone.now()
-            model_instance.save()
-            return redirect('/')
- 
-    else:
- 
-        form = invoiceForm() 
-        return render(request, "invoicetemplate.html", {'form': form})
-
-
-
-def get_name(request):
     # if this is a POST request we need to process the form data
     if request.method == 'POST':
         # create a form instance and populate it with data from the request:
