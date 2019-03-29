@@ -21,5 +21,5 @@ class invoiceForm(ModelForm):
                     ,'Speed'
                     ,'Remarks'
                     ,'InvoiceDate'
-                    ,'ServiceType']
+                    ,'ServiceType','message']
 
