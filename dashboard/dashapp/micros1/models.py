@@ -19,7 +19,7 @@ class Invoice(models.Model):
     PremiseNo = models.CharField(max_length=500)
     BillingDate_TO = models.DateTimeField()
     Speed = models.CharField(max_length=500)
-    Remarks = models.CharField(max_length=2000)
+    Remarks = models.CharField(max_length=2000, widget=forms.Textarea(), help_text='Write here your Remarks!')
     InvoiceDate = models.DateTimeField()
     ServiceType = models.CharField(max_length=500)
 
