@@ -1,6 +1,9 @@
 {% load i18n %}
 {% load l10n %}
 {% load static %}
+
+{% load bootstrap3 %}
+{% bootstrap_messages %}
 <DOCTYPE html>
     <html>
     <head runat="server">
@@ -489,7 +492,7 @@
     <body>
 
         <form method="post">
-            
+
             {% csrf_token %}
             <div class="page-header">
                 <h3><a href="/">Manage Invoice </a></h3>
@@ -499,14 +502,14 @@
                 <div class="row">
                     <div class="col-md-8">
                         <table>
-                            {{bootstrap_form  form}}
+                            {{ form}}
                         </table>
                         <button type="submit" class="btn btn-default">Save Invoice </button>
                     </div>
                 </div>
             </div>
 
-            
+
 
         </form>
     </body>
