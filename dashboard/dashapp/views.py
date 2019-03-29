@@ -24,7 +24,7 @@ from dashapp.micros1 import tspinv
 from dashapp.micros1.models import Invoice
 from dashapp.micros1.invoiceForm import invoiceForm
 
-from .forms import NameForm
+from dashapp.micros1.invoiceForm import NameForm
 
 def login(request):
     result = tllogin.login(request)
