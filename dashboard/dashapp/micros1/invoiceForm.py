@@ -1,5 +1,6 @@
 from django.forms import ModelForm
 from dashapp.micros1.models import Invoice
+from django import forms
  
 class invoiceForm(ModelForm):
     class Meta:
