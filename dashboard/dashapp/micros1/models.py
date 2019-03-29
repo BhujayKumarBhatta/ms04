@@ -7,7 +7,7 @@ class Invoice(models.Model):
     InvoiceNnumber = models.CharField(max_length=500)
     CircuitID = models.IntegerField(default=0)
     Division = models.CharField(max_length=200)
-    TaxName  = models.CharField(max_length=500)
+    TaxName  = models.CharField(max_length=500) 
     FullAddress =  models.CharField(max_length=2000)
     GSTNo =   models.CharField(max_length=500)
     State = models.CharField(max_length=500)
