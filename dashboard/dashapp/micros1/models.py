@@ -26,3 +26,5 @@ class Invoice(models.Model):
 
     def __unicode__(self):
         return '{0}'.format(self.content)
+
+
