@@ -199,7 +199,7 @@
     }
 </style>
 <script type="text/javascript">
-    
+
 
     $(document).ready(function () {
         $('[data-toggle="tooltip"]').tooltip();
@@ -268,7 +268,7 @@
             <div class="col-sm-8"><h3>Invoice <b>Details</b></h3></div>
         </div>
     </div>
-    <table ID="tbllegend" style="width:250px;border:solid" >
+    <table ID="tbllegend" style="width:250px;border:1px">
         <tr>
             <td style="width:30%;"> </td>
             <td>Recent Entries</td>
@@ -351,6 +351,10 @@
                 <td>{{ Inv.recom_doc.remarks}} </td>
                 <td>{{ Inv.recom_doc.InvoiceDate}} </td>
                 <td>{{ Inv.recom_doc.servicetype}} </td>
+            </tr>
+            <tr>
+                <td><input type="button" value="Accept" width="150" /></td>
+                <td colspan="18"></td>
             </tr>
             {% endif %}
             {% if Inv.last_doc.xldata.invoiceno is not null%}
