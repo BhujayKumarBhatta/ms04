@@ -352,8 +352,8 @@
                 <td>{{ Inv.recom_doc.InvoiceDate}} </td>
                 <td>{{ Inv.recom_doc.servicetype}} </td>
             </tr>
-            <tr>
-                <td><input type="button" value="Accept" width="150" /></td>
+            <tr data-id="{{ Inv.current_doc.xldata.circuitid }}_accept" data-parent="{{Inv.current_doc.xldata.invoiceno}}" data-level="2">
+                <td><input type="button" value="Accept" /></td>
                 <td colspan="18"></td>
             </tr>
             {% endif %}
