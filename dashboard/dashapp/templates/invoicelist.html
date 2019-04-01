@@ -247,7 +247,8 @@
             <tr data-id="{{ Inv.recom_doc.xldata.circuitid }}_audit1" data-parent="{{Inv.recom_doc.xldata.invoiceno}}" data-level="2" style="font-size:11px">
                 <td style="width:150px;
     {% if Inv.recom_doc.xldata.invoiceno is not null %}
-    background-color:#a6c06d ">
+    background-color:#a6c06d {% endif %}
+">
                 {{ Inv.recom_doc.xldata.invoiceno}} </td>
                 <td>{{ Inv.recom_doc.xldata.circuitid }}</td>
                 <td>{{ Inv.recom_doc.xldata.division }} </td>
