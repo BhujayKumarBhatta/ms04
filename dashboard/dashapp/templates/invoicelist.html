@@ -329,11 +329,11 @@
                 <td>{{ Inv.current_doc.servicetype}} </td>
             </tr>
             {% if Inv.recom_doc.xldata.invoiceno is not null%}
-            <tr data-id="{{ Inv.current_doc.xldata.circuitid }}_rcom" data-parent="{{Inv.current_doc.xldata.invoiceno}}" data-level="2" style="font-size:9px;">
-                <td colspan="20">
+            <tr data-id="{{ Inv.current_doc.xldata.circuitid }}_rcom" data-parent="{{Inv.current_doc.xldata.invoiceno}}" data-level="2"  >
+                <th colspan="20">
                     <table style="padding-left:150px" border="1" width="600">
                         <tr>
-                            <td>Invoice Number</td>
+                            <th>Invoice Number</th>
                             <td> {{ Inv.recom_doc.xldata.invoiceno}}</td>
                             <td style="background-color:
                                 {% if Inv.recom_doc.xldata.invoiceno != Inv.current_doc.xldata.invoiceno%}
@@ -345,7 +345,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>Circuit ID</td>
+                            <th>Circuit ID</th>
                             <td>{{ Inv.recom_doc.xldata.circuitid }}</td>
                             <td style="background-color:
                                 {% if Inv.recom_doc.xldata.circuitid != Inv.current_doc.xldata.circuitid%}
@@ -357,7 +357,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>Division</td>
+                            <th>Division</th>
                             <td>{{ Inv.recom_doc.xldata.division }} </td>
                             <td style="background-color:
                                 {% if Inv.recom_doc.xldata.division != Inv.current_doc.xldata.division%}
@@ -370,7 +370,7 @@
 
                         </tr>
                         <tr>
-                            <td>Tax Name</td>
+                            <th>Tax Name</th>
                             <td>{{ Inv.recom_doc.xldata.taxname }}</td>
                             <td style="background-color:
                                 {% if Inv.recom_doc.xldata.taxname != Inv.current_doc.xldata.taxname%}
@@ -382,7 +382,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>Customer Name</td>
+                            <th>Customer Name</th>
                             <td>{{ Inv.recom_doc.xldata.customername }} </td>
                             <td style="background-color:
                                 {% if Inv.recom_doc.xldata.customername != Inv.current_doc.xldata.customername%}
@@ -394,7 +394,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>Full Address</td>
+                            <th>Full Address</th>
                             <td>{{ Inv.recom_doc.xldata.fullsitedddress}} </td>
                             <td style="background-color:
                                 {% if Inv.recom_doc.xldata.fullsitedddress != Inv.current_doc.xldata.fullsitedddress%}
@@ -406,7 +406,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>GST No</td>
+                            <th>GST No</th>
                             <td>{{ Inv.recom_doc.xldata.gstno}} </td>
                             <td style="background-color:
                                 {% if Inv.recom_doc.xldata.gstno != Inv.current_doc.xldata.gstno%}
@@ -418,7 +418,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>State</td>
+                            <th>State</th>
                             <td>{{ Inv.recom_doc.xldata.state}} </td>
                             <td style="background-color:
                                 {% if Inv.recom_doc.xldata.state != Inv.current_doc.xldata.state%}
@@ -430,7 +430,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>Billing Date_From</td>
+                            <th>Billing Date_From</th>
                             <td>{{ Inv.recom_doc.xldata.billingdatefrom}} </td>
                             <td style="background-color:
                                 {% if Inv.recom_doc.xldata.billingdatefrom != Inv.current_doc.xldata.billingdatefrom%}
@@ -442,7 +442,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>City</td>
+                            <th>City</th>
                             <td>{{ Inv.recom_doc.xldata.city}} </td>
                             <td style="background-color:
                                 {% if Inv.recom_doc.xldata.city != Inv.current_doc.xldata.city%}
@@ -454,7 +454,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>Premise Name</td>
+                            <th>Premise Name</th>
                             <td>{{ Inv.recom_doc.xldata.premisename}} </td>
                             <td style="background-color:
                                 {% if Inv.recom_doc.xldata.premisename != Inv.current_doc.xldata.premisename%}
@@ -466,7 +466,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>processing_status</td>
+                            <th>processing_status</th>
                             <td>{{ Inv.recom_doc.processing_status}} </td>
                             <td style="background-color:
                                 {% if Inv.recom_doc.xldata.processing_status != Inv.current_doc.xldata.processing_status%}
@@ -478,7 +478,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>Customer_id</td>
+                            <th>Customer_id</th>
                             <td>{{ Inv.recom_doc.Customer_id}} </td>
                             <td style="background-color:
                                 {% if Inv.recom_doc.xldata.Customer_id != Inv.current_doc.xldata.Customer_id%}
@@ -490,7 +490,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>Premise No</td>
+                            <th>Premise No</th>
                             <td>{{ Inv.recom_doc.xldata.premiseno}} </td>
                             <td style="background-color:
                                 {% if Inv.recom_doc.xldata.premiseno != Inv.current_doc.xldata.premiseno%}
@@ -502,7 +502,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>Billing Date_TO</td>
+                            <th>Billing Date_TO</th>
                             <td>{{ Inv.recom_doc.xldata.billingdateto}} </td>
                             <td style="background-color:
                                 {% if Inv.recom_doc.xldata.billingdateto != Inv.current_doc.xldata.billingdateto%}
@@ -514,7 +514,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>Speed</td>
+                            <th>Speed</th>
                             <td>{{ Inv.recom_doc.xldata.speed}} </td>
                             <td style="background-color:
                                 {% if Inv.recom_doc.xldata.speed != Inv.current_doc.xldata.speed%}
@@ -526,7 +526,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>Remarks</td>
+                            <th>Remarks</th>
                             <td>{{ Inv.recom_doc.remarks}} </td>
                             <td style="background-color:
                                 {% if Inv.recom_doc.xldata.remarks != Inv.current_doc.xldata.remarks%}
@@ -538,7 +538,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>Invoice Date</td>
+                            <th>Invoice Date</th>
                             <td>{{ Inv.recom_doc.InvoiceDate}} </td>
                             <td style="background-color:
                                 {% if Inv.recom_doc.xldata.InvoiceDate != Inv.current_doc.xldata.InvoiceDate%}
@@ -550,7 +550,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>Service Type</td>
+                            <th>Service Type</th>
                             <td>{{ Inv.recom_doc.servicetype}} </td>
                             <td style="background-color:
                                 {% if Inv.recom_doc.xldata.servicetype != Inv.current_doc.xldata.servicetype%}
@@ -562,8 +562,8 @@
                             </td>
                         </tr>
                         <tr>
-                            <td><button type="button" class="btn btn-default">Accept Invoice </button></td>
-                            <td colspan="2" align="right"><button type="button" class="btn btn-default">Save Invoice </button></td>
+                            <th><button type="button" class="btn btn-default">Accept Invoice </button></th>
+                            <th colspan="2" align="right"><button type="button" class="btn btn-default">Save Invoice </button></th>
                         </tr>
                     </table>
 
