@@ -9,11 +9,12 @@
 <style type="text/css">
 
     input[type=text] {
-        width: 100%;         
+        width: 100%;
         margin: 1px 0;
         box-sizing: border-box;
         border: none;
     }
+
     body {
         color: #404E67;
         background: #F5F7FA;
@@ -349,7 +350,14 @@
                                 {%else%}
                                 transparent
                                 {%endif%}">
-                                <input type="text" id="fname" name="fname" value="{{ Inv.current_doc.xldata.invoiceno }}">
+                                <input type="text" id="fname" name="fname"
+                                       style="background-color:
+                                {% if Inv.recom_doc.xldata.invoiceno != Inv.current_doc.xldata.invoiceno%}
+                                pink
+                                {%else%}
+                                transparent
+                                {%endif%}"
+                                       value="{{ Inv.current_doc.xldata.invoiceno }}">
                             </td>
                         </tr>
                         <tr>
@@ -361,7 +369,14 @@
                                 {%else%}
                                 transparent
                                 {%endif%}">
-                                <input type="text" id="fname" name="fname" value="{{ Inv.current_doc.xldata.circuitid }}">
+                                <input type="text" id="fname" name="fname"
+                                       style="background-color:
+                                {% if Inv.recom_doc.xldata.invoiceno != Inv.current_doc.xldata.invoiceno%}
+                                pink
+                                {%else%}
+                                transparent
+                                {%endif%}"
+                                       value="{{ Inv.current_doc.xldata.circuitid }}">
                             </td>
                         </tr>
                         <tr>
@@ -373,7 +388,14 @@
                                 {%else%}
                                 transparent
                                 {%endif%}">
-                                <input type="text" id="fname" name="fname" value="{{ Inv.current_doc.xldata.division }}">
+                                <input type="text" id="fname" name="fname"
+                                       style="background-color:
+                                {% if Inv.recom_doc.xldata.invoiceno != Inv.current_doc.xldata.invoiceno%}
+                                pink
+                                {%else%}
+                                transparent
+                                {%endif%}"
+                                       value="{{ Inv.current_doc.xldata.division }}">
                             </td>
 
                         </tr>
@@ -386,7 +408,14 @@
                                 {%else%}
                                 transparent
                                 {%endif%}">
-                                <input type="text" id="fname" name="fname" value="{{ Inv.current_doc.xldata.taxname }}">
+                                <input type="text" id="fname" name="fname"
+                                       style="background-color:
+                                {% if Inv.recom_doc.xldata.invoiceno != Inv.current_doc.xldata.invoiceno%}
+                                pink
+                                {%else%}
+                                transparent
+                                {%endif%}"
+                                       value="{{ Inv.current_doc.xldata.taxname }}">
                             </td>
                         </tr>
                         <tr>
@@ -398,7 +427,14 @@
                                 {%else%}
                                 transparent
                                 {%endif%}">
-                                <input type="text" id="fname" name="fname" value="{{ Inv.current_doc.xldata.customername }}">
+                                <input type="text" id="fname" name="fname"
+                                       style="background-color:
+                                {% if Inv.recom_doc.xldata.invoiceno != Inv.current_doc.xldata.invoiceno%}
+                                pink
+                                {%else%}
+                                transparent
+                                {%endif%}"
+                                       value="{{ Inv.current_doc.xldata.customername }}">
                             </td>
                         </tr>
                         <tr>
@@ -410,7 +446,14 @@
                                 {%else%}
                                 transparent
                                 {%endif%}">
-                                <input type="text" id="fname" name="fname" value="{{ Inv.current_doc.xldata.fullsitedddress }}">
+                                <input type="text" id="fname" name="fname"
+                                       style="background-color:
+                                {% if Inv.recom_doc.xldata.invoiceno != Inv.current_doc.xldata.invoiceno%}
+                                pink
+                                {%else%}
+                                transparent
+                                {%endif%}"
+                                       value="{{ Inv.current_doc.xldata.fullsitedddress }}">
                             </td>
                         </tr>
                         <tr>
@@ -422,7 +465,14 @@
                                 {%else%}
                                 transparent
                                 {%endif%}">
-                                <input type="text" id="fname" name="fname" value="{{ Inv.current_doc.xldata.gstno }}">
+                                <input type="text" id="fname" name="fname"
+                                       style="background-color:
+                                {% if Inv.recom_doc.xldata.invoiceno != Inv.current_doc.xldata.invoiceno%}
+                                pink
+                                {%else%}
+                                transparent
+                                {%endif%}"
+                                       value="{{ Inv.current_doc.xldata.gstno }}">
                             </td>
                         </tr>
                         <tr>
@@ -434,7 +484,14 @@
                                 {%else%}
                                 transparent
                                 {%endif%}">
-                                <input type="text" id="fname" name="fname" value="{{ Inv.current_doc.xldata.state }}">
+                                <input type="text" id="fname" name="fname"
+                                       style="background-color:
+                                {% if Inv.recom_doc.xldata.invoiceno != Inv.current_doc.xldata.invoiceno%}
+                                pink
+                                {%else%}
+                                transparent
+                                {%endif%}"
+                                       value="{{ Inv.current_doc.xldata.state }}">
                             </td>
                         </tr>
                         <tr>
@@ -446,7 +503,14 @@
                                 {%else%}
                                 transparent
                                 {%endif%}">
-                                <input type="text" id="fname" name="fname" value="{{ Inv.current_doc.xldata.billingdatefrom }}">
+                                <input type="text" id="fname" name="fname"
+                                       style="background-color:
+                                {% if Inv.recom_doc.xldata.invoiceno != Inv.current_doc.xldata.invoiceno%}
+                                pink
+                                {%else%}
+                                transparent
+                                {%endif%}"
+                                       value="{{ Inv.current_doc.xldata.billingdatefrom }}">
                             </td>
                         </tr>
                         <tr>
@@ -458,7 +522,14 @@
                                 {%else%}
                                 transparent
                                 {%endif%}">
-                                <input type="text" id="fname" name="fname" value="{{ Inv.current_doc.xldata.city }}">
+                                <input type="text" id="fname" name="fname"
+                                       style="background-color:
+                                {% if Inv.recom_doc.xldata.invoiceno != Inv.current_doc.xldata.invoiceno%}
+                                pink
+                                {%else%}
+                                transparent
+                                {%endif%}"
+                                       value="{{ Inv.current_doc.xldata.city }}">
                             </td>
                         </tr>
                         <tr>
@@ -470,7 +541,14 @@
                                 {%else%}
                                 transparent
                                 {%endif%}">
-                                <input type="text" id="fname" name="fname" value="{{ Inv.current_doc.xldata.premisename }}">
+                                <input type="text" id="fname" name="fname"
+                                       style="background-color:
+                                {% if Inv.recom_doc.xldata.invoiceno != Inv.current_doc.xldata.invoiceno%}
+                                pink
+                                {%else%}
+                                transparent
+                                {%endif%}"
+                                       value="{{ Inv.current_doc.xldata.premisename }}">
                             </td>
                         </tr>
                         <tr>
@@ -482,7 +560,14 @@
                                 {%else%}
                                 transparent
                                 {%endif%}">
-                                <input type="text" id="fname" name="fname" value="{{ Inv.current_doc.xldata.processing_status }}">
+                                <input type="text" id="fname" name="fname"
+                                       style="background-color:
+                                {% if Inv.recom_doc.xldata.invoiceno != Inv.current_doc.xldata.invoiceno%}
+                                pink
+                                {%else%}
+                                transparent
+                                {%endif%}"
+                                       value="{{ Inv.current_doc.xldata.processing_status }}">
                             </td>
                         </tr>
                         <tr>
@@ -494,7 +579,14 @@
                                 {%else%}
                                 transparent
                                 {%endif%}">
-                                <input type="text" id="fname" name="fname" value="{{ Inv.current_doc.xldata.Customer_id }}">
+                                <input type="text" id="fname" name="fname"
+                                       style="background-color:
+                                {% if Inv.recom_doc.xldata.invoiceno != Inv.current_doc.xldata.invoiceno%}
+                                pink
+                                {%else%}
+                                transparent
+                                {%endif%}"
+                                       value="{{ Inv.current_doc.xldata.Customer_id }}">
                             </td>
                         </tr>
                         <tr>
@@ -506,7 +598,14 @@
                                 {%else%}
                                 transparent
                                 {%endif%}">
-                                <input type="text" id="fname" name="fname" value="{{ Inv.current_doc.xldata.premiseno }}">
+                                <input type="text" id="fname" name="fname"
+                                       style="background-color:
+                                {% if Inv.recom_doc.xldata.invoiceno != Inv.current_doc.xldata.invoiceno%}
+                                pink
+                                {%else%}
+                                transparent
+                                {%endif%}"
+                                       value="{{ Inv.current_doc.xldata.premiseno }}">
                             </td>
                         </tr>
                         <tr>
@@ -518,7 +617,14 @@
                                 {%else%}
                                 transparent
                                 {%endif%}">
-                                <input type="text" id="fname" name="fname" value="{{ Inv.current_doc.xldata.billingdateto }}">
+                                <input type="text" id="fname" name="fname"
+                                       style="background-color:
+                                {% if Inv.recom_doc.xldata.invoiceno != Inv.current_doc.xldata.invoiceno%}
+                                pink
+                                {%else%}
+                                transparent
+                                {%endif%}"
+                                       value="{{ Inv.current_doc.xldata.billingdateto }}">
                             </td>
                         </tr>
                         <tr>
@@ -530,7 +636,14 @@
                                 {%else%}
                                 transparent
                                 {%endif%}">
-                                <input type="text" id="fname" name="fname" value="{{ Inv.current_doc.xldata.speed }}">
+                                <input type="text" id="fname" name="fname"
+                                       style="background-color:
+                                {% if Inv.recom_doc.xldata.invoiceno != Inv.current_doc.xldata.invoiceno%}
+                                pink
+                                {%else%}
+                                transparent
+                                {%endif%}"
+                                       value="{{ Inv.current_doc.xldata.speed }}">
                             </td>
                         </tr>
                         <tr>
@@ -542,7 +655,14 @@
                                 {%else%}
                                 transparent
                                 {%endif%}">
-                                <input type="text" id="fname" name="fname" value="{{ Inv.current_doc.xldata.remarks }}">
+                                <input type="text" id="fname" name="fname"
+                                       style="background-color:
+                                {% if Inv.recom_doc.xldata.invoiceno != Inv.current_doc.xldata.invoiceno%}
+                                pink
+                                {%else%}
+                                transparent
+                                {%endif%}"
+                                       value="{{ Inv.current_doc.xldata.remarks }}">
                             </td>
                         </tr>
                         <tr>
@@ -554,7 +674,14 @@
                                 {%else%}
                                 transparent
                                 {%endif%}">
-                                <input type="text" id="fname" name="fname" value="{{ Inv.current_doc.xldata.InvoiceDate }}">
+                                <input type="text" id="fname" name="fname"
+                                       style="background-color:
+                                {% if Inv.recom_doc.xldata.invoiceno != Inv.current_doc.xldata.invoiceno%}
+                                pink
+                                {%else%}
+                                transparent
+                                {%endif%}"
+                                       value="{{ Inv.current_doc.xldata.InvoiceDate }}">
                             </td>
                         </tr>
                         <tr>
@@ -566,7 +693,14 @@
                                 {%else%}
                                 transparent
                                 {%endif%}">
-                                <input type="text" id="fname" name="fname" value="{{ Inv.current_doc.xldata.servicetype }}">
+                                <input type="text" id="fname" name="fname"
+                                       style="background-color:
+                                {% if Inv.recom_doc.xldata.invoiceno != Inv.current_doc.xldata.invoiceno%}
+                                pink
+                                {%else%}
+                                transparent
+                                {%endif%}"
+                                       value="{{ Inv.current_doc.xldata.servicetype }}">
                             </td>
                         </tr>
                         <tr>
