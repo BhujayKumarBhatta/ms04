@@ -243,9 +243,7 @@
                 <td>{{ Inv.current_doc.InvoiceDate}} </td>
                 <td>{{ Inv.current_doc.servicetype}} </td>
             </tr>
-            <tr data-id="{{ Inv.current_doc.xldata.circuitid }}_rcom" data-parent="{{Inv.current_doc.xldata.invoiceno}}" data-level="2" style="font-size:11px;background-color:lightblue;
-                {% if Inv.recom_doc.xldata.invoiceno is not null %}
-                background-color:#a6c06d {% endif %}">
+            <tr data-id="{{ Inv.current_doc.xldata.circuitid }}_rcom" data-parent="{{Inv.current_doc.xldata.invoiceno}}" data-level="2" style="font-size:11px;background-color:lightblue;background-color:#a6c06d  ">
                 <td style="width:150px;">
                     {{ Inv.recom_doc.xldata.invoiceno}}
                 </td>
@@ -269,8 +267,7 @@
                 <td>{{ Inv.recom_doc.servicetype}} </td>
             </tr>
             <tr data-id="{{ Inv.current_doc.xldata.circuitid }}_test2" data-parent="{{ Inv.current_doc.xldata.invoiceno}}" data-level="2"
-                style="font-size:11px;{% if Inv.recom_doc.xldata.invoiceno is not null %}
-                background-color:#f3bf5f {% endif %}">
+                style="font-size:11px;  background-color:#f3bf5f ">
 
                 <td style="width:150px">{{ Inv.last_doc.xldata.invoiceno}} </td>
                 <td>{{ Inv.last_doc.xldata.circuitid }}</td>
