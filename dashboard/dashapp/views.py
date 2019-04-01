@@ -21,6 +21,11 @@ from dashapp.tokenleader import tlviews
 from dashapp.micros1 import tspinv
 
 
+from dashapp.micros1.models import Invoice
+from dashapp.micros1.invoiceForm import invoiceForm
+
+from dashapp.micros1.invoiceForm import NameForm
+
 def login(request):
     result = tllogin.login(request)
     return result
@@ -63,6 +68,10 @@ def adduser(request):
 def list_invoices(request):
     result = tspinv.list_invoices(request)
     return result
+
+def list_invoices_rcom(request):
+    result = tspinv.list_invoice_rcom(request)
+    return result
     
     
 def invoice_upload(request):
@@ -78,8 +87,8 @@ def view_update_upload(request):
     result = tspinv.view_update_upload(request)
     return result
 
-def invoice_Update_upload(request):
-    result = tspinv.invoice_Update_upload(request)    
+def invoice_update_upload(request):
+    result = tspinv.invoice_update_upload(request)    
     return result
 
 
@@ -87,3 +96,20 @@ def list_test(request):
     result = linkv.list_test(request)  
 
 
+######Invoice Model Form Testing
+def add_model(request):
+ 
+    if request.method == "POST":
+        form = invoiceForm(request.POST)
+        if form.is_valid():
+            model_instance = form.save(commit=False)
+            model_instance.timestamp = timezone.now()
+            model_instance.save()
+            return redirect('/') 
+    else: 
+        form = invoiceForm() 
+        return render(request, "invoicetemplate.html", {'form': form})
+
+
+
+ 
