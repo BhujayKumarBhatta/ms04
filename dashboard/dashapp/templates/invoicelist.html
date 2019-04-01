@@ -307,7 +307,7 @@
         </thead>
         <tbody>
             {% for Inv in list_invoices%}
-                <tr data-id="{{ Inv.current_doc.xldata.invoiceno}}" data-parent="0" data-level="1" style="font-size:11px">
+            <tr data-id="{{ Inv.current_doc.xldata.invoiceno}}" data-parent="0" data-level="1" style="font-size:11px">
                 <td data-column="name" style="width:150px">{{ Inv.current_doc.xldata.invoiceno}} </td>
                 <td>{{ Inv.current_doc.xldata.circuitid }}</td>
                 <td>{{ Inv.current_doc.xldata.division }} </td>
@@ -329,23 +329,44 @@
                 <td>{{ Inv.current_doc.servicetype}} </td>
             </tr>
             {% if Inv.recom_doc.xldata.invoiceno is not null%}
-             <tr data-id="{{ Inv.current_doc.xldata.circuitid }}_rcom" data-parent="{{Inv.current_doc.xldata.invoiceno}}" data-level="2" style="font-size:11px;background-color:lightblue;background-color:#a6c06d  ">
+            <tr data-id="{{ Inv.current_doc.xldata.circuitid }}_rcom" data-parent="{{Inv.current_doc.xldata.invoiceno}}" data-level="2" style="font-size:9px;">
                 <td colspan="20">
                     <table>
-                        <tr style="font-size:12px">
+                        <tr>
                             <td>Invoice Number</td>
                             <td> {{ Inv.recom_doc.xldata.invoiceno}}</td>
-                            <td>{{ Inv.current_doc.xldata.invoiceno }}</td>
+                            <td style="background-color:
+                                {% if Inv.recom_doc.xldata.invoiceno != Inv.current_doc.xldata.invoiceno%}
+                                lightpink
+                                {%else%}
+                                transparent
+                                {%endif%}">
+                                {{ Inv.current_doc.xldata.invoiceno }}
+                            </td>
                         </tr>
                         <tr>
                             <td>Circuit ID</td>
                             <td>{{ Inv.recom_doc.xldata.circuitid }}</td>
-                            <td>{{ Inv.current_doc.xldata.circuitid }}</td>
+                            <td style="background-color:
+                                {% if Inv.recom_doc.xldata.circuitid != Inv.current_doc.xldata.circuitid%}
+                                lightpink
+                                {%else%}
+                                transparent
+                                {%endif%}">
+                                {{ Inv.current_doc.xldata.circuitid }}
+                            </td>
                         </tr>
                         <tr>
                             <td>Division</td>
                             <td>{{ Inv.recom_doc.xldata.division }} </td>
-                            <td>{{ Inv.current_doc.xldata.division }}</td>
+                            <td style="background-color:
+                                {% if Inv.recom_doc.xldata.division != Inv.current_doc.xldata.division%}
+                                lightpink
+                                {%else%}
+                                transparent
+                                {%endif%}">
+                                {{ Inv.current_doc.xldata.division }}
+                            </td>
 
                         </tr>
                         <tr>
@@ -435,11 +456,11 @@
                         </tr>
                     </table>
 
-                </td> 
+                </td>
             </tr>
             {% endif %}
-            {% if Inv.last_doc.xldata.invoiceno is not null%}           
-             <tr data-id="{{ Inv.current_doc.xldata.circuitid }}_test2" data-parent="{{ Inv.current_doc.xldata.invoiceno}}" data-level="2"
+            {% if Inv.last_doc.xldata.invoiceno is not null%}
+            <tr data-id="{{ Inv.current_doc.xldata.circuitid }}_test2" data-parent="{{ Inv.current_doc.xldata.invoiceno}}" data-level="2"
                 style="font-size:11px;  background-color:#f3bf5f ">
                 <td style="width:150px">{{ Inv.last_doc.xldata.invoiceno}} </td>
                 <td>{{ Inv.last_doc.xldata.circuitid }}</td>
