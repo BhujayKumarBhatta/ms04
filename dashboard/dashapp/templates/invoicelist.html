@@ -329,8 +329,8 @@
                 <td>{{ Inv.current_doc.servicetype}} </td>
             </tr>
             {% if Inv.recom_doc.xldata.invoiceno is not null%}
-            <tr data-id="{{ Inv.current_doc.xldata.circuitid }}_rcom" data-parent="{{Inv.current_doc.xldata.invoiceno}}" data-level="2"  >
-                <th colspan="20">
+            <tr data-id="{{ Inv.current_doc.xldata.circuitid }}_rcom" data-parent="{{Inv.current_doc.xldata.invoiceno}}" data-level="2">
+                <td colspan="20">
                     <table style="padding-left:150px" border="1" width="600">
                         <tr>
                             <th>Invoice Number</th>
@@ -562,11 +562,10 @@
                             </td>
                         </tr>
                         <tr>
-                            <th><button type="button" class="btn btn-default">Accept Invoice </button></th>
-                            <th colspan="2" align="right"><button type="button" class="btn btn-default">Save Invoice </button></th>
+                            <th colspan="2" align="right"><button type="button" class="btn btn-default">Accept Invoice </button></th>
+                            <th align="right"><button type="button" class="btn btn-default">Save Invoice </button></th>
                         </tr>
                     </table>
-
                 </td>
             </tr>
             {% endif %}
