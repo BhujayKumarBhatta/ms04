@@ -331,7 +331,7 @@
             {% if Inv.recom_doc.xldata.invoiceno is not null%}
             <tr data-id="{{ Inv.current_doc.xldata.circuitid }}_rcom" data-parent="{{Inv.current_doc.xldata.invoiceno}}" data-level="2" style="font-size:9px;">
                 <td colspan="20">
-                    <table>
+                    <table style="padding-left:150px" border="1">
                         <tr>
                             <td>Invoice Number</td>
                             <td> {{ Inv.recom_doc.xldata.invoiceno}}</td>
