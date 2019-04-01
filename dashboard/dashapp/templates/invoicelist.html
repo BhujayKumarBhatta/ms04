@@ -334,9 +334,9 @@
                 <td colspan="18">
                     <table style="padding-left:150px" border="1" width="800">
                         <tr>
-                            <th>Invoice Number</th>
-                            <td> {{ Inv.recom_doc.xldata.invoiceno}}</td>
-                            <td style="background-color:
+                            <th width="200px">Invoice Number</th>
+                            <td width="200px"> {{ Inv.recom_doc.xldata.invoiceno}}</td>
+                            <td width="200px" style="background-color:
                                 {% if Inv.recom_doc.xldata.invoiceno != Inv.current_doc.xldata.invoiceno%}
                                 lightpink
                                 {%else%}
@@ -346,9 +346,9 @@
                             </td>
                         </tr>
                         <tr>
-                            <th>Circuit ID</th>
-                            <td>{{ Inv.recom_doc.xldata.circuitid }}</td>
-                            <td style="background-color:
+                            <th width="200px">Circuit ID</th>
+                            <td width="200px">{{ Inv.recom_doc.xldata.circuitid }}</td>
+                            <td width="200px" style="background-color:
                                 {% if Inv.recom_doc.xldata.circuitid != Inv.current_doc.xldata.circuitid%}
                                 lightpink
                                 {%else%}
