@@ -243,6 +243,7 @@
                 <td>{{ Inv.current_doc.InvoiceDate}} </td>
                 <td>{{ Inv.current_doc.servicetype}} </td>
             </tr>
+            {% if Inv.recom_doc.xldata.invoiceno si not null%}
             <tr data-id="{{ Inv.current_doc.xldata.circuitid }}_rcom" data-parent="{{Inv.current_doc.xldata.invoiceno}}" data-level="2" style="font-size:11px;background-color:lightblue;background-color:#a6c06d  ">
                 <td style="width:150px;">
                     {{ Inv.recom_doc.xldata.invoiceno}}
@@ -266,9 +267,10 @@
                 <td>{{ Inv.recom_doc.InvoiceDate}} </td>
                 <td>{{ Inv.recom_doc.servicetype}} </td>
             </tr>
+            {% endif %}
+            {% if Inv.last_doc.xldata.invoiceno si not null%}
             <tr data-id="{{ Inv.current_doc.xldata.circuitid }}_test2" data-parent="{{ Inv.current_doc.xldata.invoiceno}}" data-level="2"
                 style="font-size:11px;  background-color:#f3bf5f ">
-
                 <td style="width:150px">{{ Inv.last_doc.xldata.invoiceno}} </td>
                 <td>{{ Inv.last_doc.xldata.circuitid }}</td>
                 <td>{{ Inv.last_doc.xldata.division }} </td>
@@ -289,6 +291,7 @@
                 <td>{{ Inv.last_doc.InvoiceDate}} </td>
                 <td>{{ Inv.last_doc.servicetype}} </td>
             </tr>
+            {% endif %}
             {% endfor %}
         </tbody>
     </table>
