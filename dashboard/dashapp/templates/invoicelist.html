@@ -330,7 +330,114 @@
             </tr>
             {% if Inv.recom_doc.xldata.invoiceno is not null%}
             <tr data-id="{{ Inv.current_doc.xldata.circuitid }}_rcom" data-parent="{{Inv.current_doc.xldata.invoiceno}}" data-level="2" style="font-size:11px;background-color:lightblue;background-color:#a6c06d  ">
-                <td style="width:150px;">
+                <td colspan="20">
+                    <table>
+                        <tr style="font-size:12px">
+                            <td>Invoice Number</td>
+                            <td> {{ Inv.recom_doc.xldata.invoiceno}}</td>
+                            <td>{{ Inv.current_doc.xldata.invoiceno }}</td>
+                        </tr>
+                        <tr>
+                            <td>Circuit ID</td>
+                            <td>{{ Inv.recom_doc.xldata.circuitid }}</td>
+                            <td>{{ Inv.current_doc.xldata.circuitid }}</td>
+                        </tr>
+                        <tr>
+                            <td>Division</td>
+                            <td>{{ Inv.recom_doc.xldata.division }} </td>
+                            <td>{{ Inv.current_doc.xldata.division }}</td>
+
+                        </tr>
+                        <tr>
+                            <td>Tax Name</td>
+                            <td>{{ Inv.recom_doc.xldata.taxname }}</td>
+                            <td>{{ Inv.current_doc.xldata.taxname }}</td>
+                            <td>{{ Inv.current_doc.xldata.taxname }}</td>
+                        </tr>
+                        <tr>
+                            <td>Customer Name</td>
+                            <td>{{ Inv.recom_doc.xldata.customername }} </td>
+                            <td>{{ Inv.current_doc.xldata.customername }}</td>
+                        </tr>
+                        <tr>
+                            <td>Full Address</td>
+                            <td>{{ Inv.recom_doc.xldata.fullsitedddress}} </td>
+                            <td>{{ Inv.current_doc.xldata.fullsitedddress }}</td>
+                        </tr>
+                        <tr>
+                            <td>GST No</td>
+                            <td>{{ Inv.recom_doc.xldata.gstno}} </td>
+                            <td>{{ Inv.current_doc.xldata.gstno }}</td>
+                        </tr>
+                        <tr>
+                            <td>State</td>
+                            <td>{{ Inv.recom_doc.xldata.state}} </td>
+                            <td>{{ Inv.current_doc.xldata.state }}</td>
+                        </tr>
+                        <tr>
+                            <td>Billing Date_From</td>
+                            <td>{{ Inv.recom_doc.xldata.billingdatefrom}} </td>
+                            <td>{{ Inv.current_doc.xldata.billingdatefrom }}</td>
+                        </tr>
+                        <tr>
+                            <td>City</td>
+                            <td>{{ Inv.recom_doc.xldata.city}} </td>
+                            <td>{{ Inv.current_doc.xldata.city }}</td>
+                        </tr>
+                        <tr>
+                            <td>Premise Name</td>
+                            <td>{{ Inv.recom_doc.xldata.premisename}} </td>
+                            <td>{{ Inv.current_doc.xldata.premisename }}</td>
+                        </tr>
+                        <tr>
+                            <td>processing_status</td>
+                            <td>{{ Inv.recom_doc.processing_status}} </td>
+                            <td>{{ Inv.current_doc.xldata.processing_status }}</td>
+                        </tr>
+                        <tr>
+                            <td>Customer_id</td>
+                            <td>{{ Inv.recom_doc.Customer_id}} </td>
+                            <td>{{ Inv.current_doc.xldata.Customer_id }}</td>
+                        </tr>
+                        <tr>
+                            <td>Premise No</td>
+                            <td>{{ Inv.recom_doc.xldata.premiseno}} </td>
+                            <td>{{ Inv.current_doc.xldata.premiseno }}</td>
+                        </tr>
+                        <tr>
+                            <td>Billing Date_TO</td>
+                            <td>{{ Inv.recom_doc.xldata.billingdateto}} </td>
+                            <td>{{ Inv.current_doc.xldata.billingdateto }}</td>
+                        </tr>
+                        <tr>
+                            <td>Speed</td>
+                            <td>{{ Inv.recom_doc.xldata.speed}} </td>
+                            <td>{{ Inv.current_doc.xldata.speed }}</td>
+                        </tr>
+                        <tr>
+                            <td>Remarks</td>
+                            <td>{{ Inv.recom_doc.remarks}} </td>
+                            <td>{{ Inv.current_doc.xldata.remarks }}</td>
+                        </tr>
+                        <tr>
+                            <td>Invoice Date</td>
+                            <td>{{ Inv.recom_doc.InvoiceDate}} </td>
+                            <td>{{ Inv.current_doc.xldata.InvoiceDate }}</td>
+                        </tr>
+                        <tr>
+                            <td>Service Type</td>
+                            <td>{{ Inv.recom_doc.servicetype}} </td>
+                            <td>{{ Inv.current_doc.xldata.servicetype }}</td>
+                        </tr>
+                        <tr>
+                            <td><button type="button" class="btn btn-default">Accept Invoice </button></td>
+                            <td colspan="2" align="right"><button type="button" class="btn btn-default">Save Invoice </button></td>
+                        </tr>
+                    </table>
+
+                </td>
+
+                <!--<td style="width:150px;">
                     {{ Inv.recom_doc.xldata.invoiceno}}
                 </td>
                 <td>{{ Inv.recom_doc.xldata.circuitid }}</td>
@@ -350,14 +457,15 @@
                 <td>{{ Inv.recom_doc.xldata.speed}} </td>
                 <td>{{ Inv.recom_doc.remarks}} </td>
                 <td>{{ Inv.recom_doc.InvoiceDate}} </td>
-                <td>{{ Inv.recom_doc.servicetype}} </td>
+                <td>{{ Inv.recom_doc.servicetype}} </td>-->
             </tr>
-            <tr data-id="{{ Inv.current_doc.xldata.circuitid }}_accept" data-parent="{{Inv.current_doc.xldata.invoiceno}}" data-level="2">
-                <td colspan="20" style="text-align:left"><button type="submit" class="btn btn-default">Accept </button></td>
-                
-            </tr>
-            {% endif %}
-            {% if Inv.last_doc.xldata.invoiceno is not null%}
+
+         {% endif %}
+              {% if Inv.last_doc.x
+ldata.
+            invoic
+            eno is not null%}
+            <_d
             <tr data-id="{{ Inv.current_doc.xldata.circuitid }}_test2" data-parent="{{ Inv.current_doc.xldata.invoiceno}}" data-level="2"
                 style="font-size:11px;  background-color:#f3bf5f ">
                 <td style="width:150px">{{ Inv.last_doc.xldata.invoiceno}} </td>
