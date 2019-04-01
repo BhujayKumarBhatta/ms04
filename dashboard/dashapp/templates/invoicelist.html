@@ -353,8 +353,8 @@
                 <td>{{ Inv.recom_doc.servicetype}} </td>
             </tr>
             <tr data-id="{{ Inv.current_doc.xldata.circuitid }}_accept" data-parent="{{Inv.current_doc.xldata.invoiceno}}" data-level="2">
-                <td><input type="button" value="Accept" /></td>
-                <td colspan="18"></td>
+                <td colspan="20" style="text-align:left"><input type="button" value="Accept" width="200" /></td>
+                
             </tr>
             {% endif %}
             {% if Inv.last_doc.xldata.invoiceno is not null%}
