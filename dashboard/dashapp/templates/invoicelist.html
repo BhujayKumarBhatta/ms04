@@ -354,7 +354,7 @@
             <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 <tr data-id="{{ Inv.current_doc.xldata.circuitid }}_rcom" data-parent="{{Inv.current_doc.xldata.invoiceno}}" data-level="2"
-                    style=" background-color:antiquewhite">
+                    style=" background-color:lightcyan">
                     <td colspan="1"></td>
                     <td colspan="18">
                         <table style="padding-left:150px;font-size:11px" border="1" width="800">
@@ -386,14 +386,13 @@
                                 {%else%}
                                 transparent
                                 {%endif%}">
-                                    <input type="text" id="txtcircuitid" name="txtcircuitid"
-                                           style="background-color:
-                                {% if Inv.recom_doc.xldata.circuitid != Inv.current_doc.xldata.circuitid%}
-                                pink
-                                {%else%}
-                                transparent
-                                {%endif%}"
-                                           value="{{ Inv.current_doc.xldata.circuitid }}">
+
+                                    <div class="form-group has-error has-feedback">
+
+                                        <input type="text" id="txtcircuitid" name="txtcircuitid"
+                                                
+                                               value="{{ Inv.current_doc.xldata.circuitid }}">
+                                        </div>
                                 </td>
                             </tr>
                             <tr>
