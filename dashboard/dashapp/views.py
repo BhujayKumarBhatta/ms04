@@ -96,6 +96,10 @@ def invoice_update_upload(request):
     result = tspinv.invoice_update_upload(request)    
     return result
 
+def invoice_rcom_upload(request):
+    result = tspinv.invoice_rcom_upload(request)    
+    return result
+
 
 def list_test(request):
     result = linkv.list_test(request)  
