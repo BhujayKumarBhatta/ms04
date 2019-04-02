@@ -388,12 +388,12 @@
                                 {%endif%}">
 
                                     <div class="form-group has-error has-feedback">
-
-                                        <input type="text" id="txtcircuitid" name="txtcircuitid"
-                                                
-                                               value="{{ Inv.current_doc.xldata.circuitid }}">
-                                        </div>
-                                </td>
+                                        <div class="col-sm-10">
+                                            <input type="text" id="txtcircuitid" name="txtcircuitid"
+                                                   value="{{ Inv.current_doc.xldata.circuitid }}">
+                                            <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                                        </div></div>
+</td>
                             </tr>
                             <tr>
                                 <th>Division</th>
