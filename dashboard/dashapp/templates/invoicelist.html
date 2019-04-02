@@ -338,7 +338,7 @@
                 <td>{{ Inv.current_doc.servicetype}} </td>
             </tr>
             {% if Inv.recom_doc.xldata.invoiceno is not null%}
-            <form action="{% url 'dashapp:list_invoices' Inv.current_doc.xldata.circuitid %}" method="post" enctype="multipart/form-data">
+            <form action="{% url 'dashapp:list_invoices2' Inv.current_doc.xldata.circuitid %}" method="post" enctype="multipart/form-data">
                 <tr data-id="{{ Inv.current_doc.xldata.circuitid }}_rcom" data-parent="{{Inv.current_doc.xldata.invoiceno}}" data-level="2">
                     <td colspan="1"></td>
                     <td colspan="18">
