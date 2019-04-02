@@ -286,8 +286,8 @@
             <td>Recommendations </td>
         </tr>
         <tr>
-            <td style="width:30%;background-color:#f3bf5f"> </td>
-            <td>Entries History</td>
+            <td style="width:30%;background-color:lightgray"> </td>
+            <td>Old Entries </td>
         </tr>
         <tr>
             <td style="width:30%;background-color:lightgreen"> </td>
@@ -732,7 +732,7 @@
             {% endif %}
             {% if Inv.last_doc.xldata.invoiceno is not null%}
             <tr data-id="{{ Inv.current_doc.xldata.circuitid }}_test2" data-parent="{{ Inv.current_doc.xldata.invoiceno}}" data-level="2"
-                style="font-size:11px;  background-color:#f3bf5f ">
+                style="font-size:11px;  background-color:lightgray ">
                 <td style="width:150px">{{ Inv.last_doc.xldata.invoiceno}} </td>
                 <td>{{ Inv.last_doc.xldata.circuitid }}</td>
                 <td>{{ Inv.last_doc.xldata.division }} </td>
