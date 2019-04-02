@@ -273,7 +273,7 @@
 <div class="table-wrapper">
     <div class="table-title">
         <div class="row">
-            <div class="col-sm-8"><h3>Invoice <b>Details</b></h3></div>
+            <div class="col-sm-8"><h3><b>Manage Invoice</b> Details</h3></div>
         </div>
     </div>
     <table ID="tbllegend" style="width:250px;" border="1">
@@ -294,8 +294,7 @@
             <td>Accepted</td>
         </tr>
     </table>
-    Posting form data :- {{POSTING}}
-    Accept Resul:- {{ACCEPT_RCOM}}
+    
     <table id="tree-table" class="table table-hover table-bordepink" width="1500">
         <thead>
             <tr style="font-size:12px">
@@ -714,12 +713,12 @@
                                            value="{{ Inv.current_doc.xldata.servicetype }}">
                                 </td>
                             </tr>
-                            {% if Inv.current_doc.status != 'tspAccepted'%}
+                            <!--{% if Inv.current_doc.status != 'tspAccepted'%}-->
                             <tr>
                                 <th colspan="2" align="right"><button onclick="return confirm('Are you sure? you want to Accept Changes from Recomndations.\n This will Overwrite and further changes will not be allowed.')" type="submit" class="btn btn-default">Accept Invoice </button></th>
                                 <th align="right"><button type="submit" class="btn btn-default" onclick="return confirm('Are you sure? you want to Save Changes.')">Save Invoice </button></th>
                             </tr>
-                            {%endif%}
+                            <!--{%endif%}-->
                         </table>
                     </td>
                 </tr>
