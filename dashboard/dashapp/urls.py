@@ -38,8 +38,7 @@ urlpatterns = [path('', views.login, name='login'),
     path('invoice_upload', views.invoice_upload, name='invoice_upload'),
     path('view_upload', views.view_upload, name='view_upload'),
     path('invoice_update_upload', views.invoice_update_upload, name='invoice_update_upload')
-    ,path('add_model', views.add_model, name='add_model')
-    ,path('<text:list_invoices2>/invoicnum/', views.list_invoices2, name='list_invoices2'),]
+    ,path('add_model', views.add_model, name='add_model')    ]
 
 
 
