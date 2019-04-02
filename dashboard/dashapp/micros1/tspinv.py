@@ -99,7 +99,7 @@ def invoice_upload(request):
                             { 'uploaded_file_url': uploaded_file_url,
                              "VIEW_UPLOAD": "TRUE", 
                              "UPLOAD_STATUS":loaded_message})
-        template_data = { "uploadedupdate_file_url" : uploaded_file_url                             
+        template_data = { "uploaded_file_url" : uploaded_file_url                             
                              ,"UPLOAD_STATUS" : message,"UPLOAD_RESULT" : Upload_result}
         result = render(request, 'home.html', template_data) 
     if request.method == 'GET':          
