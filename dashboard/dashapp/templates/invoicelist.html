@@ -351,392 +351,394 @@
                 <td>{{ Inv.current_doc.servicetype}} </td>
             </tr>
             {% if Inv.recom_doc.xldata.invoiceno is not null and Inv.current_doc.status != 'tspAccepted' %}
-            <form method="post" enctype="multipart/form-data">
+            <form method="post" enctype="multipart/form-data" class="form-horizontal">
                 {% csrf_token %}
-                <div class="form-group">
+                
                     <tr data-id="{{ Inv.current_doc.xldata.circuitid }}_rcom" data-parent="{{Inv.current_doc.xldata.invoiceno}}" data-level="2"
                         style=" background-color:lightcyan">
                         <td colspan="1"></td>
                         <td colspan="18">
-                            <table style="padding-left:150px;font-size:11px" border="1" width="800">
-                                <tr>
-                                    <th width="150px">Invoice Number</th>
-                                    <td width="225px"> {{ Inv.recom_doc.xldata.invoiceno}}</td>
-                                    <td width="225px" style="background-color:
+                            <div class="form-group">
+                                <table style="padding-left:150px;" border="1" width="800">
+                                    <tr>
+                                        <th width="150px">Invoice Number</th>
+                                        <td width="225px"> {{ Inv.recom_doc.xldata.invoiceno}}</td>
+                                        <td width="225px" style="background-color:
                                 {% if Inv.recom_doc.xldata.invoiceno != Inv.current_doc.xldata.invoiceno%}
                                 pink
                                 {%else%}
                                 transparent
                                 {%endif%}">
-                                        <input type="text" id="txtinvoicenum" name="txtinvoicenum"
-                                               style="background-color:
+                                            <input type="text" id="txtinvoicenum" name="txtinvoicenum"
+                                                   style="background-color:
                                 {% if Inv.recom_doc.xldata.invoiceno != Inv.current_doc.xldata.invoiceno%}
                                 pink
                                 {%else%}
                                 transparent
                                 {%endif%}"
-                                               value="{{ Inv.current_doc.xldata.invoiceno }}">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th width="150px">Circuit ID</th>
-                                    <td width="225px">{{ Inv.recom_doc.xldata.circuitid }}</td>
-                                    <td width="225px" style="background-color:
+                                                   value="{{ Inv.current_doc.xldata.invoiceno }}">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th width="150px">Circuit ID</th>
+                                        <td width="225px">{{ Inv.recom_doc.xldata.circuitid }}</td>
+                                        <td width="225px" style="background-color:
                                 {% if Inv.recom_doc.xldata.circuitid != Inv.current_doc.xldata.circuitid%}
                                 pink
                                 {%else%}
                                 transparent
                                 {%endif%}">
 
-                                        <div class="form-group has-error has-feedback">
-                                            <div class="col-sm-10">
-                                                <input type="text" id="txtcircuitid" name="txtcircuitid"
-                                                       value="{{ Inv.current_doc.xldata.circuitid }}">
-                                                <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                                            <div class="form-group has-error has-feedback">
+                                                <div class="col-sm-10">
+                                                    <input type="text" id="txtcircuitid" name="txtcircuitid"
+                                                           value="{{ Inv.current_doc.xldata.circuitid }}">
+                                                    <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>Division</th>
-                                    <td>{{ Inv.recom_doc.xldata.division }} </td>
-                                    <td style="background-color:
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Division</th>
+                                        <td>{{ Inv.recom_doc.xldata.division }} </td>
+                                        <td style="background-color:
                                 {% if Inv.recom_doc.xldata.division != Inv.current_doc.xldata.division%}
                                 pink
                                 {%else%}
                                 transparent
                                 {%endif%}">
-                                        <input type="text" id="txtdivision" name="txtdivision"
-                                               style="background-color:
+                                            <input type="text" id="txtdivision" name="txtdivision"
+                                                   style="background-color:
                                 {% if Inv.recom_doc.xldata.division != Inv.current_doc.xldata.division%}
                                 pink
                                 {%else%}
                                 transparent
                                 {%endif%}"
-                                               value="{{ Inv.current_doc.xldata.division }}">
-                                    </td>
+                                                   value="{{ Inv.current_doc.xldata.division }}">
+                                        </td>
 
-                                </tr>
-                                <tr>
-                                    <th>Tax Name</th>
-                                    <td>{{ Inv.recom_doc.xldata.taxname }}</td>
-                                    <td style="background-color:
+                                    </tr>
+                                    <tr>
+                                        <th>Tax Name</th>
+                                        <td>{{ Inv.recom_doc.xldata.taxname }}</td>
+                                        <td style="background-color:
                                 {% if Inv.recom_doc.xldata.taxname != Inv.current_doc.xldata.taxname%}
                                 pink
                                 {%else%}
                                 transparent
                                 {%endif%}">
-                                        <input type="text" id="taxname" name="taxname"
-                                               style="background-color:
+                                            <input type="text" id="taxname" name="taxname"
+                                                   style="background-color:
                                 {% if Inv.recom_doc.xldata.taxname != Inv.current_doc.xldata.taxname%}
                                 pink
                                 {%else%}
                                 transparent
                                 {%endif%}"
-                                               value="{{ Inv.current_doc.xldata.taxname }}">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>Customer Name</th>
-                                    <td>{{ Inv.recom_doc.xldata.customername }} </td>
-                                    <td style="background-color:
+                                                   value="{{ Inv.current_doc.xldata.taxname }}">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Customer Name</th>
+                                        <td>{{ Inv.recom_doc.xldata.customername }} </td>
+                                        <td style="background-color:
                                 {% if Inv.recom_doc.xldata.customername != Inv.current_doc.xldata.customername%}
                                 pink
                                 {%else%}
                                 transparent
                                 {%endif%}">
-                                        <input type="text" id="customername" name="customername"
-                                               style="background-color:
+                                            <input type="text" id="customername" name="customername"
+                                                   style="background-color:
                                 {% if Inv.recom_doc.xldata.customername != Inv.current_doc.xldata.customername%}
                                 pink
                                 {%else%}
                                 transparent
                                 {%endif%}"
-                                               value="{{ Inv.current_doc.xldata.customername }}">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>Full Address</th>
-                                    <td>{{ Inv.recom_doc.xldata.fullsitedddress}} </td>
-                                    <td style="background-color:
+                                                   value="{{ Inv.current_doc.xldata.customername }}">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Full Address</th>
+                                        <td>{{ Inv.recom_doc.xldata.fullsitedddress}} </td>
+                                        <td style="background-color:
                                 {% if Inv.recom_doc.xldata.fullsitedddress != Inv.current_doc.xldata.fullsitedddress%}
                                 pink
                                 {%else%}
                                 transparent
                                 {%endif%}">
-                                        <input type="text" id="txtfullsitedddress" name="txtfullsitedddress"
-                                               style="background-color:
+                                            <input type="text" id="txtfullsitedddress" name="txtfullsitedddress"
+                                                   style="background-color:
                                 {% if Inv.recom_doc.xldata.fullsitedddress != Inv.current_doc.xldata.fullsitedddress%}
                                 pink
                                 {%else%}
                                 transparent
                                 {%endif%}"
-                                               value="{{ Inv.current_doc.xldata.fullsitedddress }}">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>GST No</th>
-                                    <td>{{ Inv.recom_doc.xldata.gstno}} </td>
-                                    <td style="background-color:
+                                                   value="{{ Inv.current_doc.xldata.fullsitedddress }}">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>GST No</th>
+                                        <td>{{ Inv.recom_doc.xldata.gstno}} </td>
+                                        <td style="background-color:
                                 {% if Inv.recom_doc.xldata.gstno != Inv.current_doc.xldata.gstno%}
                                 pink
                                 {%else%}
                                 transparent
                                 {%endif%}">
-                                        <input type="text" id="txtgstno" name="txtgstno"
-                                               style="background-color:
+                                            <input type="text" id="txtgstno" name="txtgstno"
+                                                   style="background-color:
                                 {% if Inv.recom_doc.xldata.gstno != Inv.current_doc.xldata.gstno%}
                                 pink
                                 {%else%}
                                 transparent
                                 {%endif%}"
-                                               value="{{ Inv.current_doc.xldata.gstno }}">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>State</th>
-                                    <td>{{ Inv.recom_doc.xldata.state}} </td>
-                                    <td style="background-color:
+                                                   value="{{ Inv.current_doc.xldata.gstno }}">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>State</th>
+                                        <td>{{ Inv.recom_doc.xldata.state}} </td>
+                                        <td style="background-color:
                                 {% if Inv.recom_doc.xldata.state != Inv.current_doc.xldata.state%}
                                 pink
                                 {%else%}
                                 transparent
                                 {%endif%}">
-                                        <input type="text" id="txtstate" name="txtstate"
-                                               style="background-color:
+                                            <input type="text" id="txtstate" name="txtstate"
+                                                   style="background-color:
                                 {% if Inv.recom_doc.xldata.state != Inv.current_doc.xldata.state%}
                                 pink
                                 {%else%}
                                 transparent
                                 {%endif%}"
-                                               value="{{ Inv.current_doc.xldata.state }}">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>Billing Date_From</th>
-                                    <td>{{ Inv.recom_doc.xldata.billingdatefrom}} </td>
-                                    <td style="background-color:
+                                                   value="{{ Inv.current_doc.xldata.state }}">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Billing Date_From</th>
+                                        <td>{{ Inv.recom_doc.xldata.billingdatefrom}} </td>
+                                        <td style="background-color:
                                 {% if Inv.recom_doc.xldata.billingdatefrom != Inv.current_doc.xldata.billingdatefrom%}
                                 pink
                                 {%else%}
                                 transparent
                                 {%endif%}">
-                                        <input type="text" id="txtbillingdatefrom" name="txtbillingdatefrom"
-                                               style="background-color:
+                                            <input type="text" id="txtbillingdatefrom" name="txtbillingdatefrom"
+                                                   style="background-color:
                                 {% if Inv.recom_doc.xldata.billingdatefrom != Inv.current_doc.xldata.billingdatefrom%}
                                 pink
                                 {%else%}
                                 transparent
                                 {%endif%}"
-                                               value="{{ Inv.current_doc.xldata.billingdatefrom }}">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>City</th>
-                                    <td>{{ Inv.recom_doc.xldata.city}} </td>
-                                    <td style="background-color:
+                                                   value="{{ Inv.current_doc.xldata.billingdatefrom }}">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>City</th>
+                                        <td>{{ Inv.recom_doc.xldata.city}} </td>
+                                        <td style="background-color:
                                 {% if Inv.recom_doc.xldata.city != Inv.current_doc.xldata.city%}
                                 pink
                                 {%else%}
                                 transparent
                                 {%endif%}">
-                                        <input type="text" id="txtcity" name="txtcity"
-                                               style="background-color:
+                                            <input type="text" id="txtcity" name="txtcity"
+                                                   style="background-color:
                                 {% if Inv.recom_doc.xldata.city != Inv.current_doc.xldata.city%}
                                 pink
                                 {%else%}
                                 transparent
                                 {%endif%}"
-                                               value="{{ Inv.current_doc.xldata.city }}">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>Premise Name</th>
-                                    <td>{{ Inv.recom_doc.xldata.premisename}} </td>
-                                    <td style="background-color:
+                                                   value="{{ Inv.current_doc.xldata.city }}">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Premise Name</th>
+                                        <td>{{ Inv.recom_doc.xldata.premisename}} </td>
+                                        <td style="background-color:
                                 {% if Inv.recom_doc.xldata.premisename != Inv.current_doc.xldata.premisename%}
                                 pink
                                 {%else%}
                                 transparent
                                 {%endif%}">
-                                        <input type="text" id="txtpremisename" name="txtpremisename"
-                                               style="background-color:
+                                            <input type="text" id="txtpremisename" name="txtpremisename"
+                                                   style="background-color:
                                 {% if Inv.recom_doc.xldata.premisename != Inv.current_doc.xldata.premisename%}
                                 pink
                                 {%else%}
                                 transparent
                                 {%endif%}"
-                                               value="{{ Inv.current_doc.xldata.premisename }}">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>processing_status</th>
-                                    <td>{{ Inv.recom_doc.processing_status}} </td>
-                                    <td style="background-color:
+                                                   value="{{ Inv.current_doc.xldata.premisename }}">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>processing_status</th>
+                                        <td>{{ Inv.recom_doc.processing_status}} </td>
+                                        <td style="background-color:
                                 {% if Inv.recom_doc.xldata.processing_status != Inv.current_doc.xldata.processing_status%}
                                 pink
                                 {%else%}
                                 transparent
                                 {%endif%}">
-                                        <input type="text" id="txtprocessing_status" name="txtprocessing_status"
-                                               style="background-color:
+                                            <input type="text" id="txtprocessing_status" name="txtprocessing_status"
+                                                   style="background-color:
                                 {% if Inv.recom_doc.xldata.invoiceno != Inv.current_doc.xldata.invoiceno%}
                                 pink
                                 {%else%}
                                 transparent
                                 {%endif%}"
-                                               value="{{ Inv.current_doc.xldata.processing_status }}">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>Customer_id</th>
-                                    <td>{{ Inv.recom_doc.Customer_id}} </td>
-                                    <td style="background-color:
+                                                   value="{{ Inv.current_doc.xldata.processing_status }}">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Customer_id</th>
+                                        <td>{{ Inv.recom_doc.Customer_id}} </td>
+                                        <td style="background-color:
                                 {% if Inv.recom_doc.xldata.Customer_id != Inv.current_doc.xldata.Customer_id%}
                                 pink
                                 {%else%}
                                 transparent
                                 {%endif%}">
-                                        <input type="text" id="txtCustomer_id" name="txtCustomer_id"
-                                               style="background-color:
+                                            <input type="text" id="txtCustomer_id" name="txtCustomer_id"
+                                                   style="background-color:
                                 {% if Inv.recom_doc.xldata.Customer_id != Inv.current_doc.xldata.Customer_id%}
                                 pink
                                 {%else%}
                                 transparent
                                 {%endif%}"
-                                               value="{{ Inv.current_doc.xldata.Customer_id }}">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>Premise No</th>
-                                    <td>{{ Inv.recom_doc.xldata.premiseno}} </td>
-                                    <td style="background-color:
+                                                   value="{{ Inv.current_doc.xldata.Customer_id }}">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Premise No</th>
+                                        <td>{{ Inv.recom_doc.xldata.premiseno}} </td>
+                                        <td style="background-color:
                                 {% if Inv.recom_doc.xldata.premiseno != Inv.current_doc.xldata.premiseno%}
                                 pink
                                 {%else%}
                                 transparent
                                 {%endif%}">
-                                        <input type="text" id="txtpremiseno" name="txtpremiseno"
-                                               style="background-color:
+                                            <input type="text" id="txtpremiseno" name="txtpremiseno"
+                                                   style="background-color:
                                 {% if Inv.recom_doc.xldata.premiseno != Inv.current_doc.xldata.premiseno%}
                                 pink
                                 {%else%}
                                 transparent
                                 {%endif%}"
-                                               value="{{ Inv.current_doc.xldata.premiseno }}">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>Billing Date_TO</th>
-                                    <td>{{ Inv.recom_doc.xldata.billingdateto}} </td>
-                                    <td style="background-color:
+                                                   value="{{ Inv.current_doc.xldata.premiseno }}">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Billing Date_TO</th>
+                                        <td>{{ Inv.recom_doc.xldata.billingdateto}} </td>
+                                        <td style="background-color:
                                 {% if Inv.recom_doc.xldata.billingdateto != Inv.current_doc.xldata.billingdateto%}
                                 pink
                                 {%else%}
                                 transparent
                                 {%endif%}">
-                                        <input type="text" id="txtbillingdateto" name="txtbillingdateto"
-                                               style="background-color:
+                                            <input type="text" id="txtbillingdateto" name="txtbillingdateto"
+                                                   style="background-color:
                                 {% if Inv.recom_doc.xldata.billingdateto != Inv.current_doc.xldata.billingdateto%}
                                 pink
                                 {%else%}
                                 transparent
                                 {%endif%}"
-                                               value="{{ Inv.current_doc.xldata.billingdateto }}">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>Speed</th>
-                                    <td>{{ Inv.recom_doc.xldata.speed}} </td>
-                                    <td style="background-color:
+                                                   value="{{ Inv.current_doc.xldata.billingdateto }}">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Speed</th>
+                                        <td>{{ Inv.recom_doc.xldata.speed}} </td>
+                                        <td style="background-color:
                                 {% if Inv.recom_doc.xldata.speed != Inv.current_doc.xldata.speed%}
                                 pink
                                 {%else%}
                                 transparent
                                 {%endif%}">
-                                        <input type="text" id="txtspeed" name="txtspeed"
-                                               style="background-color:
+                                            <input type="text" id="txtspeed" name="txtspeed"
+                                                   style="background-color:
                                 {% if Inv.recom_doc.xldata.speed != Inv.current_doc.xldata.speed%}
                                 pink
                                 {%else%}
                                 transparent
                                 {%endif%}"
-                                               value="{{ Inv.current_doc.xldata.speed }}">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>Remarks</th>
-                                    <td>{{ Inv.recom_doc.remarks}} </td>
-                                    <td style="background-color:
+                                                   value="{{ Inv.current_doc.xldata.speed }}">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Remarks</th>
+                                        <td>{{ Inv.recom_doc.remarks}} </td>
+                                        <td style="background-color:
                                 {% if Inv.recom_doc.xldata.remarks != Inv.current_doc.xldata.remarks%}
                                 pink
                                 {%else%}
                                 transparent
                                 {%endif%}">
-                                        <input type="text" id="txtremarks" name="txtremarks"
-                                               style="background-color:
+                                            <input type="text" id="txtremarks" name="txtremarks"
+                                                   style="background-color:
                                 {% if Inv.recom_doc.xldata.remarks != Inv.current_doc.xldata.remarks%}
                                 pink
                                 {%else%}
                                 transparent
                                 {%endif%}"
-                                               value="{{ Inv.current_doc.xldata.remarks }}">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>Invoice Date</th>
-                                    <td>{{ Inv.recom_doc.InvoiceDate}} </td>
-                                    <td style="background-color:
+                                                   value="{{ Inv.current_doc.xldata.remarks }}">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Invoice Date</th>
+                                        <td>{{ Inv.recom_doc.InvoiceDate}} </td>
+                                        <td style="background-color:
                                 {% if Inv.recom_doc.xldata.InvoiceDate != Inv.current_doc.xldata.InvoiceDate%}
                                 pink
                                 {%else%}
                                 transparent
                                 {%endif%}">
-                                        <input type="text" id="txtInvoiceDate" name="txtInvoiceDate"
-                                               style="background-color:
+                                            <input type="text" id="txtInvoiceDate" name="txtInvoiceDate"
+                                                   style="background-color:
                                 {% if Inv.recom_doc.xldata.InvoiceDate != Inv.current_doc.xldata.InvoiceDate%}
                                 pink
                                 {%else%}
                                 transparent
                                 {%endif%}"
-                                               value="{{ Inv.current_doc.xldata.InvoiceDate }}">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>Service Type</th>
-                                    <td>{{ Inv.recom_doc.servicetype}} </td>
-                                    <td style="background-color:
+                                                   value="{{ Inv.current_doc.xldata.InvoiceDate }}">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Service Type</th>
+                                        <td>{{ Inv.recom_doc.servicetype}} </td>
+                                        <td style="background-color:
                                 {% if Inv.recom_doc.xldata.servicetype != Inv.current_doc.xldata.servicetype%}
                                 pink
                                 {%else%}
                                 transparent
                                 {%endif%}">
-                                        <input type="text" id="txtservicetype" name="txtservicetype"
-                                               style="background-color:
+                                            <input type="text" id="txtservicetype" name="txtservicetype"
+                                                   style="background-color:
                                 {% if Inv.recom_doc.xldata.servicetype != Inv.current_doc.xldata.servicetype%}
                                 pink
                                 {%else%}
                                 transparent
                                 {%endif%}"
-                                               value="{{ Inv.current_doc.xldata.servicetype }}">
-                                    </td>
-                                </tr>
-                                <!--{% if Inv.current_doc.status != 'tspAccepted'%}-->
-                                <tr>
-                                    <th colspan="2" align="right">
-                                        <button class="btn btn-primary"
-                                                onclick="return confirm('Are you sure? you want to Accept Changes from Recomndations.\n This will Overwrite and further changes will not be allowed.')"
-                                                type="submit">
-                                            Accept Invoice
-                                        </button>
-                                    </th>
-                                    <th align="right"><button type="submit" class="btn btn-info" onclick="return confirm('Are you sure? you want to Save Changes.')">Save Invoice </button></th>
-                                </tr>
-                                <!--{%endif%}-->
-                            </table>
+                                                   value="{{ Inv.current_doc.xldata.servicetype }}">
+                                        </td>
+                                    </tr>
+                                    <!--{% if Inv.current_doc.status != 'tspAccepted'%}-->
+                                    <tr>
+                                        <th colspan="2" align="right">
+                                            <button class="btn btn-primary"
+                                                    onclick="return confirm('Are you sure? you want to Accept Changes from Recomndations.\n This will Overwrite and further changes will not be allowed.')"
+                                                    type="submit">
+                                                Accept Invoice
+                                            </button>
+                                        </th>
+                                        <th align="right"><button type="submit" class="btn btn-info" onclick="return confirm('Are you sure? you want to Save Changes.')">Save Invoice </button></th>
+                                    </tr>
+                                    <!--{%endif%}-->
+                                </table>
+                            </div>
                         </td>
                     </tr>
-                    </div>
+                    
             </form>
             {% endif %}
             {% if Inv.last_doc.xldata.invoiceno is not null%}
