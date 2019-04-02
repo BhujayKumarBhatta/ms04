@@ -29,14 +29,14 @@ def list_invoices2(request,invoicnum):
         return result
 
 def list_invoices(request):
+    ## AcceptingInvoice
     if request.method == 'POST':         
         tlclient = tllogin.prep_tlclient_from_session(request)
-        invClient = MSClient(tlclient) 
-        list_invoices = invClient.list_invoices_clo('all','all')
+        invClient = MSClient(tlclient)         
         invoicenum = request.POST['txtinvoicenum']
         my_list = [invoicenum] 
         accept_recomondation = invClient.accept_recom(my_list)
-
+        list_invoices = invClient.list_invoices_clo('all','all')
         template_data = {"list_invoices": list_invoices ,"ACCEPT_RCOM" : accept_recomondation} 
         result = render(request, 'home.html', template_data)        
         return result
@@ -56,13 +56,13 @@ def list_invoice_rcom(request):
         template_data = {"list_invoices": list_invoices,"IS_RCOM":"TRUE" } 
         result = render(request, 'home.html', template_data)        
         return result
-
+## Deleting All invoices in the System
 def invoice_delete(request):
    if request.method == 'GET':          
         tlclient = tllogin.prep_tlclient_from_session(request)
-        invClient = MSClient(tlclient) 
-        list_invoices = invClient.list_invoices_clo('all','all')  
+        invClient = MSClient(tlclient)          
         status = invClient.delete_invoices('all') 
+        list_invoices = invClient.list_invoices_clo('all','all')  
         #template_data = {"DELETE_STATUS":"Working Delete","list_invoices": list_invoices,"ISDELETED":"TRUE" } 
         template_data = {"list_invoices": list_invoices } 
         result = render(request, 'home.html', template_data)          
