@@ -323,7 +323,7 @@
             {% for Inv in list_invoices%}
             <tr data-id="{{ Inv.current_doc.xldata.invoiceno}}" data-parent="0" data-level="1" style="font-size:11px;
             background-color:
-                {% if Inv.current_doc.invoiceno == 'tspAccepted'%}
+                {% if Inv.current_doc.status == 'tspAccepted'%}
                     lightgreen {%else%}    transparent {%endif%}">
                 <td data-column="name" style="width:150px">{{ Inv.current_doc.xldata.invoiceno}} </td>
                 <td>{{ Inv.current_doc.xldata.circuitid }}</td>
@@ -345,7 +345,7 @@
                 <td>{{ Inv.current_doc.InvoiceDate}} </td>
                 <td>{{ Inv.current_doc.servicetype}} </td>
             </tr>
-            {% if Inv.recom_doc.xldata.invoiceno is not null and Inv.current_doc.invoiceno != 'tspAccepted'%}
+            {% if Inv.recom_doc.xldata.invoiceno is not null and Inv.current_doc.status != 'tspAccepted'%}
             <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 <tr data-id="{{ Inv.current_doc.xldata.circuitid }}_rcom" data-parent="{{Inv.current_doc.xldata.invoiceno}}" data-level="2">
