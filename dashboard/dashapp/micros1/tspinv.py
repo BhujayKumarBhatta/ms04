@@ -173,7 +173,7 @@ def invoice_rcom_upload(request):
 
             tlclient = tllogin.prep_tlclient_from_session(request)
             ms1Client = MSClient(tlclient)        
-            Upload_result = ms1Client.update_invoice(rcomuploaded_file_url)      
+            Upload_result = ms1Client.recommend_changes_xl(rcomuploaded_file_url)      
             message = json.dumps(Upload_result)
             loaded_message = json.loads(message)# Only gives json Object str
 
