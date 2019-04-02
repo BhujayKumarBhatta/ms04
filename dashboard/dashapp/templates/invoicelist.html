@@ -345,7 +345,7 @@
                 <td>{{ Inv.current_doc.InvoiceDate}} </td>
                 <td>{{ Inv.current_doc.servicetype}} </td>
             </tr>
-            {% if Inv.recom_doc.xldata.invoiceno is not null and Inv.current_doc.status != 'tspAccepted'%}
+            {% if Inv.recom_doc.xldata.invoiceno is not null %}
             <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 <tr data-id="{{ Inv.current_doc.xldata.circuitid }}_rcom" data-parent="{{Inv.current_doc.xldata.invoiceno}}" data-level="2">
@@ -714,7 +714,7 @@
                                            value="{{ Inv.current_doc.xldata.servicetype }}">
                                 </td>
                             </tr>
-                            {% if Inv.current_doc.status == 'tspAccepted'%}
+                            {% if Inv.current_doc.status != 'tspAccepted'%}
                             <tr>
                                 <th colspan="2" align="right"><button onclick="return confirm('Are you sure? you want to Accept Changes from Recomndations.\n This will Overwrite and further changes will not be allowed.')" type="submit" class="btn btn-default">Accept Invoice </button></th>
                                 <th align="right"><button type="submit" class="btn btn-default" onclick="return confirm('Are you sure? you want to Save Changes.')">Save Invoice </button></th>
