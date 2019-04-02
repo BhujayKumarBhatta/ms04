@@ -30,9 +30,9 @@ def list_invoices2(request,invoicnum):
 
 def list_invoices(request):
     if request.method == 'POST': 
-        #tlclient = tllogin.prep_tlclient_from_session(request)
-        #invClient = MSClient(tlclient) 
-        #list_invoices = invClient.list_invoices_clo('all','all')  
+        tlclient = tllogin.prep_tlclient_from_session(request)
+        invClient = MSClient(tlclient) 
+        list_invoices = invClient.list_invoices_clo('all','all')  
         template_data = {"list_invoices": list_invoices ,"POSTING" : "Posting is working ............"} 
         result = render(request, 'home.html', template_data)        
         return result
