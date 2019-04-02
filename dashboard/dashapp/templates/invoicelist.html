@@ -693,7 +693,7 @@
                                 {%endif%}">
                                     <input type="text" id="txtInvoiceDate" name="txtInvoiceDate"
                                            style="background-color:
-                                {% if Inv.recom_doc.xldata.InvoiceDate != Inv.current_doc.xldata.InvoiceDate%}
+                                {% if Inv.recom_doc.xldata.InvoiceDate is null or Inv.recom_doc.xldata.InvoiceDate != Inv.current_doc.xldata.InvoiceDate%}
                                 pink
                                 {%else%}
                                 transparent
@@ -712,7 +712,7 @@
                                 {%endif%}">
                                     <input type="text" id="txtservicetype" name="txtservicetype"
                                            style="background-color:
-                                {% if Inv.recom_doc.xldata.servicetype != Inv.current_doc.xldata.servicetype%}
+                                {% if Inv.recom_doc.xldata.servicetype is null or  Inv.recom_doc.xldata.servicetype != Inv.current_doc.xldata.servicetype%}
                                 pink
                                 {%else%}
                                 transparent
