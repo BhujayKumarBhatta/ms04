@@ -191,15 +191,15 @@
 
             {% for user in list_users %}
             <tr style="font-size:11px">
-                <td>{{ username }}</td>
-                <td>{{ email }}</td>
+                <td>{{ user.name }}</td>
+                <td>{{ user.email }}</td>
                 <td>
                     {% for role in user.roles %}
                     {{ role }}
                     {% endfor %}
                 </td>
                 <td> {{ wfc.org }} </td>
-                <td> {{ wfc.orgunit}} </td>
+                <td> {{ user.wfc.orgunit}} </td>
                 <td> {{ user.wfc.department}} </td>
                 <td> {{ user.wfc.name}} </td>
                 <td>
@@ -238,13 +238,16 @@
         <tbody>
             {% for org in list_org %}
             <tr style="font-size:11px">
-                <td>{{ org.status.name  }}</td>
+                <td>{{ org.name  }}</td>
                 <td>
                     <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
                     <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
                     <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
                 </td>
             </tr>
+            {{ organization.email }}
+            {{ org.email }}
+            
             {% endfor %}
         </tbody>
     </table>
