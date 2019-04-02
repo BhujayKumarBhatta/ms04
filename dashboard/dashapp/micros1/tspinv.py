@@ -35,7 +35,7 @@ def list_invoices(request):
         list_invoices = invClient.list_invoices_clo('all','all')
         invoicenum = request.POST['txtinvoicenum']
         my_list = [invoicenum] 
-        accept_recomondation  = invClient.accept_recom(my_list)
+        accept_recomondation = invClient.accept_recom(my_list)
 
         template_data = {"list_invoices": list_invoices ,"ACCEPT_RCOM" : accept_recomondation} 
         result = render(request, 'home.html', template_data)        
@@ -57,6 +57,15 @@ def list_invoice_rcom(request):
         result = render(request, 'home.html', template_data)        
         return result
 
+def invoice_delete(request):
+   if request.method == 'GET':          
+        tlclient = tllogin.prep_tlclient_from_session(request)
+        invClient = MSClient(tlclient) 
+        status = invClient.delete_invoices('all') 
+        template_data = {"DELETE_STATUS":status,"list_invoices": list_invoices,"ISDELETED":"TRUE" } 
+        result = render(request, 'home.html', template_data)        
+   return result
+    
 ## Navigate to Upload Invoice******
 def view_upload(request):
    if request.method == 'GET':          

@@ -75,6 +75,10 @@ def list_invoices_rcom(request):
     return result
     
     
+def invoice_delete(request):
+    result = tspinv.invoice_delete(request)    
+    return result
+
 def invoice_upload(request):
     result = tspinv.invoice_upload(request)    
     return result
