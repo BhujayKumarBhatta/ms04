@@ -77,9 +77,7 @@
         </div>
     </form>
 
-    UPLOAD_RESULT -- {{UPLOAD_RESULT}}
-    UPLOAD_UPDATE_STATUS -- {{UPLOAD_UPDATE_STATUS}}
-    List ---   {{ UPLOAD_UPDATE_STATUS|make_list }}
+
     {% if EXCEPTION is not null %}
     <div class="row">
 
@@ -111,6 +109,10 @@
     {% endif %}
     {% endblock %}
 
+
+    UPLOAD_RESULT -- {{UPLOAD_RESULT}}
+    UPLOAD_UPDATE_STATUS -- {{UPLOAD_UPDATE_STATUS}}
+    List ---   {{ UPLOAD_UPDATE_STATUS|make_list }}
     <!--['11111111111 skipped, no changes to update'
     , '22222222222 skipped, no changes to update'
     , '3333333333 skipped, no changes to update'
