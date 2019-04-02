@@ -90,8 +90,8 @@ def invoice_upload(request):
         #Calling Micrios client t Upload to DB
         tlclient = tllogin.prep_tlclient_from_session(request)
         ms1Client = MSClient(tlclient)        
-        message = ms1Client.upload_xl(uploaded_file_url)      
-        message = json.dumps(message)
+        Upload_result = ms1Client.upload_xl(uploaded_file_url)      
+        message = json.dumps(Upload_result)
         loaded_message = json.loads(message)
         if isinstance(loaded_message, list):
             fs.delete(fname)
