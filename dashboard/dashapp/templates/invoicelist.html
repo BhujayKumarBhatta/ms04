@@ -369,14 +369,7 @@
                                 {%else%}
                                 transparent
                                 {%endif%}">
-                                            <input type="text" id="txtinvoicenum" name="txtinvoicenum"
-                                                   style="background-color:
-                                {% if Inv.recom_doc.xldata.invoiceno != Inv.current_doc.xldata.invoiceno%}
-                                pink
-                                {%else%}
-                                transparent
-                                {%endif%}"
-                                                   value="{{ Inv.current_doc.xldata.invoiceno }}">
+                                             {{ Inv.current_doc.xldata.invoiceno }} 
                                         </td>
                                     </tr>
                                     <tr>
@@ -386,7 +379,7 @@
                                 {% if Inv.recom_doc.xldata.circuitid != Inv.current_doc.xldata.circuitid%}
                                 pink
                                 {%else%}
-                                transparent
+                                white
                                 {%endif%}">
 
                                             <div class="form-group has-error has-feedback">
@@ -412,7 +405,7 @@
                                 {% if Inv.recom_doc.xldata.division != Inv.current_doc.xldata.division%}
                                 pink
                                 {%else%}
-                                transparent
+                                white
                                 {%endif%}"
                                                    value="{{ Inv.current_doc.xldata.division }}">
                                         </td>
@@ -679,7 +672,7 @@
                                 {% if Inv.recom_doc.xldata.remarks != Inv.current_doc.xldata.remarks%}
                                 pink
                                 {%else%}
-                                transparent
+                                white
                                 {%endif%}"
                                                    value="{{ Inv.current_doc.xldata.remarks }}">
                                         </td>
@@ -698,7 +691,7 @@
                                 {% if Inv.recom_doc.xldata.InvoiceDate != Inv.current_doc.xldata.InvoiceDate%}
                                 pink
                                 {%else%}
-                                transparent
+                                white
                                 {%endif%}"
                                                    value="{{ Inv.current_doc.xldata.InvoiceDate }}">
                                         </td>
@@ -717,7 +710,7 @@
                                 {% if Inv.recom_doc.xldata.servicetype != Inv.current_doc.xldata.servicetype%}
                                 pink
                                 {%else%}
-                                transparent
+                                white
                                 {%endif%}"
                                                    value="{{ Inv.current_doc.xldata.servicetype }}">
                                         </td>
