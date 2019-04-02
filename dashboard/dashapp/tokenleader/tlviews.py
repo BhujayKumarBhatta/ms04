@@ -16,7 +16,7 @@ def list_org(request):
     if request.method == 'GET': 
         tlclient = tllogin.prep_tlclient_from_session(request)
         list_org = tlclient.list_org()
-        list_org = json.dumps(list_org)
+        #list_org = json.dumps(list_org)
         #list_org = json.loads(list_org)
         template_data = {"list_org": list_org } 
         result = render(request, 'home.html', template_data)         
@@ -26,7 +26,7 @@ def list_dept(request):
     if request.method == 'GET': 
         tlclient = tllogin.prep_tlclient_from_session(request)
         list_dept = tlclient.list_dept()
-        list_dept = json.dumps(list_dept)
+        #list_dept = json.dumps(list_dept)
         list_dept = json.loads(list_dept)
         template_data = {"list_dept": list_dept } 
         result = render(request, 'home.html', template_data)         
