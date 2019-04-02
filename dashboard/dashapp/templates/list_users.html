@@ -191,15 +191,15 @@
 
             {% for user in list_users %}
             <tr style="font-size:11px">
-                <td>{{ user.username }}</td>
-                <td>{{ user.email }}</td>
+                <td>{{ username }}</td>
+                <td>{{ email }}</td>
                 <td>
                     {% for role in user.roles %}
                     {{ role }}
                     {% endfor %}
                 </td>
-                <td> {{ user.wfc.org }} </td>
-                <td> {{ user.wfc.orgunit}} </td>
+                <td> {{ wfc.org }} </td>
+                <td> {{ wfc.orgunit}} </td>
                 <td> {{ user.wfc.department}} </td>
                 <td> {{ user.wfc.name}} </td>
                 <td>
