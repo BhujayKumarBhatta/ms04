@@ -374,7 +374,7 @@
                                 {%endif%}">
                                     <input type="text" id="txtcircuitid" name="txtcircuitid"
                                            style="background-color:
-                                {% if Inv.recom_doc.xldata.invoiceno != Inv.current_doc.xldata.invoiceno%}
+                                {% if Inv.recom_doc.xldata.circuitid != Inv.current_doc.xldata.circuitid%}
                                 pink
                                 {%else%}
                                 transparent
@@ -393,7 +393,7 @@
                                 {%endif%}">
                                     <input type="text" id="txtdivision" name="txtdivision"
                                            style="background-color:
-                                {% if Inv.recom_doc.xldata.invoiceno != Inv.current_doc.xldata.invoiceno%}
+                                {% if Inv.recom_doc.xldata.division != Inv.current_doc.xldata.division%}
                                 pink
                                 {%else%}
                                 transparent
@@ -413,7 +413,7 @@
                                 {%endif%}">
                                     <input type="text" id="taxname" name="taxname"
                                            style="background-color:
-                                {% if Inv.recom_doc.xldata.invoiceno != Inv.current_doc.xldata.invoiceno%}
+                                {% if Inv.recom_doc.xldata.taxname != Inv.current_doc.xldata.taxname%}
                                 pink
                                 {%else%}
                                 transparent
@@ -506,9 +506,9 @@
                                 {%else%}
                                 transparent
                                 {%endif%}">
-                                    <input type="text" id="txtstate" name="txtstate"
+                                    <input type="text" id="txtbillingdatefrom" name="txtbillingdatefrom"
                                            style="background-color:
-                                {% if Inv.recom_doc.xldata.invoiceno != Inv.current_doc.xldata.invoiceno%}
+                                {% if Inv.recom_doc.xldata.billingdatefrom != Inv.current_doc.xldata.billingdatefrom%}
                                 pink
                                 {%else%}
                                 transparent
