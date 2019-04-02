@@ -323,11 +323,11 @@
             <tr data-id="{{ Inv.current_doc.xldata.invoiceno}}" data-parent="0" data-level="1" style="font-size:11px;
             background-color:
                 {% if Inv.current_doc.status == 'tspAccepted'%}
-                        lightgreen 
-                    {% if Inv.recom_doc.xldata.invoiceno is not null%}
+                    lightgreen 
+                    {% elif Inv.recom_doc.xldata.invoiceno is not null%}
                         #a6c06d
                     {%else%}    
-                        transparent 
+                    transparent 
                     {%endif%}"
                 >
                 <td data-column="name" style="width:150px">{{ Inv.current_doc.xldata.invoiceno}} </td>
