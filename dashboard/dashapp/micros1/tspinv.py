@@ -33,8 +33,8 @@ def list_invoices(request):
         tlclient = tllogin.prep_tlclient_from_session(request)
         invClient = MSClient(tlclient) 
         list_invoices = invClient.list_invoices_clo('all','all')
-        txtinvoicenum = request.GET['txtinvoicenum']
-        template_data = {"list_invoices": list_invoices ,"POSTING invoice NUmber - " : txtinvoicenum} 
+        invoicenum = request.GET['txtinvoicenum']
+        template_data = {"list_invoices": list_invoices ,"POSTING invoice NUmber - " : invoicenum} 
         result = render(request, 'home.html', template_data)        
         return result
     if request.method == 'GET': 
