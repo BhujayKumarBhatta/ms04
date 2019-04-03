@@ -44,12 +44,12 @@ def list_invoices(request):
         return result
     if request.method == 'GET': 
         sampleinvoice(request)
-        tlclient = tllogin.prep_tlclient_from_session(request)
-        invClient = MSClient(tlclient) 
-        list_invoices = invClient.list_invoices_clo('all','all')  
-        template_data = {"list_invoices": list_invoices } 
-        result = render(request, 'home.html', template_data)        
-        return result
+        #tlclient = tllogin.prep_tlclient_from_session(request)
+        #invClient = MSClient(tlclient) 
+        #list_invoices = invClient.list_invoices_clo('all','all')  
+        #template_data = {"list_invoices": list_invoices } 
+        #result = render(request, 'home.html', template_data)        
+        #return result
 
 def list_invoice_rcom(request):
     if request.method == 'GET': 
