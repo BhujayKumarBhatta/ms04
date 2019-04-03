@@ -78,34 +78,39 @@ def view_upload(request):
 
 
 def invoice_upload(request):
-    if request.method == 'POST' and request.FILES['myfile']:
-        myfile = request.FILES['myfile']
-        data = request.FILES['myfile'].read()
-        fs = FileSystemStorage(location = '/tmp/media/',
-                               file_permissions_mode =  0o644) 
-        fname = secure_filename(myfile.name)
-        filename = fs.save(fname, myfile)        
-        uploaded_file_url = fs.url(filename)
+    try:
+        if request.method == 'POST' and request.FILES['myfile']:
+            myfile = request.FILES['myfile']
+            data = request.FILES['myfile'].read()
+            fs = FileSystemStorage(location = '/tmp/media/',
+                                   file_permissions_mode =  0o644) 
+            fname = secure_filename(myfile.name)
+            filename = fs.save(fname, myfile)        
+            uploaded_file_url = fs.url(filename)
 
-        #Calling Micrios client t Upload to DB
-        tlclient = tllogin.prep_tlclient_from_session(request)
-        ms1Client = MSClient(tlclient)        
-        Upload_result = ms1Client.upload_xl(uploaded_file_url)      
-        message = json.dumps(Upload_result)
-        loaded_message = json.loads(message)
-        if isinstance(loaded_message, list):
-            fs.delete(fname)
-        result = render(request, 'home.html', 
-                            { 'uploaded_file_url': uploaded_file_url,
-                             "VIEW_UPLOAD": "TRUE", 
-                             "UPLOAD_STATUS":loaded_message})
-        template_data = { "uploaded_file_url" : uploaded_file_url                             
-                             ,"UPLOAD_STATUS" : message,"UPLOAD_RESULT" : Upload_result}
-        result = render(request, 'home.html', template_data) 
-    if request.method == 'GET':          
-        template_data = {"VIEW_UPLOAD": "TRUE" }  
+            #Calling Micrios client t Upload to DB
+            tlclient = tllogin.prep_tlclient_from_session(request)
+            ms1Client = MSClient(tlclient)        
+            Upload_result = ms1Client.upload_xl(uploaded_file_url)      
+            message = json.dumps(Upload_result)
+            loaded_message = json.loads(message)
+            if isinstance(loaded_message, list):
+                fs.delete(fname)
+            result = render(request, 'home.html', 
+                                { 'uploaded_file_url': uploaded_file_url,
+                                 "VIEW_UPLOAD": "TRUE", 
+                                 "UPLOAD_STATUS":loaded_message})
+            template_data = { "uploaded_file_url" : uploaded_file_url                             
+                                 ,"UPLOAD_STATUS" : message,"UPLOAD_RESULT" : Upload_result}
+            result = render(request, 'home.html', template_data) 
+        if request.method == 'GET':          
+            template_data = {"VIEW_UPLOAD": "TRUE" }  
+            result = render(request, 'home.html', template_data) 
+    except Exception as exception:
+        template_data = {"VIEW_UPLOAD": "TRUE","EXCEPTION" :exception,"EXCEPTION_INFO" : sys.exc_info()[0] }  
         result = render(request, 'home.html', template_data) 
     return result
+     
 
 
 def view_update_upload(request):

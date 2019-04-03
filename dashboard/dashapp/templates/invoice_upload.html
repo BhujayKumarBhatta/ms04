@@ -21,7 +21,8 @@
                 <div runat="server" id="divError" class="error" visible="false" style="width: 100%; padding-left: 50px; text-align: left">
                     There is been an error while uploading a file, Please check the file format. <br />
                     {% if EXCEPTION_INFO is not null %}
-                        {{EXCEPTION_INFO}}
+                    {{EXCEPTION_INFO}}
+                    {{EXCEPTION}}
                     {% endif %}
                 </div>
                 {% endif %}
