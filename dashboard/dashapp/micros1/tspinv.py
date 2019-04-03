@@ -199,7 +199,7 @@ def invoice_rcom_upload(request):
         template_data = {"VIEW_RCOM_UPLOAD": "from view upload","EXCEPTION" :exception,"EXCEPTION_INFO" : sys.exc_info()[0] }  
         result = render(request, 'home.html', template_data) 
     return result
-
+ 
 def sampleinvoice(request):
     file_path = "dashboard/sample-invoice-xl.xlsx"
     if os.path.exists(file_path):
