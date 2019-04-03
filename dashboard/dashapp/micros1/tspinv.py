@@ -33,7 +33,7 @@ def list_invoices(request):
     if request.method == 'POST':         
         tlclient = tllogin.prep_tlclient_from_session(request)
         invClient = MSClient(tlclient)         
-        invoicenum = request.POST['txtinvoicenum']
+        invoicenum = request.POST['invoicenum']
         my_list = [invoicenum] 
         accept_recomondation = invClient.accept_recom(my_list)
         list_invoices = invClient.list_invoices_clo('all','all')
