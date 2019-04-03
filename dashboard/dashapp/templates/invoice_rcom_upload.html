@@ -46,12 +46,12 @@
         <tr>
             <td>
                 {% if UPLOAD_RESULT is not null %}
-                <div runat="server" id="divSuccess" class="alert alert-success" role="alert"   style=" padding-left: 50px; ">
+                <div runat="server" id="divSuccess" class="alert alert-success" role="alert"   >
                     Invoice Recommondations file Upload is successfull.<br />
                     File Name : {{ rcomuploaded_file_url }}
                 </div>
                 {% elif EXCEPTION is not null %}
-                <div runat="server" id="divError" class="alert alert-danger" role="alert"  style="padding-left: 50px; ">
+                <div class="alert alert-danger" role="alert">
                     There is been an error while uploading a file, Please check the file format. <br />
                     {% if EXCEPTION_INFO is not null %}
                     {{EXCEPTION_INFO}}
