@@ -162,7 +162,7 @@
 </script>
 <div style="padding-left:100px">
     {% if list_users is not null %}
-    {{ list_users }}
+    <!--{{ list_users }}-->
 </div>
 
 <div class="table-wrapper">
@@ -191,14 +191,14 @@
 
             {% for user in list_users %}
             <tr style="font-size:11px">
-                <td>{{ user.name }}</td>
+                <td>{{ user.username }}</td>
                 <td>{{ user.email }}</td>
                 <td>
                     {% for role in user.roles %}
                     {{ role }}
                     {% endfor %}
                 </td>
-                <td> {{ wfc.org }} </td>
+                <td> {{ user.wfc.org }} </td>
                 <td> {{ user.wfc.orgunit}} </td>
                 <td> {{ user.wfc.department}} </td>
                 <td> {{ user.wfc.name}} </td>
@@ -238,7 +238,7 @@
         <tbody>
             {% for org in list_org %}
             <tr style="font-size:11px">
-                <td>{{ org.name  }}</td>
+                <td>{{ org.status.name  }}</td>
                 <td>
                     <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
                     <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
