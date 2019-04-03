@@ -323,13 +323,12 @@
             <tr data-id="{{ Inv.current_doc.xldata.invoiceno}}" data-parent="0" data-level="1" style="font-size:11px;
             background-color:
                 {% if Inv.current_doc.status == 'tspAccepted'%}
-                    lightgreen 
+                    lightgreen
                     {% elif Inv.recom_doc.xldata.invoiceno is not null%}
                         #a6c06d
-                    {%else%}    
-                    transparent 
-                    {%endif%}"
-                >
+                    {%else%}
+                    transparent
+                    {%endif%}">
                 <td data-column="name" style="width:150px">{{ Inv.current_doc.xldata.invoiceno}} </td>
                 <td>{{ Inv.current_doc.xldata.circuitid }}</td>
                 <td>{{ Inv.current_doc.xldata.division }} </td>
@@ -353,13 +352,19 @@
             {% if Inv.recom_doc.xldata.invoiceno is not null and Inv.current_doc.status != 'tspAccepted' %}
             <form method="post" enctype="multipart/form-data" class="form-horizontal">
                 {% csrf_token %}
-                
-                    <tr data-id="{{ Inv.current_doc.xldata.circuitid }}_rcom" data-parent="{{Inv.current_doc.xldata.invoiceno}}" data-level="2"
-                        style=" background-color:lightcyan">
-                        <td colspan="1"></td>
-                        <td colspan="18">
-                            <div class="form-group">
-                                <table style="padding-left:150px;font-size:11px" border="1" width="800">
+
+                <tr data-id="{{ Inv.current_doc.xldata.circuitid }}_rcom" data-parent="{{Inv.current_doc.xldata.invoiceno}}" data-level="2"
+                    style=" background-color:lightcyan">
+                    <td colspan="1"></td>
+                    <td colspan="18">
+                        <div class="form-group">
+                            <table style="padding-left:150px;font-size:11px" border="1" width="800">
+                                <thead>
+                                <th></th>
+                                <th>Recommondations</th>
+                                <th>TSP Entry</th>
+                                </thead>
+                                <tbody>
                                     <tr>
                                         <th width="150px">Invoice Number</th>
                                         <td width="225px"> {{ Inv.recom_doc.xldata.invoiceno}}</td>
@@ -369,7 +374,7 @@
                                 {%else%}
                                 transparent
                                 {%endif%}">
-                                             {{ Inv.current_doc.xldata.invoiceno }} 
+                                            {{ Inv.current_doc.xldata.invoiceno }}
                                         </td>
                                     </tr>
                                     <tr>
@@ -381,14 +386,16 @@
                                 {%else%}
                                 white
                                 {%endif%}">
+                                            <input type="text" id="txtcircuitid" name="txtdivision"
+                                                   style="background-color:
+                                {% if Inv.recom_doc.xldata.division != Inv.current_doc.xldata.division%}
+                                pink
+                                {%else%}
+                                white
+                                {%endif%}"
+                                                   value="{{ Inv.current_doc.xldata.circuitid }}">
 
-                                            <div class="form-group has-error has-feedback">
-                                                <div class="col-sm-10">
-                                                    <input type="text" id="txtcircuitid" name="txtcircuitid"
-                                                           value="{{ Inv.current_doc.xldata.circuitid }}">
-                                                    
-                                                </div>
-                                            </div>
+
                                         </td>
                                     </tr>
                                     <tr>
@@ -727,12 +734,13 @@
                                         <th align="right"><button type="submit" class="btn btn-info" onclick="return confirm('Are you sure? you want to Save Changes.')">Save Invoice </button></th>
                                     </tr>
                                     <!--{%endif%}-->
-                                </table>
-                            </div>
+                                </tbody>
+                            </table>
+                        </div>
 
-                        </td>
-                    </tr>
-                    
+                    </td>
+                </tr>
+
             </form>
             {% endif %}
             {% if Inv.last_doc.xldata.invoiceno is not null%}
