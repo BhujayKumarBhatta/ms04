@@ -46,7 +46,7 @@
         <tr>
             <td>
                 {% if UPLOAD_RESULT is not null %}
-                <div runat="server" id="divSuccess" class="success" visible="false" style="width: 100%; padding-left: 50px; text-align: left">
+                <div runat="server" id="divSuccess" class="alert alert-success" role="alert" visible="false" style="width: 100%; padding-left: 50px; text-align: left">
                     Invoice file Upload is successfull.<br />
                     File Name : {{ uploaded_file_url }}
                 </div>
