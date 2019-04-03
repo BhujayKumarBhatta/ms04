@@ -202,7 +202,7 @@ def invoice_rcom_upload(request):
     return result
  
 def sampleinvoice(request):
-    file_path = "'/home/ubuntu/dashboard/dashboard/sample-invoice-xl.xlsx"
+    file_path = "/home/ubuntu/dashboard/dashboard/sample-invoice-xl.xlsx"
     if os.path.exists(file_path):
         with open(file_path, 'rb') as fh:
             response = HttpResponse(fh.read(), content_type="application/vnd.ms-excel")
