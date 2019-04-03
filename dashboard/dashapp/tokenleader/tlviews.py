@@ -1,3 +1,4 @@
+import json
 from dashapp.tokenleader import tllogin
 from linkinvclient.client import LIClient
 from django.shortcuts import render
@@ -17,7 +18,7 @@ def list_org(request):
         tlclient = tllogin.prep_tlclient_from_session(request)
         list_org = tlclient.list_org()
         list_org = json.dumps(list_org)
-        #list_org = json.loads(list_org)
+        list_org = json.loads(list_org)
         template_data = {"list_org": list_org } 
         result = render(request, 'home.html', template_data)         
         return result
@@ -26,8 +27,8 @@ def list_dept(request):
     if request.method == 'GET': 
         tlclient = tllogin.prep_tlclient_from_session(request)
         list_dept = tlclient.list_dept()
-        list_dept = json.dumps(list_dept)
-        list_dept = json.loads(list_dept)
+        #list_dept = json.dumps(list_dept)
+        #list_dept = json.loads(list_dept)
         template_data = {"list_dept": list_dept } 
         result = render(request, 'home.html', template_data)         
         return result
@@ -36,7 +37,7 @@ def list_role(request):
     if request.method == 'GET': 
         tlclient = tllogin.prep_tlclient_from_session(request)
         list_role = tlclient.list_role()
-        list_role = json.dumps(list_role)
+        #list_role = json.dumps(list_role)
         template_data = {"list_role": list_role } 
         result = render(request, 'home.html', template_data)         
         return result
@@ -45,8 +46,8 @@ def list_ou(request):
     if request.method == 'GET': 
         tlclient = tllogin.prep_tlclient_from_session(request)
         list_ou = tlclient.list_ou()
-        list_ou = json.dumps(list_ou)
-        template_data = {"list_ou": list_role } 
+        #list_ou = json.dumps(list_ou)
+        template_data = {"list_ou": list_ou } 
         result = render(request, 'home.html', template_data)         
         return result
 

@@ -1,14 +1,36 @@
-
-
 {% block content %}
+ 
 <div class="table-wrapper">
     <div class="table-title">
         <div class="row">
             <div class="col-sm-8"><h3>Invoice <b>Upload</b></h3></div>
         </div>
     </div>
-    <br /><br />
+    <br />
 
+    <table align="center" width="90%" style="padding-left: 150px">
+        <tr>
+            <td>
+                {% if UPLOAD_RESULT is not null %}
+                <div class="alert alert-success" role="alert">
+                    Invoice file Upload is successfull.<br />
+
+                </div>
+                {% elif EXCEPTION is not null %}
+                <div class="alert alert-danger" role="alert">
+                    There is been an error while uploading a file, Please check the file format. <br />
+                    {% if EXCEPTION_INFO is not null %}
+                    {{EXCEPTION_INFO}}
+                    {% endif %}
+                </div>
+                {% endif %}
+            </td>
+        </tr>
+    </table>
+
+
+     
+    
     <form method="post" class="md-form" enctype="multipart/form-data">
         {% csrf_token %}
         <!--<input type="file" name="myfile">
@@ -24,7 +46,7 @@
         </div>
     </form>
 
-
+    {%if UPLOAD_STATUS is not null%}
     <div class="table-wrapper">
         <div class="table-title">
             <div class="row">
@@ -37,21 +59,17 @@
                     <th> Invoice No</th>
                     <th>Upload status</th>
                 </tr>
-
             </thead>
             <tbody>
-
                 {% for s in UPLOAD_STATUS %}
                 <tr style="font-size:11px">
                     <td>{{ s.invoice_num }} </td>
-                    <td> {{ s.status }}</td>
+                    <td> {{ s.save_status }}</td>
                 </tr>
                 {% endfor %}
-
             </tbody>
         </table>
     </div>
-
-
+    {%endif%}
     {{UPLOAD_STATUS}}
     {% endblock %}
