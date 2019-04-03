@@ -217,7 +217,7 @@
 <!--organizations-->
     {% if list_org is not null %}
         list of oranizations : {{ list_org }}
-     {% endif %}
+    {% endif %}
 
 <div class="table-wrapper">
     <div class="table-title">
@@ -245,7 +245,7 @@
                     <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
                 </td>
             </tr>
-            {{ organization.name }}
+            {{ list_org.status.name }}
             {{ status.name }}
             {{ org.status}}
             {% endfor %}
