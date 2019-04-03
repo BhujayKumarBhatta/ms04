@@ -45,7 +45,7 @@
         </div>
     </form>
 
-
+    {%if UPLOAD_STATUS is no null%}
     <div class="table-wrapper">
         <div class="table-title">
             <div class="row">
@@ -72,7 +72,7 @@
             </tbody>
         </table>
     </div>
-
+    {%endif%}
 
     {{UPLOAD_STATUS}}
     {% endblock %}
