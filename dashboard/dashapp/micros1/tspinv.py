@@ -189,14 +189,14 @@ def invoice_rcom_upload(request):
 
             template_data = { "rcomuploaded_file_url" : rcomuploaded_file_url
                              ,"VIEW_RCOM_UPLOAD" : "TRUE"
-                             ,"UPLOAD_UPDATE_STATUS" : message,"UPLOAD_RESULT" : Upload_result}
+                             ,"UPLOAD_RCOM_STATUS" : message,"UPLOAD_RESULT" : Upload_result}
             result = render(request, 'home.html',template_data)
             return result
         if request.method == 'GET':          
-            template_data = {"VIEW_UPDATE_UPLOAD": "from view upload" }  
+            template_data = {"VIEW_RCOM_UPLOAD": "from view upload" }  
             result = render(request, 'home.html', template_data)       
     except Exception as exception:
-        template_data = {"VIEW_UPDATE_UPLOAD": "from view upload","EXCEPTION" :exception,"EXCEPTION_INFO" : sys.exc_info()[0] }  
+        template_data = {"VIEW_RCOM_UPLOAD": "from view upload","EXCEPTION" :exception,"EXCEPTION_INFO" : sys.exc_info()[0] }  
         result = render(request, 'home.html', template_data) 
     return result
 
