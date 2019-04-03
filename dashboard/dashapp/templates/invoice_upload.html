@@ -1,5 +1,3 @@
-
-
 {% block content %}
 <div class="table-wrapper">
     <div class="table-title">
@@ -45,8 +43,8 @@
         </div>
     </form>
 
-  {%if UPLOAD_STATUS is not null%}
-    <div class="table-wrapper" >
+    {%if UPLOAD_STATUS is not null%}
+    <div class="table-wrapper">
         <div class="table-title">
             <div class="row">
                 <div class="col-sm-8"><h3>Upload status</h3></div>
@@ -58,21 +56,17 @@
                     <th> Invoice No</th>
                     <th>Upload status</th>
                 </tr>
-
             </thead>
             <tbody>
-
                 {% for s in UPLOAD_STATUS %}
                 <tr style="font-size:11px">
                     <td>{{ s.invoice_num }} </td>
                     <td> {{ s.status }}</td>
                 </tr>
                 {% endfor %}
-
             </tbody>
         </table>
     </div>
     {%endif%}
-
     {{UPLOAD_STATUS}}
     {% endblock %}
