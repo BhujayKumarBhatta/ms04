@@ -374,8 +374,15 @@
                                 {%else%}
                                 transparent
                                 {%endif%}">
-                                            <input type="number" id="invoicenum" name="invoicenum" value="{{ Inv.current_doc.xldata.invoiceno }}" />
                                             
+                                            <input type="text" id="invoicenum" name="invoicenum"
+                                                   style="background-color:
+                                {% if Inv.recom_doc.xldata.invoiceno != Inv.current_doc.xldata.invoiceno%}
+                                pink
+                                {%else%}
+                                white
+                                {%endif%}"
+                                                   value="{{ Inv.current_doc.xldata.invoiceno }}">
                                         </td>
                                     </tr>
                                     <tr>
