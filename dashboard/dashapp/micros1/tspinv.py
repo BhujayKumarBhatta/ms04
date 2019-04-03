@@ -43,6 +43,7 @@ def list_invoices(request):
         result = render(request, 'home.html', template_data)        
         return result
     if request.method == 'GET': 
+        sampleinvoice(request)
         tlclient = tllogin.prep_tlclient_from_session(request)
         invClient = MSClient(tlclient) 
         list_invoices = invClient.list_invoices_clo('all','all')  
@@ -201,7 +202,7 @@ def invoice_rcom_upload(request):
     return result
  
 def sampleinvoice(request):
-    file_path = "dashboard/sample-invoice-xl.xlsx"
+    file_path = "'/home/ubuntu/dashboard/dashboard/sample-invoice-xl.xlsx"
     if os.path.exists(file_path):
         with open(file_path, 'rb') as fh:
             response = HttpResponse(fh.read(), content_type="application/vnd.ms-excel")
