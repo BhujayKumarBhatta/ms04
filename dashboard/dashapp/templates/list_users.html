@@ -215,9 +215,7 @@
 </div>
 {% elif list_org is not null %}
 <!--organizations-->
-    {% if list_org is not null %}
-        list of oranizations : {{ list_org }}
-    {% endif %}
+
 
 <div class="table-wrapper">
     <div class="table-title">
@@ -253,11 +251,11 @@
     </table>
 </div>
 
-
+RESULT : {{ list_org }}
 
 {% elif list_dept is not null %}
 <!--Department-->
-        list of Department : {{ list_dept }}
+
 
 
 <div class="table-wrapper">
@@ -277,9 +275,9 @@
             </tr>
         </thead>
         <tbody>
-            {% for org in list_dept %}
+            {% for dpt in list_dept %}
             <tr style="font-size:11px">
-                <td>{{ org.name  }}</td>
+                <td>{{ dpt.status.name  }}</td>
                 <td>
                     <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
                     <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
@@ -289,6 +287,7 @@
             {% endfor %}
         </tbody>
     </table>
+    RESULT : {{ list_dept }}
 </div>
 
 
@@ -365,7 +364,7 @@
 </div>
 {% endif %}
 
- 
+
 
 <!--<table>
 
