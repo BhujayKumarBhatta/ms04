@@ -207,7 +207,12 @@ def sampleinvoice(request):
         with open(file_path, 'rb') as fh:
             response = HttpResponse(fh.read(), content_type="application/vnd.ms-excel")
             response['Content-Disposition'] = 'inline; filename=' + os.path.basename(file_path)
-            return response
+            tlclient = tllogin.prep_tlclient_from_session(request)
+            invClient = MSClient(tlclient) 
+            list_invoices = invClient.list_invoices_clo('all','all')  
+            template_data = {"list_invoices": list_invoices } 
+            result = render(request, 'home.html', template_data)        
+            return result
     raise Http404
 
 # 
