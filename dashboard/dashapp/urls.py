@@ -33,6 +33,7 @@ urlpatterns = [path('', views.login, name='login'),
     path('list_role', views.list_role, name='list_role'),
     path('list_ou', views.list_ou, name='list_ou'),
     #Invoice
+    path('sampleinvoice', views.sampleinvoice, name='sampleinvoice'),
     path('list_invoices', views.list_invoices, name='list_invoices'),
     path('list_invoices_rcom', views.list_invoices_rcom, name='list_invoices_rcom'),    
     path('invoice_upload', views.invoice_upload, name='invoice_upload'),

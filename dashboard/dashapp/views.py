@@ -100,6 +100,10 @@ def invoice_rcom_upload(request):
     result = tspinv.invoice_rcom_upload(request)    
     return result
 
+def sampleinvoice(request):
+    result = tspinv.sampleinvoice(request)    
+    return result
+
 
 def list_test(request):
     result = linkv.list_test(request)  

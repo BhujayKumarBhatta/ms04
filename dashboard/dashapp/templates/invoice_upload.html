@@ -1,4 +1,14 @@
 {% block content %}
+<style>
+    .btn {
+        background-color: DodgerBlue;
+        border: none;
+        color: white;
+        padding: 12px 30px;
+        cursor: pointer;
+        font-size: 20px;
+    }
+</style>
 <div class="table-wrapper">
     <div class="table-title">
         <div class="row">
@@ -13,7 +23,7 @@
                 {% if UPLOAD_RESULT is not null %}
                 <div class="alert alert-success" role="alert">
                     Invoice file Upload is successfull.<br />
-                    
+
                 </div>
                 {% elif EXCEPTION is not null %}
                 <div class="alert alert-danger" role="alert">
@@ -27,6 +37,8 @@
         </tr>
     </table>
 
+
+    <button class="btn"><i class="fa fa-download" ></i> Download</button>
 
     <form method="post" class="md-form" enctype="multipart/form-data">
         {% csrf_token %}

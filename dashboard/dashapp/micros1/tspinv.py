@@ -200,6 +200,15 @@ def invoice_rcom_upload(request):
         result = render(request, 'home.html', template_data) 
     return result
 
+def sampleinvoice(request):
+    file_path = "dashboard/sample-invoice-xl.xlsx"
+    if os.path.exists(file_path):
+        with open(file_path, 'rb') as fh:
+            response = HttpResponse(fh.read(), content_type="application/vnd.ms-excel")
+            response['Content-Disposition'] = 'inline; filename=' + os.path.basename(file_path)
+            return response
+    raise Http404
+
 # 
 # 
 # ## Upload Invoice******
@@ -247,3 +256,5 @@ def invoice_rcom_upload(request):
 # #        uploaded_file_url = fs.url(filename)
 # #        return render(request, 'simple_upload.html', {'uploaded_file_url': uploaded_file_url})
 # #    return render(request, 'simple_upload.html')
+
+
