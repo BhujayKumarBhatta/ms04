@@ -359,11 +359,11 @@
                     <td colspan="18">
                         <div class="form-group">
                             <table style="padding-left:150px;font-size:11px" border="1" width="800">
-                                <thead style="height:50px;font-size:12x;background-color:darkcyan;color:white" >
-                                <th></th>
-                                <th>Recommondations</th>
-                                <th>TSP Entry</th>
-                                </thead>
+                                <tr style="height:50px;font-size:12x;background-color:darkcyan;color:white">
+                                    <th></th>
+                                    <th>Recommondations</th>
+                                    <th>TSP Entry</th>
+                                </tr>
                                 <tbody>
                                     <tr>
                                         <th width="150px">Invoice Number</th>
@@ -726,14 +726,18 @@
                                     <tr>
                                         <th></th>
                                         <th>
-                                            <button class="btn btn-primary"  style="float:left;width:250px"
+                                            <button class="btn btn-primary" style="float:left;width:200px"
                                                     onclick="return confirm('Are you sure? you want to Accept Changes from Recomndations.\n This will Overwrite and further changes will not be allowed.')"
-                                                    type="submit" >
+                                                    type="submit">
                                                 Accept Invoice
                                             </button>
                                         </th>
-                                        <th><button type="submit" class="btn btn-info"  style="float:left;width:250px"
-                                                      onclick="return confirm('Are you sure? you want to Save Changes.')">Save Invoice </button></th>
+                                        <th>
+                                            <button type="submit" class="btn btn-info" style="float:left;width:200px"
+                                                    onclick="return confirm('Are you sure? you want to Save Changes.')">
+                                                Save Invoice
+                                            </button>
+                                        </th>
                                     </tr>
                                     <!--{%endif%}-->
                                 </tbody>
@@ -818,6 +822,8 @@
     </form>
     {{DELETE_STATUS}}
 </div>
+
+
 
 <!--{{list_invoices}}-->
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
