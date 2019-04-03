@@ -38,7 +38,7 @@ def list_invoices(request):
         my_list = [invoicenum] 
         accept_recomondation = invClient.accept_recom(my_list)
         list_invoices = invClient.list_invoices_clo('all','all')
-        #message = json.dumps(list_invoices)
+        message = json.dumps(list_invoices)
         list_invoices = json.loads(message)
         template_data = {"list_invoices": list_invoices ,"ACCEPT_RCOM" : accept_recomondation} 
         result = render(request, 'home.html', template_data)        
