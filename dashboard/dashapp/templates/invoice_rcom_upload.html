@@ -110,9 +110,7 @@
     {% endblock %}
 
 
-    UPLOAD_RESULT -- {{UPLOAD_RESULT}}
-    UPLOAD_UPDATE_STATUS -- {{UPLOAD_UPDATE_STATUS}}
-    List ---   {{ UPLOAD_UPDATE_STATUS|make_list }}
+
     <!--['11111111111 skipped, no changes to update'
     , '22222222222 skipped, no changes to update'
     , '3333333333 skipped, no changes to update'
@@ -141,3 +139,7 @@
     , '452748796 skipped, no changes to update'
     , '769680 skipped, no changes to update']-->
 </div>
+
+UPLOAD_RESULT -> {{UPLOAD_RESULT}}
+UPLOAD_UPDATE_STATUS -> {{UPLOAD_UPDATE_STATUS}}
+List ->   {{ UPLOAD_UPDATE_STATUS|make_list }}
