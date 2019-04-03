@@ -724,15 +724,17 @@
                                     </tr>
                                     <!--{% if Inv.current_doc.status != 'tspAccepted'%}-->
                                     <tr>
-                                        <th colspan="2" align="right">
+                                        <th></th>
+                                        <th  >
                                             
-                                            <button class="btn btn-primary" align="middle" style="float: right;"
+                                            <button class="btn btn-primary"  style="float:left;"
                                                     onclick="return confirm('Are you sure? you want to Accept Changes from Recomndations.\n This will Overwrite and further changes will not be allowed.')"
                                                     type="submit">
                                                 Accept Invoice
                                             </button>
                                         </th>
-                                        <th align="right"><button type="submit" class="btn btn-info" onclick="return confirm('Are you sure? you want to Save Changes.')">Save Invoice </button></th>
+                                        <th  ><button type="submit" class="btn btn-info"  style="float:left;"
+                                                      onclick="return confirm('Are you sure? you want to Save Changes.')">Save Invoice </button></th>
                                     </tr>
                                     <!--{%endif%}-->
                                 </tbody>
