@@ -236,7 +236,7 @@
         <tbody>
             {% for org in list_org %}
             <tr style="font-size:11px">
-                <td>{{ org.name  }}</td>                
+                <td>{{ org.name  }}</td>
                 <td>
                     <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
                     <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
@@ -248,7 +248,7 @@
     </table>
 </div>
 {{ list_org.status.name }}
- 
+
 RESULT : {{ list_org }}
 
 {% elif list_dept is not null %}
@@ -362,6 +362,9 @@ RESULT : {{ list_org }}
 </div>
 {% endif %}
 
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Open modal for @mdo</button>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@fat">Open modal for @fat</button>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Open modal for @getbootstrap</button>
 
 
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -430,8 +433,6 @@ RESULT : {{ list_org }}
 
 
 <h4> Home Page  href link</h4>-->
-
-
 <!--<div class="table-responsive">
     <div class="tim-row" id="tutorial">
         <h4 class="text-left">List of Users</h4>
@@ -468,5 +469,3 @@ RESULT : {{ list_org }}
         </tbody>
     </table>
 </div>-->
-
-
