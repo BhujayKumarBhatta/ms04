@@ -670,7 +670,7 @@
                         {% elif list_invoices is not null and IS_RCOM is not null %}
                         {% include 'invoicelist_recom.html' %}
 
-                        {% elif VIEW_CREATE_INVOICE is  %}
+                        {% elif VIEW_CREATE_INVOICE is not null %}
                         {% include 'invoice_create.html' %}
 
                         {% elif PO is not null %}
