@@ -78,7 +78,26 @@ def view_upload(request):
         result = render(request, 'home.html', template_data)        
         return result
 
-
+def invoice_create(request):
+    try:
+        if request.method == 'POST':
+            #Calling Micrios client t Upload to DB
+            tlclient = tllogin.prep_tlclient_from_session(request)
+            ms1Client = MSClient(tlclient)            
+            template_data = extractInvoice(request,Newinvoice)
+            if template_data.INVOICE.OBJ is not null:
+                create_result = ms1Client.create_invoice_list(Newinvoice)      
+                create_result_dump = json.dumps(create_result)
+                create_result_load = json.loads(message)   
+                template_data = { "VIEW_CREATE_INVOICE": "TRUE" ,"INVOICE_CREATE_STATUS" : message,"INVOICE_CREATE_RESULT" : create_result_load}
+                result = render(request, 'invoice_create.html',template_data,)
+        if request.method == 'GET':          
+            template_data = {"VIEW_CREATE_INVOICE": "TRUE" }  
+            result = render(request, 'invoice_create.html', template_data) 
+    except Exception as exception:
+        template_data = {"VIEW_CREATE_INVOICE": "TRUE","EXCEPTION" :exception,"EXCEPTION_INFO" : sys.exc_info()[0] }  
+        result = render(request, 'list_invoices.html', template_data) 
+    return result
 
 def invoice_upload(request):
     try:
@@ -200,7 +219,49 @@ def invoice_rcom_upload(request):
         template_data = {"VIEW_RCOM_UPLOAD": "from view upload","EXCEPTION" :exception,"EXCEPTION_INFO" : sys.exc_info()[0] }  
         result = render(request, 'home.html', template_data) 
     return result
+
+
+def extractInvoice(request):
+    try:
+        Newinvoice=  { 'state': '','arc': '','billingdateto': '', 'remarks': '', 'fullsiteaddress': '', 'customerid': '', 
+                        'servicetype': '', 'billingdatefrom': '', 'speed': '', 'division': '', 'taxname': '', 'total': '', 
+                        'accountno': '', 'pin': '', 'circuitid': '', 'invoicedate': '', 'invoiceno': '', 'siteid': '', 'gstno': '', 
+                        'premiseno': '', 'city': '', 'tsp': '', 'customername': '', 'slno': 1,  'premisename': ''  }
+
+        if request.method == 'GET':  
+            Newinvoice['state'] = request.POST['state']
+            Newinvoice['arc'] = request.POST['arc']
+            Newinvoice['billingdateto'] = request.POST['billingdateto']
+            Newinvoice['remarks'] = request.POST['remarks']
+            Newinvoice['fullsiteaddress'] = request.POST['fullsiteaddress']
+            Newinvoice['customerid'] = request.POST['customerid']
+            Newinvoice['servicetype'] = request.POST['servicetype']
+            Newinvoice['billingdatefrom'] = request.POST['billingdatefrom']
+            Newinvoice['speed'] = request.POST['speed']
+            Newinvoice['division'] = request.POST['division']
+            Newinvoice['taxname'] = request.POST['taxname']
+            Newinvoice['total'] = request.POST['total']
+            Newinvoice['accountno'] = request.POST['accountno']
+            Newinvoice['pin'] = request.POST['pin']
+            Newinvoice['circuitid'] = request.POST['circuitid']
+            Newinvoice['invoicedate'] = request.POST['invoicedate']
+            Newinvoice['invoiceno'] = request.POST['invoiceno']
+            Newinvoice['siteid'] = request.POST['siteid']
+            Newinvoice['gstno'] = request.POST['gstno']
+            Newinvoice['premiseno'] = request.POST['premiseno']
+            Newinvoice['city'] = request.POST['city']
+            Newinvoice['tsp'] = request.POST['tsp']
+            Newinvoice['slno'] = request.POST['slno']
+            Newinvoice['premisename'] = request.POST['premisename']
+            template_data = {"STATUS": "EXTRACTED","INVOICE_OBJ":Newinvoice}
+            result = template_data             
+    except Exception as exception:
+            template_data = {"STATUS": "There is an error while retriving Object","EXCEPTION" :exception,"EXCEPTION_INFO" : sys.exc_info()[0] }  
+            result = template_data 
+    return result
  
+
+             
  
  
 # 
