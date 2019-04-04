@@ -601,7 +601,7 @@
                                                 <li><a href="{% url 'dashapp:invoice_update_upload'  %}"> Update Invoice Upload</a></li>
                                                 <li><a href="{% url 'dashapp:invoice_rcom_upload'  %}"> Recommend Invoice Upload</a></li>
                                                 <!--<li><a href="{% url 'dashapp:list_invoices_rcom'  %}"> List Invoice Recommendations  </a></li>-->
-                                                <li><a href="{% url 'dashapp:add_model'  %}"> Add Invoice  </a></li>
+                                                <li><a href="{% url 'dashapp:invoice_create'  %}"> Add Invoice  </a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -670,7 +670,8 @@
                         {% elif list_invoices is not null and IS_RCOM is not null %}
                         {% include 'invoicelist_recom.html' %}
 
-
+                        {% elif VIEW_CREATE_INVOICE is  %}
+                        {% include 'invoice_create.html' %}
 
                         {% elif PO is not null %}
                         {% include 'ManageUser.html' %}

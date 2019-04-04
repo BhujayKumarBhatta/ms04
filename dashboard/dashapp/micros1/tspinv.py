@@ -96,7 +96,7 @@ def invoice_create(request):
             result = render(request, 'invoice_create.html', template_data) 
     except Exception as exception:
         template_data = {"VIEW_CREATE_INVOICE": "TRUE","EXCEPTION" :exception,"EXCEPTION_INFO" : sys.exc_info()[0] }  
-        result = render(request, 'list_invoices.html', template_data) 
+        result = render(request, 'invoice_create.html', template_data) 
     return result
 
 def invoice_upload(request):

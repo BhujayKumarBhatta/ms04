@@ -41,7 +41,8 @@ urlpatterns = [path('', views.login, name='login'),
     path('invoice_update_upload', views.invoice_update_upload, name='invoice_update_upload')
     ,path('invoice_rcom_upload', views.invoice_rcom_upload, name='invoice_rcom_upload')
     ,path('add_model', views.add_model, name='add_model')    
-    ,path('invoice_delete', views.invoice_delete, name='invoice_delete')]
+    ,path('invoice_delete', views.invoice_delete, name='invoice_delete')
+    ,path('invoice_create', views.invoice_create, name='invoice_create')]
 
 
 
