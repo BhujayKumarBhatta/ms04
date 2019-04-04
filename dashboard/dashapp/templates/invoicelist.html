@@ -219,58 +219,7 @@
         modal.find('.modal-body input').val(recipient)
     })
 
-    $(document).ready(function () {
-        $('[data-toggle="tooltip"]').tooltip();
-        var actions = $("table td:last-child").html();
-        // Append table with add row form on add new button click
-        $(".add-new").click(function () {
-            $(this).attr("disabled", "disabled");
-            var index = $("table tbody tr:last-child").index();
-            var row = '<tr>' +
-                '<td><input type="text" class="form-control" name="name" id="name"></td>' +
-                '<td><input type="text" class="form-control" name="department" id="department"></td>' +
-                '<td><input type="text" class="form-control" name="phone" id="phone"></td>' +
-                '<td>' + actions + '</td>' +
-                '</tr>';
-            $("table").append(row);
-            $("table tbody tr").eq(index + 1).find(".add, .edit").toggle();
-            $('[data-toggle="tooltip"]').tooltip();
-        });
-        // Add row on add button click
-        $(document).on("click", ".add", function () {
-            var empty = false;
-            var input = $(this).parents("tr").find('input[type="text"]');
-            input.each(function () {
-                if (!$(this).val()) {
-                    $(this).addClass("error");
-                    empty = true;
-                } else {
-                    $(this).removeClass("error");
-                }
-            });
-            $(this).parents("tr").find(".error").first().focus();
-            if (!empty) {
-                input.each(function () {
-                    $(this).parent("td").html($(this).val());
-                });
-                $(this).parents("tr").find(".add, .edit").toggle();
-                $(".add-new").removeAttr("disabled");
-            }
-        });
-        // Edit row on edit button click
-        $(document).on("click", ".edit", function () {
-            $(this).parents("tr").find("td:not(:last-child)").each(function () {
-                $(this).html('<input type="text" class="form-control" value="' + $(this).text() + '">');
-            });
-            $(this).parents("tr").find(".add, .edit").toggle();
-            $(".add-new").attr("disabled", "disabled");
-        });
-        // Delete row on delete button click
-        $(document).on("click", ".delete", function () {
-            $(this).parents("tr").remove();
-            $(".add-new").removeAttr("disabled");
-        });
-    });
+    
 </script>
 
 
@@ -280,7 +229,125 @@
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@fat">Open modal for @fat</button>
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Open modal for @getbootstrap</button>
 
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Create Invoice</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">TSP:</label>
+                        <input type="text" class="form-control" id="tsp">
+                    </div>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">servicetype:</label>
+                        <input type="text" class="form-control" id="servicetype">
+                    </div>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">accountno:</label>
+                        <input type="text" class="form-control" id="accountno">
+                    </div>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">circuitid:</label>
+                        <input type="text" class="form-control" id="circuitid">
+                    </div>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">slno:</label>
+                        <input type="text" class="form-control" id="slno">
+                    </div>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">ARC:</label>
+                        <input type="text" class="form-control" id="arc">
+                    </div>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Site ID:</label>
+                        <input type="text" class="form-control" id="customerid">
+                    </div>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Customer ID:</label>
+                        <input type="text" class="form-control" id="customerid">
+                    </div>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Premise Number:</label>
+                        <input type="text" class="form-control" id="premiseno">
+                    </div>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Premise Name:</label>
+                        <input type="text" class="form-control" id="premisename">
+                    </div>
 
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">customername:</label>
+                        <input type="text" class="form-control" id="customername">
+                    </div>
+                    <div class="form-group">
+                        <label for="message-text" class="col-form-label">division:</label>
+                        <textarea class="form-control" id="division"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Full Site Address:</label>
+                        <input type="text" class="form-control" id="fullsiteaddress">
+                    </div>
+                    <div class="form-group">
+                        <label for="message-text" class="col-form-label">State:</label>
+                        <input class="form-control" id="state" />
+                    </div>
+                    <div class="form-group">
+                        <label for="message-text" class="col-form-label">PIN:</label>
+                        <input class="form-control" id="pin" />
+                    </div>
+                    <div class="form-group">
+                        <label for="message-text" class="col-form-label">City:</label>
+                        <input class="form-control" id="city" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message-text" class="col-form-label">Speed:</label>
+                        <input class="form-control" id="speed" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message-text" class="col-form-label">GST Number:</label>
+                        <input class="form-control" id="gstno" />
+                    </div>
+                    <div class="form-group">
+                        <label for="message-text" class="col-form-label">Tax Name:</label>
+                        <input class="form-control" id="taxname" />
+                    </div>
+                    <div class="form-group">
+                        <label for="message-text" class="col-form-label">Total:</label>
+                        <input class="form-control" id="total" />
+                    </div>
+                    <div class="form-group">
+                        <label for="message-text" class="col-form-label">Invoice Date:</label>
+                        <input class="form-control" id="invoicedate" />
+                    </div>
+                    <div class="form-group">
+                        <label for="message-text" class="col-form-label">Billingdate From:</label>
+                        <input class="form-control" id="billingdatefrom" />
+                    </div>
+                    <div class="form-group">
+                        <label for="message-text" class="col-form-label">Billingdate To:</label>
+                        <input class="form-control" id="billingdateto" />
+                    </div>
+                    <div class="form-group">
+                        <label for="message-text" class="col-form-label">Remarks:</label>
+                        <input class="form-control" id="remarks" />
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save Invoice</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 
@@ -846,125 +913,7 @@
 </div>
 
 
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Create Invoice</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form>
-                    <div class="form-group">
-                        <label for="recipient-name" class="col-form-label">TSP:</label>
-                        <input type="text" class="form-control" id="tsp">
-                    </div>
-                    <div class="form-group">
-                        <label for="recipient-name" class="col-form-label">servicetype:</label>
-                        <input type="text" class="form-control" id="servicetype">
-                    </div>
-                    <div class="form-group">
-                        <label for="recipient-name" class="col-form-label">accountno:</label>
-                        <input type="text" class="form-control" id="accountno">
-                    </div>
-                    <div class="form-group">
-                        <label for="recipient-name" class="col-form-label">circuitid:</label>
-                        <input type="text" class="form-control" id="circuitid">
-                    </div>
-                    <div class="form-group">
-                        <label for="recipient-name" class="col-form-label">slno:</label>
-                        <input type="text" class="form-control" id="slno">
-                    </div>
-                    <div class="form-group">
-                        <label for="recipient-name" class="col-form-label">ARC:</label>
-                        <input type="text" class="form-control" id="arc">
-                    </div>
-                    <div class="form-group">
-                        <label for="recipient-name" class="col-form-label">Site ID:</label>
-                        <input type="text" class="form-control" id="customerid">
-                    </div>
-                    <div class="form-group">
-                        <label for="recipient-name" class="col-form-label">Customer ID:</label>
-                        <input type="text" class="form-control" id="customerid">
-                    </div>
-                    <div class="form-group">
-                        <label for="recipient-name" class="col-form-label">Premise Number:</label>
-                        <input type="text" class="form-control" id="premiseno">
-                    </div>
-                    <div class="form-group">
-                        <label for="recipient-name" class="col-form-label">Premise Name:</label>
-                        <input type="text" class="form-control" id="premisename">
-                    </div>
 
-                    <div class="form-group">
-                        <label for="recipient-name" class="col-form-label">customername:</label>
-                        <input type="text" class="form-control" id="customername">
-                    </div>
-                    <div class="form-group">
-                        <label for="message-text" class="col-form-label">division:</label>
-                        <textarea class="form-control" id="division"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="recipient-name" class="col-form-label">Full Site Address:</label>
-                        <input type="text" class="form-control" id="fullsiteaddress">
-                    </div>
-                    <div class="form-group">
-                        <label for="message-text" class="col-form-label">State:</label>
-                        <input class="form-control" id="state" />
-                    </div>
-                    <div class="form-group">
-                        <label for="message-text" class="col-form-label">PIN:</label>
-                        <input class="form-control" id="pin" />
-                    </div>
-                    <div class="form-group">
-                        <label for="message-text" class="col-form-label">City:</label>
-                        <input class="form-control" id="city" />
-                    </div>
-
-                    <div class="form-group">
-                        <label for="message-text" class="col-form-label">Speed:</label>
-                        <input class="form-control" id="speed" />
-                    </div>
-
-                    <div class="form-group">
-                        <label for="message-text" class="col-form-label">GST Number:</label>
-                        <input class="form-control" id="gstno" />
-                    </div>
-                    <div class="form-group">
-                        <label for="message-text" class="col-form-label">Tax Name:</label>
-                        <input class="form-control" id="taxname" />
-                    </div>
-                    <div class="form-group">
-                        <label for="message-text" class="col-form-label">Total:</label>
-                        <input class="form-control" id="total" />
-                    </div>
-                    <div class="form-group">
-                        <label for="message-text" class="col-form-label">Invoice Date:</label>
-                        <input class="form-control" id="invoicedate" />
-                    </div>
-                    <div class="form-group">
-                        <label for="message-text" class="col-form-label">Billingdate From:</label>
-                        <input class="form-control" id="billingdatefrom" />
-                    </div>
-                    <div class="form-group">
-                        <label for="message-text" class="col-form-label">Billingdate To:</label>
-                        <input class="form-control" id="billingdateto" />
-                    </div>
-                    <div class="form-group">
-                        <label for="message-text" class="col-form-label">Remarks:</label>
-                        <input class="form-control" id="remarks" />
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save Invoice</button>
-            </div>
-        </div>
-    </div>
-</div>
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <!--<div class="container">
