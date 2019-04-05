@@ -91,7 +91,7 @@ def invoice_create(request):
                 create_result = ms1Client.create_invoice_list(Newinvoice)      
                 create_result_dump = json.dumps(create_result)
                 create_result_load = json.loads(message)   
-                template_data = { "VIEW_CREATE_INVOICE": "TRUE" ,"INVOICE_CREATE_STATUS" : message,"INVOICE_CREATE_RESULT" : create_result_load,'CREATE_INVOICE_FORM': form}
+                template_data = { "VIEW_CREATE_INVOICE": "TRUE" ,"INVOICE_CREATE_STATUS" : create_result_load,"INVOICE_CREATE_RESULT" : create_result_load,'CREATE_INVOICE_FORM': form}
                 result = render(request, 'home.html',template_data,)
         if request.method == 'GET':          
             template_data = {"VIEW_CREATE_INVOICE": "TRUE",'CREATE_INVOICE_FORM': form }  

@@ -488,10 +488,10 @@
         </script>
     </head>
     <body>
-        {{INVOICE_CREATE_STATUS}}
-        {{INVOICE_CREATE_RESULT}}
+        {{VIEW_CREATE_INVOICE}}
+        
         {{template_data}}
-        <form action="{% url 'dashapp:invoice_create' %}" method="get" enctype="multipart/form-data">
+        <form action="{% url 'dashapp:invoice_create' %}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="page-header">
                 <h3><a href="/">Create Invoice </a></h3>
@@ -512,7 +512,7 @@
                                 onclick="return confirm('Are you sure? you want to save Invoice.')"
                                 style="width:200px">
                             Save Invoices
-                        </button>                        
+                        </button>
                     </div>
                 </div>
             </div>
