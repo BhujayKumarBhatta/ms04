@@ -93,10 +93,10 @@ def invoice_create(request):
                 result = render(request, 'home.html',template_data,)
         if request.method == 'GET':          
             template_data = {"VIEW_CREATE_INVOICE": "TRUE" }  
-            result = render(request, 'invoice_create.html', template_data) 
+            result = render(request, 'invoicetemplate.html', template_data) 
     except Exception as exception:
         template_data = {"VIEW_CREATE_INVOICE": "TRUE","EXCEPTION" :exception,"EXCEPTION_INFO" : sys.exc_info()[0] }  
-        result = render(request, 'home.html', template_data) 
+        result = render(request, 'invoicetemplate.html', template_data) 
     return result
 
 def invoice_upload(request):
