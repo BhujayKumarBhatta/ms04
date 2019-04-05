@@ -97,6 +97,8 @@ def invoice_create(request):
                 #create_result_dump = json.dumps(create_result)
                 #create_result_load = json.loads(message)
                 #template_data = {"METHOD":METHOD, "VIEW_CREATE_INVOICE":
+                #"TRUE","EXTRACTED":extractedInvoice,"INVOICE_CREATE_RESULT" :create_result_load}
+                template_data = {"METHOD":METHOD, "VIEW_CREATE_INVOICE":
                 "TRUE","EXTRACTED":extractedInvoice}
             #result = render(request, 'home.html',{"METHOD":METHOD, "VIEW_CREATE_INVOICE": "TRUE","EXTRACTED":extractedInvoice})
             result = render(request, 'home.html',template_data)
