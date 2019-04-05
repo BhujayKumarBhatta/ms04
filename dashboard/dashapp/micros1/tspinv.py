@@ -93,11 +93,11 @@ def invoice_create(request):
             Newinvoice == json.dumps(extractedInvoice)
 
             if Newinvoice is not null:
-                create_result = ms1Client.create_invoice_list(Newinvoice)
-                create_result_dump = json.dumps(create_result)
-                create_result_load = json.loads(message)
-                template_data = {"METHOD":METHOD, "VIEW_CREATE_INVOICE":
-                "TRUE","EXTRACTED":extractedInvoice,"INVOICE_CREATE_RESULT" :create_result_load}
+                #create_result = ms1Client.create_invoice_list(Newinvoice)
+                #create_result_dump = json.dumps(create_result)
+                #create_result_load = json.loads(message)
+                #template_data = {"METHOD":METHOD, "VIEW_CREATE_INVOICE":
+                "TRUE","EXTRACTED":extractedInvoice}
             #result = render(request, 'home.html',{"METHOD":METHOD, "VIEW_CREATE_INVOICE": "TRUE","EXTRACTED":extractedInvoice})
             result = render(request, 'home.html',template_data)
         if request.method == 'GET':
