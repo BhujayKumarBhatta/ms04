@@ -232,7 +232,7 @@ def invoice_rcom_upload(request):
 
 def extractInvoice(request):
     try:
-        invoice = dict({ "state": "","arc": "","billingdateto": "", "remarks": "", "fullsiteaddress": "", "customerid": "", 
+        dictinvoice = dict({ "state": "","arc": "","billingdateto": "", "remarks": "", "fullsiteaddress": "", "customerid": "", 
                    "servicetype": "", "billingdatefrom": "", "speed": "", "division": "", "taxname": "", "total": "", 
                    "accountno": "", "pin": "", "circuitid": "", "invoicedate": "", "invoiceno": "", "siteid": "", "gstno": "", 
                    "premiseno": "", "city": "", "tsp": "", "customername": "", "slno": "",  "premisename": "" 
@@ -241,9 +241,9 @@ def extractInvoice(request):
         if request.method == 'POST':
             #request.POST.get('is_private', False)
 
-            invoice["invoiceno"] = request.POST.get("invoiceno")
-            invoice["circuitid"] = request.POST("circuitid")
-            invoice["division"] = request.POST("division")
+            dictinvoice["invoiceno"] = request.POST.get("invoiceno")
+            dictinvoice["circuitid"] = request.POST("circuitid")
+            dictinvoice["division"] = request.POST("division")
             #Newinvoice['billingdateto'] = request.POST['billingdateto']
             #Newinvoice['remarks'] = request.POST['remarks']
             #Newinvoice['fullsiteaddress'] = request.POST['fullsiteaddress']
@@ -266,7 +266,7 @@ def extractInvoice(request):
             #Newinvoice['tsp'] = request.POST['tsp']
             #Newinvoice['slno'] = request.POST['slno']
             #Newinvoice['premisename'] = request.POST['premisename']
-            template_data = {"STATUS": "EXTRACTED","INVOICE_OBJ":invoice}
+            template_data = {"STATUS": "EXTRACTED","INVOICE_OBJ":dictinvoice}
             result = template_data             
     except Exception as exception:
             template_data = {"STATUS": "There is an error while retriving Object","EXCEPTION" :exception,"EXCEPTION_INFO" : sys.exc_info()[0] }  
