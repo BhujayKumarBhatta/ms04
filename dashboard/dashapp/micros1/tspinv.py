@@ -91,8 +91,13 @@ def invoice_create(request):
             #dictionary to 
             #extractInvoice.INVOICE_OBJ.items()
             #Newinvoice == json.dumps(extractedInvoice.INVOICE_OBJ)
-            if extractedInvoice is not null:
-                create_result = ms1Client.create_invoice_list(extractInvoice)
+            dictinvoice = dict({ "state": "","arc": "","billingdateto": "", "remarks": "", "fullsiteaddress": "", "customerid": "", 
+                   "servicetype": "", "billingdatefrom": "", "speed": "", "division": "", "taxname": "", "total": "", 
+                   "accountno": "", "pin": "", "circuitid": "", "invoicedate": "", "invoiceno": "", "siteid": "", "gstno": "", 
+                   "premiseno": "", "city": "", "tsp": "", "customername": "", "slno": "",  "premisename": "" 
+                    })
+            if dictinvoice is not null:
+                create_result = ms1Client.create_invoice_list(dictinvoice)
                 create_result_dump = json.dumps(create_result)
                 create_result_load = json.loads(message)
                 template_data = {"METHOD":METHOD, "VIEW_CREATE_INVOICE":
