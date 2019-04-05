@@ -491,10 +491,11 @@
 
         {{INVOICE_CREATE_RESULT}}<br />
         {{template_data}}<br />
-         
+
         {{METHOD}}<br />
         {{EXTRACTED}}
-        
+        {{EXCEPTION}}
+        {{EXCEPTION_INFO}}
         <form method="post" enctype="multipart/form-data" class="form-horizontal">
             {% csrf_token %}
 
