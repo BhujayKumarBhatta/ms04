@@ -488,13 +488,14 @@
         </script>
     </head>
     <body>
-        
 
+        {{INVOICE_CREATE_RESULT}}
         {{template_data}}
         {{extractedInvoice}}
 
         <form action="{% url 'dashapp:invoice_create' %}" method="post" enctype="multipart/form-data" class="form-horizontal">
-            {% csrf_token %}            
+            {% csrf_token %}
+
             <div class="page-header">
                 <h3><a href="/">Create Invoice </a></h3>
             </div>
