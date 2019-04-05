@@ -491,6 +491,7 @@
         {{VIEW_CREATE_INVOICE}}
 
         {{template_data}}
+        {{extractedInvoice}}
 
         <form action="{% url 'dashapp:invoice_create' %}" method="post" enctype="multipart/form-data" class="form-horizontal">
             {% csrf_token %}
