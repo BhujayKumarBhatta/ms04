@@ -91,8 +91,8 @@ def invoice_create(request):
             #dictionary to 
             #extractInvoice.INVOICE_OBJ.items()
             #Newinvoice == json.dumps(extractedInvoice.INVOICE_OBJ)
-            if extractedInvoice is not null:
-                create_result = ms1Client.create_invoice_list(extractInvoice.INVOICE_OBJ.items())
+            if extractedInvoice.INVOICE_OBJ is not null:
+                create_result = ms1Client.create_invoice_list(extractInvoice)
                 create_result_dump = json.dumps(create_result)
                 create_result_load = json.loads(message)
                 template_data = {"METHOD":METHOD, "VIEW_CREATE_INVOICE":
