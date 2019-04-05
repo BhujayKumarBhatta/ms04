@@ -88,12 +88,13 @@ def invoice_create(request):
             tlclient = tllogin.prep_tlclient_from_session(request)
             ms1Client = MSClient(tlclient)            
             extractedInvoice = extractInvoice(request)
+
             #if extractedInvoice is not null:
             #    create_result = ms1Client.create_invoice_list(Newinvoice)
             #    create_result_dump = json.dumps(create_result)
             #    create_result_load = json.loads(message)
             #template_data = {"METHOD":METHOD, "VIEW_CREATE_INVOICE": "TRUE","extractedInvoice":extractedInvoice ,"INVOICE_CREATE_RESULT" : create_result_load,'CREATE_INVOICE_FORM': form}
-            result = render(request, 'home.html',{"METHOD":METHOD, "VIEW_CREATE_INVOICE": "TRUE"})
+            result = render(request, 'home.html',{"METHOD":METHOD, "VIEW_CREATE_INVOICE": "TRUE","EXTRACTED":extractedInvoice})
         if request.method == 'GET':
             METHOD="GET"
             #template_data = {"METHOD":METHOD,"VIEW_CREATE_INVOICE": "TRUE",'CREATE_INVOICE_FORM': form }  
@@ -233,9 +234,9 @@ def extractInvoice(request):
                         'premiseno': '', 'city': '', 'tsp': '', 'customername': '', 'slno': 1,  'premisename': ''  }
         createform = invoiceForm(request.POST)
         if request.method == 'POST' and createform != null:             
-            Newinvoice['invoiceno'] = createform['InvoiceNnumber'].value()
-            Newinvoice['circuitid'] = createform['CircuitID'].value()
-            Newinvoice['division'] = createform['Division'].value()
+            Newinvoice['invoiceno'] = createform['invoiceno'].value()
+            Newinvoice['circuitid'] = createform['circuitid'].value()
+            Newinvoice['division'] = createform['division'].value()
             #Newinvoice['billingdateto'] = request.POST['billingdateto']
             #Newinvoice['remarks'] = request.POST['remarks']
             #Newinvoice['fullsiteaddress'] = request.POST['fullsiteaddress']
