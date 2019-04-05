@@ -80,6 +80,7 @@ def view_upload(request):
 
 def invoice_create(request):
     try:
+        form = invoiceForm()
         if request.method == 'POST':
             #Calling Micrios client t Upload to DB
             tlclient = tllogin.prep_tlclient_from_session(request)
@@ -90,12 +91,12 @@ def invoice_create(request):
                 create_result_dump = json.dumps(create_result)
                 create_result_load = json.loads(message)   
                 template_data = { "VIEW_CREATE_INVOICE": "TRUE" ,"INVOICE_CREATE_STATUS" : message,"INVOICE_CREATE_RESULT" : create_result_load}
-                result = render(request, 'home.html',template_data,)
+                result = render(request, 'home.html',template_data,{'CREATE_INVOICE_FORM': form})
         if request.method == 'GET':          
             template_data = {"VIEW_CREATE_INVOICE": "TRUE" }  
             result = render(request, 'invoicetemplate.html', template_data) 
     except Exception as exception:
-        template_data = {"VIEW_CREATE_INVOICE": "TRUE","EXCEPTION" :exception,"EXCEPTION_INFO" : sys.exc_info()[0] }  
+        template_data = {"VIEW_CREATE_INVOICE": "TRUE","EXCEPTION" :exception,"EXCEPTION_INFO" : sys.exc_info()[0],{'CREATE_INVOICE_FORM': form} }  
         result = render(request, 'invoicetemplate.html', template_data) 
     return result
 
