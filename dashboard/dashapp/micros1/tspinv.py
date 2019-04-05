@@ -91,7 +91,7 @@ def invoice_create(request):
             #dictionary to 
             #extractInvoice.INVOICE_OBJ.items()
             #Newinvoice == json.dumps(extractedInvoice.INVOICE_OBJ)
-            if extractedInvoice.INVOICE_OBJ is not null:
+            if extractedInvoice is not null:
                 create_result = ms1Client.create_invoice_list(extractInvoice)
                 create_result_dump = json.dumps(create_result)
                 create_result_load = json.loads(message)
@@ -244,7 +244,7 @@ def extractInvoice(request):
             dictinvoice['slno'] = request.POST.get('slno')
             dictinvoice['premisename'] = request.POST.get('premisename')
         template_data = {"STATUS": "EXTRACTED","INVOICE_OBJ":dictinvoice}
-        result = template_data             
+        result = dictinvoice             
     except Exception as exception:
             template_data = {"STATUS": "There is an error while retriving Object","EXCEPTION" :exception,"EXCEPTION_INFO" : sys.exc_info()[0] }  
             result = template_data 
