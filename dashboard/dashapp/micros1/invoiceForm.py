@@ -23,17 +23,17 @@ class invoiceForm(ModelForm):
                     ,'Remarks'
                     ,'InvoiceDate'
                     ,'ServiceType']
-        def clean(self):
-            cleaned_data = super(invoiceForm, self).clean()
-            Division = cleaned_data.get('Division')
-            TaxName = cleaned_data.get('TaxName')
-            GSTNo = cleaned_data.get('GSTNo')
-            if len(TaxName) < 5: 
-                self._errors['TaxName'] = self.error_class([ 
-                    'Minimum 5 characters required']) 
+        #def clean(self):
+        #    cleaned_data = super(invoiceForm, self).clean()
+        #    Division = cleaned_data.get('Division')
+        #    TaxName = cleaned_data.get('TaxName')
+        #    GSTNo = cleaned_data.get('GSTNo')
+        #    if len(TaxName) < 5: 
+        #        self._errors['TaxName'] = self.error_class([ 
+        #            'Minimum 5 characters required']) 
 
-            if not Division and not TaxName and not GSTNo:
-                raise forms.ValidationError('Need to write error messages accordingly.')
+        #    if not Division and not TaxName and not GSTNo:
+        #        raise forms.ValidationError('Need to write error messages accordingly.')
 
 
 
