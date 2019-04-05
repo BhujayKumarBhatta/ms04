@@ -86,8 +86,8 @@ def invoice_create(request):
             #Calling Micrios client t Upload to DB
             tlclient = tllogin.prep_tlclient_from_session(request)
             ms1Client = MSClient(tlclient)            
-            template_data = extractInvoice(request,Newinvoice)
-            if template_data.INVOICE.OBJ is not null:
+            extractedInvoice = extractInvoice(request)
+            if extractedInvoice is not null:
                 create_result = ms1Client.create_invoice_list(Newinvoice)      
                 create_result_dump = json.dumps(create_result)
                 create_result_load = json.loads(message)   
