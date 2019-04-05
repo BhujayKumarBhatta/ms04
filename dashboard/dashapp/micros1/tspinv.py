@@ -232,11 +232,11 @@ def invoice_rcom_upload(request):
 
 def extractInvoice(request):
     try:
-        invoice = { "state": "","arc": "","billingdateto": "", "remarks": "", "fullsiteaddress": "", "customerid": "", 
+        invoice = dict({ "state": "","arc": "","billingdateto": "", "remarks": "", "fullsiteaddress": "", "customerid": "", 
                    "servicetype": "", "billingdatefrom": "", "speed": "", "division": "", "taxname": "", "total": "", 
                    "accountno": "", "pin": "", "circuitid": "", "invoicedate": "", "invoiceno": "", "siteid": "", "gstno": "", 
                    "premiseno": "", "city": "", "tsp": "", "customername": "", "slno": "",  "premisename": "" 
-            }
+                    })
         #createform = invoiceForm(request.POST)
         if request.method == 'POST':
             #request.POST.get('is_private', False)
