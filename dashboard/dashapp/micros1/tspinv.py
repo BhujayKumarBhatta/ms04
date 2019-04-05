@@ -232,16 +232,18 @@ def invoice_rcom_upload(request):
 
 def extractInvoice(request):
     try:
-        Newinvoice = { "state": "","arc": "","billingdateto": "", "remarks": "", "fullsiteaddress": "", "customerid": "", 
+        invoice = { "state": "","arc": "","billingdateto": "", "remarks": "", "fullsiteaddress": "", "customerid": "", 
                    "servicetype": "", "billingdatefrom": "", "speed": "", "division": "", "taxname": "", "total": "", 
                    "accountno": "", "pin": "", "circuitid": "", "invoicedate": "", "invoiceno": "", "siteid": "", "gstno": "", 
                    "premiseno": "", "city": "", "tsp": "", "customername": "", "slno": "",  "premisename": "" 
             }
         #createform = invoiceForm(request.POST)
-        if request.method == 'POST':             
-            Newinvoice["invoiceno"] = request.POST["invoiceno"].value()
-            Newinvoice["circuitid"] = request.POST["circuitid"].value()
-            Newinvoice["division"] = request.POST["division"].value()
+        if request.method == 'POST':
+            #request.POST.get('is_private', False)
+
+            invoice["invoiceno"] = request.POST.get("invoiceno")
+            invoice["circuitid"] = request.POST("circuitid")
+            invoice["division"] = request.POST("division")
             #Newinvoice['billingdateto'] = request.POST['billingdateto']
             #Newinvoice['remarks'] = request.POST['remarks']
             #Newinvoice['fullsiteaddress'] = request.POST['fullsiteaddress']
