@@ -81,7 +81,7 @@ def view_upload(request):
 
 def invoice_create(request):
     try:
-        #form = invoiceForm() 
+        #form = invoiceForm()
         if request.method == 'POST': 
             #Calling Micrios client t Upload to DB
             METHOD = "POST"
@@ -93,11 +93,15 @@ def invoice_create(request):
             #    create_result = ms1Client.create_invoice_list(Newinvoice)
             #    create_result_dump = json.dumps(create_result)
             #    create_result_load = json.loads(message)
-            #template_data = {"METHOD":METHOD, "VIEW_CREATE_INVOICE": "TRUE","extractedInvoice":extractedInvoice ,"INVOICE_CREATE_RESULT" : create_result_load,'CREATE_INVOICE_FORM': form}
+            #template_data = {"METHOD":METHOD, "VIEW_CREATE_INVOICE":
+            #"TRUE","extractedInvoice":extractedInvoice
+            #,"INVOICE_CREATE_RESULT" :
+            #create_result_load,'CREATE_INVOICE_FORM': form}
             result = render(request, 'home.html',{"METHOD":METHOD, "VIEW_CREATE_INVOICE": "TRUE","EXTRACTED":extractedInvoice})
         if request.method == 'GET':
-            METHOD="GET"
-            #template_data = {"METHOD":METHOD,"VIEW_CREATE_INVOICE": "TRUE",'CREATE_INVOICE_FORM': form }  
+            METHOD = "GET"
+            #template_data = {"METHOD":METHOD,"VIEW_CREATE_INVOICE":
+            #"TRUE",'CREATE_INVOICE_FORM': form }
             result = render(request, 'home.html', {"METHOD":METHOD, "VIEW_CREATE_INVOICE": "TRUE"}) 
     except Exception as exception:
         template_data = {"VIEW_CREATE_INVOICE": "TRUE","EXCEPTION" :exception,"EXCEPTION_INFO" : sys.exc_info()[0]}  
@@ -229,9 +233,10 @@ def invoice_rcom_upload(request):
 def extractInvoice(request):
     try:
         Newinvoice = { "state": "","arc": "","billingdateto": "", "remarks": "", "fullsiteaddress": "", "customerid": "", 
-                        "servicetype": "", "billingdatefrom": "", "speed": "", "division": "", "taxname": "", "total": "", 
-                        "accountno": "", "pin": "", "circuitid": "", "invoicedate": "", "invoiceno": "", "siteid": "", "gstno": "", 
-                        "premiseno": "", "city": "", "tsp": "", "customername": "", "slno": "",  "premisename": ""  }
+                   "servicetype": "", "billingdatefrom": "", "speed": "", "division": "", "taxname": "", "total": "", 
+                   "accountno": "", "pin": "", "circuitid": "", "invoicedate": "", "invoiceno": "", "siteid": "", "gstno": "", 
+                   "premiseno": "", "city": "", "tsp": "", "customername": "", "slno": "",  "premisename": "" 
+            }
         #createform = invoiceForm(request.POST)
         if request.method == 'POST':             
             Newinvoice["invoiceno"] = request.POST["invoiceno"].value()
