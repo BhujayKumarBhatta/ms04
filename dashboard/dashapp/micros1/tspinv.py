@@ -234,9 +234,9 @@ def extractInvoice(request):
                         'premiseno': '', 'city': '', 'tsp': '', 'customername': '', 'slno': 1,  'premisename': ''  }
         createform = invoiceForm(request.POST)
         if request.method == 'POST' and createform != null:             
-            Newinvoice['invoiceno'] = createform['invoiceno'].value()
-            Newinvoice['circuitid'] = createform['circuitid'].value()
-            Newinvoice['division'] = createform['division'].value()
+            Newinvoice['invoiceno'] = request.POST['invoiceno'].value()
+            Newinvoice['circuitid'] = request.POST['circuitid'].value()
+            Newinvoice['division'] = request.POST['division'].value()
             #Newinvoice['billingdateto'] = request.POST['billingdateto']
             #Newinvoice['remarks'] = request.POST['remarks']
             #Newinvoice['fullsiteaddress'] = request.POST['fullsiteaddress']
