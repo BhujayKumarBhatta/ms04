@@ -89,8 +89,8 @@ def invoice_create(request):
             ms1Client = MSClient(tlclient)            
             extractedInvoice = extractInvoice(request)
             #dictionary to 
-            extractInvoice.INVOICE_OBJ.items()
-            Newinvoice == json.dumps(extractedInvoice.INVOICE_OBJ)
+            #extractInvoice.INVOICE_OBJ.items()
+            Newinvoice == json.dumps(extractedInvoice)
 
             if Newinvoice is not null:
                 create_result = ms1Client.create_invoice_list(Newinvoice)
