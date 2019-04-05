@@ -669,6 +669,9 @@
 
                         {% elif list_invoices is not null and IS_RCOM is not null %}
                         {% include 'invoicelist_recom.html' %}
+                        CREATE_INVOICE_FORM
+                        {% elif CREATE_INVOICE_FORM is not null  %}
+                        {% include 'invoicetemplate.html' %}
 
                         {% elif VIEW_CREATE_INVOICE is not null %}
                         {% include 'invoicetemplate.html' %}

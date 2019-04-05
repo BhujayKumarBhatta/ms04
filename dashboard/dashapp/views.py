@@ -124,7 +124,7 @@ def add_model(request):
             return redirect('/') 
     else: 
         form = invoiceForm() 
-        return render(request, "invoicetemplate.html", {'form': form})
+        return render(request, "home.html", {'CREATE_INVOICE_FORM': form})
 
 
 
