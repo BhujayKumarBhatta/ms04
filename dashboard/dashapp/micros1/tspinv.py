@@ -66,7 +66,8 @@ def invoice_delete(request):
         invClient = MSClient(tlclient)          
         status = invClient.delete_invoices('all') 
         list_invoices = invClient.list_invoices_clo('all','all')  
-        #template_data = {"DELETE_STATUS":"Working Delete","list_invoices": list_invoices,"ISDELETED":"TRUE" } 
+        #template_data = {"DELETE_STATUS":"Working Delete","list_invoices":
+        #list_invoices,"ISDELETED":"TRUE" }
         template_data = {"list_invoices": list_invoices } 
         result = render(request, 'home.html', template_data)          
    return result
@@ -224,36 +225,37 @@ def invoice_rcom_upload(request):
 
 def extractInvoice(request):
     try:
-        Newinvoice=  { 'state': '','arc': '','billingdateto': '', 'remarks': '', 'fullsiteaddress': '', 'customerid': '', 
+        Newinvoice = { 'state': '','arc': '','billingdateto': '', 'remarks': '', 'fullsiteaddress': '', 'customerid': '', 
                         'servicetype': '', 'billingdatefrom': '', 'speed': '', 'division': '', 'taxname': '', 'total': '', 
                         'accountno': '', 'pin': '', 'circuitid': '', 'invoicedate': '', 'invoiceno': '', 'siteid': '', 'gstno': '', 
                         'premiseno': '', 'city': '', 'tsp': '', 'customername': '', 'slno': 1,  'premisename': ''  }
-
-        if request.method == 'GET':  
-            Newinvoice['state'] = request.POST['state']
-            Newinvoice['arc'] = request.POST['arc']
-            Newinvoice['billingdateto'] = request.POST['billingdateto']
-            Newinvoice['remarks'] = request.POST['remarks']
-            Newinvoice['fullsiteaddress'] = request.POST['fullsiteaddress']
-            Newinvoice['customerid'] = request.POST['customerid']
-            Newinvoice['servicetype'] = request.POST['servicetype']
-            Newinvoice['billingdatefrom'] = request.POST['billingdatefrom']
-            Newinvoice['speed'] = request.POST['speed']
-            Newinvoice['division'] = request.POST['division']
-            Newinvoice['taxname'] = request.POST['taxname']
-            Newinvoice['total'] = request.POST['total']
-            Newinvoice['accountno'] = request.POST['accountno']
-            Newinvoice['pin'] = request.POST['pin']
-            Newinvoice['circuitid'] = request.POST['circuitid']
-            Newinvoice['invoicedate'] = request.POST['invoicedate']
-            Newinvoice['invoiceno'] = request.POST['invoiceno']
-            Newinvoice['siteid'] = request.POST['siteid']
-            Newinvoice['gstno'] = request.POST['gstno']
-            Newinvoice['premiseno'] = request.POST['premiseno']
-            Newinvoice['city'] = request.POST['city']
-            Newinvoice['tsp'] = request.POST['tsp']
-            Newinvoice['slno'] = request.POST['slno']
-            Newinvoice['premisename'] = request.POST['premisename']
+        createform = invoiceForm(request.POST)
+        if request.method == 'POST' and createform != null:             
+            Newinvoice['invoiceno'] = createform['InvoiceNnumber'].value()
+            Newinvoice['circuitid'] = createform['CircuitID'].value()
+            Newinvoice['division'] = createform['Division'].value()
+            #Newinvoice['billingdateto'] = request.POST['billingdateto']
+            #Newinvoice['remarks'] = request.POST['remarks']
+            #Newinvoice['fullsiteaddress'] = request.POST['fullsiteaddress']
+            #Newinvoice['customerid'] = request.POST['customerid']
+            #Newinvoice['servicetype'] = request.POST['servicetype']
+            #Newinvoice['billingdatefrom'] = request.POST['billingdatefrom']
+            #Newinvoice['speed'] = request.POST['speed']
+            #Newinvoice['division'] = request.POST['division']
+            #Newinvoice['taxname'] = request.POST['taxname']
+            #Newinvoice['total'] = request.POST['total']
+            #Newinvoice['accountno'] = request.POST['accountno']
+            #Newinvoice['pin'] = request.POST['pin']
+            #Newinvoice['circuitid'] = request.POST['circuitid']
+            #Newinvoice['invoicedate'] = request.POST['invoicedate']
+            #Newinvoice['invoiceno'] = request.POST['invoiceno']
+            #Newinvoice['siteid'] = request.POST['siteid']
+            #Newinvoice['gstno'] = request.POST['gstno']
+            #Newinvoice['premiseno'] = request.POST['premiseno']
+            #Newinvoice['city'] = request.POST['city']
+            #Newinvoice['tsp'] = request.POST['tsp']
+            #Newinvoice['slno'] = request.POST['slno']
+            #Newinvoice['premisename'] = request.POST['premisename']
             template_data = {"STATUS": "EXTRACTED","INVOICE_OBJ":Newinvoice}
             result = template_data             
     except Exception as exception:
