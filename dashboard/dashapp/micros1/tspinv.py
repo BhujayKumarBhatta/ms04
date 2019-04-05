@@ -219,7 +219,7 @@ def extractInvoice(request):
 
             dictinvoice["invoiceno"] = request.POST.get("invoiceno")
             dictinvoice["circuitid"] = request.POST.get("circuitid")
-            dictinvoice["division"] = request.POST.get["division"]
+            dictinvoice["division"] = request.POST.get("division")
             #Newinvoice['billingdateto'] = request.POST['billingdateto']
             #Newinvoice['remarks'] = request.POST['remarks']
             #Newinvoice['fullsiteaddress'] = request.POST['fullsiteaddress']
