@@ -87,7 +87,7 @@ def invoice_create(request):
             METHOD = "POST"
             tlclient = tllogin.prep_tlclient_from_session(request)
             ms1Client = MSClient(tlclient)            
-            #extractedInvoice = extractInvoice(request)
+            extractedInvoice = extractInvoice(request)
             #if extractedInvoice is not null:
             #    create_result = ms1Client.create_invoice_list(Newinvoice)
             #    create_result_dump = json.dumps(create_result)
