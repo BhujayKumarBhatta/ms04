@@ -238,12 +238,12 @@ def extractInvoice(request):
                    "premiseno": "", "city": "", "tsp": "", "customername": "", "slno": "",  "premisename": "" 
                     })
         #createform = invoiceForm(request.POST)
-        if request.method == 'POST':
+        #if request.method == 'POST':
             #request.POST.get('is_private', False)
 
-            dictinvoice["invoiceno"] = request.POST.get("invoiceno")
-            dictinvoice["circuitid"] = request.POST("circuitid")
-            dictinvoice["division"] = request.POST["division"]
+            #dictinvoice["invoiceno"] = request.POST.get("invoiceno")
+            #dictinvoice["circuitid"] = request.POST("circuitid")
+            #dictinvoice["division"] = request.POST["division"]
             #Newinvoice['billingdateto'] = request.POST['billingdateto']
             #Newinvoice['remarks'] = request.POST['remarks']
             #Newinvoice['fullsiteaddress'] = request.POST['fullsiteaddress']
