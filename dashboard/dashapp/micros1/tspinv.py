@@ -231,7 +231,7 @@ def extractInvoice(request):
         Newinvoice = { 'state': '','arc': '','billingdateto': '', 'remarks': '', 'fullsiteaddress': '', 'customerid': '', 
                         'servicetype': '', 'billingdatefrom': '', 'speed': '', 'division': '', 'taxname': '', 'total': '', 
                         'accountno': '', 'pin': '', 'circuitid': '', 'invoicedate': '', 'invoiceno': '', 'siteid': '', 'gstno': '', 
-                        'premiseno': '', 'city': '', 'tsp': '', 'customername': '', 'slno': 1,  'premisename': ''  }
+                        'premiseno': '', 'city': '', 'tsp': '', 'customername': '', 'slno': '',  'premisename': ''  }
         #createform = invoiceForm(request.POST)
         if request.method == 'POST':             
             Newinvoice['invoiceno'] = request.POST['invoiceno'].value()
