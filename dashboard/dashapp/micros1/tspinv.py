@@ -82,7 +82,7 @@ def view_upload(request):
 def invoice_create(request):
     try:
         form = invoiceForm() 
-        if request.method == 'POST':
+        if request.method == 'POST': 
             #Calling Micrios client t Upload to DB
             tlclient = tllogin.prep_tlclient_from_session(request)
             ms1Client = MSClient(tlclient)            
