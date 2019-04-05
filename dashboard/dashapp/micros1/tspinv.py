@@ -85,8 +85,8 @@ def invoice_create(request):
         if request.method == 'POST': 
             #Calling Micrios client t Upload to DB
             METHOD = "POST"
-            #tlclient = tllogin.prep_tlclient_from_session(request)
-            #ms1Client = MSClient(tlclient)            
+            tlclient = tllogin.prep_tlclient_from_session(request)
+            ms1Client = MSClient(tlclient)            
             #extractedInvoice = extractInvoice(request)
             #if extractedInvoice is not null:
             #    create_result = ms1Client.create_invoice_list(Newinvoice)
