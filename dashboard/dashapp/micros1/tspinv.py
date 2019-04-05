@@ -243,7 +243,7 @@ def extractInvoice(request):
 
             dictinvoice["invoiceno"] = request.POST.get("invoiceno")
             dictinvoice["circuitid"] = request.POST("circuitid")
-            dictinvoice["division"] = request.POST("division")
+            dictinvoice["division"] = request.POST["division"]
             #Newinvoice['billingdateto'] = request.POST['billingdateto']
             #Newinvoice['remarks'] = request.POST['remarks']
             #Newinvoice['fullsiteaddress'] = request.POST['fullsiteaddress']
@@ -266,8 +266,8 @@ def extractInvoice(request):
             #Newinvoice['tsp'] = request.POST['tsp']
             #Newinvoice['slno'] = request.POST['slno']
             #Newinvoice['premisename'] = request.POST['premisename']
-            template_data = {"STATUS": "EXTRACTED","INVOICE_OBJ":dictinvoice}
-            result = template_data             
+        template_data = {"STATUS": "EXTRACTED","INVOICE_OBJ":dictinvoice}
+        result = template_data             
     except Exception as exception:
             template_data = {"STATUS": "There is an error while retriving Object","EXCEPTION" :exception,"EXCEPTION_INFO" : sys.exc_info()[0] }  
             result = template_data 
