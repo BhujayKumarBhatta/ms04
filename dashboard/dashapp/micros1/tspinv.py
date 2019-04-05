@@ -18,7 +18,7 @@ from django.core.files.storage import FileSystemStorage
 from werkzeug.utils import secure_filename
 
 from dashapp.tokenleader import tllogin
-
+from dashapp.micros1.invoiceForm import invoiceForm
 
 def list_invoices2(request,invoicnum):
     if request.method == 'POST': 
@@ -81,7 +81,7 @@ def view_upload(request):
 
 def invoice_create(request):
     try:
-        form = invoiceForm()
+        form = invoiceForm() 
         if request.method == 'POST':
             #Calling Micrios client t Upload to DB
             tlclient = tllogin.prep_tlclient_from_session(request)
@@ -97,7 +97,7 @@ def invoice_create(request):
             template_data = {"VIEW_CREATE_INVOICE": "TRUE",'CREATE_INVOICE_FORM': form }  
             result = render(request, 'home.html', template_data) 
     except Exception as exception:
-        template_data = {"VIEW_CREATE_INVOICE": "TRUE","EXCEPTION" :exception,"EXCEPTION_INFO" : sys.exc_info()[0],'CREATE_INVOICE_FORM': form }  
+        template_data = {"VIEW_CREATE_INVOICE": "TRUE","EXCEPTION" :exception,"EXCEPTION_INFO" : sys.exc_info()[0]}  
         result = render(request, 'home.html', template_data) 
     return result
 
