@@ -89,26 +89,24 @@ def invoice_create(request):
             ms1Client = MSClient(tlclient)            
             extractedInvoice = extractInvoice(request)
 
-            if extractedInvoice is not null:
-                create_result = ms1Client.create_invoice_list(extractedInvoice)
-                create_result_dump = json.dumps(create_result)
-                create_result_load = json.loads(message)
-                template_data = {"METHOD":METHOD, "VIEW_CREATE_INVOICE": "TRUE"
+            #if extractedInvoice is not null:
+            #    create_result = ms1Client.create_invoice_list(extractedInvoice)
+            #    create_result_dump = json.dumps(create_result)
+            #    create_result_load = json.loads(message)
+            template_data = {"METHOD":METHOD, "VIEW_CREATE_INVOICE": "TRUE"
                                  ,"EXTRACTED":extractedInvoice ,"INVOICE_CREATE_RESULT" : create_result_load
                                  ,'CREATE_INVOICE_FORM': form}
             #render(request, 'home.html',{"METHOD":METHOD, "VIEW_CREATE_INVOICE": "TRUE","EXTRACTED":extractedInvoice})
-            result = render(request, 'home.html',template_data)
-            return result
+            result = render(request, 'home.html',template_data)            
         if request.method == 'GET':
             METHOD = "GET"
             #template_data = {"METHOD":METHOD,"VIEW_CREATE_INVOICE":
             #"TRUE",'CREATE_INVOICE_FORM': form }
             result = render(request, 'home.html', {"METHOD":METHOD, "VIEW_CREATE_INVOICE": "TRUE"})             
-            return result
     except Exception as exception:
         template_data = {"VIEW_CREATE_INVOICE": "TRUE","EXCEPTION" :exception,"EXCEPTION_INFO" : sys.exc_info()[0]}  
         result = render(request, 'home.html', template_data) 
-        return result
+    return result
 
 def invoice_upload(request):
     try:
