@@ -95,7 +95,7 @@ def invoice_create(request):
             #    create_result_load = json.loads(message)
             template_data = {"METHOD":METHOD, "VIEW_CREATE_INVOICE": "TRUE"
                                  ,"EXTRACTED":extractedInvoice ,"INVOICE_CREATE_RESULT" : create_result_load
-                                 ,'CREATE_INVOICE_FORM': form}
+                                 }
             #render(request, 'home.html',{"METHOD":METHOD, "VIEW_CREATE_INVOICE": "TRUE","EXTRACTED":extractedInvoice})
             result = render(request, 'home.html',template_data)            
         if request.method == 'GET':
