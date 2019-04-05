@@ -93,11 +93,11 @@ def invoice_create(request):
             #    create_result_dump = json.dumps(create_result)
             #    create_result_load = json.loads(message)
             #template_data = {"METHOD":METHOD, "VIEW_CREATE_INVOICE": "TRUE","extractedInvoice":extractedInvoice ,"INVOICE_CREATE_RESULT" : create_result_load,'CREATE_INVOICE_FORM': form}
-            result = render(request, 'home.html',{"METHOD":METHOD})
+            result = render(request, 'home.html',{"METHOD":METHOD, "VIEW_CREATE_INVOICE": "TRUE"})
         if request.method == 'GET':
             METHOD="GET"
             #template_data = {"METHOD":METHOD,"VIEW_CREATE_INVOICE": "TRUE",'CREATE_INVOICE_FORM': form }  
-            result = render(request, 'home.html', {"METHOD":METHOD}) 
+            result = render(request, 'home.html', {"METHOD":METHOD, "VIEW_CREATE_INVOICE": "TRUE"}) 
     except Exception as exception:
         template_data = {"VIEW_CREATE_INVOICE": "TRUE","EXCEPTION" :exception,"EXCEPTION_INFO" : sys.exc_info()[0]}  
         result = render(request, 'home.html', template_data) 
