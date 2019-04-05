@@ -217,11 +217,11 @@ def extractInvoice(request):
         if request.method == 'POST':
             #request.POST.get('is_private', False)
 
-            dictinvoice["invoiceno"] = request.POST.get("invoiceno")
-            dictinvoice["circuitid"] = request.POST.get("circuitid")
-            dictinvoice["division"] = request.POST.get("division")
-            dictinvoice['billingdateto'] = request.POST.get('billingdateto')
-            dictinvoice['remarks'] = request.POST.get('remarks')
+            dictinvoice["invoiceno"] = request.POST.get("invoiceno") +"TEST"
+            dictinvoice["circuitid"] = request.POST.get("circuitid")+"TEST"
+            dictinvoice["division"] = request.POST.get("division")+"TEST"
+            dictinvoice['billingdateto'] = request.POST.get('billingdateto')+"TEST"
+            dictinvoice['remarks'] = request.POST.get('remarks')+"TEST"
             dictinvoice['fullsiteaddress'] = request.POST.get('fullsiteaddress')
             dictinvoice['customerid'] = request.POST.get('customerid')
             dictinvoice['servicetype'] = request.POST.get('servicetype')
