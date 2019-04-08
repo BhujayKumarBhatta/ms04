@@ -320,7 +320,7 @@
                     <form action="{% url 'dashapp:invoice_reject' %}" method="post" enctype="multipart/form-data">
                         {% csrf_token %}
                         <input type="hidden" id="invoiceno_rej" name="invoiceno_rej" value="{{Inv.current_doc.xldata.invoiceno}}">
-                        <button type="submit" class="glyphicon glyphicon-remove">Reject</button>
+                        <input type="submit" class="glyphicon glyphicon-remove" value="Reject"/>  
                     </form>
                 </td>
                 <td data-column="name" style="width:150px">{{ Inv.current_doc.xldata.invoiceno}} </td>
