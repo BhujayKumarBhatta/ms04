@@ -104,7 +104,7 @@ def invoice_rcom_upload(request):
     return result
 
 def invoice_approvals(request):
-    result = tspinv.manageinvoiceapprovals(request)    
+    result = tspinv.invoice_approvals(request)    
     return result
 
 def sampleinvoice(request):
