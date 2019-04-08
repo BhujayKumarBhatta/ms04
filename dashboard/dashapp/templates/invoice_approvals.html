@@ -234,10 +234,12 @@
             <td>TSP Accepted</td>
         </tr>
     </table>
-   
+
     {% if Inv.recom_doc.xldata.invoiceno is null and Inv.current_doc.status != 'tspAccepted' %}
 
     {% endif %}
+    Approval Status - {{APROVAL_STATUS}}
+    
     <table id="tree-table" class="table table-hover table-bordepink" width="1500">
         <thead>
             <tr style="font-size:12px">
