@@ -216,9 +216,9 @@ def invoice_approvals(request):
    if request.method == 'GET':  
         tlclient = tllogin.prep_tlclient_from_session(request)
         invClient = MSClient(tlclient)         
-        invoicenum = request.POST['invoicenum']
-        invoice_list = [invoicenum] 
-        accept_recomondation = invClient.approve_invoices(invoice_list)
+        #invoicenum = request.POST['invoicenum']
+        #invoice_list = [invoicenum] 
+        #accept_recomondation = invClient.approve_invoices(invoice_list)
         ##Loading All invoice
         list_invoices = invClient.list_invoices_clo('all','all')          
         template_data = {"list_invoices": list_invoices,"APPROVALS":"TRUE" } 
