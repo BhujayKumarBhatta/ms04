@@ -96,8 +96,9 @@ def invoice_create(request):
                    "accountno": "", "pin": "", "circuitid": "", "invoicedate": "", "invoiceno": "", "siteid": "", "gstno": "", 
                    "premiseno": "", "city": "", "tsp": "", "customername": "", "slno": "",  "premisename": "" 
                     })
-            if dictinvoice is not null:
-                create_result = ms1Client.create_invoice_list(dictinvoice)
+            listInvoice = dictinvoice.items()
+            if listInvoice is not null:
+                create_result = ms1Client.create_invoice_list(listInvoice)
                 create_result_dump = json.dumps(create_result)
                 create_result_load = json.loads(message)
                 #template_data = {"METHOD":METHOD, "VIEW_CREATE_INVOICE":
@@ -310,3 +311,7 @@ def extractInvoice(request):
 # #    return render(request, 'simple_upload.html')
 
 
+
+
+
+ #{ "state": "","arc": "","billingdateto": "", "remarks": "", "fullsiteaddress": "", "customerid": "","servicetype": "", "billingdatefrom": "", "speed": "", "division": "", "taxname": "", "total": "", "accountno": "", "pin": "", "circuitid": "", "invoicedate": "", "invoiceno": "", "siteid": "", "gstno": "", "premiseno": "", "city": "", "tsp": "", "customername": "", "slno": "",  "premisename": "" }
