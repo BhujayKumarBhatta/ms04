@@ -70,25 +70,22 @@ def invoice_delete(request):
         #list_invoices,"ISDELETED":"TRUE" }
         template_data = {"list_invoices": list_invoices } 
         result = render(request, 'home.html', template_data)          
-   return result
-    
+   return result    
 ## Navigate to Upload Invoice******
 def view_upload(request):
    if request.method == 'GET':          
         template_data = {"VIEW_UPLOAD": "TRUE" }  
         result = render(request, 'home.html', template_data)        
         return result
-
+##CREATE Invoice
 def invoice_create(request):
     try:
         #form = invoiceForm()
         if request.method == 'POST': 
             #Calling Micrios client t Upload to DB
             METHOD = "POST"
-            tlclient = tllogin.prep_tlclient_from_session(request)
-            ms1Client = MSClient(tlclient)            
             extractedInvoice = extractInvoice(request)
-            #dictionary to 
+            #dictionary to
             #extractInvoice.INVOICE_OBJ.items()
             #Newinvoice == json.dumps(extractedInvoice)
             dictinvoice = dict({ "state": "","arc": "","billingdateto": "", "remarks": "", "fullsiteaddress": "", "customerid": "", 
@@ -98,14 +95,18 @@ def invoice_create(request):
                     })
             listInvoice = dictinvoice.items()
             if listInvoice is not null:
-                create_result = ms1Client.create_invoice_list(listInvoice)
+                tlclient = tllogin.prep_tlclient_from_session(request)
+                ms1Client = MSClient(tlclient)        
+                Upload_result = ms1Client.create_invoice_list(listInvoice)                    
                 create_result_dump = json.dumps(create_result)
                 create_result_load = json.loads(message)
                 #template_data = {"METHOD":METHOD, "VIEW_CREATE_INVOICE":
-                #"TRUE","EXTRACTED":extractedInvoice,"INVOICE_CREATE_RESULT" :create_result_load}
+                #"TRUE","EXTRACTED":extractedInvoice,"INVOICE_CREATE_RESULT"
+                #:create_result_load}
                 template_data = {"METHOD":METHOD, "VIEW_CREATE_INVOICE":
-                "TRUE","EXTRACTED":extractedInvoice}
-            #result = render(request, 'home.html',{"METHOD":METHOD, "VIEW_CREATE_INVOICE": "TRUE","EXTRACTED":extractedInvoice})
+                "TRUE","EXTRACTED":listInvoice}
+            #result = render(request, 'home.html',{"METHOD":METHOD,
+            #"VIEW_CREATE_INVOICE": "TRUE","EXTRACTED":extractedInvoice})
             result = render(request, 'home.html',template_data)
         if request.method == 'GET':
             METHOD = "GET"
@@ -116,7 +117,7 @@ def invoice_create(request):
         template_data = {"VIEW_CREATE_INVOICE": "TRUE","EXCEPTION" :exception,"EXCEPTION_INFO" : sys.exc_info()[0]}  
         result = render(request, 'home.html', template_data) 
     return result
-
+##UPLOAD Invoice
 def invoice_upload(request):
     try:
         if request.method == 'POST' and request.FILES['myfile']:
@@ -149,17 +150,14 @@ def invoice_upload(request):
     except Exception as exception:
         template_data = {"VIEW_UPLOAD": "TRUE","EXCEPTION" :exception,"EXCEPTION_INFO" : sys.exc_info()[0] }  
         result = render(request, 'home.html', template_data) 
-    return result
-     
-
-
+    return result     
+## UPDATE Invoice
 def view_update_upload(request):
    if request.method == 'GET':          
         template_data = {"VIEW_UPDATE_UPLOAD": "TRUE" }  
         result = render(request, 'home.html', template_data)        
         return result
-
- 
+## UPDATE Invoice
 def invoice_update_upload(request):
     try:
         if request.method == 'POST' and request.FILES['myfile']:
@@ -186,7 +184,7 @@ def invoice_update_upload(request):
         template_data = {"VIEW_UPDATE_UPLOAD": "from view upload","EXCEPTION" :exception,"EXCEPTION_INFO" : sys.exc_info()[0] }  
         result = render(request, 'home.html', template_data) 
     return result
-
+##RECOMMOND Invoice
 def invoice_rcom_upload(request):
     try:
         if request.method == 'POST' and request.FILES['myfile']:
@@ -213,15 +211,53 @@ def invoice_rcom_upload(request):
         template_data = {"VIEW_RCOM_UPLOAD": "from view upload","EXCEPTION" :exception,"EXCEPTION_INFO" : sys.exc_info()[0] }  
         result = render(request, 'home.html', template_data) 
     return result
+##APPROVE Invoice
+def invoice_approvals(request):
+   if request.method == 'GET':  
+        tlclient = tllogin.prep_tlclient_from_session(request)
+        invClient = MSClient(tlclient)         
+        invoicenum = request.POST['invoicenum']
+        invoice_list = [invoicenum] 
+        accept_recomondation = invClient.approve_invoices(invoice_list)
+        ##Loading All invoice
+        list_invoices = invClient.list_invoices_clo('all','all')          
+        template_data = {"list_invoices": list_invoices,"APPROVALS":"TRUE" } 
+        result = render(request, 'invoice_approvals.html', template_data)          
+   return result
+##APPROVE Invoice
+def invoice_approve(request):
+   if request.method == 'POST':  
+        tlclient = tllogin.prep_tlclient_from_session(request)
+        invClient = MSClient(tlclient)         
+        invoicenum = request.POST['invoicenum']
+        invoice_list = [invoicenum] 
+        accept_recomondation = invClient.approve_invoices(invoice_list)
+        ##Loading All invoice
+        list_invoices = invClient.list_invoices_clo('all','all')          
+        template_data = {"list_invoices": list_invoices,"APPROVALS":"TRUE" } 
+        result = render(request, 'home.html', template_data)          
+   return result
+## REJECT Invoice
+def invoice_reject(request):
+   if request.method == 'POST':          
+        tlclient = tllogin.prep_tlclient_from_session(request)
+        invClient = MSClient(tlclient) 
+        invoicenum = request.POST['invoicenum']
+        invoice_list = [invoicenum] 
+        status = invClient.reject_invoices() 
+        list_invoices = invClient.list_invoices_clo('all','all')  
+        template_data = {"list_invoices": list_invoices,"APPROVALS":"TRUE" } 
+        result = render(request, 'home.html', template_data)          
+   return result
 
 
 def extractInvoice(request):
     try:
         dictinvoice = dict({ "state": "","arc": "","billingdateto": "", "remarks": "", "fullsiteaddress": "", "customerid": "", 
-                   "servicetype": "", "billingdatefrom": "", "speed": "", "division": "", "taxname": "", "total": "", 
-                   "accountno": "", "pin": "", "circuitid": "", "invoicedate": "", "invoiceno": "", "siteid": "", "gstno": "", 
-                   "premiseno": "", "city": "", "tsp": "", "customername": "", "slno": "",  "premisename": "" 
-                    })
+                             "servicetype": "", "billingdatefrom": "", "speed": "", "division": "", "taxname": "", "total": "", 
+                               "accountno": "", "pin": "", "circuitid": "", "invoicedate": "", "invoiceno": "", "siteid": "", "gstno": "", 
+                               "premiseno": "", "city": "", "tsp": "", "customername": "", "slno": "",  "premisename": "" 
+                            }) 
         #createform = invoiceForm(request.POST)
         if request.method == 'POST':
             #request.POST.get('is_private', False)
