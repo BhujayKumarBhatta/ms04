@@ -234,7 +234,7 @@ def invoice_approve(request):
         invoicenum = request.POST['invoiceno']
         invoice_list = [invoicenum] 
         ApproveInvoice ="Working"
-        #ApproveInvoice = invClient.approve_invoices(invoicenum)
+        ApproveInvoice = invClient.approve_invoices(invoicenum)
         ##Loading All invoice
         list_invoices = invClient.list_invoices_clo('all','all')          
         template_data = {"list_invoices": list_invoices,"APPROVALS":"TRUE","INVOICE_NUM": invoicenum,"APROVAL_STATUS":ApproveInvoice } 
