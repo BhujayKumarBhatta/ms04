@@ -248,7 +248,7 @@ def invoice_reject(request):
    if request.method == 'POST':          
         tlclient = tllogin.prep_tlclient_from_session(request)
         invClient = MSClient(tlclient) 
-        invoicenum = request.POST['invoiceno']
+        invoicenum = request.POST['invoiceno_rej']
         invoice_list = [invoicenum] 
         RejectInvoice = "Working"
         RejectInvoice = invClient.reject_invoices(invoice_list) 
