@@ -242,6 +242,7 @@
         <thead>
             <tr style="font-size:12px">
                 <th></th>
+                <th></th>
                 <th>Invoice Number</th>
                 <th>Circuit ID</th>
                 <th>Division</th>
@@ -275,6 +276,8 @@
                     {%endif%}">
                 <td>
                     <button type="button" class="btn btn-success btn-sm">Approve</button>
+                </td>
+                <td>
                     <button type="button" class="btn btn-warning btn-xs">Reject</button>
                 </td>
                 <td data-column="name" style="width:150px">{{ Inv.current_doc.xldata.invoiceno}} </td>
@@ -361,14 +364,14 @@
     <script src='{% static "dashapp/styles/jquery-1.12.4.min.js" %}' type="text/javascript"></script>
     <script src='{% static "dashapp/styles/javascript.js" %}' type="text/javascript"></script>
 
-    <form action="{% url 'dashapp:invoice_delete' %}" method="get" enctype="multipart/form-data">
+    <!--<form action="{% url 'dashapp:invoice_delete' %}" method="get" enctype="multipart/form-data">
         <button type="submit" class="btn btn-danger"
                 onclick="return confirm('Are you sure? you want to delete all Invoices.\n This will Remove all invoices from the system.')"
                 style="width:300px">
             Delete All Invoices
         </button>
     </form>
-    {{DELETE_STATUS}}
+    {{DELETE_STATUS}}-->
 </div>
 
 
