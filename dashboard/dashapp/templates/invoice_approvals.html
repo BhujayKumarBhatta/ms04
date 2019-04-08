@@ -310,6 +310,7 @@
                     transparent
                     {%endif%}">
                 <td>
+                    {% if Inv.current_doc.status != 'tspAccepted' or Inv.current_doc.status != 'approved' %}
                     <form action="{% url 'dashapp:invoice_approve' %}" method="post" enctype="multipart/form-data">
                         {% csrf_token %}
                         <input type="hidden" id="invoiceno" name="invoiceno" value="{{Inv.current_doc.xldata.invoiceno}}">
@@ -317,8 +318,10 @@
                             <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
                         </button>
                     </form>
+                    {%endif%}
                 </td>
                 <td>
+                    {% if Inv.current_doc.status != 'tspAccepted' or Inv.current_doc.status != 'approved' %}
                     <form action="{% url 'dashapp:invoice_reject' %}" method="post" enctype="multipart/form-data">
                         {% csrf_token %}
                         <input type="hidden" id="invoiceno_rej" name="invoiceno_rej" value="{{Inv.current_doc.xldata.invoiceno}}">
@@ -326,6 +329,7 @@
                             <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                         </button>
                     </form>
+                    {%endif%}
                 </td>
                 <td data-column="name" style="width:150px">{{ Inv.current_doc.xldata.invoiceno}} </td>
                 <td>{{ Inv.current_doc.xldata.circuitid }}</td>
