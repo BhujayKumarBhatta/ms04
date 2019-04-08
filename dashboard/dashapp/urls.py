@@ -43,7 +43,9 @@ urlpatterns = [path('', views.login, name='login'),
     ,path('add_model', views.add_model, name='add_model')    
     ,path('invoice_delete', views.invoice_delete, name='invoice_delete')
     ,path('invoice_create', views.invoice_create, name='invoice_create')
-    ,path('invoice_approvals', views.invoice_approvals, name='invoice_approvals')]
+    ,path('invoice_approvals', views.invoice_approvals, name='invoice_approvals')
+    ,path('invoice_approve', views.invoice_approve, name='invoice_approve')
+    ,path('invoice_reject', views.invoice_reject, name='invoice_reject')]
 
 
 
