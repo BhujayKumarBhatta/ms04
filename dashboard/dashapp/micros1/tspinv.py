@@ -222,7 +222,9 @@ def invoice_approvals(request):
         ##Loading All invoice
         list_invoices = invClient.list_invoices_clo('all','all')          
         template_data = {"list_invoices": list_invoices,"APPROVALS":"TRUE" } 
-        result = render(request, 'home.html', template_data)          
+        result = render(request, 'home.html', template_data)
+   else:
+        result = render(request, 'home.html')
    return result
 ##APPROVE Invoice
 def invoice_approve(request):
@@ -237,6 +239,9 @@ def invoice_approve(request):
         list_invoices = invClient.list_invoices_clo('all','all')          
         template_data = {"list_invoices": list_invoices,"APPROVALS":"TRUE","INVOICE_NUM": invoicenum,"APROVAL_STATUS":ApproveInvoice } 
         result = render(request, 'home.html', template_data)          
+   else:
+        result = render(request, 'home.html')
+
    return result
 ## REJECT Invoice
 def invoice_reject(request):
@@ -249,7 +254,9 @@ def invoice_reject(request):
         #ApproveInvoice = invClient.reject_invoices(invoicenum) 
         list_invoices = invClient.list_invoices_clo('all','all')  
         template_data = {"list_invoices": list_invoices,"APPROVALS":"TRUE" ,"INVOICE_NUM": invoicenum,"APROVAL_STATUS":ApproveInvoice } 
-        result = render(request, 'home.html', template_data)          
+        result = render(request, 'home.html', template_data)    
+   else:
+        result = render(request, 'home.html')        
    return result
 
 

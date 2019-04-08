@@ -275,13 +275,13 @@
                     transparent
                     {%endif%}">
                 <td>
-                    <form action="{% url 'dashapp:invoice_approve' %}" method="get" enctype="multipart/form-data">
+                    <form action="{% url 'dashapp:invoice_approve' %}" method="post" enctype="multipart/form-data">
                         <input type="hidden" id="invoiceno" name="invoiceno" value="{{Inv.current_doc.xldata.invoiceno}}">
                         <button type="submit" class="btn btn-success btn-xs">Approve</button>
                     </form>
                 </td>
                 <td>
-                    <form action="{% url 'dashapp:invoice_reject' %}" method="get" enctype="multipart/form-data">
+                    <form action="{% url 'dashapp:invoice_reject' %}" method="post" enctype="multipart/form-data">
                         <button type="button" class="btn btn-danger btn-xs">Reject</button>
                     </form>
                 </td>
