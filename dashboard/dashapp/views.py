@@ -107,9 +107,6 @@ def invoice_approvals(request):
     result = tspinv.invoice_approvals(request)    
     return result
 
-def invoice_approvals(request):
-    result = tspinv.invoice_approvals(request)    
-    return result
 
 def invoice_approve(request):
     result = tspinv.invoice_approve(request)    
@@ -117,6 +114,10 @@ def invoice_approve(request):
 
 def invoice_reject(request):
     result = tspinv.invoice_reject(request)    
+    return result
+
+def sampleinvoice(request):
+    result = tspinv.sampleinvoice(request)    
     return result
 
 
