@@ -222,7 +222,7 @@ def invoice_approvals(request):
         ##Loading All invoice
         list_invoices = invClient.list_invoices_clo('all','all')          
         template_data = {"list_invoices": list_invoices,"APPROVALS":"TRUE" } 
-        result = render(request, 'invoice_approvals.html', template_data)          
+        result = render(request, 'home.html', template_data)          
    return result
 ##APPROVE Invoice
 def invoice_approve(request):
