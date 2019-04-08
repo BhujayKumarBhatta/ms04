@@ -313,16 +313,17 @@
                     <form action="{% url 'dashapp:invoice_approve' %}" method="post" enctype="multipart/form-data">
                         {% csrf_token %}
                         <input type="hidden" id="invoiceno" name="invoiceno" value="{{Inv.current_doc.xldata.invoiceno}}">
-                        <button type="submit" class="glyphicon glyphicon-ok">Approve</button>
+                        <button type="submit" class="btn btn-success">
+                            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                        </button>
                     </form>
                 </td>
                 <td>
                     <form action="{% url 'dashapp:invoice_reject' %}" method="post" enctype="multipart/form-data">
                         {% csrf_token %}
                         <input type="hidden" id="invoiceno_rej" name="invoiceno_rej" value="{{Inv.current_doc.xldata.invoiceno}}">
-                        <button type="submit" class="btn btn-danger">                            
-                                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> 
-                             
+                        <button type="submit" class="btn btn-danger">
+                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                         </button>
                     </form>
                 </td>
