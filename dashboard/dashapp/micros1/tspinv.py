@@ -229,12 +229,13 @@ def invoice_approve(request):
    if request.method == 'POST':  
         tlclient = tllogin.prep_tlclient_from_session(request)
         invClient = MSClient(tlclient)         
-        invoicenum = request.POST['invoicenum']
+        invoicenum = request.POST['invoiceno']
         invoice_list = [invoicenum] 
-        accept_recomondation = invClient.approve_invoices(invoice_list)
+        ApproveInvoice ="Working"
+        #ApproveInvoice = invClient.approve_invoices(invoicenum)
         ##Loading All invoice
         list_invoices = invClient.list_invoices_clo('all','all')          
-        template_data = {"list_invoices": list_invoices,"APPROVALS":"TRUE" } 
+        template_data = {"list_invoices": list_invoices,"APPROVALS":"TRUE","INVOICE_NUM": invoicenum,"APROVAL_STATUS":ApproveInvoice } 
         result = render(request, 'home.html', template_data)          
    return result
 ## REJECT Invoice
@@ -242,11 +243,12 @@ def invoice_reject(request):
    if request.method == 'POST':          
         tlclient = tllogin.prep_tlclient_from_session(request)
         invClient = MSClient(tlclient) 
-        invoicenum = request.POST['invoicenum']
+        invoicenum = request.POST['invoiceno']
         invoice_list = [invoicenum] 
-        status = invClient.reject_invoices() 
+        ApproveInvoice = "Working"
+        #ApproveInvoice = invClient.reject_invoices(invoicenum) 
         list_invoices = invClient.list_invoices_clo('all','all')  
-        template_data = {"list_invoices": list_invoices,"APPROVALS":"TRUE" } 
+        template_data = {"list_invoices": list_invoices,"APPROVALS":"TRUE" ,"INVOICE_NUM": invoicenum,"APROVAL_STATUS":ApproveInvoice } 
         result = render(request, 'home.html', template_data)          
    return result
 
