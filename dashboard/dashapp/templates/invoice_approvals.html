@@ -234,7 +234,7 @@
             <td>TSP Accepted</td>
         </tr>
     </table>
-    {% csrf_token %}
+   
     {% if Inv.recom_doc.xldata.invoiceno is null and Inv.current_doc.status != 'tspAccepted' %}
 
     {% endif %}
@@ -276,12 +276,15 @@
                     {%endif%}">
                 <td>
                     <form action="{% url 'dashapp:invoice_approve' %}" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
                         <input type="hidden" id="invoiceno" name="invoiceno" value="{{Inv.current_doc.xldata.invoiceno}}">
                         <button type="submit" class="btn btn-success btn-xs">Approve</button>
                     </form>
                 </td>
                 <td>
                     <form action="{% url 'dashapp:invoice_reject' %}" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <input type="hidden" id="invoiceno" name="invoiceno" value="{{Inv.current_doc.xldata.invoiceno}}">
                         <button type="button" class="btn btn-danger btn-xs">Reject</button>
                     </form>
                 </td>
