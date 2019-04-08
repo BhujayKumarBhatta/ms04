@@ -250,10 +250,10 @@ def invoice_reject(request):
         invClient = MSClient(tlclient) 
         invoicenum = request.POST['invoiceno']
         invoice_list = [invoicenum] 
-        ApproveInvoice = "Working"
-        ApproveInvoice = invClient.reject_invoices(invoice_list) 
+        RejectInvoice = "Working"
+        RejectInvoice = invClient.reject_invoices(invoice_list) 
         list_invoices = invClient.list_invoices_clo('all','all')  
-        template_data = {"list_invoices": list_invoices,"APPROVALS":"TRUE" ,"INVOICE_NUM": invoicenum,"APROVAL_STATUS":ApproveInvoice } 
+        template_data = {"list_invoices": list_invoices,"APPROVALS":"TRUE" ,"INVOICE_NUM": invoicenum,"APROVAL_STATUS":RejectInvoice } 
         result = render(request, 'home.html', template_data)    
    else:
         result = render(request, 'home.html')        
