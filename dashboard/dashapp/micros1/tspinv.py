@@ -228,36 +228,53 @@ def invoice_approvals(request):
    return result
 ##APPROVE Invoice
 def invoice_approve(request):
-   if request.method == 'POST':  
-        tlclient = tllogin.prep_tlclient_from_session(request)
-        invClient = MSClient(tlclient)         
-        invoicenum = request.POST['invoiceno']
-        invoice_list = [invoicenum] 
-        ApproveInvoice ="Working"
-        ApproveInvoice = invClient.approve_invoices(invoice_list)
-        ##Loading All invoice
-        list_invoices = invClient.list_invoices_clo('all','all')          
-        template_data = {"list_invoices": list_invoices,"APPROVALS":"TRUE","INVOICE_NUM": invoicenum,"APROVAL_STATUS":ApproveInvoice } 
-        result = render(request, 'home.html', template_data)          
-   else:
-        result = render(request, 'home.html')
-
-   return result
+     try:
+         if request.method == 'POST':  
+             tlclient = tllogin.prep_tlclient_from_session(request)
+             invClient = MSClient(tlclient)         
+             invoicenum = request.POST['invoiceno']
+             invoice_list = [invoicenum] 
+             ApproveInvoice ="Working"
+             ApproveInvoice = invClient.approve_invoices(invoice_list)
+             ##Loading All invoice
+             list_invoices = invClient.list_invoices_clo('all','all')          
+             template_data = {"list_invoices": list_invoices,"APPROVALS":"TRUE","INVOICE_NUM": invoicenum,"APROVE_STATUS":ApproveInvoice } 
+             result = render(request, 'home.html', template_data)          
+         else:
+             result = render(request, 'home.html')
+     except Exception as exception:
+          tlclient = tllogin.prep_tlclient_from_session(request)
+          invClient = MSClient(tlclient)  
+          ##Loading All invoice
+          list_invoices = invClient.list_invoices_clo('all','all') 
+          template_data = {"list_invoices": list_invoices,"APPROVALS":"TRUE","Exception": exception,"APROVE_STATUS":ApproveInvoice,"EXCEPTION_INFO" : sys.exc_info()[0] } 
+          result = render(request, 'home.html', template_data) 
+     return result     
+    
 ## REJECT Invoice
 def invoice_reject(request):
-   if request.method == 'POST':          
-        tlclient = tllogin.prep_tlclient_from_session(request)
-        invClient = MSClient(tlclient) 
-        invoicenum = request.POST['invoiceno_rej']
-        invoice_list = [invoicenum] 
-        RejectInvoice = "Working"
-        RejectInvoice = invClient.reject_invoices(invoice_list) 
-        list_invoices = invClient.list_invoices_clo('all','all')  
-        template_data = {"list_invoices": list_invoices,"APPROVALS":"TRUE" ,"INVOICE_NUM": invoicenum,"APROVAL_STATUS":RejectInvoice } 
-        result = render(request, 'home.html', template_data)    
-   else:
-        result = render(request, 'home.html')        
-   return result
+     try:
+         if request.method == 'POST':          
+             tlclient = tllogin.prep_tlclient_from_session(request)
+             invClient = MSClient(tlclient) 
+             invoicenum = request.POST['invoiceno_rej']
+             invoice_list = [invoicenum] 
+             RejectInvoice = "Working"
+             RejectInvoice = invClient.reject_invoices(invoice_list) 
+             list_invoices = invClient.list_invoices_clo('all','all')  
+             template_data = {"list_invoices": list_invoices,"APPROVALS":"TRUE" ,"INVOICE_NUM": invoicenum,"REJECT_STATUS":RejectInvoice } 
+             result = render(request, 'home.html', template_data)    
+         else:
+             result = render(request, 'home.html')        
+     except Exception as exception:
+          tlclient = tllogin.prep_tlclient_from_session(request)
+          invClient = MSClient(tlclient)  
+          ##Loading All invoice
+          list_invoices = invClient.list_invoices_clo('all','all') 
+          template_data = {"list_invoices": list_invoices,"APPROVALS":"TRUE","Exception": exception,"REJECT_STATUS":ApproveInvoice,"EXCEPTION_INFO" : sys.exc_info()[0] } 
+          result = render(request, 'home.html', template_data) 
+     return result     
+
 
 
 def extractInvoice(request):

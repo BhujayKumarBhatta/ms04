@@ -235,11 +235,44 @@
         </tr>
     </table>
 
-    {% if Inv.recom_doc.xldata.invoiceno is null and Inv.current_doc.status != 'tspAccepted' %}
+    <table align="center" width="90%" style="padding-left: 150px">
+        <tr>
+            <td>
+                {% if 'Error' in APROVAL_STATUS %}
+                <div class="alert alert-danger" role="alert">
+                    There is problem while Perfoming Approvals. <br />
+                    {{APROVAL_STATUS}}
+                </div>
+                {% elif REJECT_STATUS is not null %}
+                <div class="alert alert-success" role="alert">
+                    Invoice has been Rejected Successfully.<br />
+                    Invoice Number : {{INVOICE_NUM}}<br />{{REJECT_STATUS}}
+                </div>
+                {% elif APROVE_STATUS is not null %}
+                <div class="alert alert-success" role="alert">
+                    Invoice has been Approved Successfully.<br />
+                    Invoice Number : {{INVOICE_NUM}}<br />{{APROVE_STATUS}}
+                </div>
+                {% elif EXCEPTION is not null %}
+                <div class="alert alert-danger" role="alert">
+                    There is been an error while uploading a file, Please check the file format. <br />
+                    {% if EXCEPTION_INFO is not null %}
+                    {{EXCEPTION_INFO}}
+                    {% endif %}
+                </div>
+                {% endif %}
+            </td>
+        </tr>
+    </table>
 
+
+    {% if Inv.recom_doc.xldata.invoiceno is null and Inv.current_doc.status != 'tspAccepted' %}
     {% endif %}
     Approval Status - {{APROVAL_STATUS}}
-    
+
+
+
+
     <table id="tree-table" class="table table-hover table-bordepink" width="1500">
         <thead>
             <tr style="font-size:12px">
@@ -383,6 +416,11 @@
     </form>
     {{DELETE_STATUS}}-->
 </div>
+
+
+
+
+
 
 
 
