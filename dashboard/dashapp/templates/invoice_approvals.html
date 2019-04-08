@@ -239,7 +239,7 @@
         <tr>
             <td>
                 {% if "Error" in APROVE_STATUS or  "Error" in REJECT_STATUS%}
-                <div class="alert alert-danger" role="alert">
+                <div class="alert alert-warning" role="alert">
                     There is problem while Perfoming Approvals. <br />
                     {{APROVE_STATUS}}{{REJECT_STATUS}}
                 </div>
