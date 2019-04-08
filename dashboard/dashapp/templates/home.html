@@ -665,11 +665,14 @@
                         {% elif VIEW_RCOM_UPLOAD is not null or rcomuploaded_file_url is not null %}
                         {% include 'invoice_rcom_upload.html' %}
 
-                        {% elif list_invoices is not null and IS_RCOM is null%}
+
+                        {% elif list_invoices is not null and APPROVALS is not null%}
+                        {% include 'invoice_approvals.html' %}
+
+                        {% elif list_invoices is not null and IS_RCOM is null %}
                         {% include 'invoicelist.html' %}
 
-                        {% elif list_invoices is not null and APPROVALS is null%}
-                        {% include 'invoice_approvals.html' %}
+
 
                         {% elif list_invoices is not null and IS_RCOM is not null %}
                         {% include 'invoicelist_recom.html' %}
