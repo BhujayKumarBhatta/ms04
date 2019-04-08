@@ -59,7 +59,7 @@ def list_invoice_rcom(request):
         template_data = {"list_invoices": list_invoices,"IS_RCOM":"TRUE" } 
         result = render(request, 'home.html', template_data)        
         return result
-## Deleting All invoices in the System
+## Deleting All/Invoice Number invoices in the System
 def invoice_delete(request):
    if request.method == 'GET':          
         tlclient = tllogin.prep_tlclient_from_session(request)
@@ -68,8 +68,18 @@ def invoice_delete(request):
         list_invoices = invClient.list_invoices_clo('all','all')  
         #template_data = {"DELETE_STATUS":"Working Delete","list_invoices":
         #list_invoices,"ISDELETED":"TRUE" }
-        template_data = {"list_invoices": list_invoices } 
-        result = render(request, 'home.html', template_data)          
+        template_data = {"list_invoices": list_invoices  ,"DELETE_INVOICE_STATUS": status} 
+        result = render(request, 'home.html', template_data)
+   if request.method == 'POST':          
+        tlclient = tllogin.prep_tlclient_from_session(request)
+        invClient = MSClient(tlclient)    
+        invoicenum = request.POST['invoiceno']
+        status = invClient.delete_invoices(invoicenum) 
+        list_invoices = invClient.list_invoices_clo('all','all')  
+        #template_data = {"DELETE_STATUS":"Working Delete","list_invoices":
+        #list_invoices,"ISDELETED":"TRUE" }
+        template_data = {"list_invoices": list_invoices ,"DELETE_INVOICE_STATUS": status} 
+        result = render(request, 'home.html', template_data)         
    return result    
 ## Navigate to Upload Invoice******
 def view_upload(request):
