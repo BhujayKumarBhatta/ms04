@@ -274,7 +274,7 @@
                     <form action="{% url 'dashapp:invoice_approve' %}" method="post" enctype="multipart/form-data">
                         {% csrf_token %}
                         <input type="hidden" id="invoiceno" name="invoiceno" value="{{Inv.current_doc.xldata.invoiceno}}">
-                        <button type="submit" class="btn btn-success btn-xs">Delete</button>
+                        <button type="submit" class="btn btn-danger btn-xs">Delete</button>
                     </form>
                 </td>
                 <td data-column="name" style="width:150px">{{ Inv.current_doc.xldata.invoiceno}} </td>
