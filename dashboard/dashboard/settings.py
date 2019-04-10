@@ -49,7 +49,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
-    'Dasboard.DashboradMiddleware',
+    'DashboradMiddleware',
 
 ]
 
