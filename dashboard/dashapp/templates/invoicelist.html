@@ -271,10 +271,10 @@
                     transparent
                 {%endif%}">
                 <td>
-                    <form action="{% url 'dashapp:invoice_approve' %}" method="post" enctype="multipart/form-data">
+                    <form action="{% url 'dashapp:list_invoices' %}" method="post" enctype="multipart/form-data">
                         {% csrf_token %}
                         <input type="hidden" id="invoiceno" name="invoiceno" value="{{Inv.current_doc.xldata.invoiceno}}">
-                        <button type="submit" class="btn btn-danger btn-xs">Delete</button>
+                        <button type="submit" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></span></button>
                     </form>
                 </td>
                 <td data-column="name" style="width:150px">{{ Inv.current_doc.xldata.invoiceno}} </td>
