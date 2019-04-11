@@ -16,7 +16,7 @@ from .utils import get_last_activity, set_last_activity
 class DashboradMiddleware(MiddlewareMixin):
     def process_exception(self, request, exception):
         print(exception.__class__.__name__)
-        print(exception.message)
+        #print(exception.message)
         print('Testin Kiran  .......')
         now = datetime.now()
         if '_session_security' not in request.session:
