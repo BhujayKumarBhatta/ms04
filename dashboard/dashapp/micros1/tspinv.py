@@ -62,6 +62,8 @@ def list_invoice_rcom(request):
 ## Deleting All/Invoice Number invoices in the System
 def invoice_delete(request):
    if request.method == 'POST':
+        tlclient = tllogin.prep_tlclient_from_session(request)
+        invClient = MSClient(tlclient)
         invoicenum = request.POST['invoiceno']
         if invoicenum is not null:
              status = invClient.delete_invoices(invoicenum) 
