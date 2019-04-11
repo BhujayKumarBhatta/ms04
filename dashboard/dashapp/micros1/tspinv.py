@@ -65,8 +65,8 @@ def invoice_delete(request):
         tlclient = tllogin.prep_tlclient_from_session(request)
         invClient = MSClient(tlclient)
         invoicenum = request.POST['invoiceno']
-        invoiceno = int(invoicenum,2) 
-        if invoiceno > 0:
+        my_list = [invoicenum] 
+        if my_list is not null:
              status = invClient.delete_invoices(invoicenum) 
         else:
              status = invClient.delete_invoices('all') 
