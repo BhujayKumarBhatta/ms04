@@ -1,6 +1,6 @@
 from django.conf import settings
 from django.http import HttpResponsePermanentRedirect, HttpResponseRedirect
-from django_common.session import SessionManager
+#from django_common.session import SessionManager
 
 class DashboradMiddleware(object):
     def process_exception(self, request, exception):
