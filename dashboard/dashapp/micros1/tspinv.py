@@ -79,15 +79,18 @@ def invoice_delete(request):
              status = invClient.delete_invoices('all') 
         #template_data = {"DELETE_STATUS":"Working Delete","list_invoices":
         #list_invoices,"ISDELETED":"TRUE" }
+        tlclient = tllogin.prep_tlclient_from_session(request)
+        invClient = MSClient(tlclient)
+        list_invoices = invClient.list_invoices_clo('all','all')  
         template_data = {"list_invoices": list_invoices ,"DELETE_INVOICE_STATUS": status} 
         result = render(request, 'home.html', template_data)   
    else:
+       tlclient = tllogin.prep_tlclient_from_session(request)
+       invClient = MSClient(tlclient)
+       list_invoices = invClient.list_invoices_clo('all','all')  
        template_data = {"list_invoices": list_invoices } 
        result = render(request, 'home.html', template_data)   
-   tlclient = tllogin.prep_tlclient_from_session(request)
-   invClient = MSClient(tlclient)
-   list_invoices = invClient.list_invoices_clo('all','all')  
-
+   
    return result    
 ## Navigate to Upload Invoice******
 def view_upload(request):
