@@ -83,7 +83,7 @@ def list_invoices(request):
     else:
         result = tspinv.list_invoices(request)
         return result
-    return
+      
 
 def invoice_create(request):
     if 'uname' not in request.session :
