@@ -16,7 +16,7 @@ from .utils import get_last_activity, set_last_activity
 
 class AutoLogout(MiddlewareMixin):
   def process_request(self, request):
-    if not request.session['uname'] is null :
+    if 'uname' not in request.session :
       #Can't log out if not logged in
       print('Testing session management')
       return
