@@ -14,7 +14,7 @@ except ImportError:  # Django < 1.10
 from .utils import get_last_activity, set_last_activity
 
 
-class AutoLogout(MiddlewareMixin):
+class AutoLogout(object):
   def process_request(self, request):
     if 'uname' not in request.session :
       #Can't log out if not logged in
@@ -22,15 +22,15 @@ class AutoLogout(MiddlewareMixin):
       logout(request)
       return
 
-    try:
-      if datetime.now() - request.session['last_touch'] > timedelta( 0, settings.AUTO_LOGOUT_DELAY * 60, 0):
-        auth.logout(request)
-        del request.session['last_touch']
-        return
-    except KeyError:
-      pass
+    #try:
+    #  if datetime.now() - request.session['last_touch'] > timedelta( 0, settings.AUTO_LOGOUT_DELAY * 60, 0):
+    #    auth.logout(request)
+    #    del request.session['last_touch']
+    #    return
+    #except KeyError:
+    #  pass
 
-    request.session['last_touch'] = datetime.now()
+    #request.session['last_touch'] = datetime.now()
 
 
 #class DashboradMiddleware(MiddlewareMixin):
