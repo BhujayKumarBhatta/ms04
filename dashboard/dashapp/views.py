@@ -81,7 +81,7 @@ def adduser(request):
 
 def list_invoices(request):
     if 'uname' not in request.session :
-      result =  logout(request)
+      result =  login(request)
     else:
         result = tspinv.list_invoices(request)
     return result
@@ -89,7 +89,7 @@ def list_invoices(request):
 
 def invoice_create(request):
     if 'uname' not in request.session :
-        result =  logout(request)
+        result =  login(request)
     else:
         result = tspinv.invoice_create(request)
     return result
@@ -97,7 +97,7 @@ def invoice_create(request):
 
 def list_invoices_rcom(request):
     if 'uname' not in request.session :
-      result =  logout(request)
+      result =  login(request)
     else:
       result = tspinv.list_invoice_rcom(request)
     return result
@@ -105,7 +105,7 @@ def list_invoices_rcom(request):
     
 def invoice_delete(request):
     if 'uname' not in request.session :
-        logout(request)
+        login(request)
 
     result = tspinv.invoice_delete(request)    
     return result
