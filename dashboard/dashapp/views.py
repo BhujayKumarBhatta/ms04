@@ -68,8 +68,9 @@ def list_role(request):
 
 def list_users(request):
     if 'uname' not in request.session :
-        logout(request)
-    result = tlviews.list_users(request)
+        result =  logout(request)
+    else:
+        result = tlviews.list_users(request)
     return result
 
 
