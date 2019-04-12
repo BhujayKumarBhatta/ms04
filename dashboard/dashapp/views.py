@@ -195,7 +195,7 @@ def logout(request):
     if 'psword' in request.session:
         del request.session['psword']
     request.session.clear_expired() 
-    result = linkv.list_links(request)
+    result = tllogin.login(request)
     return result
     #result = render(request, "login.html", {'SESSION_EXPIRE':'TRUE'})
     #return result  
