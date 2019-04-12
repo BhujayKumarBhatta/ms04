@@ -190,9 +190,9 @@ def list_test(request):
 
 #### Log out
 def logout(request):
-    if 'uname' in request.session:
+    if request.session.has_key('uname'):
         del request.session['uname']
-    if 'psword' in request.session:
+    if request.session.has_key('psword'):
         del request.session['psword']
     request.session.clear_expired() 
     result = tllogin.login(request)
