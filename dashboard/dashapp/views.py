@@ -36,16 +36,25 @@ def list_links(request):
 
 
 def list_org(request):
+    if 'uname' not in request.session :
+        logout(request)
+
     result = tlviews.list_org(request)
     return result
 
 
 def list_ou(request):
+    if 'uname' not in request.session :
+        logout(request)
+
     result = tlviews.list_ou(request)
     return result
 
 
 def list_dept(request):
+    if 'uname' not in request.session :
+        logout(request)
+
     result = tlviews.list_dept(request)
     return result
 
@@ -69,6 +78,8 @@ def adduser(request):
 
 
 def list_invoices(request):
+    if 'uname' not in request.session :
+        logout(request)
     result = tspinv.list_invoices(request)
     return result
 
@@ -80,11 +91,16 @@ def invoice_create(request):
  
 
 def list_invoices_rcom(request):
+    if 'uname' not in request.session :
+        logout(request)
     result = tspinv.list_invoice_rcom(request)
     return result
     
     
 def invoice_delete(request):
+    if 'uname' not in request.session :
+        logout(request)
+
     result = tspinv.invoice_delete(request)    
     return result
 
