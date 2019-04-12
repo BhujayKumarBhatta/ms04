@@ -44,7 +44,7 @@ def list_invoices(request):
         result = render(request, 'home.html', template_data)        
         return result
     if request.method == 'GET': 
-        if 'uname' not in request.session:
+        if 'uname' in request.session:
             del request.session['uname']
         tlclient = tllogin.prep_tlclient_from_session(request)
         invClient = MSClient(tlclient) 
