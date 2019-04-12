@@ -19,17 +19,18 @@ class AutoLogout(MiddlewareMixin):
     if 'uname' not in request.session :
       #Can't log out if not logged in
       print('Testing session management')
+      logout(request)
       return
 
-    try:
-      if datetime.now() - request.session['last_touch'] > timedelta( 0, settings.AUTO_LOGOUT_DELAY * 60, 0):
-        auth.logout(request)
-        del request.session['last_touch']
-        return
-    except KeyError:
-      pass
+    #try:
+    #  if datetime.now() - request.session['last_touch'] > timedelta( 0, settings.AUTO_LOGOUT_DELAY * 60, 0):
+    #    auth.logout(request)
+    #    del request.session['last_touch']
+    #    return
+    #except KeyError:
+    #  pass
 
-    request.session['last_touch'] = datetime.now()
+    #request.session['last_touch'] = datetime.now()
 
 
 #class DashboradMiddleware(MiddlewareMixin):
@@ -87,6 +88,6 @@ class AutoLogout(MiddlewareMixin):
 #        # Update the session
 #        set_last_activity(request.session, last_activity)
 
-#    def logout(self, request):
-#        """Logging out session."""
-#        return HttpResponse("<strong>You are logged out.</strong>")
+    def logout(self, request):
+        """Logging out session."""
+        return HttpResponse("<strong>You are logged out.</strong>")
