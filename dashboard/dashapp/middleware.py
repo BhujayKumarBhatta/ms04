@@ -14,7 +14,7 @@ except ImportError:  # Django < 1.10
 from .utils import get_last_activity, set_last_activity
 
 
-class AutoLogout:
+class AutoLogout(MiddlewareMixin):
   def process_request(self, request):
     if not request.session['uname'] is null :
       #Can't log out if not logged in
