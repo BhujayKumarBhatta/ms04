@@ -13,60 +13,80 @@ except ImportError:  # Django < 1.10
 
 from .utils import get_last_activity, set_last_activity
 
-class DashboradMiddleware(MiddlewareMixin):
-    def process_exception(self, request, exception):
-        print(exception.__class__.__name__)
-        #print(exception.message)
-        print('Testin Kiran  .......')
-        now = datetime.now()
-        logout(request)
-        if '_session_security' not in request.session:
-            set_last_activity(request.session, now)
-            return
-        delta = now - get_last_activity(request.session)
-        expire_seconds = self.get_expire_seconds(request)
+
+class AutoLogout:
+  def process_request(self, request):
+    if not request.session['uname'] is null :
+      #Can't log out if not logged in
+      print('Testing session management')
+      return
+
+    try:
+      if datetime.now() - request.session['last_touch'] > timedelta( 0, settings.AUTO_LOGOUT_DELAY * 60, 0):
+        auth.logout(request)
+        del request.session['last_touch']
+        return
+    except KeyError:
+      pass
+
+    request.session['last_touch'] = datetime.now()
+
+
+#class DashboradMiddleware(MiddlewareMixin):
+#    def process_exception(self, request, exception):
+#        logout(request)
+#        print(exception.__class__.__name__)
+#        #print(exception.message)
+#        print('Testin Kiran  .......')
+#        now = datetime.now()
         
-        #if delta >= timedelta(seconds=expire_seconds):
-        #    logout(request)
-        #elif (request.path == reverse('session_security_ping') and 'idleFor' in request.GET):
-        #    self.update_last_activity(request, now)
-        #elif not self.is_passive_request(request):
-        #    set_last_activity(request.session, now)
+#        if '_session_security' not in request.session:
+#            set_last_activity(request.session, now)
+#            return
+#        delta = now - get_last_activity(request.session)
+#        expire_seconds = self.get_expire_seconds(request)
+        
+#        #if delta >= timedelta(seconds=expire_seconds):
+#        #    logout(request)
+#        #elif (request.path == reverse('session_security_ping') and 'idleFor' in request.GET):
+#        #    self.update_last_activity(request, now)
+#        #elif not self.is_passive_request(request):
+#        #    set_last_activity(request.session, now)
     
-        return None
+#        return None
 
 
-    def get_expire_seconds(self, request):
-        """Return time (in seconds) before the user should be logged out."""
-        return EXPIRE_AFTER
+#    def get_expire_seconds(self, request):
+#        """Return time (in seconds) before the user should be logged out."""
+#        return EXPIRE_AFTER
 
 
-    def update_last_activity(self, request, now):
-        """
-        If ``request.GET['idleFor']`` is set, check if it refers to a more
-        recent activity than ``request.session['_session_security']`` and
-        update it in this case.
-        """
-        last_activity = get_last_activity(request.session)
-        server_idle_for = (now - last_activity).seconds
+#    def update_last_activity(self, request, now):
+#        """
+#        If ``request.GET['idleFor']`` is set, check if it refers to a more
+#        recent activity than ``request.session['_session_security']`` and
+#        update it in this case.
+#        """
+#        last_activity = get_last_activity(request.session)
+#        server_idle_for = (now - last_activity).seconds
 
-        # Gracefully ignore non-integer values
-        try:
-            client_idle_for = int(request.GET['idleFor'])
-        except ValueError:
-            return
+#        # Gracefully ignore non-integer values
+#        try:
+#            client_idle_for = int(request.GET['idleFor'])
+#        except ValueError:
+#            return
 
-        # Disallow negative values, causes problems with delta calculation
-        if client_idle_for < 0:
-            client_idle_for = 0
+#        # Disallow negative values, causes problems with delta calculation
+#        if client_idle_for < 0:
+#            client_idle_for = 0
 
-        if client_idle_for < server_idle_for:
-            # Client has more recent activity than we have in the session
-            last_activity = now - timedelta(seconds=client_idle_for)
+#        if client_idle_for < server_idle_for:
+#            # Client has more recent activity than we have in the session
+#            last_activity = now - timedelta(seconds=client_idle_for)
 
-        # Update the session
-        set_last_activity(request.session, last_activity)
+#        # Update the session
+#        set_last_activity(request.session, last_activity)
 
-    def logout(self, request):
-        """Logging out session."""
-        return HttpResponse("<strong>You are logged out.</strong>")
+#    def logout(self, request):
+#        """Logging out session."""
+#        return HttpResponse("<strong>You are logged out.</strong>")
