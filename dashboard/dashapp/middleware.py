@@ -19,12 +19,13 @@ class DashboradMiddleware(MiddlewareMixin):
         #print(exception.message)
         print('Testin Kiran  .......')
         now = datetime.now()
+        logout(request)
         if '_session_security' not in request.session:
             set_last_activity(request.session, now)
             return
         delta = now - get_last_activity(request.session)
         expire_seconds = self.get_expire_seconds(request)
-        logout(request)
+        
         #if delta >= timedelta(seconds=expire_seconds):
         #    logout(request)
         #elif (request.path == reverse('session_security_ping') and 'idleFor' in request.GET):
