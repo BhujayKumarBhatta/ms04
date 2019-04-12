@@ -37,31 +37,32 @@ def list_links(request):
 
 def list_org(request):
     if 'uname' not in request.session :
-        logout(request)
-
-    result = tlviews.list_org(request)
+        result =  logout(request)
+    else:
+        result = tlviews.list_org(request)
     return result
 
 
 def list_ou(request):
     if 'uname' not in request.session :
-        logout(request)
-
-    result = tlviews.list_ou(request)
+        result =  logout(request)
+    else:
+        result = tlviews.list_ou(request)
     return result
 
 
 def list_dept(request):
     if 'uname' not in request.session :
-        logout(request)
-
-    result = tlviews.list_dept(request)
+        result =  logout(request)
+    else:
+        result = tlviews.list_dept(request)
     return result
 
 def list_role(request):
     if 'uname' not in request.session :
-        logout(request)
-    result = tlviews.list_role(request)
+        result =  logout(request)
+    else:
+        result = tlviews.list_role(request)
     return result
 
 
@@ -79,23 +80,25 @@ def adduser(request):
 
 def list_invoices(request):
     if 'uname' not in request.session :
-        logout(request)
+      result =  logout(request)
     else:
         result = tspinv.list_invoices(request)
-        return result
+    return result
       
 
 def invoice_create(request):
     if 'uname' not in request.session :
-        logout(request)
-    result = tspinv.invoice_create(request)
+        result =  logout(request)
+    else:
+        result = tspinv.invoice_create(request)
     return result
  
 
 def list_invoices_rcom(request):
     if 'uname' not in request.session :
-        logout(request)
-    result = tspinv.list_invoice_rcom(request)
+      result =  logout(request)
+    else:
+      result = tspinv.list_invoice_rcom(request)
     return result
     
     
@@ -149,9 +152,10 @@ def list_test(request):
     result = linkv.list_test(request)  
 
 def logout(request):
-    return render(request, "login.html", {'SESSION_EXPIRE':'TRUE'})  
+    result = render(request, "login.html", {'SESSION_EXPIRE':'TRUE'})
+    return result  
 
-
+ 
 
 ######Invoice Model Form Testing
 def add_model(request):
