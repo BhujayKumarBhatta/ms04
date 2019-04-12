@@ -20,7 +20,7 @@ class AutoLogout(MiddlewareMixin):
       #Can't log out if not logged in
     print('####################Testing session management############################')
     
-    return logout(request) 
+    return  
 
   
 

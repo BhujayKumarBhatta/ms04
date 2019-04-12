@@ -50,6 +50,8 @@ def list_dept(request):
     return result
 
 def list_role(request):
+    if 'uname' not in request.session :
+        logout(request)
     result = tlviews.list_role(request)
     return result
 
