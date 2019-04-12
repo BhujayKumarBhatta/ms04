@@ -20,15 +20,14 @@
         </div>
         <div class="container-login100">
             <div class="wrap-login100">
-                <!--<div class="login100-form-title" style="background-image: url({% static " dashapp/images/bg-01.jpg" %});">-->
-                <div class="login100-form-title" style="background-image: url(images/bg-01.jpg);">
-                    <span class="login100-form-title-1">
-                        Sign In
-                    </span>
-                </div>
+                <div class="login100-form-title" style="background-image: url('{% static ""dashapp/images/bg-01.jpg"" %}');">
+                <span class="login100-form-title-1">
+                    Sign In
+                </span>
+            </div>
 
-                <form class="login100-form validate-form" action="{% url 'dashapp:login' %}" method="post">
-                    {% csrf_token %}
+                <form class="login100-form validate-form" action="{% url 'dashapp:login' %}"  method="post">
+                {% csrf_token %} 
                     <div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
                         <span class="label-input100">Username</span>
                         <input class="input100" type="text" name="username" placeholder="Enter username">
@@ -61,12 +60,12 @@
                             Login
                         </button>
                     </div>
-                    <br> <br> <br> <br>
+                    <br> <br> <br> <br> 
                     <div class="login-result">
-                        {{ mykey }}
-                    </div>
+						 {{ mykey }}
+						 </div>
                 </form>
-
+               
             </div>
         </div>
     </div>
