@@ -37,7 +37,7 @@ def list_links(request):
 
 def list_org(request):
     if 'uname' not in request.session :
-        result =  logout(request)
+        result = logout(request)
     else:
         result = tlviews.list_org(request)
     return result
@@ -45,7 +45,7 @@ def list_org(request):
 
 def list_ou(request):
     if 'uname' not in request.session :
-        result =  logout(request)
+        result = logout(request)
     else:
         result = tlviews.list_ou(request)
     return result
@@ -53,14 +53,14 @@ def list_ou(request):
 
 def list_dept(request):
     if 'uname' not in request.session :
-        result =  logout(request)
+        result = logout(request)
     else:
         result = tlviews.list_dept(request)
     return result
 
 def list_role(request):
     #if 'uname' not in request.session :
-    result =  logout(request)
+    result = logout(request)
     #else:
     #    result = tlviews.list_role(request)
     return result
@@ -68,7 +68,7 @@ def list_role(request):
 
 def list_users(request):
     if 'uname' not in request.session :
-        result =  logout(request)
+        result = logout(request)
     else:
         result = tlviews.list_users(request)
     return result
@@ -81,7 +81,7 @@ def adduser(request):
 
 def list_invoices(request):
     if 'uname' not in request.session :
-      result =  login(request)
+      result = login(request)
     else:
         result = tspinv.list_invoices(request)
     return result
@@ -89,7 +89,7 @@ def list_invoices(request):
 
 def invoice_create(request):
     if 'uname' not in request.session :
-        result =  login(request)
+        result = login(request)
     else:
         result = tspinv.invoice_create(request)
     return result
@@ -97,7 +97,7 @@ def invoice_create(request):
 
 def list_invoices_rcom(request):
     if 'uname' not in request.session :
-      result =  login(request)
+      result = login(request)
     else:
       result = tspinv.list_invoice_rcom(request)
     return result
@@ -152,11 +152,17 @@ def sampleinvoice(request):
 def list_test(request):
     result = linkv.list_test(request)  
 
+#### Log out
 def logout(request):
-    result = render(request, "login.html", {'SESSION_EXPIRE':'TRUE'})
-    return result  
-
- 
+    if 'uname' in request.session:
+        del request.session['uname']
+    if 'psword' in request.session:
+        del request.session['psword']
+    request.session.clear_expired() 
+    result = linkv.list_links(request)
+    return result
+    #result = render(request, "login.html", {'SESSION_EXPIRE':'TRUE'})
+    #return result  
 
 ######Invoice Model Form Testing
 def add_model(request):
@@ -171,6 +177,8 @@ def add_model(request):
     else: 
         form = invoiceForm() 
         return render(request, "home.html", {'CREATE_INVOICE_FORM': form})
+
+ 
 
 
 

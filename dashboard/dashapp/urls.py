@@ -22,6 +22,7 @@ from . import views
 
 app_name = 'dashapp'
 urlpatterns = [path('', views.login, name='login'),
+               path('', views.logout, name='logout'),
     #Infops DB
     path('list_links', views.list_links, name='list_links'),
     path('list_test', views.list_links, name='list_test'),      
