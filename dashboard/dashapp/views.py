@@ -124,6 +124,10 @@ def sampleinvoice(request):
 def list_test(request):
     result = linkv.list_test(request)  
 
+def logout(request):
+    return render(request, "login.html", {'SESSION_EXPIRE':'TRUE'})  
+
+
 
 ######Invoice Model Form Testing
 def add_model(request):
