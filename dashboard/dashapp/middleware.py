@@ -26,8 +26,7 @@ class DashboradMiddleware(MiddlewareMixin):
         expire_seconds = self.get_expire_seconds(request)
         if delta >= timedelta(seconds=expire_seconds):
             logout(request)
-        elif (request.path == reverse('session_security_ping') and
-                'idleFor' in request.GET):
+        elif (request.path == reverse('session_security_ping') and 'idleFor' in request.GET):
             self.update_last_activity(request, now)
         elif not self.is_passive_request(request):
             set_last_activity(request.session, now)
@@ -65,3 +64,7 @@ class DashboradMiddleware(MiddlewareMixin):
 
         # Update the session
         set_last_activity(request.session, last_activity)
+
+    def logout(self, request):
+        """Logging out session."""
+        return HttpResponse("<strong>You are logged out.</strong>")
