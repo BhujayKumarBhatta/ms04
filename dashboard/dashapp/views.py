@@ -88,7 +88,7 @@ def adduser(request):
 def list_invoices(request):
     if 'uname' not in request.session :
       result = login(request)
-    else:
+    elif'uname' in request.session :
       result = tspinv.list_invoices(request)
     return result
       
