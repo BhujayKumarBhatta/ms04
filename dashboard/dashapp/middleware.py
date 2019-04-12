@@ -24,12 +24,13 @@ class DashboradMiddleware(MiddlewareMixin):
             return
         delta = now - get_last_activity(request.session)
         expire_seconds = self.get_expire_seconds(request)
-        if delta >= timedelta(seconds=expire_seconds):
-            logout(request)
-        elif (request.path == reverse('session_security_ping') and 'idleFor' in request.GET):
-            self.update_last_activity(request, now)
-        elif not self.is_passive_request(request):
-            set_last_activity(request.session, now)
+        logout(request)
+        #if delta >= timedelta(seconds=expire_seconds):
+        #    logout(request)
+        #elif (request.path == reverse('session_security_ping') and 'idleFor' in request.GET):
+        #    self.update_last_activity(request, now)
+        #elif not self.is_passive_request(request):
+        #    set_last_activity(request.session, now)
     
         return None
 
