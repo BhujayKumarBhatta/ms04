@@ -43,8 +43,9 @@ def list_invoices(request):
         template_data = {"list_invoices": list_invoices ,"ACCEPT_RCOM" : accept_recomondation} 
         result = render(request, 'home.html', template_data)        
         return result
-    if request.method == 'GET':  
-        del request.session['uname']
+    if request.method == 'GET': 
+        if 'uname' not in request.session:
+            del request.session['uname']
         tlclient = tllogin.prep_tlclient_from_session(request)
         invClient = MSClient(tlclient) 
         list_invoices = invClient.list_invoices_clo('all','all')  
