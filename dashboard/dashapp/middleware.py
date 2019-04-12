@@ -16,11 +16,11 @@ from .utils import get_last_activity, set_last_activity
 
 class AutoLogout(MiddlewareMixin):
   def process_request(self, request):
-    if 'uname' not in request.session :
+    #if 'uname' not in request.session :
       #Can't log out if not logged in
-      print('Testing session management')
-      logout(request)
-      return
+    print('Testing session management')
+    logout(request)
+    return
 
     #try:
     #  if datetime.now() - request.session['last_touch'] > timedelta( 0, settings.AUTO_LOGOUT_DELAY * 60, 0):
