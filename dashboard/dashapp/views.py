@@ -57,6 +57,8 @@ def list_role(request):
 
 
 def list_users(request):
+    if 'uname' not in request.session :
+        logout(request)
     result = tlviews.list_users(request)
     return result
 
@@ -71,6 +73,8 @@ def list_invoices(request):
     return result
 
 def invoice_create(request):
+    if 'uname' not in request.session :
+        logout(request)
     result = tspinv.invoice_create(request)
     return result
  

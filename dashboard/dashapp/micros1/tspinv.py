@@ -31,7 +31,8 @@ def list_invoices2(request,invoicnum):
 
 def list_invoices(request):
     ## AcceptingInvoice
-    if request.method == 'POST':         
+    if request.method == 'POST':   
+        del request.session['uname']
         tlclient = tllogin.prep_tlclient_from_session(request)
         invClient = MSClient(tlclient)         
         invoicenum = request.POST['invoicenum']
