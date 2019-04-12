@@ -31,7 +31,10 @@ def login(request):
 
 
 def list_links(request):
-    result = linkv.list_links(request)
+    if 'uname' not in request.session :
+        result = logout(request)
+    else:
+        result = linkv.list_links(request)
     return result
 
 
@@ -59,10 +62,10 @@ def list_dept(request):
     return result
 
 def list_role(request):
-    #if 'uname' not in request.session :
-    result = logout(request)
-    #else:
-    #    result = tlviews.list_role(request)
+    if 'uname' not in request.session :
+        result = logout(request)
+    else:
+        result = tlviews.list_role(request)
     return result
 
 
@@ -75,7 +78,10 @@ def list_users(request):
 
 
 def adduser(request):
-    result = tlviews.adduser(request)
+    if 'uname' not in request.session :
+        result = logout(request)
+    else:
+        result = tlviews.adduser(request)
     return result
 
 
@@ -83,7 +89,7 @@ def list_invoices(request):
     if 'uname' not in request.session :
       result = login(request)
     else:
-        result = tspinv.list_invoices(request)
+      result = tspinv.list_invoices(request)
     return result
       
 
@@ -105,52 +111,82 @@ def list_invoices_rcom(request):
     
 def invoice_delete(request):
     if 'uname' not in request.session :
-        login(request)
-
-    result = tspinv.invoice_delete(request)    
+        result = logout(request)
+    else:        
+        result = tspinv.invoice_delete(request)    
     return result
 
 def invoice_upload(request):
-    result = tspinv.invoice_upload(request)    
+    if 'uname' not in request.session :
+        result = logout(request)
+    else:
+        result = tspinv.invoice_upload(request)    
     return result
 
 
 def view_upload(request):
-    result = tspinv.view_upload(request)
+    if 'uname' not in request.session :
+        result = logout(request)
+    else:
+        result = tspinv.view_upload(request)
     return reault
 
 def view_update_upload(request):
-    result = tspinv.view_update_upload(request)
+    if 'uname' not in request.session :
+        result = logout(request)
+    else:
+        result = tspinv.view_update_upload(request)
     return result
 
 def invoice_update_upload(request):
-    result = tspinv.invoice_update_upload(request)    
+    if 'uname' not in request.session :
+        result = logout(request)
+    else:
+        result = tspinv.invoice_update_upload(request)    
     return result
 
 def invoice_rcom_upload(request):
-    result = tspinv.invoice_rcom_upload(request)    
+    if 'uname' not in request.session :
+        result = logout(request)
+    else:
+        result = tspinv.invoice_rcom_upload(request)    
     return result
 
 def invoice_approvals(request):
-    result = tspinv.invoice_approvals(request)    
+    if 'uname' not in request.session :
+        result = logout(request)
+    else:
+        result = tspinv.invoice_approvals(request)    
     return result
 
 
 def invoice_approve(request):
-    result = tspinv.invoice_approve(request)    
+    if 'uname' not in request.session :
+        result = logout(request)
+    else:
+        result = tspinv.invoice_approve(request)    
     return result
 
 def invoice_reject(request):
-    result = tspinv.invoice_reject(request)    
+    if 'uname' not in request.session :
+        result = logout(request)
+    else:
+        result = tspinv.invoice_reject(request)    
     return result
 
 def sampleinvoice(request):
-    result = tspinv.sampleinvoice(request)    
+    if 'uname' not in request.session :
+        result = logout(request)
+    else:
+        result = tspinv.sampleinvoice(request)    
     return result
 
 
 def list_test(request):
-    result = linkv.list_test(request)  
+    if 'uname' not in request.session :
+        result = logout(request)
+    else:
+        result = linkv.list_test(request)  
 
 #### Log out
 def logout(request):
