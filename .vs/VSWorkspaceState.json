@@ -3,11 +3,14 @@
     "",
     "\\dashboard",
     "\\dashboard\\dashapp",
+    "\\dashboard\\dashapp\\micros1",
+    "\\dashboard\\dashapp\\static",
     "\\dashboard\\dashapp\\static\\dashapp",
-    "\\dashboard\\dashapp\\static\\dashapp\\styles",
+    "\\dashboard\\dashapp\\static\\dashapp\\images",
     "\\dashboard\\dashapp\\templates",
+    "\\dashboard\\dashapp\\tokenleader",
     "\\dashboard\\dashboard"
   ],
-  "SelectedNode": "\\dashboard\\dashapp\\views.py",
+  "SelectedNode": "\\dashboard\\dashapp\\templates\\invoicetemplate.html",
   "PreviewInSolutionExplorer": false
 }
