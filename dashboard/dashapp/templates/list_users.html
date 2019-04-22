@@ -295,10 +295,9 @@ RESULT : {{ list_org }}
             </tr>
             {% endfor %}
         </tbody>
-    </table>
-    RESULT : {{ list_dept }}
+    </table>    
 </div>
-
+RESULT : {{ list_dept }}
 
 {% elif list_role is not null %}
 <!--Role-->
@@ -335,10 +334,12 @@ RESULT : {{ list_org }}
         </tbody>
     </table>
 </div>
+RESULT : {{ list_role }}
+
 
 {% elif list_ou is not null %}
 <!--OU-->
-#        list of OU : {{ list_ou }}
+
 
 
 <div class="table-wrapper">
@@ -371,6 +372,7 @@ RESULT : {{ list_org }}
         </tbody>
     </table>
 </div>
+RESULT : {{ list_org }}
 {% endif %}
 
 <!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Open modal for @mdo</button>
