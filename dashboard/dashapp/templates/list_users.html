@@ -302,7 +302,7 @@ RESULT : {{ list_org }}
 
 {% elif list_role is not null %}
 <!--Role-->
-        list of Role : {{ list_role }}
+        
 
 
 <div class="table-wrapper">
@@ -322,9 +322,9 @@ RESULT : {{ list_org }}
             </tr>
         </thead>
         <tbody>
-            {% for org in list_role %}
+            {% for role in list_role %}
             <tr style="font-size:11px">
-                <td>{{ org.name  }}</td>
+                <td>{{ role.name  }}</td>
                 <td>
                     <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
                     <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
@@ -337,8 +337,8 @@ RESULT : {{ list_org }}
 </div>
 
 {% elif list_ou is not null %}
-<!--Role-->
-        list of Role : {{ list_ou }}
+<!--OU-->
+#        list of OU : {{ list_ou }}
 
 
 <div class="table-wrapper">
@@ -358,9 +358,9 @@ RESULT : {{ list_org }}
             </tr>
         </thead>
         <tbody>
-            {% for org in list_ou %}
+            {% for orgunit in list_ou %}
             <tr style="font-size:11px">
-                <td>{{ org.name  }}</td>
+                <td>{{ orgunit.name  }}</td>
                 <td>
                     <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
                     <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
