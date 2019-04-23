@@ -93,26 +93,26 @@ def invoice_upload(request):
 
 
 def org_delete(request):
-	try:
-		if request.method == 'POST':
-	        tlclient = tllogin.prep_tlclient_from_session(request)
-	 	    orgname = request.POST['orgname']		 
-		    data = dict({ "oname": ""})
-			data["oname"] = orgname 
-	        status = tlclient.delete_org(data) 
-			list_org = tlclient.list_org()
-	        list_org = json.dumps(list_org)
-	        list_org = json.loads(list_org)
-	        template_data = {"list_org": list_org } 
-	        result = render(request, 'home.html', template_data,"DELETE_STATUS":status)
-	        return result  
-	except Exception as exception:
-		 	tlclient = tllogin.prep_tlclient_from_session(request)
-		 	list_org = tlclient.list_org()
-	        list_org = json.dumps(list_org)
-	        list_org = json.loads(list_org)
-	        template_data = {"list_org": list_org,"Exception": exception,"EXCEPTION_INFO" : sys.exc_info()[0] }	 
-			result = render(request, 'home.html', template_data)
-	        return result  
+//	try:
+	if request.method == 'POST':
+        tlclient = tllogin.prep_tlclient_from_session(request)
+ 	    orgname = request.POST['orgname']		 
+	    data = dict({ "oname": ""})
+		data["oname"] = orgname 
+        status = tlclient.delete_org(data) 
+		list_org = tlclient.list_org()
+        list_org = json.dumps(list_org)
+        list_org = json.loads(list_org)
+        template_data = {"list_org": list_org } 
+        result = render(request, 'home.html', template_data,"DELETE_STATUS":status)
+        return result  
+//	except Exception as exception:
+//		 	tlclient = tllogin.prep_tlclient_from_session(request)
+//		 	list_org = tlclient.list_org()
+//	        list_org = json.dumps(list_org)
+//	        list_org = json.loads(list_org)
+//	        template_data = {"list_org": list_org,"Exception": exception,"EXCEPTION_INFO" : sys.exc_info()[0] }	 
+//			result = render(request, 'home.html', template_data)
+//	        return result  
        
 
