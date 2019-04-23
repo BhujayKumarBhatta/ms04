@@ -101,7 +101,7 @@ def org_delete(request):
 		data["oname"] = orgname 
         status = tlclient.delete_org(data) 
 		list_org = tlclient.list_org()
-        list_org = json.dumps(list_org)
+#        list_org = json.dumps(list_org)
         list_org = json.loads(list_org)
         template_data = {"list_org": list_org } 
         result = render(request, 'home.html', template_data,"DELETE_STATUS":status)
