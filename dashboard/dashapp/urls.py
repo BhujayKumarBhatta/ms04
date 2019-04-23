@@ -22,6 +22,7 @@ from . import views
 
 app_name = 'dashapp'
 urlpatterns = [path('', views.login, name='login'),
+               path('', views.logout, name='logout'),
     #Infops DB
     path('list_links', views.list_links, name='list_links'),
     path('list_test', views.list_links, name='list_test'),      
@@ -29,16 +30,24 @@ urlpatterns = [path('', views.login, name='login'),
     path('list_users', views.list_users, name='list_users'),
     path('adduser', views.adduser, name='adduser'),
     path('list_org', views.list_org, name='list_org'),
-    path('list_dept', views.list_dept, name='list_dept'),
+    path('org_delete', views.org_delete, name='org_delete'),
+    path('list_dept', views.list_dept, name='list_dept'), 
     path('list_role', views.list_role, name='list_role'),
     path('list_ou', views.list_ou, name='list_ou'),
     #Invoice
+    path('sampleinvoice', views.sampleinvoice, name='sampleinvoice'),
     path('list_invoices', views.list_invoices, name='list_invoices'),
     path('list_invoices_rcom', views.list_invoices_rcom, name='list_invoices_rcom'),    
     path('invoice_upload', views.invoice_upload, name='invoice_upload'),
     path('view_upload', views.view_upload, name='view_upload'),
     path('invoice_update_upload', views.invoice_update_upload, name='invoice_update_upload')
-    ,path('add_model', views.add_model, name='add_model')]
+    ,path('invoice_rcom_upload', views.invoice_rcom_upload, name='invoice_rcom_upload')
+    ,path('add_model', views.add_model, name='add_model')    
+    ,path('invoice_delete', views.invoice_delete, name='invoice_delete')
+    ,path('invoice_create', views.invoice_create, name='invoice_create')
+    ,path('invoice_approvals', views.invoice_approvals, name='invoice_approvals')
+    ,path('invoice_approve', views.invoice_approve, name='invoice_approve')
+    ,path('invoice_reject', views.invoice_reject, name='invoice_reject')]
 
 
 

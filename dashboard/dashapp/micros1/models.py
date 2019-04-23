@@ -28,3 +28,4 @@ class Invoice(models.Model):
         return '{0}'.format(self.content)
 
 
+            
