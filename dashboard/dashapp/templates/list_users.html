@@ -239,11 +239,31 @@ RESULT : {{ list_users }}
             </div>
         </div>
     </div>
+    {{DELETE_STATUS}}
+    <table align="center" width="90%" style="padding-left: 150px">
+        <tr>
+            <td>
+                {% if DELETE_STATUS is not null %}
+                <div class="alert alert-success" role="alert">
+                    Organization(s) Deleted Successfully.<br />{{DELETE_STATUS}}
+                </div>
+                {% elif EXCEPTION is not null %}
+                <div class="alert alert-danger" role="alert">
+                    There is been an error while deleting a Organization(s), Please Try after sometime or contact Administrator. <br />
+                    {% if EXCEPTION_INFO is not null %}
+                    {{EXCEPTION_INFO}}
+                    {% endif %}
+                </div>
+                {% endif %}
+            </td>
+        </tr>
+    </table>
+    
     <table class="table table-bordered">
         <thead>
             <tr style="font-size:12px">
                 <th>Name</th>
-                <th>Actions </th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -251,9 +271,14 @@ RESULT : {{ list_users }}
             <tr style="font-size:11px">
                 <td>{{ org.name  }}</td>
                 <td>
-                    <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
-                    <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                    <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+                    <form action="{% url 'dashapp:org_delete' %}" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <input type="hidden" id="orgname" name="orgname" value="{{org.name}}">
+                        <button type="submit" class="btn btn-danger " 
+                                onclick="return confirm('Are you sure? you want to Delete Organization')">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </button>
+                    </form>
                 </td>
             </tr>
             {% endfor %}
