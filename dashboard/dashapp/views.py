@@ -50,8 +50,14 @@ def delete_org(request):
         result = logout(request)
     else:
         result = tlviews.delete_org(request)
+    return result   
+    		
+def add_org(request):
+    if 'uname' not in request.session :
+        result = logout(request)
+    else:
+        result = tlviews.add_org(request)
     return result    		
-
 
 def list_ou(request):
     if 'uname' not in request.session :
