@@ -258,17 +258,25 @@ RESULT : {{ list_users }}
             </td>
         </tr>
     </table>
-    <table class="table table-bordered"><tr><td>
     <form action="{% url 'dashapp:add_org' %}" method="POST" enctype="multipart/form-data">
+    <table class="table table-bordered"><tr><td style="width:60%">
+    
                         {% csrf_token %}
-                        <input type="text" id="orgname" name="orgname" value="{{org.name}}">
-                        <button type="submit" class="btn btn-success " 
-                                onclick="return confirm('Are you sure? you want to Add Organization')">                             
-                        </button>
-    </form>
+                        <input type="text" id="orgname" name="orgname" value="{{org.name}}"  class="form-control">
+                        </td><td>
+                        <button type="submit" class="btn btn-success " style="width:100px"  onclick="return confirm('Are you sure? you want to Add Organization')">                             
+                        Save</button>
+   
     </td>
     </tr>
     </table>
+     </form>
+     
+       
+        <div class="form-group">
+            <label for="email">User Name:</label>
+            <input type="email" class="form-control" id="email">
+        
     
     
     <table class="table table-bordered">
