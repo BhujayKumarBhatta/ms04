@@ -96,7 +96,7 @@ def org_delete(request):
         tlclient = tllogin.prep_tlclient_from_session(request)
         orgname = request.POST['orgname']		 
 	    data = dict({ "oname": ""})
-	   	data = {"oname": "oname"}
+	   	data = {"oname": "orgname"}
 	    status = tlclient.delete_org(data) 
 	    list_org = tlclient.list_org()
         list_org = json.dumps(list_org)
