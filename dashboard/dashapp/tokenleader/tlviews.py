@@ -91,7 +91,7 @@ def invoice_upload(request):
         		
         		
 				
-def org_delete(request):
+def delete_org(request):
 	if request.method == 'POST':
         tlclient = tllogin.prep_tlclient_from_session(request)
         orgname = request.POST['orgname']		 
