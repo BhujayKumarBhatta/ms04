@@ -93,12 +93,12 @@ def invoice_upload(request):
 def delete_org(request):
 	if request.method == 'POST':
 		tlclient = tllogin.prep_tlclient_from_session(request)
-		orgname = request.POST['orgname']		 
-        data = dict({ "oname": ""})
+		orgname = request.POST['orgname']
+		data = dict({ "oname": ""})
         data = {"oname": "orgname"}
-        status = tlclient.delete_org(data) 
-        list_org = tlclient.list_org()     
-        template_data = {"list_org": list_org } 
+        status = tlclient.delete_org(data)
+        list_org = tlclient.list_org()
+        template_data = {"list_org": list_org }
         result = render(request, 'home.html', template_data)
         return result  
 #//	except Exception as exception:
