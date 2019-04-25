@@ -19,6 +19,10 @@ from django.conf.urls.static import static
 ## End
 from django.urls import path
 from . import views
+from rest_framework_swagger.views import get_swagger_view
+from rest_framework.documentation import include_docs_urls
+
+schema_view = get_swagger_view(title='TSP Billing')
 
 app_name = 'dashapp'
 urlpatterns = [path('', views.login, name='login'),
@@ -46,7 +50,11 @@ urlpatterns = [path('', views.login, name='login'),
     ,path('invoice_create', views.invoice_create, name='invoice_create')
     ,path('invoice_approvals', views.invoice_approvals, name='invoice_approvals')
     ,path('invoice_approve', views.invoice_approve, name='invoice_approve')
-    ,path('invoice_reject', views.invoice_reject, name='invoice_reject')]
+    ,path('invoice_reject', views.invoice_reject, name='invoice_reject')
+    ,path(r'swagger-docs/', schema_view)
+    ,path(r'docs/', include_docs_urls(title='TSP Billing'))
+    
+    ]
 
 
 
