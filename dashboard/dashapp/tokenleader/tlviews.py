@@ -54,8 +54,8 @@ def add_dept(request):
         #data = {"deptname": "dept2"}
         data["deptname"] = deptname 
         status = tlclient.add_dept(data)
-        list_dept = tlclient.add_dept()
-        template_data = {"add_dept": add_dept }
+        list_dept = tlclient.list_dept()
+        template_data = {"list_dept": list_dept }
         result = render(request, 'home.html', template_data)
         return result
         		
@@ -67,8 +67,8 @@ def delete_dept(request):
         #data = {"deptname": "dept2"}
         data["deptname"] = deptname 
         status = tlclient.delete_dept(data)
-        list_org = tlclient.delete_dept()
-        template_data = {"delete_dept": delete_dept }
+        list_dept = tlclient.list_dept()
+        template_data = {"list_dept": list_dept }
         result = render(request, 'home.html', template_data)
         return result
 
