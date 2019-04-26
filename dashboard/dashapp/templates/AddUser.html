@@ -1,6 +1,8 @@
+{% load i18n %}
+{% load l10n %}
+{% load static %}
 
-
- <form action="{% url 'dashapp:adduser' %}" method="POST" enctype="multipart/form-data">
+ <form action="{% url 'dashapp:adduser' %}" method="POST" >
     {% csrf_token %}
 <div class="table-responsive" style="width:60%">
     <div class="tim-row" id="tutorial">

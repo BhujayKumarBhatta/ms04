@@ -30,14 +30,14 @@ def adduser(request):
         email = request.POST['email']
         role = request.POST['role']		
         wfc = request.POST['wfc']
-        newuserdata = {"username": "TEST", "email": "TEST@t.com", "password": "TEST", "wfc": "wcf1", "roles": ["role1"]}	
+        newuserdata = dict({"username": "TEST", "email": "TEST@t.com", "password": "TEST", "wfc": "wfc1", "roles": ["role1"]})	
         newuserdata["username"]= username
         newuserdata["email"]= email
         newuserdata["wfc"]= wfc
         newuserdata["password"]= password
         newuserdata.roles[0] = role
-        status = tlclient.adduser(newuserdata)
         tlclient = tllogin.prep_tlclient_from_session(request)
+        status = tlclient.add_user(newuserdata)
         list_users = tlclient.list_users()
         template_data = {"list_users": list_users.get('status') } 
         result = render(request, 'home.html', template_data)
@@ -46,7 +46,7 @@ def adduser(request):
 def delete_user(request):
     if request.method == 'POST':
         tlclient = tllogin.prep_tlclient_from_session(request)
-        orgname = request.POST['username']
+        username = request.POST['username']
         data = dict({"username": ""})
         #data = {"username": "user2"}
         data["username"] = username 
