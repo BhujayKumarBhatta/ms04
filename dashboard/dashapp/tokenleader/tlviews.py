@@ -54,7 +54,7 @@ def add_dept(request):
         #data = {"deptname": "dept2"}
         data["deptname"] = deptname 
         status = tlclient.add_org(data)
-        list_org = tlclient.add_dept()
+        list_dept = tlclient.add_dept()
         template_data = {"add_dept": add_dept }
         result = render(request, 'home.html', template_data)
         return result
