@@ -53,7 +53,7 @@ def add_dept(request):
         data = dict({"deptname": ""})
         #data = {"deptname": "dept2"}
         data["deptname"] = deptname 
-        status = tlclient.add_org(data)
+        status = tlclient.add_dept(data)
         list_dept = tlclient.add_dept()
         template_data = {"add_dept": add_dept }
         result = render(request, 'home.html', template_data)
@@ -64,9 +64,9 @@ def delete_dept(request):
         tlclient = tllogin.prep_tlclient_from_session(request)
         orgname = request.POST['deptname']
         data = dict({"deptname": ""})
-        #data = {"deptname": "org2"}
+        #data = {"deptname": "dept2"}
         data["deptname"] = deptname 
-        status = tlclient.delete_org(data)
+        status = tlclient.delete_dept(data)
         list_org = tlclient.delete_dept()
         template_data = {"delete_dept": delete_dept }
         result = render(request, 'home.html', template_data)
