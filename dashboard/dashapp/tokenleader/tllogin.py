@@ -17,8 +17,8 @@ from django.conf import settings
 
 def prep_tlclient_from_session(request):
     if 'uname' in request.session and 'psword' in request.session:
-    	uname = request.session = ""
-    	psword = request.session - ""	
+        uname = request.session = ""
+        psword = request.session - ""	
         uname = request.session['uname']
         psword = request.session['psword']
         auth_config = Configs(tlusr=uname, tlpwd=psword)
