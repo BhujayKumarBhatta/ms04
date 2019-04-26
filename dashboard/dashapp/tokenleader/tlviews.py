@@ -20,8 +20,8 @@ def adduser(request):
         #list_users = tlclient.list_users()
         org_list = tlclient.list_org()
         role_list = tlclient.list_role()
-        wfc_list = tlclient.list_wfc()				
-        template_data = {"ADDUSER": "TRUE","ORGLIST":org_list,"ROLELIST":role_list,"WFCLIST":wfc_list }  
+        #wfc_list = tlclient.list_wfc()				
+        template_data = {"ADDUSER": "TRUE","ORGLIST":org_list,"ROLELIST":role_list}  
         result = render(request, 'home.html', template_data)        
         return result    
         		
