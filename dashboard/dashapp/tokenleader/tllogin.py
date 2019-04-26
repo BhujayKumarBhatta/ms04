@@ -8,7 +8,7 @@ from django.conf import settings
 #from datetime import datetime, timedelta
 #from .settings import EXPIRE_AFTER, PASSIVE_URLS, PASSIVE_URL_NAMES
 from flask import session
-[session.pop(key) for key in list(session.keys()) if key != '_flashes']
+
 
 #class SubscribeView(FormView):
 #    template_name = 'subscribe-form.html'
@@ -18,6 +18,7 @@ from flask import session
 
 def prep_tlclient_from_session(request):
     if 'uname' in request.session and 'psword' in request.session:
+    	session.clear()
         uname = request.session['uname']
         psword = request.session['psword']
         auth_config = Configs(tlusr=uname, tlpwd=psword)
