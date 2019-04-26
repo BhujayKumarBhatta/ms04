@@ -30,7 +30,7 @@ def adduser(request):
         email = request.POST.get('email')
         roles = request.POST.get('roles')	
         wfc = request.POST.get('wfc')
-        newuserdata = {"username": "", "email": "", "password": "", "wfc": "", "roles": [""]}	
+        newuserdata = {"username": "", "email": "", "password": "", "wfc": "", "roles": ""}	
         newuserdata["username"]= username
         newuserdata["email"]= email
         newuserdata["wfc"]= wfc
