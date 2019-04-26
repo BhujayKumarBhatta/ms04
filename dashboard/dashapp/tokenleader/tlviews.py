@@ -52,7 +52,7 @@ def add_dept(request):
         deptname = request.POST['deptname']
         data = dict({"deptname": ""})
         #data = {"deptname": "dept2"}
-		data["deptname"] = deptname 
+        data["deptname"] = deptname 
         status = tlclient.add_org(data)
         list_org = tlclient.add_dept()
         template_data = {"add_dept": add_dept }
@@ -87,7 +87,7 @@ def add_role(request):
         deptname = request.POST['rolename']
         data = dict({"rolename": ""})
         #data = {"rolename": "role2"}
-		data["rolename"] = rolename 
+        data["rolename"] = rolename 
         status = tlclient.add_role(data)
         list_org = tlclient.add_role()
         template_data = {"add_role": add_role }
@@ -122,7 +122,7 @@ def add_ou(request):
         deptname = request.POST['ouname']
         data = dict({"ouname": ""})
         #data = {"ouname": "ou2"}
-		data["ouname"] = ouname 
+        data["ouname"] = ouname 
         status = tlclient.add_ou(data)
         list_org = tlclient.add_ou()
         template_data = {"add_ou": add_ou }
@@ -158,7 +158,7 @@ def add_org(request):
         orgname = request.POST['orgname']
         data = dict({"orgname": ""})
         #data = {"oname": "org2"}
-		data["oname"] = orgname 
+        data["oname"] = orgname 
         status = tlclient.add_org(data)
         list_org = tlclient.list_org()
         template_data = {"list_org": list_org }
