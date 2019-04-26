@@ -25,11 +25,11 @@ def adduser(request):
         result = render(request, 'home.html', template_data)        
         return result   
     if request.method == 'POST':    
-        username = request.POST['username']
-        password = request.POST['password']		
-        email = request.POST['email']
-        role = request.POST['role']		
-        wfc = request.POST['wfc']
+        username = request.POST.get['username']
+        password = request.POST.get['password']		
+        email = request.POST.get['email']
+        role = request.POST.get['role']		
+        wfc = request.POST.get['wfc']
         newuserdata = {"username": "TEST", "email": "TEST@t.com", "password": "TEST", "wfc": "wcf1", "roles": ["role1"]}	
         newuserdata["username"]= username
         newuserdata["email"]= email
