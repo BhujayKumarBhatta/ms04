@@ -62,7 +62,7 @@ def add_dept(request):
 def delete_dept(request):
     if request.method == 'POST':
         tlclient = tllogin.prep_tlclient_from_session(request)
-        orgname = request.POST['deptname']
+        deptname = request.POST['deptname']
         data = dict({"deptname": ""})
         #data = {"deptname": "dept2"}
         data["deptname"] = deptname 
