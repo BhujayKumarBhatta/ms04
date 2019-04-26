@@ -76,7 +76,8 @@ def list_role(request):
     if request.method == 'GET': 
         tlclient = tllogin.prep_tlclient_from_session(request)
         list_role = tlclient.list_role()
-        #list_role = json.dumps(list_role)
+        list_role = json.dumps(list_role)
+        list_role = json.loads(list_role)
         template_data = {"list_role": list_role } 
         result = render(request, 'home.html', template_data)         
         return result
