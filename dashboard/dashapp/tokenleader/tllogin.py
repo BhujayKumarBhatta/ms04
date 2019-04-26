@@ -7,7 +7,8 @@ from django.conf import settings
 #from django.contrib import auth
 #from datetime import datetime, timedelta
 #from .settings import EXPIRE_AFTER, PASSIVE_URLS, PASSIVE_URL_NAMES
-
+from flask import session
+session.clear()
 
 #class SubscribeView(FormView):
 #    template_name = 'subscribe-form.html'
