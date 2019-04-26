@@ -12,6 +12,7 @@ def list_users(request):
         result = render(request, 'home.html', template_data)
         #return HttpResponse(json.dumps(list_users))
         return result
+        		
 #=========adduser pending        		
 def adduser(request):
     if request.method == 'GET': 
