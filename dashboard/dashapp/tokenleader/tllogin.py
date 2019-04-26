@@ -15,13 +15,15 @@ from django.conf import settings
 #    success_url = reverse_lazy('form_data_valid')
 
 
-#def prep_tlclient_from_session(request):
-#    if 'uname' in request.session and 'psword' in request.session:
-#        uname = request.session['uname']
-#        psword = request.session['psword']
-#        auth_config = Configs(tlusr=uname, tlpwd=psword)
-#        tlclient = Client(auth_config) 
-#        return   tlclient 
+def prep_tlclient_from_session(request):
+    if 'uname' in request.session and 'psword' in request.session:
+    	uname = request.session = ""
+    	psword = request.session - ""	
+        uname = request.session['uname']
+        psword = request.session['psword']
+        auth_config = Configs(tlusr=uname, tlpwd=psword)
+        tlclient = Client(auth_config) 
+        return   tlclient 
             
 
 # Create your views here.
