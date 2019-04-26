@@ -103,7 +103,7 @@ def delete_role(request):
         #data = {"rolename": "role2"}
         data["rolename"] = rolename 
         status = tlclient.delete_role(data)
-        list_role = tlclient.delete_role()
+        list_role = tlclient.list_role()
         template_data = {"list_role": list_role }
         result = render(request, 'home.html', template_data)
         return result
