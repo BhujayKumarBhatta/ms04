@@ -16,7 +16,7 @@ def list_users(request):
 #=========adduser pending        		
 def adduser(request):
     if request.method == 'GET': 
-        #tlclient = prep_tlclient_from_session(request)
+        tlclient = prep_tlclient_from_session(request)
         #list_users = tlclient.list_users()
         org_list = tlclient.list_org()
         role_list = tlclient.list_role()
