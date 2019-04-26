@@ -84,26 +84,26 @@ def list_role(request):
 def add_role(request):
     if request.method == 'POST':
         tlclient = tllogin.prep_tlclient_from_session(request)
-        deptname = request.POST['rolename']
+        rolename = request.POST['rolename']
         data = dict({"rolename": ""})
         #data = {"rolename": "role2"}
         data["rolename"] = rolename 
         status = tlclient.add_role(data)
-        list_org = tlclient.add_role()
-        template_data = {"add_role": add_role }
+        list_role = tlclient.list_role()
+        template_data = {"list_role": list_role }
         result = render(request, 'home.html', template_data)
         return result
         		
 def delete_role(request):
     if request.method == 'POST':
         tlclient = tllogin.prep_tlclient_from_session(request)
-        orgname = request.POST['rolename']
+        rolename = request.POST['rolename']
         data = dict({"rolename": ""})
         #data = {"rolename": "role2"}
         data["rolename"] = rolename 
         status = tlclient.delete_role(data)
-        list_org = tlclient.delete_role()
-        template_data = {"delete_role": delete_role }
+        list_role = tlclient.delete_role()
+        template_data = {"list_role": list_role }
         result = render(request, 'home.html', template_data)
         return result
 
@@ -119,26 +119,26 @@ def list_ou(request):
 def add_ou(request):
     if request.method == 'POST':
         tlclient = tllogin.prep_tlclient_from_session(request)
-        deptname = request.POST['ouname']
+        ouname = request.POST['ouname']
         data = dict({"ouname": ""})
         #data = {"ouname": "ou2"}
         data["ouname"] = ouname 
-        status = tlclient.add_ou(data)
-        list_org = tlclient.add_ou()
-        template_data = {"add_ou": add_ou }
+        status = tlclient.add_orgunit(data)
+        list_ou = tlclient.list_ou()
+        template_data = {"list_ou": list_ou }
         result = render(request, 'home.html', template_data)
         return result
 
 def delete_ou(request):
     if request.method == 'POST':
         tlclient = tllogin.prep_tlclient_from_session(request)
-        orgname = request.POST['ouname']
+        ouname = request.POST['ouname']
         data = dict({"ouname": ""})
         #data = {"ouname": "ou2"}
         data["ouname"] = ouname 
         status = tlclient.delete_ou(data)
-        list_org = tlclient.delete_ou()
-        template_data = {"delete_ou": delete_ou }
+        list_ou = tlclient.list_ou()
+        template_data = {"list_ou": list_ou }
         result = render(request, 'home.html', template_data)
         return result
         		
