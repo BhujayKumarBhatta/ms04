@@ -25,6 +25,7 @@ def adduser(request):
         result = render(request, 'home.html', template_data)        
         return result   
     if request.method == 'POST':    
+<<<<<<< HEAD
     	uname = request.POST['uname']
 		password = request.POST['password']		
 		email = request.POST['email']
@@ -38,6 +39,20 @@ def adduser(request):
 		newuserdata["username"]=uname
 		newuserdata.roles[0] = role	
 		status = tlclient.adduser(newuserdata)
+=======
+        username = request.POST['username']
+        password = request.POST['password']		
+        email = request.POST['email']
+        role = request.POST['role']		
+        wfc = request.POST['wfc']
+        newuserdata = {"username": "TEST", "email": "TEST@t.com", "password": "TEST", "wfc": "wcf1", "roles": ["role1"]}	
+        newuserdata["username"]= username
+        newuserdata["email"]= email
+        newuserdata["wfc"]= wfc
+        newuserdata["password"]= password
+        newuserdata.roles[0] = role
+        status = tlclient.adduser(newuserdata)
+>>>>>>> branch 'HomePage' of https://10.10.66.55/prasen/dashboard.git
         tlclient = tllogin.prep_tlclient_from_session(request)
         list_users = tlclient.list_users()
         template_data = {"list_users": list_users.get('status') } 
