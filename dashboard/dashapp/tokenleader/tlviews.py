@@ -18,9 +18,11 @@ def adduser(request):
     if request.method == 'GET': 
         #tlclient = prep_tlclient_from_session(request)
         #list_users = tlclient.list_users()
-        template_data = {"ADDUSER": "TRUE" }  
-        result = render(request, 'home.html', template_data)
-        #return HttpResponse(json.dumps(list_users))
+		org_list = tlclient.list_org()
+		role_list = tlclient.list_role()
+		wfc_list = tlclient.list_wfc()				
+        template_data = {"ADDUSER": "TRUE","ORGLIST":org_list,"ROLELIST":role_list,"WFCLIST":wfc_list }  
+        result = render(request, 'home.html', template_data)        
         return result    
         		
 def delete_user(request):
