@@ -20,6 +20,6 @@ pytz==2018.9
 PyYAML==3.13
 requests==2.20.1
 six==1.11.0
-tokenleaderclient==1.4
+tokenleaderclient==1.5
 urllib3==1.24.1
 Werkzeug==0.14.1
