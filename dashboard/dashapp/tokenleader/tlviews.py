@@ -112,7 +112,8 @@ def list_ou(request):
     if request.method == 'GET': 
         tlclient = tllogin.prep_tlclient_from_session(request)
         list_ou = tlclient.list_ou()
-        #list_ou = json.dumps(list_ou)
+        list_ou = json.dumps(list_ou)
+        list_ou = json.loads(list_ou)
         template_data = {"list_ou": list_ou } 
         result = render(request, 'home.html', template_data)         
         return result
