@@ -35,7 +35,7 @@ def adduser(request):
         newuserdata["email"]= email
         newuserdata["wfc"]= wfc
         newuserdata["password"]= password
-        newuserdata.["roles"] = roles
+        newuserdata["roles"] = roles
         tlclient = tllogin.prep_tlclient_from_session(request)
         status = tlclient.add_user(newuserdata)
         list_users = tlclient.list_users()
