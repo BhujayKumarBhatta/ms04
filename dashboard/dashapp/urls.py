@@ -33,6 +33,8 @@ urlpatterns = [path('', views.login, name='login'),
     path('add_org', views.add_org, name='add_org'),
     path('delete_org', views.delete_org, name='delete_org'),
     path('list_dept', views.list_dept, name='list_dept'), 
+    path('add_dept', views.add_dept, name='add_dept'),
+    path('delete_dept', views.delete_dept, name='delete_dept'),
     path('list_role', views.list_role, name='list_role'),
     path('list_ou', views.list_ou, name='list_ou'),
     #Invoice
