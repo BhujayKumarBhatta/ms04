@@ -29,7 +29,7 @@ def adduser(request):
         password = request.POST.get('password')		
         email = request.POST.get('email')
         print(email)
-        roles = request.POST.get(['roles'])
+        roles = request.POST.get('roles')
         print(roles)
         wfc = request.POST.get('wfc')
         newuserdata = dict({"username": "", "email": "", "password": "", "wfc": "", "roles": ""})	
