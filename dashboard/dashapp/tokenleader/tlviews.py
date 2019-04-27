@@ -131,7 +131,7 @@ def delete_role(request):
         result = render(request, 'home.html', template_data)
         return result
 
-def list_ou(request):
+#def list_ou(request):
     if request.method == 'GET': 
         tlclient = tllogin.prep_tlclient_from_session(request)
         list_ou = tlclient.list_ou()
