@@ -568,6 +568,7 @@
                                                 <li><a href="{% url 'dashapp:list_dept'  %}"> List Deartment  </a></li>
                                                 <li><a href="{% url 'dashapp:list_role'  %}"> List Role  </a></li>
                                                 <li><a href="{% url 'dashapp:list_ou'  %}"> List OU  </a></li>
+                                                <li><a href="{% url 'dashapp:list_wfc'  %}"> List WFC  </a></li>
                                                 <li><a href="{% url 'dashapp:adduser'  %}">Add User</a></li>
                                             </ul>
                                         </div>
@@ -651,7 +652,7 @@
 
                 <div class="container-fluid" style="width:100%;padding-top:28px">
                     <div class="side-body" style="padding-left:20px">
-                        {% if list_users is not null or list_org is not null or list_role is not null or list_ou is not null or list_dept is not null%}
+                        {% if list_users is not null or list_org is not null or list_role is not null or list_ou is not null or list_dept is not null or list_wfc is not null%}
                         {% include 'list_users.html' %}
                         {% elif list_links is not null %}
                         {% include 'list_links.html' %}
