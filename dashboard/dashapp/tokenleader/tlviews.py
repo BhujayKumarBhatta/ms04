@@ -206,7 +206,7 @@ def delete_org(request):
 def list_wfc(request):
     if request.method == 'GET': 
         tlclient = tllogin.prep_tlclient_from_session(request)
-#        list_wfc = tlclient.list_wfc()
+        list_wfc = tlclient.list_wfc()
 #        print(list_wfc)
 #        list_wfc = json.dumps(list_wfc)
 #        list_wfc = json.loads(list_wfc)
