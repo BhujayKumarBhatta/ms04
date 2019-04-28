@@ -203,24 +203,23 @@ def delete_org(request):
         result = render(request, 'home.html', template_data)
         return result
 	
-def list_wfc(request):
-    if request.method == 'GET': 
-        tlclient = tllogin.prep_tlclient_from_session(request)
-        list_wfc = tlclient.list_wfc()
-        print(list_wfc)
-        list_wfc = json.dumps(list_wfc)
-        list_wfc = json.loads(list_wfc)
-        template_data = {"list_wfc": list_wfc } 
-        result = render(request, 'home.html', template_data)         
-        return result      
-
 #def list_wfc(request):
+#    if request.method == 'GET': 
+#        tlclient = tllogin.prep_tlclient_from_session(request)
+#        list_wfc = tlclient.list_wfc()
+#        print(list_wfc)
+#        list_wfc = json.dumps(list_wfc)
+#        list_wfc = json.loads(list_wfc)
+#        template_data = {"list_wfc": list_wfc } 
+#        result = render(request, 'home.html', template_data)         
+#        return result      
+
+def list_wfc(request):
     if request.method == 'GET':  
         tlclient = tllogin.prep_tlclient_from_session(request)
         list_wfc = tlclient.list_wfc()
         template_data = {"list_wfc": list_wfc.get('status') } 
         result = render(request, 'home.html', template_data)
-        #return HttpResponse(json.dumps(list_wfc))
         return result
 ## End ****************************************************
 def invoice(request):
