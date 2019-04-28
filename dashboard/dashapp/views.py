@@ -150,7 +150,6 @@ def list_wfc(request):
         result = logout(request)
     else:
         result = tlviews.list_wfc(request)
-        print(result)
     return result
 
 def addwfc(request):
