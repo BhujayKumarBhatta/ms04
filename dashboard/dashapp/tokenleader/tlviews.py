@@ -213,6 +213,19 @@ def list_wfc(request):
 #        template_data = {"list_wfc": list_wfc } 
 #        result = render(request, 'home.html', template_data)         
 #        return result      
+def add_wfc(request):
+    if request.method == 'POST':
+        tlclient = tllogin.prep_tlclient_from_session(request)
+        wfcname = request.POST['wfcname']
+        data = dict({"ouname": ""})
+        #data = {"ouname": "ou2"}
+        data["ouname"] = ouname 
+        status = tlclient.add_orgunit(data)
+        list_ou = tlclient.list_ou()
+        template_data = {"list_ou": list_ou }
+        result = render(request, 'home.html', template_data)
+        return result
+
 
 #def list_wfc(request):
 #    if request.method == 'GET':  
