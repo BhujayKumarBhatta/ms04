@@ -145,11 +145,11 @@ def delete_user(request):
         result = tlviews.delete_user(request)
     return result
     		
-def list_wfc(request):
+def list_wfc(wfc):
     if 'uname' not in request.session :
         result = logout(request)
     else:
-        result = tlviews.list_wfc(request)
+        result = tlviews.list_wfc(wfc)
         print(result)
     return result
 
