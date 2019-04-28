@@ -214,7 +214,7 @@ def delete_org(request):
 #        result = render(request, 'home.html', template_data)         
 #        return result      
 
-def list_wfc(request):
+#def list_wfc(request):
     if request.method == 'GET':  
         tlclient = tllogin.prep_tlclient_from_session(request)
         listwfc = dict(tlclient.list_wfc())
