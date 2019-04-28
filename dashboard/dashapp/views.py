@@ -149,7 +149,7 @@ def list_wfc(request):
     if 'uname' not in request.session :
         result = logout(request)
     else:
-        result = tlviews.list_wfc()
+        result = tlviews.list_wfc(request)
         print(result)
     return result
 
