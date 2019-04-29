@@ -39,7 +39,9 @@
             <label for="wfc">Work Function Context:</label>
             <select class="form-control" id="wfc">
                 <option>Select</option>
-              <option>wfc1</option>
+                {% for wfc in WFCLIST %}
+                <option>{{ wfc.name  }}</option>
+                {% endfor %}              
             </select>
         </div>
         <button type="submit" class="btn btn-success" style="width:300px">Submit</button>
