@@ -52,7 +52,7 @@ def delete_user(request):
         #data = {"username": "user2"}
         data["username"] = username 
         status = tlclient.delete_user(data)
-        list_org = tlclient.delete_user()
+        list_users = tlclient.list_users()
         template_data = {"list_users": list_users.get('status')}
         result = render(request, 'home.html', template_data)
         return result
