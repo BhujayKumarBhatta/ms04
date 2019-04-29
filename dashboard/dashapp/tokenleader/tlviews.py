@@ -32,13 +32,13 @@ def adduser(request):
         roles = request.POST.get('roles')
         print(roles)
         wfc = request.POST.get('wfc')
-        newuserdata = dict({"username": "", "email": "", "password": "", "wfc": "", "roles": ""})	
+        newuserdata = dict({"username": "", "email": "", "password": "", "wfc": "", "roles": [""]})	
         print(newuserdata)
         newuserdata["username"]= username
         newuserdata["email"]= email
         newuserdata["wfc"]= wfc
         newuserdata["password"]= password
-        newuserdata["role"] = roles
+        newuserdata.roles[0] = roles
         tlclient = tllogin.prep_tlclient_from_session(request)
         status = tlclient.add_user(newuserdata)
         list_users = tlclient.list_users()
