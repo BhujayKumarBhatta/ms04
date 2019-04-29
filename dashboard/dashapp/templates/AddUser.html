@@ -4,8 +4,9 @@
 
 
  <form action="{% url 'dashapp:adduser' %}" method="POST" enctype="multipart/form-data"  >
-
-    {% csrf_token %}
+  
+{% csrf_token %}    
+    
 <div class="table-responsive" style="width:60%">
     <div class="tim-row" id="tutorial">
         <h4 class="text-left">Add User</h4>
@@ -15,19 +16,19 @@
     <div style="padding-left:100px">
         <div class="form-group">
             <label for="username">User Name:</label>
-            <input type="text" class="form-control" id="username">
+            <input type="text" class="form-control" id="username" name="username">
         </div>
         <div class="form-group">
             <label for="password">Password:</label>
-            <input type="password" class="form-control" id="password">
+            <input type="password" class="form-control" id="password" name="password">
         </div> 
       <div class="form-group">
             <label for="email">Email:</label>
-            <input type="email" class="form-control" id="email">
+            <input type="email" class="form-control" id="email" name="email">
         </div>
         <div class="form-group">
             <label for="role">Role:</label>
-            <select class="form-control" id="role">
+            <select class="form-control" id="role" name="role">
                 <option>Select</option>
                 {% for rol in ROLELIST %}
                 <option>{{ rol.name  }}</option>
@@ -37,7 +38,7 @@
           
         <div class="form-group">
             <label for="wfc">Work Function Context:</label>
-            <select class="form-control" id="wfc">
+            <select class="form-control" id="wfc" name="wfc">
                 <option>Select</option>
                 {% for wfc in WFCLIST %}
                 <option>{{ wfc.name  }}</option>
