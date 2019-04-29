@@ -215,9 +215,20 @@
                 <td> {{ user.wfc.department}} </td>
                 <td> {{ user.wfc.name}} </td>
                 <td>
-                    <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
-                    <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+                    #<a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
+                    #<a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
                     <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+                <td>
+                    <form action="{% url 'dashapp:delete_user' %}" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <input type="hidden" id="username" name="username" value="{{user.name}}"  class="form-control">
+                        #<input type="text" id="orgname" name="orgname" value="{{user.name}}"  class="form-control">
+                        <button type="submit" class="btn btn-danger " 
+                                onclick="return confirm('Are you sure? you want to Delete User')">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </button>
+                    </form>
+                </td>
                 </td>
             </tr>
             {% endfor %}
@@ -225,6 +236,7 @@
         </tbody>
     </table>
 </div>
+
 RESULT : {{ list_users }}
 
 {% elif list_org is not null %}
