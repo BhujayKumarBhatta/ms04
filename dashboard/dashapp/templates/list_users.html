@@ -216,22 +216,7 @@
                 <td> {{ user.wfc.department}} </td>
                 <td> {{ user.wfc.name}} </td>
                 <td> 
-                <td>
-                {% if DELETE_STATUS is not null %}
-                <div class="alert alert-success" role="alert">
-                    User Deleted Successfully.<br />{{DELETE_STATUS}}
-                </div>
-                {% elif EXCEPTION is not null %}
-                <div class="alert alert-danger" role="alert">
-                    There is been an error while deleting an User(s), Please Try after sometime or contact Administrator. <br />
-                    {% if EXCEPTION_INFO is not null %}
-                    {{EXCEPTION_INFO}}
-                    {% endif %}
-                </div>
-                {% endif %}
-                </td>
-                <td>
-                    <form action="{% url 'dashapp:delete_user' %}" method="POST" enctype="multipart/form-data">
+                <form action="{% url 'dashapp:delete_user' %}" method="POST" enctype="multipart/form-data">
                         {% csrf_token %}
                         <input type="hidden" id="username" name="username" value="{{user.username}}"  class="form-control">
                         <button type="submit" class="btn btn-danger " 
@@ -239,8 +224,7 @@
                             <span class="glyphicon glyphicon-trash"></span>
                         </button>
                     </form>
-                </td>
-                </td>
+                </td>         
             </tr>
             {% endfor %}
 
