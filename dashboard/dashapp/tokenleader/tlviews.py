@@ -31,7 +31,7 @@ def adduser(request):
         roles = request.POST.get('roles')
         wfc = request.POST.get('wfc')
         newuserdata = dict({"username": "", "email": "", "password": "", "wfc": "", "roles": ["role1"]})
-        newuserdata2 = dict({'email': 'ssssssssss@5', 'username': 'tesxxxt5', 'password': 'texxst5', 'roles': ['role1'], 'wfc': 'wfc1'})
+        newuserdata2 = dict({'email': 'ssssssssss@5', 'username': 'xxxxxxxxxxxxxx5', 'password': 'texxst5', 'roles': ['role1'], 'wfc': 'wfc1'})
         newuserdata["username"]= username
         newuserdata["email"]= email
         newuserdata["wfc"]= wfc
