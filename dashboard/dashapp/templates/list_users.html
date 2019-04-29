@@ -176,6 +176,7 @@
     <!--{{ list_users }}-->
 </div>
 {{STATUS_ADDUSER}}
+{{DELETE_STATUS}}
 
 <div class="table-wrapper">
     <div class="table-title">
@@ -215,6 +216,20 @@
                 <td> {{ user.wfc.department}} </td>
                 <td> {{ user.wfc.name}} </td>
                 <td> 
+                <td>
+                {% if DELETE_STATUS is not null %}
+                <div class="alert alert-success" role="alert">
+                    User Deleted Successfully.<br />{{DELETE_STATUS}}
+                </div>
+                {% elif EXCEPTION is not null %}
+                <div class="alert alert-danger" role="alert">
+                    There is been an error while deleting an User(s), Please Try after sometime or contact Administrator. <br />
+                    {% if EXCEPTION_INFO is not null %}
+                    {{EXCEPTION_INFO}}
+                    {% endif %}
+                </div>
+                {% endif %}
+                </td>
                 <td>
                     <form action="{% url 'dashapp:delete_user' %}" method="POST" enctype="multipart/form-data">
                         {% csrf_token %}
