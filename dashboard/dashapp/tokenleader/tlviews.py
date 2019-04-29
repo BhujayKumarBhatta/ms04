@@ -40,7 +40,7 @@ def adduser(request):
         status = tlclient.add_user(newuserdata)
         list_users = tlclient.list_users()
         #template_data = {"list_users": list_users,"STATUS_ADDUSER": status} 
-        template_data = {"list_users": list_users }
+        template_data = {"list_users": list_users.get('status') }
         result = render(request, 'home.html', template_data)
         return result
 				
