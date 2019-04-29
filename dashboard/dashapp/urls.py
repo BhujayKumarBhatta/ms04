@@ -29,6 +29,7 @@ urlpatterns = [path('', views.login, name='login'),
     #Token Leader
     path('list_users', views.list_users, name='list_users'),
     path('adduser', views.adduser, name='adduser'),
+    path('delete_user', views.delete_user, name='delete_user'),
     path('list_org', views.list_org, name='list_org'),
     path('add_org', views.add_org, name='add_org'),
     path('delete_org', views.delete_org, name='delete_org'),
