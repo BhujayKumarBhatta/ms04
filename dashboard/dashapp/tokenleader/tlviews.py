@@ -207,7 +207,6 @@ def list_wfc(request):
     if request.method == 'GET': 
         tlclient = tllogin.prep_tlclient_from_session(request)
         list_wfc = tlclient.list_wfc()
-        print(list_wfc)
         list_wfc = json.dumps(list_wfc)
         list_wfc = json.loads(list_wfc)
         template_data = {"list_wfc": list_wfc } 
@@ -225,15 +224,20 @@ def add_wfc(request):
         template_data = {"list_ou": list_ou }
         result = render(request, 'home.html', template_data)
         return result
+        		
+def delete_wfc(request):
+    if request.method == 'POST':
+        tlclient = tllogin.prep_tlclient_from_session(request)
+        wfcname = request.POST['wfcname']
+        data = dict({"wfcname": ""})
+        data["wfcname"] = wfcname 
+        status = tlclient.delete_wfc(data)
+        list_wfc = tlclient.list_wfc()
+        template_data = {"delete_wfc": delete_wfc}
+        result = render(request, 'home.html', template_data)
+        return result
 
 
-#def list_wfc(request):
-#    if request.method == 'GET':  
-#        tlclient = tllogin.prep_tlclient_from_session(request)
-#        listwfc = dict(tlclient.list_wfc())
-#        template_data = {"list_wfc": listwfc.get('status') } 
-#        result = render(request, 'home.html', template_data)
-#        return result
 ## End ****************************************************
 def invoice(request):
     if request.method == 'GET': 
