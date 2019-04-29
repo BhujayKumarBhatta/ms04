@@ -218,7 +218,7 @@
                 <td>
                     <form action="{% url 'dashapp:delete_user' %}" method="POST" enctype="multipart/form-data">
                         {% csrf_token %}
-                        <input type="hidden" id="username" name="username" value="{{username.name}}"  class="form-control">
+                        <input type="hidden" id="username" name="username" value="{{user.username}}"  class="form-control">
                         <button type="submit" class="btn btn-danger " 
                                 onclick="return confirm('Are you sure? you want to Delete User')">
                             <span class="glyphicon glyphicon-trash"></span>
