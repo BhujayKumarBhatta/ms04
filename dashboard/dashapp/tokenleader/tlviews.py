@@ -17,7 +17,7 @@ def list_users(request):
 def adduser(request):
     if request.method == 'GET': 
         tlclient = tllogin.prep_tlclient_from_session(request)
-        #list_users = tlclient.list_users()
+        list_users = tlclient.list_users()
         org_list = tlclient.list_org()
         role_list = tlclient.list_role()
         wfc_list = tlclient.list_wfc()				
@@ -39,8 +39,8 @@ def adduser(request):
         tlclient = tllogin.prep_tlclient_from_session(request)
         status = tlclient.add_user(newuserdata)
         list_users = tlclient.list_users()
-        #template_data = {"list_users": list_users,"STATUS_ADDUSER": status} 
-        template_data = {"ADDUSER": "TRUE","ORGLIST":org_list,"ROLELIST":role_list,"WFCLIST":wfc_list}
+        template_data = {"list_users": list_users,"STATUS_ADDUSER": status} 
+        #template_data = {"list_users": list_users,"ORGLIST":org_list,"ROLELIST":role_list,"WFCLIST":wfc_list}
         result = render(request, 'home.html', template_data)
         return result
 				
