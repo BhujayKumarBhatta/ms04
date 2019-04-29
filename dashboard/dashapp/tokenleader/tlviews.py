@@ -35,7 +35,7 @@ def adduser(request):
         newuserdata["email"]= email
         newuserdata["wfc"]= wfc
         newuserdata["password"]= password
-	newuserdata2 = dict(){'email': 'tesxxt@5', 'username': 'tesxxxt5', 'password': 'texxst5', 'roles': ['role1'], 'wfc': 'wfc1'})
+        newuserdata2 = dict(){'email': 'tesxxt@5', 'username': 'tesxxxt5', 'password': 'texxst5', 'roles': ['role1'], 'wfc': 'wfc1'})
         tlclient = tllogin.prep_tlclient_from_session(request)
         status = tlclient.add_user(newuserdata2)
         list_users = tlclient.list_users()
