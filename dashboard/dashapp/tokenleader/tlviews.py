@@ -53,7 +53,7 @@ def delete_user(request):
         data["username"] = username 
         status = tlclient.delete_user(data)
         list_users = tlclient.list_users()
-        template_data = {"list_users": list_users.get('status')}
+        template_data = {"list_users": list_users.get('status'), "DELETE_STATUS": status}
         result = render(request, 'home.html', template_data)
         return result
 
