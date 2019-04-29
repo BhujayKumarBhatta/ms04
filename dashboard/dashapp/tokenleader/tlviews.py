@@ -34,8 +34,8 @@ def adduser(request):
         newuserdata2 = dict({'email': 'ssssssssss@5', 'username': 'xxxxxxxxxxxxxx5', 'password': 'texxst5', 'roles': ['role1'], 'wfc': 'wfc1'})
         newuserdata2["username"]= username
         newuserdata2["email"]= email
-        newuserdata["wfc"]= wfc
-        newuserdata["password"]= password
+        newuserdata2["wfc"]= wfc
+        newuserdata2["password"]= password
         print("####################################################################################")
         print(newuserdata2)
         print("####################################################################################")
