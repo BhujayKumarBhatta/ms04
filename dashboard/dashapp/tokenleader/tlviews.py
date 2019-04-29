@@ -25,9 +25,9 @@ def adduser(request):
         result = render(request, 'home.html', template_data)        
         return result   
     if request.method == 'POST':    
-        username = request.POST['username']
-        password = request.POST['password']		
-        email = request.POST['email']
+        username = request.POST.get['username']
+        password = request.POST.get['password']		
+        email = request.POST.get['email']
         roles = request.POST.get('roles')
         wfc = request.POST.get('wfc')
         newuserdata = dict({"username": "", "email": "", "password": "", "wfc": "", "roles": ["role1"]})
