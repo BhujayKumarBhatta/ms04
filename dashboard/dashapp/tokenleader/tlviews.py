@@ -233,7 +233,7 @@ def add_wfc(request):
         newfcdata["dept_name"]= dept_name
         tlclient = tllogin.prep_tlclient_from_session(request)
         status = tlclient.add_wfc(newfcdata)
-        list_users = tlclient.list_users()
+        list_wfc = tlclient.list_wfc()
         template_data = {"list_wfc": list_wfc.get('status'),"STATUS_ADDWFC": status }
         result = render(request, 'home.html', template_data)
         return result
