@@ -28,20 +28,20 @@
             </select>
         </div>          
         <div class="form-group">
-            <label for="wfc">Work Function Context:</label>
-            <select class="form-control" id="wfc" name="wfc">
+            <label for="ou_name">OU Name:</label>
+            <select class="form-control" id="ou_name" name="ou_name">
                 <option>Select</option>
-                {% for wfc in WFCLIST %}
-                <option>{{ wfc.name  }}</option>
+                {% for ou_name in OULIST %}
+                <option>{{ ou_name.name  }}</option>
                 {% endfor %}              
             </select>
         </div>
         <div class="form-group">
-            <label for="deptname">Department:</label>
-            <select class="form-control" id="deptname" name="deptname">
+            <label for="dept_name">Department:</label>
+            <select class="form-control" id="dept_name" name="dept_name">
                 <option>Select</option>
-                {% for dept in DEPTLIST %}
-                <option>{{ dept.name  }}</option>
+                {% for dept_name in DEPTLIST %}
+                <option>{{ dept_name.name  }}</option>
                 {% endfor %}              
             </select>
         </div>
