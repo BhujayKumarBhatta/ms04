@@ -591,7 +591,7 @@ RESULT : {{ list_ou }}
                 <td>
                     <form action="{% url 'dashapp:delete_wfc' %}" method="POST" enctype="multipart/form-data">
                         {% csrf_token %}
-                        <input type="hidden" id="wfcname" name="wfcname" value="{{wfc.name}}">
+                        <input type="hidden" id="wfcname" name="wfcname" value="{{wfc.name}}"> class="form-control">
                         <button type="submit" class="btn btn-danger " 
                                 onclick="return confirm('Are you sure? you want to Delete WFC')">
                             <span class="glyphicon glyphicon-trash"></span>
@@ -603,6 +603,7 @@ RESULT : {{ list_ou }}
         </tbody>
     </table>
 </div>
+
 RESULT : {{ list_wfc }}
 
 {% endif %}
