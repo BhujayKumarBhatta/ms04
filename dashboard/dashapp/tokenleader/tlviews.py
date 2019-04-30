@@ -210,16 +210,31 @@ def list_wfc(request):
         template_data = {"list_wfc": list_wfc } 
         result = render(request, 'home.html', template_data)         
         return result      
+        		
 def add_wfc(request):
-    if request.method == 'POST':
+    if request.method == 'GET': 
         tlclient = tllogin.prep_tlclient_from_session(request)
-        wfcname = request.POST['wfcname']
-        data = dict({"ouname": ""})
-        #data = {"ouname": "ou2"}
-        data["ouname"] = ouname 
-        status = tlclient.add_orgunit(data)
-        list_ou = tlclient.list_ou()
-        template_data = {"list_ou": list_ou }
+        list_wfc = tlclient.list_wfc()
+        list_org = tlclient.list_org()
+        list_ou= tlclient.list_ou()
+        list_dept = tlclient.list_dept()				
+        template_data = {"ADDUSER": "TRUE","ORGLIST":org_list,"ROLELIST":role_list,"WFCLIST":wfc_list}  
+        result = render(request, 'home.html', template_data)        
+        return result   
+    if request.method == 'POST':    
+        fname = request.POST.get('fname')
+        orgname = request.POST.get('orgname')		
+        ou_name = request.POST.get('ou_name')
+        dept_name = request.POST.get('dept_name')
+        newfcdata = dict({"fname": "", "orgname": "", "ou_name": "", "dept_name": ""})
+        newfcdata["fname"]= fname
+        newfcdata["orgname"]= orgname
+        newfcdata["ou_name"]= ou_name
+        newfcdata["dept_name"]= dept_name
+        tlclient = tllogin.prep_tlclient_from_session(request)
+        status = tlclient.add_wfc(newfcdata)
+        list_users = tlclient.list_users()
+        template_data = {"list_wfc": list_wfc.get('status'),"STATUS_ADDWFC": status }
         result = render(request, 'home.html', template_data)
         return result
         		
