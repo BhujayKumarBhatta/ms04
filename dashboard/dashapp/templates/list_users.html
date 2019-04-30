@@ -600,8 +600,8 @@ RESULT : {{ list_ou }}
             <tr style="font-size:11px">
                 <td>{{ wfc.name  }}</td>
                 <td>{{ wfc.org  }}</td>
-                <td>{{ wfc.orgunit  }}</td>
-                <td>{{ wfc.department  }}</td>
+                <td>{{ wfc.ou_name  }}</td>
+                <td>{{ wfc.dept_name  }}</td>
                 <td>
                     <form action="{% url 'dashapp:delete_wfc' %}" method="POST" enctype="multipart/form-data">
                         {% csrf_token %}
