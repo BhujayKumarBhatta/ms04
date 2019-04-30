@@ -152,11 +152,11 @@ def list_wfc(request):
         result = tlviews.list_wfc(request)
     return result
 
-def addwfc(request):
+def add_wfc(request):
     if 'uname' not in request.session :
         result = logout(request)
     else:
-        result = tlviews.addwfc(request)
+        result = tlviews.add_wfc(request)
     return result
     		
 def delete_wfc(request):

@@ -43,7 +43,7 @@ urlpatterns = [path('', views.login, name='login'),
     path('add_ou', views.add_ou, name='add_ou'),
     path('delete_ou', views.delete_ou, name='delete_ou'),
     path('list_wfc', views.list_wfc, name='list_wfc'),
-    path('addwfc', views.addwfc, name='addwfc'),
+    path('add_wfc', views.addwfc, name='add_wfc'),
     path('delete_wfc', views.delete_wfc, name='delete_wfc'),
     #Invoice
     path('sampleinvoice', views.sampleinvoice, name='sampleinvoice'),
