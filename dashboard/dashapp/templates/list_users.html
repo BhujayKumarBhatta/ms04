@@ -570,7 +570,7 @@ RESULT : {{ list_ou }}
             </td>
         </tr>
     </table>
-    <form action="{% url 'dashapp:addwfc' %}" method="POST" enctype="multipart/form-data">
+    <form action="{% url 'dashapp:add_wfc' %}" method="POST" enctype="multipart/form-data">
     <table class="table table-bordered"><tr><td style="width:60%">
     
                         {% csrf_token %}
