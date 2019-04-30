@@ -246,7 +246,7 @@ def delete_wfc(request):
         data["wfcname"] = wfcname 
         status = tlclient.delete_wfc(data)
         list_wfc = tlclient.list_wfc()
-        template_data = {"delete_wfc": delete_wfc}
+        template_data = {"delete_wfc": delete_wfc,"list_wfc": list_wfc}
         result = render(request, 'home.html', template_data)
         return result
 
