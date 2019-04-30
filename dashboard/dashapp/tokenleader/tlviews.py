@@ -216,9 +216,9 @@ def add_wfc(request):
         tlclient = tllogin.prep_tlclient_from_session(request)
         list_wfc = tlclient.list_wfc()
         list_org = tlclient.list_org()
-        list_ou= tlclient.list_ou()
+        list_ou = tlclient.list_ou()
         list_dept = tlclient.list_dept()				
-        template_data = {"ADDUSER": "TRUE","ORGLIST":org_list,"ROLELIST":role_list,"WFCLIST":wfc_list}  
+        template_data = {"ADDWFC": "TRUE","ORGLIST":org_list,"OULIST":ou_list,"DEPTLIST":dept_list}  
         result = render(request, 'home.html', template_data)        
         return result   
     if request.method == 'POST':    
