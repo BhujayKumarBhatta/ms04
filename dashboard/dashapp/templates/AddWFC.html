@@ -3,7 +3,7 @@
 {% load static %}
 
 
- <form action="{% url 'dashapp:adduser' %}" method="POST" enctype="multipart/form-data"  >
+ <form action="{% url 'dashapp:add_wfc' %}" method="POST" enctype="multipart/form-data"  >
   
 {% csrf_token %}    
     
@@ -15,27 +15,18 @@
     <!--<form action="/action_page.php">-->
     <div style="padding-left:100px">
         <div class="form-group">
-            <label for="username">User Name:</label>
-            <input type="text" class="form-control" id="username" name="username">
+            <label for="fname">User Name:</label>
+            <input type="text" class="form-control" id="fname" name="fname">
         </div>
         <div class="form-group">
-            <label for="password">Password:</label>
-            <input type="password" class="form-control" id="password" name="password">
-        </div> 
-      <div class="form-group">
-            <label for="email">Email:</label>
-            <input type="email" class="form-control" id="email" name="email">
-        </div>
-        <div class="form-group">
-            <label for="role">Role:</label>
-            <select class="form-control" id="role" name="role">
+            <label for="orgname">ORG Name:</label>
+            <select class="form-control" id="orgname" name="orgname">
                 <option>Select</option>
-                {% for rol in ROLELIST %}
-                <option>{{ rol.name  }}</option>
+                {% for orgname in ORGLIST %}
+                <option>{{ orgname.name  }}</option>
                 {% endfor %}
             </select>
-        </div>
-          
+        </div>          
         <div class="form-group">
             <label for="wfc">Work Function Context:</label>
             <select class="form-control" id="wfc" name="wfc">
