@@ -36,6 +36,15 @@
                 {% endfor %}              
             </select>
         </div>
+        <div class="form-group">
+            <label for="deptname">Department:</label>
+            <select class="form-control" id="deptname" name="deptname">
+                <option>Select</option>
+                {% for dept in DEPTLIST %}
+                <option>{{ dept.name  }}</option>
+                {% endfor %}              
+            </select>
+        </div>
         <button type="submit" class="btn btn-success" style="width:300px">Submit</button>
         <br /><br /> 
     </div>
