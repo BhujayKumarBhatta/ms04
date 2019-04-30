@@ -3,45 +3,45 @@
 {% load static %}
 
 
- <form action="{% url 'dashapp:add_wfc' %}" method="POST" enctype="multipart/form-data"  >
+ <form action="{% url 'dashapp:adduser' %}" method="POST" enctype="multipart/form-data"  >
   
 {% csrf_token %}    
     
 <div class="table-responsive" style="width:60%">
     <div class="tim-row" id="tutorial">
-        <h4 class="text-left">Add WFC</h4>
+        <h4 class="text-left">Add User</h4>
         <legend></legend>
     </div>
     <!--<form action="/action_page.php">-->
     <div style="padding-left:100px">
         <div class="form-group">
-            <label for="fname">WFC Name:</label>
-            <input type="text" class="form-control" id="fname" name="fname">
-        </div>        
+            <label for="username">User Name:</label>
+            <input type="text" class="form-control" id="username" name="username">
+        </div>
         <div class="form-group">
-            <label for="orgname">ORG Name:</label>
-            <select class="form-control" id="orgname" name="orgname">
+            <label for="password">Password:</label>
+            <input type="password" class="form-control" id="password" name="password">
+        </div> 
+      <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" class="form-control" id="email" name="email">
+        </div>
+        <div class="form-group">
+            <label for="role">Role:</label>
+            <select class="form-control" id="role" name="role">
                 <option>Select</option>
-                {% for orgname in ORGLIST %}
-                <option>{{ orgname.name  }}</option>
+                {% for rol in ROLELIST %}
+                <option>{{ rol.name  }}</option>
                 {% endfor %}
             </select>
-        </div>          
+        </div>
+          
         <div class="form-group">
-            <label for="ou_name">OU Name:</label>
-            <select class="form-control" id="ou_name" name="ou_name">
+            <label for="wfc">Work Function Context:</label>
+            <select class="form-control" id="wfc" name="wfc">
                 <option>Select</option>
-                {% for ou_name in OULIST %}
-                <option>{{ ou_name.name  }}</option>
-                {% endfor %}              
-            </select>
-        </div>                  
-        <div class="form-group">
-            <label for="dept_name">Department  Name:</label>
-            <select class="form-control" id="dept_name" name="dept_name">
-                <option>Select</option>
-                {% for dept_name in DEPTLIST %}
-                <option>{{ dept_name.name  }}</option>
+                {% for wfc in WFCLIST %}
+                <option>{{ wfc.name  }}</option>
                 {% endfor %}              
             </select>
         </div>
