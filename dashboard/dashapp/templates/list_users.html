@@ -589,12 +589,18 @@ RESULT : {{ list_ou }}
         <thead>
             <tr style="font-size:12px">
                 <th>Name</th>
+                <th>ORG Name</th>
+                <th>OU Name</th>
+                <th>Dept Name</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
             {% for wfc in list_wfc %}
             <tr style="font-size:11px">
+                <td>{{ wfc.name  }}</td>
+                <td>{{ wfc.name  }}</td>
+                <td>{{ wfc.name  }}</td>
                 <td>{{ wfc.name  }}</td>
                 <td>
                     <form action="{% url 'dashapp:delete_wfc' %}" method="POST" enctype="multipart/form-data">
