@@ -11,9 +11,9 @@ Flask-Testing==0.7.1
 idna==2.7
 itsdangerous==1.1.0
 Jinja2==2.10
-linkinvclient==1.1
+#linkinvclient==1.1
 MarkupSafe==1.1.1
-micros1client==1.5
+#micros1client==1.5
 pkg-resources==0.0.0
 pycparser==2.19
 PyJWT==1.7.0
