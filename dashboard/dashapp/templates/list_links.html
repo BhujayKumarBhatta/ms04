@@ -197,6 +197,11 @@ $(document).ready(function(){
                 <th>Link type</th>
                 <th> Circuit ID</th> 
                 <th> Bandwidth</th>
+                <th> tspname</th>
+                <th> lifecycle_phase</th>
+                <th> lifecycle_starts</th>
+                <th> commission_date</th>
+                <th> surrender_date</th>
                 <th style="width:300px"> fa_end</th>
             </tr>
             
@@ -209,8 +214,13 @@ $(document).ready(function(){
                 <td>{{ link.division_name }}</td>
                 <td>{{ link.link_type }} </td>
                 <td> {{ link.circuit_ID }} </td>
-                <td> {{ link.bandwidth}} </td>
-                <td style="width:300px"> {{ link.fa_end}} </td>
+                <td> {{ link.bandwidth}} </td>                
+                <td> {{ link.tsp_name }} </td>
+                <td> {{ link.lifecycle_phase }} </td>
+                <td> {{ link.lifecycle_start_date }} </td>
+                <td> {{ link.commission_date }} </td>
+                <td> {{ link.surrender_date }} </td>
+                <td style="width:300px"> {{ link.fa_end }} </td>
             </tr>
             {% endfor %}
 
