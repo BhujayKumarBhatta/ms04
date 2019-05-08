@@ -661,6 +661,15 @@
                         {% include 'list_links.html' %}
                         {% elif ADDUSER is not null %}
                         {% include 'AddUser.html' %}
+                        {% elif manageaddress is not null %}
+                        {% include 'manageaddress.html' %}
+                        {% elif managelocalnet is not null %}
+                        {% include 'managelocalnet.html' %}
+                        {% elif managerate is not null %}
+                        {% include 'managerate.html' %}
+                        {% elif managepayment is not null %}
+                        {% include 'managepayment.html' %}
+
                         {% elif VIEW_UPLOAD is not null or uploaded_file_url is not null %}
                         {% include 'invoice_upload.html' %}
                         {% elif VIEW_UPDATE_UPLOAD is not null or uploadedupdate_file_url is not null %}

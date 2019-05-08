@@ -21,7 +21,8 @@ def managepayment(request):
         #list_links = lic.list_links()
         #template_data = {"list_links": list_links.get('message') }
         #result = render(request, 'managepayment.html', template_data)
-        result = render(request, 'managepayment.html')  
+        template_data = {"managepayment":"TRUE" }
+        result = render(request, 'home.html',template_data)  
         return result
     if request.method == 'POST':
         payment_dict = {"invoice_id": "", "billing_from": "01-01-2019", "billing_to": "31-03-2019", "billing_type": "Installation",
@@ -52,7 +53,8 @@ def managerate(request):
         #list_links = lic.list_links()
         #template_data = {"list_links": list_links.get('message') }
         #result = render(request, 'managepayment.html', template_data)
-        result = render(request, 'managerate.html')     
+        template_data = {"managerate":"TRUE" } 
+        result = render(request, 'home.html',template_data)       
         return result
     if request.method == 'POST': 
         rate_dict = {'tsp': '', 'linktype': '', 'activity_type': '', 'otc': 0, 'rate_per_year': 0 }
@@ -75,7 +77,8 @@ def manageaddress(request):
         #list_links = lic.list_links()
         #template_data = {"list_links": list_links.get('message') }
         #result = render(request, 'managepayment.html', template_data)
-        result = render(request, 'manageaddress.html') 
+        template_data = {"manageaddress":"TRUE" }
+        result = render(request, 'homt.html',template_data)   
         return result
     if request.method == 'POST': 
         all_add = {"prem_name": "", "prem_no": 0, "state": "", "city": "", "pin": 0, "gstn": "", "sgst_rate": 0, "cgst_rate": 0}
@@ -101,7 +104,8 @@ def managelocalnet(request):
         #list_links = lic.list_links()
         #template_data = {"list_links": list_links.get('message') }
         #result = render(request, 'managepayment.html', template_data)
-        result = render(request, 'managelocalnet.html')     
+        template_data = {"managelocalnet":"TRUE" }
+        result = render(request, 'home.html',template_data)     
         return result
     if request.method == 'POST': 
         lnet_d = {"infoopsid": "", "altaddress_id": 0, "rate_id": 0, "last_payment_date": "01-04-2019"}
