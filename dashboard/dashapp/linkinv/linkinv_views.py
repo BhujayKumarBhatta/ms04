@@ -21,7 +21,8 @@ def managepayment(request):
         #list_links = lic.list_links()
         #template_data = {"list_links": list_links.get('message') }
         #result = render(request, 'managepayment.html', template_data)
-        result = render(request, 'managepayment.html')     
+        result = render(request, 'managepayment.html')  
+        return result
     if request.method == 'POST':
         payment_dict = {"invoice_id": "", "billing_from": "01-01-2019", "billing_to": "31-03-2019", "billing_type": "Installation",
         "amount": "0", "payment_date": "", "mode": "", "ref_no": "", "status": "", "netlink_id": 0}
@@ -52,6 +53,7 @@ def managerate(request):
         #template_data = {"list_links": list_links.get('message') }
         #result = render(request, 'managepayment.html', template_data)
         result = render(request, 'managerate.html')     
+        return result
     if request.method == 'POST': 
         rate_dict = {'tsp': '', 'linktype': '', 'activity_type': '', 'otc': 0, 'rate_per_year': 0 }
         rate_dict['tsp'] = request.POST['tsp']
@@ -73,7 +75,8 @@ def manageaddress(request):
         #list_links = lic.list_links()
         #template_data = {"list_links": list_links.get('message') }
         #result = render(request, 'managepayment.html', template_data)
-        result = render(request, 'manageaddress.html')     
+        result = render(request, 'manageaddress.html') 
+        return result
     if request.method == 'POST': 
         all_add = {"prem_name": "", "prem_no": 0, "state": "", "city": "", "pin": 0, "gstn": "", "sgst_rate": 0, "cgst_rate": 0}
         all_add['prem_name'] = request.POST['prem_name']
@@ -99,6 +102,7 @@ def managelocalnet(request):
         #template_data = {"list_links": list_links.get('message') }
         #result = render(request, 'managepayment.html', template_data)
         result = render(request, 'managelocalnet.html')     
+        return result
     if request.method == 'POST': 
         lnet_d = {"infoopsid": "", "altaddress_id": 0, "rate_id": 0, "last_payment_date": "01-04-2019"}
         lnet_d['altaddress_id'] = request.POST['altaddress_id']
