@@ -37,6 +37,34 @@ def list_links(request):
         result = linkv.list_links(request)
     return result
 
+def managepayment(request):
+    if 'uname' not in request.session :
+        result = logout(request)
+    else:
+        result = linkv.managepayment(request)
+    return result
+
+def managerate(request):
+    if 'uname' not in request.session :
+        result = logout(request)
+    else:
+        result = linkv.managerate(request)
+    return result
+
+def manageaddress(request):
+    if 'uname' not in request.session :
+        result = logout(request)
+    else:
+        result = linkv.manageaddress(request)
+    return result
+
+def managelocalnet(request):
+    if 'uname' not in request.session :
+        result = logout(request)
+    else:
+        result = linkv.managelocalnet(request)
+    return result
+
 
 def list_org(request):
     if 'uname' not in request.session :

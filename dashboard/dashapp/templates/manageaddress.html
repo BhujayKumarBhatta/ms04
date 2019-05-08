@@ -1,0 +1,48 @@
+<!--all_add = {"prem_name": "", "prem_no": 0, "state": "", "city": "", "pin": 0, "gstn": "", "sgst_rate": 0, "cgst_rate": 0}-->
+<form action="{% url 'dashapp:manageaddress' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="table-responsive" style="width:60%">
+        <div class="tim-row" id="tutorial">
+            <h4 class="text-left">Add Address</h4>
+            <legend></legend>
+        </div>
+        <!--<form action="/action_page.php">-->
+        <div style="padding-left:100px">
+            <div class="form-group">
+                <label for="prem_name">Prem Name:</label>
+                <input type="text" class="form-control" id="prem_name" name="prem_name">
+            </div>
+            <div class="form-group">
+                <label for="prem_no">Prem No:</label>
+                <input type="text" class="form-control" id="prem_no" name="prem_no">
+            </div>
+            <div class="form-group">
+                <label for="state">State:</label>
+                <input type="date" class="form-control" id="state" name="state">
+            </div>
+            <div class="form-group">
+                <label for="city">City:</label>
+                <input type="text" class="form-control" id="city" name="city">
+            </div>
+            <div class="form-group">
+                <label for="pin">PIN:</label>
+                <input type="text" class="form-control" id="pin" name="pin">
+            </div>
+            <div class="form-group">
+                <label for="gstn">GST Number:</label>
+                <input type="text" class="form-control" id="gstn" name="gstn">
+            </div>
+
+            <div class="form-group">
+                <label for="sgst_rate">State GST Rate:</label>
+                <input type="text" class="form-control" id="sgst_rate" name="sgst_rate">
+            </div>
+            <div class="form-group">
+                <label for="cgst_rate">Center GST Rate:</label>
+                <input type="text" class="form-control" id="cgst_rate" name="cgst_rate">
+            </div>
+            <button type="submit" class="btn btn-success" style="width:300px">Submit</button>
+            <br /><br />
+        </div>
+    </div>
+    </form>

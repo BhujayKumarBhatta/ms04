@@ -1,0 +1,41 @@
+ <!--rate_dict = {'tsp': '', 'linktype': '', 'activity_type': '', 'otc': 0, 'rate_per_year': 0 }-->
+<form action="{% url 'dashapp:managerate' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="table-responsive" style="width:60%">
+        <div class="tim-row" id="tutorial">
+            <h4 class="text-left">Add Rate</h4>
+            <legend></legend>
+        </div>
+        <!--<form action="/action_page.php">-->
+        <div style="padding-left:100px">
+            <div class="form-group">
+                <label for="tsp">TSP:</label>
+                <input type="text" class="form-control" id="tsp" name="tsp">
+            </div>
+            <div class="form-group">
+                <label for="linktype">Link Type:</label>
+                <input type="text" class="form-control" id="linktype" name="linktype">
+            </div>
+            <div class="form-group">
+                <label for="activity_type">Activity Type:</label>
+                <input type="date" class="form-control" id="activity_type" name="activity_type">
+            </div>
+            <div class="form-group">
+                <label for="billing_type">Billing Type:</label>
+                <input type="text" class="form-control" id="billing_type" name="billing_type">
+            </div>
+            <div class="form-group">
+                <label for="otc">OTC:</label>
+                <input type="text" class="form-control" id="otc" name="otc">
+            </div>
+            <div class="form-group">
+                <label for="rate_per_year">Rate Per Year:</label>
+                <input type="text" class="form-control" id="rate_per_year" name="rate_per_year">
+            </div>
+
+
+            <button type="submit" class="btn btn-success" style="width:300px">Submit</button>
+            <br /><br />
+        </div>
+    </div>
+</form>

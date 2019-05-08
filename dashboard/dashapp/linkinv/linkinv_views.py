@@ -13,6 +13,106 @@ def list_links(request):
         #return HttpResponse(json.dumps(list_links))
         return result
 
+################  NEW CHANGE 8 MAY 2019  ###################
+def managepayment(request):
+    if request.method == 'GET': 
+        #tlclient = tllogin.prep_tlclient_from_session(request)
+        #lic = LIClient(tlclient)
+        #list_links = lic.list_links()
+        #template_data = {"list_links": list_links.get('message') }
+        #result = render(request, 'managepayment.html', template_data)
+        result = render(request, 'managepayment.html')     
+    if request.method == 'POST':
+        payment_dict = {"invoice_id": "", "billing_from": "01-01-2019", "billing_to": "31-03-2019", "billing_type": "Installation",
+        "amount": "0", "payment_date": "", "mode": "", "ref_no": "", "status": "", "netlink_id": 0}
+        
+        payment_dict['invoice_id'] = request.POST['invoice_id']
+        payment_dict['billing_from'] = request.POST['billing_from']
+        payment_dict['billing_to'] = request.POST['billing_to']
+        payment_dict['billing_type'] = request.POST['billing_type']
+        payment_dict['amount'] = request.POST['amount']        
+        payment_dict['payment_date'] = request.POST['payment_date']        
+        payment_dict['ref_no'] = request.POST['ref_no']        
+        payment_dict['status'] = request.POST['status']        
+        payment_dict['netlink_id'] = request.POST['netlink_id']        
+
+        tlclient = tllogin.prep_tlclient_from_session(request)
+        lic = LIClient(tlclient)
+        status = lic.add_payment(payment_dict)  
+        
+        template_data = {"list_links": list_links.get('message'),"PAYMENT_STATUS" :status } 
+        result = render(request, 'list_links.html', template_data)                
+        return result
+
+def managerate(request):
+    if request.method == 'GET': 
+        #tlclient = tllogin.prep_tlclient_from_session(request)
+        #lic = LIClient(tlclient)
+        #list_links = lic.list_links()
+        #template_data = {"list_links": list_links.get('message') }
+        #result = render(request, 'managepayment.html', template_data)
+        result = render(request, 'managerate.html')     
+    if request.method == 'POST': 
+        rate_dict = {'tsp': '', 'linktype': '', 'activity_type': '', 'otc': 0, 'rate_per_year': 0 }
+        rate_dict['tsp'] = request.POST['tsp']
+        rate_dict['linktype'] = request.POST['linktype']
+        rate_dict['otc'] = request.POST['otc']
+        rate_dict['activity_type'] = request.POST['activity_type']
+        rate_dict['rate_per_year'] = request.POST['rate_per_year']        
+        tlclient = tllogin.prep_tlclient_from_session(request)
+        lic = LIClient(tlclient)
+        status = lic.add_rate(rate_dict)         
+        template_data = {"list_links": list_links.get('message'),"RATE_STATUS" :status } 
+        result = render(request, 'list_links.html', template_data)                
+        return result
+
+def manageaddress(request):
+    if request.method == 'GET': 
+        #tlclient = tllogin.prep_tlclient_from_session(request)
+        #lic = LIClient(tlclient)
+        #list_links = lic.list_links()
+        #template_data = {"list_links": list_links.get('message') }
+        #result = render(request, 'managepayment.html', template_data)
+        result = render(request, 'manageaddress.html')     
+    if request.method == 'POST': 
+        all_add = {"prem_name": "", "prem_no": 0, "state": "", "city": "", "pin": 0, "gstn": "", "sgst_rate": 0, "cgst_rate": 0}
+        all_add['prem_name'] = request.POST['prem_name']
+        all_add['prem_no'] = request.POST['prem_no']
+        all_add['state'] = request.POST['state']
+        all_add['city'] = request.POST['city']
+        all_add['pin'] = request.POST['pin']        
+        all_add['gstn'] = request.POST['gstn']        
+        all_add['sgst_rate'] = request.POST['sgst_rate']        
+        all_add['cgst_rate'] = request.POST['cgst_rate']        
+        tlclient = tllogin.prep_tlclient_from_session(request)
+        lic = LIClient(tlclient)
+        status = lic.add_altaddress(all_add)         
+        template_data = {"list_links": list_links.get('message'),"ADDRESS_STATUS" :status } 
+        result = render(request, 'list_links.html', template_data)                
+        return result
+
+def managelocalnet(request):
+    if request.method == 'GET': 
+        #tlclient = tllogin.prep_tlclient_from_session(request)
+        #lic = LIClient(tlclient)
+        #list_links = lic.list_links()
+        #template_data = {"list_links": list_links.get('message') }
+        #result = render(request, 'managepayment.html', template_data)
+        result = render(request, 'managelocalnet.html')     
+    if request.method == 'POST': 
+        lnet_d = {"infoopsid": "", "altaddress_id": 0, "rate_id": 0, "last_payment_date": "01-04-2019"}
+        lnet_d['altaddress_id'] = request.POST['altaddress_id']
+        lnet_d['rate_id'] = request.POST['rate_id']
+        lnet_d['last_payment_date'] = request.POST['last_payment_date']
+            
+        tlclient = tllogin.prep_tlclient_from_session(request)
+        lic = LIClient(tlclient)
+        status = lic.add_lnetlink(lnet_d)         
+        template_data = {"list_links": list_links.get('message'),"LOCALNET_STATUS" :status } 
+        result = render(request, 'list_links.html', template_data)                
+        return result
+
+#############################################################
 
 def list_test(request):
     if request.method == 'GET': 
