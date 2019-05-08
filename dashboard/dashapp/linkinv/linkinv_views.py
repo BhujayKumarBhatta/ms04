@@ -78,7 +78,7 @@ def manageaddress(request):
         #template_data = {"list_links": list_links.get('message') }
         #result = render(request, 'managepayment.html', template_data)
         template_data = {"manageaddress":"TRUE" }
-        result = render(request, 'homt.html',template_data)   
+        result = render(request, 'home.html',template_data)   
         return result
     if request.method == 'POST': 
         all_add = {"prem_name": "", "prem_no": 0, "state": "", "city": "", "pin": 0, "gstn": "", "sgst_rate": 0, "cgst_rate": 0}
