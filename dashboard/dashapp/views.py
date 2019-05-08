@@ -36,7 +36,7 @@ def list_links(request):
     else:
         result = linkv.list_links(request)
     return result
-
+    
 def managepayment(request):
     if 'uname' not in request.session :
         result = logout(request)
