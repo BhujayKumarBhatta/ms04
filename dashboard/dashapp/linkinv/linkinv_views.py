@@ -44,7 +44,7 @@ def managepayment(request):
         lic = LIClient(tlclient)
         status = lic.add_payment(payment_dict)  
         
-        template_data = {"list_links": list_links.get('message'),"PAYMENT_STATUS" :status } 
+        template_data = {"list_links": list_links,"STATUS" :status } 
         result = render(request, 'list_links.html', template_data)                
         return result
 ######  RATE
