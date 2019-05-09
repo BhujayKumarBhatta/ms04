@@ -26,5 +26,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('dashapp.urls')),
     #path(r'swagger-docs/', schema_view),
-    path(r'docs/', include_docs_urls(title='TSP Billing')),
+    #path(r'docs/', include_docs_urls(title='TSP Billing')),
 ]
