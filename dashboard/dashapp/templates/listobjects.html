@@ -3,135 +3,140 @@
 {% load static %}
 
 <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
- 
- 
- 
 
-<ul class="nav nav-tabs">
-    <li class="active"><a data-toggle="tab" href="#address">Address</a></li>
-    <li><a data-toggle="tab" href="#rate">Rate</a></li>
-    <li><a data-toggle="tab" href="#lclnet">Local Net</a></li>
-    <li><a data-toggle="tab" href="#payment">Payment</a></li>
-</ul>
 
-<div class="tab-content">
-    <div id="address" class="tab-pane fade in active">
-        <table class="table table-bordered">
-            <thead>
-                <tr style="font-size:12px">
-                    <th>prem_name</th>
-                    <th>prem_no</th>
-                    <th>State </th>
-                    <th> City</th>
-                    <th> PIN</th>
-                    <th> GST Number</th>
-                    <th> State GST Rate</th>
-                    <th> Center GST Rate</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for add in list_Altaddress %}
-                <tr style="font-size:11px">
-                    <td>{{ add.prem_name }}</td>
-                    <td>{{ add.prem_no }}</td>
-                    <td>{{ add.state }} </td>
-                    <td> {{ add.city }} </td>
-                    <td> {{ add.pin }} </td>
-                    <td> {{ add.gstn }} </td>
-                    <td> {{ add.sgst_rate }} </td>
-                    <td> {{ add.cgst_rate }} </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-        {{list_Altaddress}}
-
+<div class="table-wrapper">
+    <div class="table-title">
+        <div class="row">
+            <div class="col-sm-8"><h3><b>Manage Address, Rate, Local Net and Payments</b> Details</h3></div>
+        </div>
     </div>
-    <div id="rate" class="tab-pane fade">
-        <table class="table table-bordered">
-            <thead>
-                <tr style="font-size:12px">
-                    <th>TSP</th>
-                    <th>Link Type</th>
-                    <th>Activity Type </th>
-                    <th> Rate Per Year</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for rt in list_rate %}
-                <tr style="font-size:11px">
-                    <td>{{ rt.tsp }}</td>
-                    <td>{{ rt.linktype }}</td>
-                    <td>{{ rt.activity_type }} </td>
-                    <td> {{ rt.otc }} </td>
-                    <td> {{ rt.rate_per_year }} </td>
-                </tr>
-                {% endfor %}
 
-            </tbody>
-        </table>
-        {{list_rate}}
-    </div>
-    <div id="lclnet" class="tab-pane fade">
+    <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#address">Address</a></li>
+        <li><a data-toggle="tab" href="#rate">Rate</a></li>
+        <li><a data-toggle="tab" href="#lclnet">Local Net</a></li>
+        <li><a data-toggle="tab" href="#payment">Payment</a></li>
+    </ul>
 
-        <table class="table table-bordered">
-            <thead>
-                <tr style="font-size:12px">
-                    <th>Infoops ID</th>
-                    <th>list_obj</th>
-                    <th>Rate ID </th>
-                    <th>Last Payment On</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for lnet in list_Lnetlink %}
-                <tr style="font-size:11px">
-                    <td>{{ lnet.infoopsid }}</td>
-                    <td>{{ lnet.list_obj }}</td>
-                    <td>{{ lnet.rate_id }} </td>
-                    <td> {{ lnet.last_payment_date }} </td>
-                </tr>
-                {% endfor %}
+    <div class="tab-content">
+        <div id="address" class="tab-pane fade in active">
+            <table class="table table-bordered">
+                <thead>
+                    <tr style="font-size:12px">
+                        <th>prem_name</th>
+                        <th>prem_no</th>
+                        <th>State </th>
+                        <th> City</th>
+                        <th> PIN</th>
+                        <th> GST Number</th>
+                        <th> State GST Rate</th>
+                        <th> Center GST Rate</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for add in list_Altaddress %}
+                    <tr style="font-size:11px">
+                        <td>{{ add.prem_name }}</td>
+                        <td>{{ add.prem_no }}</td>
+                        <td>{{ add.state }} </td>
+                        <td> {{ add.city }} </td>
+                        <td> {{ add.pin }} </td>
+                        <td> {{ add.gstn }} </td>
+                        <td> {{ add.sgst_rate }} </td>
+                        <td> {{ add.cgst_rate }} </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {{list_Altaddress}}
 
-            </tbody>
-        </table>
-        {{list_Lnetlink}}
+        </div>
+        <div id="rate" class="tab-pane fade">
+            <table class="table table-bordered">
+                <thead>
+                    <tr style="font-size:12px">
+                        <th>TSP</th>
+                        <th>Link Type</th>
+                        <th>Activity Type </th>
+                        <th> Rate Per Year</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for rt in list_rate %}
+                    <tr style="font-size:11px">
+                        <td>{{ rt.tsp }}</td>
+                        <td>{{ rt.linktype }}</td>
+                        <td>{{ rt.activity_type }} </td>
+                        <td> {{ rt.otc }} </td>
+                        <td> {{ rt.rate_per_year }} </td>
+                    </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table>
+            {{list_rate}}
+        </div>
+        <div id="lclnet" class="tab-pane fade">
+
+            <table class="table table-bordered">
+                <thead>
+                    <tr style="font-size:12px">
+                        <th>Infoops ID</th>
+                        <th>list_obj</th>
+                        <th>Rate ID </th>
+                        <th>Last Payment On</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for lnet in list_Lnetlink %}
+                    <tr style="font-size:11px">
+                        <td>{{ lnet.infoopsid }}</td>
+                        <td>{{ lnet.list_obj }}</td>
+                        <td>{{ lnet.rate_id }} </td>
+                        <td> {{ lnet.last_payment_date }} </td>
+                    </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table>
+            {{list_Lnetlink}}
+        </div>
+        <div id="payment" class="tab-pane fade">
+            <table class="table table-bordered">
+                <thead>
+                    <tr style="font-size:12px">
+                        <th>invoice_id</th>
+                        <th>Billing From</th>
+                        <th>Billing To </th>
+                        <th> Billing Type</th>
+                        <th> Amount</th>
+                        <th> Payment Date</th>
+                        <th> Payment Mode</th>
+                        <th> Reference Number</th>
+                        <th> Status</th>
+                        <th> Net Link ID</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for pay in list_Payment %}
+                    <tr style="font-size:11px">
+                        <td>{{ pay.invoice_id }}</td>
+                        <td>{{ pay.billing_from }}</td>
+                        <td>{{ pay.billing_to }} </td>
+                        <td>{{ pay.billing_type}} </td>
+                        <td>{{ pay.amount }} </td>
+                        <td>{{ pay.payment_date }} </td>
+                        <td>{{ pay.mode }} </td>
+                        <td>{{ pay.ref_no }} </td>
+                        <td>{{ pay.status }} </td>
+                        <td>{{ pay.netlink_id }} </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {{list_Payment}}
+        </div>
     </div>
-    <div id="payment" class="tab-pane fade">
-        <table class="table table-bordered">
-            <thead>
-                <tr style="font-size:12px">
-                    <th>invoice_id</th>
-                    <th>Billing From</th>
-                    <th>Billing To </th>
-                    <th> Billing Type</th>
-                    <th> Amount</th>
-                    <th> Payment Date</th>
-                    <th> Payment Mode</th>
-                    <th> Reference Number</th>
-                    <th> Status</th>
-                    <th> Net Link ID</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for pay in list_Payment %}
-                <tr style="font-size:11px">
-                    <td>{{ pay.invoice_id }}</td>
-                    <td>{{ pay.billing_from }}</td>
-                    <td>{{ pay.billing_to }} </td>
-                    <td>{{ pay.billing_type}} </td>
-                    <td>{{ pay.amount }} </td>
-                    <td>{{ pay.payment_date }} </td>
-                    <td>{{ pay.mode }} </td>
-                    <td>{{ pay.ref_no }} </td>
-                    <td>{{ pay.status }} </td>
-                    <td>{{ pay.netlink_id }} </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-        {{list_Payment}}
-    </div>
+
 </div>
- 
-
