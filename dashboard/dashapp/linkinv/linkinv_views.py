@@ -76,10 +76,23 @@ def managerate(request):
         rate_dict['rate_per_year'] = request.POST['rate_per_year']        
         tlclient = tllogin.prep_tlclient_from_session(request)
         lic = LIClient(tlclient)
-        status = lic.add_rate(rate_dict)         
-        template_data = {"list_links": list_links.get('message'),"RATE_STATUS" :status } 
-        result = render(request, 'list_links.html', template_data)                
+        status = lic.add_rate(rate_dict)  
+
+        list_rate = lic.list_obj("Rate","all","all")
+        list_Payment = lic.list_obj("Payment","all","all")
+        list_Altaddress = lic.list_obj("Altaddress","all","all")
+        list_Lnetlink = lic.list_obj("Lnetlink","all","all")
+        
+        template_data = {"list_rate": list_rate
+                    ,"list_Payment": list_Payment
+                    ,"list_Altaddress": list_Altaddress
+                    ,"list_Lnetlink": list_Lnetlink,"TEST" :"Success","STATUS" : status,"listobjects":"TRUE"}
+        
+        result = render(request, 'home.html', template_data)                
         return result
+
+
+        
 ###### ADDRESS
 def manageaddress(request):
     if request.method == 'GET': 
@@ -103,10 +116,23 @@ def manageaddress(request):
         all_add['cgst_rate'] = request.POST['cgst_rate']        
         tlclient = tllogin.prep_tlclient_from_session(request)
         lic = LIClient(tlclient)
-        status = lic.add_altaddress(all_add)         
-        template_data = {"list_links": list_links.get('message'),"ADDRESS_STATUS" :status } 
-        result = render(request, 'list_links.html', template_data)                
+        status = lic.add_altaddress(all_add)  
+        
+        list_rate = lic.list_obj("Rate","all","all")
+        list_Payment = lic.list_obj("Payment","all","all")
+        list_Altaddress = lic.list_obj("Altaddress","all","all")
+        list_Lnetlink = lic.list_obj("Lnetlink","all","all")
+        
+        template_data = {"list_rate": list_rate
+                    ,"list_Payment": list_Payment
+                    ,"list_Altaddress": list_Altaddress
+                    ,"list_Lnetlink": list_Lnetlink,"TEST" :"Success","STATUS" : status,"listobjects":"TRUE"}
+
+         
+        result = render(request, 'home.html', template_data)                
         return result
+
+         
 ###### LOCAL NETWORK
 def managelocalnet(request):
     if request.method == 'GET': 
@@ -126,9 +152,20 @@ def managelocalnet(request):
             
         tlclient = tllogin.prep_tlclient_from_session(request)
         lic = LIClient(tlclient)
-        status = lic.add_lnetlink(lnet_d)         
-        template_data = {"list_links": list_links.get('message'),"LOCALNET_STATUS" :status } 
-        result = render(request, 'list_links.html', template_data)                
+        status = lic.add_lnetlink(lnet_d)  
+        
+        list_rate = lic.list_obj("Rate","all","all")
+        list_Payment = lic.list_obj("Payment","all","all")
+        list_Altaddress = lic.list_obj("Altaddress","all","all")
+        list_Lnetlink = lic.list_obj("Lnetlink","all","all")
+        
+        template_data = {"list_rate": list_rate
+                    ,"list_Payment": list_Payment
+                    ,"list_Altaddress": list_Altaddress
+                    ,"list_Lnetlink": list_Lnetlink,"TEST" :"Success","STATUS" : status,"listobjects":"TRUE"}
+
+         
+        result = render(request, 'home.html', template_data)                
         return result
 
 ###### LIST ALL
