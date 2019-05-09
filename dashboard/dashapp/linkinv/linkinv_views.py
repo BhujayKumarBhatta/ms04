@@ -45,7 +45,7 @@ def managepayment(request):
         status = lic.add_payment(payment_dict)  
         template_data = listobjects(request)
         #template_data = {"list_links": list_links,"STATUS" :status } 
-        result = render(request, 'list_links.html', template_data)                
+        result = render(request, 'home.html', template_data)                
         return result
 ######  RATE
 def managerate(request):
