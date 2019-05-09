@@ -13,12 +13,12 @@
             <td>
                 {% if UPLOAD_RESULT is not null %}
                 <div class="alert alert-success" role="alert">
-                    Invoice file Upload is successfull.<br />
+                    Invoice file Upload operation completed. View the stauts below<br />
 
                 </div>
                 {% elif EXCEPTION is not null %}
                 <div class="alert alert-danger" role="alert">
-                    There is been an error while uploading a file, Please check the file format. <br />
+                    There is been an error while uploading a file, Please check the file format and server log. <br />
                     {% if EXCEPTION_INFO is not null %}
                     {{EXCEPTION_INFO}}
                     {% endif %}
@@ -69,5 +69,5 @@
         </table>
     </div>
     {%endif%}
-    {{UPLOAD_STATUS}}
+  
     {% endblock %}

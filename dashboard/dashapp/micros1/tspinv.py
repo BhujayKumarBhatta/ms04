@@ -158,7 +158,7 @@ def invoice_upload(request):
                                  "VIEW_UPLOAD": "TRUE", 
                                  "UPLOAD_STATUS":loaded_message})
             template_data = { "uploaded_file_url" : uploaded_file_url                             
-                                 ,"UPLOAD_STATUS" : message,"UPLOAD_RESULT" : Upload_result}
+                                 ,"UPLOAD_STATUS" : loaded_message,"UPLOAD_RESULT" : Upload_result}
             result = render(request, 'home.html', template_data) 
         if request.method == 'GET':          
             template_data = {"VIEW_UPLOAD": "TRUE" }  
@@ -173,24 +173,24 @@ def view_update_upload(request):
         template_data = {"VIEW_UPDATE_UPLOAD": "TRUE" }  
         result = render(request, 'home.html', template_data)        
         return result
-## UPDATE Invoice
-def invoice_update_upload(request):
+
+def invoice_update_upload(request):    
     try:
         if request.method == 'POST' and request.FILES['myfile']:
-            myfile = request.FILES['myfile']        
-            fs = FileSystemStorage(location = '/tmp/media/',file_permissions_mode =  0o644)
-            filename = fs.save(myfile.name, myfile)
-            uploaded_file_url = fs.url(filename)
-
+            myfile = request.FILES['myfile']              
+            fs = FileSystemStorage(location = '/tmp/media/',file_permissions_mode =  0o644)            
+            filename = fs.save(myfile.name, myfile)            
+            uploaded_file_url = fs.url(filename)            
             tlclient = tllogin.prep_tlclient_from_session(request)
-            ms1Client = MSClient(tlclient)        
-            Upload_result = ms1Client.update_invoice(uploaded_file_url)      
+            ms1Client = MSClient(tlclient)                
+            Upload_result = ms1Client.update_invoice_xl(uploaded_file_url)
+#             print(Upload_result)       
             message = json.dumps(Upload_result)
             loaded_message = json.loads(message)# Only gives json Object str
 
             template_data = { "uploadedupdate_file_url" : uploaded_file_url
                              ,"VIEW_UPDATE_UPLOAD" : "TRUE"
-                             ,"UPLOAD_UPDATE_STATUS" : message,"UPLOAD_RESULT" : Upload_result}
+                             ,"UPLOAD_UPDATE_STATUS" : loaded_message,"UPLOAD_RESULT" : Upload_result}
             result = render(request, 'home.html',template_data)
             return result
         if request.method == 'GET':          
@@ -203,21 +203,23 @@ def invoice_update_upload(request):
 ##RECOMMOND Invoice
 def invoice_rcom_upload(request):
     try:
-        if request.method == 'POST' and request.FILES['myfile']:
+        if request.method == 'POST' and request.FILES['myfile']:           
             myfile = request.FILES['myfile']        
             fs = FileSystemStorage(location = '/tmp/media/',file_permissions_mode =  0o644)
             filename = fs.save(myfile.name, myfile)
             rcomuploaded_file_url = fs.url(filename)
-
+            #print('inside recom view %s' % rcomuploaded_file_url)
             tlclient = tllogin.prep_tlclient_from_session(request)
-            ms1Client = MSClient(tlclient)        
-            Upload_result = ms1Client.recommend_changes_xl(rcomuploaded_file_url)      
+            ms1Client = MSClient(tlclient)
+#             print(dir(ms1Client))     
+            Upload_result = ms1Client.recommend_changes_xl(rcomuploaded_file_url)
+#             print(Upload_result)      
             message = json.dumps(Upload_result)
             loaded_message = json.loads(message)# Only gives json Object str
 
             template_data = { "rcomuploaded_file_url" : rcomuploaded_file_url
                              ,"VIEW_RCOM_UPLOAD" : "TRUE"
-                             ,"UPLOAD_RCOM_STATUS" : message,"UPLOAD_RESULT" : Upload_result}
+                             ,"UPLOAD_RCOM_STATUS" : loaded_message,"UPLOAD_RESULT" : Upload_result}
             result = render(request, 'home.html',template_data)
             return result
         if request.method == 'GET':          

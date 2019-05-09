@@ -8,5 +8,6 @@ dist
 db.sqlite3
 db.sqlite3
 .vs
+db.sqlite3
 
 /dashboard/dashapp/micros1/invoiceresult.json
