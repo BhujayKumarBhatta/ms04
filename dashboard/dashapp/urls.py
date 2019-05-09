@@ -33,7 +33,8 @@ urlpatterns = [path('', views.login, name='login'),
     path('manageaddress', views.manageaddress, name='manageaddress'),
     path('managerate', views.managerate, name='managerate'),
     path('managepayment', views.managepayment, name='managepayment'),
-
+    path('lisobjects', views.lisobjects, name='lisobjects'),
+    
     path('list_test', views.list_links, name='list_test'),      
     #Token Leader
     path('list_users', views.list_users, name='list_users'),
@@ -57,10 +58,7 @@ urlpatterns = [path('', views.login, name='login'),
     ,path('invoice_approve', views.invoice_approve, name='invoice_approve')
     ,path('invoice_reject', views.invoice_reject, name='invoice_reject')
     ,path('swagger-docs/', schema_view)
-    ,path('docs/', include_docs_urls(title='TSP Billing'))
-     
-    
-    ]
+    ,path('docs/', include_docs_urls(title='TSP Billing'))]
 
 
 
