@@ -33,7 +33,7 @@ urlpatterns = [path('', views.login, name='login'),
     path('manageaddress', views.manageaddress, name='manageaddress'),
     path('managerate', views.managerate, name='managerate'),
     path('managepayment', views.managepayment, name='managepayment'),
-    path('lisobjects', views.lisobjects, name='lisobjects'),
+    path('listobjects', views.listobjects, name='listobjects'),
     
     path('list_test', views.list_links, name='list_test'),      
     #Token Leader

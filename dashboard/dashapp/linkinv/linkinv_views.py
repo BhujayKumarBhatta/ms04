@@ -123,7 +123,7 @@ def managelocalnet(request):
         return result
 
 ###### LIST ALL
-def managelocalnet(request):
+def listobjects(request):
     if request.method == 'GET': 
         tlclient = tllogin.prep_tlclient_from_session(request)
         lic = LIClient(tlclient)
