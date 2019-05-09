@@ -135,7 +135,7 @@ def listobjects(request):
         template_data = {"list_rate": list_rate
                         ,"list_Payment": list_Payment
                         ,"list_Altaddress": list_Altaddress
-                        ,"list_Lnetlink": list_Lnetlink}
+                        ,"list_Lnetlink": list_Lnetlink,"TEST" :"Success"}
         result = render(request, 'home.html', template_data)
         template_data = {"listobjects":"TRUE" }
         result = render(request, 'home.html',template_data)     
