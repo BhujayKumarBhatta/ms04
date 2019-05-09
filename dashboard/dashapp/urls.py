@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 #### For File Upload
-from django.conf import settings
+#from django.conf import settings
 from django.conf.urls.static import static
 ## End
 from django.urls import path
