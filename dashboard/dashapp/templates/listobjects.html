@@ -76,29 +76,7 @@
                 <div class="col-sm-8"><h3>Rate <b>Net</b></h3></div>
             </div>
         </div>-->
-        <table class="table table-bordered">
-            <thead>
-                <tr style="font-size:12px">
-                    <th>TSP</th>
-                    <th>Link Type</th>
-                    <th>Activity Type </th>
-                    <th> Rate Per Year</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for rt in list_rate %}
-                <tr style="font-size:11px">
-                    <td>{{ rt.tsp }}</td>
-                    <td>{{ rt.linktype }}</td>
-                    <td>{{ rt.activity_type }} </td>
-                    <td> {{ rt.otc }} </td>
-                    <td> {{ rt.rate_per_year }} </td>
-                </tr>
-                {% endfor %}
-
-            </tbody>
-        </table>
-        {{list_rate}}
+    
 
 
     </div>
@@ -111,6 +89,56 @@
             </div>
         </div>-->
 
+       
+    </div>
+    <div id="Payment" class="tabcontent">
+        <h3>Payment</h3>
+        <!--<div class="table-title">
+            <div class="row">
+                <div class="col-sm-8"><h3>Local <b>Net</b></h3></div>
+            </div>
+        </div>-->
+    
+    </div>
+    <div id="localnet" class="tabcontent">
+        <h3>Local Net</h3>
+        <!--<div class="table-title">
+            <div class="row">
+                <div class="col-sm-8"><h3>Local <b>Net</b></h3></div>
+            </div>
+        </div>-->
+
+    </div>
+
+</div>
+<script>
+    function openPage(pageName, elmnt, color) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablink");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].style.backgroundColor = "";
+        }
+        document.getElementById(pageName).style.display = "block";
+        elmnt.style.backgroundColor = color;
+    }
+
+    // Get the element with id="defaultOpen" and click on it
+    document.getElementById("defaultOpen").click();
+</script>
+
+<ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#address">Address</a></li>
+    <li><a data-toggle="tab" href="#rate">Rate</a></li>
+    <li><a data-toggle="tab" href="#lclnet">Local Net</a></li>
+    <li><a data-toggle="tab" href="#payment">Payment</a></li>
+</ul>
+
+<div class="tab-content">
+    <div id="address" class="tab-pane fade in active">
         <table class="table table-bordered">
             <thead>
                 <tr style="font-size:12px">
@@ -140,14 +168,59 @@
             </tbody>
         </table>
         {{list_Altaddress}}
+
     </div>
-    <div id="Payment" class="tabcontent">
-        <h3>Payment</h3>
-        <!--<div class="table-title">
-            <div class="row">
-                <div class="col-sm-8"><h3>Local <b>Net</b></h3></div>
-            </div>
-        </div>-->
+    <div id="rate" class="tab-pane fade">
+        <table class="table table-bordered">
+            <thead>
+                <tr style="font-size:12px">
+                    <th>TSP</th>
+                    <th>Link Type</th>
+                    <th>Activity Type </th>
+                    <th> Rate Per Year</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for rt in list_rate %}
+                <tr style="font-size:11px">
+                    <td>{{ rt.tsp }}</td>
+                    <td>{{ rt.linktype }}</td>
+                    <td>{{ rt.activity_type }} </td>
+                    <td> {{ rt.otc }} </td>
+                    <td> {{ rt.rate_per_year }} </td>
+                </tr>
+                {% endfor %}
+
+            </tbody>
+        </table>
+        {{list_rate}}
+    </div>
+    <div id="lclnet" class="tab-pane fade">
+
+        <table class="table table-bordered">
+            <thead>
+                <tr style="font-size:12px">
+                    <th>Infoops ID</th>
+                    <th>list_obj</th>
+                    <th>Rate ID </th>
+                    <th>Last Payment On</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for lnet in list_Lnetlink %}
+                <tr style="font-size:11px">
+                    <td>{{ lnet.infoopsid }}</td>
+                    <td>{{ lnet.list_obj }}</td>
+                    <td>{{ lnet.rate_id }} </td>
+                    <td> {{ lnet.last_payment_date }} </td>
+                </tr>
+                {% endfor %}
+
+            </tbody>
+        </table>
+        {{list_Lnetlink}}
+    </div>
+    <div id="payment" class="tab-pane fade">
         <table class="table table-bordered">
             <thead>
                 <tr style="font-size:12px">
@@ -182,82 +255,6 @@
         </table>
         {{list_Payment}}
     </div>
-    <div id="localnet" class="tabcontent">
-        <h3>Local Net</h3>
-        <!--<div class="table-title">
-            <div class="row">
-                <div class="col-sm-8"><h3>Local <b>Net</b></h3></div>
-            </div>
-        </div>-->
-
-        <table class="table table-bordered">
-            <thead>
-                <tr style="font-size:12px">
-                    <th>Infoops ID</th>
-                    <th>list_obj</th>
-                    <th>Rate ID </th>
-                    <th>Last Payment On</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for lnet in list_Lnetlink %}
-                <tr style="font-size:11px">
-                    <td>{{ lnet.infoopsid }}</td>
-                    <td>{{ lnet.list_obj }}</td>
-                    <td>{{ lnet.rate_id }} </td>
-                    <td> {{ lnet.last_payment_date }} </td>
-                </tr>
-                {% endfor %}
-
-            </tbody>
-        </table>
-        {{list_Lnetlink}}
-    </div>
-
 </div>
-<script>
-    function openPage(pageName, elmnt, color) {
-        var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
-        for (i = 0; i < tabcontent.length; i++) {
-            tabcontent[i].style.display = "none";
-        }
-        tablinks = document.getElementsByClassName("tablink");
-        for (i = 0; i < tablinks.length; i++) {
-            tablinks[i].style.backgroundColor = "";
-        }
-        document.getElementById(pageName).style.display = "block";
-        elmnt.style.backgroundColor = color;
-    }
-
-    // Get the element with id="defaultOpen" and click on it
-    document.getElementById("defaultOpen").click();
-</script>
-
-<ul class="nav nav-tabs">
-    <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
-    <li><a data-toggle="tab" href="#menu1">Menu 1</a></li>
-    <li><a data-toggle="tab" href="#menu2">Menu 2</a></li>
-    <li><a data-toggle="tab" href="#menu3">Menu 3</a></li>
-</ul>
-
-<div class="tab-content">
-    <div id="home" class="tab-pane fade in active">
-        <h3>HOME</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-    </div>
-    <div id="menu1" class="tab-pane fade">
-        <h3>Menu 1</h3>
-        <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-    </div>
-    <div id="menu2" class="tab-pane fade">
-        <h3>Menu 2</h3>
-        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
-    </div>
-    <div id="menu3" class="tab-pane fade">
-        <h3>Menu 3</h3>
-        <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-    </div>
-</div>
-</div>
+ 
 
