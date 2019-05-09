@@ -43,10 +43,9 @@ def managepayment(request):
         tlclient = tllogin.prep_tlclient_from_session(request)
         lic = LIClient(tlclient)
         status = lic.add_payment(payment_dict)  
-        template_data = getallobjects()
-        result = render(request, 'home.html', template_data)
+        template_data = listobjects(request)
         #template_data = {"list_links": list_links,"STATUS" :status } 
-        #result = render(request, 'list_links.html', template_data)                
+        result = render(request, 'list_links.html', template_data)                
         return result
 ######  RATE
 def managerate(request):
@@ -125,26 +124,7 @@ def managelocalnet(request):
 
 ###### LIST ALL
 def listobjects(request):
-    if request.method == 'GET': 
-        tlclient = tllogin.prep_tlclient_from_session(request)
-        lic = LIClient(tlclient)
-        list_rate = lic.list_obj("Rate","all","all")
-        list_Payment = lic.list_obj("Payment","all","all")
-        list_Altaddress = lic.list_obj("Altaddress","all","all")
-        list_Lnetlink = lic.list_obj("Lnetlink","all","all")
-
-        template_data = {"list_rate": list_rate
-                        ,"list_Payment": list_Payment
-                        ,"list_Altaddress": list_Altaddress
-                        ,"list_Lnetlink": list_Lnetlink,"TEST" :"Success","listobjects":"TRUE"}
-        result = render(request, 'home.html', template_data)
-        
-        result = render(request, 'home.html',template_data)     
-        return result
-
-
-def getallobjects():
-    
+    #if request.method == 'GET': 
     tlclient = tllogin.prep_tlclient_from_session(request)
     lic = LIClient(tlclient)
     list_rate = lic.list_obj("Rate","all","all")
@@ -156,6 +136,25 @@ def getallobjects():
                     ,"list_Payment": list_Payment
                     ,"list_Altaddress": list_Altaddress
                     ,"list_Lnetlink": list_Lnetlink,"TEST" :"Success","listobjects":"TRUE"}
+    result = render(request, 'home.html', template_data)
+    template_data = {"listobjects":"TRUE" }
+    result = render(request, 'home.html',template_data)     
+    return result
+
+
+def getallobjects(self):
+    
+    tlclient = tllogin.prep_tlclient_from_session(request)
+    lic = LIClient(tlclient)
+    list_rate = lic.list_obj("Rate","all","all")
+    list_Payment = lic.list_obj("Payment","all","all")
+    list_Altaddress = lic.list_obj("Altaddress","all","all")
+    list_Lnetlink = lic.list_obj("Lnetlink","all","all")
+
+    template_data = {"list_rate": list_rate
+                    ,"list_Payment": list_Payment
+                    ,"list_Altaddress": list_Altaddress
+                    ,"list_Lnetlink": list_Lnetlink,"TEST" :"Success"}
     return template_data
     #if request.method == 'POST': 
     #    lnet_d = {"infoopsid": "", "altaddress_id": 0, "rate_id": 0, "last_payment_date": "01-04-2019"}
