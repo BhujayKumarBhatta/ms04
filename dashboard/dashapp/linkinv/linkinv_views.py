@@ -143,7 +143,7 @@ def listobjects(request):
         return result
 
 
-def getallobjects(self):
+def getallobjects():
     
     tlclient = tllogin.prep_tlclient_from_session(request)
     lic = LIClient(tlclient)
