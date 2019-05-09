@@ -24,6 +24,7 @@
             <table class="table table-bordered">
                 <thead>
                     <tr style="font-size:12px">
+                        <th></th>
                         <th>prem_name</th>
                         <th>prem_no</th>
                         <th>State </th>
@@ -37,6 +38,17 @@
                 <tbody>
                     {% for add in list_Altaddress %}
                     <tr style="font-size:11px">
+                        <td>
+                        <td>
+                            <form action="{% url 'dashapp:invoice_delete' %}" method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <input type="hidden" id="rateid" name="invoiceno" value="{{add.id}}">
+                                <button type="submit" class="btn btn-danger btn-sm"
+                                        onclick="return confirm('Are you sure? you want to Delete Address Details')">
+                                    <i class="glyphicon glyphicon-trash"></i>
+                                </button>
+                            </form>
+                        </td>
                         <td>{{ add.prem_name }}</td>
                         <td>{{ add.prem_no }}</td>
                         <td>{{ add.state }} </td>
@@ -56,6 +68,7 @@
             <table class="table table-bordered">
                 <thead>
                     <tr style="font-size:12px">
+                        <th></th>
                         <th>TSP</th>
                         <th>Link Type</th>
                         <th>Activity Type </th>
@@ -66,6 +79,16 @@
                 <tbody>
                     {% for rt in list_rate %}
                     <tr style="font-size:11px">
+                        <td>
+                            <form action="{% url 'dashapp:invoice_delete' %}" method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <input type="hidden" id="rateid" name="invoiceno" value="{{rt.id}}">
+                                <button type="submit" class="btn btn-danger btn-sm"
+                                        onclick="return confirm('Are you sure? you want to Delete Rate Details')">
+                                    <i class="glyphicon glyphicon-trash"></i>
+                                </button>
+                            </form>
+                        </td>
                         <td>{{ rt.tsp }}</td>
                         <td>{{ rt.linktype }}</td>
                         <td>{{ rt.activity_type }} </td>
@@ -83,6 +106,7 @@
             <table class="table table-bordered">
                 <thead>
                     <tr style="font-size:12px">
+                        <th></th>
                         <th>Infoops ID</th>
                         <th>list_obj</th>
                         <th>Rate ID </th>
@@ -92,6 +116,16 @@
                 <tbody>
                     {% for lnet in list_Lnetlink %}
                     <tr style="font-size:11px">
+                        <td>
+                            <form action="{% url 'dashapp:invoice_delete' %}" method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <input type="hidden" id="rateid" name="invoiceno" value="{{lnet.netlink_id}}">
+                                <button type="submit" class="btn btn-danger btn-sm"
+                                        onclick="return confirm('Are you sure? you want to Delete Local Net Details')">
+                                    <i class="glyphicon glyphicon-trash"></i>
+                                </button>
+                            </form>
+                        </td>
                         <td>{{ lnet.infoopsid }}</td>
                         <td>{{ lnet.list_obj }}</td>
                         <td>{{ lnet.rate_id }} </td>
@@ -107,6 +141,7 @@
             <table class="table table-bordered">
                 <thead>
                     <tr style="font-size:12px">
+                        <th></th>
                         <th>invoice_id</th>
                         <th>Billing From</th>
                         <th>Billing To </th>
@@ -122,6 +157,16 @@
                 <tbody>
                     {% for pay in list_Payment %}
                     <tr style="font-size:11px">
+                        <td>
+                            <form action="{% url 'dashapp:invoice_delete' %}" method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <input type="hidden" id="rateid" name="invoiceno" value="{{pay.id}}">
+                                <button type="submit" class="btn btn-danger btn-sm"
+                                        onclick="return confirm('Are you sure? you want to Delete Payment Details')">
+                                    <i class="glyphicon glyphicon-trash"></i>
+                                </button>
+                            </form>
+                        </td>
                         <td>{{ pay.invoice_id }}</td>
                         <td>{{ pay.billing_from }}</td>
                         <td>{{ pay.billing_to }} </td>
