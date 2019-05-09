@@ -42,7 +42,13 @@ def managepayment(request):
 
         tlclient = tllogin.prep_tlclient_from_session(request)
         lic = LIClient(tlclient)
-        status = lic.add_payment(payment_dict)  
+        status = lic.add_payment(payment_dict)
+        
+        list_rate = lic.list_obj("Rate","all","all")
+        list_Payment = lic.list_obj("Payment","all","all")
+        list_Altaddress = lic.list_obj("Altaddress","all","all")
+        list_Lnetlink = lic.list_obj("Lnetlink","all","all")
+        
         template_data = {"list_rate": list_rate
                     ,"list_Payment": list_Payment
                     ,"list_Altaddress": list_Altaddress
