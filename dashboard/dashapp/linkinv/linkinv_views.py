@@ -43,10 +43,13 @@ def managepayment(request):
         tlclient = tllogin.prep_tlclient_from_session(request)
         lic = LIClient(tlclient)
         status = lic.add_payment(payment_dict)  
-        listobjects(request)
+        template_data = {"list_rate": list_rate
+                    ,"list_Payment": list_Payment
+                    ,"list_Altaddress": list_Altaddress
+                    ,"list_Lnetlink": list_Lnetlink,"TEST" :"Success","STATUS" : status,"listobjects":"TRUE"}
         #template_data = {"list_links": list_links,"STATUS" :status } 
-        #result = render(request, 'home.html', template_data)                
-        #return result
+        result = render(request, 'home.html', template_data)                
+        return result
 ######  RATE
 def managerate(request):
     if request.method == 'GET': 
