@@ -588,6 +588,7 @@
                                                 <li><a href="{% url 'dashapp:managelocalnet'  %}">Manage Local Net</a></li>
                                                 <li><a href="{% url 'dashapp:managerate'  %}">Manage Rate</a></li>
                                                 <li><a href="{% url 'dashapp:manageaddress'  %}">Manage Address</a></li>
+                                                <li><a href="{% url 'dashapp:lisobjects'  %}">List Objects</a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -658,7 +659,7 @@
                         {% if list_users is not null or list_org is not null or list_role is not null or list_ou is not null or list_dept is not null%}
                         {% include 'list_users.html' %}
                         {% elif list_links is not null %}
-                            {% include 'list_links.html' %}
+                        {% include 'list_links.html' %}
                         {% elif ADDUSER is not null %}
                         {% include 'AddUser.html' %}
                         {% elif manageaddress is not null %}
@@ -669,6 +670,10 @@
                         {% include 'managerate.html' %}
                         {% elif managepayment is not null %}
                         {% include 'managepayment.html' %}
+
+                        {% elif listobjects is not null %}
+                        {% include 'listobjects.html' %}
+
 
                         {% elif VIEW_UPLOAD is not null or uploaded_file_url is not null %}
                         {% include 'invoice_upload.html' %}

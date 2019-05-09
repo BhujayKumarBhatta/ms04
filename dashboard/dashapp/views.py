@@ -65,6 +65,13 @@ def managelocalnet(request):
         result = linkv.managelocalnet(request)
     return result
 
+def listobjects(request):
+    if 'uname' not in request.session :
+        result = logout(request)
+    else:
+        result = linkv.listobjects(request)
+    return result
+
 
 def list_org(request):
     if 'uname' not in request.session :
