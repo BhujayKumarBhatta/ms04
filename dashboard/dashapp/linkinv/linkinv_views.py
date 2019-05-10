@@ -151,11 +151,12 @@ def managelocalnet(request):
         #result = render(request, 'managepayment.html', template_data)
         tlclient = tllogin.prep_tlclient_from_session(request)
         lic = LIClient(tlclient)
+
         list_rate = lic.list_obj("Rate","all","all")        
         list_Altaddress = lic.list_obj("Altaddress","all","all")        
         list_links_localnet = lic.list_links()        
         
-        template_data = {"managelocalnet":"TRUE" ,"list_rate":list_rate,"list_Altaddress":list_Altaddress,"list_links_localnet":list_links}
+        template_data = {"managelocalnet":"TRUE" ,"list_rate":list_rate,"list_Altaddress":list_Altaddress,"list_links_localnet":list_links_localnet}
         result = render(request, 'home.html',template_data)     
         return result
     if request.method == 'POST': 

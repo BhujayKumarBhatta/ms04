@@ -36,7 +36,7 @@
                 <select class="form-control" id="rate_id" name="rate_id">
                     <option>Select</option>
                     {% for rt in list_rate%}
-                    <option value="{{ rt.id }}">{{ add.tsp }}_{{ add.linktype }}__{{ add.activitytype }}</option>
+                    <option value="{{ rt.id }}">{{ add.tsp }}_{{ add.linktype }}__{{ add.activity_type }}</option>
                     {% endfor %}
                 </select>
             </div>
