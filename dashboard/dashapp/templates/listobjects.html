@@ -21,6 +21,49 @@
     </ul>
 
     <div class="tab-content">
+        <!--############  LOCAL NET ############ -->
+        <div id="lclnet" class="tab-pane fade">
+
+            <table class="table table-bordered">
+                <thead>
+                    <tr style="font-size:12px">
+                        <th></th>
+                        <th>Infoops ID</th>
+                        <th>Address</th>
+                        <th>Rate  </th>
+                        <th>Last Payment On</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for lnet in list_Lnetlink %}
+                    <tr style="font-size:11px">
+                        <td>
+                            <form action="{% url 'dashapp:invoice_delete' %}" method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <input type="hidden" id="rateid" name="invoiceno" value="{{lnet.netlink_id}}">
+                                <button type="submit" class="btn btn-danger btn-sm"
+                                        onclick="return confirm('Are you sure? you want to Delete Local Net Details')">
+                                    <i class="glyphicon glyphicon-trash"></i>
+                                </button>
+                            </form>
+                        </td>
+                        <td>{{ lnet.infoopsid }}</td>
+                        <td style="font-size:small">
+                            {{ lnet.altaddress.prem_name }}{{ lnet.altaddress.state }}{{ lnet.altaddress.city }}
+                        </td>
+                        <td style="font-size:small">
+                            {{ lnet.rate.tsp }} {{ lnet.rate.linktype }} {{ lnet.rate.activity_type }}
+
+                        </td>
+                        <td> {{ lnet.last_payment_date }} </td>
+                    </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table>
+            Local net --  {{list_Lnetlink}}
+        </div>
+        <!--############  ADDRESS ############ -->
         <div id="address" class="tab-pane fade in active">
             <table class="table table-bordered">
                 <thead>
@@ -102,48 +145,8 @@
             </table>
             Rate --  {{list_rate}}
         </div>
-        <!--############  LOCAL NET ############ -->
-        <div id="lclnet" class="tab-pane fade">
 
-            <table class="table table-bordered">
-                <thead>
-                    <tr style="font-size:12px">
-                        <th></th>
-                        <th>Infoops ID</th>
-                        <th>Address</th>
-                        <th>Rate  </th>
-                        <th>Last Payment On</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for lnet in list_Lnetlink %}
-                    <tr style="font-size:11px">
-                        <td>
-                            <form action="{% url 'dashapp:invoice_delete' %}" method="post" enctype="multipart/form-data">
-                                {% csrf_token %}
-                                <input type="hidden" id="rateid" name="invoiceno" value="{{lnet.netlink_id}}">
-                                <button type="submit" class="btn btn-danger btn-sm"
-                                        onclick="return confirm('Are you sure? you want to Delete Local Net Details')">
-                                    <i class="glyphicon glyphicon-trash"></i>
-                                </button>
-                            </form>
-                        </td>
-                        <td>{{ lnet.infoopsid }}</td>
-                        <td style="font-size:small">
-                            {{ lnet.altaddress.prem_name }}{{ lnet.altaddress.state }}{{ lnet.altaddress.city }}
-                        </td>
-                        <td style="font-size:small">
-                            {{ lnet.rate.tsp }} {{ lnet.rate.linktype }} {{ lnet.rate.activity_type }}
-
-                        </td>
-                        <td> {{ lnet.last_payment_date }} </td>
-                    </tr>
-                    {% endfor %}
-
-                </tbody>
-            </table>
-            Local net --  {{list_Lnetlink}}
-        </div>
+        <!--############  AYMENT ############ -->
         <div id="payment" class="tab-pane fade">
             <table class="table table-bordered">
                 <thead>
