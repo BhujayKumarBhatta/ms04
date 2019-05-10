@@ -71,10 +71,11 @@ def managerate(request):
         result = render(request, 'home.html',template_data)       
         return result
     if request.method == 'POST': 
-        rateid = request.POST['rateid']          
-        rateid_id = int(rateid)
-        if rateid_id > 0 :
-            status = lic.delete_obj('Rate',rateid_id)  
+        if request.POST['ADDDEL'] == "TRUE":
+            rateid = request.POST['rateid']          
+            rateid_id = int(rateid)
+            if rateid_id > 0 :
+                status = lic.delete_obj('Rate',rateid_id)  
         else:       
             rate_dict = {'tsp': '', 'linktype': '', 'activity_type': '', 'otc': 0, 'rate_per_year': 0 }
             rate_dict['tsp'] = request.POST['tsp']
@@ -106,12 +107,13 @@ def manageaddress(request):
         template_data = {"manageaddress":"TRUE" }
         result = render(request, 'home.html',template_data)   
         return result
-    if request.method == 'POST': 
-        addressid = request.POST['addressid']          
-        addressid = int(addressid)
+    if request.method == 'POST':
+        if request.POST['ADDDEL'] == "TRUE":
+            addressid = request.POST['addressid']          
+            addressid = int(addressid)
 ## Delete only if Address ID is available and and its greater than zero
-        if addressid > 0 :
-            status = lic.delete_obj('Altaddress',addressid)  
+            if addressid > 0 :
+                status = lic.delete_obj('Altaddress',addressid)  
         else:
 ## Adding New address
             all_add = {"prem_name": "", "prem_no": 0, "state": "", "city": "", "pin": 0, "gstn": "", "sgst_rate": 0, "cgst_rate": 0}
@@ -148,10 +150,11 @@ def managelocalnet(request):
         result = render(request, 'home.html',template_data)     
         return result
     if request.method == 'POST':
-        netlink_id = request.POST['netlink_id']          
-        netlinkid = int(netlink_id)
-        if netlinkid > 0 :
-            status = lic.delete_obj('Lnetlink',netlinkid)  
+        if request.POST['ADDDEL'] == "TRUE":
+            netlink_id = request.POST['netlink_id']          
+            netlinkid = int(netlink_id)
+            if netlinkid > 0 :
+                status = lic.delete_obj('Lnetlink',netlinkid)  
         else:
             lnet_d = {"infoopsid": "", "altaddress_id": 0, "rate_id": 0, "last_payment_date": ""}
             lnet_d['infoopsid'] = request.POST['infoopsid_id']
