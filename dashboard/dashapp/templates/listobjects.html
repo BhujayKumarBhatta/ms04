@@ -132,9 +132,9 @@
                     {% for rt in list_rate %}
                     <tr style="font-size:11px">
                         <td>
-                            <form action="{% url 'dashapp:invoice_delete' %}" method="post" enctype="multipart/form-data">
+                            <form action="{% url 'dashapp:managerate' %}" method="post" enctype="multipart/form-data">
                                 {% csrf_token %}
-                                <input type="hidden" id="rateid" name="invoiceno" value="{{rt.id}}">
+                                <input type="hidden" id="rateid" name="rateid" value="{{rt.id}}">
                                 <button type="submit" class="btn btn-danger btn-sm"
                                         onclick="return confirm('Are you sure? you want to Delete Rate Details')">
                                     <i class="glyphicon glyphicon-trash"></i>
@@ -179,9 +179,9 @@
                     {% for pay in list_Payment %}
                     <tr style="font-size:11px">
                         <td>
-                            <form action="{% url 'dashapp:invoice_delete' %}" method="post" enctype="multipart/form-data">
+                            <form action="{% url 'dashapp:managepayment' %}" method="post" enctype="multipart/form-data">
                                 {% csrf_token %}
-                                <input type="hidden" id="rateid" name="invoiceno" value="{{pay.id}}">
+                                <input type="hidden" id="paymentid" name="paymentid" value="{{pay.id}}">
                                 <button type="submit" class="btn btn-danger btn-sm"
                                         onclick="return confirm('Are you sure? you want to Delete Payment Details')">
                                     <i class="glyphicon glyphicon-trash"></i>

@@ -19,73 +19,70 @@ def list_links(request):
 ################  NEW CHANGE 8 MAY 2019 ###################
 ###### PAYMENT
 def managepayment(request):
+    tlclient = tllogin.prep_tlclient_from_session(request)
+    lic = LIClient(tlclient)
+    invClient = MSClient(tlclient) 
     if request.method == 'GET': 
         #tlclient = tllogin.prep_tlclient_from_session(request)
         #lic = LIClient(tlclient)
         #list_links = lic.list_links()
         #template_data = {"list_links": list_links.get('message') }
         #result = render(request, 'managepayment.html', template_data)
-        tlclient = tllogin.prep_tlclient_from_session(request)
-        invClient = MSClient(tlclient) 
         list_invoices = invClient.list_invoices_clo('all','all') 
-        lic = LIClient(tlclient)
         list_Lnetlink = lic.list_obj("Lnetlink","all","all")
-
         template_data = {"managepayment":"TRUE","list_invoices":list_invoices,"list_Lnetlink":list_Lnetlink }
         result = render(request, 'home.html',template_data)  
         return result
     if request.method == 'POST':
-        payment_dict = {"invoice_id": "", "billing_from": "01-01-2019", "billing_to": "31-03-2019", "billing_type": "Installation",
-        "amount": "0", "payment_date": "", "mode": "", "ref_no": "", "status": "", "netlink_id": 0}
-        
-        payment_dict['invoice_id'] = request.POST['invoice_id']
-        payment_dict['billing_from'] = request.POST['billing_from']
-        payment_dict['billing_to'] = request.POST['billing_to']
-        payment_dict['billing_type'] = request.POST['billing_type']
-        payment_dict['amount'] = request.POST['amount']        
-        payment_dict['payment_date'] = request.POST['payment_date'] 
-        payment_dict['mode'] = request.POST['mode']         
-        payment_dict['ref_no'] = request.POST['ref_no']        
-        payment_dict['status'] = request.POST['status']        
-        payment_dict['netlink_id'] = request.POST['netlink_id']        
-
-        tlclient = tllogin.prep_tlclient_from_session(request)
-        lic = LIClient(tlclient)
-        status = lic.add_payment(payment_dict)
-        
+        paymentid = request.POST['paymentid']          
+        payment_id = int(paymentid)
+        if payment_id > 0 :
+            status = lic.delete_obj('Payment',payment_id)  
+        else:       
+            payment_dict = {"invoice_id": "", "billing_from": "01-01-2019", "billing_to": "31-03-2019", "billing_type": "Installation",
+            "amount": "0", "payment_date": "", "mode": "", "ref_no": "", "status": "", "netlink_id": 0}
+            payment_dict['invoice_id'] = request.POST['invoice_id']
+            payment_dict['billing_from'] = request.POST['billing_from']
+            payment_dict['billing_to'] = request.POST['billing_to']
+            payment_dict['billing_type'] = request.POST['billing_type']
+            payment_dict['amount'] = request.POST['amount']        
+            payment_dict['payment_date'] = request.POST['payment_date'] 
+            payment_dict['mode'] = request.POST['mode']         
+            payment_dict['ref_no'] = request.POST['ref_no']        
+            payment_dict['status'] = request.POST['status']        
+            payment_dict['netlink_id'] = request.POST['netlink_id']       
+            status = lic.add_payment(payment_dict)        
         list_rate = lic.list_obj("Rate","all","all")
         list_Payment = lic.list_obj("Payment","all","all")
         list_Altaddress = lic.list_obj("Altaddress","all","all")
-        list_Lnetlink = lic.list_obj("Lnetlink","all","all")
-        
+        list_Lnetlink = lic.list_obj("Lnetlink","all","all")        
         template_data = {"list_rate": list_rate
                     ,"list_Payment": list_Payment
                     ,"list_Altaddress": list_Altaddress
-                    ,"list_Lnetlink": list_Lnetlink,"TEST" :"Success","STATUS" : status,"listobjects":"TRUE"}
-        #template_data = {"list_links": list_links,"STATUS" :status }
+                    ,"list_Lnetlink": list_Lnetlink,"TEST" :"Success","STATUS" : status,"listobjects":"TRUE"}        
         result = render(request, 'home.html', template_data)                
         return result
 ######  RATE
 def managerate(request):
+    tlclient = tllogin.prep_tlclient_from_session(request)
+    lic = LIClient(tlclient)
     if request.method == 'GET': 
-        #tlclient = tllogin.prep_tlclient_from_session(request)
-        #lic = LIClient(tlclient)
-        #list_links = lic.list_links()
-        #template_data = {"list_links": list_links.get('message') }
-        #result = render(request, 'managepayment.html', template_data)
         template_data = {"managerate":"TRUE" } 
         result = render(request, 'home.html',template_data)       
         return result
     if request.method == 'POST': 
-        rate_dict = {'tsp': '', 'linktype': '', 'activity_type': '', 'otc': 0, 'rate_per_year': 0 }
-        rate_dict['tsp'] = request.POST['tsp']
-        rate_dict['linktype'] = request.POST['linktype']
-        rate_dict['otc'] = request.POST['otc']
-        rate_dict['activity_type'] = request.POST['activity_type']
-        rate_dict['rate_per_year'] = request.POST['rate_per_year']        
-        tlclient = tllogin.prep_tlclient_from_session(request)
-        lic = LIClient(tlclient)
-        status = lic.add_rate(rate_dict)  
+        rateid = request.POST['rateid']          
+        rateid_id = int(rateid)
+        if rateid_id > 0 :
+            status = lic.delete_obj('Rate',rateid_id)  
+        else:       
+            rate_dict = {'tsp': '', 'linktype': '', 'activity_type': '', 'otc': 0, 'rate_per_year': 0 }
+            rate_dict['tsp'] = request.POST['tsp']
+            rate_dict['linktype'] = request.POST['linktype']
+            rate_dict['otc'] = request.POST['otc']
+            rate_dict['activity_type'] = request.POST['activity_type']
+            rate_dict['rate_per_year'] = request.POST['rate_per_year']
+            status = lic.add_rate(rate_dict)  
 
         list_rate = lic.list_obj("Rate","all","all")
         list_Payment = lic.list_obj("Payment","all","all")
@@ -93,9 +90,10 @@ def managerate(request):
         list_Lnetlink = lic.list_obj("Lnetlink","all","all")
         
         template_data = {"list_rate": list_rate
-                    ,"list_Payment": list_Payment
-                    ,"list_Altaddress": list_Altaddress
-                    ,"list_Lnetlink": list_Lnetlink,"TEST" :"Success","STATUS" : status,"listobjects":"TRUE"}
+                        ,"list_Payment": list_Payment
+                        ,"list_Altaddress": list_Altaddress
+                        ,"list_Lnetlink": list_Lnetlink,"TEST" :"Success"
+                        ,"STATUS" : status,"listobjects":"TRUE"}
         
         result = render(request, 'home.html', template_data)                
         return result
@@ -115,7 +113,7 @@ def manageaddress(request):
         if addressid > 0 :
             status = lic.delete_obj('Altaddress',addressid)  
         else:
-## Adding New address 
+## Adding New address
             all_add = {"prem_name": "", "prem_no": 0, "state": "", "city": "", "pin": 0, "gstn": "", "sgst_rate": 0, "cgst_rate": 0}
             all_add['prem_name'] = request.POST['prem_name']
             all_add['prem_no'] = request.POST['prem_no']
