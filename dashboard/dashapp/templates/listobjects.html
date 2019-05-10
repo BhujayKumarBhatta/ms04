@@ -218,7 +218,7 @@
                     {% for pay in list_Payment %}
                     <tr style="font-size:11px">
                         <td>
-                            <input type="hidden" id="ADDDEL" name="ADDDEL" value="FALSE">
+                            
                             <form action="{% url 'dashapp:managepayment' %}" method="post" enctype="multipart/form-data">
                                 {% csrf_token %}
                                 <input type="hidden" id="ADDDEL" name="ADDDEL" value="TRUE">
