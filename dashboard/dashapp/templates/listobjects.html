@@ -41,8 +41,8 @@
                     <tr style="font-size:11px">
                         <td>
                             <form action="{% url 'dashapp:managelocalnet' %}" method="post" enctype="multipart/form-data">
-                                {% csrf_token %}neid -{{lnet.netlink_id}} id -{{lnet.id}}
-                                <input type="text" id="netlink_id" name="netlink_id" value="{{lnet.netlink_id}}">
+                                {% csrf_token %}id -{{lnet.id}}
+                                <input type="hidden"  id="netlink_id" name="netlink_id" value="{{lnet.id}}">
                                 <button type="submit" class="btn btn-danger btn-sm"
                                         onclick="return confirm('Are you sure? you want to Delete Local Net Details')">
                                     <i class="glyphicon glyphicon-trash"></i>
