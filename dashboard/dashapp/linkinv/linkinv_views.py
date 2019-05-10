@@ -1,6 +1,8 @@
 from dashapp.tokenleader import tllogin
 from linkinvclient.client import LIClient
+from micros1client.client import MSClient
 from django.shortcuts import render
+
 
     
 def list_links(request):
@@ -23,7 +25,13 @@ def managepayment(request):
         #list_links = lic.list_links()
         #template_data = {"list_links": list_links.get('message') }
         #result = render(request, 'managepayment.html', template_data)
-        template_data = {"managepayment":"TRUE" }
+        tlclient = tllogin.prep_tlclient_from_session(request)
+        invClient = MSClient(tlclient) 
+        list_invoices = invClient.list_invoices_clo('all','all') 
+        lic = LIClient(tlclient)
+        list_Lnetlink = lic.list_obj("Lnetlink","all","all")
+
+        template_data = {"managepayment":"TRUE","list_invoices":list_invoices,"list_Lnetlink":list_Lnetlink }
         result = render(request, 'home.html',template_data)  
         return result
     if request.method == 'POST':
@@ -53,7 +61,7 @@ def managepayment(request):
                     ,"list_Payment": list_Payment
                     ,"list_Altaddress": list_Altaddress
                     ,"list_Lnetlink": list_Lnetlink,"TEST" :"Success","STATUS" : status,"listobjects":"TRUE"}
-        #template_data = {"list_links": list_links,"STATUS" :status } 
+        #template_data = {"list_links": list_links,"STATUS" :status }
         result = render(request, 'home.html', template_data)                
         return result
 ######  RATE
@@ -170,7 +178,7 @@ def managelocalnet(request):
 
 ###### LIST ALL
 def listobjects(request):
-    #if request.method == 'GET': 
+    #if request.method == 'GET':
     tlclient = tllogin.prep_tlclient_from_session(request)
     lic = LIClient(tlclient)
     list_rate = lic.list_obj("Rate","all","all")
@@ -183,8 +191,8 @@ def listobjects(request):
                     ,"list_Altaddress": list_Altaddress
                     ,"list_Lnetlink": list_Lnetlink,"TEST" :"Success","listobjects":"TRUE"}
     result = render(request, 'home.html', template_data)
-    template_data = {"listobjects":"TRUE" }
-    result = render(request, 'home.html',template_data)     
+    #template_data = {"listobjects":"TRUE" }
+    #result = render(request, 'home.html',template_data)
     return result
 
 
@@ -202,17 +210,19 @@ def getallobjects(self):
                     ,"list_Altaddress": list_Altaddress
                     ,"list_Lnetlink": list_Lnetlink,"TEST" :"Success"}
     return template_data
-    #if request.method == 'POST': 
-    #    lnet_d = {"infoopsid": "", "altaddress_id": 0, "rate_id": 0, "last_payment_date": "01-04-2019"}
+    #if request.method == 'POST':
+    #    lnet_d = {"infoopsid": "", "altaddress_id": 0, "rate_id": 0,
+    #    "last_payment_date": "01-04-2019"}
     #    lnet_d['altaddress_id'] = request.POST['altaddress_id']
     #    lnet_d['rate_id'] = request.POST['rate_id']
     #    lnet_d['last_payment_date'] = request.POST['last_payment_date']
             
     #    tlclient = tllogin.prep_tlclient_from_session(request)
     #    lic = LIClient(tlclient)
-    #    status = lic.add_lnetlink(lnet_d)         
-    #    template_data = {"list_links": list_links.get('message'),"LOCALNET_STATUS" :status } 
-    #    result = render(request, 'list_links.html', template_data)                
+    #    status = lic.add_lnetlink(lnet_d)
+    #    template_data = {"list_links":
+    #    list_links.get('message'),"LOCALNET_STATUS" :status }
+    #    result = render(request, 'list_links.html', template_data)
     #    return result
 
 #############################################################

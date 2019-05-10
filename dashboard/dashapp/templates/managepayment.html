@@ -12,7 +12,14 @@
         <div style="padding-left:100px">
             <div class="form-group">
                 <label for="invoice_id">Invoice Number:</label>
-                <input type="text" class="form-control" id="invoice_id" name="invoice_id">
+                <!--<input type="text" class="form-control" id="invoice_id" name="invoice_id">-->
+                <select class="form-control" id="invoice_id">
+                    <option>Select</option>
+                    {% for Inv in list_invoices%}
+                    <option>{{ Inv.invoiceno }}</option>
+                    {% endfor %}
+                </select>
+
             </div>
             <div class="form-group">
                 <label for="billing_from">Billing from:</label>
@@ -48,7 +55,14 @@
             </div>
             <div class="form-group">
                 <label for="netlink_id">Net Link Id:</label>
-                <input type="text" class="form-control" id="netlink_id" name="netlink_id">
+                <!--<input type="text" class="form-control" id="netlink_id" name="netlink_id">-->
+                <select class="form-control" id="netlink_id">
+                    <option>Select</option>
+                    {% for lnk in list_Lnetlink%}
+                    <option>{{ lnk.id }}</option>
+                    {% endfor %}
+                </select>
+
             </div>
 
             <button type="submit" class="btn btn-success" style="width:300px">Save</button>

@@ -25,20 +25,19 @@
                 <thead>
                     <tr style="font-size:12px">
                         <th></th>
-                        <th>prem_name</th>
-                        <th>prem_no</th>
-                        <th>State </th>
+                        <th> prem_name</th>
+                        <th> prem_no</th>
+                        <th> State </th>
                         <th> City</th>
                         <th> PIN</th>
                         <th> GST Number</th>
-                        <th> State GST Rate</th>
-                        <th> Center GST Rate</th>
+                        <th> SGST Rate</th>
+                        <th> CGST Rate</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for add in list_Altaddress %}
                     <tr style="font-size:11px">
-                        <td>
                         <td>
                             <form action="{% url 'dashapp:invoice_delete' %}" method="post" enctype="multipart/form-data">
                                 {% csrf_token %}
@@ -64,6 +63,7 @@
             Address --  {{list_Altaddress}}
 
         </div>
+        <!--############  RATE ############ -->
         <div id="rate" class="tab-pane fade">
             <table class="table table-bordered">
                 <thead>
@@ -101,6 +101,7 @@
             </table>
             Rate --  {{list_rate}}
         </div>
+        <!--############  LOCAL NET ############ -->
         <div id="lclnet" class="tab-pane fade">
 
             <table class="table table-bordered">
@@ -172,7 +173,7 @@
                         <td>{{ pay.billing_to }} </td>
                         <td>{{ pay.billing_type}} </td>
                         <td>{{ pay.amount }} </td>
-                        <td>{{ pay.payment_date }} </td>
+                        <td>{{ pay.date }} </td>
                         <td>{{ pay.mode }} </td>
                         <td>{{ pay.ref_no }} </td>
                         <td>{{ pay.status }} </td>
@@ -184,6 +185,6 @@
             Payments --- {{list_Payment}}
         </div>
     </div>
-    
+    ################################################
     Status -- {{STATUS}}
 </div>
