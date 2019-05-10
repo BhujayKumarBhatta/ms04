@@ -188,7 +188,7 @@
             <div style="text-align:right">
                 <form action="{% url 'dashapp:managepayment' %}" method="get" enctype="multipart/form-data">
                     {% csrf_token %}
-                    <button type="button" class="btn btn-info btn-sm">Add Payment</button>
+                    <button type="submit" class="btn btn-info btn-sm" >Add Payment</button>
                 </form>
             </div>
             <table class="table table-bordered">
