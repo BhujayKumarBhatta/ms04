@@ -151,9 +151,9 @@ def managelocalnet(request):
         return result
     if request.method == 'POST':
         netlink_id = request.POST['netlink_id']          
-        netlink_id = int(netlink_id)
-        if netlink_id > 0 :
-            status = lic.delete_obj('Lnetlink',netlink_id)  
+        netlinkid = int(netlink_id)
+        if netlinkid > 0 :
+            status = lic.delete_obj('Lnetlink',netlinkid)  
         else:
             lnet_d = {"infoopsid": "", "altaddress_id": 0, "rate_id": 0, "last_payment_date": ""}
             lnet_d['infoopsid'] = request.POST['infoopsid_id']
