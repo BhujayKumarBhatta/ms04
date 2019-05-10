@@ -45,7 +45,7 @@
             <div style="text-align:right">
                 <form action="{% url 'dashapp:managelocalnet' %}" method="get" enctype="multipart/form-data">
                     {% csrf_token %}
-                    <button type="button" class="btn btn-info btn-sm">Add Link</button>
+                    <button type="submit" class="btn btn-info btn-sm">Add Link</button>
                 </form>
             </div>
             <table class="table table-bordered">
@@ -92,7 +92,7 @@
             <div style="text-align:right">
                 <form action="{% url 'dashapp:manageaddress' %}" method="get" enctype="multipart/form-data">
                     {% csrf_token %}
-                    <button type="button" class="btn btn-info btn-sm">Add Address</button>
+                    <button type="submit" class="btn btn-info btn-sm">Add Address</button>
                 </form>
 
             </div>
@@ -143,7 +143,7 @@
             <div style="text-align:right">
                 <form action="{% url 'dashapp:manageaddress' %}" method="get" enctype="multipart/form-data">
                     {% csrf_token %}
-                    <button type="button" class="btn btn-info btn-sm">Add Rate</button>
+                    <button type="submit" class="btn btn-info btn-sm">Add Rate</button>
                 </form>
             </div>
             <table class="table table-bordered">
