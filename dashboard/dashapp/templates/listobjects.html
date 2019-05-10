@@ -62,7 +62,7 @@
                     {% for lnet in list_Lnetlink %}
                     <tr style="font-size:11px">
                         <td>
-                            <input type="hidden" id="ADDDEL" name="ADDDEL" value="FALSE">
+
                             <form action="{% url 'dashapp:managelocalnet' %}" method="post" enctype="multipart/form-data">
                                 {% csrf_token %}
                                 <input type="hidden" id="netlink_id" name="netlink_id" value="{{lnet.id}}">
@@ -116,7 +116,7 @@
                     {% for add in list_Altaddress %}
                     <tr style="font-size:11px">
                         <td>
-                            <input type="hidden" id="ADDDEL" name="FALSE" value="FALSE">
+
                             <form action="{% url 'dashapp:manageaddress' %}" method="post" enctype="multipart/form-data">
                                 {% csrf_token %}
                                 <input type="hidden" id="ADDDEL" name="ADDDEL" value="TRUE">
@@ -166,7 +166,7 @@
                     {% for rt in list_rate %}
                     <tr style="font-size:11px">
                         <td>
-                            <input type="hidden" id="ADDDEL" name="ADDDEL" value="FALSE">
+
                             <form action="{% url 'dashapp:managerate' %}" method="post" enctype="multipart/form-data">
                                 {% csrf_token %}
                                 <input type="hidden" id="ADDDEL" name="ADDDEL" value="TRUE">
@@ -195,7 +195,7 @@
             <div style="text-align:right">
                 <form action="{% url 'dashapp:managepayment' %}" method="get" enctype="multipart/form-data">
                     {% csrf_token %}
-                    <button type="submit" class="btn btn-info btn-sm" >Add Payment</button>
+                    <button type="submit" class="btn btn-info btn-sm">Add Payment</button>
                 </form>
             </div>
             <table class="table table-bordered">
@@ -218,7 +218,7 @@
                     {% for pay in list_Payment %}
                     <tr style="font-size:11px">
                         <td>
-                            
+
                             <form action="{% url 'dashapp:managepayment' %}" method="post" enctype="multipart/form-data">
                                 {% csrf_token %}
                                 <input type="hidden" id="ADDDEL" name="ADDDEL" value="TRUE">

@@ -9,9 +9,9 @@
         <!--<form action="/action_page.php">-->
         <div style="padding-left:100px">
             <div class="form-group">
-                <label for="infoopsid">INFOOPS ID:</label> 
+                <label for="infoopsid">INFOOPS ID:</label>
                 <!--<input type="text" class="form-control" id="infoopsid" name="infoopsid">-->
-                
+
                 <select class="form-control" id="infoopsid_id" name="infoopsid_id">
                     <option>Select</option>
                     {% for lnk in list_links_localnet%}
@@ -21,7 +21,7 @@
             </div>
             <div class="form-group">
                 <label for="altaddress_id">altaddress_id:</label>
-               
+
                 <!--<input type="text" class="form-control" id="altaddress_id" name="altaddress_id">-->
                 <select class="form-control" id="altaddress_id" name="altaddress_id">
                     <option>Select</option>
@@ -32,7 +32,7 @@
             </div>
             <div class="form-group">
                 <label for="rate_id">rate_id:</label>
-                <!--<input type="text" class="form-control" id="rate_id" name="rate_id">--> 
+                <!--<input type="text" class="form-control" id="rate_id" name="rate_id">-->
                 <select class="form-control" id="rate_id" name="rate_id">
                     <option>Select</option>
                     {% for rt in list_rate%}
@@ -44,6 +44,7 @@
                 <label for="city">Last Payment Date:</label>
                 <input type="text" class="form-control" id="last_payment_date" name="last_payment_date">
             </div>
+            <input type="hidden" id="ADDDEL" name="ADDDEL" value="FALSE">
             <button type="submit" class="btn btn-success" style="width:300px">Save</button>
             <br /><br />
         </div>
