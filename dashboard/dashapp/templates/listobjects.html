@@ -145,7 +145,7 @@
         <!--############  RATE ############ -->
         <div id="rate" class="tab-pane fade">
             <div style="text-align:right">
-                <form action="{% url 'dashapp:manageaddress' %}" method="get" enctype="multipart/form-data">
+                <form action="{% url 'dashapp:managerate' %}" method="get" enctype="multipart/form-data">
                     {% csrf_token %}
 
                     <button type="submit" class="btn btn-info btn-sm">Add Rate</button>
