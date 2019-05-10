@@ -112,7 +112,7 @@ def manageaddress(request):
         addressid = request.POST['addressid']          
         addressid = int(addressid)
 ## Delete only if Address ID is available and and its greater than zero
-        if netlink_id > 0 :
+        if addressid > 0 :
             status = lic.delete_obj('Altaddress',addressid)  
         else:
 ## Adding New address 
