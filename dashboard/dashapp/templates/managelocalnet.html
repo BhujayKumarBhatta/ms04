@@ -11,10 +11,10 @@
             <div class="form-group">
                 <label for="infoopsid">INFOOPS ID:</label>
                 <!--<input type="text" class="form-control" id="infoopsid" name="infoopsid">-->
-                <select class="form-control" id="invoice_id">
+                <select class="form-control" id="infoopsid_id" name="infoopsid_id">
                     <option>Select</option>
-                    {% for Inv in list_invoices%}
-                    <option value="{{ Inv.current_doc.xldata.invoiceno }}">{{ Inv.current_doc.xldata.invoiceno }}</option>
+                    {% for lnk in list_links_localnet%}
+                    <option value="{{ lnk.id }}">{{ Inv.division_name }}_{{ Inv.tsp_name}}</option>
                     {% endfor %}
                 </select>
             </div>

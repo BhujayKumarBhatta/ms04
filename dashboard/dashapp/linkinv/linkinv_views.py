@@ -153,13 +153,14 @@ def managelocalnet(request):
         lic = LIClient(tlclient)
         list_rate = lic.list_obj("Rate","all","all")        
         list_Altaddress = lic.list_obj("Altaddress","all","all")        
-        list_links = lic.list_links()        
+        list_links_localnet = lic.list_links()        
         
-        template_data = {"managelocalnet":"TRUE" ,"list_rate":list_rate,"list_Altaddress":list_Altaddress,"list_links":list_links}
+        template_data = {"managelocalnet":"TRUE" ,"list_rate":list_rate,"list_Altaddress":list_Altaddress,"list_links_localnet":list_links}
         result = render(request, 'home.html',template_data)     
         return result
     if request.method == 'POST': 
-        lnet_d = {"infoopsid": "", "altaddress_id": 0, "rate_id": 0, "last_payment_date": "01-04-2019"}
+        lnet_d = {"infoopsid": "", "altaddress_id": 0, "rate_id": 0, "last_payment_date": ""}
+        lnet_d['infoopsid'] = request.POST['infoopsid_id']
         lnet_d['altaddress_id'] = request.POST['altaddress_id']
         lnet_d['rate_id'] = request.POST['rate_id']
         lnet_d['last_payment_date'] = request.POST['last_payment_date']
