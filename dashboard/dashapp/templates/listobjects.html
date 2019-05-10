@@ -20,7 +20,7 @@
                 <div class="alert alert-success" role="alert">
                     {{STATUS}}
                 </div>
-                {% if "Error" in STATUS %}
+                {% elif "Error" in STATUS %}
                 <div class="alert alert-danger" role="alert">
                     There is been an error, Please Try after sometime or contact Administrator. <br />
                     Error Details : {{STATUS}}
