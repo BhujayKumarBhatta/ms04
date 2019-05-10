@@ -43,7 +43,8 @@ def managepayment(request):
         payment_dict['billing_to'] = request.POST['billing_to']
         payment_dict['billing_type'] = request.POST['billing_type']
         payment_dict['amount'] = request.POST['amount']        
-        payment_dict['payment_date'] = request.POST['payment_date']        
+        payment_dict['payment_date'] = request.POST['payment_date'] 
+        payment_dict['mode'] = request.POST['mode']         
         payment_dict['ref_no'] = request.POST['ref_no']        
         payment_dict['status'] = request.POST['status']        
         payment_dict['netlink_id'] = request.POST['netlink_id']        
@@ -98,92 +99,78 @@ def managerate(request):
         
         result = render(request, 'home.html', template_data)                
         return result
-
-
         
 ###### ADDRESS
 def manageaddress(request):
+    tlclient = tllogin.prep_tlclient_from_session(request)
+    lic = LIClient(tlclient)
     if request.method == 'GET': 
-        #tlclient = tllogin.prep_tlclient_from_session(request)
-        #lic = LIClient(tlclient)
-        #list_links = lic.list_links()
-        #template_data = {"list_links": list_links.get('message') }
-        #result = render(request, 'managepayment.html', template_data)
         template_data = {"manageaddress":"TRUE" }
         result = render(request, 'home.html',template_data)   
         return result
     if request.method == 'POST': 
-        all_add = {"prem_name": "", "prem_no": 0, "state": "", "city": "", "pin": 0, "gstn": "", "sgst_rate": 0, "cgst_rate": 0}
-        all_add['prem_name'] = request.POST['prem_name']
-        all_add['prem_no'] = request.POST['prem_no']
-        all_add['state'] = request.POST['state']
-        all_add['city'] = request.POST['city']
-        all_add['pin'] = request.POST['pin']        
-        all_add['gstn'] = request.POST['gstn']        
-        all_add['sgst_rate'] = request.POST['sgst_rate']        
-        all_add['cgst_rate'] = request.POST['cgst_rate']        
-        tlclient = tllogin.prep_tlclient_from_session(request)
-        lic = LIClient(tlclient)
-        status = lic.add_altaddress(all_add)  
-        
-        list_rate = lic.list_obj("Rate","all","all")
-        list_Payment = lic.list_obj("Payment","all","all")
-        list_Altaddress = lic.list_obj("Altaddress","all","all")
-        list_Lnetlink = lic.list_obj("Lnetlink","all","all")
-        
-        template_data = {"list_rate": list_rate
-                    ,"list_Payment": list_Payment
-                    ,"list_Altaddress": list_Altaddress
-                    ,"list_Lnetlink": list_Lnetlink,"TEST" :"Success","STATUS" : status,"listobjects":"TRUE"}
-
-         
-        result = render(request, 'home.html', template_data)                
-        return result
-
-         
+        addressid = request.POST['addressid']          
+        addressid = int(addressid)
+## Delete only if Address ID is available and and its greater than zero
+        if netlink_id > 0 :
+            status = lic.delete_obj('Altaddress',addressid)  
+        else:
+## Adding New address 
+            all_add = {"prem_name": "", "prem_no": 0, "state": "", "city": "", "pin": 0, "gstn": "", "sgst_rate": 0, "cgst_rate": 0}
+            all_add['prem_name'] = request.POST['prem_name']
+            all_add['prem_no'] = request.POST['prem_no']
+            all_add['state'] = request.POST['state']
+            all_add['city'] = request.POST['city']
+            all_add['pin'] = request.POST['pin']        
+            all_add['gstn'] = request.POST['gstn']        
+            all_add['sgst_rate'] = request.POST['sgst_rate']        
+            all_add['cgst_rate'] = request.POST['cgst_rate'] 
+            status = lic.add_altaddress(all_add)
+#Displaying all list
+    list_rate = lic.list_obj("Rate","all","all")
+    list_Payment = lic.list_obj("Payment","all","all")
+    list_Altaddress = lic.list_obj("Altaddress","all","all")
+    list_Lnetlink = lic.list_obj("Lnetlink","all","all")        
+    template_data = {"list_rate": list_rate
+                ,"list_Payment": list_Payment
+                ,"list_Altaddress": list_Altaddress
+                ,"list_Lnetlink": list_Lnetlink,"TEST" :"Success","STATUS" : status,"listobjects":"TRUE"}         
+    result = render(request, 'home.html', template_data)                
+    return result
+             
 ###### LOCAL NETWORK
 def managelocalnet(request):
+    tlclient = tllogin.prep_tlclient_from_session(request)
+    lic = LIClient(tlclient)
     if request.method == 'GET': 
-        #tlclient = tllogin.prep_tlclient_from_session(request)
-        #lic = LIClient(tlclient)
-        #list_links = lic.list_links()
-        #template_data = {"list_links": list_links.get('message') }
-        #result = render(request, 'managepayment.html', template_data)
-        tlclient = tllogin.prep_tlclient_from_session(request)
-        lic = LIClient(tlclient)
-
         list_rate = lic.list_obj("Rate","all","all")        
         list_Altaddress = lic.list_obj("Altaddress","all","all")        
-        list_links_localnet = lic.list_links()        
-        
+        list_links_localnet = lic.list_links()
         template_data = {"managelocalnet":"TRUE" ,"list_rate":list_rate,"list_Altaddress":list_Altaddress,"list_links_localnet":list_links_localnet}
         result = render(request, 'home.html',template_data)     
         return result
-    if request.method == 'POST': 
-        lnet_d = {"infoopsid": "", "altaddress_id": 0, "rate_id": 0, "last_payment_date": ""}
-        lnet_d['infoopsid'] = request.POST['infoopsid_id']
-        lnet_d['altaddress_id'] = request.POST['altaddress_id']
-        lnet_d['rate_id'] = request.POST['rate_id']
-        lnet_d['last_payment_date'] = request.POST['last_payment_date']
-            
-        tlclient = tllogin.prep_tlclient_from_session(request)
-        lic = LIClient(tlclient)
-        status = lic.add_lnetlink(lnet_d)  
-        
-        list_rate = lic.list_obj("Rate","all","all")
-        list_Payment = lic.list_obj("Payment","all","all")
-        list_Altaddress = lic.list_obj("Altaddress","all","all")
-        list_Lnetlink = lic.list_obj("Lnetlink","all","all")
-        
-        template_data = {"list_rate": list_rate
-                    ,"list_Payment": list_Payment
-                    ,"list_Altaddress": list_Altaddress
-                    ,"list_Lnetlink": list_Lnetlink,"TEST" :"Success","STATUS" : status,"listobjects":"TRUE"}
-
-         
-        result = render(request, 'home.html', template_data)                
-        return result
-
+    if request.method == 'POST':
+        netlink_id = request.POST['netlink_id']          
+        netlink_id = int(netlink_id)
+        if netlink_id > 0 :
+            status = lic.delete_obj('Lnetlink',netlink_id)  
+        else:
+            lnet_d = {"infoopsid": "", "altaddress_id": 0, "rate_id": 0, "last_payment_date": ""}
+            lnet_d['infoopsid'] = request.POST['infoopsid_id']
+            lnet_d['altaddress_id'] = request.POST['altaddress_id']
+            lnet_d['rate_id'] = request.POST['rate_id']
+            lnet_d['last_payment_date'] = request.POST['last_payment_date']
+            status = lic.add_lnetlink(lnet_d)            
+    list_rate = lic.list_obj("Rate","all","all")
+    list_Payment = lic.list_obj("Payment","all","all")
+    list_Altaddress = lic.list_obj("Altaddress","all","all")
+    list_Lnetlink = lic.list_obj("Lnetlink","all","all")        
+    template_data = {"list_rate": list_rate
+                ,"list_Payment": list_Payment
+                ,"list_Altaddress": list_Altaddress
+                ,"list_Lnetlink": list_Lnetlink,"TEST" :"Success","STATUS" : status,"listobjects":"TRUE"}
+    result = render(request, 'home.html', template_data)                
+    return result
 ###### LIST ALL
 def listobjects(request):
     #if request.method == 'GET':
