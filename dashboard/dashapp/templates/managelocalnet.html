@@ -15,7 +15,7 @@
                 <select class="form-control" id="infoopsid_id" name="infoopsid_id">
                     <option>Select</option>
                     {% for lnk in list_links_localnet%}
-                    <option value="{{ lnk.circuit_ID }}">{{ Inv.division_name }}_{{ Inv.tsp_name}}</option>
+                    <option value="{{ lnk.circuit_ID }}">{{ lnk.division_name }}_{{ lnk.tsp_name}}</option>
                     {% endfor %}
                 </select>
             </div>
@@ -36,7 +36,7 @@
                 <select class="form-control" id="rate_id" name="rate_id">
                     <option>Select</option>
                     {% for rt in list_rate%}
-                    <option value="{{ rt.id }}">{{ add.tsp }}_{{ add.linktype }}__{{ add.activity_type }}</option>
+                    <option value="{{ rt.id }}">{{ rt.tsp }}_{{ rt.linktype }}_{{ rt.activity_type }}</option>
                     {% endfor %}
                 </select>
             </div>
