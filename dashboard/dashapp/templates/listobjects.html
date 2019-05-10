@@ -13,9 +13,10 @@
     </div>
 
     <ul class="nav nav-tabs">
-        <li class="active"><a data-toggle="tab" href="#address">Address</a></li>
+        <li class="active"><a data-toggle="tab" href="#lclnet">Local Net</a></li>
+        <li><a data-toggle="tab" href="#address">Address</a></li>
         <li><a data-toggle="tab" href="#rate">Rate</a></li>
-        <li><a data-toggle="tab" href="#lclnet">Local Net</a></li>
+
         <li><a data-toggle="tab" href="#payment">Payment</a></li>
     </ul>
 
@@ -109,8 +110,8 @@
                     <tr style="font-size:12px">
                         <th></th>
                         <th>Infoops ID</th>
-                        <th>list_obj</th>
-                        <th>Rate ID </th>
+                        <th>Address</th>
+                        <th>Rate  </th>
                         <th>Last Payment On</th>
                     </tr>
                 </thead>
@@ -128,8 +129,13 @@
                             </form>
                         </td>
                         <td>{{ lnet.infoopsid }}</td>
-                        <td>{{ lnet.list_obj }}</td>
-                        <td>{{ lnet.rate_id }} </td>
+                        <td style="font-size:small">
+                            {{ lnet.altaddress.prem_name }}{{ lnet.altaddress.state }}{{ lnet.altaddress.city }}
+                        </td>
+                        <td style="font-size:small">
+                            {{ lnet.rate.tsp }} {{ lnet.rate.linktype }} {{ lnet.rate.activity_type }}
+
+                        </td>
                         <td> {{ lnet.last_payment_date }} </td>
                     </tr>
                     {% endfor %}
