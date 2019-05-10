@@ -14,7 +14,7 @@
 
 
     <table align="center" width="90%" style="padding-left: 150px">
-        <tr> 
+        <tr>
             <td>
                 {% if "Error" not in STATUS %}
                 <div class="alert alert-success" role="alert">
@@ -43,7 +43,10 @@
         <!--############  LOCAL NET ############ -->
         <div id="lclnet" class="tab-pane fade in active">
             <div style="text-align:right">
-                <button type="button" class="btn btn-info btn-sm">Add Link</button>
+                <form action="{% url 'dashapp:managelocalnet' %}" method="get" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <button type="button" class="btn btn-info btn-sm">Add Link</button>
+                </form>
             </div>
             <table class="table table-bordered">
                 <thead>
@@ -60,7 +63,7 @@
                     <tr style="font-size:11px">
                         <td>
                             <form action="{% url 'dashapp:managelocalnet' %}" method="post" enctype="multipart/form-data">
-                                {% csrf_token %}id -{{lnet.id}}
+                                {% csrf_token %}
                                 <input type="hidden" id="netlink_id" name="netlink_id" value="{{lnet.id}}">
                                 <button type="submit" class="btn btn-danger btn-sm"
                                         onclick="return confirm('Are you sure? you want to Delete Local Net Details')">
@@ -87,7 +90,11 @@
         <!--############  ADDRESS ############ -->
         <div id="address" class="tab-pane fade ">
             <div style="text-align:right">
-                <button type="button" class="btn btn-info btn-sm">Add Address</button>
+                <form action="{% url 'dashapp:manageaddress' %}" method="get" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <button type="button" class="btn btn-info btn-sm">Add Address</button>
+                </form>
+
             </div>
             <table class="table table-bordered">
                 <thead>
@@ -134,7 +141,10 @@
         <!--############  RATE ############ -->
         <div id="rate" class="tab-pane fade">
             <div style="text-align:right">
-                <button type="button" class="btn btn-info btn-sm">Add Rate</button>
+                <form action="{% url 'dashapp:manageaddress' %}" method="get" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <button type="button" class="btn btn-info btn-sm">Add Rate</button>
+                </form>
             </div>
             <table class="table table-bordered">
                 <thead>
@@ -176,7 +186,10 @@
         <!--############  PAYMENT ############ -->
         <div id="payment" class="tab-pane fade">
             <div style="text-align:right">
-                <button type="button" class="btn btn-info btn-sm">Add Payment</button>
+                <form action="{% url 'dashapp:managepayment' %}" method="get" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <button type="button" class="btn btn-info btn-sm">Add Payment</button>
+                </form>
             </div>
             <table class="table table-bordered">
                 <thead>
