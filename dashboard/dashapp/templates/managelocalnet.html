@@ -10,15 +10,33 @@
         <div style="padding-left:100px">
             <div class="form-group">
                 <label for="infoopsid">INFOOPS ID:</label>
-                <input type="text" class="form-control" id="infoopsid" name="infoopsid">
+                <!--<input type="text" class="form-control" id="infoopsid" name="infoopsid">-->
+                <select class="form-control" id="invoice_id">
+                    <option>Select</option>
+                    {% for Inv in list_invoices%}
+                    <option value="{{ Inv.current_doc.xldata.invoiceno }}">{{ Inv.current_doc.xldata.invoiceno }}</option>
+                    {% endfor %}
+                </select>
             </div>
             <div class="form-group">
                 <label for="altaddress_id">altaddress_id:</label>
-                <input type="text" class="form-control" id="altaddress_id" name="altaddress_id">
+                <!--<input type="text" class="form-control" id="altaddress_id" name="altaddress_id">-->
+                <select class="form-control" id="altaddress_id">
+                    <option>Select</option>
+                    {% for add in list_Altaddress%}
+                    <option value="{{ add.id }}">{{ add.prem_name }}</option>
+                    {% endfor %}
+                </select>
             </div>
             <div class="form-group">
                 <label for="rate_id">rate_id:</label>
-                <input type="text" class="form-control" id="rate_id" name="rate_id">
+                <!--<input type="text" class="form-control" id="rate_id" name="rate_id">-->
+                <select class="form-control" id="rate_id">
+                    <option>Select</option>
+                    {% for rt in list_rate%}
+                    <option value="{{ rt.id }}">{{ add.tsp }}_{{ add.linktype }}__{{ add.activitytype }}</option>
+                    {% endfor %}
+                </select>
             </div>
             <div class="form-group">
                 <label for="city">Last Payment Date:</label>

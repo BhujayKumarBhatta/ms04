@@ -149,7 +149,13 @@ def managelocalnet(request):
         #list_links = lic.list_links()
         #template_data = {"list_links": list_links.get('message') }
         #result = render(request, 'managepayment.html', template_data)
-        template_data = {"managelocalnet":"TRUE" }
+        tlclient = tllogin.prep_tlclient_from_session(request)
+        lic = LIClient(tlclient)
+        list_rate = lic.list_obj("Rate","all","all")        
+        list_Altaddress = lic.list_obj("Altaddress","all","all")        
+        list_links = lic.list_links()        
+        
+        template_data = {"managelocalnet":"TRUE" ,"list_rate":list_rate,"list_Altaddress":list_Altaddress,"list_links":list_links}
         result = render(request, 'home.html',template_data)     
         return result
     if request.method == 'POST': 
