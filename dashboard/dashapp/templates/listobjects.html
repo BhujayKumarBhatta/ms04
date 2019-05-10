@@ -62,9 +62,11 @@
                     {% for lnet in list_Lnetlink %}
                     <tr style="font-size:11px">
                         <td>
+                            <input type="hidden" id="ADDDEL" name="ADDDEL" value="FALSE">
                             <form action="{% url 'dashapp:managelocalnet' %}" method="post" enctype="multipart/form-data">
                                 {% csrf_token %}
                                 <input type="hidden" id="netlink_id" name="netlink_id" value="{{lnet.id}}">
+                                <input type="hidden" id="ADDDEL" name="ADDDEL" value="TRUE">
                                 <button type="submit" class="btn btn-danger btn-sm"
                                         onclick="return confirm('Are you sure? you want to Delete Local Net Details')">
                                     <i class="glyphicon glyphicon-trash"></i>
@@ -114,8 +116,10 @@
                     {% for add in list_Altaddress %}
                     <tr style="font-size:11px">
                         <td>
+                            <input type="hidden" id="ADDDEL" name="FALSE" value="FALSE">
                             <form action="{% url 'dashapp:manageaddress' %}" method="post" enctype="multipart/form-data">
                                 {% csrf_token %}
+                                <input type="hidden" id="ADDDEL" name="ADDDEL" value="TRUE">
                                 <input type="hidden" id="addressid" name="addressid" value="{{add.id}}">
                                 <button type="submit" class="btn btn-danger btn-sm"
                                         onclick="return confirm('Are you sure? you want to Delete Address Details')">
@@ -143,6 +147,7 @@
             <div style="text-align:right">
                 <form action="{% url 'dashapp:manageaddress' %}" method="get" enctype="multipart/form-data">
                     {% csrf_token %}
+
                     <button type="submit" class="btn btn-info btn-sm">Add Rate</button>
                 </form>
             </div>
@@ -161,8 +166,10 @@
                     {% for rt in list_rate %}
                     <tr style="font-size:11px">
                         <td>
+                            <input type="hidden" id="ADDDEL" name="ADDDEL" value="FALSE">
                             <form action="{% url 'dashapp:managerate' %}" method="post" enctype="multipart/form-data">
                                 {% csrf_token %}
+                                <input type="hidden" id="ADDDEL" name="ADDDEL" value="TRUE">
                                 <input type="hidden" id="rateid" name="rateid" value="{{rt.id}}">
                                 <button type="submit" class="btn btn-danger btn-sm"
                                         onclick="return confirm('Are you sure? you want to Delete Rate Details')">
@@ -211,8 +218,10 @@
                     {% for pay in list_Payment %}
                     <tr style="font-size:11px">
                         <td>
+                            <input type="hidden" id="ADDDEL" name="ADDDEL" value="FALSE">
                             <form action="{% url 'dashapp:managepayment' %}" method="post" enctype="multipart/form-data">
                                 {% csrf_token %}
+                                <input type="hidden" id="ADDDEL" name="ADDDEL" value="TRUE">
                                 <input type="hidden" id="paymentid" name="paymentid" value="{{pay.id}}">
                                 <button type="submit" class="btn btn-danger btn-sm"
                                         onclick="return confirm('Are you sure? you want to Delete Payment Details')">

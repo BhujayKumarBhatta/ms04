@@ -34,9 +34,9 @@ def managepayment(request):
         result = render(request, 'home.html',template_data)  
         return result
     if request.method == 'POST':
-        paymentid = request.POST['paymentid']          
-        payment_id = int(paymentid)
-        if payment_id > 0 :
+        if request.POST['ADDDEL'] == "TRUE":
+            paymentid = request.POST['paymentid']          
+            payment_id = int(paymentid)        
             status = lic.delete_obj('Payment',payment_id)  
         else:       
             payment_dict = {"invoice_id": "", "billing_from": "01-01-2019", "billing_to": "31-03-2019", "billing_type": "Installation",
