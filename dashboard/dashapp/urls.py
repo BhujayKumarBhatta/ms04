@@ -19,17 +19,28 @@ from django.conf.urls.static import static
 ## End
 from django.urls import path
 from . import views
+#from rest_framework_swagger.views import get_swagger_view
+#from rest_framework.documentation import include_docs_urls
+
+#schema_view = get_swagger_view(title='TSP Billing')
 
 app_name = 'dashapp'
 urlpatterns = [path('', views.login, name='login'),
+               path('', views.logout, name='logout'),
     #Infops DB
     path('list_links', views.list_links, name='list_links'),
+    path('managelocalnet', views.managelocalnet, name='managelocalnet'),
+    path('manageaddress', views.manageaddress, name='manageaddress'),
+    path('managerate', views.managerate, name='managerate'),
+    path('managepayment', views.managepayment, name='managepayment'),
+    path('listobjects', views.listobjects, name='listobjects'),
+    
     path('list_test', views.list_links, name='list_test'),      
     #Token Leader
     path('list_users', views.list_users, name='list_users'),
     path('adduser', views.adduser, name='adduser'),
     path('list_org', views.list_org, name='list_org'),
-    path('list_dept', views.list_dept, name='list_dept'),
+    path('list_dept', views.list_dept, name='list_dept'), 
     path('list_role', views.list_role, name='list_role'),
     path('list_ou', views.list_ou, name='list_ou'),
     #Invoice
@@ -41,9 +52,16 @@ urlpatterns = [path('', views.login, name='login'),
     path('invoice_update_upload', views.invoice_update_upload, name='invoice_update_upload')
     ,path('invoice_rcom_upload', views.invoice_rcom_upload, name='invoice_rcom_upload')
     ,path('add_model', views.add_model, name='add_model')    
-    ,path('invoice_delete', views.invoice_delete, name='invoice_delete')]
+    ,path('invoice_delete', views.invoice_delete, name='invoice_delete')
+    ,path('invoice_create', views.invoice_create, name='invoice_create')
+    ,path('invoice_approvals', views.invoice_approvals, name='invoice_approvals')
+    ,path('invoice_approve', views.invoice_approve, name='invoice_approve')
+    ,path('invoice_reject', views.invoice_reject, name='invoice_reject')
+    #,path('swagger-docs/', schema_view)
+    #,path('docs/', include_docs_urls(title='TSP Billing'))
+    ]
 
 
 
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+#if settings.DEBUG:
+#    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

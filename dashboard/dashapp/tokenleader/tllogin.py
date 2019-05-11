@@ -2,6 +2,13 @@ import json
 from django.shortcuts import render
 from tokenleaderclient.configs.config_handler import Configs    
 from tokenleaderclient.client.client import Client
+
+from django.conf import settings
+#from django.contrib import auth
+#from datetime import datetime, timedelta
+#from .settings import EXPIRE_AFTER, PASSIVE_URLS, PASSIVE_URL_NAMES
+
+
 #class SubscribeView(FormView):
 #    template_name = 'subscribe-form.html'
 #    form_class = SubscribeForm
@@ -53,6 +60,30 @@ def login(request):
 
 
 
+################ SESSION MANAGEMENT ######################
+#def get_expire_seconds(self, request):
+#    """Return time (in seconds) before the user should be logged out."""
+#    return EXPIRE_AFTER
+
+#def process_request(self, request):
+#    if not request.user.is_authenticated() :
+#        #Can't log out if not logged in
+#        return
+#    try:
+#        if datetime.now() - request.session['last_touch'] > timedelta(0, settings.AUTO_LOGOUT_DELAY * 60, 0):
+#            logout(request)
+#            del request.session['last_touch']
+#            return
+#    except KeyError:
+#        pass
+#    request.session['last_touch'] = datetime.now()
+
+#def logout(request):    
+#    template_data = {"SESSION_EXPIRED": "Your Session got Expired Please login!"}          
+#    result = render(request, 'login.html', template_data)                 
+#    return result
+
+############### END ######################
 '''
 How the auth_result look
 {'service_catalog': 

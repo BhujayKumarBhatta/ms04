@@ -2,10 +2,7 @@
 {% load l10n %}
 {% load static %}
 
-<head>
 
-
-</head>
 <style type="text/css">
 
     input[type=text] {
@@ -206,63 +203,6 @@
         left: -12px;
     }
 </style>
-<script type="text/javascript">
-
-
-    $(document).ready(function () {
-        $('[data-toggle="tooltip"]').tooltip();
-        var actions = $("table td:last-child").html();
-        // Append table with add row form on add new button click
-        $(".add-new").click(function () {
-            $(this).attr("disabled", "disabled");
-            var index = $("table tbody tr:last-child").index();
-            var row = '<tr>' +
-                '<td><input type="text" class="form-control" name="name" id="name"></td>' +
-                '<td><input type="text" class="form-control" name="department" id="department"></td>' +
-                '<td><input type="text" class="form-control" name="phone" id="phone"></td>' +
-                '<td>' + actions + '</td>' +
-                '</tr>';
-            $("table").append(row);
-            $("table tbody tr").eq(index + 1).find(".add, .edit").toggle();
-            $('[data-toggle="tooltip"]').tooltip();
-        });
-        // Add row on add button click
-        $(document).on("click", ".add", function () {
-            var empty = false;
-            var input = $(this).parents("tr").find('input[type="text"]');
-            input.each(function () {
-                if (!$(this).val()) {
-                    $(this).addClass("error");
-                    empty = true;
-                } else {
-                    $(this).removeClass("error");
-                }
-            });
-            $(this).parents("tr").find(".error").first().focus();
-            if (!empty) {
-                input.each(function () {
-                    $(this).parent("td").html($(this).val());
-                });
-                $(this).parents("tr").find(".add, .edit").toggle();
-                $(".add-new").removeAttr("disabled");
-            }
-        });
-        // Edit row on edit button click
-        $(document).on("click", ".edit", function () {
-            $(this).parents("tr").find("td:not(:last-child)").each(function () {
-                $(this).html('<input type="text" class="form-control" value="' + $(this).text() + '">');
-            });
-            $(this).parents("tr").find(".add, .edit").toggle();
-            $(".add-new").attr("disabled", "disabled");
-        });
-        // Delete row on delete button click
-        $(document).on("click", ".delete", function () {
-            $(this).parents("tr").remove();
-            $(".add-new").removeAttr("disabled");
-        });
-    });
-</script>
-
 
 
 
@@ -276,7 +216,7 @@
             <div class="col-sm-8"><h3><b>Manage Invoice</b> Details</h3></div>
         </div>
     </div>
-    <table ID="tbllegend" style="width:300px;font-size:9px;font-weight:bold;color:blue" border="1" >
+    <table ID="tbllegend" style="width:300px;font-size:9px;font-weight:bold;color:blue" border="1">
         <tr>
             <td style="width:30%;"> </td>
             <td>TSP Recent Entries</td>
@@ -295,9 +235,30 @@
         </tr>
     </table>
 
+    
+    <table align="center" width="90%" style="padding-left: 150px">
+        <tr>
+            <td>
+                {% if DELETE_INVOICE_STATUS is not null %}
+                <div class="alert alert-success" role="alert">
+                    Invoice(s) Deleted Successfully.<br />{{DELETE_INVOICE_STATUS}}
+                </div>
+                {% elif EXCEPTION is not null %}
+                <div class="alert alert-danger" role="alert">
+                    There is been an error while deleting a Invoice(s), Please Try after sometime or contact Administrator. <br />
+                    {% if EXCEPTION_INFO is not null %}
+                    {{EXCEPTION_INFO}}
+                    {% endif %}
+                </div>
+                {% endif %}
+            </td>
+        </tr>
+    </table>
+
     <table id="tree-table" class="table table-hover table-bordepink" width="1500">
         <thead>
             <tr style="font-size:12px">
+                <th></th>
                 <th>Invoice Number</th>
                 <th>Circuit ID</th>
                 <th>Division</th>
@@ -328,7 +289,18 @@
                         #a6c06d
                     {%else%}
                     transparent
-                    {%endif%}">
+                {%endif%}">
+                <td>
+                    <form action="{% url 'dashapp:invoice_delete' %}" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <input type="hidden" id="invoiceno" name="invoiceno" value="{{Inv.current_doc.xldata.invoiceno}}">
+                        <button type="submit" class="btn btn-danger btn-sm"
+                                onclick="return confirm('Are you sure? you want to Delete Invoice')">
+                            <i class="glyphicon glyphicon-trash"></i>                            
+                        </button>
+                        <!--<a class="delete"  title="Delete Invoice" data-toggle="tooltip" ><i class="material-icons">&#xE872;</i></a>-->
+                    </form>
+                </td>
                 <td data-column="name" style="width:150px">{{ Inv.current_doc.xldata.invoiceno}} </td>
                 <td>{{ Inv.current_doc.xldata.circuitid }}</td>
                 <td>{{ Inv.current_doc.xldata.division }} </td>
@@ -374,7 +346,7 @@
                                 {%else%}
                                 transparent
                                 {%endif%}">
-                                            
+
                                             <input type="text" id="invoicenum" name="invoicenum"
                                                    style="background-color:
                                 {% if Inv.recom_doc.xldata.invoiceno != Inv.current_doc.xldata.invoiceno%}
@@ -760,6 +732,7 @@
             {% if Inv.last_doc.xldata.invoiceno is not null%}
             <tr data-id="{{ Inv.current_doc.xldata.circuitid }}_test2" data-parent="{{ Inv.current_doc.xldata.invoiceno}}" data-level="2"
                 style="font-size:11px;  background-color:lightgray ">
+                <td></td>
                 <td style="width:150px">{{ Inv.last_doc.xldata.invoiceno}} </td>
                 <td>{{ Inv.last_doc.xldata.circuitid }}</td>
                 <td>{{ Inv.last_doc.xldata.division }} </td>
@@ -833,7 +806,7 @@
 
 
 
-<!--{{list_invoices}}-->
+
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <!--<div class="container">
     <h2>Button Styles</h2>
@@ -845,4 +818,5 @@
     <button type="button" class="btn btn-warning">Warning</button>
     <button type="button" class="btn btn-danger">Danger</button>
     <button type="button" class="btn btn-link">Link</button>
-</div>-->
+</div> 
+    { "state": "","arc": "","billingdateto": "", "remarks": "", "fullsiteaddress": "", "customerid": "","servicetype": "", "billingdatefrom": "", "speed": "", "division": "", "taxname": "", "total": "","accountno": "", "pin": "", "circuitid": "", "invoicedate": "", "invoiceno": "", "siteid": "", "gstno": "", "premiseno": "", "city": "", "tsp": "", "customername": "", "slno": "",  "premisename": "" }-->

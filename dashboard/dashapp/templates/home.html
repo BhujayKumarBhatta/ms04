@@ -508,7 +508,7 @@
                                 <li><a href="#">My Profile</a></li>
                             </ul>
                         </li>
-                        <li><a href="#"><i class="glyphicon glyphicon-lock"></i> Logout</a></li>
+                        <li><a href="{% url 'dashapp:logout'%}"><i class="glyphicon glyphicon-lock"></i> Logout</a></li>
                     </ul>
                 </div>
             </div><!-- /container -->
@@ -583,7 +583,12 @@
                                             <ul class="nav navbar-nav">
                                                 <li><a href="{% url 'dashapp:list_links'  %}"> List Links  </a></li>
                                                 <!--<li><a href="{% url 'dashapp:list_test'  %}"> Test Params  </a></li>-->
-                                                <li><a href="#">Add Link</a></li>
+                                                <!--<li><a href="#">Add Link</a></li>
+                                                <li><a href="{% url 'dashapp:managepayment'  %}">Manage Payment</a></li>
+                                                <li><a href="{% url 'dashapp:managelocalnet'  %}">Manage Local Net</a></li>
+                                                <li><a href="{% url 'dashapp:managerate'  %}">Manage Rate</a></li>
+                                                <li><a href="{% url 'dashapp:manageaddress'  %}">Manage Address</a></li>-->
+                                                <li><a href="{% url 'dashapp:listobjects'  %}">Manage LNet</a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -601,7 +606,8 @@
                                                 <li><a href="{% url 'dashapp:invoice_update_upload'  %}"> Update Invoice Upload</a></li>
                                                 <li><a href="{% url 'dashapp:invoice_rcom_upload'  %}"> Recommend Invoice Upload</a></li>
                                                 <!--<li><a href="{% url 'dashapp:list_invoices_rcom'  %}"> List Invoice Recommendations  </a></li>-->
-                                                <li><a href="{% url 'dashapp:add_model'  %}"> Add Invoice  </a></li>
+                                                <li><a href="{% url 'dashapp:invoice_create'  %}"> Add Invoice  </a></li>
+                                                <li><a href="{% url 'dashapp:invoice_approvals'  %}"> Manage Approvals  </a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -611,35 +617,35 @@
                                 <!--<li><a href="#"><span class="glyphicon glyphicon-cloud"></span> Link</a></li>-->
                                 <!-- Dropdown-->
                                 <!--<li class="panel panel-default" id="dropdown">
-        <a data-toggle="collapse" href="#dropdown-lvl1">
-            <span class="glyphicon glyphicon-user"></span> Sub Level <span class="caret"></span>
-        </a>
+                                    <a data-toggle="collapse" href="#dropdown-lvl1">
+                                        <span class="glyphicon glyphicon-user"></span> Sub Level <span class="caret"></span>
+                                    </a>
 
-        <div id="dropdown-lvl1" class="panel-collapse collapse">
-            <div class="panel-body">
-                <ul class="nav navbar-nav">
-                    <li><a href="#">Link</a></li>
-                    <li><a href="#">Link</a></li>
-                    <li><a href="#">Link</a></li>
+                                    <div id="dropdown-lvl1" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <ul class="nav navbar-nav">
+                                                <li><a href="#">Link</a></li>
+                                                <li><a href="#">Link</a></li>
+                                                <li><a href="#">Link</a></li>
 
-                    <li class="panel panel-default" id="dropdown">
-                        <a data-toggle="collapse" href="#dropdown-lvl2">
-                            <span class="glyphicon glyphicon-off"></span> Sub Level <span class="caret"></span>
-                        </a>
-                        <div id="dropdown-lvl2" class="panel-collapse collapse">
-                            <div class="panel-body">
-                                <ul class="nav navbar-nav">
-                                    <li><a href="#">Link</a></li>
-                                    <li><a href="#">Link</a></li>
-                                    <li><a href="#">Link</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </li>-->
+                                                <li class="panel panel-default" id="dropdown">
+                                                    <a data-toggle="collapse" href="#dropdown-lvl2">
+                                                        <span class="glyphicon glyphicon-off"></span> Sub Level <span class="caret"></span>
+                                                    </a>
+                                                    <div id="dropdown-lvl2" class="panel-collapse collapse">
+                                                        <div class="panel-body">
+                                                            <ul class="nav navbar-nav">
+                                                                <li><a href="#">Link</a></li>
+                                                                <li><a href="#">Link</a></li>
+                                                                <li><a href="#">Link</a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>-->
                                 <!--<li><a href="#"><span class="glyphicon glyphicon-signal"></span> Link</a></li>-->
                             </ul>
                         </div><!-- /.navbar-collapse -->
@@ -656,6 +662,19 @@
                         {% include 'list_links.html' %}
                         {% elif ADDUSER is not null %}
                         {% include 'AddUser.html' %}
+                        {% elif manageaddress is not null %}
+                        {% include 'manageaddress.html' %}
+                        {% elif managelocalnet is not null %}
+                        {% include 'managelocalnet.html' %}
+                        {% elif managerate is not null %}
+                        {% include 'managerate.html' %}
+                        {% elif managepayment is not null %}
+                        {% include 'managepayment.html' %}
+
+                        {% elif listobjects is not null %}
+                        {% include 'listobjects.html' %}
+
+
                         {% elif VIEW_UPLOAD is not null or uploaded_file_url is not null %}
                         {% include 'invoice_upload.html' %}
                         {% elif VIEW_UPDATE_UPLOAD is not null or uploadedupdate_file_url is not null %}
@@ -664,13 +683,23 @@
                         {% elif VIEW_RCOM_UPLOAD is not null or rcomuploaded_file_url is not null %}
                         {% include 'invoice_rcom_upload.html' %}
 
-                        {% elif list_invoices is not null and IS_RCOM is null%}
+
+                        {% elif list_invoices is not null and APPROVALS is not null%}
+                        {% include 'invoice_approvals.html' %}
+
+                        {% elif list_invoices is not null and IS_RCOM is null %}
                         {% include 'invoicelist.html' %}
+
+
 
                         {% elif list_invoices is not null and IS_RCOM is not null %}
                         {% include 'invoicelist_recom.html' %}
+                        CREATE_INVOICE_FORM
+                        {% elif CREATE_INVOICE_FORM is not null  %}
+                        {% include 'invoicetemplate.html' %}
 
-
+                        {% elif VIEW_CREATE_INVOICE is not null %}
+                        {% include 'invoicetemplate.html' %}
 
                         {% elif PO is not null %}
                         {% include 'ManageUser.html' %}

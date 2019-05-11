@@ -48,6 +48,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'dashapp.middleware.AutoLogout',
+
 ]
 
 ROOT_URLCONF = 'dashboard.urls'
@@ -123,3 +125,9 @@ STATIC_URL = '/static/'
 
 MEDIA_URL = '/tmp/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+SESSION_SECURITY_EXPIRE_AFTER=1
+SESSION_SECURITY_WARN_AFTER=5
+SESSION_EXPIRE_AT_BROWSER_CLOSE=True
+SESSION_SECURITY_PASSIVE_URL_NAMES=['ignore']

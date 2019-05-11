@@ -107,6 +107,17 @@
         }
 </style>
 <script type="text/javascript">
+
+    $('#exampleModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget) // Button that triggered the modal
+        var recipient = button.data('whatever') // Extract info from data-* attributes
+        // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+        // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+        var modal = $(this)
+        modal.find('.modal-title').text('New message to ' + recipient)
+        modal.find('.modal-body input').val(recipient)
+    })
+
     $(document).ready(function () {
         $('[data-toggle="tooltip"]').tooltip();
         var actions = $("table td:last-child").html();
@@ -160,10 +171,10 @@
         });
     });
 </script>
-<div style="padding-left:100px">
-    {% if list_users is not null %}
-    {{ list_users }}
-</div>
+ 
+ {% if list_users is not null %}
+    <!--{{ list_users }}-->
+ 
 
 <div class="table-wrapper">
     <div class="table-title">
@@ -191,14 +202,14 @@
 
             {% for user in list_users %}
             <tr style="font-size:11px">
-                <td>{{ user.name }}</td>
+                <td>{{ user.username }}</td>
                 <td>{{ user.email }}</td>
                 <td>
                     {% for role in user.roles %}
                     {{ role }}
                     {% endfor %}
                 </td>
-                <td> {{ wfc.org }} </td>
+                <td> {{ user.wfc.org }} </td>
                 <td> {{ user.wfc.orgunit}} </td>
                 <td> {{ user.wfc.department}} </td>
                 <td> {{ user.wfc.name}} </td>
@@ -215,9 +226,7 @@
 </div>
 {% elif list_org is not null %}
 <!--organizations-->
-    {% if list_org is not null %}
-        list of oranizations : {{ list_org }}
-     {% endif %}
+
 
 <div class="table-wrapper">
     <div class="table-title">
@@ -245,19 +254,17 @@
                     <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
                 </td>
             </tr>
-            {{ organization.name }}
-            {{ status.name }}
-            {{ org.status}}
             {% endfor %}
         </tbody>
     </table>
 </div>
+{{ list_org.status.name }}
 
-
+RESULT : {{ list_org }}
 
 {% elif list_dept is not null %}
 <!--Department-->
-        list of Department : {{ list_dept }}
+
 
 
 <div class="table-wrapper">
@@ -277,11 +284,11 @@
             </tr>
         </thead>
         <tbody>
-            {% for org in list_dept %}
+            {% for dpt in list_dept %}
             <tr style="font-size:11px">
-                <td>{{ org.name  }}</td>
+                <td>{{ dpt.status.name  }}</td>
                 <td>
-                    <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
+                    <a class="add" title="Add"  data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
                     <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
                     <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
                 </td>
@@ -289,6 +296,7 @@
             {% endfor %}
         </tbody>
     </table>
+    RESULT : {{ list_dept }}
 </div>
 
 
@@ -365,41 +373,130 @@
 </div>
 {% endif %}
 
-
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Open modal for @mdo</button>
+<!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Open modal for @mdo</button>
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@fat">Open modal for @fat</button>
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Open modal for @getbootstrap</button>
-
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Open modal for @getbootstrap</button>-->
+ 
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Create Invoice</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
                 <form>
-                    <div class="row">
-                        <div class="col-sm">col-sm-8</div>
-                        <div class="col-sm">col-sm-4</div>
-                        <div class="col-sm">col-sm-4</div>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">TSP:</label>
+                        <input type="text" class="form-control" id="tsp">
                     </div>
-                    <div class="row">
-                        <div class="col-sm">col-sm</div>
-                        <div class="col-sm">col-sm</div>
-                        <div class="col-sm">col-sm</div>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">servicetype:</label>
+                        <input type="text" class="form-control" id="servicetype">
+                    </div>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">accountno:</label>
+                        <input type="text" class="form-control" id="accountno">
+                    </div>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">circuitid:</label>
+                        <input type="text" class="form-control" id="circuitid">
+                    </div>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">slno:</label>
+                        <input type="text" class="form-control" id="slno">
+                    </div>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">ARC:</label>
+                        <input type="text" class="form-control" id="arc">
+                    </div>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Site ID:</label>
+                        <input type="text" class="form-control" id="customerid">
+                    </div>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Customer ID:</label>
+                        <input type="text" class="form-control" id="customerid">
+                    </div>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Premise Number:</label>
+                        <input type="text" class="form-control" id="premiseno">
+                    </div>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Premise Name:</label>
+                        <input type="text" class="form-control" id="premisename">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">customername:</label>
+                        <input type="text" class="form-control" id="customername">
+                    </div>
+                    <div class="form-group">
+                        <label for="message-text" class="col-form-label">division:</label>
+                        <textarea class="form-control" id="division"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Full Site Address:</label>
+                        <input type="text" class="form-control" id="fullsiteaddress">
+                    </div>
+                    <div class="form-group">
+                        <label for="message-text" class="col-form-label">State:</label>
+                        <input class="form-control" id="state" />
+                    </div>
+                    <div class="form-group">
+                        <label for="message-text" class="col-form-label">PIN:</label>
+                        <input class="form-control" id="pin" />
+                    </div>
+                    <div class="form-group">
+                        <label for="message-text" class="col-form-label">City:</label>
+                        <input class="form-control" id="city" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message-text" class="col-form-label">Speed:</label>
+                        <input class="form-control" id="speed" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message-text" class="col-form-label">GST Number:</label>
+                        <input class="form-control" id="gstno" />
+                    </div>
+                    <div class="form-group">
+                        <label for="message-text" class="col-form-label">Tax Name:</label>
+                        <input class="form-control" id="taxname" />
+                    </div>
+                    <div class="form-group">
+                        <label for="message-text" class="col-form-label">Total:</label>
+                        <input class="form-control" id="total" />
+                    </div>
+                    <div class="form-group">
+                        <label for="message-text" class="col-form-label">Invoice Date:</label>
+                        <input class="form-control" id="invoicedate" />
+                    </div>
+                    <div class="form-group">
+                        <label for="message-text" class="col-form-label">Billingdate From:</label>
+                        <input class="form-control" id="billingdatefrom" />
+                    </div>
+                    <div class="form-group">
+                        <label for="message-text" class="col-form-label">Billingdate To:</label>
+                        <input class="form-control" id="billingdateto" />
+                    </div> 
+                    <div class="form-group">
+                        <label for="message-text" class="col-form-label">Remarks:</label>
+                        <input class="form-control" id="remarks" />
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Send message</button>
+                <button type="button" class="btn btn-primary">Save Invoice</button>
             </div>
         </div>
     </div>
 </div>
+
 
 
 <!--<table>
