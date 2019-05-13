@@ -224,7 +224,7 @@ def list_test(request):
         result = linkv.list_test(request)  
 
 def home2(request):
-    result = render(request, 'home2.html')
+    result = render(request, 'Home2.html')
     return result
 
 #### Log out
