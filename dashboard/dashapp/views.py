@@ -223,6 +223,10 @@ def list_test(request):
     else:
         result = linkv.list_test(request)  
 
+def home2(request):
+    result = render(request, 'home2.html')
+    return result
+
 #### Log out
 def logout(request):
     if request.session.has_key('uname'):

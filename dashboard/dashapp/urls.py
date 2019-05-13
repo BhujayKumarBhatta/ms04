@@ -23,11 +23,12 @@ from . import views
 #from rest_framework.documentation import include_docs_urls
 
 #schema_view = get_swagger_view(title='TSP Billing')
-
 app_name = 'dashapp'
 urlpatterns = [path('', views.login, name='login'),
                path('', views.logout, name='logout'),
     #Infops DB
+    path('home2', views.home2, name='home2'),
+
     path('list_links', views.list_links, name='list_links'),
     path('managelocalnet', views.managelocalnet, name='managelocalnet'),
     path('manageaddress', views.manageaddress, name='manageaddress'),
