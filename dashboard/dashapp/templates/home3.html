@@ -1,3 +1,6 @@
+﻿{% load i18n %}
+{% load l10n %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -583,166 +586,187 @@
                         </span>
                     </div>
                 </div>
+                <ul class="nav navbar-nav">
 
-
-                <!-- sidebar-search  -->
-                <div class="sidebar-menu">
-                    <ul>
-                        <li class="header-menu">
-                            <span>General</span>
-                        </li>
-                        <li class="sidebar-dropdown">
-                            <a href="#">
-                                <i class="fa fa-tachometer-alt"></i>
-                                <span>Token Leader</span>
-                                <span class="badge badge-pill badge-warning">New</span>
-                            </a>
-                            <div class="sidebar-submenu">
-                                <ul>
-                                    <li>
-                                        <a href="#">
-                                            Users
-                                            <span class="badge badge-pill badge-success">Pro</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Organizations</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Department</a>
-                                    </li>
-                                    <li><a href="#">Role</a> </li>
-                                    <li><a href="#">OU</a> </li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="sidebar-dropdown">
-                            <a href="#">
-                                <i class="fa fa-shopping-cart"></i>
-                                <span>Link Inventory</span>
-                                <span class="badge badge-pill badge-danger">3</span>
-                            </a>
-                            <div class="sidebar-submenu">
-                                <ul>
-                                    <li>
-                                        <a href="#">
-                                            Manage Links
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="sidebar-dropdown">
-                            <a href="#">
-                                <i class="far fa-gem"></i>
-                                <span>Manage Invoice</span>
-                            </a>
-                            <div class="sidebar-submenu">
-                                <ul>
-                                    <li>
-                                        <a href="#">Invoice</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Upload</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Update Upload</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Recommodations</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Add Invoice</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="sidebar-dropdown">
-                            <a href="#">
-                                <i class="fa fa-chart-line"></i>
-                                <span>Manage PO</span>
-                            </a>
-                            <div class="sidebar-submenu">
-                                <ul>
-                                    <li>
-                                        <a href="#">Pie chart</a>
-                                    </li>
-
-                                </ul>
-                            </div>
-                        </li>
-
-                    </ul>
-                </div>
-                <!-- sidebar-menu  -->
-            </div>
-            <!-- sidebar-content  -->
-            <div class="sidebar-footer">
-                <a href="#">
-                    <i class="fa fa-bell"></i>
-                    <span class="badge badge-pill badge-warning notification">3</span>
-                </a>
-                <a href="#">
-                    <i class="fa fa-envelope"></i>
-                    <span class="badge badge-pill badge-success notification">7</span>
-                </a>
-                <a href="#">
-                    <i class="fa fa-cog"></i>
-                    <span class="badge-sonar"></span>
-                </a>
-                <a href="#">
-                    <i class="fa fa-power-off"></i>
-                </a>
-            </div>
-        </nav>
-        <!-- sidebar-wrapper  -->
-        <main class="page-content">
-            <div class="container-fluid">
-                <h2>Pro Sidebar</h2>
-                <hr>
-                <div class="row">
-                    <div class="form-group col-md-12">
-                        <p>This is a responsive sidebar template with dropdown menu based on bootstrap 4 framework.</p>
-                        <p>
-                            You can find the complete code on <a href="https://github.com/azouaoui-med/pro-sidebar-template" target="_blank">
-                                Github
-                            </a>, it contains more themes and background image option
-                        </p>
+                    <!-- sidebar-search  -->
+                    <div class="sidebar-menu">
+                        <ul>
+                            <li class="header-menu">
+                                <span>General</span>
+                            </li>
+                            <li class="sidebar-dropdown">
+                                <a href="#">
+                                    <i class="fa fa-tachometer-alt"></i>
+                                    <span>Token Leader</span>
+                                    <span class="badge badge-pill badge-warning">New</span>
+                                </a>
+                                <div class="sidebar-submenu">
+                                    <ul>
+                                        <li>
+                                            <a href="{% url 'dashapp:list_users'  %}">
+                                                 
+                                                Users
+                                                <span class="badge badge-pill badge-success">Pro</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{% url 'dashapp:list_org'  %}">Organizations</a>
+                                        </li>
+                                        <li>
+                                            <a href="{% url 'dashapp:list_dept'  %}">Department</a>
+                                        </li>
+                                        <a href="{% url 'dashapp:list_role'  %}">Role</a>
+                            </li>
+                            <li><a href="{% url 'dashapp:list_ou'  %}">OU</a> </li>
+                            <li><a href="{% url 'dashapp:list_ou'  %}">OU</a> </li>
+                            <li><a href="{% url 'dashapp:adduser'  %}">Add User</a> </li>
+                        </ul>
                     </div>
-                    <div class="form-group col-md-12">
-                        <iframe src="https://ghbtns.com/github-btn.html?user=azouaoui-med&repo=pro-sidebar-template&type=star&count=true&size=large"
-                                frameborder="0" scrolling="0" width="140px" height="30px"></iframe>
-                        <iframe src="https://ghbtns.com/github-btn.html?user=azouaoui-med&repo=pro-sidebar-template&type=fork&count=true&size=large"
-                                frameborder="0" scrolling="0" width="140px" height="30px"></iframe>
-                    </div>
-                </div>
-                <h5>More templates</h5>
-                <hr>
-                <div class="row">
-                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
-                        <div class="card rounded-0 p-0 shadow-sm">
-                            <img src="https://user-images.githubusercontent.com/25878302/53659076-e2204680-3c5a-11e9-8c00-0c10bcd945e6.jpg" class="card-img-top rounded-0" alt="Angular pro sidebar">
-                            <div class="card-body text-center">
-                                <h6 class="card-title">Angular Pro Sidebar</h6>
-                                <a href="https://github.com/azouaoui-med/angular-pro-sidebar" target="_blank" class="btn btn-primary btn-sm">Github</a>
-                                <a href="https://azouaoui-med.github.io/angular-pro-sidebar/demo/" target="_blank" class="btn btn-success btn-sm">Preview</a>
-                            </div>
+                    </li>
+                    <li class="sidebar-dropdown">
+                        <a href="#">
+                            <i class="fa fa-shopping-cart"></i>
+                            <span>Link Inventory</span>
+                            <span class="badge badge-pill badge-danger">3</span>
+                        </a>
+                        <div class="sidebar-submenu">
+                            <ul>
+                                <li>
+                                    <a href="#">
+                                        Manage Links
+                                    </a>
+                                </li>
+                            </ul>
                         </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
-                        <div class="card rounded-0 p-0 shadow-sm">
-                            <img src="https://user-images.githubusercontent.com/25878302/53659497-016ba380-3c5c-11e9-8dfd-4901ddaf090b.jpg" class="card-img-top rounded-0" alt="Angular pro sidebar">
-                            <div class="card-body text-center">
-                                <h6 class="card-title">Angular Dashboard</h6>
-                                <a href="https://github.com/azouaoui-med/lightning-admin-angular" target="_blank" class="btn btn-primary btn-sm">Github</a>
-                                <a href="https://azouaoui-med.github.io/lightning-admin-angular/demo/" target="_blank" class="btn btn-success btn-sm">Preview</a>
-                            </div>
+                    </li>
+                    <li class="sidebar-dropdown">
+                        <a href="#">
+                            <i class="far fa-gem"></i>
+                            <span>Manage Invoice</span>
+                        </a>
+                        <div class="sidebar-submenu">
+                            <ul>
+                                <li>
+                                    <a href="#">Invoice</a>
+                                </li>
+                                <li>
+                                    <a href="#">Upload</a>
+                                </li>
+                                <li>
+                                    <a href="#">Update Upload</a>
+                                </li>
+                                <li>
+                                    <a href="#">Recommodations</a>
+                                </li>
+                                <li>
+                                    <a href="#">Add Invoice</a>
+                                </li>
+                            </ul>
                         </div>
-                    </div>
-                </div>
+                    </li>
+                    <li class="sidebar-dropdown">
+                        <a href="#">
+                            <i class="fa fa-chart-line"></i>
+                            <span>Manage PO</span>
+                        </a>
+                        <div class="sidebar-submenu">
+                            <ul>
+                                <li>
+                                    <a href="#">Pie chart</a>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </li>
+
+                </ul>
             </div>
-        </main>
-        <!-- page-content" -->
+            <!-- sidebar-menu  -->
+    </div>
+    <!-- sidebar-content  -->
+    <div class="sidebar-footer">
+        <a href="#">
+            <i class="fa fa-bell"></i>
+            <span class="badge badge-pill badge-warning notification">3</span>
+        </a>
+        <a href="#">
+            <i class="fa fa-envelope"></i>
+            <span class="badge badge-pill badge-success notification">7</span>
+        </a>
+        <a href="#">
+            <i class="fa fa-cog"></i>
+            <span class="badge-sonar"></span>
+        </a>
+        <a href="#">
+            <i class="fa fa-power-off"></i>
+        </a>
+    </div>
+    </nav>
+
+
+
+
+    <!-- sidebar-wrapper  -->
+    <main class="page-content">
+        <div class="container-fluid">
+
+            {% if list_users is not null or list_org is not null or list_role is not null or list_ou is not null or list_dept is not null%}
+            {% include 'list_users.html' %}
+            {% elif list_links is not null %}
+            {% include 'list_links.html' %}
+            {% elif ADDUSER is not null %}
+            {% include 'AddUser.html' %}
+            {% elif manageaddress is not null %}
+            {% include 'manageaddress.html' %}
+            {% elif managelocalnet is not null %}
+            {% include 'managelocalnet.html' %}
+            {% elif managerate is not null %}
+            {% include 'managerate.html' %}
+            {% elif managepayment is not null %}
+            {% include 'managepayment.html' %}
+
+            {% elif listobjects is not null %}
+            {% include 'listobjects.html' %}
+
+
+            {% elif VIEW_UPLOAD is not null or uploaded_file_url is not null %}
+            {% include 'invoice_upload.html' %}
+            {% elif VIEW_UPDATE_UPLOAD is not null or uploadedupdate_file_url is not null %}
+            {% include 'invoice_update_upload.html' %}
+
+            {% elif VIEW_RCOM_UPLOAD is not null or rcomuploaded_file_url is not null %}
+            {% include 'invoice_rcom_upload.html' %}
+
+
+            {% elif list_invoices is not null and APPROVALS is not null%}
+            {% include 'invoice_approvals.html' %}
+
+            {% elif list_invoices is not null and IS_RCOM is null %}
+            {% include 'invoicelist.html' %}
+
+
+
+            {% elif list_invoices is not null and IS_RCOM is not null %}
+            {% include 'invoicelist_recom.html' %}
+            CREATE_INVOICE_FORM
+            {% elif CREATE_INVOICE_FORM is not null  %}
+            {% include 'invoicetemplate.html' %}
+
+            {% elif VIEW_CREATE_INVOICE is not null %}
+            {% include 'invoicetemplate.html' %}
+
+            {% elif PO is not null %}
+            {% include 'ManageUser.html' %}
+            {% else %}
+            <h1> Main Content here </h1>
+
+        </div>
+    </main>
+
+
+
+
+    <!-- page-content" -->
     </div>
     <!-- page-wrapper -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
