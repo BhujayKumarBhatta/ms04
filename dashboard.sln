@@ -42,6 +42,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Micros2", "..\Micros2\", "{
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
 		VWDPort = "64238"
+		SlnRelativePath = "..\Micros2\"
 	EndProjectSection
 EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "MICROS1", "..\MICROS1\", "{09927E7F-7365-481C-B16C-047FC4DCD0C7}"
@@ -62,6 +63,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "MICROS1", "..\MICROS1\", "{
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
 		VWDPort = "64874"
+		SlnRelativePath = "..\MICROS1\"
 	EndProjectSection
 EndProject
 Global
