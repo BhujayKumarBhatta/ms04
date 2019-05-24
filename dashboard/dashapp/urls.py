@@ -58,9 +58,6 @@ urlpatterns = [path('', views.login, name='login'),
     ,path('invoice_approvals', views.invoice_approvals, name='invoice_approvals')
     ,path('invoice_approve', views.invoice_approve, name='invoice_approve')
     ,path('invoice_reject', views.invoice_reject, name='invoice_reject')
-    #Division invoices
-    #,path('list_divinvoices', views.list_divinvoices, name='list_divinvoices')
-
     #,path('swagger-docs/', schema_view)
     #,path('docs/', include_docs_urls(title='TSP Billing'))
     ]
