@@ -16,7 +16,6 @@ from django.urls import reverse_lazy
 from django.conf import settings
 from django.core.files.storage import FileSystemStorage
 from werkzeug.utils import secure_filename
-
 from dashapp.tokenleader import tllogin
 from dashapp.micros1.invoiceForm import invoiceForm
 
@@ -84,9 +83,10 @@ def invoice_delete(request):
        invClient = MSClient(tlclient)
        list_invoices = invClient.list_invoices_clo('all','all')  
        template_data = {"list_invoices": list_invoices } 
-       result = render(request, 'home.html', template_data)   
-   
+       result = render(request, 'home.html', template_data)      
    return result    
+
+
 ## Navigate to Upload Invoice******
 def view_upload(request):
    if request.method == 'GET':          

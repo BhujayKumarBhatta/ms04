@@ -19,10 +19,10 @@ from dashapp.tokenleader import tllogin
 from dashapp.linkinv import linkinv_views as linkv
 from dashapp.tokenleader import tlviews
 from dashapp.micros1 import tspinv
+from dashapp.micros2 import tspdivinv
 
 from dashapp.micros1.models import Invoice
 from dashapp.micros1.invoiceForm import invoiceForm
-
 from dashapp.micros1.invoiceForm import NameForm
 
 def login(request):
@@ -125,6 +125,13 @@ def list_invoices(request):
       result = login(request)
     elif'uname' in request.session :
       result = tspinv.list_invoices(request)
+    return result
+
+def list_divinvoices(request):
+    if 'uname' not in request.session :
+      result = login(request)
+    elif'uname' in request.session :
+      result = tspdivinv.list_divinvoices(request)
     return result
       
 
