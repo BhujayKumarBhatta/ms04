@@ -3,9 +3,8 @@
     "",
     "\\dashboard",
     "\\dashboard\\dashapp",
-    "\\dashboard\\dashapp\\static\\dashapp",
-    "\\dashboard\\dashapp\\static\\dashapp\\images"
+    "\\dashboard\\dashapp\\micros2"
   ],
-  "SelectedNode": "\\dashboard\\dashapp",
+  "SelectedNode": "\\dashboard\\dashapp\\micros2\\tspdivinv.py",
   "PreviewInSolutionExplorer": false
 }
