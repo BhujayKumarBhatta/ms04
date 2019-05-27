@@ -27,10 +27,8 @@ def list_divinvoices(request):
         #    del request.session['uname']
         tlclient = tllogin.prep_tlclient_from_session(request)
         MC2Client = MSClient(tlclient) 
-        list_divinvoices = MC2Client.list_invoices('all', 'all', 1) 
-        
-
-        template_data = {"list_divinvoices": list_divinvoices,"microobj":MC2Client } 
+        list_divinvoices = MC2Client.list_invoices('all', 'all', 1)
+        template_data = {"list_divinvoices": list_divinvoices } 
         result = render(request, 'home.html', template_data)        
         return result
  
