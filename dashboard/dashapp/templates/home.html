@@ -691,7 +691,8 @@
                         {% elif list_invoices is not null and IS_RCOM is null %}
                         {% include 'invoicelist.html' %}
 
-                        
+                        {% elif list_divinvoices is not null  %}
+                        {% include 'invoicedivlist.html' %}
 
 
 
