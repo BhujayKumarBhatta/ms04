@@ -576,5 +576,7 @@
     "save_status": "ready for verifiaction workflow",
     "invoice_num": "8"
   }
+
+  {'invoice_json': '{"autocheck_status": "Failed", "inventory_status": "No link in inventory by the infoops id S0000000003", "lnet_status": "No link in lnet by the infoops id S0000000003", "bom_comp_result": []}', 'save_status': 'ready for verifiaction workflow', 'invoice_num': '1'}, {'invoice_json': '{"autocheck_status": "Failed", "inventory_status": "No link in inventory by the infoops id S0000000010", "lnet_status": "No link in lnet by the infoops id S0000000010", "bom_comp_result": []}', 'save_status': 'ready for verifiaction workflow', 'invoice_num': '2'}, {'invoice_json': '{"autocheck_status": "Failed", "inventory_status": "No link in inventory by the infoops id S0000000026", "lnet_status": "No link in lnet by the infoops id S0000000026", "bom_comp_result": []}', 'save_status': 'ready for verifiaction workflow', 'invoice_num': '3'}, {'invoice_json': '{"autocheck_status": "Failed", "inventory_status": "No link in inventory by the infoops id S000000001", "lnet_status": "No link in lnet by the infoops id S000000001", "bom_comp_result": []}', 'save_status': 'ready for verifiaction workflow', 'invoice_num': '4'}
 ]
 
