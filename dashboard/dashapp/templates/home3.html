@@ -557,218 +557,210 @@
     </script>
 </head>
 <body>
-    <div class="page-wrapper chiller-theme toggled">
-        <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
-            <i class="fas fa-bars"></i>
-        </a>
-        <div id="top-nav" class="navbar navbar-inverse navbar-static-top" style="position:fixed;background-color:#1c5e55;width:100%;">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-toggle"></span>
-                    </button><br />
-                    <a class="navbar-brand" href="#" style="color:white;font-size:25px">TSP Billing</a>
-                </div>
-                 
-            </div>
-            <nav id="sidebar" class="sidebar-wrapper">
-            <div class="sidebar-content">
-                <div class="sidebar-brand">
-                    <a href="#">TSP Billing</a>
-                    <div id="close-sidebar">
-                        <i class="fas fa-times"></i>
-                    </div>
-                </div>
-                <div class="sidebar-header">
-                    <div class="user-pic">
-                        <img class="img-responsive img-rounded" src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
-                             alt="User picture">
-                    </div>
-                    <div class="user-info">
-                        <span class="user-name">
-                            Kiran
-                            <strong>Chukka</strong>
-                        </span>
-                        <span class="user-role">Division</span>
-                        <span class="user-status">
-                            <i class="fa fa-circle"></i>
-                            <span>Online</span>
-                        </span>
-                    </div>
-                </div>
-                <ul class="nav navbar-nav">
+    <div id="top-nav" class="navbar navbar-inverse navbar-static-top" style="position:fixed;background-color:#1c5e55;width:100%;">
+        <div class="container">
+            <div class="page-wrapper chiller-theme toggled">
+                <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
+                    <i class="fas fa-bars"></i>
+                </a>
+                <nav id="sidebar" class="sidebar-wrapper">
+                    <div class="sidebar-content">
+                        <div class="sidebar-brand">
+                            <a href="#">TSP Billing</a>
+                            <div id="close-sidebar">
+                                <i class="fas fa-times"></i>
+                            </div>
+                        </div>
+                        <div class="sidebar-header">
+                            <div class="user-pic">
+                                <img class="img-responsive img-rounded" src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
+                                     alt="User picture">
+                            </div>
+                            <div class="user-info">
+                                <span class="user-name">
+                                    Kiran
+                                    <strong>Chukka</strong>
+                                </span>
+                                <span class="user-role">Division</span>
+                                <span class="user-status">
+                                    <i class="fa fa-circle"></i>
+                                    <span>Online</span>
+                                </span>
+                            </div>
+                        </div>
+                        <ul class="nav navbar-nav">
 
-                    <!-- sidebar-search  -->
-                    <div class="sidebar-menu">
-                        <ul>
-                            <li class="header-menu">
-                                <span>General</span>
-                            </li>
-                            <li class="sidebar-dropdown">
-                                <a href="#">
-                                    <i class="fa fa-tachometer-alt"></i>
-                                    <span>Token Leader</span>
-                                    <span class="badge badge-pill badge-warning">New</span>
-                                </a>
-                                <div class="sidebar-submenu">
-                                    <ul>
-                                        <li><a href="{% url 'dashapp:list_users'  %}">Users<span class="badge badge-pill badge-success">Pro</span></a></li>
-                                        <li><a href="{% url 'dashapp:list_org'  %}">Organizations</a></li>
-                                        <li><a href="{% url 'dashapp:list_dept'  %}">Department</a></li>
-                                        <li><a href="{% url 'dashapp:list_role'  %}">Role</a> </li>
-                                        <li><a href="{% url 'dashapp:list_ou'  %}">OU</a> </li>
-                                        <li><a href="{% url 'dashapp:list_ou'  %}">OU</a> </li>
-                                        <li><a href="{% url 'dashapp:adduser'  %}">Add User</a> </li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="sidebar-dropdown">
-                                <a href="#">
-                                    <i class="fa fa-shopping-cart"></i>
-                                    <span>Link Inventory</span>
-                                    <span class="badge badge-pill badge-danger">3</span>
-                                </a>
-                                <div class="sidebar-submenu">
-                                    <ul>
-                                        <li><a href="{% url 'dashapp:list_links'  %}"> List Links  </a></li>
-                                        <!--<li><a href="{% url 'dashapp:list_test'  %}"> Test Params  </a></li>-->
-                                        <!--<li><a href="#">Add Link</a></li>
-                                    <li><a href="{% url 'dashapp:managepayment'  %}">Manage Payment</a></li>
-                                    <li><a href="{% url 'dashapp:managelocalnet'  %}">Manage Local Net</a></li>
-                                    <li><a href="{% url 'dashapp:managerate'  %}">Manage Rate</a></li>
-                                    <li><a href="{% url 'dashapp:manageaddress'  %}">Manage Address</a></li>-->
-                                        <li><a href="{% url 'dashapp:listobjects'  %}">Manage LNet</a></li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="sidebar-dropdown">
-                                <a href="#">
-                                    <i class="far fa-gem"></i>
-                                    <span>Manage Invoice</span>
-                                </a>
-                                <div class="sidebar-submenu">
-                                    <ul>
-                                        <li><a href="{% url 'dashapp:list_invoices'  %}"> List Invoice  </a></li>
-                                        <li><a href="{% url 'dashapp:invoice_upload'  %}"> Invoice Upload   </a></li>
-                                        <li><a href="{% url 'dashapp:invoice_update_upload'  %}"> Update Invoice Upload</a></li>
-                                        <li><a href="{% url 'dashapp:invoice_rcom_upload'  %}"> Recommend Invoice Upload</a></li>
-                                        <!--<li><a href="{% url 'dashapp:list_invoices_rcom'  %}"> List Invoice Recommendations  </a></li>-->
-                                        <li><a href="{% url 'dashapp:invoice_create'  %}"> Add Invoice  </a></li>
-                                        <li><a href="{% url 'dashapp:invoice_approvals'  %}"> Manage Approvals  </a></li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="sidebar-dropdown">
-                                <a href="#">
-                                    <i class="fa fa-chart-line"></i>
-                                    <span>Manage PO</span>
-                                </a>
-                                <div class="sidebar-submenu">
-                                    <ul>
-                                        <li><a href="{% url 'dashapp:list_invoices'  %}"><span class="glyphicon glyphicon-envelope"></span> PO</a></li>
-                                    </ul>
-                                </div>
-                            </li>
+                            <!-- sidebar-search  -->
+                            <div class="sidebar-menu">
+                                <ul>
+                                    <li class="header-menu">
+                                        <span>General</span>
+                                    </li>
+                                    <li class="sidebar-dropdown">
+                                        <a href="#">
+                                            <i class="fa fa-tachometer-alt"></i>
+                                            <span>Token Leader</span>
+                                            <span class="badge badge-pill badge-warning">New</span>
+                                        </a>
+                                        <div class="sidebar-submenu">
+                                            <ul>
+                                                <li><a href="{% url 'dashapp:list_users'  %}">Users<span class="badge badge-pill badge-success">Pro</span></a></li>
+                                                <li><a href="{% url 'dashapp:list_org'  %}">Organizations</a></li>
+                                                <li><a href="{% url 'dashapp:list_dept'  %}">Department</a></li>
+                                                <li><a href="{% url 'dashapp:list_role'  %}">Role</a> </li>
+                                                <li><a href="{% url 'dashapp:list_ou'  %}">OU</a> </li>
+                                                <li><a href="{% url 'dashapp:list_ou'  %}">OU</a> </li>
+                                                <li><a href="{% url 'dashapp:adduser'  %}">Add User</a> </li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li class="sidebar-dropdown">
+                                        <a href="#">
+                                            <i class="fa fa-shopping-cart"></i>
+                                            <span>Link Inventory</span>
+                                            <span class="badge badge-pill badge-danger">3</span>
+                                        </a>
+                                        <div class="sidebar-submenu">
+                                            <ul>
+                                                <li><a href="{% url 'dashapp:list_links'  %}"> List Links  </a></li>
+                                                <!--<li><a href="{% url 'dashapp:list_test'  %}"> Test Params  </a></li>-->
+                                                <!--<li><a href="#">Add Link</a></li>
+                                                <li><a href="{% url 'dashapp:managepayment'  %}">Manage Payment</a></li>
+                                                <li><a href="{% url 'dashapp:managelocalnet'  %}">Manage Local Net</a></li>
+                                                <li><a href="{% url 'dashapp:managerate'  %}">Manage Rate</a></li>
+                                                <li><a href="{% url 'dashapp:manageaddress'  %}">Manage Address</a></li>-->
+                                                <li><a href="{% url 'dashapp:listobjects'  %}">Manage LNet</a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li class="sidebar-dropdown">
+                                        <a href="#">
+                                            <i class="far fa-gem"></i>
+                                            <span>Manage Invoice</span>
+                                        </a>
+                                        <div class="sidebar-submenu">
+                                            <ul>
+                                                <li><a href="{% url 'dashapp:list_invoices'  %}"> List Invoice  </a></li>
+                                                <li><a href="{% url 'dashapp:invoice_upload'  %}"> Invoice Upload   </a></li>
+                                                <li><a href="{% url 'dashapp:invoice_update_upload'  %}"> Update Invoice Upload</a></li>
+                                                <li><a href="{% url 'dashapp:invoice_rcom_upload'  %}"> Recommend Invoice Upload</a></li>
+                                                <!--<li><a href="{% url 'dashapp:list_invoices_rcom'  %}"> List Invoice Recommendations  </a></li>-->
+                                                <li><a href="{% url 'dashapp:invoice_create'  %}"> Add Invoice  </a></li>
+                                                <li><a href="{% url 'dashapp:invoice_approvals'  %}"> Manage Approvals  </a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li class="sidebar-dropdown">
+                                        <a href="#">
+                                            <i class="fa fa-chart-line"></i>
+                                            <span>Manage PO</span>
+                                        </a>
+                                        <div class="sidebar-submenu">
+                                            <ul>
+                                                <li><a href="{% url 'dashapp:list_invoices'  %}"><span class="glyphicon glyphicon-envelope"></span> PO</a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
 
-                        </ul>
+                                </ul>
+                            </div>
+                            <!-- sidebar-menu  -->
                     </div>
-                    <!-- sidebar-menu  -->
+                    <!-- sidebar-content  -->
+                    <div class="sidebar-footer">
+                        <a href="#">
+                            <i class="fa fa-bell"></i>
+                            <span class="badge badge-pill badge-warning notification">3</span>
+                        </a>
+                        <a href="#">
+                            <i class="fa fa-envelope"></i>
+                            <span class="badge badge-pill badge-success notification">7</span>
+                        </a>
+                        <a href="#">
+                            <i class="fa fa-cog"></i>
+                            <span class="badge-sonar"></span>
+                        </a>
+                        <a href="#">
+                            <i class="fa fa-power-off"></i>
+                        </a>
+                    </div>
+                </nav>
+
+
+
+
+                <!-- sidebar-wrapper  -->
+                <main class="page-content">
+                    <div class="container-fluid">
+
+                        {% if list_users is not null or list_org is not null or list_role is not null or list_ou is not null or list_dept is not null%}
+                        {% include 'list_users.html' %}
+                        {% elif list_links is not null %}
+                        {% include 'list_links.html' %}
+                        {% elif ADDUSER is not null %}
+                        {% include 'AddUser.html' %}
+                        {% elif manageaddress is not null %}
+                        {% include 'manageaddress.html' %}
+                        {% elif managelocalnet is not null %}
+                        {% include 'managelocalnet.html' %}
+                        {% elif managerate is not null %}
+                        {% include 'managerate.html' %}
+                        {% elif managepayment is not null %}
+                        {% include 'managepayment.html' %}
+
+                        {% elif listobjects is not null %}
+                        {% include 'listobjects.html' %}
+
+
+                        {% elif VIEW_UPLOAD is not null or uploaded_file_url is not null %}
+                        {% include 'invoice_upload.html' %}
+                        {% elif VIEW_UPDATE_UPLOAD is not null or uploadedupdate_file_url is not null %}
+                        {% include 'invoice_update_upload.html' %}
+
+                        {% elif VIEW_RCOM_UPLOAD is not null or rcomuploaded_file_url is not null %}
+                        {% include 'invoice_rcom_upload.html' %}
+
+
+                        {% elif list_invoices is not null and APPROVALS is not null%}
+                        {% include 'invoice_approvals.html' %}
+
+                        {% elif list_invoices is not null and IS_RCOM is null %}
+                        {% include 'invoicelist.html' %}
+
+
+
+                        {% elif list_invoices is not null and IS_RCOM is not null %}
+                        {% include 'invoicelist_recom.html' %}
+                        CREATE_INVOICE_FORM
+                        {% elif CREATE_INVOICE_FORM is not null  %}
+                        {% include 'invoicetemplate.html' %}
+
+                        {% elif VIEW_CREATE_INVOICE is not null %}
+                        {% include 'invoicetemplate.html' %}
+
+                        {% elif PO is not null %}
+                        {% include 'ManageUser.html' %}
+                        {% else %}
+                        <h1> Main Content here </h1>
+
+                        Mai content
+                        {% endif %}
+                    </div>
+                </main>
+
+
+
+
+                <!-- page-content" -->
             </div>
-            <!-- sidebar-content  -->
-            <div class="sidebar-footer">
-                <a href="#">
-                    <i class="fa fa-bell"></i>
-                    <span class="badge badge-pill badge-warning notification">3</span>
-                </a>
-                <a href="#">
-                    <i class="fa fa-envelope"></i>
-                    <span class="badge badge-pill badge-success notification">7</span>
-                </a>
-                <a href="#">
-                    <i class="fa fa-cog"></i>
-                    <span class="badge-sonar"></span>
-                </a>
-                <a href="#">
-                    <i class="fa fa-power-off"></i>
-                </a>
             </div>
-        </nav><!-- /container -->
         </div>
-        
-
-
-
-
-        <!-- sidebar-wrapper  -->
-        <main class="page-content">
-            <div class="container-fluid">
-
-                {% if list_users is not null or list_org is not null or list_role is not null or list_ou is not null or list_dept is not null%}
-                {% include 'list_users.html' %}
-                {% elif list_links is not null %}
-                {% include 'list_links.html' %}
-                {% elif ADDUSER is not null %}
-                {% include 'AddUser.html' %}
-                {% elif manageaddress is not null %}
-                {% include 'manageaddress.html' %}
-                {% elif managelocalnet is not null %}
-                {% include 'managelocalnet.html' %}
-                {% elif managerate is not null %}
-                {% include 'managerate.html' %}
-                {% elif managepayment is not null %}
-                {% include 'managepayment.html' %}
-
-                {% elif listobjects is not null %}
-                {% include 'listobjects.html' %}
-
-
-                {% elif VIEW_UPLOAD is not null or uploaded_file_url is not null %}
-                {% include 'invoice_upload.html' %}
-                {% elif VIEW_UPDATE_UPLOAD is not null or uploadedupdate_file_url is not null %}
-                {% include 'invoice_update_upload.html' %}
-
-                {% elif VIEW_RCOM_UPLOAD is not null or rcomuploaded_file_url is not null %}
-                {% include 'invoice_rcom_upload.html' %}
-
-
-                {% elif list_invoices is not null and APPROVALS is not null%}
-                {% include 'invoice_approvals.html' %}
-
-                {% elif list_invoices is not null and IS_RCOM is null %}
-                {% include 'invoicelist.html' %}
-
-
-
-                {% elif list_invoices is not null and IS_RCOM is not null %}
-                {% include 'invoicelist_recom.html' %}
-                CREATE_INVOICE_FORM
-                {% elif CREATE_INVOICE_FORM is not null  %}
-                {% include 'invoicetemplate.html' %}
-
-                {% elif VIEW_CREATE_INVOICE is not null %}
-                {% include 'invoicetemplate.html' %}
-
-                {% elif PO is not null %}
-                {% include 'ManageUser.html' %}
-                {% else %}
-                <h1> Main Content here </h1>
-
-                Mai content
-                {% endif %}
-            </div>
-        </main>
-
-
-
-
-        <!-- page-content" -->
-    </div>
-    <!-- page-wrapper -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-            crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-            crossorigin="anonymous"></script>
+            <!-- page-wrapper -->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+                    crossorigin="anonymous"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+                    crossorigin="anonymous"></script>
 
 </body>
 </html>
