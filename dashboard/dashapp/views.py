@@ -128,13 +128,22 @@ def list_invoices(request):
       result = tspinv.list_invoices(request)
     return result
 
-
+### Divisional Invoice Functionality START
 def list_divinvoices(request):
     if 'uname' not in request.session :
       result = login(request)
     elif'uname' in request.session :
       result = tspdivinv.list_divinvoices(request)
     return result
+
+def invoicediv_delete(request):
+    if 'uname' not in request.session :
+        result = logout(request)
+    else:        
+        result = tspdivinv.invoicediv_delete(request)    
+    return result
+
+### Divisional Invoice Functionality END
       
 
 def invoice_create(request):

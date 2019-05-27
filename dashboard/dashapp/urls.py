@@ -46,6 +46,7 @@ urlpatterns = [path('', views.login, name='login'),
     path('list_ou', views.list_ou, name='list_ou'),
     #Div Invoice
     path('list_divinvoices', views.list_divinvoices, name='list_divinvoices'),
+    path('invoicediv_delete', views.invoicediv_delete, name='invoicediv_delete'),
     #Invoice
     path('sampleinvoice', views.sampleinvoice, name='sampleinvoice'),
     path('list_invoices', views.list_invoices, name='list_invoices'),
