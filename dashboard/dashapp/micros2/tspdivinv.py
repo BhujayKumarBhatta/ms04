@@ -26,8 +26,8 @@ def list_divinvoices(request):
         #if 'uname' in request.session:
         #    del request.session['uname']
         tlclient = tllogin.prep_tlclient_from_session(request)
-        invClient = MSClient(tlclient) 
-        list_invoices = invClient.display('all')  
+        MC2Client = MSClient(tlclient) 
+        list_invoices = MC2Client.list_invoices('all', 'all', 1)  
         template_data = {"list_divinvoices": list_invoices } 
         result = render(request, 'home.html', template_data)        
         return result
@@ -36,13 +36,13 @@ def list_divinvoices(request):
 def invoicediv_delete(request):
    if request.method == 'POST':
         tlclient = tllogin.prep_tlclient_from_session(request)
-        invClient = MSClient(tlclient)
+        MC2Client = MSClient(tlclient)
         invoicenum = request.POST['invoiceno']          
         invoiceno = int(invoicenum)
         if invoiceno > 0:
-             status = invClient.delete_invoice(invoicenum) 
+             status = MC2Client.delete_invoices(invoicenum) 
         else:
-             status = invClient.delete_invoice('all') 
+             status = MC2Client.delete_invoices('all') 
         tlclient = tllogin.prep_tlclient_from_session(request)
         invClient = MSClient(tlclient)
         list_invoices = invClient.display('all')  
