@@ -43,10 +43,8 @@ def invoicediv_delete(request):
              status = MC2Client.delete_invoices(invoicenum) 
         else:
              status = MC2Client.delete_invoices('all') 
-        tlclient = tllogin.prep_tlclient_from_session(request)
-        MC2Client = MSClient(tlclient)
-        list_invoices = MC2Client.list_invoices('all', 'all', 1)
-        template_data = {"list_divinvoices": list_invoices ,"DELETE_INVOICE_STATUS": status} 
+        list_divinvoices = MC2Client.list_invoices('all', 'all', 1)
+        template_data = {"list_divinvoices": list_divinvoices ,"DELETE_INVOICE_STATUS": status} 
         result = render(request, 'home.html', template_data)   
    else:
        tlclient = tllogin.prep_tlclient_from_session(request)

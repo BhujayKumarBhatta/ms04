@@ -64,24 +64,22 @@ def list_invoice_rcom(request):
 def invoice_delete(request):
    if request.method == 'POST':
         tlclient = tllogin.prep_tlclient_from_session(request)
-        invClient = MSClient(tlclient)
+        MC1Client = MSClient(tlclient)
         invoicenum = request.POST['invoiceno']          
         invoiceno = int(invoicenum)
         if invoiceno > 0:
-             status = invClient.delete_invoices(invoicenum) 
+             status = MC1Client.delete_invoices(invoicenum) 
         else:
-             status = invClient.delete_invoices('all') 
+             status = MC1Client.delete_invoices('all') 
         #template_data = {"DELETE_STATUS":"Working Delete","list_invoices":
-        #list_invoices,"ISDELETED":"TRUE" }
-        tlclient = tllogin.prep_tlclient_from_session(request)
-        invClient = MSClient(tlclient)
-        list_invoices = invClient.list_invoices_clo('all','all')  
+        #list_invoices,"ISDELETED":"TRUE" }         
+        list_invoices = MC1Client.list_invoices_clo('all','all')  
         template_data = {"list_invoices": list_invoices ,"DELETE_INVOICE_STATUS": status} 
         result = render(request, 'home.html', template_data)   
    else:
        tlclient = tllogin.prep_tlclient_from_session(request)
-       invClient = MSClient(tlclient)
-       list_invoices = invClient.list_invoices_clo('all','all')  
+       MC1Client = MSClient(tlclient)
+       list_invoices = MC1Client.list_invoices_clo('all','all')  
        template_data = {"list_invoices": list_invoices } 
        result = render(request, 'home.html', template_data)      
    return result    
