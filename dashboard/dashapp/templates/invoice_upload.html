@@ -55,8 +55,11 @@
         <table class="table table-bordered">
             <thead>
                 <tr style="font-size:12px">
-                    <th> Invoice No</th>
+                    <th>Invoice No</th>
                     <th>Upload status</th>
+                    <th>AutoCheck status</th>
+                    <th>Inventory status</th>
+                    <th>BOM Compare status</th>
                 </tr>
             </thead>
             <tbody>
@@ -64,6 +67,11 @@
                 <tr style="font-size:11px">
                     <td>{{ s.invoice_num }} </td>
                     <td> {{ s.save_status }}</td>
+                    <td> {{ s.autocheck_status }}</td>
+                    <td> {{ s.inventory_status }}</td>
+                    <td> {{ s.lnet_status }}</td>
+                    <td> {{ s.bom_comp_result }}</td>
+
                 </tr>
                 {% endfor %}
             </tbody>
