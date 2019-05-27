@@ -581,130 +581,131 @@
                         <li><a href="{% url 'dashapp:logout'%}"><i class="glyphicon glyphicon-lock"></i> Logout</a></li>
                     </ul>
                 </div>
-            </div><!-- /container -->
+            </div>
+            <nav id="sidebar" class="sidebar-wrapper">
+                <div class="sidebar-content">
+                    <div class="sidebar-brand">
+                        <a href="#">TSP Billing</a>
+                        <div id="close-sidebar">
+                            <i class="fas fa-times"></i>
+                        </div>
+                    </div>
+                    <div class="sidebar-header">
+                        <div class="user-pic">
+                            <img class="img-responsive img-rounded" src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
+                                 alt="User picture">
+                        </div>
+                        <div class="user-info">
+                            <span class="user-name">
+                                Kiran
+                                <strong>Chukka</strong>
+                            </span>
+                            <span class="user-role">Division</span>
+                            <span class="user-status">
+                                <i class="fa fa-circle"></i>
+                                <span>Online</span>
+                            </span>
+                        </div>
+                    </div>
+                    <ul class="nav navbar-nav">
+
+                        <!-- sidebar-search  -->
+                        <div class="sidebar-menu">
+                            <ul>
+                                <li class="header-menu">
+                                    <span>General</span>
+                                </li>
+                                <li class="sidebar-dropdown">
+                                    <a href="#">
+                                        <i class="fa fa-tachometer-alt"></i>
+                                        <span>Token Leader</span>
+                                        <span class="badge badge-pill badge-warning">New</span>
+                                    </a>
+                                    <div class="sidebar-submenu">
+                                        <ul>
+                                            <li><a href="{% url 'dashapp:list_users'  %}">Users<span class="badge badge-pill badge-success">Pro</span></a></li>
+                                            <li><a href="{% url 'dashapp:list_org'  %}">Organizations</a></li>
+                                            <li><a href="{% url 'dashapp:list_dept'  %}">Department</a></li>
+                                            <li><a href="{% url 'dashapp:list_role'  %}">Role</a> </li>
+                                            <li><a href="{% url 'dashapp:list_ou'  %}">OU</a> </li>
+                                            <li><a href="{% url 'dashapp:list_ou'  %}">OU</a> </li>
+                                            <li><a href="{% url 'dashapp:adduser'  %}">Add User</a> </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="sidebar-dropdown">
+                                    <a href="#">
+                                        <i class="fa fa-shopping-cart"></i>
+                                        <span>Link Inventory</span>
+                                        <span class="badge badge-pill badge-danger">3</span>
+                                    </a>
+                                    <div class="sidebar-submenu">
+                                        <ul>
+                                            <li><a href="{% url 'dashapp:list_links'  %}"> List Links  </a></li>
+                                            <!--<li><a href="{% url 'dashapp:list_test'  %}"> Test Params  </a></li>-->
+                                            <!--<li><a href="#">Add Link</a></li>
+                                <li><a href="{% url 'dashapp:managepayment'  %}">Manage Payment</a></li>
+                                <li><a href="{% url 'dashapp:managelocalnet'  %}">Manage Local Net</a></li>
+                                <li><a href="{% url 'dashapp:managerate'  %}">Manage Rate</a></li>
+                                <li><a href="{% url 'dashapp:manageaddress'  %}">Manage Address</a></li>-->
+                                            <li><a href="{% url 'dashapp:listobjects'  %}">Manage LNet</a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="sidebar-dropdown">
+                                    <a href="#">
+                                        <i class="far fa-gem"></i>
+                                        <span>Manage Invoice</span>
+                                    </a>
+                                    <div class="sidebar-submenu">
+                                        <ul>
+                                            <li><a href="{% url 'dashapp:list_invoices'  %}"> List Invoice  </a></li>
+                                            <li><a href="{% url 'dashapp:invoice_upload'  %}"> Invoice Upload   </a></li>
+                                            <li><a href="{% url 'dashapp:invoice_update_upload'  %}"> Update Invoice Upload</a></li>
+                                            <li><a href="{% url 'dashapp:invoice_rcom_upload'  %}"> Recommend Invoice Upload</a></li>
+                                            <!--<li><a href="{% url 'dashapp:list_invoices_rcom'  %}"> List Invoice Recommendations  </a></li>-->
+                                            <li><a href="{% url 'dashapp:invoice_create'  %}"> Add Invoice  </a></li>
+                                            <li><a href="{% url 'dashapp:invoice_approvals'  %}"> Manage Approvals  </a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="sidebar-dropdown">
+                                    <a href="#">
+                                        <i class="fa fa-chart-line"></i>
+                                        <span>Manage PO</span>
+                                    </a>
+                                    <div class="sidebar-submenu">
+                                        <ul>
+                                            <li><a href="{% url 'dashapp:list_invoices'  %}"><span class="glyphicon glyphicon-envelope"></span> PO</a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+
+                            </ul>
+                        </div>
+                        <!-- sidebar-menu  -->
+                </div>
+                <!-- sidebar-content  -->
+                <div class="sidebar-footer">
+                    <a href="#">
+                        <i class="fa fa-bell"></i>
+                        <span class="badge badge-pill badge-warning notification">3</span>
+                    </a>
+                    <a href="#">
+                        <i class="fa fa-envelope"></i>
+                        <span class="badge badge-pill badge-success notification">7</span>
+                    </a>
+                    <a href="#">
+                        <i class="fa fa-cog"></i>
+                        <span class="badge-sonar"></span>
+                    </a>
+                    <a href="#">
+                        <i class="fa fa-power-off"></i>
+                    </a>
+                </div>
+            </nav><!-- /container -->
         </div>
-        <nav id="sidebar" class="sidebar-wrapper">
-            <div class="sidebar-content">
-                <div class="sidebar-brand">
-                    <a href="#">TSP Billing</a>
-                    <div id="close-sidebar">
-                        <i class="fas fa-times"></i>
-                    </div>
-                </div>
-                <div class="sidebar-header">
-                    <div class="user-pic">
-                        <img class="img-responsive img-rounded" src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
-                             alt="User picture">
-                    </div>
-                    <div class="user-info">
-                        <span class="user-name">
-                            Kiran
-                            <strong>Chukka</strong>
-                        </span>
-                        <span class="user-role">Division</span>
-                        <span class="user-status">
-                            <i class="fa fa-circle"></i>
-                            <span>Online</span>
-                        </span>
-                    </div>
-                </div>
-                <ul class="nav navbar-nav">
-
-                    <!-- sidebar-search  -->
-                    <div class="sidebar-menu">
-                        <ul>
-                            <li class="header-menu">
-                                <span>General</span>
-                            </li>
-                            <li class="sidebar-dropdown">
-                                <a href="#">
-                                    <i class="fa fa-tachometer-alt"></i>
-                                    <span>Token Leader</span>
-                                    <span class="badge badge-pill badge-warning">New</span>
-                                </a>
-                                <div class="sidebar-submenu">
-                                    <ul>
-                                        <li><a href="{% url 'dashapp:list_users'  %}">Users<span class="badge badge-pill badge-success">Pro</span></a></li>
-                                        <li><a href="{% url 'dashapp:list_org'  %}">Organizations</a></li>
-                                        <li><a href="{% url 'dashapp:list_dept'  %}">Department</a></li>
-                                        <li><a href="{% url 'dashapp:list_role'  %}">Role</a> </li>
-                                        <li><a href="{% url 'dashapp:list_ou'  %}">OU</a> </li>
-                                        <li><a href="{% url 'dashapp:list_ou'  %}">OU</a> </li>
-                                        <li><a href="{% url 'dashapp:adduser'  %}">Add User</a> </li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="sidebar-dropdown">
-                                <a href="#">
-                                    <i class="fa fa-shopping-cart"></i>
-                                    <span>Link Inventory</span>
-                                    <span class="badge badge-pill badge-danger">3</span>
-                                </a>
-                                <div class="sidebar-submenu">
-                                    <ul>
-                                        <li><a href="{% url 'dashapp:list_links'  %}"> List Links  </a></li>
-                                        <!--<li><a href="{% url 'dashapp:list_test'  %}"> Test Params  </a></li>-->
-                                        <!--<li><a href="#">Add Link</a></li>
-                                    <li><a href="{% url 'dashapp:managepayment'  %}">Manage Payment</a></li>
-                                    <li><a href="{% url 'dashapp:managelocalnet'  %}">Manage Local Net</a></li>
-                                    <li><a href="{% url 'dashapp:managerate'  %}">Manage Rate</a></li>
-                                    <li><a href="{% url 'dashapp:manageaddress'  %}">Manage Address</a></li>-->
-                                        <li><a href="{% url 'dashapp:listobjects'  %}">Manage LNet</a></li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="sidebar-dropdown">
-                                <a href="#">
-                                    <i class="far fa-gem"></i>
-                                    <span>Manage Invoice</span>
-                                </a>
-                                <div class="sidebar-submenu">
-                                    <ul>
-                                        <li><a href="{% url 'dashapp:list_invoices'  %}"> List Invoice  </a></li>
-                                        <li><a href="{% url 'dashapp:invoice_upload'  %}"> Invoice Upload   </a></li>
-                                        <li><a href="{% url 'dashapp:invoice_update_upload'  %}"> Update Invoice Upload</a></li>
-                                        <li><a href="{% url 'dashapp:invoice_rcom_upload'  %}"> Recommend Invoice Upload</a></li>
-                                        <!--<li><a href="{% url 'dashapp:list_invoices_rcom'  %}"> List Invoice Recommendations  </a></li>-->
-                                        <li><a href="{% url 'dashapp:invoice_create'  %}"> Add Invoice  </a></li>
-                                        <li><a href="{% url 'dashapp:invoice_approvals'  %}"> Manage Approvals  </a></li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="sidebar-dropdown">
-                                <a href="#">
-                                    <i class="fa fa-chart-line"></i>
-                                    <span>Manage PO</span>
-                                </a>
-                                <div class="sidebar-submenu">
-                                    <ul>
-                                        <li><a href="{% url 'dashapp:list_invoices'  %}"><span class="glyphicon glyphicon-envelope"></span> PO</a></li>
-                                    </ul>
-                                </div>
-                            </li>
-
-                        </ul>
-                    </div>
-                    <!-- sidebar-menu  -->
-            </div>
-            <!-- sidebar-content  -->
-            <div class="sidebar-footer">
-                <a href="#">
-                    <i class="fa fa-bell"></i>
-                    <span class="badge badge-pill badge-warning notification">3</span>
-                </a>
-                <a href="#">
-                    <i class="fa fa-envelope"></i>
-                    <span class="badge badge-pill badge-success notification">7</span>
-                </a>
-                <a href="#">
-                    <i class="fa fa-cog"></i>
-                    <span class="badge-sonar"></span>
-                </a>
-                <a href="#">
-                    <i class="fa fa-power-off"></i>
-                </a>
-            </div>
-        </nav>
+        
 
 
 
