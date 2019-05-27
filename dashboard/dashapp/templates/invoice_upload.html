@@ -59,6 +59,7 @@
                     <th>Upload status</th>
                     <th>AutoCheck status</th>
                     <th>Inventory status</th>
+                    <th>Local N/W status</th>
                     <th>BOM Compare status</th>
                 </tr>
             </thead>
@@ -67,10 +68,10 @@
                 <tr style="font-size:11px">
                     <td>{{ s.invoice_num }} </td>
                     <td> {{ s.save_status }}</td>
-                    <td> {{ s.autocheck_status }}</td>
-                    <td> {{ s.inventory_status }}</td>
-                    <td> {{ s.lnet_status }}</td>
-                    <td> {{ s.bom_comp_result }}</td>
+                    <td> {{ s.invoice_json.autocheck_status }}</td>
+                    <td> {{ s.invoice_json.inventory_status }}</td>
+                    <td> {{ s.invoice_json.lnet_status }}</td>
+                    <td> {{ s.invoice_json.bom_comp_result }}</td>
 
                 </tr>
                 {% endfor %}
