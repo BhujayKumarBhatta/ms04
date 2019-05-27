@@ -602,13 +602,26 @@
                                         <div class="panel-body">
                                             <ul class="nav navbar-nav">
                                                 <li><a href="{% url 'dashapp:list_invoices'  %}"> List Invoice  </a></li>
-                                                <li><a href="{% url 'dashapp:list_divinvoices'  %}"> Division Invoice  </a></li>   
+                                                <li><a href="{% url 'dashapp:list_divinvoices'  %}"> Division Invoice  </a></li>
                                                 <li><a href="{% url 'dashapp:invoice_upload'  %}"> Invoice Upload   </a></li>
                                                 <li><a href="{% url 'dashapp:invoice_update_upload'  %}"> Update Invoice Upload</a></li>
                                                 <li><a href="{% url 'dashapp:invoice_rcom_upload'  %}"> Recommend Invoice Upload</a></li>
                                                 <!--<li><a href="{% url 'dashapp:list_invoices_rcom'  %}"> List Invoice Recommendations  </a></li>-->
                                                 <li><a href="{% url 'dashapp:invoice_create'  %}"> Add Invoice  </a></li>
                                                 <li><a href="{% url 'dashapp:invoice_approvals'  %}"> Manage Approvals  </a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="panel panel-default" id="dropdown">
+                                    <a data-toggle="collapse" href="#dropdown-lvl4">
+                                        <span class="glyphicon glyphicon-gift"></span> Infobhan<span class="caret"></span>
+                                    </a>
+                                    <!-- Dropdown level 1 -->
+                                    <div id="dropdown-lvl4" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <ul class="nav navbar-nav">
+                                                <li><a href="{% url 'dashapp:list_divinvoices'  %}"> Infobhan Invoice  </a></li>
                                             </ul>
                                         </div>
                                     </div>
