@@ -319,7 +319,7 @@
                 <td>{{ Inv.tspdoc.maindata.billingdateto}} </td>
                 <td>{{ Inv.tspdoc.maindata.speed}} </td>
                 <td>{{ Inv.current_doc.remarks}} </td>
-                <td>{{ Inv.current_doc.InvoiceDate}} </td>
+                <td>{{ Inv.current_doc.InvoiceDate}} </td> 
                 <td>{{ Inv.current_doc.servicetype}} </td>
             </tr>
             
@@ -327,7 +327,7 @@
             <tr data-id="{{ Inv.tspdoc.maindata.circuitid }}_rcom" data-parent="{{Inv.tspdoc.maindata.invoiceno}}" data-level="2"
                 style=" background-color:lightcyan">
                 <td colspan="10">
-                    <table>
+                    <table class="table table-hover table-bordepink" style="padding-left:50px">
                         <tr>
                             <td>Inventory Status</td>
                             <td>{{ Inv.autochk.inventory_status }}</td>
