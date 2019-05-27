@@ -216,25 +216,6 @@
             <div class="col-sm-8"><h3><b>Manage Division Invoice</b> Details</h3></div>
         </div>
     </div>
-    <table ID="tbllegend" style="width:300px;font-size:9px;font-weight:bold;color:blue" border="1">
-        <tr>
-            <td style="width:30%;"> </td>
-            <td>TSP Recent Entries</td>
-        </tr>
-        <tr>
-            <td style="width:30%; background-color:#a6c06d"></td>
-            <td>ITC Recommendations </td>
-        </tr>
-        <tr>
-            <td style="width:30%;background-color:lightgray"> </td>
-            <td>TSP Old Entries </td>
-        </tr>
-        <tr>
-            <td style="width:30%;background-color:lightgreen"> </td>
-            <td>TSP Accepted</td>
-        </tr>
-    </table>
-
 
     <table align="center" width="90%" style="padding-left: 150px">
         <tr>
@@ -254,7 +235,6 @@
             </td>
         </tr>
     </table>
-    {{list_divinvoices}}
     <table id="tree-table" class="table table-hover table-bordepink" width="1500">
         <thead>
             <tr style="font-size:12px">
@@ -319,11 +299,11 @@
                 <td>{{ Inv.tspdoc.maindata.billingdateto}} </td>
                 <td>{{ Inv.tspdoc.maindata.speed}} </td>
                 <td>{{ Inv.current_doc.remarks}} </td>
-                <td>{{ Inv.current_doc.InvoiceDate}} </td> 
+                <td>{{ Inv.current_doc.InvoiceDate}} </td>
                 <td>{{ Inv.current_doc.servicetype}} </td>
             </tr>
-            
-            
+
+
             <tr data-id="{{ Inv.tspdoc.maindata.circuitid }}_rcom" data-parent="{{Inv.tspdoc.maindata.invoiceno}}" data-level="2"
                 style=" background-color:lightcyan">
                 <td colspan="10">
@@ -347,8 +327,8 @@
                     </table>
                 </td>
             </tr>
-           
-            
+
+
             {% endfor %}
         </tbody>
     </table>

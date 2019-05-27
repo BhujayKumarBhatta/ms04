@@ -561,6 +561,28 @@
         <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
             <i class="fas fa-bars"></i>
         </a>
+        <div id="top-nav" class="navbar navbar-inverse navbar-static-top" style="position:fixed;background-color:#1c5e55;width:100%;">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-toggle"></span>
+                    </button><br />
+                    <a class="navbar-brand" href="#" style="color:white;font-size:25px">TSP Billing</a>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#"><i class="glyphicon glyphicon-user"></i>  {{ user_details.username }} <span class="caret"></span></a>
+                            <ul id="g-account-menu" class="dropdown-menu" role="menu">
+                                <li><a href="#">My Profile</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="{% url 'dashapp:logout'%}"><i class="glyphicon glyphicon-lock"></i> Logout</a></li>
+                    </ul>
+                </div>
+            </div><!-- /container -->
+        </div>
         <nav id="sidebar" class="sidebar-wrapper">
             <div class="sidebar-content">
                 <div class="sidebar-brand">
@@ -623,10 +645,10 @@
                                         <li><a href="{% url 'dashapp:list_links'  %}"> List Links  </a></li>
                                         <!--<li><a href="{% url 'dashapp:list_test'  %}"> Test Params  </a></li>-->
                                         <!--<li><a href="#">Add Link</a></li>
-    <li><a href="{% url 'dashapp:managepayment'  %}">Manage Payment</a></li>
-    <li><a href="{% url 'dashapp:managelocalnet'  %}">Manage Local Net</a></li>
-    <li><a href="{% url 'dashapp:managerate'  %}">Manage Rate</a></li>
-    <li><a href="{% url 'dashapp:manageaddress'  %}">Manage Address</a></li>-->
+                                    <li><a href="{% url 'dashapp:managepayment'  %}">Manage Payment</a></li>
+                                    <li><a href="{% url 'dashapp:managelocalnet'  %}">Manage Local Net</a></li>
+                                    <li><a href="{% url 'dashapp:managerate'  %}">Manage Rate</a></li>
+                                    <li><a href="{% url 'dashapp:manageaddress'  %}">Manage Address</a></li>-->
                                         <li><a href="{% url 'dashapp:listobjects'  %}">Manage LNet</a></li>
                                     </ul>
                                 </div>
