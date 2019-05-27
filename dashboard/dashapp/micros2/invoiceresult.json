@@ -340,6 +340,222 @@
       "save_status": "ready for verifiaction workflow",
       "invoice_num": "4"
     }
+  ],
+
+  [
+    {
+      "tspdoc": {
+        "auditinfo": {
+          "logged_in_user_email": "user1",
+          "logged_in_user_org": "org1",
+          "logged_in_user_org_unit": "ou1",
+          "requestid": "9b2061cf-0758-4291-a5c2-a8da640a05ff",
+          "api_call_time_stamp": { "$date": 1558970785731 },
+          "logged_in_user_dept": "dept1",
+          "client_address": "10.174.112.33"
+        },
+        "revnum": 0,
+        "maindata": {
+          "servicetype": "GXDN",
+          "invoiceno": "1",
+          "circuitid": "UploadCircuit",
+          "billingdatefrom": "02-12-2018",
+          "infoid": "S0000000003",
+          "slno": 1,
+          "billingactivity": "None",
+          "customername": "ABC Limited",
+          "state": "GG",
+          "city": "Gujrat",
+          "accountno": "XDN038414",
+          "gstno": "None",
+          "invoicedate": "15-03-2019",
+          "total": 234455,
+          "customerid": "XI000555",
+          "speed": "4 mbps",
+          "taxname": "USA SGST@9%+CGST@9%",
+          "premisename": "52454",
+          "pin": 52454,
+          "siteid": "52454",
+          "fullsiteaddress": "This looks like a good address",
+          "tsp": "TATA",
+          "division": "POPCompany",
+          "arc": "2400",
+          "billingdateto": "01-03-2019",
+          "remarks": "OK",
+          "premiseno": "52454"
+        },
+        "status": "initialUpload",
+        "creation_time": { "$date": 1558950997982 }
+      },
+      "preview_lst": "None",
+      "sreview_lst": "None",
+      "autochk": {
+        "inventory_status": "No link in inventory by the infoops id S0000000003",
+        "lnet_status": "No link in lnet by the infoops id S0000000003",
+        "autocheck_status": "Failed",
+        "bom_comp_result": []
+      }
+    },
+    {
+      "tspdoc": {
+        "auditinfo": {
+          "logged_in_user_email": "user1",
+          "logged_in_user_org": "org1",
+          "logged_in_user_org_unit": "ou1",
+          "requestid": "9b2061cf-0758-4291-a5c2-a8da640a05ff",
+          "api_call_time_stamp": { "$date": 1558970785731 },
+          "logged_in_user_dept": "dept1",
+          "client_address": "10.174.112.33"
+        },
+        "revnum": 0,
+        "maindata": {
+          "servicetype": "GXDN",
+          "invoiceno": "2",
+          "circuitid": "LJLKJKJKGJ545425",
+          "billingdatefrom": "02-04-2018",
+          "infoid": "S0000000010",
+          "slno": 2,
+          "billingactivity": "None",
+          "customername": "ABC Limited",
+          "state": "KA",
+          "city": "Gujrat",
+          "accountno": "XDN043451",
+          "gstno": "None",
+          "invoicedate": "15-03-2019",
+          "total": 12234,
+          "customerid": "XI000555",
+          "speed": "18 Mbps",
+          "taxname": " GErmany SGST SGST@9%+CGST@9%",
+          "premisename": "5245",
+          "pin": 5245,
+          "siteid": "5245",
+          "fullsiteaddress": "65 Hempstead Turnpike, East Meadow NY 11554",
+          "tsp": "AIRTEL",
+          "division": "DIVISON1",
+          "arc": "765500",
+          "billingdateto": "01-03-2019",
+          "remarks": "OK",
+          "premiseno": "5245"
+        },
+        "status": "initialUpload",
+        "creation_time": { "$date": 1558950998123 }
+      },
+      "preview_lst": "None",
+      "sreview_lst": "None",
+      "autochk": {
+        "inventory_status": "No link in inventory by the infoops id S0000000010",
+        "lnet_status": "No link in lnet by the infoops id S0000000010",
+        "autocheck_status": "Failed",
+        "bom_comp_result": []
+      }
+    },
+    {
+      "tspdoc": {
+        "auditinfo": {
+          "logged_in_user_email": "user1",
+          "logged_in_user_org": "org1",
+          "logged_in_user_org_unit": "ou1",
+          "requestid": "9b2061cf-0758-4291-a5c2-a8da640a05ff",
+          "api_call_time_stamp": { "$date": 1558970785731 },
+          "logged_in_user_dept": "dept1",
+          "client_address": "10.174.112.33"
+        },
+        "revnum": 0,
+        "maindata": {
+          "servicetype": "GXDN",
+          "invoiceno": "3",
+          "circuitid": "SJJJJ796976858523",
+          "billingdatefrom": "02-04-2018",
+          "infoid": "S0000000026",
+          "slno": 3,
+          "billingactivity": "None",
+          "customername": "ABC Limited",
+          "state": "ff",
+          "city": "Gujrat",
+          "accountno": "XDN005555",
+          "gstno": "None",
+          "invoicedate": "15-03-2019",
+          "total": 8765,
+          "customerid": "XI000555",
+          "speed": "100 Mbps",
+          "taxname": "Bhopal SGST@9%+CGST@9%",
+          "premisename": "5245",
+          "pin": 5245,
+          "siteid": "5245",
+          "fullsiteaddress": "1 Centereach Mall, Centereach NY 11720",
+          "tsp": "RIL",
+          "division": "DIVISON1",
+          "arc": "98987",
+          "billingdateto": "01-03-2019",
+          "remarks": "OK",
+          "premiseno": "5245"
+        },
+        "status": "initialUpload",
+        "creation_time": { "$date": 1558950998259 }
+      },
+      "preview_lst": "None",
+      "sreview_lst": "None",
+      "autochk": {
+        "inventory_status": "No link in inventory by the infoops id S0000000026",
+        "lnet_status": "No link in lnet by the infoops id S0000000026",
+        "autocheck_status": "Failed",
+        "bom_comp_result": []
+      }
+    },
+    {
+      "tspdoc": {
+        "auditinfo": {
+          "logged_in_user_email": "user1",
+          "logged_in_user_org": "org1",
+          "logged_in_user_org_unit": "ou1",
+          "requestid": "9b2061cf-0758-4291-a5c2-a8da640a05ff",
+          "api_call_time_stamp": { "$date": 1558970785731 },
+          "logged_in_user_dept": "dept1",
+          "client_address": "10.174.112.33"
+        },
+        "revnum": 0,
+        "maindata": {
+          "servicetype": "GXDN",
+          "invoiceno": "4",
+          "circuitid": "KPK96334",
+          "billingdatefrom": "02-04-2018",
+          "infoid": "S000000001",
+          "slno": 4,
+          "billingactivity": "None",
+          "customername": "ABC Limited",
+          "state": "fdaf",
+          "city": "Nagpur",
+          "accountno": "XDN045164",
+          "gstno": "None",
+          "invoicedate": "15-03-2019",
+          "total": 2345,
+          "customerid": "XI000555",
+          "speed": "11 Mbps",
+          "taxname": "Kunnur SGST@9%+CGST@9%",
+          "premisename": "95",
+          "pin": 95,
+          "siteid": "95",
+          "fullsiteaddress": "1 Washington Ave Extension, Albany NY 12205",
+          "tsp": "TATA",
+          "division": "DIVISON1",
+          "arc": "76555",
+          "billingdateto": "01-03-2019",
+          "remarks": "OK",
+          "premiseno": "95"
+        },
+        "status": "initialUpload",
+        "creation_time": { "$date": 1558950998398 }
+      },
+      "preview_lst": "None",
+      "sreview_lst": "None",
+      "autochk": {
+        "inventory_status": "No link in inventory by the infoops id S000000001",
+        "lnet_status": "No link in lnet by the infoops id S000000001",
+        "autocheck_status": "Failed",
+        "bom_comp_result": []
+      }
+    }
+  ]
   ]
 ]
 
