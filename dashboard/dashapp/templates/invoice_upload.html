@@ -1,5 +1,5 @@
 {% block content %}
- 
+
 <div class="table-wrapper">
     <div class="table-title">
         <div class="row">
@@ -15,7 +15,6 @@
                 {% if UPLOAD_RESULT is not null %}
                 <div class="alert alert-success" role="alert">
                     Invoice file Upload operation completed. View the stauts below<br />
-
                 </div>
                 {% elif EXCEPTION is not null %}
                 <div class="alert alert-danger" role="alert">
@@ -73,10 +72,8 @@
                     <td> {{ s.invoice_json.lnet_status }}</td>
                     <td> {{ s.invoice_json.bom_comp_result }}</td>
 
-                </tr>
+                </tr> 
 
-                invoice_json -{{ s.invoice_json}}
-                 
                 {% endfor %}
             </tbody>
         </table>
