@@ -58,10 +58,6 @@
                 <tr style="font-size:12px">
                     <th>Invoice No</th>
                     <th>Upload status</th>
-
-
-
-
                 </tr>
             </thead>
             <tbody>
@@ -79,7 +75,7 @@
                     <td> {{ s.invoice_json.inventory_status }}</td>
                 </tr>
                 <tr data-id="{{ s.invoice_num }}_lnet" data-parent="{{ s.invoice_num}}" data-level="2" style=" font-size:11px">
-                    <th>Local N/W status</th>                    
+                    <th>Local N/W status</th>
                     <td> {{ s.invoice_json.lnet_status }}</td>
                 </tr>
                 <tr data-id="{{ s.invoice_num }}_bom" data-parent="{{ s.invoice_num}}" data-level="2" style=" font-size:11px">
@@ -98,3 +94,4 @@
     <script src='{% static "dashapp/styles/Bootstrapv337.js" %}' type="text/javascript"></script>
     <script src='{% static "dashapp/styles/jquery-1.12.4.min.js" %}' type="text/javascript"></script>
     <script src='{% static "dashapp/styles/javascript.js" %}' type="text/javascript"></script>
+</div>
