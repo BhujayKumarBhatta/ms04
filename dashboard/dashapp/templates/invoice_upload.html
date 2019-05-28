@@ -266,22 +266,31 @@
                 <td style="width:150px">{{ s.invoice_num }} </td>
                 <td> {{ s.save_status }}</td>
             </tr>
-            <tr data-id="{{ s.invoice_num }}_autocheck" data-parent="{{ s.invoice_num}}" data-level="2" style=" font-size:11px">
-                <td style="width:150px">AutoCheck status</td>
-                <td> {{ s.invoice_json.autocheck_status }}</td>
+             
+            <tr data-id="{{ s.invoice_num }}_rcom" data-parent="{{ s.invoice_num}}" data-level="2"
+                style=" background-color:lightcyan">
+                <td colspan="10">
+                    <table class="table table-hover table-bordepink" style="padding-left:50px;font-size:9px">
+                        <tr>
+                            <td style="width:150px">Inventory Status :</td>
+                            <td>{{  s.invoice_json.inventory_status  }}</td>
+                        </tr>
+                        <tr>
+                            <td style="width:150px">Local Network Status : </td>
+                            <td>{{ s.invoice_json.lnet_status }}</td>
+                        </tr>
+                        <tr>
+                            <td style="width:150px">Auto Check Status : </td>
+                            <td>{{s.invoice_json.autocheck_status  }}</td>
+                        </tr>
+                        <tr>
+                            <td style="width:150px">bom_comp_result : </td>
+                            <td>{{  s.invoice_json.bom_comp_result  }}</td>
+                        </tr>
+                    </table>
+                </td>
             </tr>
-            <tr data-id="{{ s.invoice_num }}_inventory" data-parent="{{ s.invoice_num}}" data-level="2" style=" font-size:11px">
-                <td style="width:150px">Inventory status</td>
-                <td> {{ s.invoice_json.inventory_status }}</td>
-            </tr>
-            <tr data-id="{{ s.invoice_num }}_lnet" data-parent="{{ s.invoice_num}}" data-level="2" style=" font-size:11px">
-                <td style="width:150px">Local N/W status</td>
-                <td> {{ s.invoice_json.lnet_status }}</td>
-            </tr>
-            <tr data-id="{{ s.invoice_num }}_bom" data-parent="{{ s.invoice_num}}" data-level="2" style=" font-size:11px">
-                <td style="width:150px">BOM Compare status</td>
-                <td> {{ s.invoice_json.bom_comp_result }}</td>
-            </tr>
+
             {% endfor %}
         </tbody>
     </table>
