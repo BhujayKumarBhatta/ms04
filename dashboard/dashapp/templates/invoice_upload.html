@@ -53,7 +53,7 @@
                 <div class="col-sm-8"><h3>Upload status</h3></div>
             </div>
         </div>
-        <table class="table table-bordered">
+        <table id="tree-table" class="table table-hover table-bordepink">
             <thead>
                 <tr style="font-size:12px">
                     <th>Invoice No</th>
@@ -79,8 +79,7 @@
                     <td> {{ s.invoice_json.inventory_status }}</td>
                 </tr>
                 <tr data-id="{{ s.invoice_num }}_lnet" data-parent="{{ s.invoice_num}}" data-level="2" style=" font-size:11px">
-                    <th>Local N/W status</th>
-                    <th>Local N/W status</th>
+                    <th>Local N/W status</th>                    
                     <td> {{ s.invoice_json.lnet_status }}</td>
                 </tr>
                 <tr data-id="{{ s.invoice_num }}_bom" data-parent="{{ s.invoice_num}}" data-level="2" style=" font-size:11px">
