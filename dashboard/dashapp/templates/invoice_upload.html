@@ -293,8 +293,17 @@
                         <td>{{s.invoice_json.autocheck_status  }}</td>
                     </tr>
                     <tr>
-                        <td style="width:150px">bom_comp_result : </td>
-                        <td>{{  s.invoice_json.bom_comp_result  }}</td>
+                        <td colspan="2">
+                            <table>
+                                {% for bom in s.invoice_json.bom_comp_result %}
+                                <tr>
+                                    <td>bom.invoice_value</td>
+                                    <td>bom.field</td>
+                                    <td>bom.suggested_value</td>
+                                </tr>
+                                {% endfor %}
+                            </table>
+                        </td>
                     </tr>
                 </table>
             </td>
