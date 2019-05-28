@@ -272,7 +272,7 @@
     </thead>
     <tbody>
         {% for s in UPLOAD_STATUS %}
-        <tr data-id="{{ s.invoice_num}}" data-parent="0" data-level="1" style=" font-size:11px">
+        <tr data-id="{{s.invoice_num}}" data-parent="0" data-level="1" style=" font-size:11px">
             <td style="width:150px">{{ s.invoice_num }} </td>
             <td> {{ s.save_status }}</td>
         </tr>
