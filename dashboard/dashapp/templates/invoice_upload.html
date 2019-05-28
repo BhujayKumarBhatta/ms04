@@ -263,7 +263,7 @@
 
 
 </div>
-<table id="tree-table" class="table table-hover table-bordepink">
+<table  class="table table-hover table-bordepink">
     <thead>
         <tr style="font-size:12px">
             <th>Invoice No</th>
@@ -295,10 +295,15 @@
                     <tr>
                         <td colspan="2">
                             <table>
+                                <thead>
+                                    <th>Field</th>
+                                    <th>Invoice Value</th>
+                                    <th>Suggested value</th>
+                                </thead>
                                 {% for bom in s.invoice_json.bom_comp_result %}
                                 <tr>
-                                    <td>{{bom.invoice_value}}</td>
                                     <td>{{bom.field}}</td>
+                                    <td>{{bom.invoice_value}}</td>
                                     <td>{{bom.suggested_value}}</td>
                                 </tr>
                                 {% endfor %}
