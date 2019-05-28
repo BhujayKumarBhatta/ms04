@@ -262,23 +262,23 @@
             <tbody>
                 {% for s in UPLOAD_STATUS %}
                 <tr data-id="{{ s.invoice_num}}" data-parent="0" data-level="1" style=" font-size:11px">
-                    <td>{{ s.invoice_num }} </td>
+                    <td style="width:150px">{{ s.invoice_num }} </td>
                     <td> {{ s.save_status }}</td>
                 </tr>
                 <tr data-id="{{ s.invoice_num }}_autocheck" data-parent="{{ s.invoice_num}}" data-level="2" style=" font-size:11px">
-                    <th>AutoCheck status</th>
+                    <td style="width:150px">AutoCheck status</td>
                     <td> {{ s.invoice_json.autocheck_status }}</td>
                 </tr>
                 <tr data-id="{{ s.invoice_num }}_inventory" data-parent="{{ s.invoice_num}}" data-level="2" style=" font-size:11px">
-                    <th>Inventory status</th>
+                    <td style="width:150px">Inventory status</td>
                     <td> {{ s.invoice_json.inventory_status }}</td>
                 </tr>
                 <tr data-id="{{ s.invoice_num }}_lnet" data-parent="{{ s.invoice_num}}" data-level="2" style=" font-size:11px">
-                    <th>Local N/W status</th>
+                    <td style="width:150px">Local N/W status</td>
                     <td> {{ s.invoice_json.lnet_status }}</td>
                 </tr>
                 <tr data-id="{{ s.invoice_num }}_bom" data-parent="{{ s.invoice_num}}" data-level="2" style=" font-size:11px">
-                    <th>BOM Compare status</th>
+                    vBOM Compare status</td>
                     <td> {{ s.invoice_json.bom_comp_result }}</td>
                 </tr>
                 {% endfor %}
