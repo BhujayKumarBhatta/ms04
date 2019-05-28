@@ -74,53 +74,53 @@
     </form>
 
     {%if UPLOAD_STATUS is not null%}
-    <div class="table-wrapper">
-        <div class="table-title">
-            <div class="row">
-                <div class="col-sm-8"><h3>Upload status</h3></div>
-            </div>
+
+    <div class="table-title">
+        <div class="row">
+            <div class="col-sm-8"><h3>Upload status</h3></div>
         </div>
-        <div class="container">
-            <table id="tree-table" class="table table-hover table-bordepink">
-                <thead>
-                    <tr style="font-size:12px">
-                        <th>Invoice No</th>
-                        <th>Upload status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for s in UPLOAD_STATUS %}
-                    <tr data-id="{{ s.invoice_num}}" data-parent="0" data-level="1" style=" font-size:11px">
-                        <td style="width:150px">{{ s.invoice_num }} </td>
-                        <td> {{ s.save_status }}</td>
-                    </tr>
-                    <tr data-id="{{ s.invoice_num }}_autocheck" data-parent="{{ s.invoice_num}}" data-level="2" style=" font-size:11px">
-                        <td style="width:150px">AutoCheck status</td>
-                        <td> {{ s.invoice_json.autocheck_status }}</td>
-                    </tr>
-                    <tr data-id="{{ s.invoice_num }}_inventory" data-parent="{{ s.invoice_num}}" data-level="2" style=" font-size:11px">
-                        <td style="width:150px">Inventory status</td>
-                        <td> {{ s.invoice_json.inventory_status }}</td>
-                    </tr>
-                    <tr data-id="{{ s.invoice_num }}_lnet" data-parent="{{ s.invoice_num}}" data-level="2" style=" font-size:11px">
-                        <td style="width:150px">Local N/W status</td>
-                        <td> {{ s.invoice_json.lnet_status }}</td>
-                    </tr>
-                    <tr data-id="{{ s.invoice_num }}_bom" data-parent="{{ s.invoice_num}}" data-level="2" style=" font-size:11px">
-                        <td style="width:150px">BOM Compare status</td>
-                        <td> {{ s.invoice_json.bom_comp_result }}</td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-            </div>
-        </div>
-        {%endif%}
-
-
-
-
-        <script src='{% static "dashapp/styles/Bootstrapv337.js" %}' type="text/javascript"></script>
-        <script src='{% static "dashapp/styles/jquery-1.12.4.min.js" %}' type="text/javascript"></script>
-        <script src='{% static "dashapp/styles/javascript.js" %}' type="text/javascript"></script>
     </div>
+    <div class="container">
+        <table id="tree-table" class="table table-hover table-bordepink">
+            <thead>
+                <tr style="font-size:12px">
+                    <th>Invoice No</th>
+                    <th>Upload status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for s in UPLOAD_STATUS %}
+                <tr data-id="{{ s.invoice_num}}" data-parent="0" data-level="1" style=" font-size:11px">
+                    <td style="width:150px">{{ s.invoice_num }} </td>
+                    <td> {{ s.save_status }}</td>
+                </tr>
+                <tr data-id="{{ s.invoice_num }}_autocheck" data-parent="{{ s.invoice_num}}" data-level="2" style=" font-size:11px">
+                    <td style="width:150px">AutoCheck status</td>
+                    <td> {{ s.invoice_json.autocheck_status }}</td>
+                </tr>
+                <tr data-id="{{ s.invoice_num }}_inventory" data-parent="{{ s.invoice_num}}" data-level="2" style=" font-size:11px">
+                    <td style="width:150px">Inventory status</td>
+                    <td> {{ s.invoice_json.inventory_status }}</td>
+                </tr>
+                <tr data-id="{{ s.invoice_num }}_lnet" data-parent="{{ s.invoice_num}}" data-level="2" style=" font-size:11px">
+                    <td style="width:150px">Local N/W status</td>
+                    <td> {{ s.invoice_json.lnet_status }}</td>
+                </tr>
+                <tr data-id="{{ s.invoice_num }}_bom" data-parent="{{ s.invoice_num}}" data-level="2" style=" font-size:11px">
+                    <td style="width:150px">BOM Compare status</td>
+                    <td> {{ s.invoice_json.bom_comp_result }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {%endif%}
+
+
+
+
+    <script src='{% static "dashapp/styles/Bootstrapv337.js" %}' type="text/javascript"></script>
+    <script src='{% static "dashapp/styles/jquery-1.12.4.min.js" %}' type="text/javascript"></script>
+    <script src='{% static "dashapp/styles/javascript.js" %}' type="text/javascript"></script>
+</div>
