@@ -74,9 +74,9 @@
                     <td> {{ s.invoice_json.bom_comp_result }}</td>
 
                 </tr>
-                1- {{s.invoice_json.autocheck_status}}
-                2-  {{s.autocheck_status}}
+
                 invoice_json -{{ s.invoice_json}}
+                invoice_json -{{ s.invoice_json[0]}}
                 {% endfor %}
             </tbody>
         </table>
