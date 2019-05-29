@@ -260,6 +260,7 @@
             <tr style="font-size:12px">
                 <th></th>
                 <th>Invoice Number</th>
+                <th>Infops ID</th>
                 <th>Circuit ID</th>
                 <th>Division</th>
                 <th>Tax Name</th>
@@ -302,6 +303,7 @@
                     </form>
                 </td>
                 <td data-column="name" style="width:150px">{{ Inv.current_doc.xldata.invoiceno}} </td>
+                <td>{{ Inv.current_doc.xldata.infoid }}</td>
                 <td>{{ Inv.current_doc.xldata.circuitid }}</td>
                 <td>{{ Inv.current_doc.xldata.division }} </td>
                 <td>{{ Inv.current_doc.xldata.taxname }}</td>
@@ -355,6 +357,26 @@
                                 white
                                 {%endif%}"
                                                    value="{{ Inv.current_doc.xldata.invoiceno }}">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th width="150px">InfopsID</th>
+                                        <td width="225px"> {{ Inv.recom_doc.xldata.infoid}}</td>
+                                        <td width="225px" style="background-color:
+                                {% if Inv.recom_doc.xldata.infoid != Inv.current_doc.xldata.infoid%}
+                                pink
+                                {%else%}
+                                transparent
+                                {%endif%}">
+
+                                            <input type="text" id="infoid" name="infoid"
+                                                   style="background-color:
+                                {% if Inv.recom_doc.xldata.infoid != Inv.current_doc.xldata.infoid%}
+                                pink
+                                {%else%}
+                                white
+                                {%endif%}"
+                                                   value="{{ Inv.current_doc.xldata.infoid }}">
                                         </td>
                                     </tr>
                                     <tr>
@@ -734,6 +756,7 @@
                 style="font-size:11px;  background-color:lightgray ">
                 <td></td>
                 <td style="width:150px">{{ Inv.last_doc.xldata.invoiceno}} </td>
+                <td>{{ Inv.last_doc.xldata.infoid }}</td>
                 <td>{{ Inv.last_doc.xldata.circuitid }}</td>
                 <td>{{ Inv.last_doc.xldata.division }} </td>
                 <td>{{ Inv.last_doc.xldata.taxname }}</td>
