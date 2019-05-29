@@ -320,10 +320,30 @@
                             <td style="width:150px">Auto Check Status : </td>
                             <td>{{ Inv.autochk.autocheck_status }}</td>
                         </tr>
+                        
+                        <tr><td colspan="2" style="font-weight:bold;text-align:center"> BOM Result</td></tr>
                         <tr>
-                            <td style="width:150px">bom_comp_result : </td>
-                            <td>{{ Inv.autochk.bom_comp_result }}</td>
+                            <td colspan="2">
+
+                                <table>
+                                    <thead>
+                                    <th>Field</th>
+                                    <th>Invoice Value</th>
+                                    <th>Suggested value</th>
+                                    </thead>
+                                    {% for bom in Inv.autochk.bom_comp_result %}
+                                    <tr>
+                                        <td>{{bom.field}}</td>
+                                        <td>{{bom.invoice_value}}</td>
+                                        <td>{{bom.suggested_value}}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </table>
+                            </td>
                         </tr>
+
+
+
                     </table>
                 </td>
             </tr>
