@@ -278,7 +278,7 @@
                 <td style="width:150px">{{ s.invoice_num }} </td>
                 <td style="background-color:
                                 {% if s.invoice_json.save_status == 'Failed'%}
-                                pink{%else%}green {%endif%}">
+                                pink{%else%}lightgreen {%endif%}">
                     {{ s.save_status }}
                 </td>
             </tr>
@@ -290,7 +290,7 @@
                             <td style="width:150px">Inventory Status :</td>
                             <td style="background-color:
                                 {% if s.invoice_json.inventory_status == 'Failed'%}
-                                pink{%else%}green {%endif%}">
+                                pink{%else%}lightgreen {%endif%}">
                                 {{  s.invoice_json.inventory_status  }}
                             </td>
                         </tr>
@@ -298,7 +298,7 @@
                             <td style="width:150px">Local Network Status : </td>
                             <td style="background-color:
                                 {% if s.invoice_json.lnet_status == 'Failed'%}
-                                pink{%else%}green {%endif%}">
+                                pink{%else%}lightgreen {%endif%}">
                                 {{ s.invoice_json.lnet_status }}
                             </td>
                         </tr>
@@ -306,7 +306,7 @@
                             <td style="width:150px">Auto Check Status : </td>
                             <td style="background-color:
                                 {% if s.invoice_json.autocheck_status == 'Failed'%}
-                                pink{%else%}green {%endif%}">
+                                pink{%else%}lightgreen {%endif%}">
                                 {{s.invoice_json.autocheck_status  }}
                             </td>
                         </tr>
