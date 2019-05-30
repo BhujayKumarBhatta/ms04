@@ -276,7 +276,11 @@
             {% for s in UPLOAD_STATUS %}
             <tr data-id="{{s.invoice_num}}" data-parent="0" data-level="1" style=" font-size:11px;font-weight:bold">
                 <td style="width:150px">{{ s.invoice_num }} </td>
-                <td> {{ s.save_status }}</td>
+                <td style="background-color:
+                                {% if s.invoice_json.save_status == 'Failed'%}
+                                pink{%else%}green {%endif%}">
+                    {{ s.save_status }}
+                </td>
             </tr>
             <tr data-id="{{ s.invoice_num }}_rcom" data-parent="{{ s.invoice_num}}" data-level="2"
                 style=" background-color:lightcyan">
@@ -284,21 +288,33 @@
                     <table class="table table-hover table-bordepink" style="padding-left:50px;font-size:9px">
                         <tr>
                             <td style="width:150px">Inventory Status :</td>
-                            <td>{{  s.invoice_json.inventory_status  }}</td>
+                            <td style="background-color:
+                                {% if s.invoice_json.inventory_status == 'Failed'%}
+                                pink{%else%}green {%endif%}">
+                                {{  s.invoice_json.inventory_status  }}
+                            </td>
                         </tr>
                         <tr>
                             <td style="width:150px">Local Network Status : </td>
-                            <td>{{ s.invoice_json.lnet_status }}</td>
+                            <td style="background-color:
+                                {% if s.invoice_json.lnet_status == 'Failed'%}
+                                pink{%else%}green {%endif%}">
+                                {{ s.invoice_json.lnet_status }}
+                            </td>
                         </tr>
                         <tr>
                             <td style="width:150px">Auto Check Status : </td>
-                            <td>{{s.invoice_json.autocheck_status  }}</td>
+                            <td style="background-color:
+                                {% if s.invoice_json.autocheck_status == 'Failed'%}
+                                pink{%else%}green {%endif%}">
+                                {{s.invoice_json.autocheck_status  }}
+                            </td>
                         </tr>
                         <tr><td colspan="2" style="font-weight:bold;text-align:center"> BOM Result</td></tr>
                         <tr>
                             <td colspan="2">
                                 <div class="table-wrapper">
-                                    <table>
+                                    <table  class="table table-hover table-bordepink">
                                         <thead>
                                         <th>Field</th>
                                         <th>Invoice Value</th>
