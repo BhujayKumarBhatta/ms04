@@ -245,7 +245,7 @@
             </div>
         </div>
     </form>
-     
+
     {%if UPLOAD_STATUS is not null%}
     <div class="table-wrapper">
         <div class="table-title">
@@ -274,7 +274,7 @@
         </thead>
         <tbody>
             {% for s in UPLOAD_STATUS %}
-            <tr data-id="{{s.invoice_num}}" data-parent="0" data-level="1" style=" font-size:11px">
+            <tr data-id="{{s.invoice_num}}" data-parent="0" data-level="1" style=" font-size:11px;font-weight:bold">
                 <td style="width:150px">{{ s.invoice_num }} </td>
                 <td> {{ s.save_status }}</td>
             </tr>
@@ -297,21 +297,22 @@
                         <tr><td colspan="2" style="font-weight:bold;text-align:center"> BOM Result</td></tr>
                         <tr>
                             <td colspan="2">
-
-                                <table>
-                                    <thead>
-                                    <th>Field</th>
-                                    <th>Invoice Value</th>
-                                    <th>Suggested value</th>
-                                    </thead>
-                                    {% for bom in s.invoice_json.bom_comp_result %}
-                                    <tr>
-                                        <td>{{bom.field}}</td>
-                                        <td>{{bom.invoice_value}}</td>
-                                        <td>{{bom.suggested_value}}</td>
-                                    </tr>
-                                    {% endfor %}
-                                </table>
+                                <div class="table-wrapper">
+                                    <table>
+                                        <thead>
+                                        <th>Field</th>
+                                        <th>Invoice Value</th>
+                                        <th>Suggested value</th>
+                                        </thead>
+                                        {% for bom in s.invoice_json.bom_comp_result %}
+                                        <tr>
+                                            <td>{{bom.field}}</td>
+                                            <td>{{bom.invoice_value}}</td>
+                                            <td>{{bom.suggested_value}}</td>
+                                        </tr>
+                                        {% endfor %}
+                                    </table>
+                                </div>
                             </td>
                         </tr>
                     </table>
