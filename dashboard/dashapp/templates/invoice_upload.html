@@ -319,8 +319,8 @@
                                         {% for bom in s.invoice_json.bom_comp_result %}
                                         <tr>
                                             <td>{{bom.field}}</td>
-                                            <td>{{bom.invoice_value}}</td>
-                                            <td>{{bom.suggested_value}}</td>
+                                            <td style="width:250px">{{bom.invoice_value}}</td>
+                                            <td style="width:250px">{{bom.suggested_value}}</td>
                                         </tr>
                                         {% endfor %}
                                     </table>
