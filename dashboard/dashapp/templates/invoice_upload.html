@@ -3,6 +3,19 @@
 {% load static %}
 
 <style type="text/css">
+    .failed {
+        color: #a94442;
+        background-color: #f2dede;
+        border-color: #ebccd1 ;
+        border-top-color: #e4b9c0
+    }
+
+    .success {
+        color: #3c763d;
+        background-color: #dff0d8;
+        border-color: #d6e9c6 ;
+        border-top-color: #c9e2b3
+    }
 
     input[type=text] {
         width: 100%;
@@ -275,7 +288,7 @@
         <tbody>
             {% for s in UPLOAD_STATUS %}
             <tr data-id="{{s.invoice_num}}" data-parent="0" data-level="1" style=" font-size:11px;font-weight:bold">
-                <td style="width:150px" >{{ s.invoice_num }} </td>
+                <td style="width:150px">{{ s.invoice_num }} </td>
                 <td>
                     {{ s.save_status }}
                 </td>
@@ -284,33 +297,35 @@
                 style=" background-color:lightcyan">
                 <td colspan="10">
                     <table class="table table-hover table-bordepink" style="padding-left:50px;font-size:9px">
-                        <tr>
+                        <tr class="{% if 'No link in inventory' in s.invoice_json.inventory_status or s.invoice_json.inventory_status == 'Passed' %}
+                            failed
+                             {%else%}
+                            success 
+                            {% endif %}
+                            ">
                             <td style="width:200px">Inventory Status :</td>
-                            <td style="width:80px;background-color:
-                                {% if s.invoice_json.inventory_status == 'Failed'%}
-                                pink{%else%}lightgreen {%endif%}">
+                            <td style="font-weight:bold">
                                 {{  s.invoice_json.inventory_status  }}
-                            </td> 
-                        
+                            </td>
+                        </tr>
+                        <tr>
                             <td style="width:200px">Local Network Status : </td>
-                            <td style="width:80px;background-color:
-                                {% if s.invoice_json.lnet_status == 'Failed'%}
-                                pink{%else%}lightgreen {%endif%}">
+                            <td style="font-weight:bold">
                                 {{ s.invoice_json.lnet_status }}
                             </td>
-                       
+                        </tr>
+                        <tr>
                             <td style="width:200px">Auto Check Status : </td>
-                            <td style="width:80px;background-color:
-                                {% if s.invoice_json.autocheck_status == 'Failed'%}
-                                pink{%else%}lightgreen {%endif%}">
+                            <td style="font-weight:bold">
                                 {{s.invoice_json.autocheck_status  }}
                             </td>
                         </tr>
+
                         <tr><td colspan="10" style="font-weight:bold;text-align:center"> BOM Result</td></tr>
                         <tr>
                             <td colspan="10">
                                 <div class="table-wrapper">
-                                    <table  class="table table-hover table-bordepink">
+                                    <table class="table table-hover table-bordepink">
                                         <thead>
                                         <th>Field</th>
                                         <th>Invoice Value</th>
