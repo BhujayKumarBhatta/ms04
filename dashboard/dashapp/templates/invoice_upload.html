@@ -242,12 +242,12 @@
             </td>
         </tr>
     </table>
-
-    <form action="{% url 'dashapp:invoice_dwndformat' %}" method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        <button type="submit" class="btn btn-danger btn-primary"   >Download XL format</button>
-    </form>
-
+    <div style="text-align:right">
+        <form action="{% url 'dashapp:invoice_dwndformat' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-link btn-md">Download XL format</button>
+        </form>
+    </div>
 
     <form method="post" class="md-form" enctype="multipart/form-data">
         {% csrf_token %}
