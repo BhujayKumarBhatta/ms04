@@ -285,28 +285,28 @@
                 <td colspan="10">
                     <table class="table table-hover table-bordepink" style="padding-left:50px;font-size:9px">
                         <tr>
-                            <td style="width:150px">Inventory Status :</td>
-                            <td style="background-color:
+                            <td>Inventory Status :</td>
+                            <td style="width:100px;background-color:
                                 {% if s.invoice_json.inventory_status == 'Failed'%}
                                 pink{%else%}lightgreen {%endif%}">
                                 {{  s.invoice_json.inventory_status  }}
                             </td>
                         
-                            <td style="width:150px">Local Network Status : </td>
-                            <td style="background-color:
+                            <td >Local Network Status : </td>
+                            <td style="width:100px;background-color:
                                 {% if s.invoice_json.lnet_status == 'Failed'%}
                                 pink{%else%}lightgreen {%endif%}">
                                 {{ s.invoice_json.lnet_status }}
                             </td>
                        
-                            <td style="width:150px">Auto Check Status : </td>
-                            <td style="background-color:
+                            <td>Auto Check Status : </td>
+                            <td style="width:100px;background-color:
                                 {% if s.invoice_json.autocheck_status == 'Failed'%}
                                 pink{%else%}lightgreen {%endif%}">
                                 {{s.invoice_json.autocheck_status  }}
                             </td>
                         </tr>
-                        <tr><td colspan="2" style="font-weight:bold;text-align:center"> BOM Result</td></tr>
+                        <tr><td colspan="10" style="font-weight:bold;text-align:center"> BOM Result</td></tr>
                         <tr>
                             <td colspan="2">
                                 <div class="table-wrapper">
