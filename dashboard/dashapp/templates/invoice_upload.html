@@ -297,10 +297,10 @@
                 style=" background-color:lightcyan">
                 <td colspan="10">
                     <table class="table table-hover table-bordepink" style="padding-left:50px;font-size:9px">
-                        <tr class="{% if 'No link in inventory' in s.invoice_json.inventory_status or s.invoice_json.inventory_status == 'Passed' %}
+                        <tr class="{% if 'No link in inventory' in s.invoice_json.inventory_status or s.invoice_json.inventory_status != 'Passed' %}
                             failed
                              {%else%}
-                            success 
+                            success
                             {% endif %}
                             ">
                             <td style="width:200px">Inventory Status :</td>
@@ -308,13 +308,23 @@
                                 {{  s.invoice_json.inventory_status  }}
                             </td>
                         </tr>
-                        <tr>
+                        <tr class="{% if 'No link in ' in s.invoice_json.lnet_status or s.invoice_json.lnet_status != 'Passed' %}
+                            failed
+                             {%else%}
+                            success
+                            {% endif %}
+                            ">
                             <td style="width:200px">Local Network Status : </td>
                             <td style="font-weight:bold">
                                 {{ s.invoice_json.lnet_status }}
                             </td>
                         </tr>
-                        <tr>
+                        <tr class="{% if 'No link in ' in s.autocheck_status.lnet_status or s.invoice_json.autocheck_status != 'Passed' %}
+                            failed
+                             {%else%}
+                            success
+                            {% endif %}
+                            ">
                             <td style="width:200px">Auto Check Status : </td>
                             <td style="font-weight:bold">
                                 {{s.invoice_json.autocheck_status  }}
