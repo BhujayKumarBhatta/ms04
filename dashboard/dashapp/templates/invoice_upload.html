@@ -243,6 +243,11 @@
         </tr>
     </table>
 
+    <form action="{% url 'dashapp:invoice_dwndformat' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger btn-primary"   >Download XL format</button>
+    </form>
+
 
     <form method="post" class="md-form" enctype="multipart/form-data">
         {% csrf_token %}
@@ -288,10 +293,10 @@
         <tbody>
             {% for s in UPLOAD_STATUS %}
             <tr data-id="{{s.invoice_num}}" data-parent="0" data-level="1" style=" font-size:11px;font-weight:bold"
-                 class="{% if 'ready for verifiaction' in s.invoice_num or s.invoice_num != 'Passed' %}
-                            failed
-                             {%else%}
+                 class="{% if 'ready for verifiaction' in s.invoice_num or s.invoice_num == 'Passed' %}
                             success
+                             {%else%}
+                            failed
                             {% endif %}
                             ">
               

@@ -176,6 +176,13 @@ def invoice_upload(request):
         result = tspinv.invoice_upload(request)    
     return result
 
+def invoice_dwndformat(request):
+    if 'uname' not in request.session :
+        result = logout(request)
+    else:
+        result = tspinv.downloadinvoicexlformat(request)    
+    return result
+
 
 def view_upload(request):
     if 'uname' not in request.session :

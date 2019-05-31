@@ -3,7 +3,7 @@ import sys
 import json
 import mimetypes
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
 from django.shortcuts import render
 from tokenleaderclient.configs.config_handler import Configs    
 from tokenleaderclient.client.client import Client 
@@ -18,6 +18,18 @@ from django.core.files.storage import FileSystemStorage
 from werkzeug.utils import secure_filename
 from dashapp.tokenleader import tllogin
 from dashapp.micros1.invoiceForm import invoiceForm
+
+
+
+def downloadinvoicexlformat(request):
+    file_path = '/home/ubuntu/dashboard/dashboard/sample-invoice-xl.xlsx'
+    if os.path.exists(file_path):
+        with open(file_path, 'rb') as fh:
+            response = HttpResponse(fh.read(), content_type="application/vnd.ms-excel")
+            response['Content-Disposition'] = 'inline; filename=' + os.path.basename(file_path)
+            return response
+    raise Http404
+
 
 def list_invoices2(request,invoicnum):
     if request.method == 'POST': 

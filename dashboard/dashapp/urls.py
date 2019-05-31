@@ -53,6 +53,8 @@ urlpatterns = [path('', views.login, name='login'),
     path('list_invoices_rcom', views.list_invoices_rcom, name='list_invoices_rcom'),    
     path('invoice_upload', views.invoice_upload, name='invoice_upload'),
     path('view_upload', views.view_upload, name='view_upload'),
+    path('invoice_dwndformat', views.invoice_dwndformat, name='invoice_dwndformat'),   
+
     path('invoice_update_upload', views.invoice_update_upload, name='invoice_update_upload')
     ,path('invoice_rcom_upload', views.invoice_rcom_upload, name='invoice_rcom_upload')
     ,path('add_model', views.add_model, name='add_model')    
