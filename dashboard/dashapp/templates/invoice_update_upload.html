@@ -99,18 +99,89 @@
                 <div class="col-sm-8"><h3>Upload status</h3></div>
             </div>
         </div>
-        <table class="table table-bordered">
+        <table class="table table-hover table-bordepink">
             <thead>
                 <tr style="font-size:12px">
-                    <th> Invoice No</th>
+                    <th>Invoice No</th>
                     <th>Upload status</th>
                 </tr>
             </thead>
             <tbody>
-                {% for item in UPLOAD_RESULT %}
-                <tr style="font-size:11px">
-                    <td> {{ item.invoice_num }} </td>
-                    <td> {{ item.save_status }} </td>
+                {% for s in UPLOAD_STATUS %}
+                <tr data-id="{{s.invoice_num}}" data-parent="0" data-level="1" style=" font-size:11px;font-weight:bold"
+                    class="{% if 'ready for verifiaction' in s.invoice_num or s.invoice_num == 'Passed' %}
+                            success
+                             {%else%}
+                            failed
+                            {% endif %}
+                            ">
+
+                    <td style="width:150px">{{ s.invoice_num }} </td>
+                    <td>
+                        {{ s.save_status }}
+                    </td>
+                </tr>
+                <tr data-id="{{ s.invoice_num }}_rcom" data-parent="{{ s.invoice_num}}" data-level="2"
+                    style=" background-color:lightcyan">
+                    <td colspan="10">
+                        <table class="table table-hover table-bordepink" style="padding-left:50px;font-size:9px">
+                            <tr class="{% if 'No link in inventory' in s.invoice_json.inventory_status or s.invoice_json.inventory_status != 'Passed' %}
+                            failed
+                             {%else%}
+                            success
+                            {% endif %}
+                            ">
+                                <td style="width:200px">Inventory Status :</td>
+                                <td style="font-weight:bold">
+                                    {{  s.invoice_json.inventory_status  }}
+                                </td>
+                            </tr>
+                            <tr class="{% if 'No link in ' in s.invoice_json.lnet_status or s.invoice_json.lnet_status != 'Passed' %}
+                            failed
+                             {%else%}
+                            success
+                            {% endif %}
+                            ">
+                                <td style="width:200px">Local Network Status : </td>
+                                <td style="font-weight:bold">
+                                    {{ s.invoice_json.lnet_status }}
+                                </td>
+                            </tr>
+                            <tr class="{% if 'No link in ' in s.autocheck_status.lnet_status or s.invoice_json.autocheck_status != 'Passed' %}
+                            failed
+                             {%else%}
+                            success
+                            {% endif %}
+                            ">
+                                <td style="width:200px">Auto Check Status : </td>
+                                <td style="font-weight:bold">
+                                    {{s.invoice_json.autocheck_status  }}
+                                </td>
+                            </tr>
+
+                            <tr><td colspan="10" style="font-weight:bold;text-align:center"> BOM Result</td></tr>
+                            <tr>
+                                <td colspan="10">
+                                    <div class="table-wrapper">
+                                        <table class="table table-hover table-bordepink">
+                                            <thead>
+                                            <th>Field</th>
+                                            <th>Invoice Value</th>
+                                            <th>Suggested value</th>
+                                            </thead>
+                                            {% for bom in s.invoice_json.bom_comp_result %}
+                                            <tr>
+                                                <td>{{bom.field}}</td>
+                                                <td style="width:250px">{{bom.invoice_value}}</td>
+                                                <td style="width:250px">{{bom.suggested_value}}</td>
+                                            </tr>
+                                            {% endfor %}
+                                        </table>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
                 </tr>
                 {% endfor %}
             </tbody>
