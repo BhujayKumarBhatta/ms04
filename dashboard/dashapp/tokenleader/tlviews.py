@@ -179,11 +179,11 @@ def add_org(request):
     if request.method == 'POST':
         tlclient = tllogin.prep_tlclient_from_session(request)
         orgname = request.POST['orgname']
-        data = dict({"orgname": ""})
+        data = dict({"username": "","orgname": ""})
         #data = {"oname": "org2"}
-        data["oname"] = orgname 
+        data["username"] = username
+        data["oname"] = orgname         
         status = tlclient.add_org(data)
-        print(status)
         list_org = tlclient.list_org()
         template_data = {"list_org": list_org }
         result = render(request, 'home.html', template_data)
