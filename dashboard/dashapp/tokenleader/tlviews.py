@@ -4,6 +4,7 @@ from linkinvclient.client import LIClient
 from django.shortcuts import render
 
 ## Token Leader Module ****************************************************
+
 def list_users(request):
     if request.method == 'GET':  
         tlclient = tllogin.prep_tlclient_from_session(request)
