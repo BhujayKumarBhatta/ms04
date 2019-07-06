@@ -183,6 +183,7 @@ def add_org(request):
         #data = {"oname": "org2"}
         data["oname"] = orgname 
         status = tlclient.add_org(data)
+        print(status)
         list_org = tlclient.list_org()
         template_data = {"list_org": list_org }
         result = render(request, 'home.html', template_data)
