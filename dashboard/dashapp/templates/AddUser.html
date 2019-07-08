@@ -28,6 +28,7 @@
         </div>
         <div class="form-group">
             <label for="role">Role:</label>
+            {{ROLELIST}}
             <select class="form-control" id="role" name="role">
                 <option>Select</option>
                 {% for rol in ROLELIST %}
@@ -37,6 +38,7 @@
         </div>
           
         <div class="form-group">
+        {{WFCLIST}}
             <label for="wfc">Work Function Context:</label>
             <select class="form-control" id="wfc" name="wfc">
                 <option>Select</option>
