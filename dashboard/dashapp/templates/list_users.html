@@ -330,7 +330,7 @@ RESULT : {{ list_org }}
             <td>
                 {% if DELETE_STATUS is not null %}
                 <div class="alert alert-success" role="alert">
-                    Department Deleted Successfully.<br />{{DELETE_STATUS}}
+                  {{DELETE_STATUS.status}}
                 </div>
                 {% elif EXCEPTION is not null %}
                 <div class="alert alert-danger" role="alert">
