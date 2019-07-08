@@ -175,8 +175,7 @@
     {% if list_users is not null %}
     <!--{{ list_users }}-->
 </div>
-{{STATUS_ADDUSER}}
-{{DELETE_STATUS}}
+  
 
 <div class="table-wrapper">
     <div class="table-title">
@@ -324,7 +323,7 @@ RESULT : {{ list_org }}
             </div>
         </div>
     </div>
-    {{DELETE_STATUS}}
+   
     <table align="center" width="90%" style="padding-left: 150px">
         <tr>
             <td>
@@ -400,13 +399,13 @@ RESULT : {{ list_dept }}
             </div>
         </div>
     </div>
-    {{DELETE_STATUS}}
+  
     <table align="center" width="90%" style="padding-left: 150px">
         <tr>
             <td>
                 {% if DELETE_STATUS is not null %}
                 <div class="alert alert-success" role="alert">
-                    Role Deleted Successfully.<br />{{DELETE_STATUS}}
+                    {{DELETE_STATUS.status}}
                 </div>
                 {% elif EXCEPTION is not null %}
                 <div class="alert alert-danger" role="alert">
@@ -476,13 +475,13 @@ RESULT : {{ list_role }}
             </div>
         </div>
     </div>
-    {{DELETE_STATUS}}
+     
     <table align="center" width="90%" style="padding-left: 150px">
         <tr>
             <td>
                 {% if DELETE_STATUS is not null %}
                 <div class="alert alert-success" role="alert">
-                    OU Deleted Successfully.<br />{{DELETE_STATUS}}
+                    {{DELETE_STATUS.status}}
                 </div>
                 {% elif EXCEPTION is not null %}
                 <div class="alert alert-danger" role="alert">
@@ -551,13 +550,13 @@ RESULT : {{ list_ou }}
             </div>
         </div>
     </div>
-    {{DELETE_STATUS}}
+     
     <table align="center" width="90%" style="padding-left: 150px">
         <tr>
             <td>
                 {% if DELETE_STATUS is not null %}
                 <div class="alert alert-success" role="alert">
-                    WFC Deleted Successfully.<br />{{DELETE_STATUS}}
+                    {{DELETE_STATUS.status}}
                 </div>
                 {% elif EXCEPTION is not null %}
                 <div class="alert alert-danger" role="alert">

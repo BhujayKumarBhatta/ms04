@@ -132,7 +132,7 @@ def delete_role(request):
         #status = tlclient.delete_role(data)
         status = tlclient.delete_role(rolename)
         list_role = tlclient.list_role()
-        template_data = {"list_role": list_role }
+        template_data = {"list_role": list_role ,"DELETE_STATUS":status}
         result = render(request, 'home.html', template_data)
         return result
 
@@ -170,7 +170,7 @@ def delete_ou(request):
         #status = tlclient.delete_ou(data)
         status = tlclient.delete_ou(ouname)
         list_ou = tlclient.list_ou()
-        template_data = {"list_ou": list_ou }
+        template_data = {"list_ou": list_ou ,"DELETE_STATUS":status}
         result = render(request, 'home.html', template_data)
         return result
         		
@@ -209,7 +209,7 @@ def delete_org(request):
         #status = tlclient.delete_org(data)
         status = tlclient.delete_org(orgname)
         list_org = tlclient.list_org()
-        template_data = {"list_org": list_org }
+        template_data = {"list_org": list_org ,"DELETE_STATUS":status}
         result = render(request, 'home.html', template_data)
         return result
 	
@@ -260,7 +260,7 @@ def delete_wfc(request):
         #status = tlclient.delete_wfc(data)
         status = tlclient.delete_wfc(wfcname)
         list_wfc = tlclient.list_wfc()
-        template_data = {"delete_wfc": delete_wfc,"list_wfc": list_wfc}
+        template_data = {"delete_wfc": delete_wfc,"list_wfc": list_wfc,"DELETE_STATUS":status}
         result = render(request, 'home.html', template_data)
         return result
 
