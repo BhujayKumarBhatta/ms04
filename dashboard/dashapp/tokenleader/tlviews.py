@@ -53,7 +53,8 @@ def delete_user(request):
         data = dict({"username": ""})
         #data = {"username": "user2"}
         data["username"] = username 
-        status = tlclient.delete_user(data)
+        #status = tlclient.delete_user(data)
+        status = tlclient.delete_user(username)
         list_users = tlclient.list_users()
         template_data = {"list_users": list_users.get('status'), "DELETE_STATUS": status}
         result = render(request, 'home.html', template_data)
@@ -90,7 +91,8 @@ def delete_dept(request):
         data = dict({"deptname": ""})
         #data = {"deptname": "dept2"}
         data["deptname"] = deptname 
-        status = tlclient.delete_dept(data)
+        #status = tlclient.delete_dept(data)
+        status = tlclient.delete_dept(deptname)
         list_dept = tlclient.list_dept()
         template_data = {"list_dept": list_dept }
         result = render(request, 'home.html', template_data)
@@ -127,7 +129,8 @@ def delete_role(request):
         data = dict({"rolename": ""})
         #data = {"rolename": "role2"}
         data["rolename"] = rolename 
-        status = tlclient.delete_role(data)
+        #status = tlclient.delete_role(data)
+        status = tlclient.delete_role(rolename)
         list_role = tlclient.list_role()
         template_data = {"list_role": list_role }
         result = render(request, 'home.html', template_data)
@@ -164,7 +167,8 @@ def delete_ou(request):
         data = dict({"ouname": ""})
         #data = {"ouname": "ou2"}
         data["ouname"] = ouname 
-        status = tlclient.delete_ou(data)
+        #status = tlclient.delete_ou(data)
+        status = tlclient.delete_ou(ouname)
         list_ou = tlclient.list_ou()
         template_data = {"list_ou": list_ou }
         result = render(request, 'home.html', template_data)
@@ -202,7 +206,8 @@ def delete_org(request):
         data = dict({"orgname": ""})
         #data = {"oname": "org2"}
         data["oname"] = orgname 
-        status = tlclient.delete_org(data)
+        #status = tlclient.delete_org(data)
+        status = tlclient.delete_org(orgname)
         list_org = tlclient.list_org()
         template_data = {"list_org": list_org }
         result = render(request, 'home.html', template_data)
@@ -252,7 +257,8 @@ def delete_wfc(request):
         wfcname = request.POST['wfcname']
         data = dict({"wfcname": ""})
         data["wfcname"] = wfcname 
-        status = tlclient.delete_wfc(data)
+        #status = tlclient.delete_wfc(data)
+        status = tlclient.delete_wfc(wfcname)
         list_wfc = tlclient.list_wfc()
         template_data = {"delete_wfc": delete_wfc,"list_wfc": list_wfc}
         result = render(request, 'home.html', template_data)
