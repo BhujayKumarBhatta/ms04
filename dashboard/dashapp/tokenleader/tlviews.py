@@ -38,7 +38,8 @@ def adduser(request):
         newuserdata["password"]= password
         newuserdata["roles"][0] = roles
         tlclient = tllogin.prep_tlclient_from_session(request)
-        status = tlclient.add_user(newuserdata)
+        #status = tlclient.add_user(newuserdata)
+        status = tlclient.add_user(username,password,email,roles,wfc,'mail')
         list_users = tlclient.list_users()
         #template_data = {"list_users": list_users,"STATUS_ADDUSER": status} 
         template_data = {"list_users": list_users.get('status'),"STATUS_ADDUSER": status }
@@ -75,7 +76,8 @@ def add_dept(request):
         data = dict({"deptname": ""})
         #data = {"deptname": "dept2"}
         data["deptname"] = deptname 
-        status = tlclient.add_dept(data)
+        #status = tlclient.add_dept(data)
+        status = tlclient.add_dept(deptname)
         list_dept = tlclient.list_dept()
         template_data = {"list_dept": list_dept }
         result = render(request, 'home.html', template_data)
@@ -111,7 +113,8 @@ def add_role(request):
         data = dict({"rolename": ""})
         #data = {"rolename": "role2"}
         data["rolename"] = rolename 
-        status = tlclient.add_role(data)
+        #status = tlclient.add_role(data)
+        status = tlclient.add_role(rolename)
         list_role = tlclient.list_role()
         template_data = {"list_role": list_role }
         result = render(request, 'home.html', template_data)
@@ -147,7 +150,8 @@ def add_ou(request):
         data = dict({"ouname": ""})
         #data = {"ouname": "ou2"}
         data["ouname"] = ouname 
-        status = tlclient.add_orgunit(data)
+        #status = tlclient.add_orgunit(data)
+        status = tlclient.add_orgunit(ouname)
         list_ou = tlclient.list_ou()
         template_data = {"list_ou": list_ou }
         result = render(request, 'home.html', template_data)
@@ -184,7 +188,8 @@ def add_org(request):
         #data = {"oname": "org2"}
         data["username"] = username
         data["oname"] = orgname         
-        status = tlclient.add_org(data)
+        #status = tlclient.add_org(data)
+        status = tlclient.add_org(orgname)
         list_org = tlclient.list_org()
         template_data = {"list_org": list_org }
         result = render(request, 'home.html', template_data)
@@ -234,7 +239,8 @@ def add_wfc(request):
         newfcdata["ou_name"]= ou_name
         newfcdata["dept_name"]= dept_name
         tlclient = tllogin.prep_tlclient_from_session(request)
-        status = tlclient.add_wfc(newfcdata)
+        #status = tlclient.add_wfc(newfcdata)
+        status = tlclient.add_wfc(fname, orgname, ou_name, dept_name)
         list_wfc = tlclient.list_wfc()
         template_data = {"list_wfc": list_wfc } 
         result = render(request, 'home.html', template_data)

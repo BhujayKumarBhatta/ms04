@@ -30,7 +30,7 @@
             <label for="role">Role:</label>
             <select class="form-control" id="role" name="role">
                 <option>Select</option>
-                {% for rol in ROLELIST %}
+                {% for rol in ROLELIST.status %}
                 <option>{{ rol.name  }}</option>
                 {% endfor %}
             </select>
@@ -40,7 +40,7 @@
             <label for="wfc">Work Function Context:</label>
             <select class="form-control" id="wfc" name="wfc">
                 <option>Select</option>
-                {% for wfc in WFCLIST %}
+                {% for wfc in WFCLIST.status %}
                 <option>{{ wfc.name  }}</option>
                 {% endfor %}              
             </select>

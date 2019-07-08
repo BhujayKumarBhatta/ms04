@@ -203,7 +203,7 @@
         </thead>
         <tbody>
 
-            {% for user in list_users %}
+            {% for user in list_users.status %}
             <tr style="font-size:11px">
                 <td>{{ user.username }}</td>
                 <td>{{ user.email }}</td>
@@ -290,7 +290,7 @@ RESULT : {{ list_users }}
             </tr>
         </thead>
         <tbody>
-            {% for org in list_org %}
+            {% for org in list_org.status %}
             <tr style="font-size:11px">
                 <td>{{ org.name  }}</td>
                 <td>
@@ -366,7 +366,7 @@ RESULT : {{ list_org }}
             </tr>
         </thead>
         <tbody>
-            {% for dept in list_dept %}
+            {% for dept in list_dept.status %}
             <tr style="font-size:11px">
                 <td>{{ dept.name  }}</td>
                 <td>
@@ -442,7 +442,7 @@ RESULT : {{ list_dept }}
             </tr>
         </thead>
         <tbody>
-            {% for role in list_role %}
+            {% for role in list_role.status %}
             <tr style="font-size:11px">
                 <td>{{ role.name  }}</td>
                 <td>
@@ -518,7 +518,7 @@ RESULT : {{ list_role }}
             </tr>
         </thead>
         <tbody>
-            {% for ou in list_ou %}
+            {% for ou in list_ou.status %}
             <tr style="font-size:11px">
                 <td>{{ ou.name  }}</td>
                 <td>
@@ -585,7 +585,7 @@ RESULT : {{ list_ou }}
             </tr>
         </thead>
         <tbody>
-            {% for wfc in list_wfc %}
+            {% for wfc in list_wfc.status %}
             <tr style="font-size:11px">
                 <td>{{ wfc.name  }}</td>
                 <td>
