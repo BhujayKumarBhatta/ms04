@@ -174,17 +174,39 @@
  
  {% if list_users is not null %}
     <!--{{ list_users }}-->
- 
 
+</div>
+  
 <div class="table-wrapper">
     <div class="table-title">
         <div class="row">
             <div class="col-sm-8"><h3>User <b>Details</b></h3></div>
             <div class="col-sm-4">
-                <button type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i> Add New</button>
+                <a class="btn btn-primary" href="{% url 'dashapp:adduser' %}" > ADD USER</a> 
+                
             </div>
         </div>
     </div>
+    
+     <table align="center" width="90%" style="padding-left: 150px">
+        <tr>
+            <td>
+                {% if DELETE_STATUS is not null %}
+                <div class="alert alert-success" role="alert">
+                    {{DELETE_STATUS.status}}
+                </div>
+                {% elif EXCEPTION is not null %}
+                <div class="alert alert-danger" role="alert">
+                    There is been an error while deleting a User, Please Try after sometime or contact Administrator. <br />
+                    {% if EXCEPTION_INFO is not null %}
+                    {{EXCEPTION_INFO}}
+                    {% endif %}
+                </div>
+                {% endif %}
+            </td>
+        </tr>
+    </table>
+    
     <table class="table table-bordered">
         <thead>
             <tr style="font-size:12px">
@@ -213,17 +235,25 @@
                 <td> {{ user.wfc.orgunit}} </td>
                 <td> {{ user.wfc.department}} </td>
                 <td> {{ user.wfc.name}} </td>
-                <td>
-                    <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
-                    <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                    <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
-                </td>
+                <td> 
+                <form action="{% url 'dashapp:delete_user' %}" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <input type="hidden" id="username" name="username" value="{{user.username}}"  class="form-control">
+                        <button type="submit" class="btn btn-danger " 
+                                onclick="return confirm('Are you sure? you want to Delete User')">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </button>
+                    </form>
+                </td>         
             </tr>
             {% endfor %}
 
         </tbody>
     </table>
 </div>
+
+RESULT : {{ list_users }}
+
 {% elif list_org is not null %}
 <!--organizations-->
 
@@ -233,38 +263,75 @@
         <div class="row">
             <div class="col-sm-8"><h3>Organization <b>Details</b></h3></div>
             <div class="col-sm-4">
-                <button type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i> Add New</button>
+                
             </div>
         </div>
     </div>
+     
+    <table align="center" width="90%" style="padding-left: 150px">
+        <tr>
+            <td>
+                {% if DELETE_STATUS is not null %}
+                <div class="alert alert-success" role="alert">
+                    {{DELETE_STATUS.status}}
+                </div>
+                {% elif EXCEPTION is not null %}
+                <div class="alert alert-danger" role="alert">
+                    There is been an error while deleting a Organization(s), Please Try after sometime or contact Administrator. <br />
+                    {% if EXCEPTION_INFO is not null %}
+                    {{EXCEPTION_INFO}}
+                    {% endif %}
+                </div>
+                {% endif %}
+            </td>
+        </tr>
+    </table>
+    <form action="{% url 'dashapp:add_org' %}" method="POST" enctype="multipart/form-data">
+    <table class="table table-bordered"><tr><td style="width:60%">
+    
+                        {% csrf_token %}
+                        <input type="text" id="orgname" name="orgname" value="{{org.name}}"  class="form-control">
+                        </td><td>
+                        <button type="submit" class="btn btn-success " style="width:100px"  onclick="return confirm('Are you sure? you want to Add Organization')">                             
+                        Create ORG</button>
+   
+    </td>
+    </tr>
+    </table>
+     </form>
+       
+        
     <table class="table table-bordered">
         <thead>
             <tr style="font-size:12px">
                 <th>Name</th>
-                <th>Actions </th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
-            {% for org in list_org %}
+            {% for org in list_org.status %}
             <tr style="font-size:11px">
                 <td>{{ org.name  }}</td>
                 <td>
-                    <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
-                    <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                    <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+                    <form action="{% url 'dashapp:delete_org' %}" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <input type="hidden" id="orgname" name="orgname" value="{{org.name}}">
+                        <button type="submit" class="btn btn-danger " 
+                                onclick="return confirm('Are you sure? you want to Delete Organization')">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </button>
+                    </form>
                 </td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
 </div>
-{{ list_org.status.name }}
-
 RESULT : {{ list_org }}
+
 
 {% elif list_dept is not null %}
 <!--Department-->
-
 
 
 <div class="table-wrapper">
@@ -272,37 +339,77 @@ RESULT : {{ list_org }}
         <div class="row">
             <div class="col-sm-8"><h3>Department <b>Details</b></h3></div>
             <div class="col-sm-4">
-                <button type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i> Add New</button>
+                
             </div>
         </div>
     </div>
+   
+    <table align="center" width="90%" style="padding-left: 150px">
+        <tr>
+            <td>
+                {% if DELETE_STATUS is not null %}
+                <div class="alert alert-success" role="alert">
+                  {{DELETE_STATUS.status}}
+                </div>
+                {% elif EXCEPTION is not null %}
+                <div class="alert alert-danger" role="alert">
+                    There is been an error while deleting a Department, Please Try after sometime or contact Administrator. <br />
+                    {% if EXCEPTION_INFO is not null %}
+                    {{EXCEPTION_INFO}}
+                    {% endif %}
+                </div>
+                {% endif %}
+            </td>
+        </tr>
+    </table>
+    <form action="{% url 'dashapp:add_dept' %}" method="POST" enctype="multipart/form-data">
+    <table class="table table-bordered"><tr><td style="width:60%">
+    
+                        {% csrf_token %}
+                        <input type="text" id="deptname" name="deptname" value="{{dept.name}}"  class="form-control">
+                        </td><td>
+                        <button type="submit" class="btn btn-success " style="width:100px"  onclick="return confirm('Are you sure? you want to Add Department')">                             
+                        Save</button>
+   
+    </td>
+    </tr>
+    </table>
+     </form>
+       
+        
     <table class="table table-bordered">
         <thead>
             <tr style="font-size:12px">
                 <th>Name</th>
-                <th>Actions </th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
-            {% for dpt in list_dept %}
+            {% for dept in list_dept.status %}
             <tr style="font-size:11px">
-                <td>{{ dpt.status.name  }}</td>
+                <td>{{ dept.name  }}</td>
                 <td>
-                    <a class="add" title="Add"  data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
-                    <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                    <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+
+                    <form action="{% url 'dashapp:delete_dept' %}" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <input type="hidden" id="deptname" name="deptname" value="{{dept.name}}">
+                        <button type="submit" class="btn btn-danger " 
+                                onclick="return confirm('Are you sure? you want to Delete Department')">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </button>
+                    </form>
+
                 </td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
-    RESULT : {{ list_dept }}
 </div>
+RESULT : {{ list_dept }}
 
 
 {% elif list_role is not null %}
 <!--Role-->
-        list of Role : {{ list_role }}
 
 
 <div class="table-wrapper">
@@ -310,35 +417,75 @@ RESULT : {{ list_org }}
         <div class="row">
             <div class="col-sm-8"><h3>Role <b>Details</b></h3></div>
             <div class="col-sm-4">
-                <button type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i> Add New</button>
+                
             </div>
         </div>
     </div>
+  
+    <table align="center" width="90%" style="padding-left: 150px">
+        <tr>
+            <td>
+                {% if DELETE_STATUS is not null %}
+                <div class="alert alert-success" role="alert">
+                    {{DELETE_STATUS.status}}
+                </div>
+                {% elif EXCEPTION is not null %}
+                <div class="alert alert-danger" role="alert">
+                    There is been an error while deleting a Role, Please Try after sometime or contact Administrator. <br />
+                    {% if EXCEPTION_INFO is not null %}
+                    {{EXCEPTION_INFO}}
+                    {% endif %}
+                </div>
+                {% endif %}
+            </td>
+        </tr>
+    </table>
+    <form action="{% url 'dashapp:add_role' %}" method="POST" enctype="multipart/form-data">
+    <table class="table table-bordered"><tr><td style="width:60%">
+    
+                        {% csrf_token %}
+                        <input type="text" id="rolename" name="rolename" value="{{role.name}}"  class="form-control">
+                        </td><td>
+                        <button type="submit" class="btn btn-success " style="width:100px"  onclick="return confirm('Are you sure? you want to Add Role')">                             
+                        Save</button>
+   
+    </td>
+    </tr>
+    </table>
+     </form>
+       
+        
     <table class="table table-bordered">
         <thead>
             <tr style="font-size:12px">
                 <th>Name</th>
-                <th>Actions </th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
-            {% for org in list_role %}
+            {% for role in list_role.status %}
             <tr style="font-size:11px">
-                <td>{{ org.name  }}</td>
+                <td>{{ role.name  }}</td>
                 <td>
-                    <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
-                    <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                    <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+                    <form action="{% url 'dashapp:delete_role' %}" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <input type="hidden" id="rolename" name="rolename" value="{{role.name}}">
+                        <button type="submit" class="btn btn-danger " 
+                                onclick="return confirm('Are you sure? you want to Delete Role')">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </button>
+                    </form>
                 </td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
 </div>
+RESULT : {{ list_role }}
+
 
 {% elif list_ou is not null %}
-<!--Role-->
-        list of Role : {{ list_ou }}
+<!--OU-->
 
 
 <div class="table-wrapper">
@@ -346,31 +493,140 @@ RESULT : {{ list_org }}
         <div class="row">
             <div class="col-sm-8"><h3>OU <b>Details</b></h3></div>
             <div class="col-sm-4">
-                <button type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i> Add New</button>
+                
             </div>
         </div>
     </div>
+     
+    <table align="center" width="90%" style="padding-left: 150px">
+        <tr>
+            <td>
+                {% if DELETE_STATUS is not null %}
+                <div class="alert alert-success" role="alert">
+                    {{DELETE_STATUS.status}}
+                </div>
+                {% elif EXCEPTION is not null %}
+                <div class="alert alert-danger" role="alert">
+                    There is been an error while deleting a Role, Please Try after sometime or contact Administrator. <br />
+                    {% if EXCEPTION_INFO is not null %}
+                    {{EXCEPTION_INFO}}
+                    {% endif %}
+                </div>
+                {% endif %}
+            </td>
+        </tr>
+    </table>
+    <form action="{% url 'dashapp:add_ou' %}" method="POST" enctype="multipart/form-data">
+    <table class="table table-bordered"><tr><td style="width:60%">
+    
+                        {% csrf_token %}
+                        <input type="text" id="ouname" name="ouname" value="{{ou.name}}"  class="form-control">
+                        </td><td>
+                        <button type="submit" class="btn btn-success " style="width:100px"  onclick="return confirm('Are you sure? you want to Add Role')">                             
+                        Save</button>
+   
+    </td>
+    </tr>
+    </table>
+     </form>
+       
+        
     <table class="table table-bordered">
         <thead>
             <tr style="font-size:12px">
                 <th>Name</th>
-                <th>Actions </th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
-            {% for org in list_ou %}
+            {% for ou in list_ou.status %}
             <tr style="font-size:11px">
-                <td>{{ org.name  }}</td>
+                <td>{{ ou.name  }}</td>
                 <td>
-                    <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
-                    <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                    <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+                    <form action="{% url 'dashapp:delete_ou' %}" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <input type="hidden" id="ouname" name="ouname" value="{{ou.name}}">
+                        <button type="submit" class="btn btn-danger " 
+                                onclick="return confirm('Are you sure? you want to Delete OU')">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </button>
+                    </form>
                 </td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
 </div>
+RESULT : {{ list_ou }}
+
+{% elif list_wfc is not null %}
+<!--WFC-->
+
+
+<div class="table-wrapper">
+    <div class="table-title">
+        <div class="row">
+            <div class="col-sm-8"><h3>WFC <b>Details</b></h3></div>
+            <div class="col-sm-4">
+                <a class="btn btn-primary" href="{% url 'dashapp:add_wfc' %}" > ADD WFC</a>
+            </div>
+        </div>
+    </div>
+     
+    <table align="center" width="90%" style="padding-left: 150px">
+        <tr>
+            <td>
+                {% if DELETE_STATUS is not null %}
+                <div class="alert alert-success" role="alert">
+                    {{DELETE_STATUS.status}}
+                </div>
+                {% elif EXCEPTION is not null %}
+                <div class="alert alert-danger" role="alert">
+                    There is been an error while deleting a WFC, Please Try after sometime or contact Administrator. <br />
+                    {% if EXCEPTION_INFO is not null %}
+                    {{EXCEPTION_INFO}}
+                    {% endif %}
+                </div>
+                {% endif %}
+            </td>
+        </tr>
+    </table>
+   
+    </td>
+    </tr>
+    </table>
+     </form>
+       
+        
+    <table class="table table-bordered">
+        <thead>
+            <tr style="font-size:12px">
+                <th>Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for wfc in list_wfc.status %}
+            <tr style="font-size:11px">
+                <td>{{ wfc.name  }}</td>
+                <td>
+                    <form action="{% url 'dashapp:delete_wfc' %}" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <input type="hidden" id="wfcname" name="wfcname" value="{{wfc.name}}"> 
+                                                <button type="submit" class="btn btn-danger " 
+                                onclick="return confirm('Are you sure? you want to Delete WFC')">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+RESULT : {{ list_wfc }}
+
 {% endif %}
 
 <!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Open modal for @mdo</button>
