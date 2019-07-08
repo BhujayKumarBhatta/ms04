@@ -94,7 +94,7 @@ def delete_dept(request):
         #status = tlclient.delete_dept(data)
         status = tlclient.delete_dept(deptname)
         list_dept = tlclient.list_dept()
-        template_data = {"list_dept": list_dept }
+        template_data = {"list_dept": list_dept ,"DELETE_STATUS":status}
         result = render(request, 'home.html', template_data)
         return result
 
