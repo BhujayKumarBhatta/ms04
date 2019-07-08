@@ -186,8 +186,8 @@ def add_org(request):
         orgname = request.POST['orgname']
         data = dict({"username": "","orgname": ""})
         #data = {"oname": "org2"}
-        data["username"] = username
-        data["oname"] = orgname         
+        #data["username"] = username
+        #data["oname"] = orgname         
         #status = tlclient.add_org(data)
         status = tlclient.add_org(orgname)
         list_org = tlclient.list_org()
