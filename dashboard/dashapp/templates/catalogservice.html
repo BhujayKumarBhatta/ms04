@@ -84,12 +84,12 @@
                 <td>{{ srvs.name }}</td>
                 <td>{{ srvs.endpoint_url_internal }}</td>                
                 <td> {{ srvs.endpoint_url_external }} </td>
-                <td> {{ srvs.enpoint_url_admin}} </td>
+                <td> {{ srvs.endpoint_url_admin}} </td>
                  
                 <td> 
                 <form action="{% url 'dashapp:delete_service' %}" method="POST" enctype="multipart/form-data">
                         {% csrf_token %}
-                        <input type="hidden" id="servicename" name="name" value="{{srvs.name}}"  class="form-control">
+                        <input type="hidden" id="servicename" name="servicename" value="{{srvs.name}}"  class="form-control">
                         <button type="submit" class="btn btn-danger " 
                                 onclick="return confirm('Are you sure? you want to Delete User')">
                             <span class="glyphicon glyphicon-trash"></span>
