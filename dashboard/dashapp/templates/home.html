@@ -568,7 +568,9 @@
                                                 <li><a href="{% url 'dashapp:list_dept'  %}"> List Deartment  </a></li>
                                                 <li><a href="{% url 'dashapp:list_role'  %}"> List Role  </a></li>
                                                 <li><a href="{% url 'dashapp:list_ou'  %}"> List OU  </a></li>
+                                                <li><a href="{% url 'dashapp:list_wfc'  %}"> List WFC  </a></li>
                                                 <li><a href="{% url 'dashapp:adduser'  %}">Add User</a></li>
+                                                <li><a href="{% url 'dashapp:add_wfc'  %}">Add WFC</a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -669,25 +671,15 @@
 
                 <div class="container-fluid" style="width:100%;padding-top:28px">
                     <div class="side-body" style="padding-left:20px">
-                        {% if list_users is not null or list_org is not null or list_role is not null or list_ou is not null or list_dept is not null%}
+                        {% if list_users is not null or list_org is not null or list_role is not null or list_ou is not null or list_dept is not null or list_wfc is not null %}
                         {% include 'list_users.html' %}
                         {% elif list_links is not null %}
                         {% include 'list_links.html' %}
                         {% elif ADDUSER is not null %}
-                        {% include 'AddUser.html' %}
-                        {% elif manageaddress is not null %}
-                        {% include 'manageaddress.html' %}
-                        {% elif managelocalnet is not null %}
-                        {% include 'managelocalnet.html' %}
-                        {% elif managerate is not null %}
-                        {% include 'managerate.html' %}
-                        {% elif managepayment is not null %}
-                        {% include 'managepayment.html' %}
 
-                        {% elif listobjects is not null %}
-                        {% include 'listobjects.html' %}
-
-
+                        	{% include 'AddUser.html' %}
+                    	{% elif ADDWFC is not null %}
+                        	{% include 'AddWFC.html' %}
                         {% elif VIEW_UPLOAD is not null or uploaded_file_url is not null %}
                         {% include 'invoice_upload.html' %}
                         {% elif VIEW_UPDATE_UPLOAD is not null or uploadedupdate_file_url is not null %}
