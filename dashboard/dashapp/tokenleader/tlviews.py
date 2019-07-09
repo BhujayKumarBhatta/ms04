@@ -294,3 +294,33 @@ def invoice_upload(request):
         return result
         		
 
+def list_service(request):
+    if request.method == 'GET':  
+        tlclient = tllogin.prep_tlclient_from_session(request)
+        list_services = tlclient.list_service()
+        template_data = {"list_services": list_services ,'addstatus' : status}
+        result = render(request, 'home.html', template_data)
+        return result
+    
+def add_service(request):
+    if request.method == 'POST':
+        tlclient = tllogin.prep_tlclient_from_session(request)
+        servicename = request.POST['servicename']
+        urlinternal = request.POST['urlinternal']
+        urlexternal = request.POST['urlexternal']
+        urladmin = request.POST['urladmin']                
+        status = tlclient.add_service(servicename,urlinternal, urlexternal ,urladmin)
+        list_services = tlclient.list_service()
+        template_data = {"list_services": list_services ,'addstatus' : status}
+        result = render(request, 'home.html', template_data)
+        return result
+
+def delete_service(request):
+    if request.method == 'GET': 
+        tlclient = tllogin.prep_tlclient_from_session(request)
+        servicename = request.POST['servicename']
+        status = tlclient.delete_service(servicename)
+        list_services = tlclient.list_service()
+        template_data = {"list_services": list_services ,'DELETE_STATUS' : status}
+        result = render(request, 'home.html', template_data)       
+        return result

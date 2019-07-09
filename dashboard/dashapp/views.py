@@ -324,6 +324,27 @@ def sampleinvoice(request):
         result = tspinv.sampleinvoice(request)    
     return result
 
+def add_service(request):
+    if 'uname' not in request.session :
+        result = logout(request)
+    else:
+        result = tlviews.add_service(request)    
+    return result
+
+def list_service(request):
+    if 'uname' not in request.session :
+        result = logout(request)
+    else:
+        result = tlviews.list_service(request)    
+    return result
+
+def delete_service(request):
+    if 'uname' not in request.session :
+        result = logout(request)
+    else:
+        result = tlviews.delete_service(request)    
+    return result
+
 
 def list_test(request):
     if 'uname' not in request.session :

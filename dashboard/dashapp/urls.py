@@ -57,6 +57,10 @@ urlpatterns = [path('', views.login, name='login'),
     path('list_users', views.list_users, name='list_users'),
     path('adduser', views.adduser, name='adduser'),
     path('delete_user', views.delete_user, name='delete_user'),
+    
+    path('list_service', views.list_service, name='list_service'),
+    path('add_service', views.add_service, name='add_service'),
+    path('delete_service', views.delete_service, name='delete_service'),
     #Div Invoice
     path('list_divinvoices', views.list_divinvoices, name='list_divinvoices'),
     path('invoicediv_delete', views.invoicediv_delete, name='invoicediv_delete'),

@@ -565,12 +565,13 @@
                                             <ul class="nav navbar-nav">
                                                 <li><a href="{% url 'dashapp:list_users'  %}"> List Users  </a></li>
                                                 <li><a href="{% url 'dashapp:list_org'  %}"> List Organization  </a></li>
-                                                <li><a href="{% url 'dashapp:list_dept'  %}"> List Deartment  </a></li>
+                                                <li><a href="{% url 'dashapp:list_dept'  %}"> List Department  </a></li>
                                                 <li><a href="{% url 'dashapp:list_role'  %}"> List Role  </a></li>
                                                 <li><a href="{% url 'dashapp:list_ou'  %}"> List OU  </a></li>
                                                 <li><a href="{% url 'dashapp:list_wfc'  %}"> List WFC  </a></li>
                                                 <li><a href="{% url 'dashapp:adduser'  %}">Add User</a></li>
                                                 <li><a href="{% url 'dashapp:add_wfc'  %}">Add WFC</a></li>
+                                                <li><a href="{% url 'dashapp:list_service'  %}">Add Catalog Service</a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -711,6 +712,10 @@
 
                         {% elif PO is not null %}
                         {% include 'ManageUser.html' %}
+                        
+                         {% elif list_services is not null %}
+                        {% include 'catalogservice.html' %}
+                        
                         {% else %}
                         <h1> Main Content here </h1>
                         <pre> Resize the screen to view the left slide menu </pre>
