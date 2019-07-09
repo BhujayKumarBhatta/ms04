@@ -614,6 +614,19 @@
                                         </div>
                                     </div>
                                 </li>
+                                <li class="panel panel-default" id="dropdown">
+                                    <a data-toggle="collapse" href="#dropdown-lvl4">
+                                        <span class="glyphicon glyphicon-gift"></span> Infobhan<span class="caret"></span>
+                                    </a>
+                                    <!-- Dropdown level 1 -->
+                                    <div id="dropdown-lvl4" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <ul class="nav navbar-nav">
+                                                <li><a href="{% url 'dashapp:list_divinvoices'  %}"> Infobhan Invoice  </a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
                                 <!--<li><a href="{% url 'dashapp:list_invoices'  %}"><span class="glyphicon glyphicon-send"></span> Invoice</a></li>-->
                                 <li><a href="{% url 'dashapp:list_invoices'  %}"><span class="glyphicon glyphicon-envelope"></span>Manage PO</a></li>
                                 <!--<li><a href="#"><span class="glyphicon glyphicon-cloud"></span> Link</a></li>-->
@@ -681,6 +694,9 @@
 
                         {% elif list_invoices is not null and IS_RCOM is null %}
                         {% include 'invoicelist.html' %}
+
+                        {% elif list_divinvoices is not null  %}
+                        {% include 'invoicedivlist.html' %}
 
 
 
@@ -773,6 +789,8 @@
         <a href="{% url 'dashapp:list_links'  %}"> List Links  </a> <br>
 
     </div>-->
+
+
 </body>
 </html>
 

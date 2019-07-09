@@ -19,6 +19,7 @@ from dashapp.tokenleader import tllogin
 from dashapp.linkinv import linkinv_views as linkv
 from dashapp.tokenleader import tlviews
 from dashapp.micros1 import tspinv
+from dashapp.micros2 import tspdivinv
 
 from dashapp.micros1.models import Invoice
 from dashapp.micros1.invoiceForm import invoiceForm
@@ -29,7 +30,7 @@ def login(request):
     result = tllogin.login(request)
     return result
 
-
+ 
 def list_links(request):
     if 'uname' not in request.session :
         result = logout(request)
@@ -209,6 +210,23 @@ def list_invoices(request):
     elif'uname' in request.session :
       result = tspinv.list_invoices(request)
     return result
+
+### Divisional Invoice Functionality START
+def list_divinvoices(request):
+    if 'uname' not in request.session :
+      result = login(request)
+    elif'uname' in request.session :
+      result = tspdivinv.list_divinvoices(request)
+    return result
+
+def invoicediv_delete(request):
+    if 'uname' not in request.session :
+        result = logout(request)
+    else:        
+        result = tspdivinv.invoicediv_delete(request)    
+    return result
+
+### Divisional Invoice Functionality END
       
 
 def invoice_create(request):
@@ -239,6 +257,13 @@ def invoice_upload(request):
         result = logout(request)
     else:
         result = tspinv.invoice_upload(request)    
+    return result
+
+def invoice_dwndformat(request):
+    if 'uname' not in request.session :
+        result = logout(request)
+    else:
+        result = tspinv.downloadinvoicexlformat(request)    
     return result
 
 
@@ -305,6 +330,10 @@ def list_test(request):
         result = logout(request)
     else:
         result = linkv.list_test(request)  
+
+def home2(request):
+    result = render(request, 'home3.html')
+    return result
 
 #### Log out
 def logout(request):
