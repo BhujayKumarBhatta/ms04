@@ -1,0 +1,73 @@
+user_auth_info_from: file # OSENV or file
+user_auth_info_file_location: /home/ubuntu/secrets
+fernet_key_file: /home/ubuntu/farnetkeys
+
+#tl_public_key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDENN9QYdy6RUEJUsOcGECj
+
++7uvyhHlNaZqVN5YcP/MCxBIEoWD3ewu1bQxqW/xC938gHXGZ7NWncv
+
++u9IADwmVYBD8/hYUWJFOKFOKtt8+ZcAFamAz6qGAmKFUnThZ5C/n1PAwS8L03aj62NfxXTjgpohcKRn3Pq9SW7TNg
+
+eApn3RSkGoydKJOqo8GeNnKuDxJMHhkR663pLtYH
+
++VOvE/TzethQn64Xc1/HL02o6HRsCWtI0UXev2RLMsVa/wP0k2ItUi7YnmZPyL6ATfeiHIRrRmfDsidqUA6eNZ
+
++fsdw6dO6H0TGggeYd+d8I14PBTx6zYwL+QIEiqNBxP6nIdMp bhujay@DESKTOP-DTA1VEB
+
+
+
+tl_user: user1
+tl_url: https://10.174.112.122:5001
+#tl_url: https://10.174.112.143:5001
+ssl_verify: False
+tl_public_key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDme8B1BT9akm26y6j2osynrXPRPsbBN
+
++RQfVu1yIFQThMzucoGvANyOBfZdNCQN2O74XiyhsnSW80h3/aoB3D7lM7eJwa6mT8vMw7h7tcIG
+
++WoyO3B4kK3+jceQm7qeoSXzbotmDLnub6G9v6JEQiijts2yQElW1S6Jj2+hfaZigwN2dXhBb7otqH9DBk4uNoLAo/
+
+XUxbE8XCAoO99IjMHqaByhD2wb26YSbqgqAZ9b0hGtVON50+9zhrRPc3q3a3Y8L320YJEEDzO2JTR4WjNd0wHj/o3Y
+
+Fe7p6cW5iIOSTJ5b7CZm/kgKPQZ43WNWmJBOIhlrGjo9IMYqXRsbiPj ubuntu@tokenleader
+
+#tl_public_key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC+g2B7zFPXw
+
++06DaUSmM2AVTcQeUPOVgUuIYHziynkEBeOV05asYs22pH5PbZj1zMoSUsZrXPhbTNKmYU5k8nPVd3ItkDgw4nyoc3
+
+VD8gHn
+
++jDGuVS/QrW9GipWyCHGz7+COiQePLwotCmjwCfprsX0PwcbLSJGw8CejAW3UXq32JunmRVIbPS/WRwMhzcxuJXo
+
++UcuKI5kb62oby6QxGU/gM18KR7GzxHoBWupKIs2YAdGGlmIl6coJMcXRKEbJmVFyak4AnmtR46m9e453tzwWANqjT
+
+gj2Smh/FT18kIqxO+hRw+f8fvcjVNViPXq0v0vd3jUXvz0S68S6fdGSnb ubuntu@tokenleader
+
+#tl_public_key: ssh-rsa 
+
+AAAAB3NzaC1yc2EAAAADAQABAAABAQCrcbPLYZemD/nGgx7oGdstVplCunKLscapN7AKomxLCM5eJOltxoI9r2tsX9
+
+rOuiCoSrstg71FHzUby4wcPLQERPFB5bN/otAjQpRjvLM3OL3S4ZEPpBnN6FKK1U5QLh5nF/sVCw70Xa63SDWeliCA
+
+L3uAvrqZM4iMHahg1Ze2AzJCnapgOdKy9eVMQ4Ergx7MYZhkFrGILp0ZT4GIqLZvWQyDErq1wE6F2eLY0rhR3PtiNM
+
+C4Hai/jXlk5f9jvizo7Lpwx6rSRPQVNkleicsMOBHQqnAYqh69VXdCppKkLtA02+lEwGL0rS/1l3y45Mc03NWuzxuR
+
+aI6QaSHzhQm7 ubuntu@tokenleader
+
+
+
+linkInventory:
+  url_type: endpoint_url_external
+  ssl_enabled: no
+  ssl_verify: no
+
+micros1:
+  url_type: endpoint_url_internal
+  ssl_enabled: no
+  ssl_verify: no
+
+micros2:
+  url_type: endpoint_url_internal
+  ssl_enabled: no
+  ssl_verify: no
+

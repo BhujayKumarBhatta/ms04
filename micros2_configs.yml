@@ -1,0 +1,22 @@
+host_name: 10.174.112.33 # for docker this should 0.0.0.0
+host_port: 5003
+ssl: disabled # not required other than testing the flaks own ssl. ssl should be handled by apache
+ssl_settings: adhoc
+database:
+  DRIVER: mongodb
+  Server: 10.174.112.33
+  Port: 27017
+  Database: test_cust
+  UID: admin
+  db_pwd_key_map: db_pwd
+
+
+secrets:
+  secrets_file_location: /etc/tokenleader/secrets.yml # where you have write access
+  fernet_key_location: /etc/tokenleader/fernetkeys # where you have write access and preferebly separated from secrets_file_location
+  db_pwd_key_map: db_pwd # when using encrypt-pwd command use this value for --kemap
+  tokenleader_pwd_key_map: tl_pwd
+
+celery:
+  CELERY_BROKER_URL: redis://localhost:6379/0
+  CELERY_RESULT_BACKEND: redis://127.0.0.1:6379/0
