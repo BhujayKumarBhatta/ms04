@@ -79,12 +79,12 @@
         </thead>
         <tbody>
         {{list_services}}
-            {% for srvs in list_services %}
+            {% for srvs in list_services.status %}
             <tr style="font-size:11px">
                 <td>{{ srvs.name }}</td>
-                <td>{{ srvs.urlinternal }}</td>                
-                <td> {{ srvs.urlexternal }} </td>
-                <td> {{ srvs.urladmin}} </td>
+                <td>{{ srvs.endpoint_url_internal }}</td>                
+                <td> {{ srvs.endpoint_url_external }} </td>
+                <td> {{ srvs.enpoint_url_admin}} </td>
                  
                 <td> 
                 <form action="{% url 'dashapp:delete_service' %}" method="POST" enctype="multipart/form-data">
