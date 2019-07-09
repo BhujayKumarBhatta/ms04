@@ -298,7 +298,7 @@ def list_service(request):
     if request.method == 'GET':  
         tlclient = tllogin.prep_tlclient_from_session(request)
         list_services = tlclient.list_service()
-        template_data = {"list_services": list_services ,'addstatus' : status}
+        template_data = {"list_services": list_services }
         result = render(request, 'home.html', template_data)
         return result
     
