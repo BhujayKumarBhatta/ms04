@@ -51,6 +51,7 @@ urlpatterns = [path('', views.login, name='login'),
     path('add_role', views.add_role, name='add_role'),
     path('delete_role', views.delete_role, name='delete_role'),
     path('list_ou', views.list_ou, name='list_ou'),
+    path('list_wfc', views.list_wfc, name='list_wfc'),
     #Div Invoice
     path('list_divinvoices', views.list_divinvoices, name='list_divinvoices'),
     path('invoicediv_delete', views.invoicediv_delete, name='invoicediv_delete'),
