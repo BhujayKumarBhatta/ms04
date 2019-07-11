@@ -19,6 +19,7 @@ from dashapp.tokenleader import tllogin
 from dashapp.linkinv import linkinv_views as linkv
 from dashapp.tokenleader import tlviews
 from dashapp.micros1 import tspinv
+from dashapp.micros2 import tspdivinv
 
 from dashapp.micros1.models import Invoice
 from dashapp.micros1.invoiceForm import invoiceForm
@@ -29,7 +30,7 @@ def login(request):
     result = tllogin.login(request)
     return result
 
-
+ 
 def list_links(request):
     if 'uname' not in request.session :
         result = logout(request)
@@ -72,6 +73,7 @@ def listobjects(request):
         result = linkv.listobjects(request)
     return result
 
+# TOKENLEADER ======================================
 
 def list_org(request):
     if 'uname' not in request.session :
@@ -79,7 +81,20 @@ def list_org(request):
     else:
         result = tlviews.list_org(request)
     return result
-
+    		
+def add_org(request):
+    if 'uname' not in request.session :
+        result = logout(request)
+    else:
+        result = tlviews.add_org(request)
+    return result
+    		
+def delete_org(request):
+    if 'uname' not in request.session :
+        result = logout(request)
+    else:
+        result = tlviews.delete_org(request)
+    return result       			
 
 def list_ou(request):
     if 'uname' not in request.session :
@@ -88,6 +103,19 @@ def list_ou(request):
         result = tlviews.list_ou(request)
     return result
 
+def add_ou(request):
+    if 'uname' not in request.session :
+        result = logout(request)
+    else:
+        result = tlviews.add_ou(request)
+    return result   
+    		
+def delete_ou(request):
+    if 'uname' not in request.session :
+        result = logout(request)
+    else:
+        result = tlviews.delete_ou(request)
+    return result    
 
 def list_dept(request):
     if 'uname' not in request.session :
@@ -95,12 +123,40 @@ def list_dept(request):
     else:
         result = tlviews.list_dept(request)
     return result
-
+    		
+def add_dept(request):
+    if 'uname' not in request.session :
+        result = logout(request)
+    else:
+        result = tlviews.add_dept(request)
+    return result
+    		    		
+def delete_dept(request):
+    if 'uname' not in request.session :
+        result = logout(request)
+    else:
+        result = tlviews.delete_dept(request)
+    return result  
+    		
 def list_role(request):
     if 'uname' not in request.session :
         result = logout(request)
     else:
         result = tlviews.list_role(request)
+    return result
+
+def add_role(request):
+    if 'uname' not in request.session :
+        result = logout(request)
+    else:
+        result = tlviews.add_role(request)
+    return result
+    		
+def delete_role(request):
+    if 'uname' not in request.session :
+        result = logout(request)
+    else:
+        result = tlviews.delete_role(request)
     return result
 
 
@@ -111,14 +167,42 @@ def list_users(request):
         result = tlviews.list_users(request)
     return result
 
-
 def adduser(request):
     if 'uname' not in request.session :
         result = logout(request)
     else:
         result = tlviews.adduser(request)
     return result
+    		
+def delete_user(request):
+    if 'uname' not in request.session :
+        result = logout(request)
+    else:
+        result = tlviews.delete_user(request)
+    return result
+    		
+def list_wfc(request):
+    if 'uname' not in request.session :
+        result = logout(request)
+    else:
+        result = tlviews.list_wfc(request)
+    return result
 
+def add_wfc(request):
+    if 'uname' not in request.session :
+        result = logout(request)
+    else:
+        result = tlviews.add_wfc(request)
+    return result
+    		
+def delete_wfc(request):
+    if 'uname' not in request.session :
+        result = logout(request)
+    else:
+        result = tlviews.delete_wfc(request)
+    return result
+    		
+# TOKENLEADER ===========================================
 
 def list_invoices(request):
     if 'uname' not in request.session :
@@ -126,6 +210,23 @@ def list_invoices(request):
     elif'uname' in request.session :
       result = tspinv.list_invoices(request)
     return result
+
+### Divisional Invoice Functionality START
+def list_divinvoices(request):
+    if 'uname' not in request.session :
+      result = login(request)
+    elif'uname' in request.session :
+      result = tspdivinv.list_divinvoices(request)
+    return result
+
+def invoicediv_delete(request):
+    if 'uname' not in request.session :
+        result = logout(request)
+    else:        
+        result = tspdivinv.invoicediv_delete(request)    
+    return result
+
+### Divisional Invoice Functionality END
       
 
 def invoice_create(request):
@@ -156,6 +257,13 @@ def invoice_upload(request):
         result = logout(request)
     else:
         result = tspinv.invoice_upload(request)    
+    return result
+
+def invoice_dwndformat(request):
+    if 'uname' not in request.session :
+        result = logout(request)
+    else:
+        result = tspinv.downloadinvoicexlformat(request)    
     return result
 
 
@@ -216,12 +324,37 @@ def sampleinvoice(request):
         result = tspinv.sampleinvoice(request)    
     return result
 
+def add_service(request):
+    if 'uname' not in request.session :
+        result = logout(request)
+    else:
+        result = tlviews.add_service(request)    
+    return result
+
+def list_service(request):
+    if 'uname' not in request.session :
+        result = logout(request)
+    else:
+        result = tlviews.list_service(request)    
+    return result
+
+def delete_service(request):
+    if 'uname' not in request.session :
+        result = logout(request)
+    else:
+        result = tlviews.delete_service(request)    
+    return result
+
 
 def list_test(request):
     if 'uname' not in request.session :
         result = logout(request)
     else:
         result = linkv.list_test(request)  
+
+def home2(request):
+    result = render(request, 'home3.html')
+    return result
 
 #### Log out
 def logout(request):

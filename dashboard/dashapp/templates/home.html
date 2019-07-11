@@ -565,10 +565,13 @@
                                             <ul class="nav navbar-nav">
                                                 <li><a href="{% url 'dashapp:list_users'  %}"> List Users  </a></li>
                                                 <li><a href="{% url 'dashapp:list_org'  %}"> List Organization  </a></li>
-                                                <li><a href="{% url 'dashapp:list_dept'  %}"> List Deartment  </a></li>
+                                                <li><a href="{% url 'dashapp:list_dept'  %}"> List Department  </a></li>
                                                 <li><a href="{% url 'dashapp:list_role'  %}"> List Role  </a></li>
                                                 <li><a href="{% url 'dashapp:list_ou'  %}"> List OU  </a></li>
+                                                <li><a href="{% url 'dashapp:list_wfc'  %}"> List WFC  </a></li>
                                                 <li><a href="{% url 'dashapp:adduser'  %}">Add User</a></li>
+                                                <li><a href="{% url 'dashapp:add_wfc'  %}">Add WFC</a></li>
+                                                <li><a href="{% url 'dashapp:list_service'  %}">Add Catalog Service</a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -608,6 +611,19 @@
                                                 <!--<li><a href="{% url 'dashapp:list_invoices_rcom'  %}"> List Invoice Recommendations  </a></li>-->
                                                 <li><a href="{% url 'dashapp:invoice_create'  %}"> Add Invoice  </a></li>
                                                 <li><a href="{% url 'dashapp:invoice_approvals'  %}"> Manage Approvals  </a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="panel panel-default" id="dropdown">
+                                    <a data-toggle="collapse" href="#dropdown-lvl4">
+                                        <span class="glyphicon glyphicon-gift"></span> Infobhan<span class="caret"></span>
+                                    </a>
+                                    <!-- Dropdown level 1 -->
+                                    <div id="dropdown-lvl4" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <ul class="nav navbar-nav">
+                                                <li><a href="{% url 'dashapp:list_divinvoices'  %}"> Infobhan Invoice  </a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -656,25 +672,15 @@
 
                 <div class="container-fluid" style="width:100%;padding-top:28px">
                     <div class="side-body" style="padding-left:20px">
-                        {% if list_users is not null or list_org is not null or list_role is not null or list_ou is not null or list_dept is not null%}
+                        {% if list_users is not null or list_org is not null or list_role is not null or list_ou is not null or list_dept is not null or list_wfc is not null %}
                         {% include 'list_users.html' %}
                         {% elif list_links is not null %}
                         {% include 'list_links.html' %}
                         {% elif ADDUSER is not null %}
-                        {% include 'AddUser.html' %}
-                        {% elif manageaddress is not null %}
-                        {% include 'manageaddress.html' %}
-                        {% elif managelocalnet is not null %}
-                        {% include 'managelocalnet.html' %}
-                        {% elif managerate is not null %}
-                        {% include 'managerate.html' %}
-                        {% elif managepayment is not null %}
-                        {% include 'managepayment.html' %}
 
-                        {% elif listobjects is not null %}
-                        {% include 'listobjects.html' %}
-
-
+                        	{% include 'AddUser.html' %}
+                    	{% elif ADDWFC is not null %}
+                        	{% include 'AddWFC.html' %}
                         {% elif VIEW_UPLOAD is not null or uploaded_file_url is not null %}
                         {% include 'invoice_upload.html' %}
                         {% elif VIEW_UPDATE_UPLOAD is not null or uploadedupdate_file_url is not null %}
@@ -690,6 +696,9 @@
                         {% elif list_invoices is not null and IS_RCOM is null %}
                         {% include 'invoicelist.html' %}
 
+                        {% elif list_divinvoices is not null  %}
+                        {% include 'invoicedivlist.html' %}
+
 
 
                         {% elif list_invoices is not null and IS_RCOM is not null %}
@@ -703,6 +712,10 @@
 
                         {% elif PO is not null %}
                         {% include 'ManageUser.html' %}
+                        
+                         {% elif list_services is not null %}
+                        {% include 'catalogservice.html' %}
+                        
                         {% else %}
                         <h1> Main Content here </h1>
                         <pre> Resize the screen to view the left slide menu </pre>
@@ -781,6 +794,8 @@
         <a href="{% url 'dashapp:list_links'  %}"> List Links  </a> <br>
 
     </div>-->
+
+
 </body>
 </html>
 

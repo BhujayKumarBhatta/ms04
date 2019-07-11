@@ -9,5 +9,7 @@ db.sqlite3
 db.sqlite3
 .vs
 db.sqlite3
-
+.vs/*
 /dashboard/dashapp/micros1/invoiceresult.json
+/dashboard/~$sample-invoice-xl_MAY2019.xlsx
+/dashboard/sample-invoice-xl_MAY2019.xlsx

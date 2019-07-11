@@ -3,7 +3,7 @@ import sys
 import json
 import mimetypes
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
 from django.shortcuts import render
 from tokenleaderclient.configs.config_handler import Configs    
 from tokenleaderclient.client.client import Client 
@@ -16,9 +16,20 @@ from django.urls import reverse_lazy
 from django.conf import settings
 from django.core.files.storage import FileSystemStorage
 from werkzeug.utils import secure_filename
-
 from dashapp.tokenleader import tllogin
 from dashapp.micros1.invoiceForm import invoiceForm
+
+
+
+def downloadinvoicexlformat(request):
+    file_path = '/home/ubuntu/dashboard/dashboard/sample_inv_upload.xlsx'
+    if os.path.exists(file_path):
+        with open(file_path, 'rb') as fh:
+            response = HttpResponse(fh.read(), content_type="application/vnd.ms-excel")
+            response['Content-Disposition'] = 'inline; filename=' + os.path.basename(file_path)
+            return response
+    raise Http404
+
 
 def list_invoices2(request,invoicnum):
     if request.method == 'POST': 
@@ -65,28 +76,27 @@ def list_invoice_rcom(request):
 def invoice_delete(request):
    if request.method == 'POST':
         tlclient = tllogin.prep_tlclient_from_session(request)
-        invClient = MSClient(tlclient)
+        MC1Client = MSClient(tlclient)
         invoicenum = request.POST['invoiceno']          
         invoiceno = int(invoicenum)
-        if invoiceno > 0:
-             status = invClient.delete_invoices(invoicenum) 
+        if invoiceno and invoiceno > 0:
+             status = MC1Client.delete_invoices(invoicenum) 
         else:
-             status = invClient.delete_invoices('all') 
+             status = MC1Client.delete_invoices('all') 
         #template_data = {"DELETE_STATUS":"Working Delete","list_invoices":
-        #list_invoices,"ISDELETED":"TRUE" }
-        tlclient = tllogin.prep_tlclient_from_session(request)
-        invClient = MSClient(tlclient)
-        list_invoices = invClient.list_invoices_clo('all','all')  
+        #list_invoices,"ISDELETED":"TRUE" }         
+        list_invoices = MC1Client.list_invoices_clo('all','all')  
         template_data = {"list_invoices": list_invoices ,"DELETE_INVOICE_STATUS": status} 
         result = render(request, 'home.html', template_data)   
    else:
        tlclient = tllogin.prep_tlclient_from_session(request)
-       invClient = MSClient(tlclient)
-       list_invoices = invClient.list_invoices_clo('all','all')  
+       MC1Client = MSClient(tlclient)
+       list_invoices = MC1Client.list_invoices_clo('all','all')  
        template_data = {"list_invoices": list_invoices } 
-       result = render(request, 'home.html', template_data)   
-   
+       result = render(request, 'home.html', template_data)      
    return result    
+
+
 ## Navigate to Upload Invoice******
 def view_upload(request):
    if request.method == 'GET':          
