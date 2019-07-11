@@ -699,8 +699,18 @@
                         {% elif list_divinvoices is not null  %}
                         {% include 'invoicedivlist.html' %}
 
+   
+                        {% elif manageaddress is not null %}
+                        {% include 'manageaddress.html' %}
+                        {% elif managelocalnet is not null %}
+                        {% include 'managelocalnet.html' %}
+                        {% elif managerate is not null %}
+                        {% include 'managerate.html' %}
+                        {% elif managepayment is not null %}
+                        {% include 'managepayment.html' %}
                         {% elif listobjects is not null %}
                         {% include 'listobjects.html' %}
+                        
 
                         {% elif list_invoices is not null and IS_RCOM is not null %}
                         {% include 'invoicelist_recom.html' %}
