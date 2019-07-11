@@ -30,7 +30,7 @@ def managepayment(request):
         #result = render(request, 'managepayment.html', template_data)
         list_invoices = invClient.list_invoices_clo('all','all') 
         list_Lnetlink = lic.list_obj("Lnetlink","all","all")
-        template_data = {"managepayment":"TRUE","list_invoices":list_invoices,"list_Lnetlink":list_Lnetlink }
+        template_data = {"managepayment":"TRUE","list_invoices_drp":list_invoices,"list_Lnetlink":list_Lnetlink }
         result = render(request, 'home.html',template_data)  
         return result
     if request.method == 'POST':
