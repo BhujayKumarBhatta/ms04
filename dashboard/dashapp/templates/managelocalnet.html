@@ -14,8 +14,9 @@
 
                 <select class="form-control" id="infoopsid_id" name="infoopsid_id">
                     <option>Select</option>
+                    {{list_links_localnet}}
                     {% for lnk in list_links_localnet%}
-                    <option value="{{ lnk.circuit_ID }}">{{ lnk.slno}}</option>
+                    <option value="{{ lnk.circuit_ID }}">{{ lnk.division_name }}_{{ lnk.tsp_name}}</option>
                     {% endfor %}
                 </select>
             </div>
