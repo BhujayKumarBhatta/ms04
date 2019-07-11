@@ -15,7 +15,7 @@
                 <!--<input type="text" class="form-control" id="invoice_id" name="invoice_id">-->
                 <select class="form-control" id="invoice_id" name="invoice_id">
                     <option>Select</option>
-                    {% for Inv in list_invoices%}
+                    {% for Inv in list_invoices_drp%}
                     <option>{{ Inv.current_doc.xldata.invoiceno }}</option>
                     {% endfor %}
                 </select>
