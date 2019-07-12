@@ -204,10 +204,10 @@ def invoice_update_upload(request):
             result = render(request, 'home.html',template_data)
             return result
         if request.method == 'GET':          
-            template_data = {"VIEW_UPDATE_UPLOAD": "from view upload" }  
+            template_data = {"VIEW_UPDATE_UPLOAD": "from view upload update get" }  
             result = render(request, 'home.html', template_data)       
     except Exception as exception:
-        template_data = {"VIEW_UPDATE_UPLOAD": "from view upload","EXCEPTION" :exception,"EXCEPTION_INFO" : sys.exc_info()[0] }  
+        template_data = {"VIEW_UPDATE_UPLOAD": "from view upload update exp","EXCEPTION" :exception,"EXCEPTION_INFO" : sys.exc_info()[0] }  
         result = render(request, 'home.html', template_data) 
     return result
 ##RECOMMOND Invoice
@@ -233,10 +233,10 @@ def invoice_rcom_upload(request):
             result = render(request, 'home.html',template_data)
             return result
         if request.method == 'GET':          
-            template_data = {"VIEW_RCOM_UPLOAD": "from view upload" }  
+            template_data = {"VIEW_RCOM_UPLOAD": "from view upload rcom" }  
             result = render(request, 'home.html', template_data)       
     except Exception as exception:
-        template_data = {"VIEW_RCOM_UPLOAD": "from view upload","EXCEPTION" :exception,"EXCEPTION_INFO" : sys.exc_info()[0] }  
+        template_data = {"VIEW_RCOM_UPLOAD": "from view upload rcom","EXCEPTION" :exception,"EXCEPTION_INFO" : sys.exc_info()[0] }  
         result = render(request, 'home.html', template_data) 
     return result
 ##APPROVE Invoice

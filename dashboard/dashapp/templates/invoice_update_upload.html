@@ -41,7 +41,10 @@
         </div>
     </div>
     <br /><br />
-
+Upload Status -- {{uploadedupdate_file_url}}
+VIEW_UPDATE_UPLOAD -- {{VIEW_UPDATE_UPLOAD}}
+EXCEPTION_INFO -- {{EXCEPTION_INFO}}
+EXCEPTION -- {{EXCEPTION}}
     <div style="text-align:right">
         <form action="{% url 'dashapp:invoice_dwndformat' %}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
@@ -52,18 +55,22 @@
     <table align="center" width="90%" style="padding-left: 150px">
         <tr>
             <td>
-                {% if UPLOAD_RESULT is not null %}
+                {% if UPLOAD_UPDATE_STATUS is not null %}
                 <div class="alert alert-success" role="alert">
                     Invoice file Upload is successfull.<br />
                     File Name : {{ uploaded_file_url }}
                 </div>
-                {% elif EXCEPTION is not null %}
+                {% endif %}
+                {% if EXCEPTION is not null %}
                 <div class="alert alert-danger" role="alert">
                     There is been an error while uploading a file, Please check the file format. <br />
                     {% if EXCEPTION_INFO is not null %}
                     {{EXCEPTION_INFO}}
                     {% endif %}
                 </div>
+                {% endif %}
+                {% if EXCEPTION_INFO is not null %}
+                    {{EXCEPTION_INFO}}
                 {% endif %}
             </td>
         </tr>
