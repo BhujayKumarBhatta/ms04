@@ -260,7 +260,7 @@
             <tr style="font-size:12px">
                 <th></th>
                 <th>Invoice Number</th>
-                <th>Infops ID</th>
+                <th>Infoops ID</th>
                 <th>Circuit ID</th>
                 <th>Division</th>
                 <th>Tax Name</th>
@@ -460,21 +460,21 @@
                                     </tr>
                                     <tr>
                                         <th>Full Address</th>
-                                        <td>{{ Inv.recom_doc.xldata.fullsitedddress}} </td>
+                                        <td>{{ Inv.recom_doc.xldata.fullsiteaddress}} </td>
                                         <td style="background-color:
-                                {% if Inv.recom_doc.xldata.fullsitedddress != Inv.current_doc.xldata.fullsitedddress%}
+                                {% if Inv.recom_doc.xldata.fullsiteaddress != Inv.current_doc.xldata.fullsiteaddress%}
                                 pink
                                 {%else%}
                                 transparent
                                 {%endif%}">
                                             <input type="text" id="txtfullsitedddress" name="txtfullsitedddress"
                                                    style="background-color:
-                                {% if Inv.recom_doc.xldata.fullsitedddress != Inv.current_doc.xldata.fullsitedddress%}
+                                {% if Inv.recom_doc.xldata.fullsiteaddress != Inv.current_doc.xldata.fullsiteaddress%}
                                 pink
                                 {%else%}
                                 white
                                 {%endif%}"
-                                                   value="{{ Inv.current_doc.xldata.fullsitedddress }}">
+                                                   value="{{ Inv.current_doc.xldata.fullsiteaddress }}">
                                         </td>
                                     </tr>
                                     <tr>

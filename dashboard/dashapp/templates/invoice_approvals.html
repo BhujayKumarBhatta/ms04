@@ -207,7 +207,7 @@
 
 
 
-
+{{list_invoices}}
 
 
 <div class="table-wrapper">
@@ -300,6 +300,8 @@
         </thead>
         <tbody>
             {% for Inv in list_invoices%}
+            
+         inovice num --   {{Inv.current_doc.xldata.invoiceno}}
             <tr data-id="{{ Inv.current_doc.xldata.invoiceno}}" data-parent="0" data-level="1" style="font-size:11px;
             background-color:
                 {% if Inv.current_doc.status == 'tspAccepted'%}
