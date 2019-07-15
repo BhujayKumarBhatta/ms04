@@ -252,7 +252,7 @@ def invoice_approvals(request):
         template_data = {"list_invoices": list_invoices,"APPROVALS":"TRUE" } 
         result = render(request, 'home.html', template_data)
    else:
-        result = render(request, 'home.html')
+        result = render(request, 'home.html')av]
    return result
 ##APPROVE Invoice
 def invoice_approve(request):
