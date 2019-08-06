@@ -254,7 +254,7 @@
             </td>
         </tr>
     </table>
-{{list_invoices}}
+{{invstore_list_invoices}}
     <table id="tree-table" class="table table-hover table-bordepink" width="1500">
         <thead>
             <tr style="font-size:12px">
@@ -281,7 +281,7 @@
             </tr>
         </thead>
         <tbody>
-            {% for Inv in list_invoices%}
+            {% for Inv in invstore_list_invoices%}
             <tr data-id="{{ Inv.current_doc.xldata.invoiceno}}" data-parent="0" data-level="1" style="font-size:11px;
             background-color:
                 {% if Inv.current_doc.status == 'tspAccepted'%}

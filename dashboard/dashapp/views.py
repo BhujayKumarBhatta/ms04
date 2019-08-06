@@ -26,6 +26,10 @@ from dashapp.micros1.invoiceForm import invoiceForm
 
 from dashapp.micros1.invoiceForm import NameForm
 
+from dashapp.xluploader import tspinv as xluploadertspinv
+from dashapp.invstore import invoicestore
+
+
 def login(request):
     result = tllogin.login(request)
     return result
@@ -383,7 +387,44 @@ def add_model(request):
         return render(request, "home.html", {'CREATE_INVOICE_FORM': form})
 
  
+############### Xluploader #########################################
 
 
+def xluploader_invoice_upload(request):
+    if 'uname' not in request.session :
+        result = logout(request)
+    else:
+        result = xluploadertspinv.invoice_upload(request)    
+    return result
 
+############### InvStore ###########################################
  
+def invstore_list_invoices(request):
+    if 'uname' not in request.session :
+      result = login(request)
+    elif 'uname' in request.session :
+      result = invoicestore.list_invoices(request)
+    return result 
+
+def invstore_list_invoice_bycurrent_lastorder(request):
+    if 'uname' not in request.session :
+      result = login(request)
+    elif 'uname' in request.session :
+      result = invoicestore.list_invoice_bycurrent_lastorder(request)
+    return result
+
+def invstore_list_invoice_byfield(request):
+    if 'uname' not in request.session :
+      result = login(request)
+    elif 'uname' in request.session :
+      result = invoicestore.list_invoice_byfield(request)
+    return result
+
+def invstore_invoice_delete(request):
+    if 'uname' not in request.session :
+      result = login(request)
+    elif 'uname' in request.session :
+      result = invoicestore.invoice_delete(request)
+    return result
+ 
+###################################################################

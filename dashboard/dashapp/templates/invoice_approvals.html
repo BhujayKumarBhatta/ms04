@@ -301,7 +301,8 @@
         <tbody>
             {% for Inv in list_invoices%}
             
-         inovice num --   {{Inv.current_doc.xldata.invoiceno}}
+<!--          inovice num --   {{Inv.current_doc.xldata.invoiceno}} -->
+<!--          status -- {{Inv.current_doc.status}} -->
             <tr data-id="{{ Inv.current_doc.xldata.invoiceno}}" data-parent="0" data-level="1" style="font-size:11px;
             background-color:
                 {% if Inv.current_doc.status == 'tspAccepted'%}
@@ -312,7 +313,7 @@
                     transparent
                     {%endif%}">
                 <td>
-                    {% if Inv.current_doc.status != 'tspAccepted' or Inv.current_doc.status != 'approved' %}
+                    {% if Inv.current_doc.status != 'Approved' and Inv.current_doc.status != 'Rejected'  %}
                     <form action="{% url 'dashapp:invoice_approve' %}" method="post" enctype="multipart/form-data">
                         {% csrf_token %}
                         <input type="hidden" id="invoiceno" name="invoiceno" value="{{Inv.current_doc.xldata.invoiceno}}">
@@ -320,6 +321,8 @@
                             <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
                         </button>
                     </form>
+                    {%else%}
+                     
                     {%endif%}
                     <script>
                         $(document).ready(function () {
@@ -328,7 +331,7 @@
                     </script>
                 </td>
                 <td>
-                    {% if Inv.current_doc.status != 'tspAccepted' or Inv.current_doc.status != 'approved' %}
+                    {% if Inv.current_doc.status != 'Approved' and Inv.current_doc.status != 'Rejected'  %}
                     <form action="{% url 'dashapp:invoice_reject' %}" method="post" enctype="multipart/form-data">
                         {% csrf_token %}
                         <input type="hidden" id="invoiceno_rej" name="invoiceno_rej" value="{{Inv.current_doc.xldata.invoiceno}}">
@@ -336,8 +339,12 @@
                             <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                         </button>
                     </form>
+                    {%else%}
+                    
+                    <h5><span class="label label-warning"> 
+                    {{Inv.current_doc.status}}</span>
                     {%endif%}
-                    <script>
+                    <script></h5>
                         $(document).ready(function () {
                             $('[data-toggle="reject"]').tooltip();
                         });

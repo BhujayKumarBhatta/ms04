@@ -80,6 +80,15 @@ urlpatterns = [path('', views.login, name='login'),
     ,path('invoice_approvals', views.invoice_approvals, name='invoice_approvals')
     ,path('invoice_approve', views.invoice_approve, name='invoice_approve')
     ,path('invoice_reject', views.invoice_reject, name='invoice_reject')
+    
+    #XLuploader
+    ,path('xluploader_invoice_upload', views.xluploader_invoice_upload, name='xluploader_invoice_upload')
+    #INVStore
+    ,path('invstore_list_invoices', views.invstore_list_invoices, name='invstore_list_invoices')
+    ,path('invstore_list_invoice_bycurrent_lastorder', views.invstore_list_invoice_bycurrent_lastorder, name='invstore_list_invoice_bycurrent_lastorder')
+    ,path('invstore_list_invoice_byfield', views.invstore_list_invoice_byfield, name='invstore_list_invoice_byfield')
+    ,path('invstore_invoice_delete', views.invstore_invoice_delete, name='invstore_invoice_delete')
+        
     #,path('swagger-docs/', schema_view)
     #,path('docs/', include_docs_urls(title='TSP Billing'))
     ]
