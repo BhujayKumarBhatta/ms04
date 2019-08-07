@@ -25,7 +25,8 @@ from dashapp.micros1.invoiceForm import invoiceForm
 
 
 def downloadinvoicexlformat(request):
-    file_path = '/home/ubuntu/dashboard/dashboard/sample_inv_upload.xlsx'
+    file_path = '/home/kkumar/tspb/xluploader/xluploader/tests/testdata/sample_inv_upload.xlsx'
+    #file_path = '/tmp/media/sample_inv_upload.xlsx'
     if os.path.exists(file_path):
         with open(file_path, 'rb') as fh:
             response = HttpResponse(fh.read(), content_type="application/vnd.ms-excel")
@@ -53,11 +54,12 @@ def invoice_upload(request):
             if isinstance(loaded_message, list):
                 fs.delete(fname)
             result = render(request, 'home.html', 
-                                { 'uploaded_file_url': uploaded_file_url,
+                                { 'XL_uploaded_file_url': uploaded_file_url,
                                  "XL_VIEW_UPLOAD": "TRUE", 
-                                 "UPLOAD_STATUS":loaded_message})
-            template_data = { "uploaded_file_url" : uploaded_file_url                             
-                                 ,"UPLOAD_STATUS" : loaded_message,"UPLOAD_RESULT" : Upload_result}
+                                 "XL_UPLOAD_STATUS":loaded_message})
+            template_data = { "XL_uploaded_file_url" : uploaded_file_url                             
+                                 ,"XL_VIEW_UPLOAD" : loaded_message
+                                 ,"XL_UPLOAD_RESULT" : Upload_result}
             result = render(request, 'home.html', template_data) 
         if request.method == 'GET':          
             template_data = {"XL_VIEW_UPLOAD": "TRUE" }  

@@ -406,6 +406,13 @@ def invstore_list_invoices(request):
       result = invoicestore.list_invoices(request)
     return result 
 
+def invstore_list_divinvoices(request):
+    if 'uname' not in request.session :
+      result = login(request)
+    elif 'uname' in request.session :
+      result = invoicestore.list_divinvoices(request)
+    return result 
+
 def invstore_list_invoice_bycurrent_lastorder(request):
     if 'uname' not in request.session :
       result = login(request)
@@ -425,6 +432,20 @@ def invstore_invoice_delete(request):
       result = login(request)
     elif 'uname' in request.session :
       result = invoicestore.invoice_delete(request)
+    return result
+
+def invstore_list_stage1responces(request):
+    if 'uname' not in request.session :
+      result = login(request)
+    elif 'uname' in request.session :
+      result = invoicestore.list_stage1responces(request)
+    return result
+
+def invstore_delete_stage1responces(request):
+    if 'uname' not in request.session :
+      result = login(request)
+    elif 'uname' in request.session :
+      result = invoicestore.delete_stage1responces(request)
     return result
  
 ###################################################################
