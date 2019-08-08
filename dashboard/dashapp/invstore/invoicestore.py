@@ -137,7 +137,78 @@ def delete_stage1responces(request):
     template_data = {"STAGE1RESPONCES": "TRUE" ,"invstore_list_stage1responces": list_responces } 
     result = render(request, 'home.html', template_data)
               
-    return result     
+    return result  
+
+  
+def invoice_approve(request):
+    tlclient = tllogin.prep_tlclient_from_session(request)
+    invstoreclient = invstore_client(tlclient) 
+    ApproveInvoice = 'Exception'
+    listdata =[]
+    try:
+        if request.method == 'POST':
+            invnum = request.POST['invoiceno']
+            if invnum == 'all':                
+                list_invoices = invstoreclient.list_invoice_byinvnum('all')                  
+                for hstlist in list_invoices: 
+                    for Inv in hstlist['history_list']:
+                        dictstruct = {'action': 'approve', 'invoiceno': '0'}
+                        dictstruct['invoiceno'] = Inv['xldata']['invoiceno']            
+                        listdata.append(dictstruct) 
+            else:
+                dictstruct = {'action': 'approve', 'invoiceno': '0'}
+                dictstruct['invoiceno'] = request.POST['invoiceno']            
+                listdata.append(dictstruct) 
+                list_invoices = invstoreclient.list_invoice_byinvnum('all')
+            list_invoices = invstoreclient.list_invoice_byinvnum('all')            
+            invapprove_result = invstoreclient.infobhan_review(listdata)
+            template_data = {"invstore_list_divinvoices": list_invoices ,"APPROVE_INVSTORE_INVOICE_STATUS": invapprove_result} 
+            result = render(request, 'home.html', template_data)        
+        else:
+            result = render(request, 'home.html')
+    except Exception as exception:
+        list_invoices = invstoreclient.list_invoice_byinvnum('all') 
+        template_data = {"invstore_list_divinvoices": list_invoices ,"APPROVE_INVSTORE_INVOICE_STATUS": exception} 
+        result = render(request, 'home.html', template_data)
+    return result 
+
+
+def invoice_reject(request):
+    tlclient = tllogin.prep_tlclient_from_session(request)
+    invstoreclient = invstore_client(tlclient) 
+    ApproveInvoice = 'Exception'
+    listdata =[]
+    try:
+        if request.method == 'POST': 
+            invnum = request.POST['invoiceno']
+            dictstruct = {'action': 'reject', 'invoiceno': '0'}
+            if invnum == 'all':                
+                list_invoices = invstoreclient.list_invoice_byinvnum('all')                  
+                for hstlist in list_invoices: 
+                    for Inv in hstlist['history_list']:
+                        dictstruct = {'action': 'reject', 'invoiceno': '0'}
+                        dictstruct['invoiceno'] = Inv['xldata']['invoiceno']            
+                        listdata.append(dictstruct) 
+            else:
+                dictstruct = {'action': 'reject', 'invoiceno': '0'}
+                dictstruct['invoiceno'] = request.POST['invoiceno']            
+                listdata.append(dictstruct) 
+                list_invoices = invstoreclient.list_invoice_byinvnum('all') 
+             
+            invreject_result = invstoreclient.infobhan_review(listdata)
+            ##Loading All invoice
+            list_invoices = invstoreclient.list_invoice_byinvnum('all')          
+            template_data = {"invstore_list_divinvoices": list_invoices ,"REJECT_INVSTORE_INVOICE_STATUS": invreject_result} 
+            result = render(request, 'home.html', template_data)        
+        else:
+            result = render(request, 'home.html')
+    except Exception as exception:
         
- 
+         ##Loading All invoice
+        list_invoices = invstoreclient.list_invoice_byinvnum('all') 
+        template_data = {"invstore_list_divinvoices": list_invoices ,"REJECT_INVSTORE_INVOICE_STATUS": exception} 
+        result = render(request, 'home.html', template_data)
+    return result 
+   
+    
  

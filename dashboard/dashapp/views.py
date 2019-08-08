@@ -447,5 +447,19 @@ def invstore_delete_stage1responces(request):
     elif 'uname' in request.session :
       result = invoicestore.delete_stage1responces(request)
     return result
+
+def invstore_invoice_approve(request):
+    if 'uname' not in request.session :
+      result = login(request)
+    elif 'uname' in request.session :
+      result = invoicestore.invoice_approve(request)
+    return result
+
+def invstore_invoice_reject(request):
+    if 'uname' not in request.session :
+      result = login(request)
+    elif 'uname' in request.session :
+      result = invoicestore.invoice_reject(request)
+    return result
  
 ###################################################################

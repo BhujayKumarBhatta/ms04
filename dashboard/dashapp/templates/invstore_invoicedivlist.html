@@ -1,207 +1,222 @@
-{% load i18n %}
-{% load l10n %}
-{% load static %}
+{% load i18n %} {% load l10n %} {% load static %}
 
 
 <style type="text/css">
+.btn span.glyphicon {
+	opacity: 0;
+}
 
-    input[type=text] {
-        width: 100%;
-        margin: 1px 0;
-        box-sizing: border-box;
-        border: none;
-    }
+.btn.active span.glyphicon {
+	opacity: 1;
+}
 
-    body {
-        color: #404E67;
-        background: #F5F7FA;
-        font-family: 'Open Sans', sans-serif;
-    }
+.container { .container { padding:2rem0rem;
+	
+}
 
-    .table-wrapper {
-        width: 100%;
-        margin: 10px auto;
-        background: #fff;
-        padding: 5px;
-        box-shadow: 0 1px 1px rgba(0,0,0,.05);
-    }
+h4 {
+	margin: 2rem 0rem 1rem;
+}
 
-    .table-title {
-        padding-bottom: 5px;
-        margin: 0 0 5px;
-    }
+.table-image {td , th { vertical-align:middle;
+	
+}
 
-        .table-title h2 {
-            margin: 6px 0 0;
-            font-size: 22px;
-        }
+}
+input[type=text] {
+	width: 100%;
+	margin: 1px 0;
+	box-sizing: border-box;
+	border: none;
+}
 
-        .table-title .add-new {
-            float: right;
-            height: 30px;
-            font-weight: bold;
-            font-size: 12px;
-            text-shadow: none;
-            min-width: 100px;
-            border-radius: 50px;
-            line-height: 13px;
-        }
+body {
+	color: #404E67;
+	background: #F5F7FA;
+	font-family: 'Open Sans', sans-serif;
+}
 
-            .table-title .add-new i {
-                margin-right: 4px;
-            }
+.table-wrapper {
+	width: 100%;
+	margin: 10px auto;
+	background: #fff;
+	padding: 5px;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+}
 
-    table.table {
-        table-layout: inherit;
-    }
+.table-title {
+	padding-bottom: 5px;
+	margin: 0 0 5px;
+}
 
-        table.table tr th, table.table tr td {
-            border-color: #e9e9e9;
-        }
+.table-title h2 {
+	margin: 6px 0 0;
+	font-size: 22px;
+}
 
-        table.table th i {
-            font-size: 13px;
-            margin: 0 5px;
-            cursor: pointer;
-        }
+.table-title .add-new {
+	float: right;
+	height: 30px;
+	font-weight: bold;
+	font-size: 12px;
+	text-shadow: none;
+	min-width: 100px;
+	border-radius: 50px;
+	line-height: 13px;
+}
 
-        table.table th:last-child {
-            width: 100px;
-        }
+.table-title .add-new i {
+	margin-right: 4px;
+}
 
-        table.table td a {
-            cursor: pointer;
-            display: inline-block;
-            margin: 0 5px;
-            min-width: 24px;
-        }
+table.table {
+	table-layout: inherit;
+}
 
-            table.table td a.add {
-                color: #27C46B;
-            }
+table.table tr th, table.table tr td {
+	border-color: #e9e9e9;
+}
 
-            table.table td a.edit {
-                color: #FFC107;
-            }
+table.table th i {
+	font-size: 13px;
+	margin: 0 5px;
+	cursor: pointer;
+}
 
-            table.table td a.delete {
-                color: #E34724;
-            }
+table.table th:last-child {
+	width: 100px;
+}
 
-        table.table td i {
-            font-size: 19px;
-        }
+table.table td a {
+	cursor: pointer;
+	display: inline-block;
+	margin: 0 5px;
+	min-width: 24px;
+}
 
-        table.table td a.add i {
-            font-size: 24px;
-            margin-right: -1px;
-            position: relative;
-            top: 3px;
-        }
+table.table td a.add {
+	color: #27C46B;
+}
 
-        table.table .form-control {
-            height: 32px;
-            line-height: 32px;
-            box-shadow: none;
-            border-radius: 2px;
-        }
+table.table td a.edit {
+	color: #FFC107;
+}
 
-            table.table .form-control.error {
-                border-color: #f50000;
-            }
+table.table td a.delete {
+	color: #E34724;
+}
 
-        table.table td .add {
-            display: none;
-        }
+table.table td i {
+	font-size: 19px;
+}
 
+table.table td a.add i {
+	font-size: 24px;
+	margin-right: -1px;
+	position: relative;
+	top: 3px;
+}
 
+table.table .form-control {
+	height: 32px;
+	line-height: 32px;
+	box-shadow: none;
+	border-radius: 2px;
+}
 
-    .treegrid-indent {
-        width: 0px;
-        height: 16px;
-        display: inline-block;
-        position: relative;
-    }
+table.table .form-control.error {
+	border-color: #f50000;
+}
 
-    .treegrid-expander {
-        width: 0px;
-        height: 16px;
-        display: inline-block;
-        position: relative;
-        left: -17px;
-        cursor: pointer;
-    }
+table.table td .add {
+	display: none;
+}
 
-    a.tooltip {
-        outline: none;
-    }
+.treegrid-indent {
+	width: 0px;
+	height: 16px;
+	display: inline-block;
+	position: relative;
+}
 
-        a.tooltip strong {
-            line-height: 30px;
-        }
+.treegrid-expander {
+	width: 0px;
+	height: 16px;
+	display: inline-block;
+	position: relative;
+	left: -17px;
+	cursor: pointer;
+}
 
-        a.tooltip:hover {
-            text-decoration: none;
-        }
+a.tooltip {
+	outline: none;
+}
 
-        a.tooltip span {
-            z-index: 10;
-            display: none;
-            padding: 14px 20px;
-            margin-top: -30px;
-            margin-left: 28px;
-            width: 300px;
-            line-height: 16px;
-        }
+a.tooltip strong {
+	line-height: 30px;
+}
 
-        a.tooltip:hover span {
-            display: inline;
-            position: absolute;
-            color: #111;
-            border: 1px solid #DCA;
-            background: #fffAF0;
-        }
+a.tooltip:hover {
+	text-decoration: none;
+}
 
-    .callout {
-        z-index: 20;
-        position: absolute;
-        top: 30px;
-        border: 0;
-        left: -12px;
-    }
+a.tooltip span {
+	z-index: 10;
+	display: none;
+	padding: 14px 20px;
+	margin-top: -30px;
+	margin-left: 28px;
+	width: 300px;
+	line-height: 16px;
+}
 
-    /*CSS3 extras*/
-    a.tooltip span {
-        border-radius: 4px;
-        box-shadow: 5px 5px 8px #CCC;
-    }
+a.tooltip:hover span {
+	display: inline;
+	position: absolute;
+	color: #111;
+	border: 1px solid #DCA;
+	background: #fffAF0;
+}
 
+.callout {
+	z-index: 20;
+	position: absolute;
+	top: 30px;
+	border: 0;
+	left: -12px;
+}
 
-    tr .spnTooltip {
-        z-index: 10;
-        display: none;
-        padding: 14px 20px;
-        margin-top: -30px;
-        margin-left: 28px;
-        width: 300px;
-        line-height: 16px;
-    }
+/*CSS3 extras*/
+a.tooltip span {
+	border-radius: 4px;
+	box-shadow: 5px 5px 8px #CCC;
+}
 
-    tr:hover .spnTooltip {
-        display: inline;
-        position: absolute;
-        color: #111;
-        border: 1px solid #DCA;
-        background: #fffAF0;
-    }
+tr .spnTooltip {
+	z-index: 10;
+	display: none;
+	padding: 14px 20px;
+	margin-top: -30px;
+	margin-left: 28px;
+	width: 300px;
+	line-height: 16px;
+}
 
-    .callout {
-        z-index: 20;
-        position: absolute;
-        top: 30px;
-        border: 0;
-        left: -12px;
-    }
+tr:hover .spnTooltip {
+	display: inline;
+	position: absolute;
+	color: #111;
+	border: 1px solid #DCA;
+	background: #fffAF0;
+}
+
+.callout {
+	z-index: 20;
+	position: absolute;
+	top: 30px;
+	border: 0;
+	left: -12px;
+}
 </style>
 
 
@@ -211,177 +226,293 @@
 
 
 <div class="table-wrapper">
-    <div class="table-title">
-        <div class="row">
-            <div class="col-sm-8"><h3><b>Manage Invoice</b> Details</h3></div>
-        </div>
-    </div>
-    <table ID="tbllegend" style="width:300px;font-size:9px;font-weight:bold;color:blue" border="1">
-        <tr>
-            <td style="width:30%;"> </td>
-            <td>TSP Recent Entries</td>
-        </tr>
-        <tr>
-            <td style="width:30%; background-color:#a6c06d"></td>
-            <td>ITC Recommendations </td>
-        </tr>
-        <tr>
-            <td style="width:30%;background-color:lightgray"> </td>
-            <td>TSP Old Entries </td>
-        </tr>
-        <tr>
-            <td style="width:30%;background-color:lightgreen"> </td>
-            <td>TSP Accepted</td>
-        </tr>
-    </table>
+	<div class="table-title">
+		<div class="row">
+			<div class="col-sm-8">
+				<h3>
+					<b>Manage Infobhan </b> Invoice
+				</h3>
+			</div>
+		</div>
+	</div>
 
-{{invstore_list_stage1responces}}
-    <table align="center" width="90%" style="padding-left: 150px">
-        <tr>
-            <td>
-                {% if DELETE_INVOICE_STATUS is not null %}
-                <div class="alert alert-success" role="alert">
-                    Invoice(s) Deleted Successfully.<br />{{DELETE_INVOICE_STATUS}}
-                </div>
-                {% elif EXCEPTION is not null %}
-                <div class="alert alert-danger" role="alert">
-                    There is been an error while deleting a Invoice(s), Please Try after sometime or contact Administrator. <br />
-                    {% if EXCEPTION_INFO is not null %}
-                    {{EXCEPTION_INFO}}
-                    {% endif %}
-                </div>
-                {% endif %}
-            </td>
-        </tr>
-    </table>
+	<table align="center" width="90%" style="padding-left: 150px">
+		<tr>
+			<td>{%if DELETE_INVOICE_STATUS is not null %}
+			
+				<div class="alert alert-success" role="alert">
+					Invoice(s) Deleted Successfully.<br />{{DELETE_INVOICE_STATUS}}
+				</div> {% elif EXCEPTION is not null %}
+				<div class="alert alert-danger" role="alert">
+					There is been an error while deleting a Invoice(s), Please Try
+					after sometime or contact Administrator. <br /> 
+					{% if EXCEPTION_INFO is not null %} 
+					{{EXCEPTION_INFO}} 
+					{% endif %}
+				</div> 
+				
+				{% endif %}
+			</td>
+		</tr>
+	</table>
+	
+	reject status -- {{REJECT_INVSTORE_INVOICE_STATUS}}
+	approve status -- {{APPROVE_INVSTORE_INVOICE_STATUS}}
   
+	<form action="{% url 'dashapp:invstore_invoice_approve' %}" method="post" 
+		enctype="multipart/form-data"> {% csrf_token %}
+		<input type="hidden" id="invoiceno" name="invoiceno" value="all">
+		<button type="submit" class="btn btn-success" onclick="return confirm('Are you sure? you want to Approve all Invoices waiting for Aproval.')"
+			style="width: 200px">Approve All Invoices</button> 
+	</form>		
+	<form action="{% url 'dashapp:invstore_invoice_reject' %}" method="post"
+			enctype="multipart/form-data"> {% csrf_token %}  
+			<input type="hidden" id="invoiceno" name="invoiceno_rej" value="all">
+		<button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure? you want to Reject all Invoices waiting for Approval.')"
+		style="width: 200px">Reject All Invoices</button> 
+	</form>
 
-    <table  class="table table-hover table-bordepink" width="1500">
-        <thead>
-            <tr style="font-size:12px">
-                <th></th>
-                <th>Invoice Number</th>
-                <th>Infoops ID</th>
-                <th>Circuit ID</th>
-                <th>Division</th>
-                <th>Tax Name</th>
-                <th>Full Address</th>
-                <th>GST No</th>
-                <th>State</th>
-                <th>Billing Date_From</th>
-                <th>City</th>
-                <th>Premise Name</th>
-                <th>processing_status</th>
-                <th>Customer_id</th>
-                <th>Premise No</th>
-                <th>Billing Date_TO</th>
-                <th>Speed</th>
-                <th>Remarks</th>
-                <th>Invoice Date</th>
-                <th>Service Type</th>
-            </tr>
-        </thead>
-        <tbody>
-       {% for hstlist in invstore_list_divinvoices%} 
-		{%for Inv in  hstlist.history_list %}
- 				
-            <tr data-id="{{ Inv.invoiceno}}" data-parent="0" data-level="1" style="font-size:11px;
-            background-color:
-                {% if Inv.current_doc.status == 'tspAccepted'%}
-                    lightgreen
-                    {% elif Inv.recom_doc.xldata.invoiceno is not null%}
-                        #a6c06d
-                    {%else%}
-                    transparent
+
+	<table id="tree-table" class="table table-hover table-bordepink table "
+		width="1500">
+		<thead>
+			<tr style="font-size: 12px">
+				<th></th>
+				<th></th>
+				<th></th>
+				<th>Invoice Number</th>
+				<th>Circuit ID</th>
+				<th>Division</th>
+				<th>Tax Name</th>
+				<th>Full Address</th>
+				<th>GST No</th>
+				<th>State</th>
+				<th>Billing Date_From</th>
+				<th>City</th>
+				<th>Premise Name</th>
+				<th>processing_status</th>
+				<th>Customer_id</th>
+				<th>Premise No</th>
+				<th>Billing Date_TO</th>
+				<th>Speed</th>
+				<th>Remarks</th>
+				<th>Invoice Date</th>
+				<th>Service Type</th>
+				<th>status</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for hstlist in invstore_list_divinvoices%} 
+			{% for Inv in hstlist.history_list %} 
+			{% if Inv.status != 'archived'%}
+			<tr data-id="{{ Inv.xldata.invoiceno}}" data-parent="0"
+				data-level="1"
+				style="font-size: 11px; background-color: 
+				{%if Inv.status == 'Approved'%}
+                   lightgreen
+                {%elif Inv.status == 'Rejected'%}
+                    lightorange
+                {%elif Inv.status == 'initialUpload'%}
+                   transparent
                 {%endif%}">
-                <td>
-                    <form action="{% url 'dashapp:invstore_invoice_delete' %}" method="post" enctype="multipart/form-data">
+				<td>
+					<form action="{% url 'dashapp:invstore_invoice_delete' %}" method="post"
+						enctype="multipart/form-data">
+						{% csrf_token %} <input type="hidden" id="invoiceno"
+							name="invoiceno" value="{{Inv.xldata.invoiceno}}">
+						<button type="submit" class="btn btn-danger btn-xs"
+							onclick="return confirm('Are you sure? you want to Delete Invoice')">
+							<i class="glyphicon glyphicon-trash"></i>
+						</button>
+						<!--<a class="delete"  title="Delete Invoice" data-toggle="tooltip" ><i class="material-icons">&#xE872;</i></a>-->
+					</form>
+					
+				</td>
+				<td >
+				 <form action="{% url 'dashapp:invstore_invoice_approve' %}" method="post" enctype="multipart/form-data">
                         {% csrf_token %}
                         <input type="hidden" id="invoiceno" name="invoiceno" value="{{Inv.xldata.invoiceno}}">
-                        <button type="submit" class="btn btn-danger btn-sm"
-                                onclick="return confirm('Are you sure? you want to Delete Invoice')">
-                            <i class="glyphicon glyphicon-trash"></i>
+                        <button type="submit" class="btn btn-success btn-xs" title="Clcik to Approve" data-toggle="approve">
+                            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
                         </button>
-                        
                     </form>
-                </td>
-                <td data-column="name" style="width:150px">{{ Inv.xldata.invoiceno}} </td>
-                <td>{{ Inv.xldata.infoid }}</td>
-                <td>{{ Inv.xldata.circuitid }}</td>
-                <td>{{ Inv.xldata.division }} </td>
-                <td>{{ Inv.xldata.taxname }}</td>
-                <td>{{ Inv.xldata.customername }} </td>
-                <td>{{ Inv.xldata.fullsitedddress}} </td>
-                <td>{{ Inv.xldata.gstno}} </td>
-                <td>{{ Inv.xldata.state}} </td>
-                <td>{{ Inv.xldata.billingdatefrom}} </td>
-                <td>{{ Inv.xldata.city}} </td>
-                <td>{{ Inv.xldata.premisename}} </td>
-                <td>{{ Inv.xldata.current_doc.processing_status}} </td>
-                <td>{{ Inv.xldata.current_doc.Customer_id}} </td>
-                <td>{{ Inv.xldata.premiseno}} </td>
-                <td>{{ Inv.xldata.billingdateto}} </td>
-                <td>{{ Inv.xldata.speed}} </td>
-                <td>{{ Inv.xldata.current_doc.remarks}} </td>
-                <td>{{ Inv.xldata.current_doc.InvoiceDate}} </td>
-                <td>{{ Inv.xldata.current_doc.servicetype}} </td>
-            </tr>
-          
-            {% endfor %}
-            {% endfor %}
-        </tbody>
-    </table>
+                  </td>
+                  <td>
+                  <form action="{% url 'dashapp:invstore_invoice_reject' %}" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <input type="hidden" id="invoiceno_rej" name="invoiceno_rej" value="{{Inv.xldata.invoiceno}}">
+                        <button type="submit" class="btn btn-danger btn-xs" title="Clcik to Reject" data-toggle="reject">
+                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                        </button>
+                    </form> 
+                  </td>   
+				<td data-column="name" style="width: 150px">{{Inv.xldata.invoiceno}}</td>
+				<td>{{ Inv.xldata.circuitid }}</td>
+				<td>{{ Inv.xldata.division }}</td>
+				<td>{{ Inv.xldata.taxname }}</td>
+				<td>{{ Inv.xldata.customername }}</td>
+				<td>{{ Inv.xldata.fullsitedddress}}</td>
+				<td>{{ Inv.xldata.gstno}}</td>
+				<td>{{ Inv.xldata.state}}</td>
+				<td>{{ Inv.xldata.billingdatefrom}}</td>
+				<td>{{ Inv.xldata.city}}</td>
+				<td>{{ Inv.xldata.premisename}}</td>
+				<td>{{ Inv.current_doc.processing_status}}</td>
+				<td>{{ Inv.current_doc.Customer_id}}</td>
+				<td>{{ Inv.xldata.premiseno}}</td>
+				<td>{{ Inv.xldata.billingdateto}}</td>
+				<td>{{ Inv.xldata.speed}}</td>
+				<td>{{ Inv.current_doc.remarks}}</td>
+				<td>{{ Inv.current_doc.InvoiceDate}}</td>
+				<td>{{ Inv.current_doc.servicetype}}</td>
+				<td>{{ Inv.status}}</td>
+			</tr>
+			{% endif %} 
+			
+			<tr >
+				<td colspan="10">
+				{{ Inv.autochk}}
+		           <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#multiCollapseExample{{Inv.xldata.invoiceno}}" aria-expanded="false" aria-controls="multiCollapseExample{{Inv.xldata.invoiceno}}">Authocheck Result</button>
+  					<div class="collapse multi-collapse" id="multiCollapseExample{{Inv.xldata.invoiceno}}">
+		      			<div class="card card-body">	       
+	       				<table class="table table-hover table-bordepink"
+							style="padding-left: 50px; font-size: 11px">
+							<tr>
+								<td style="width: 150px">Inventory Status :</td>
+								<td>{{ Inv.autochk.inventory_status }}</td>
+							</tr>
+							<tr>
+								<td style="width: 150px">Local Network Status :</td>
+								<td>{{ Inv.autochk.lnet_status }}</td>
+							</tr>
+							<tr>
+								<td style="width: 150px">Auto Check Status :</td>
+								<td>{{ Inv.autochk.autocheck_status }}</td>
+							</tr>
+							<tr>
+								<td colspan="2">
+									<table style="padding-left: 100px">
+										<tr>
+											<th style="width: 150px">Billing From Status</th>
+											<td>{{Inv.autochk.bill_from_status}}</td>
+										</tr>
+										<tr>
+											<th style="width: 150px">Billing From message</th>
+											<td>{{Inv.autochk.bill_from_msg}}</td>
+										</tr>
+										<tr>
+											<th style="width: 150px">Billing To Status</th>
+											<td>{{Inv.autochk.bill_to_status}}</td>
+										</tr>
+										<tr>
+											<th style="width: 150px">Billing To message</th>
+											<td>{{Inv.autochk.bill_to_msg}}</td>
+										</tr>
+										<tr>
+											<th style="width: 150px">Billing Duration</th>
+											<td>{{Inv.autochk.billing_duration}}</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+							<tr>
+								<td colspan="2" style="font-weight: bold; text-align: center">
+									BOM Result</td>
+							</tr>
+							<tr>
+								<td colspan="2">
+	
+									<table>
+										<thead>
+											<th>Field Name</th>
+											<th>Invoice Value</th>
+											<th>Suggested value</th>
+										</thead>
+										{% for bom in Inv.autochk.bom_comp_result %}
+										<tr>
+											<td>{{bom.field}}</td>
+											<td>{{bom.invoice_value}}</td>
+											<td>{{bom.suggested_value}}</td>
+										</tr>
+										{% endfor %}
+									</table>
+								</td>
+							</tr>
+						</table>
+			      	</div>
+		    	</div>
+   
+					
+				</td>
+			</tr>
+			{% endfor %}
+			{% endfor %}
+		</tbody>
+	</table>
+ </div>
+	
+    
+   
 
-    <!--First tooltip-->
-    <a href="#" class="tooltip">
-        Tooltip
-        <span>
+	<script src='{% static "dashapp/styles/Bootstrapv337.js" %}'
+		type="text/javascript"></script>
+	<script src='{% static "dashapp/styles/jquery-1.12.4.min.js" %}'
+		type="text/javascript"></script>
+	<script src='{% static "dashapp/styles/javascript.js" %}'
+		type="text/javascript"></script>
 
-            <strong>Most Light-weight Tooltip</strong><br />
-            This is the easy-to-use Tooltip driven purely by CSS.
-        </span>
-    </a>
-    <!--<a title="tootltip" href="#">fwffw</a>
-    <table>
-        <tr><th>Detailed view</th></tr>
-        <tr title="row 1">
-            <td>
-                <span class="spnDetails">Details</span><span class="spnTooltip">
-
-                    <strong>Most Light-weight Tooltip</strong><br />
-                    This is the easy-to-use Tooltip driven purely by CSS.
-                </span>
-            </td>
-        </tr>
-        <tr title="row 2">
-            <td>
-                <span class="spnDetails">Details</span><span class="spnTooltip">
-
-                    <strong>Most Light-weight Tooltip</strong><br />
-                    This is the easy-to-use Tooltip driven purely by CSS.
-                </span>
-            </td>
-        </tr>
-    </table>-->
+	 
+	
+	<form action="{% url 'dashapp:invstore_invoice_delete' %}" method="post"
+		enctype="multipart/form-data">
+		{% csrf_token %} <input type="hidden" id="invoiceno" name="invoiceno"
+			value="0">
+		<button type="submit" class="btn btn-danger"
+			onclick="return confirm('Are you sure? you want to delete all divisional Invoices.\n This will Remove all invoices from the system.')"
+			style="width: 300px">Delete All Invoices</button>
+	</form>
+	
+	
+	 
+ 
 
 
 
-    <script src='{% static "dashapp/styles/Bootstrapv337.js" %}' type="text/javascript"></script>
-    <script src='{% static "dashapp/styles/jquery-1.12.4.min.js" %}' type="text/javascript"></script>
-    <script src='{% static "dashapp/styles/javascript.js" %}' type="text/javascript"></script>
-
-    <form action="{% url 'dashapp:invstore_invoice_delete' %}" method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        <input type="hidden" id="invoiceno" name="invoiceno" value="0">
-        <button type="submit" class="btn btn-danger"
-                onclick="return confirm('Are you sure? you want to delete all Invoices.\n This will Remove all invoices from the system.')"
-                style="width:300px">
-            Delete All Invoices
-        </button>
-    </form>
-    {{DELETE_STATUS}}
+<p>
+  <a class="btn btn-primary" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Toggle first element</a>
+  <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Toggle second element</button>
+  <button class="btn btn-primary" type="button" data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false" aria-controls="multiCollapseExample1 multiCollapseExample2">Toggle both elements</button>
+  <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#multiCollapseExample3" aria-expanded="false" aria-controls="multiCollapseExample3">Toggle second element</button>
+</p>
+<div class="row">
+  <div class="col">
+    <div class="collapse multi-collapse" id="multiCollapseExample1">
+      <div class="card card-body">
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="collapse multi-collapse" id="multiCollapseExample2">
+      <div class="card card-body">
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="collapse multi-collapse" id="multiCollapseExample3">
+      <div class="card card-body">
+        3333333333333333333333333333333enderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+      </div>
+    </div>
+  </div>
 </div>
+ 
+ 
+ 
 
+
+{{invstore_list_divinvoices}}
 
 
 
@@ -398,15 +529,3 @@
     <button type="button" class="btn btn-link">Link</button>
 </div>
     { "state": "","arc": "","billingdateto": "", "remarks": "", "fullsiteaddress": "", "customerid": "","servicetype": "", "billingdatefrom": "", "speed": "", "division": "", "taxname": "", "total": "","accountno": "", "pin": "", "circuitid": "", "invoicedate": "", "invoiceno": "", "siteid": "", "gstno": "", "premiseno": "", "city": "", "tsp": "", "customername": "", "slno": "",  "premisename": "" }-->
-
-    
-{{invstore_list_invoices}}
-
-{% for history in invstore_list_invoices%}
- 
-	 {%for xd in  history.history_list %}
-	  ========{{xd.xldata}}
-	  ========{{xd.xldata}}
-	 {% endfor %}
- 
-  {% endfor %}

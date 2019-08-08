@@ -279,11 +279,13 @@
                 <th>Remarks</th>
                 <th>Invoice Date</th>
                 <th>Service Type</th>
+                <th>Status</th>
             </tr>
         </thead>
         <tbody>
        {% for hstlist in invstore_list_invoices%} 
 		{%for Inv in  hstlist.history_list %}
+		{% if Inv.status != 'archived'%}
  				
             <tr data-id="{{ Inv.invoiceno}}" data-parent="0" data-level="1" style="font-size:11px;
             background-color:
@@ -294,6 +296,7 @@
                     {%else%}
                     transparent
                 {%endif%}">
+                <td></td>
 <!--                 <td> -->
 <!--                     <form action="{% url 'dashapp:invstore_invoice_delete' %}" method="post" enctype="multipart/form-data"> -->
 <!--                         {% csrf_token %} -->
@@ -306,7 +309,7 @@
 <!--                     </form> -->
 <!--                 </td> -->
                 <td data-column="name" style="width:150px">{{ Inv.xldata.invoiceno}} </td>
-                <td>{{ Inv.xldata.infoid }}</td>
+                <td>{{ Inv.xldata.infoid }}</td>                
                 <td>{{ Inv.xldata.circuitid }}</td>
                 <td>{{ Inv.xldata.division }} </td>
                 <td>{{ Inv.xldata.taxname }}</td>
@@ -325,10 +328,11 @@
                 <td>{{ Inv.xldata.current_doc.remarks}} </td>
                 <td>{{ Inv.xldata.current_doc.InvoiceDate}} </td>
                 <td>{{ Inv.xldata.current_doc.servicetype}} </td>
+                <td>{{ Inv.status}} </td>
             </tr>
-          
-            {% endfor %}
-            {% endfor %}
+         {% endif %}
+        {% endfor %}
+        {% endfor %}
         </tbody>
     </table>
 
