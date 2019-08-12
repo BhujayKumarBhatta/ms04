@@ -258,20 +258,21 @@ tr:hover .spnTooltip {
 	
 	reject status -- {{REJECT_INVSTORE_INVOICE_STATUS}}
 	approve status -- {{APPROVE_INVSTORE_INVOICE_STATUS}}
-  
+  <table><tr><td>
 	<form action="{% url 'dashapp:invstore_invoice_approve' %}" method="post" 
 		enctype="multipart/form-data"> {% csrf_token %}
 		<input type="hidden" id="invoiceno" name="invoiceno" value="all">
 		<button type="submit" class="btn btn-success" onclick="return confirm('Are you sure? you want to Approve all Invoices waiting for Aproval.')"
 			style="width: 200px">Approve All Invoices</button> 
 	</form>		
+	</td><td>
 	<form action="{% url 'dashapp:invstore_invoice_reject' %}" method="post"
 			enctype="multipart/form-data"> {% csrf_token %}  
 			<input type="hidden" id="invoiceno" name="invoiceno_rej" value="all">
 		<button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure? you want to Reject all Invoices waiting for Approval.')"
 		style="width: 200px">Reject All Invoices</button> 
 	</form>
-
+<td></tr></table>
 
 	<table id="tree-table" class="table table-hover table-bordepink table "
 		width="1500">
@@ -315,19 +316,19 @@ tr:hover .spnTooltip {
                 {%elif Inv.status == 'initialUpload'%}
                    transparent
                 {%endif%}">
-				<td>
-					<form action="{% url 'dashapp:invstore_invoice_delete' %}" method="post"
-						enctype="multipart/form-data">
-						{% csrf_token %} <input type="hidden" id="invoiceno"
-							name="invoiceno" value="{{Inv.xldata.invoiceno}}">
-						<button type="submit" class="btn btn-danger btn-xs"
-							onclick="return confirm('Are you sure? you want to Delete Invoice')">
-							<i class="glyphicon glyphicon-trash"></i>
-						</button>
-						<!--<a class="delete"  title="Delete Invoice" data-toggle="tooltip" ><i class="material-icons">&#xE872;</i></a>-->
-					</form>
+<!-- 				<td> -->
+<!-- 					<form action="{% url 'dashapp:invstore_invoice_delete' %}" method="post" -->
+<!-- 						enctype="multipart/form-data"> -->
+<!-- 						{% csrf_token %} <input type="hidden" id="invoiceno" -->
+<!-- 							name="invoiceno" value="{{Inv.xldata.invoiceno}}"> -->
+<!-- 						<button type="submit" class="btn btn-danger btn-xs" -->
+<!-- 							onclick="return confirm('Are you sure? you want to Delete Invoice')"> -->
+<!-- 							<i class="glyphicon glyphicon-trash"></i> -->
+<!-- 						</button> -->
+<!-- 						<a class="delete"  title="Delete Invoice" data-toggle="tooltip" ><i class="material-icons">&#xE872;</i></a> -->
+<!-- 					</form> -->
 					
-				</td>
+<!-- 				</td> -->
 				<td >
 				 <form action="{% url 'dashapp:invstore_invoice_approve' %}" method="post" enctype="multipart/form-data">
                         {% csrf_token %}

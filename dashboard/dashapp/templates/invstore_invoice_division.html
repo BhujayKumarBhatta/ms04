@@ -1,0 +1,227 @@
+ <style>
+ body{
+	background-color:lightblue !important;
+}
+.table tr {
+    cursor: pointer;
+}
+.table{
+	background-color: #fff !important;
+}
+.hedding h1{
+	color:#fff;
+	font-size:25px;
+}
+ 
+.hiddenRow {
+    padding: 0 4px !important;
+    background-color: #eeeeee;
+    font-size: 13px;
+}
+ 
+ 
+ </style>
+ 
+	 
+<div class="table-wrapper">
+    <div class="table-title">
+        <div class="row">
+            <div class="col-sm-8"><h3>Manage   <b>Invoice</b></h3></div>
+        </div>
+    </div>
+			<div class="col-lg-12">
+				<table class="table table-bordered" style="border-collapse:collapse;" >
+				    <thead>
+			            <tr style="font-size:12px">
+			            	 
+			                <th>Invoice Number</th>
+			                <th>Circuit ID</th>
+			                <th>Division</th>
+			                <th>Tax Name</th>
+			                <th>Customer Name</th>
+			                <th>Full Address</th>
+			                <th>GST No</th>
+			                <th>State</th>
+			                <th>Billing Date_From</th>
+			                <th>City</th>
+			                <th>Premise Name</th>
+			                <th>processing_status</th>
+			                <th>Customer_id</th>
+			                <th>Premise No</th>
+			                <th>Billing Date_TO</th>
+			                <th>Speed</th>
+			                <th>Remarks</th>
+			                <th>Invoice Date</th>
+			                <th>Service Type</th>
+			            </tr>
+			        </thead>
+			        <tbody>	
+	        {% for hstlist in invstore_DIVSION_invoices%} 
+			
+			
+		{% for Inv in hstlist.history_list %} 
+		{% if Inv.status == 'Approved'    %}			   
+	    		<tr style="font-size:11px" data-toggle="collapse" data-target="#demo{{Inv.xldata.invoiceno}}" class="accordion-toggle">
+		                
+		                <td data-column="name" style="width:150px;padding: 4px;">{{ Inv.xldata.invoiceno}} </td>
+		                <td style="padding: 4px;">{{ Inv.xldata.circuitid }}</td>
+		                <td style="padding: 4px;">{{ Inv.xldata.division }} </td>
+		                <td style="padding: 4px;">{{ Inv.xldata.taxname }}</td>
+		                <td style="padding: 4px;">{{ Inv.xldata.customername }} </td>
+		                <td style="padding: 4px;">{{ Inv.xldata.fullsiteaddress}} </td>
+		                <td style="padding: 4px;">{{ Inv.xldata.gstno}} </td>
+		                <td style="padding: 4px;">{{ Inv.xldata.state}} </td>
+		                <td style="padding: 4px;">{{ Inv.xldata.billingdatefrom}} </td>
+		                <td style="padding: 4px;">{{ Inv.xldata.city}} </td>
+		                <td style="padding: 4px;">{{ Inv.xldata.premisename}} </td>
+		                <td style="padding: 4px;">{{ Inv.processing_status}} </td>
+		                <td style="padding: 4px;">{{ Inv.xldata.Customer_id}} </td>
+		                <td style="padding: 4px;">{{ Inv.xldata.premiseno}} </td>
+		                <td style="padding: 4px;">{{ Inv.xldata.billingdateto}} </td>
+		                <td style="padding: 4px;">{{ Inv.xldata.speed}} </td>
+		                <td style="padding: 4px;">{{ Inv.xldata.remarks}} </td>
+		                <td style="padding: 4px;">{{ Inv.xldata.invoicedate}} </td>
+		                <td style="padding: 4px;">{{ Inv.xldata.servicetype}} </td>
+		        </tr>
+		        
+                <tr class="p">
+                <td  colspan="20" class="hiddenRow">
+                 <div class="accordian-body collapse p-3" id="demo{{Inv.xldata.invoiceno}}">
+	                <table>
+	                 <thead>
+			            <tr style="font-size:12px">
+			            	 
+			                <th>Invoice Number</th>
+			                <th>Circuit ID</th>
+			                <th>Division</th>
+			                <th>Tax Name</th>
+			                <th>Customer Name</th>
+			                <th>Full Address</th>
+			                <th>GST No</th>
+			                <th>State</th>
+			                <th>Billing Date_From</th>
+			                <th>City</th>
+			                <th>Premise Name</th>
+			                <th>processing_status</th>
+			                <th>Customer_id</th>
+			                <th>Premise No</th>
+			                <th>Billing Date_TO</th>
+			                <th>Speed</th>
+			                <th>Remarks</th>
+			                <th>Invoice Date</th>
+			                <th>Service Type</th>
+			            </tr>
+			        </thead>
+	                  <tr>  
+		                <td>{{ Inv.xldata.invoiceno}} <input  type="hidden" id="invoiceno_{{Inv.xldata.slno}}" name="invoiceno_{{Inv.xldata.slno}}" value="{{Inv.xldata.invoiceno}}" > </td>
+		                <td style="padding: 4px;">{{ Inv.xldata.circuitid }} <input class="form-control form-control-sm" type="hidden"  id="circuitid_{{Inv.xldata.slno}}" name="circuitid_{{Inv.xldata.slno}}"  value='{{Inv.xldata.circuitid}}' ></td>
+		                <td style="padding: 4px;">{{ Inv.xldata.division }} <input class="form-control form-control-sm" type="hidden"  id="division_{{Inv.xldata.slno}}" name="division_{{Inv.xldata.slno}}"  value='{{Inv.xldata.division}}' ></td>
+		                <td style="padding: 4px;"><input class="form-control form-control-sm" type="text"  id="taxname_{{Inv.xldata.slno}}" name="taxname_{{Inv.xldata.slno}}"  value='{{Inv.xldata.taxname}}' ></td>
+		                <td style="padding: 4px;"><input class="form-control form-control-sm" type="text"  id="customername_{{Inv.xldata.slno}}" name="customername_{{Inv.xldata.slno}}"  value='{{Inv.xldata.customername}}' ></td>
+		                <td style="padding: 4px;"><input class="form-control form-control-sm" type="text"  id="address_{{Inv.xldata.slno}}" name="fullsiteaddress_{{Inv.xldata.slno}}"  value='{{Inv.xldata.fullsiteaddress}}' ></td>
+		                <td style="padding: 4px;"><input class="form-control form-control-sm" type="text"  id="gstno_{{Inv.xldata.slno}}" name="gstno_{{Inv.xldata.slno}}"  value='{{Inv.xldata.gstno}}' ></td>
+		                <td style="padding: 4px;"><input class="form-control form-control-sm" type="text"  id="state_{{Inv.xldata.slno}}" name="state_{{Inv.xldata.slno}}"  value='{{Inv.xldata.state}}' ></td>
+		                <td style="padding: 4px;"><input class="form-control form-control-sm" type="text"  id="billingdatefrom_{{Inv.xldata.slno}}"  name="billingdatefrom_{{Inv.xldata.slno}}"  value='{{Inv.xldata.billingdatefrom}}' ></td>
+		                <td style="padding: 4px;"><input class="form-control form-control-sm" type="text"  id="city_{{Inv.xldata.slno}}" name="city_{{Inv.xldata.slno}}"  value='{{Inv.xldata.city}}' ></td>
+		                <td style="padding: 4px;"><input class="form-control form-control-sm" type="text"  id="premisename_{{Inv.xldata.slno}}" name="premisename_{{Inv.xldata.slno}}" value='{{Inv.xldata.premisename}}' ></td>
+		                <td style="padding: 4px;">{{ Inv.processing_status}} </td>
+		                <td style="padding: 4px;">{{ Inv.Customer_id}} </td>
+		                <td style="padding: 4px;"><input class="form-control form-control-sm" type="text"  id="premiseno_{{Inv.xldata.slno}}" name="premiseno_{{Inv.xldata.slno}}"  value='{{Inv.xldata.premiseno}}' ></td>
+		                <td style="padding: 4px;"><input class="form-control form-control-sm" type="text"  id="billingdateto_{{Inv.xldata.slno}}" name="billingdateto_{{Inv.xldata.slno}}" value='{{Inv.xldata.billingdateto}}' ></td>
+		                <td style="padding: 4px;"><input class="form-control form-control-sm" type="text"  id="speed_{{Inv.xldata.slno}}" name="speed_{{Inv.xldata.slno}}" value='{{Inv.xldata.speed}}' ></td>
+		                <td style="padding: 4px;"><input class="form-control form-control-sm" type="text"  id="remarks_{{Inv.xldata.slno}}" name="remarks_{{Inv.xldata.slno}}" value='{{Inv.xldata.remarks}}' ></td>
+		                <td style="padding: 4px;"><input class="form-control form-control-sm" type="text"  id="invoicedate_{{Inv.xldata.slno}}" name="invoicedate_{{Inv.xldata.slno}}" value='{{Inv.xldata.invoicedate}}' ></td>
+		                <td style="padding: 4px;"><input class="form-control form-control-sm" type="text"  id="servicetype_{{Inv.xldata.slno}}" name="servicetype_{{Inv.xldata.slno}}" value='{{Inv.xldata.servicetype}}' ></td>
+		             </tr> 
+	               </table>
+                </div>
+               </td>
+               </tr>
+				        <tr class="p">
+				            <td colspan="20" class="hiddenRow">
+					            <div class="accordian-body collapse p-3" id="demo{{Inv.xldata.invoiceno}}">
+					            	
+						<table class="table table-hover table-bordepink"
+							style="padding-left: 50px; font-size: 11px">
+							<tr>
+								<td style="width: 150px">Inventory Status :</td>
+								<td>{{ hstlist.autochk.inventory_status }}</td>
+							</tr>
+							<tr>
+								<td style="width: 150px">Local Network Status :</td>
+								<td>{{ hstlist.autochk.lnet_status }}</td>
+							</tr>
+							<tr>
+								<td style="width: 150px">Auto Check Status :</td>
+								<td>{{ hstlist.autochk.autocheck_status }}</td>
+							</tr>
+							<tr>
+								<td colspan="2">
+									<table style="padding-left: 100px">
+										<tr>
+											<th style="width: 150px">Billing From Status</th>
+											<td>{{hstlist.autochk.bill_from_status}}</td>
+										</tr>
+										<tr>
+											<th style="width: 150px">Billing From message</th>
+											<td>{{hstlist.autochk.bill_from_msg}}</td>
+										</tr>
+										<tr>
+											<th style="width: 150px">Billing To Status</th>
+											<td>{{hstlist.autochk.bill_to_status}}</td>
+										</tr>
+										<tr>
+											<th style="width: 150px">Billing To message</th>
+											<td>{{hstlist.autochk.bill_to_msg}}</td>
+										</tr>
+										<tr>
+											<th style="width: 150px">Billing Duration</th>
+											<td>{{hstlist.autochk.billing_duration}}</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+							<tr>
+								<td colspan="2" style="font-weight: bold; text-align: center">
+									BOM Result</td>
+							</tr>
+							<tr>
+								<td colspan="2">
+	
+									<table>
+										<thead>
+											<th>Field Name</th>
+											<th>Invoice Value</th>
+											<th>Suggested value</th>
+										</thead>
+										{% for bom in Inv.autochk.bom_comp_result %}
+										<tr>
+											<td>{{bom.field}}</td>
+											<td>{{bom.invoice_value}}</td>
+											<td>{{bom.suggested_value}}</td>
+										</tr>
+										{% endfor %}
+									</table>
+								</td>
+							</tr>
+						</table>
+				        	</div> 
+			        	</td> 
+				        </tr>
+				        {%endif %}
+				        {%endfor %}			        
+		        {%endfor %}				      		
+				    </tbody>
+				</table>
+			</div>
+		</div>
+ 
+ 
+
+
+
+
+
+
+
+ {{invstore_DIVSION_invoices}}

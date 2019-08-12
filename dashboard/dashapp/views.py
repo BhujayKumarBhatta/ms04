@@ -462,4 +462,21 @@ def invstore_invoice_reject(request):
       result = invoicestore.invoice_reject(request)
     return result
  
+
+def invstore_invoice_rcommendations(request):
+    if 'uname' not in request.session :
+      result = login(request)
+    elif 'uname' in request.session :
+      result = invoicestore.invoice_rcommendations(request)
+    return result
+
+def list_invoice_divisional_invoices(request):
+    if 'uname' not in request.session :
+      result = login(request)
+    elif 'uname' in request.session :
+      result = invoicestore.list_divisional_invoices(request)
+    return result
+ 
 ###################################################################
+
+
