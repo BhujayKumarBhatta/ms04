@@ -2,10 +2,7 @@
 {% load l10n %}
 {% load static %}
 
-<head>
-
-
-</head>
+ 
 <style type="text/css">
     body {
         color: #404E67;
@@ -133,16 +130,16 @@
 <div class="table-wrapper">
     <div class="table-title">
         <div class="row">
-            <div class="col-sm-8"><h3>Manage Invoice  <b>Recommendations</b></h3></div>
+            <div class="col-sm-8"><h3>Invoice  <b>Recommendations</b></h3></div>
         </div>
     </div>
 
    <form action="{% url 'dashapp:invstore_invoice_rcommendations' %}" method="post"
 						enctype="multipart/form-data">
 						{% csrf_token %} 
-RCOM_STATUS -- {{RCOM_STATUS}}					
-TESTDATA -- {{TESTDATA}}			
-RECOM_invoicelist -- {{RECOM_invoicelist}}
+<!-- RCOM_STATUS -- {{RCOM_STATUS}}					 -->
+<!-- TESTDATA -- {{TESTDATA}}			 -->
+<!-- RECOM_invoicelist -- {{RECOM_invoicelist}} -->
     <table id="tree-table" class="table table-hover table-bordered" width="1500px">
        
         <thead>
@@ -170,8 +167,11 @@ RECOM_invoicelist -- {{RECOM_invoicelist}}
             </tr>
         </thead>
         <tbody>
-        {% for hstlist in invstore_list_invoices_RCOM%} 
-			{% for Inv in hstlist.history_list %}             
+        
+        {% for hstlist in invstore_list_invoices_RCOM%}
+        
+			{% for Inv in hstlist.history_list %} 
+			{% if Inv.status != 'archived'%}            
             <tr data-id="{{ Inv.xldata.invoiceno}}" data-parent="0" data-level="1" style="font-size:11px">
 
 				<td>
@@ -185,7 +185,7 @@ RECOM_invoicelist -- {{RECOM_invoicelist}}
 						</button>
 						<!--<a class="delete"  title="Delete Invoice" data-toggle="tooltip" ><i class="material-icons">&#xE872;</i></a>-->
 					</form>
-					
+					 
 				</td>
                 <td data-column="name" style="width:150px;padding: 4px;">{{ Inv.xldata.invoiceno}} </td>
                 <td style="padding: 4px;">{{ Inv.xldata.circuitid }}</td>
@@ -208,7 +208,7 @@ RECOM_invoicelist -- {{RECOM_invoicelist}}
                 <td style="padding: 4px;">{{ Inv.xldata.servicetype}} </td>
                 
             </tr>
-            {% if Inv.status != 'ChangeSuggested'%}
+              {% if Inv.status != 'ChangeSuggested'%}
             	
               
             <tr  data-id="{{ Inv.xldata.invoiceno }}_rcom" data-parent="{{Inv.xldata.invoiceno}}" data-level="2" style="font-size:10px;background-color:lightblue">
@@ -304,8 +304,11 @@ RECOM_invoicelist -- {{RECOM_invoicelist}}
 						</table>
             </td>
             </tr>
-            {%endif%}
+            
+              {%endif%}
+              {%endif%}
             {% endfor %}
+            
             {% for Inv in hstlist.recom_list %} 
             {% if Inv.status == 'Active'%}
                  
@@ -343,10 +346,11 @@ RECOM_invoicelist -- {{RECOM_invoicelist}}
 <button type="submit" class="btn btn-success" onclick="return confirm('Are you sure? you want to recommend Invoices.')"
 			style="width: 200px">Recommend Invoices</button> 
 	
+
 </form>
 					
 					
-{{invstore_list_invoices_RCOM}}
+ {{invstore_list_invoices_RCOM}} 
 
     <script src='{% static "dashapp/styles/Bootstrapv337.js" %}' type="text/javascript"></script>
     <script src='{% static "dashapp/styles/jquery-1.12.4.min.js" %}' type="text/javascript"></script>

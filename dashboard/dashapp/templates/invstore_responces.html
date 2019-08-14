@@ -238,7 +238,15 @@
         </tr>
     </table>
   
-
+    <form action="{% url 'dashapp:invstore_delete_stage1responces' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="hidden" id="invoiceno" name="invoiceno" value="0">
+        <button type="submit" class="btn btn-danger"
+                onclick="return confirm('Are you sure? you want to delete all Invoice responses.\n This will Remove all invoice responses from the system.')"
+                style="width:300px">
+            Delete All Invoice Responses
+        </button>
+    </form>
 
     <table id="tree-table" class="table table-hover table-bordepink"  >
         <thead>
@@ -323,7 +331,7 @@
         <input type="hidden" id="invoiceno" name="invoiceno" value="0">
         <button type="submit" class="btn btn-danger"
                 onclick="return confirm('Are you sure? you want to delete all Invoice responses.\n This will Remove all invoice responses from the system.')"
-                style="width:350px">
+                style="width:300px">
             Delete All Invoice Responses
         </button>
     </form>
@@ -348,5 +356,5 @@
     { "state": "","arc": "","billingdateto": "", "remarks": "", "fullsiteaddress": "", "customerid": "","servicetype": "", "billingdatefrom": "", "speed": "", "division": "", "taxname": "", "total": "","accountno": "", "pin": "", "circuitid": "", "invoicedate": "", "invoiceno": "", "siteid": "", "gstno": "", "premiseno": "", "city": "", "tsp": "", "customername": "", "slno": "",  "premisename": "" }-->
 
     
-{{invstore_list_stage1responces}}
+<!-- {{invstore_list_stage1responces}} -->
  

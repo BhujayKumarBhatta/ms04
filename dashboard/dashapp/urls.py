@@ -95,6 +95,8 @@ urlpatterns = [path('', views.login, name='login'),
     ,path('invstore_invoice_reject', views.invstore_invoice_reject, name='invstore_invoice_reject')
     ,path('invstore_invoice_rcommendations', views.invstore_invoice_rcommendations, name='invstore_invoice_rcommendations')
     ,path('list_invoice_divisional_invoices', views.list_invoice_divisional_invoices, name='list_invoice_divisional_invoices')
+    ,path('invstore_invoice_update', views.invstore_invoice_update, name='invstore_invoice_update')
+    ,path('invstore_invoice_accept', views.invstore_invoice_accept, name='invstore_invoice_accept')
         
     #,path('swagger-docs/', schema_view)
     #,path('docs/', include_docs_urls(title='TSP Billing'))

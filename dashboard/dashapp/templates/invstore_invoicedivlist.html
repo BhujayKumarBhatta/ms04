@@ -256,8 +256,8 @@ tr:hover .spnTooltip {
 		</tr>
 	</table>
 	
-	reject status -- {{REJECT_INVSTORE_INVOICE_STATUS}}
-	approve status -- {{APPROVE_INVSTORE_INVOICE_STATUS}}
+<!-- 	reject status -- {{REJECT_INVSTORE_INVOICE_STATUS}} -->
+<!-- 	approve status -- {{APPROVE_INVSTORE_INVOICE_STATUS}} -->
   <table><tr><td>
 	<form action="{% url 'dashapp:invstore_invoice_approve' %}" method="post" 
 		enctype="multipart/form-data"> {% csrf_token %}
@@ -368,50 +368,48 @@ tr:hover .spnTooltip {
 				<td>{{ Inv.current_doc.servicetype}}</td>
 				<td>{{ Inv.status}}</td>
 			</tr>
-			{% endif %} 
-			
-			<tr >
-				<td colspan="10">
-				{{ Inv.autochk}}
-		           <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#multiCollapseExample{{Inv.xldata.invoiceno}}" aria-expanded="false" aria-controls="multiCollapseExample{{Inv.xldata.invoiceno}}">Authocheck Result</button>
-  					<div class="collapse multi-collapse" id="multiCollapseExample{{Inv.xldata.invoiceno}}">
-		      			<div class="card card-body">	       
+					
+			<tr  data-id="{{ Inv.xldata.invoiceno }}_rcom" data-parent="{{Inv.xldata.invoiceno}}" data-level="2" style="font-size:10px;background-color:lightblue">
+            	<td colspan="10">
+				 
+		           
+  				 	       
 	       				<table class="table table-hover table-bordepink"
 							style="padding-left: 50px; font-size: 11px">
 							<tr>
 								<td style="width: 150px">Inventory Status :</td>
-								<td>{{ Inv.autochk.inventory_status }}</td>
+								<td>{{ hstlist.autochk.inventory_status }}</td>
 							</tr>
 							<tr>
 								<td style="width: 150px">Local Network Status :</td>
-								<td>{{ Inv.autochk.lnet_status }}</td>
+								<td>{{ hstlist.autochk.lnet_status }}</td>
 							</tr>
 							<tr>
 								<td style="width: 150px">Auto Check Status :</td>
-								<td>{{ Inv.autochk.autocheck_status }}</td>
+								<td>{{ hstlist.autochk.autocheck_status }}</td>
 							</tr>
 							<tr>
 								<td colspan="2">
 									<table style="padding-left: 100px">
 										<tr>
 											<th style="width: 150px">Billing From Status</th>
-											<td>{{Inv.autochk.bill_from_status}}</td>
+											<td>{{hstlist.autochk.bill_from_status}}</td>
 										</tr>
 										<tr>
 											<th style="width: 150px">Billing From message</th>
-											<td>{{Inv.autochk.bill_from_msg}}</td>
+											<td>{{hstlist.autochk.bill_from_msg}}</td>
 										</tr>
 										<tr>
 											<th style="width: 150px">Billing To Status</th>
-											<td>{{Inv.autochk.bill_to_status}}</td>
+											<td>{{hstlist.autochk.bill_to_status}}</td>
 										</tr>
 										<tr>
 											<th style="width: 150px">Billing To message</th>
-											<td>{{Inv.autochk.bill_to_msg}}</td>
+											<td>{{hstlist.autochk.bill_to_msg}}</td>
 										</tr>
 										<tr>
 											<th style="width: 150px">Billing Duration</th>
-											<td>{{Inv.autochk.billing_duration}}</td>
+											<td>{{hstlist.autochk.billing_duration}}</td>
 										</tr>
 									</table>
 								</td>
@@ -429,7 +427,7 @@ tr:hover .spnTooltip {
 											<th>Invoice Value</th>
 											<th>Suggested value</th>
 										</thead>
-										{% for bom in Inv.autochk.bom_comp_result %}
+										{% for bom in hstlist.autochk.bom_comp_result %}
 										<tr>
 											<td>{{bom.field}}</td>
 											<td>{{bom.invoice_value}}</td>
@@ -440,12 +438,11 @@ tr:hover .spnTooltip {
 								</td>
 							</tr>
 						</table>
-			      	</div>
-		    	</div>
-   
+			      	 
 					
 				</td>
 			</tr>
+			{% endif %} 	
 			{% endfor %}
 			{% endfor %}
 		</tbody>
@@ -474,46 +471,16 @@ tr:hover .spnTooltip {
 	</form>
 	
 	
-	 
+	 {{invstore_list_divinvoices}}
  
 
-
-
-<p>
-  <a class="btn btn-primary" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Toggle first element</a>
-  <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Toggle second element</button>
-  <button class="btn btn-primary" type="button" data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false" aria-controls="multiCollapseExample1 multiCollapseExample2">Toggle both elements</button>
-  <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#multiCollapseExample3" aria-expanded="false" aria-controls="multiCollapseExample3">Toggle second element</button>
-</p>
-<div class="row">
-  <div class="col">
-    <div class="collapse multi-collapse" id="multiCollapseExample1">
-      <div class="card card-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
-      </div>
-    </div>
-  </div>
-  <div class="col">
-    <div class="collapse multi-collapse" id="multiCollapseExample2">
-      <div class="card card-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
-      </div>
-    </div>
-  </div>
-  <div class="col">
-    <div class="collapse multi-collapse" id="multiCollapseExample3">
-      <div class="card card-body">
-        3333333333333333333333333333333enderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
-      </div>
-    </div>
-  </div>
-</div>
+ 
  
  
  
 
 
-{{invstore_list_divinvoices}}
+ 
 
 
 

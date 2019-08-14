@@ -476,6 +476,20 @@ def list_invoice_divisional_invoices(request):
     elif 'uname' in request.session :
       result = invoicestore.list_divisional_invoices(request)
     return result
+
+def invstore_invoice_update(request):
+    if 'uname' not in request.session :
+      result = login(request)
+    elif 'uname' in request.session :
+      result = invoicestore.invoice_update(request)
+    return result
+
+def invstore_invoice_accept(request):
+    if 'uname' not in request.session :
+      result = login(request)
+    elif 'uname' in request.session :
+      result = invoicestore.invoice_accept(request)
+    return result
  
 ###################################################################
 

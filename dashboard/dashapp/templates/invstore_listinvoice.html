@@ -205,11 +205,6 @@
 </style>
 
 
-
-
-
-
-
 <div class="table-wrapper">
     <div class="table-title">
         <div class="row">
@@ -235,7 +230,7 @@
         </tr>
     </table>
 
-{{invstore_list_stage1responces}}
+
     <table align="center" width="90%" style="padding-left: 150px">
         <tr>
             <td>
@@ -254,12 +249,19 @@
             </td>
         </tr>
     </table>
-  
+    
+    
+    ACCEPT_invoicelist -- {{ACCEPT_invoicelist}}
+    ACCEPT_STATUS -- {{ACCEPT_STATUS}}
+    TESTDATA -- {{TESTDATA}}
+ <form action="{% url 'dashapp:invstore_invoice_update' %}" method="post"
+				enctype="multipart/form-data">
+				{% csrf_token %} 
 
-    <table  class="table table-hover table-bordepink" width="1500">
+    <table id="tree-table"   class="table table-hover table-bordepink" width="1500">
         <thead>
             <tr style="font-size:12px">
-                <th></th>
+                
                 <th>Invoice Number</th>
                 <th>Infoops ID</th>
                 <th>Circuit ID</th>
@@ -284,30 +286,19 @@
         </thead>
         <tbody>
        {% for hstlist in invstore_list_invoices%} 
-		{%for Inv in  hstlist.history_list %}
-		{% if Inv.status != 'archived'%}
+		 {%for Inv in  hstlist.history_list %}
+			{% if Inv.status != 'archived'%}
  				
-            <tr data-id="{{ Inv.invoiceno}}" data-parent="0" data-level="1" style="font-size:11px;
-            background-color:
-                {% if Inv.current_doc.status == 'tspAccepted'%}
+            <tr data-id="{{Inv.invoiceno}}" data-parent="0" data-level="1" style="font-size:11px;
+            	background-color:
+                	{% if Inv.current_doc.status == 'tspAccepted'%}
                     lightgreen
                     {% elif Inv.recom_doc.xldata.invoiceno is not null%}
-                        #a6c06d
+                     #a6c06d
                     {%else%}
                     transparent
-                {%endif%}">
-                <td></td>
-<!--                 <td> -->
-<!--                     <form action="{% url 'dashapp:invstore_invoice_delete' %}" method="post" enctype="multipart/form-data"> -->
-<!--                         {% csrf_token %} -->
-<!--                         <input type="hidden" id="invoiceno" name="invoiceno" value="{{Inv.xldata.invoiceno}}"> -->
-<!--                         <button type="submit" class="btn btn-danger btn-sm" -->
-<!--                                 onclick="return confirm('Are you sure? you want to Delete Invoice')"> -->
-<!--                             <i class="glyphicon glyphicon-trash"></i> -->
-<!--                         </button> -->
-<!--                         <a class="delete"  title="Delete Invoice" data-toggle="tooltip" ><i class="material-icons">&#xE872;</i></a> -->
-<!--                     </form> -->
-<!--                 </td> -->
+                    {%endif%}" >
+                
                 <td data-column="name" style="width:150px">{{ Inv.xldata.invoiceno}} </td>
                 <td>{{ Inv.xldata.infoid }}</td>                
                 <td>{{ Inv.xldata.circuitid }}</td>
@@ -330,12 +321,61 @@
                 <td>{{ Inv.xldata.current_doc.servicetype}} </td>
                 <td>{{ Inv.status}} </td>
             </tr>
+             {% endif %}
+         {% endfor %}
+         {% for Inv in hstlist.recom_list %} 
+            {% if Inv.status == 'Active'%}
+            <tr  data-id="{{Inv.xldata.invoiceno}}_rcom" data-parent="{{Inv.xldata.invoiceno}}" data-level="2" style="font-size:10px;background-color:lightblue">
+            	 
+            	<td>
+<!-- 					<form action="{% url 'dashapp:invstore_invoice_accept' %}" method="post" -->
+<!-- 						enctype="multipart/form-data"> -->
+<!-- 						{% csrf_token %} <input type="hidden" id="invoiceno" -->
+<!-- 							name="invoiceno" value="{{Inv.xldata.invoiceno}}"> -->
+<!-- 						<button type="submit" class="btn btn-success btn-xs" -->
+<!-- 							onclick="return confirm('Are you sure? you want to Accept recommended Invoice')"> -->
+<!-- 							Accept -->
+<!-- 						</button> -->
+<!-- 						<a class="delete"  title="Delete Invoice" data-toggle="tooltip" ><i class="material-icons">&#xE872;</i></a> -->
+<!-- 					</form>					  -->
+				</td>
+                <td style="width:150px;padding: 4px;">{{ Inv.xldata.invoiceno}}
+                <input  type="hidden" id="invoiceno_{{Inv.xldata.slno}}" name="invoiceno_{{Inv.xldata.slno}}" value="{{Inv.xldata.invoiceno}}" >
+                </td>
+                <td style="padding: 4px;">{{ Inv.xldata.circuitid }} <input class="form-control form-control-sm" type="hidden"  id="circuitid_{{Inv.xldata.slno}}" name="circuitid_{{Inv.xldata.slno}}"  value='{{Inv.xldata.circuitid}}' ></td>
+                <td style="padding: 4px;">{{ Inv.xldata.division }} <input class="form-control form-control-sm" type="hidden"  id="division_{{Inv.xldata.slno}}" name="division_{{Inv.xldata.slno}}"  value='{{Inv.xldata.division}}' ></td>
+                <td style="padding: 4px;"><input class="form-control form-control-sm" type="text"  id="taxname_{{Inv.xldata.slno}}" name="taxname_{{Inv.xldata.slno}}"  value='{{Inv.xldata.taxname}}' ></td>
+                <td style="padding: 4px;"><input class="form-control form-control-sm" type="text"  id="customername_{{Inv.xldata.slno}}" name="customername_{{Inv.xldata.slno}}"  value='{{Inv.xldata.customername}}' ></td>
+                <td style="padding: 4px;"><input class="form-control form-control-sm" type="text"  id="address_{{Inv.xldata.slno}}" name="fullsiteaddress_{{Inv.xldata.slno}}"  value='{{Inv.xldata.fullsiteaddress}}' ></td>
+                <td style="padding: 4px;"><input class="form-control form-control-sm" type="text"  id="gstno_{{Inv.xldata.slno}}" name="gstno_{{Inv.xldata.slno}}"  value='{{Inv.xldata.gstno}}' ></td>
+                <td style="padding: 4px;"><input class="form-control form-control-sm" type="text"  id="state_{{Inv.xldata.slno}}" name="state_{{Inv.xldata.slno}}"  value='{{Inv.xldata.state}}' ></td>
+                <td style="padding: 4px;"><input class="form-control form-control-sm" type="text"  id="billingdatefrom_{{Inv.xldata.slno}}"  name="billingdatefrom_{{Inv.xldata.slno}}"  value='{{Inv.xldata.billingdatefrom}}' ></td>
+                <td style="padding: 4px;"><input class="form-control form-control-sm" type="text"  id="city_{{Inv.xldata.slno}}" name="city_{{Inv.xldata.slno}}"  value='{{Inv.xldata.city}}' ></td>
+                <td style="padding: 4px;"><input class="form-control form-control-sm" type="text"  id="premisename_{{Inv.xldata.slno}}" name="premisename_{{Inv.xldata.slno}}" value='{{Inv.xldata.premisename}}' ></td>
+                <td style="padding: 4px;">{{ Inv.processing_status}} </td>
+                <td style="padding: 4px;">{{ Inv.Customer_id}} </td>
+                <td style="padding: 4px;"><input class="form-control form-control-sm" type="text"  id="premiseno_{{Inv.xldata.slno}}" name="premiseno_{{Inv.xldata.slno}}"  value='{{Inv.xldata.premiseno}}' ></td>
+                <td style="padding: 4px;"><input class="form-control form-control-sm" type="text"  id="billingdateto_{{Inv.xldata.slno}}" name="billingdateto_{{Inv.xldata.slno}}" value='{{Inv.xldata.billingdateto}}' ></td>
+                <td style="padding: 4px;"><input class="form-control form-control-sm" type="text"  id="speed_{{Inv.xldata.slno}}" name="speed_{{Inv.xldata.slno}}" value='{{Inv.xldata.speed}}' ></td>
+                <td style="padding: 4px;"><input class="form-control form-control-sm" type="text"  id="remarks_{{Inv.xldata.slno}}" name="remarks_{{Inv.xldata.slno}}" value='{{Inv.xldata.remarks}}' ></td>
+                <td style="padding: 4px;"><input class="form-control form-control-sm" type="text"  id="invoicedate_{{Inv.xldata.slno}}" name="invoicedate_{{Inv.xldata.slno}}" value='{{Inv.xldata.invoicedate}}' ></td>
+                <td style="padding: 4px;"><input class="form-control form-control-sm" type="text"  id="servicetype_{{Inv.xldata.slno}}" name="servicetype_{{Inv.xldata.slno}}" value='{{Inv.xldata.servicetype}}' ></td>
+          		<td>{{ Inv.status}} </td>				 
+			</tr>	 
          {% endif %}
-        {% endfor %}
-        {% endfor %}
+       {% endfor %}
+     {% endfor %}
         </tbody>
     </table>
 
+  
+  
+  <button type="submit" class="btn btn-success" onclick="return confirm('Are you sure? you want to save chaged Invoices.')"
+			style="width: 200px">Update Invoices</button> 
+	
+
+</form>
+  
     <!--First tooltip-->
     <a href="#" class="tooltip">
         Tooltip
@@ -404,13 +444,15 @@
     { "state": "","arc": "","billingdateto": "", "remarks": "", "fullsiteaddress": "", "customerid": "","servicetype": "", "billingdatefrom": "", "speed": "", "division": "", "taxname": "", "total": "","accountno": "", "pin": "", "circuitid": "", "invoicedate": "", "invoiceno": "", "siteid": "", "gstno": "", "premiseno": "", "city": "", "tsp": "", "customername": "", "slno": "",  "premisename": "" }-->
 
     
-{{invstore_list_invoices}}
+<!-- {{invstore_list_invoices}} -->
 
-{% for history in invstore_list_invoices%}
+<!-- {% for history in invstore_list_invoices%} -->
  
-	 {%for xd in  history.history_list %}
-	  ========{{xd.xldata}}
-	  ========{{xd.xldata}}
-	 {% endfor %}
+<!-- 	 {%for xd in  history.history_list %} -->
+<!-- 	  ========{{xd.xldata}} -->
+<!-- 	  ========{{xd.xldata}} -->
+<!-- 	 {% endfor %} -->
  
-  {% endfor %}
+<!--   {% endfor %} -->
+
+{{invstore_list_invoices}}
