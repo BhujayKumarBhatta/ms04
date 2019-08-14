@@ -254,7 +254,7 @@
     ACCEPT_invoicelist -- {{ACCEPT_invoicelist}}
     ACCEPT_STATUS -- {{ACCEPT_STATUS}}
 <!--     TESTDATA -- {{TESTDATA}} -->
- <form action="{% url 'dashapp:invstore_invoice_update' %}" method="post"
+ <form action="{% url 'dashapp:invstore_invoice_accept' %}" method="post"
 				enctype="multipart/form-data">
 				{% csrf_token %} 
 
@@ -285,8 +285,9 @@
             </tr>
         </thead>
         <tbody>
-       {% for hstlist in invstore_list_invoices%} 
+       {% for hstlist in invstore_list_invoices_accept%} 
 		 {%for Inv in  hstlist.history_list %}
+		   
 			{% if Inv.status != 'archived'%}
  				
             <tr data-id="{{Inv.invoiceno}}" data-parent="0" data-level="1" style="font-size:11px;
@@ -324,21 +325,12 @@
              {% endif %}
          {% endfor %}
          {% for Inv in hstlist.recom_list %} 
-            {% if Inv.status == 'Active'%}
+            {% if Inv.status == 'Active'  %}
+             
             <tr  data-id="{{Inv.xldata.invoiceno}}_rcom" data-parent="{{Inv.xldata.invoiceno}}" data-level="2" style="font-size:10px;background-color:lightblue">
             	 
-            	<td>
-            	
-            	 
-<!-- 					<form action="{% url 'dashapp:invstore_invoice_accept' %}" method="post" -->
-<!-- 						enctype="multipart/form-data"> -->
-<!-- 						{% csrf_token %} <input type="hidden" id="invoiceno" -->
-<!-- 							name="invoiceno" value="{{Inv.xldata.invoiceno}}"> -->
-<!-- 						<button type="submit" class="btn btn-success btn-xs" -->
-<!-- 							onclick="return confirm('Are you sure? you want to Accept recommended Invoice')"> -->
-<!-- 							Accept -->
-<!-- 						</button>  -->
-<!-- 					</form>					  -->
+            	<td> <input type="checkbox" id="chkaccept_{{Inv.xldata.invoiceno}}"
+							name="chkaccept_{{Inv.xldata.invoiceno}}" value="{{Inv.xldata.invoiceno}}" />
 				</td>
                 <td style="width:150px;padding: 4px;">{{ Inv.xldata.invoiceno}}
                 <input  type="hidden" id="invoiceno_{{Inv.xldata.slno}}" name="invoiceno_{{Inv.xldata.slno}}" value="{{Inv.xldata.invoiceno}}" >
@@ -362,7 +354,8 @@
                 <td style="padding: 4px;"><input class="form-control form-control-sm" type="text"  id="invoicedate_{{Inv.xldata.slno}}" name="invoicedate_{{Inv.xldata.slno}}" value='{{Inv.xldata.invoicedate}}' ></td>
                 <td style="padding: 4px;"><input class="form-control form-control-sm" type="text"  id="servicetype_{{Inv.xldata.slno}}" name="servicetype_{{Inv.xldata.slno}}" value='{{Inv.xldata.servicetype}}' ></td>
           		<td>{{ Inv.status}} </td>				 
-			</tr>	 
+			</tr>	
+		    
          {% endif %}
        {% endfor %}
      {% endfor %}
@@ -371,8 +364,8 @@
 
   
   
-  <button type="submit" class="btn btn-success" onclick="return confirm('Are you sure? you want to save chaged Invoices.')"
-			style="width: 200px">Update Invoices</button> 
+  <button type="submit" class="btn btn-success" onclick="return confirm('Are you sure? you want to Accept invoices selected.')"
+			style="width: 200px">Accept Invoices</button> 
 	
 
 </form>

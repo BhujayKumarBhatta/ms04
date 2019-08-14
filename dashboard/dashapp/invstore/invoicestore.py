@@ -30,7 +30,7 @@ sampleinvoice ={ "state": "","arc": "","billingdateto": "","remarks": "",
 "speed": "", "division": "","taxname": "","total": 0,"accountno": "","pin": 0, 
 "circuitid": "", "invoicedate": "","invoiceno": "","siteid": "","gstno": "", 
 "premiseno": "", "city": "","tsp": "","customername": "","slno": 0, 
-"premisename": "" ,"billingactivity": "" ,"action": ""}
+"premisename": "" ,"billingactivity": "" ,"Action": ""}
 
 def list_invoices(request):
     if request.method == 'GET': 
@@ -314,7 +314,8 @@ def invoice_update(request):
     invstoreclient = invstore_client(tlclient)
     list_invoices = invstoreclient.list_invoice_byinvnum('all')
     CHANGE_invoicelist = []
-    TESTDATA = ['update']
+    ACCEPT_invoicelist = []
+    TESTDATA = []
     if request.method == 'POST': 
         #all fields will tail with slno
         #RECOM_invoicelist.append(request.POST)
@@ -323,72 +324,63 @@ def invoice_update(request):
              
             for Inv in hstlist['history_list']:
                 
-                slno = Inv['xldata']['slno']
-                TESTDATA.append(slno)
-                #slno = slno.strip()
-                #RECOM_invoicelist.append('======================')
-                #RECOM_invoicelist.append(Inv['xldata'])
-                if ('invoiceno'+'_'+ str(slno)) in request.POST and Inv['status'] == 'ChangeSuggested' :                 
-                    #RECOM_invoicelist.append(Inv['xldata']['invoiceno'])
-                    #id = ('invoiceno'+'_'+ str(slno))
-                    #RECOM_invoicelist.append(request.POST['invoiceno_8'])
-                    
-                    #RECOM_invoicelist.append(request.POST['taxname'+'_'+ str(slno)])
-                    TESTDATA.append(request.POST['invoiceno'+'_'+ str(slno)])
-                    if (Inv['xldata']['invoiceno'] == request.POST['invoiceno'+'_'+ str(slno)]
-                        
-                        and (Inv['xldata']['speed'] != request.POST['speed'+'_'+ str(slno)]
-                        or   Inv['xldata']['taxname'] != request.POST['taxname'+'_'+ str(slno)]
-                        or   Inv['xldata']['billingdateto'] != request.POST['billingdateto'+'_'+ str(slno)]
-                        or   Inv['xldata']['billingdatefrom'] != request.POST['billingdatefrom'+'_'+ str(slno)]
-                        or   Inv['xldata']['servicetype'] != request.POST['servicetype'+'_'+ str(slno)]
-                        or   Inv['xldata']['gstno'] != request.POST['gstno'+'_'+ str(slno)]
-                        or   Inv['xldata']['city'] != request.POST['city'+'_'+ str(slno)]
-                        or   Inv['xldata']['state'] != request.POST['state'+'_'+ str(slno)]
-                        or   Inv['xldata']['customername'] != request.POST['customername'+'_'+ str(slno)]
-                        or   Inv['xldata']['circuitid'] != request.POST['circuitid'+'_'+ str(slno)]
-                        )):
-                        CHANGE_Invocie = Inv['xldata'].copy()                        
-
-                        CHANGE_Invocie['invoiceno'] = request.POST['invoiceno'+'_'+ str(slno)]
-                        CHANGE_Invocie['taxname'] = request.POST['taxname'+'_'+ str(slno)]
-                        CHANGE_Invocie['customername'] = request.POST['customername'+'_'+ str(slno)]
-                        CHANGE_Invocie['state'] = request.POST['state'+'_'+ str(slno)]
-                        #CHANGE_Invocie['arc'] = request.POST['arc'+'_'+ str(slno)]
-                        CHANGE_Invocie['billingdateto'] = request.POST['billingdateto'+'_'+ str(slno)]
-                        CHANGE_Invocie['remarks'] = request.POST['remarks'+'_'+ str(slno)]
-                        #CHANGE_Invocie['customerid'] = request.POST['customerid'+'_'+ str(slno)]
-                        CHANGE_Invocie['billingdatefrom'] = request.POST['billingdatefrom'+'_'+ str(slno)]
+                slno = Inv['xldata']['slno']               
                          
-                        CHANGE_Invocie['servicetype'] = request.POST['servicetype'+'_'+ str(slno)]
-                        #CHANGE_Invocie['pin'] = request.POST['pin'+'_'+ str(slno)]
-                        #CHANGE_Invocie['accountno'] = request.POST['accountno'+'_'+ str(slno)]
-                        #CHANGE_Invocie['slno'] = request.POST['slno'+'_'+ str(slno)]
-                        #CHANGE_Invocie['siteid'] = request.POST['siteid'+'_'+ str(slno)]
-                        CHANGE_Invocie['gstno'] = request.POST['gstno'+'_'+ str(slno)]
-                        #CHANGE_Invocie['gstno'] = request.POST['gstno'+'_'+ str(slno)]
-                        #CHANGE_Invocie['gstno'] = request.POST['gstno'+'_'+ str(slno)]
-                        #CHANGE_Invocie['fullsiteaddress'] = request.POST['fullsiteaddress'+'_'+ str(slno)]
-                        #CHANGE_Invocie['total'] = request.POST['total'+'_'+ str(slno)]
-                        CHANGE_Invocie['division'] = request.POST['division'+'_'+ str(slno)]
-                        CHANGE_Invocie['invoicedate'] = request.POST['invoicedate'+'_'+ str(slno)]
-                        #CHANGE_Invocie['billingactivity'] = request.POST['billingactivity'+'_'+ str(slno)]
-                        CHANGE_Invocie['city'] = request.POST['city'+'_'+ str(slno)]                        
-                        CHANGE_Invocie['premisename'] = request.POST['premisename'+'_'+ str(slno)]
-                        #CHANGE_Invocie['tsp'] = request.POST['tsp'+'_'+ str(slno)]                        
-                        CHANGE_Invocie['premiseno'] = request.POST['premiseno'+'_'+ str(slno)]
-                        CHANGE_Invocie['circuitid'] = request.POST['circuitid'+'_'+ str(slno)]
-                        CHANGE_Invocie['action'] = 'CHANGE'
-                        TESTDATA.append(CHANGE_Invocie)
-                        CHANGE_invoicelist.append(CHANGE_Invocie)        
-                        #RECOM_invoicelist.append(request.POST['speed'+'_'+ str(slno)])
-                        #RECOM_invoicelist.append(request.POST['customername'+'_'+ str(slno)])
+                if (Inv['xldata']['invoiceno'] == request.POST['invoiceno'+'_'+ str(slno)]
+                    
+                    and (Inv['xldata']['speed'] != request.POST['speed'+'_'+ str(slno)]
+                    or   Inv['xldata']['taxname'] != request.POST['taxname'+'_'+ str(slno)]
+                    or   Inv['xldata']['billingdateto'] != request.POST['billingdateto'+'_'+ str(slno)]
+                    or   Inv['xldata']['billingdatefrom'] != request.POST['billingdatefrom'+'_'+ str(slno)]
+                    or   Inv['xldata']['servicetype'] != request.POST['servicetype'+'_'+ str(slno)]
+                    or   Inv['xldata']['gstno'] != request.POST['gstno'+'_'+ str(slno)]
+                    or   Inv['xldata']['city'] != request.POST['city'+'_'+ str(slno)]
+                    or   Inv['xldata']['state'] != request.POST['state'+'_'+ str(slno)]
+                    or   Inv['xldata']['customername'] != request.POST['customername'+'_'+ str(slno)]
+                    or   Inv['xldata']['circuitid'] != request.POST['circuitid'+'_'+ str(slno)]
+                    )):
+                    CHANGE_Invocie = Inv['xldata'].copy()                        
+
+                    CHANGE_Invocie['invoiceno'] = request.POST['invoiceno'+'_'+ str(slno)]
+                    CHANGE_Invocie['taxname'] = request.POST['taxname'+'_'+ str(slno)]
+                    CHANGE_Invocie['customername'] = request.POST['customername'+'_'+ str(slno)]
+                    CHANGE_Invocie['state'] = request.POST['state'+'_'+ str(slno)]
+                    #CHANGE_Invocie['arc'] = request.POST['arc'+'_'+ str(slno)]
+                    CHANGE_Invocie['billingdateto'] = request.POST['billingdateto'+'_'+ str(slno)]
+                    CHANGE_Invocie['remarks'] = request.POST['remarks'+'_'+ str(slno)]
+                    #CHANGE_Invocie['customerid'] = request.POST['customerid'+'_'+ str(slno)]
+                    CHANGE_Invocie['billingdatefrom'] = request.POST['billingdatefrom'+'_'+ str(slno)]
+                     
+                    CHANGE_Invocie['servicetype'] = request.POST['servicetype'+'_'+ str(slno)]
+                    #CHANGE_Invocie['pin'] = request.POST['pin'+'_'+ str(slno)]
+                    #CHANGE_Invocie['accountno'] = request.POST['accountno'+'_'+ str(slno)]
+                    #CHANGE_Invocie['slno'] = request.POST['slno'+'_'+ str(slno)]
+                    #CHANGE_Invocie['siteid'] = request.POST['siteid'+'_'+ str(slno)]
+                    CHANGE_Invocie['gstno'] = request.POST['gstno'+'_'+ str(slno)]
+                    #CHANGE_Invocie['gstno'] = request.POST['gstno'+'_'+ str(slno)]
+                    #CHANGE_Invocie['gstno'] = request.POST['gstno'+'_'+ str(slno)]
+                    #CHANGE_Invocie['fullsiteaddress'] = request.POST['fullsiteaddress'+'_'+ str(slno)]
+                    #CHANGE_Invocie['total'] = request.POST['total'+'_'+ str(slno)]
+                    CHANGE_Invocie['division'] = request.POST['division'+'_'+ str(slno)]
+                    CHANGE_Invocie['invoicedate'] = request.POST['invoicedate'+'_'+ str(slno)]
+                    #CHANGE_Invocie['billingactivity'] = request.POST['billingactivity'+'_'+ str(slno)]
+                    CHANGE_Invocie['city'] = request.POST['city'+'_'+ str(slno)]                        
+                    CHANGE_Invocie['premisename'] = request.POST['premisename'+'_'+ str(slno)]
+                    #CHANGE_Invocie['tsp'] = request.POST['tsp'+'_'+ str(slno)]                        
+                    CHANGE_Invocie['premiseno'] = request.POST['premiseno'+'_'+ str(slno)]
+                    CHANGE_Invocie['circuitid'] = request.POST['circuitid'+'_'+ str(slno)]
+                    CHANGE_Invocie['Action'] = 'CHANGE'
+                    
+                    CHANGE_invoicelist.append(CHANGE_Invocie)        
+                    #RECOM_invoicelist.append(request.POST['speed'+'_'+ str(slno)])
+                    #RECOM_invoicelist.append(request.POST['customername'+'_'+ str(slno)])
         invchange_result = None
         #removing duplicate 
         message = {"lod":CHANGE_invoicelist}
         #RECOM_invoicelist_noduplicates = [i for n, i in enumerate(RECOM_invoicelist) if i not in RECOM_invoicelist[n + 1:]]
             #RECOM_invoicelist.append(request.POST['taxname'+'_'+ str(slno)]) 
         if len(CHANGE_invoicelist) > 0:
+            TESTDATA.append(message)
             invchange_result = invstoreclient.tsp_action(message) 
         list_invoices = invstoreclient.list_invoice_byinvnum('all')
         message = json.dumps(list_invoices)
@@ -408,25 +400,30 @@ def invoice_accept(request):
     invstoreclient = invstore_client(tlclient)
     list_invoices = invstoreclient.list_invoice_byinvnum('all')
     ACCEPT_invoicelist = []
-    TESTDATA = [11111]
+    TESTDATA = []
     if request.method == 'POST': 
-        invoicenum = request.POST['invoiceno']          
-        invoiceno = int(invoicenum)
-        if invoiceno and invoiceno > 0:                   
-            ACCEPT_Invocie = sampleinvoice.copy()    
-            ACCEPT_Invocie['invoiceno'] =  invoiceno  
-            ACCEPT_invoicelist.append(ACCEPT_Invocie) 
-            
-            message = {"lod":ACCEPT_invoicelist}
-            TESTDATA.append(message)
-            if len(ACCEPT_invoicelist) > 0:
-                invrcom_result = invstoreclient.tsp_action(message) 
-            list_invoices = invstoreclient.list_invoice_byinvnum('all')
-            message = json.dumps(list_invoices)
-            template_data = {"invstore_list_invoices": list_invoices,"ACCEPT_invoicelist": ACCEPT_invoicelist ,"TESTDATA":TESTDATA, 'ACCEPT_STATUS' :invrcom_result} 
-            result = render(request, 'home.html', template_data)        
+        for hstlist in list_invoices:
+            for Inv in hstlist['history_list']:
+                invoicenum = Inv['xldata']['invoiceno']          
+                invoiceno = int(invoicenum) 
+                if ('invoiceno'+'_'+ str(invoiceno)) in request.POST and Inv['status'] == 'ChangeSuggested' :   
+                    if (Inv['xldata']['invoiceno'] == request.POST.get('chkaccept'+'_'+ str(invoiceno),False)):
+                        ACCEPT_Invocie = sampleinvoice.copy()    
+                        ACCEPT_Invocie['invoiceno'] =  Inv['xldata']['invoiceno'] 
+                        ACCEPT_Invocie['Action'] = 'ACCEPT' 
+                        ACCEPT_invoicelist.append(ACCEPT_Invocie) 
+                        TESTDATA.append(ACCEPT_invoicelist)  
+                          
+        message = {"lod":ACCEPT_invoicelist}
+        TESTDATA.append(message)
+        if len(ACCEPT_invoicelist) > 0:
+            invraccept_result = invstoreclient.tsp_action(message) 
+        list_invoices = invstoreclient.list_invoice_byinvnum('all')
+        message = json.dumps(list_invoices)
+        template_data = {"invstore_list_invoices_accept": list_invoices,"ACCEPT_invoicelist": ACCEPT_invoicelist ,"TESTDATA":TESTDATA, 'ACCEPT_STATUS' :invraccept_result} 
+        result = render(request, 'home.html', template_data)        
     elif request.method == 'GET': 
-        template_data = {"invstore_list_invoices": list_invoices } 
+        template_data = {"invstore_list_invoices_accept": list_invoices } 
         result = render(request, 'home.html', template_data)        
     
     return result    

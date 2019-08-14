@@ -173,16 +173,16 @@
             <tr data-id="{{ Inv.xldata.invoiceno}}" data-parent="0" data-level="1" style="font-size:11px">
 
 				<td>
-					<form action="{% url 'dashapp:invstore_invoice_delete' %}" method="post"
-						enctype="multipart/form-data">
-						{% csrf_token %} <input type="hidden" id="invoiceno"
-							name="invoiceno" value="{{Inv.xldata.invoiceno}}">
-						<button type="submit" class="btn btn-danger btn-xs"
-							onclick="return confirm('Are you sure? you want to Delete Invoice')">
-							<i class="glyphicon glyphicon-trash"></i>
-						</button>
-						<!--<a class="delete"  title="Delete Invoice" data-toggle="tooltip" ><i class="material-icons">&#xE872;</i></a>-->
-					</form>
+<!-- 					<form action="{% url 'dashapp:invstore_invoice_delete' %}" method="post" -->
+<!-- 						enctype="multipart/form-data"> -->
+<!-- 						{% csrf_token %} <input type="hidden" id="invoiceno" -->
+<!-- 							name="invoiceno" value="{{Inv.xldata.invoiceno}}"> -->
+<!-- 						<button type="submit" class="btn btn-danger btn-xs" -->
+<!-- 							onclick="return confirm('Are you sure? you want to Delete Invoice')"> -->
+<!-- 							<i class="glyphicon glyphicon-trash"></i> -->
+<!-- 						</button> -->
+<!-- 						<a class="delete"  title="Delete Invoice" data-toggle="tooltip" ><i class="material-icons">&#xE872;</i></a> -->
+<!-- 					</form> -->
 					
 				</td>
                 <td data-column="name" style="width: 150px">{{Inv.xldata.invoiceno}}</td>
