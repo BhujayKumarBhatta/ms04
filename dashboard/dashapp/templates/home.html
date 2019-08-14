@@ -557,7 +557,7 @@
                             <ul class="nav navbar-nav">
                                 <li class="panel panel-default" id="dropdown">
                                     <a data-toggle="collapse" href="#dropdown-lvl1">
-                                        <span class="glyphicon glyphicon-cloud"></span> Token Leader <span class="caret"></span>
+                                        <span class="glyphicon glyphicon-user"></span> Token Leader <span class="caret"></span>
                                     </a>
                                     <!-- Dropdown level 1 -->
                                     <div id="dropdown-lvl1" class="panel-collapse collapse">
@@ -598,7 +598,7 @@
                                 </li>
                                 <li class="panel panel-default" id="dropdown">
                                     <a data-toggle="collapse" href="#dropdown-lvl3">
-                                        <span class="glyphicon glyphicon-gift"></span> TSP Invoice <span class="caret"></span>
+                                        <span class="glyphicon glyphicon-cloud"></span> TSP Invoice <span class="caret"></span>
                                     </a>
                                     <!-- Dropdown level 1 -->
                                     <div id="dropdown-lvl3" class="panel-collapse collapse">
@@ -606,6 +606,7 @@
                                             <ul class="nav navbar-nav"  >
                                                 <li><a href="{% url 'dashapp:xluploader_invoice_upload'  %}">  Upload   </a></li>
                                                 <li><a href="{% url 'dashapp:invstore_list_invoices'  %}">  Invoice  </a></li>
+                                                <li><a href="{% url 'dashapp:invstore_invoice_accept'  %}">  Invoice Accept </a></li>
                                                 <li><a href="{% url 'dashapp:invstore_list_stage1responces'  %}">  Responses  </a></li>
                                                 
                                                 
@@ -620,6 +621,7 @@
                                         </div>
                                     </div>
                                 </li>
+                                
                                 <li class="panel panel-default" id="dropdown">
                                     <a data-toggle="collapse" href="#dropdown-lvl4">
                                         <span class="glyphicon glyphicon-gift"></span> Infobhan Invoice<span class="caret"></span>
@@ -628,7 +630,8 @@
                                     <div id="dropdown-lvl4" class="panel-collapse collapse">
                                         <div class="panel-body">
                                             <ul class="nav navbar-nav">
-                                             <li><a href="{% url 'dashapp:invstore_list_divinvoices'  %}">   Invoice  </a></li>
+                                             <li><a href="{% url 'dashapp:invstore_invoice_rcommendations'  %}">   Recommendations  </a></li>
+                                             <li><a href="{% url 'dashapp:invstore_list_divinvoices'  %}">   Approvals  </a></li>
                                              
                                              
                                                <!-- <li><a href="{% url 'dashapp:list_divinvoices'  %}">   Invoice  </a></li>
@@ -638,8 +641,9 @@
                                         </div>
                                     </div>
                                 </li>
-                                <!--<li><a href="{% url 'dashapp:list_invoices'  %}"><span class="glyphicon glyphicon-send"></span> Invoice</a></li>-->
+                                <!--<li><a href="{% url 'dashapp:list_invoices'  %}"><span class="glyphicon glyphicon-send"></span> Invoice</a></li>
                                 <li><a href="{% url 'dashapp:list_invoices'  %}"><span class="glyphicon glyphicon-envelope"></span>Manage PO</a></li>
+                                
                                 <!--<li><a href="#"><span class="glyphicon glyphicon-cloud"></span> Link</a></li>-->
                                 <!-- Dropdown-->
                                 <!--<li class="panel panel-default" id="dropdown">
@@ -673,6 +677,21 @@
                                     </div>
                                 </li>-->
                                 <!--<li><a href="#"><span class="glyphicon glyphicon-signal"></span> Link</a></li>-->
+                           </div></li>
+                           <li class="panel panel-default" id="dropdown">
+                                    <a data-toggle="collapse" href="#dropdown-lvl5">
+                                        <span class="glyphicon glyphicon-gift"></span> Division Invoice <span class="caret"></span>
+                                    </a>
+                                    <!-- Dropdown level 1 -->
+                                    <div id="dropdown-lvl5" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <ul class="nav navbar-nav"  >
+                                                <li><a href="{% url 'dashapp:list_invoice_divisional_invoices'  %}">  Invoice   </a></li>
+                                                  
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
                             </ul>
                         </div><!-- /.navbar-collapse -->
                     </nav>
@@ -693,7 +712,7 @@
                         	{% include 'AddWFC.html' %}
                         {% elif VIEW_UPLOAD is not null or uploaded_file_url is not null %}
                         {% include 'invoice_upload.html' %}
-                        {% elif VIEW_UPDATE_UPLOAD is not null or uploadedupdate_file_url is not null %}
+                        {% elif VIEW_UPDATE_UPLOAD is not null or uploadedupdate_filinvstore_DIVSION_invoicese_url is not null %}
                         {% include 'invoice_update_upload.html' %}
 
                         {% elif VIEW_RCOM_UPLOAD is not null or rcomuploaded_file_url is not null %}
@@ -723,7 +742,7 @@
                         
 
                         {% elif list_invoices is not null and IS_RCOM is not null %}
-                        {% include 'invoicelist_recom.html' %}
+                        {% include 'invoicelist_recom.html' %}invstore_DIVSION_invoices
                         CREATE_INVOICE_FORM
                         {% elif CREATE_INVOICE_FORM is not null  %}
                         {% include 'invoicetemplate.html' %}
@@ -746,7 +765,15 @@
                         
                         {% elif STAGE1RESPONCES is not null%}
                        		{% include 'invstore_responces.html' %}
+                       		
+                       	{% elif invstore_list_invoices_RCOM is not null%}
+                       		{% include 'invstore_invoice_recom.html' %}
+                       		
+                       	{% elif invstore_DIVSION_invoices is not null%}
+                       		{% include 'invstore_invoice_division.html' %}
                         
+                        {% elif invstore_list_invoices_accept is not null%}
+                        	{% include 'invstore_invoice_accept.html' %}
                         {% else %}
                         <h1> Main Content here </h1>
                         <pre> Resize the screen to view the left slide menu </pre>
