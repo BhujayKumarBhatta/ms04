@@ -48,6 +48,7 @@ def list_invoices(request):
         return result
     
     
+    
 def delete_invoices(request):
    if request.method == 'POST':
         tlclient = tllogin.prep_tlclient_from_session(request)
@@ -72,7 +73,16 @@ def delete_invoices(request):
    return result    
 
 
-
+def tsp_list_invoices(request):
+    if request.method == 'GET': 
+        tlclient = tllogin.prep_tlclient_from_session(request)        
+        paperclient=clientpaperhouse(tlclient)        
+        list_invoices = paperclient.list_invoices('all')
+        message = json.dumps(list_invoices)
+        template_data = {"TSP_list_invoices": list_invoices } 
+        result = render(request, 'home.html', template_data)        
+        return result
+    
 
     
     
