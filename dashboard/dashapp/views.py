@@ -28,6 +28,9 @@ from dashapp.micros1.invoiceForm import NameForm
 
 from dashapp.xluploader import tspinv as xluploadertspinv
 from dashapp.invstore import invoicestore
+from dashapp.penman import penman
+from dashapp.paperhouse import paperhouse
+from dashapp.striker import striker
 
 
 def login(request):
@@ -490,7 +493,62 @@ def invstore_invoice_accept(request):
     elif 'uname' in request.session :
       result = invoicestore.invoice_accept(request)
     return result
- 
+############################ PEN and PAPER House#######################################
+
+def penman_list_events(request):
+    if 'uname' not in request.session :
+      result = login(request)
+    elif 'uname' in request.session :
+      result = penman.list_events(request)
+    return result
+
+def penman_delete_events(request):
+    if 'uname' not in request.session :
+      result = login(request)
+    elif 'uname' in request.session :
+      result = penman.delete_events(request)
+    return result
+
+
+
+def paperhouse_list_invoice(request):
+    if 'uname' not in request.session :
+      result = login(request)
+    elif 'uname' in request.session :
+      result = paperhouse.list_invoices(request)
+    return result 
+
+def paperhouse_delete_invoice(request):
+    if 'uname' not in request.session :
+      result = login(request)
+    elif 'uname' in request.session :
+      result = paperhouse.delete_invoices(request)
+    return result
+
+def tsp_list_invoice(request):
+    if 'uname' not in request.session :
+      result = login(request)
+    elif 'uname' in request.session :
+      result = paperhouse.tsp_list_invoices(request)
+    return result
+
+
+def striker_list_responces(request):
+    if 'uname' not in request.session :
+      result = login(request)
+    elif 'uname' in request.session :
+      result = striker.list_responces(request)
+    return result
+
+
+def striker_delete_responces(request):
+    if 'uname' not in request.session :
+      result = login(request)
+    elif 'uname' in request.session :
+      result = striker.delete_responces(request)
+    return result
+
 ###################################################################
+
 
 

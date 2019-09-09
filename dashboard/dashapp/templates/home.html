@@ -605,12 +605,21 @@
                                         <div class="panel-body">
                                             <ul class="nav navbar-nav"  >
                                                 <li><a href="{% url 'dashapp:xluploader_invoice_upload'  %}">  Upload   </a></li>
+                                                <li><a href="{% url 'dashapp:tsp_list_invoice'  %}">  Invoices  </a></li>
+                                                
+                                                <li><a href="{% url 'dashapp:penman_list_events'  %}">  Events  </a></li>                                                
+                                                <li><a href="{% url 'dashapp:striker_list_responces'  %}">  Responses  </a></li>
+                                                
+                                                
+                                                <!-- 
+                                                <li><a href="{% url 'dashapp:paperhouse_list_invoice'  %}">  Paper house Invoice  </a></li>
+                                                
                                                 <li><a href="{% url 'dashapp:invstore_list_invoices'  %}">  Invoice  </a></li>
                                                 <li><a href="{% url 'dashapp:invstore_invoice_accept'  %}">  Invoice Accept </a></li>
                                                 <li><a href="{% url 'dashapp:invstore_list_stage1responces'  %}">  Responses  </a></li>
                                                 
                                                 
-                                                <!--<li><a href="{% url 'dashapp:invoice_upload'  %}">  Upload   </a></li>
+                                                <li><a href="{% url 'dashapp:invoice_upload'  %}">  Upload   </a></li>
                                                 <li><a href="{% url 'dashapp:list_invoices'  %}"> Invoice  </a></li>
                                                 <li><a href="{% url 'dashapp:invoice_update_upload'  %}"> Update </a></li>
                                                 
@@ -774,6 +783,19 @@
                         
                         {% elif invstore_list_invoices_accept is not null%}
                         	{% include 'invstore_invoice_accept.html' %}
+                        
+                        {% elif PENMAN_list_invoices is not null%}
+                        	{% include 'PM_events.html' %}
+                        	
+                         {% elif PAPERHOUSE_list_invoices is not null%}
+                        	{% include 'PH_invoice.html' %}
+                        	
+                        {% elif STRK_list_responces is not null%}
+                        	{% include 'strk_responces.html' %}	
+                        	
+                        {% elif TSP_list_invoices is not null%}
+                        	{% include 'strk_tspops.html' %}		
+                        	
                         {% else %}
                         <h1> Main Content here </h1>
                         <pre> Resize the screen to view the left slide menu </pre>

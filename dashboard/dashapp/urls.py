@@ -97,7 +97,20 @@ urlpatterns = [path('', views.login, name='login'),
     ,path('list_invoice_divisional_invoices', views.list_invoice_divisional_invoices, name='list_invoice_divisional_invoices')
     ,path('invstore_invoice_update', views.invstore_invoice_update, name='invstore_invoice_update')
     ,path('invstore_invoice_accept', views.invstore_invoice_accept, name='invstore_invoice_accept')
-        
+    
+    
+    #penman
+    ,path('penman_list_events', views.penman_list_events, name='penman_list_events')
+    ,path('penman_delete_events', views.penman_delete_events, name='penman_delete_events')        
+    #paperhouse
+    ,path('paperhouse_list_invoice', views.paperhouse_list_invoice, name='paperhouse_list_invoice')    
+    ,path('paperhouse_delete_invoice', views.paperhouse_delete_invoice, name='paperhouse_delete_invoice')    
+    ,path('tsp_list_invoice', views.tsp_list_invoice, name='tsp_list_invoice')
+    
+    #striker
+    ,path('striker_list_responces', views.striker_list_responces, name='striker_list_responces')
+    ,path('striker_delete_responces', views.striker_delete_responces, name='striker_delete_responces')
+    
     #,path('swagger-docs/', schema_view)
     #,path('docs/', include_docs_urls(title='TSP Billing'))
     ]
