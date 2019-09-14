@@ -19,54 +19,76 @@
 
 
 <body>
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
-	  <!-- Brand -->
-	  <a class="navbar-brand" href="#">Logo</a>
-	  	 
-	  <ul class="navbar-nav">  
-	
-	    <!-- Dropdown -->
-	    <li class="nav-item dropdown">
-	      <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-	        Dropdown link
-	      </a>
-	      <div class="dropdown-menu">
-	        <a class="dropdown-item" href="#">Link 1</a>
-	        <a class="dropdown-item" href="#">Link 2</a>
-	        <a class="dropdown-item" href="#">Link 3</a>
-	      </div>
-	    </li>
-	    
-	     <!-- Links -->
-	    <li class="nav-item">
-          <a class="nav-link" href="#">Link 1</a>
+       
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top " >
+    <!-- style="background-image: url('{{ photo3 }}')" -->
+	  <!-- Brand   data-spy="affix" data-offset-top="400" -->
+	  <a class="navbar-brand" href="#"> <span class="float-left">ITSS</span></a>
+	  {% if "role1" in user_details.roles %}
+	       <p> i got it </p>
+	  {% endif %}
+	  
+	  {% block navbar_dropdowns %} {% endblock navbar_dropdowns %}
+	  
+	  <div class="nav-text  text-primary" >
+             INVOICE PROCESSING SYSTEM
+      </div>          
+          
+          
+       <ul class="navbar-nav justify-content-end">
+        <li class="nav-item dropdown">
+           <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+              {{ user_details.username }} 
+           </a>
+              <div class="dropdown-menu">
+	             <p class="dropdown-item">{{ user_details.wfc.org }}</p>
+	             <p class="dropdown-item">{{ user_details.email }}</p>
+	             <a class="dropdown-item" href="#">log out</a>
+              </div> 
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link 2</a>
-        </li>
-	  </ul>
-</nav>
+	   </ul>
+          
+	  
+    </nav>
 
-  
-<div class="container">
-  <h3>Navbar With Dropdown</h3>
-  <p>This example adds a dropdown menu in the navbar.</p>
-</div>
-    
+	
+	<!--  
+
+  {'email': 'user1', 'allowemaillogin': 'N', 
+  'wfc': {'name': 'wfc1', 'orgunit': 'ou1', 'department': 'dept1', 
+          'id': 1, 'creation_date': '2019-07-04 15:03:08', 'org': 'org1', 
+          'created by': None, 'is_active': 'Y'}, 
+   'roles': ['role1'], 
+   'username': 'user1', 
+   'id': 1, 'creation_date': '2019-07-04 15:04:09', 
+   'otp_mode': '', 'created by': None, 'is_active': 'Y'}
+-->
+   
    <!--   <div id="sidebar" class="row">
     {% block sidebar %}   {% endblock %}
     </div> -->
     
-    
+    <div class="container-fluid">
         <div class="jumbotron  jumbotron-fluid"  
-            style="background-image: url('{{ photo1 }}'); height='10'" >
+            style="background-image: url('{{ photo1 }}')" >
             
             {% block "content" %} 
-                <img class="img-fluid" src="{{ photo3 }}"  width="960" height="145"> 
+                 
             {% endblock %}
         </div> 
+     </div> 
+     
+   <div class="container-fluid">
+   <p> before if  {{ user_details.wfc.roles }} </p>
+    {% if "role1" in user_details.roles %}    
+       
+           <p> i got  role : {{ user_details.roles }} </p>
+    {% endif %}
+       
+   
+   </div>
         
-    <!-- </div> -->
+    
 
 </body>
 
