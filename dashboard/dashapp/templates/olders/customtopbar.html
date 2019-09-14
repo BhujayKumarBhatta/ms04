@@ -19,39 +19,24 @@
 
 
 <body>
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
-	  <!-- Brand -->
-	  <a class="navbar-brand" href="#">Logo</a>
-	  	 
-	  <ul class="navbar-nav">  
-	
-	    <!-- Dropdown -->
-	    <li class="nav-item dropdown">
-	      <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-	        Dropdown link
-	      </a>
-	      <div class="dropdown-menu">
-	        <a class="dropdown-item" href="#">Link 1</a>
-	        <a class="dropdown-item" href="#">Link 2</a>
-	        <a class="dropdown-item" href="#">Link 3</a>
-	      </div>
-	    </li>
-	    
-	     <!-- Links -->
-	    <li class="nav-item">
-          <a class="nav-link" href="#">Link 1</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link 2</a>
-        </li>
-	  </ul>
-</nav>
-
-  
-<div class="container">
-  <h3>Navbar With Dropdown</h3>
-  <p>This example adds a dropdown menu in the navbar.</p>
-</div>
+    <div class="container-fluid"   style="background-image: url('{{ photo2 }}') ">
+	    <!-- div id="topbar" class="row">
+	     {% block topbar %}
+	     <!--  
+	        <div class="col-sm-1" style="background-color:orange;">        
+	            <p>home </p>
+	        </div>
+	        
+	        <div class="col-sm-10" style="background-color:orange; text-align:center">           
+	            <h2>InfoBots <small>micro services in action!</small></h2>
+	        </div>
+	        
+	        <div class="col-sm-1" style="background-color:orange;">        
+	            <p>login</p>
+	        </div> -->
+	    {% endblock  %}
+	    <!--</div>   -->
+	 </div>
     
    <!--   <div id="sidebar" class="row">
     {% block sidebar %}   {% endblock %}
