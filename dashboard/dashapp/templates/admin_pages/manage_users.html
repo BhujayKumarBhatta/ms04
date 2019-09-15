@@ -1,10 +1,23 @@
 {% extends "home.html" %}
-{% block content-area %} 
-    <p> user list content</p>
-    <div class="container-fluid">             
-        <table class="table table-striped">
-            <thead class="thead-light">
-                <tr>
+{% block content-area %}
+{% url 'dashapp:adduser' as aduser%}
+{% url 'dashapp:delete_user' as duser %}
+    <div class="container-fluid" style="padding-top:7px">
+        <div class="row">
+            <div class="col-sm-3">
+                <a class="btn btn-primary btn-sm" href="{{ aduser }}">add new user</a>
+            </div>
+            <div class="col-sm-7 justify-content-center">
+                <h5>List of registered users in tokenleader</h5>
+            </div>
+            <div class="col-sm-2 justify-content-end">
+                <a class="btn btn-danger btn-sm" href="#">delete all users</a>
+            </div> 
+        </div>
+               
+        <table class="table table-striped table-hover">
+            <thead >
+                <tr style="background-color: #4CAF50;font-size:10px">
 			        <th>Name</th>
 			        <th>Email</th>
 			        <th>Role</th>
@@ -14,12 +27,13 @@
 			        <th>Active</th>
 			        <th>OTP</th>			        
 			        <th>maillogin</th>
-			        <th>Action</th>
+			        <th>WFC</th>
+			        <th>Delete</th>
                 </tr>
             </thead>
             <tbody>
-                  {% for l in list_users %}
-			      <tr>			        
+                {% for l in list_users %}
+			      <tr style="font-size:10px">			        
 			        <td>{{ l.username }}</td>
 			        <td>{{ l.email }}</td>
 			        <td>{{ l.roles|join:"," }}</td>
@@ -29,8 +43,9 @@
 			        <td>{{ l.is_active }}</td>
 			        <td>{{ l.otp_mode }}</td>
 			        <td>{{ l.allowemaillogin }}</td>
+			        <td>{{ l.wfc.name }}</td>
 			        <td>
-			             <form action="{% url 'dashapp:delete_user' %}" method="POST" 
+			             <form action="{{duser}}" method="POST" 
 			                             enctype="multipart/form-data">
                             {% csrf_token %}
                             <input type="hidden" id="username" name="username" value="{{l.username}}" 
@@ -40,10 +55,9 @@
                                 <span class="glyphicon glyphicon-trash"></span>
                             </button>
                     </form>
-			        
 			        </td> 
 			      </tr>
-			      {% endfor %}
+			    {% endfor %}
 			</tbody>
 		</table>
 	</div>
