@@ -1,4 +1,10 @@
-          
+{% url 'dashapp:list_users' as luser %}
+{% url 'dashapp:list_org' as lorg %}
+{% url 'dashapp:list_dept' as ldept %}
+{% url 'dashapp:list_role' as lrole %}
+{% url 'dashapp:list_ou' as lou %}
+{% url 'dashapp:list_wfc' as lwfc %}
+{% url 'dashapp:list_service' as lservice %}
 	  <ul class="navbar-nav"> 
 		    <!-- User Admin  -->
 		    <li class="nav-item dropdown">
@@ -6,8 +12,8 @@
 		        User Admin
 		      </a>
 		      <div class="dropdown-menu">
-		        <a class="dropdown-item" href="#">Link 1</a>
-		        <a class="dropdown-item" href="#">Link 2</a>
+		        <a class="dropdown-item" href="{{ luser }}">Manage Users</a>
+		        <a class="dropdown-item" href="{{ lorg }}">Manage Org</a>
 		        <a class="dropdown-item" href="#">Link 3</a>
 		      </div>
 		    </li>

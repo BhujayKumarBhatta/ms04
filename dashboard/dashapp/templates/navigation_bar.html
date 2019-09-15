@@ -1,8 +1,10 @@
-
- <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top " >    
-    <a class="navbar-brand" href="#"> <span class="float-left">ITSS</span></a>
+{% block navigation_bar %}
+ <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top " > 
+     
+    <a class="navbar-brand" href="#">ITSS</a>
+    
     <div class="container">
-	    {% if "ADMIN"  in user_details.roles %}       
+	    {% if "role1"  in user_details.roles %}       
 		   {% include "nav_dropdown_admin.html" %}
 		{% elif "TSP" in user_details.roles %}
 		   {% include "nav_dropdown_tsp.html" %}
@@ -37,5 +39,5 @@
     </div>        
    
 </nav>
-
+{% endblock navigation_bar %}
 		  

@@ -17,10 +17,22 @@
 </head>
 
 
-<body>    
+<body>
     
-    {% include "navigation_bar.html" %}
-  
+    <div class="container">
+    {% block navigation_bar %}
+        {% include "navigation_bar.html" %}
+    {% endblock navigation_bar %}
+    </div>
+    
+    <br><br><br>
+    
+    <div class="container-fluid">
+        {% block content-area %}
+            <p>initial content </p>
+        {% endblock content-area %}
+    </div>
+    
 </body>
 
 </html>

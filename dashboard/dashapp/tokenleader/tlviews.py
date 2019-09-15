@@ -6,14 +6,16 @@ from django.shortcuts import render
 ## Token Leader Module ****************************************************
 
 def list_users(request):
+    session_user_details = request.session.get('session_user_details')
     if request.method == 'GET':  
         tlclient = tllogin.prep_tlclient_from_session(request)
         list_users = tlclient.list_users()
-        template_data = {"list_users": list_users.get('status') } 
-        result = render(request, 'home.html', template_data)
+        template_data = {"list_users": list_users.get('status'),
+                         "user_details": session_user_details } 
+        result = render(request, 'admin_pages/manage_users.html', template_data)
         #return HttpResponse(json.dumps(list_users))
         return result
-        		
+        
 #=========adduser pending        		
 def adduser(request):
     if request.method == 'GET': 

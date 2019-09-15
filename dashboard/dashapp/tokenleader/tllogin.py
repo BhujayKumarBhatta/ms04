@@ -52,10 +52,11 @@ def login(request):
                 result = render(request, 'login.html', template_data) 
                 
             else:
+                user_details = verified_token.get('payload').get('sub')
                 template_data = {"service_catalog": auth_result.get('service_catalog'),
-                                "user_details": verified_token.get('payload').get('sub'),
+                                "user_details": user_details,
                                 }           
-                
+                request.session['session_user_details'] = user_details
                 result = render(request, 'home.html', template_data)
             
     return result
