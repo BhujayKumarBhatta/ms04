@@ -14,41 +14,14 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    
 </head>
 
 
-<body>
-    {% if "role1" in user_details.roles %}
-       {% block admin_dropdowns %}           
-         {% include "admin_dropdown.html" %}          
-       {% endblock admin_dropdowns %}
-    {% endif %}	
+<body>    
     
-    <div class="container-fluid">
-        <div class="jumbotron  jumbotron-fluid"  
-            style="background-image: url('{{ photo1 }}')" >
-            
-            {% block "content" %} 
-                 
-            {% endblock %}
-        </div> 
-     </div> 
-     
-   <div class="container-fluid">
-   <p> before if  {{ user_details.wfc.roles }} </p>
-    {% if "role1" in user_details.roles %}    
-       
-           <p> i got  role : {{ user_details.roles }} </p>
-    {% endif %}
-       
-   
-   </div>
-        
-    
-
+    {% include "navigation_bar.html" %}
+  
 </body>
-
 
 </html>
 
@@ -69,3 +42,4 @@
    <!--   <div id="sidebar" class="row">
     {% block sidebar %}   {% endblock %}
     </div> -->
+    
