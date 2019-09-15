@@ -19,54 +19,11 @@
 
 
 <body>
-       
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top " >
-    <!-- style="background-image: url('{{ photo3 }}')" -->
-	  <!-- Brand   data-spy="affix" data-offset-top="400" -->
-	  <a class="navbar-brand" href="#"> <span class="float-left">ITSS</span></a>
-	  {% if "role1" in user_details.roles %}
-	       <p> i got it </p>
-	  {% endif %}
-	  
-	  {% block navbar_dropdowns %} {% endblock navbar_dropdowns %}
-	  
-	  <div class="nav-text  text-primary" >
-             INVOICE PROCESSING SYSTEM
-      </div>          
-          
-          
-       <ul class="navbar-nav justify-content-end">
-        <li class="nav-item dropdown">
-           <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-              {{ user_details.username }} 
-           </a>
-              <div class="dropdown-menu">
-	             <p class="dropdown-item">{{ user_details.wfc.org }}</p>
-	             <p class="dropdown-item">{{ user_details.email }}</p>
-	             <a class="dropdown-item" href="#">log out</a>
-              </div> 
-        </li>
-	   </ul>
-          
-	  
-    </nav>
-
-	
-	<!--  
-
-  {'email': 'user1', 'allowemaillogin': 'N', 
-  'wfc': {'name': 'wfc1', 'orgunit': 'ou1', 'department': 'dept1', 
-          'id': 1, 'creation_date': '2019-07-04 15:03:08', 'org': 'org1', 
-          'created by': None, 'is_active': 'Y'}, 
-   'roles': ['role1'], 
-   'username': 'user1', 
-   'id': 1, 'creation_date': '2019-07-04 15:04:09', 
-   'otp_mode': '', 'created by': None, 'is_active': 'Y'}
--->
-   
-   <!--   <div id="sidebar" class="row">
-    {% block sidebar %}   {% endblock %}
-    </div> -->
+    {% if "role1" in user_details.roles %}
+       {% block admin_dropdowns %}           
+         {% include "admin_dropdown.html" %}          
+       {% endblock admin_dropdowns %}
+    {% endif %}	
     
     <div class="container-fluid">
         <div class="jumbotron  jumbotron-fluid"  
@@ -94,3 +51,21 @@
 
 
 </html>
+
+
+
+<!--  
+
+  {'email': 'user1', 'allowemaillogin': 'N', 
+  'wfc': {'name': 'wfc1', 'orgunit': 'ou1', 'department': 'dept1', 
+          'id': 1, 'creation_date': '2019-07-04 15:03:08', 'org': 'org1', 
+          'created by': None, 'is_active': 'Y'}, 
+   'roles': ['role1'], 
+   'username': 'user1', 
+   'id': 1, 'creation_date': '2019-07-04 15:04:09', 
+   'otp_mode': '', 'created by': None, 'is_active': 'Y'}
+-->
+   
+   <!--   <div id="sidebar" class="row">
+    {% block sidebar %}   {% endblock %}
+    </div> -->
