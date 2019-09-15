@@ -1,5 +1,59 @@
 {% extends "home.html" %}
 {% block content-area %} 
     <p> user list content</p>
-    {{ list_users }}
+    <div class="container-fluid">             
+        <table class="table table-striped">
+            <thead class="thead-light">
+                <tr>
+			        <th>Name</th>
+			        <th>Email</th>
+			        <th>Role</th>
+			        <th>Org</th>
+			        <th>OU</th>
+			        <th>Department</th>
+			        <th>Active</th>
+			        <th>OTP</th>			        
+			        <th>maillogin</th>
+			        <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                  {% for l in list_users %}
+			      <tr>			        
+			        <td>{{ l.username }}</td>
+			        <td>{{ l.email }}</td>
+			        <td>{{ l.roles|join:"," }}</td>
+			        <td>{{ l.wfc.org }}</td>
+			        <td>{{ l.wfc.orgunit }}</td>
+			        <td>{{ l.wfc.dept }}</td>
+			        <td>{{ l.is_active }}</td>
+			        <td>{{ l.otp_mode }}</td>
+			        <td>{{ l.allowemaillogin }}</td>
+			        <td>
+			             <form action="{% url 'dashapp:delete_user' %}" method="POST" 
+			                             enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <input type="hidden" id="username" name="username" value="{{l.username}}" 
+                                             class="form-control">
+                            <button type="submit" class="btn btn-danger " 
+                                    onclick="return confirm('Are you sure? you want to Delete User')">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </button>
+                    </form>
+			        
+			        </td> 
+			      </tr>
+			      {% endfor %}
+			</tbody>
+		</table>
+	</div>
+    
 {% endblock content-area %}
+
+
+<!--  {'is_active': 'Y', 'otp_mode': 'mail', 'allowemaillogin': 'N', 
+        'email': 'prasen.biswas@itc.in', 'created by': 'user1', 
+        'wfc': {'is_active': 'Y', 'org': 'org1', 
+                 'creation_date': '2019-07-04 15:03:08', 'created by': None, 'name': 'wfc1', 
+                 'orgunit': 'ou1', 'id': 1, 'department': 'dept1'}, 
+        'username': 'prasen', 'id': 6, 'roles': ['role1'], 'creation_date': '2019-07-08 12:55:16'} -->
