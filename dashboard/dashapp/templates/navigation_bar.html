@@ -1,7 +1,7 @@
 {% block navigation_bar %}
- <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top " > 
+ <nav class="navbar navbar-expand-sm bg-dark py-0 navbar-dark fixed-top py-my-0"  > 
      
-    <a class="navbar-brand" href="#">ITSS</a>
+    <a class="navbar-brand py-0" href="/">HOME</a>
     
     <div class="container">
 	    {% if "role1"  in user_details.roles %}       
@@ -18,17 +18,18 @@
     </div>
 	
     <div class="container">
-	    <div class="nav-text  text-warning justify-content-center font-weight-bolder" >
-	        INVOICE PROCESSING SYSTEM
+	    <div class="nav-text  text-warning py-0
+	       justify-content-center font-weight-bolder" style="font-family:Impact">
+	        <h1>I2PS</h1>
 	    </div>
     </div>
      
-    <div class="container">  
-	    <ul class="navbar-nav justify-content-end">
-	       <li class="nav-item dropdown">
-	          <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-	             {{ user_details.username }} 
-	          </a>
+    <div class="container justify-content-end">  
+	    <ul class="navbar-nav  py-0">
+	       <li class="nav-item dropdown py-0">
+	          <p class="nav-link dropdown-toggle fas fa-user"  id="navbardrop" data-toggle="dropdown" style='color: green'>
+	             {{ user_details.username }}
+	          </p>
 	             <div class="dropdown-menu">
 	                <p class="dropdown-item">{{ user_details.wfc.org }}</p>
 	                <p class="dropdown-item">{{ user_details.email }}</p>
