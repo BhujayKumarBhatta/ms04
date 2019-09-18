@@ -5,7 +5,7 @@ from tokenleaderclient.client.client import Client
 
 from django.conf import settings
 #from django.contrib import auth
-#from datetime import datetime, timedelta
+from datetime import datetime, timedelta
 #from .settings import EXPIRE_AFTER, PASSIVE_URLS, PASSIVE_URL_NAMES
 
 
@@ -61,6 +61,7 @@ def login(request):
                 user_details = verified_token.get('payload').get('sub')
                 template_data = {"service_catalog": auth_result.get('service_catalog'),
                                 "user_details": user_details,
+                                "login_time": datetime.now()
                                 }           
                 request.session['session_user_details'] = user_details
                 result = render(request, 'home.html', template_data)
@@ -68,6 +69,19 @@ def login(request):
     return result
 
 
+def validate_active_session(request):
+    session_expairy_seconds = 30
+    logged_in_time = request.session.get('login_time')    
+    elapsed_time = logged_in_time - datetime.utcnow()
+    if elapsed_time.total_seconds() > session_expairy_seconds:
+        request.session['session_user_details'] = None
+        request.session['uname'] = None
+        request.session['psword'] = None        
+        result = False
+    else:
+        result = True
+    return result
+        
 
 ################ SESSION MANAGEMENT ######################
 #def get_expire_seconds(self, request):
