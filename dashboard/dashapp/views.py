@@ -37,6 +37,11 @@ def login(request):
     result = tllogin.login(request)
     return result
 
+# def home(request):
+#     session_user_details = request.session.get('session_user_details')
+#     template_data = {"user_details": session_user_details }   
+#     result = render(request, 'home.html', template_data)            
+#     return result
  
 def list_links(request):
     if 'uname' not in request.session :

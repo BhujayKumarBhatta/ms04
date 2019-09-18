@@ -29,9 +29,24 @@
     
     <br><br>
     
-    <div class="container-fluid">
-        {% block content-area %}
-            <p>initial content <span class="glyphicon glyphicon-envelope"> </span> </p>
+    <div class="container-fluid py-5"  style="background-image: url('{{ photo2 }}'); 
+                           opacity:0.4" >
+        <h2 class="display text-center font-weight-bold" style="color:green">
+                     I2PS - Info-ops Invoice Processing System</h2>
+                     
+    </div>
+    
+    
+    <div class="container-fluid ">  
+        {% block content-area %}     
+            <div class="jumbotron  jumbotron-fluid jumbo-text"  
+                    style="background-image: url('{{ photo1 }}'); 
+                           opacity:0.3" >
+                <p class="lead text-center font-weight-bold" style="color:red">
+                     Python Micro Services to automate invoice processing !!</p>
+                <br><br><br>
+                
+            </div> 
         {% endblock content-area %}
     </div>
     

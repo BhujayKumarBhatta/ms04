@@ -26,10 +26,16 @@ def prep_tlclient_from_session(request):
 
 # Create your views here.
 def login(request):    
-    if request.method == 'GET':   
-        txt = "Enter user name and password to get access to  dashboard"
-        template_data = {"mykey": txt }     
-        result = render(request, 'login.html', template_data)        
+    if request.method == 'GET':
+        #check if the session already has credentials
+        session_user_details = request.session.get('session_user_details')
+        if session_user_details:
+            template_data = {"user_details": session_user_details }
+            result = render(request, 'home.html', template_data)
+        else:  #show login page
+            txt = "Enter user name and password to get access to  dashboard"
+            template_data = {"mykey": txt }    
+            result = render(request, 'login.html', template_data)        
     elif request.method == 'POST':
         uname = request.POST.get('username', '')
         psword = request.POST.get('password', '')
