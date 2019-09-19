@@ -99,14 +99,14 @@ def validate_active_session(request, template_name, template_data):
         elpsed_time_in_sec = elapsed_time.total_seconds()
         print("logged in for sec:", elpsed_time_in_sec)
     
-    if (elpsed_time_in_sec > session_expairy_seconds) :
-        print('inside session  expiry block elapsed time:', elpsed_time_in_sec )
-        template_name, template_data = logout(request)
-    else:
-        request.session['last_clicked_on'] = datetime.now().timestamp()          
-        user_data = {"user_details": session_user_details }
-        template_data.update(user_data)
-        print('session is still active, elapsed time ', elpsed_time_in_sec)
+        if (elpsed_time_in_sec > session_expairy_seconds) :
+            print('inside session  expiry block elapsed time:', elpsed_time_in_sec )
+            template_name, template_data = logout(request)
+        else:
+            request.session['last_clicked_on'] = datetime.now().timestamp()          
+            user_data = {"user_details": session_user_details }
+            template_data.update(user_data)
+            print('session is still active, elapsed time ', elpsed_time_in_sec)
     web_page = render(request, template_name, template_data)            
     return web_page
         
