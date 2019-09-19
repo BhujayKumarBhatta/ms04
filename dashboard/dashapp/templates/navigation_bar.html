@@ -2,8 +2,7 @@
 {% url 'dashapp:logout' as logout %}
  <nav class="navbar navbar-expand-sm bg-dark py-0 navbar-dark fixed-top py-my-0"  > 
      
-    <a class="navbar-brand py-0 fas fa-home" style='font-size:20px;color:red' href="/">I2PS Home
-    </a>
+    <a class="navbar-brand py-0 fas fa-home" style='font-size:20px;color:red' href="/">InfoVoice</a>
     
     <div class="container">
 	    {% if "role1"  in user_details.roles %}       
@@ -22,7 +21,7 @@
     <div class="container justify-content-center">
 	    <div class="nav-text  text-warning py-0
 	        font-weight-bolder" style="font-family:Impact">
-	        <h1>I2PS</h1>
+	        <h1>InfoVoice</h1>
 	    </div>
     </div>
      
@@ -36,6 +35,7 @@
 	             <div class="dropdown-menu">
 	                <p class="dropdown-item">{{ user_details.wfc.org }}</p>
 	                <p class="dropdown-item">{{ user_details.email }}</p>
+	                <p class="dropdown-item">{{ user_details.roles|join:"," }}</p>	                
 	                <a class="dropdown-item" href="{{ logout }}">log out</a>
 	             </div> 
 	       </li>

@@ -24,20 +24,12 @@ def prep_tlclient_from_session(request):
         return   tlclient 
             
 
-# Create your views here.
+#This is serves both home and login page
 def login(request):    
     if request.method == 'GET':
         #check if the session already has credentials
         web_page = validate_active_session(request,'home.html', {} )
         return web_page 
-#         session_user_details = request.session.get('session_user_details')
-#         if session_user_details:
-#             template_data = {"user_details": session_user_details }
-#             result = render(request, 'home.html', template_data)
-#         else:  #show login page
-#             txt = "Enter user name and password to get access to  dashboard"
-#             template_data = {"mykey": txt }    
-#             result = render(request, 'login.html', template_data)        
     elif request.method == 'POST':
         uname = request.POST.get('username', '')
         psword = request.POST.get('password', '')
@@ -86,7 +78,7 @@ def logout(request):
 def validate_active_session(request, template_name, template_data):
     session_user_details = request.session.get('session_user_details') 
     s_login_time = request.session.get('last_clicked_on')
-    session_expairy_seconds = 10
+    session_expairy_seconds = 900
     elpsed_time_in_sec = 0
     if not (s_login_time):
         txt = "Enter user name and password to get access to  dashboard"

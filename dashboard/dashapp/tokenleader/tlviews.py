@@ -2,19 +2,18 @@ import json
 from dashapp.tokenleader import tllogin
 from linkinvclient.client import LIClient
 from django.shortcuts import render
+from dashapp.tokenleader.tllogin import validate_active_session
 
 ## Token Leader Module ****************************************************
 
 def list_users(request):
-    session_user_details = request.session.get('session_user_details')
     if request.method == 'GET':  
         tlclient = tllogin.prep_tlclient_from_session(request)
         list_users = tlclient.list_users()
-        template_data = {"list_users": list_users.get('status'),
-                         "user_details": session_user_details } 
-        result = render(request, 'admin_pages/manage_users.html', template_data)
-        #return HttpResponse(json.dumps(list_users))
-        return result
+        template_data = {"list_users": list_users.get('status')}
+        template_name = 'admin_pages/list_users.html'
+        web_page = validate_active_session(request, template_name, template_data)
+        return web_page
         
 #=========adduser pending        		
 def adduser(request):
@@ -24,9 +23,11 @@ def adduser(request):
         org_list = tlclient.list_org()
         role_list = tlclient.list_role()
         wfc_list = tlclient.list_wfc()				
-        template_data = {"ADDUSER": "TRUE","ORGLIST":org_list,"ROLELIST":role_list,"WFCLIST":wfc_list}  
-        result = render(request, 'home.html', template_data)        
-        return result   
+        template_data = {"ORGLIST":org_list,
+                         "ROLELIST":role_list,"WFCLIST":wfc_list}
+        template_name =  'admin_pages/add_users.html'
+        web_page = validate_active_session(request, template_name, template_data)
+        return web_page 
     if request.method == 'POST':    
         username = request.POST.get('username')
         password = request.POST.get('password')		
@@ -47,7 +48,7 @@ def adduser(request):
         template_data = {"list_users": list_users.get('status'),"STATUS_ADDUSER": status }
         result = render(request, 'home.html', template_data)
         return result
-				
+
 def delete_user(request):
     if request.method == 'POST':
         tlclient = tllogin.prep_tlclient_from_session(request)
