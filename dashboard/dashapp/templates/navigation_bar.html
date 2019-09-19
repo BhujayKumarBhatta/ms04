@@ -1,4 +1,5 @@
 {% block navigation_bar %}
+{% url 'dashapp:logout' as logout %}
  <nav class="navbar navbar-expand-sm bg-dark py-0 navbar-dark fixed-top py-my-0"  > 
      
     <a class="navbar-brand py-0 fas fa-home" style='font-size:20px;color:red' href="/">I2PS Home
@@ -35,7 +36,7 @@
 	             <div class="dropdown-menu">
 	                <p class="dropdown-item">{{ user_details.wfc.org }}</p>
 	                <p class="dropdown-item">{{ user_details.email }}</p>
-	                <a class="dropdown-item" href="#">log out</a>
+	                <a class="dropdown-item" href="{{ logout }}">log out</a>
 	             </div> 
 	       </li>
 	    </ul>

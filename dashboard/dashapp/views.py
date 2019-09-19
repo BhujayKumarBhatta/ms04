@@ -37,6 +37,10 @@ def login(request):
     result = tllogin.login(request)
     return result
 
+def logout(request):
+    template_name, template_data  = tllogin.logout(request)
+    return render(request, template_name, template_data)
+    
 # def home(request):
 #     session_user_details = request.session.get('session_user_details')
 #     template_data = {"user_details": session_user_details }   

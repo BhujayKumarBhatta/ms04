@@ -28,19 +28,22 @@ def prep_tlclient_from_session(request):
 def login(request):    
     if request.method == 'GET':
         #check if the session already has credentials
-        session_user_details = request.session.get('session_user_details')
-        if session_user_details:
-            template_data = {"user_details": session_user_details }
-            result = render(request, 'home.html', template_data)
-        else:  #show login page
-            txt = "Enter user name and password to get access to  dashboard"
-            template_data = {"mykey": txt }    
-            result = render(request, 'login.html', template_data)        
+        web_page = validate_active_session(request,'home.html', {} )
+        return web_page 
+#         session_user_details = request.session.get('session_user_details')
+#         if session_user_details:
+#             template_data = {"user_details": session_user_details }
+#             result = render(request, 'home.html', template_data)
+#         else:  #show login page
+#             txt = "Enter user name and password to get access to  dashboard"
+#             template_data = {"mykey": txt }    
+#             result = render(request, 'login.html', template_data)        
     elif request.method == 'POST':
         uname = request.POST.get('username', '')
         psword = request.POST.get('password', '')
         request.session['uname'] = uname
         request.session['psword'] = psword
+        request.session['last_clicked_on'] = datetime.now().timestamp()
         auth_config = Configs(tlusr=uname, tlpwd=psword)
         tlclient = Client(auth_config)        
         auth_result = tlclient.get_token()        
@@ -68,19 +71,44 @@ def login(request):
             
     return result
 
+def logout(request):
+    request.session['session_user_details'] = None
+    request.session['uname'] = None
+    request.session['psword'] = None
+    request.session['session_user_details'] = None
+    txt = "Logged out, session expired  please login again"
+    template_data = {"mykey": txt }
+    template_name = 'login.html'
+    return template_name, template_data
 
-def validate_active_session(request):
-    session_expairy_seconds = 30
-    logged_in_time = request.session.get('login_time')    
-    elapsed_time = logged_in_time - datetime.utcnow()
-    if elapsed_time.total_seconds() > session_expairy_seconds:
-        request.session['session_user_details'] = None
-        request.session['uname'] = None
-        request.session['psword'] = None        
-        result = False
+
+def validate_active_session(request, template_name, template_data):
+    session_user_details = request.session.get('session_user_details') 
+    s_login_time = request.session.get('last_clicked_on')
+    session_expairy_seconds = 10
+    elpsed_time_in_sec = 0
+    if not s_login_time:
+        txt = "Enter user name and password to get access to  dashboard"
+        template_data = {"mykey": txt }
+        template_name = 'login.html' 
+        print(txt)
     else:
-        result = True
-    return result
+        logged_in_time = datetime.fromtimestamp(s_login_time)
+        elapsed_time = datetime.utcnow() - logged_in_time
+        elpsed_time_in_sec = elapsed_time.total_seconds()
+        print("logged in for sec:", elpsed_time_in_sec)
+    
+    if ((elpsed_time_in_sec > session_expairy_seconds) or 
+        (not session_user_details) ):
+        print('inside session  expiry block elapsed time:', elpsed_time_in_sec )
+        template_name, template_data = logout(request)
+    else:
+        request.session['last_clicked_on'] = datetime.now().timestamp()          
+        user_data = {"user_details": session_user_details }
+        template_data.update(user_data)
+        print('session is still active, elapsed time ', elpsed_time_in_sec)
+    web_page = render(request, template_name, template_data)            
+    return web_page
         
 
 ################ SESSION MANAGEMENT ######################
