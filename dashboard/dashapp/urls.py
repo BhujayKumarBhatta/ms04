@@ -25,7 +25,7 @@ from . import views
 #schema_view = get_swagger_view(title='TSP Billing')
 app_name = 'dashapp'
 urlpatterns = [path('', views.login, name='login'),
-               path('logout', views.logout, name='logout'),
+               path('logout', views.log_out, name='logout'),
     #Infops DB
     path('home2', views.home2, name='home2'),
 

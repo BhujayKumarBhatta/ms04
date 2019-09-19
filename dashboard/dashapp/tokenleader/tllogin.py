@@ -75,10 +75,11 @@ def logout(request):
     request.session['session_user_details'] = None
     request.session['uname'] = None
     request.session['psword'] = None
-    request.session['session_user_details'] = None
+    request.session['last_clicked_on'] = None
     txt = "Logged out, session expired  please login again"
     template_data = {"mykey": txt }
     template_name = 'login.html'
+    print('forcing log out')
     return template_name, template_data
 
 
@@ -87,7 +88,7 @@ def validate_active_session(request, template_name, template_data):
     s_login_time = request.session.get('last_clicked_on')
     session_expairy_seconds = 10
     elpsed_time_in_sec = 0
-    if not s_login_time:
+    if not (s_login_time):
         txt = "Enter user name and password to get access to  dashboard"
         template_data = {"mykey": txt }
         template_name = 'login.html' 
@@ -98,8 +99,7 @@ def validate_active_session(request, template_name, template_data):
         elpsed_time_in_sec = elapsed_time.total_seconds()
         print("logged in for sec:", elpsed_time_in_sec)
     
-    if ((elpsed_time_in_sec > session_expairy_seconds) or 
-        (not session_user_details) ):
+    if (elpsed_time_in_sec > session_expairy_seconds) :
         print('inside session  expiry block elapsed time:', elpsed_time_in_sec )
         template_name, template_data = logout(request)
     else:

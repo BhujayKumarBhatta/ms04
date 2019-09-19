@@ -37,7 +37,8 @@ def login(request):
     result = tllogin.login(request)
     return result
 
-def logout(request):
+def log_out(request):
+    print("i m inside lout out view")
     template_name, template_data  = tllogin.logout(request)
     return render(request, template_name, template_data)
     
