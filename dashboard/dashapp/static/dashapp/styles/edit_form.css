@@ -1,0 +1,21 @@
+
+<style>
+	#edit-format  {padding-top:1px;}
+	#edit-format tr {font-size:10px;}
+	#edit-format th {height: 20px;
+                    border-bottom: 2px solid #ddd;
+                    padding: 1px;
+                    text-align: left;}
+	#edit-form td {height: 20px;
+	               border-bottom: 2px solid #ddd;
+	               padding: 1px;
+                   text-align: left;}
+	#edit-format input {font-size:10px;
+	                    height: 20px;
+	                    }
+	#edit-format select {font-size:10px;
+                        height: 20px;
+                        width: 100px}
+</style>
+
+

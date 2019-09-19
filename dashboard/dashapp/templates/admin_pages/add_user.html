@@ -1,0 +1,128 @@
+{% extends "home.html" %}
+{% block content-area %}
+{% url 'dashapp:adduser' as aduser%}
+
+
+    <div class="container-fluid" style="padding-top:7px">
+        <form action="{{ aduser }}" method="post">
+           {% csrf_token %}            
+        <table class="table" id="edit-format">            
+            <tbody>   
+                  <th></th>             
+			      <tr >			        
+				        <td class="py-0"><label for="Name">Name:</label></td>
+				        <td class="py-0"><input type="text" class="form-control" id="username" name="username" required></td>
+				        <td class="py-0"><label for="Email">Email:</label></td>
+	                    <td class="py-0"><input type="email" class="form-control" id="email" name="email"></td>
+			       </tr>
+			       <tr>                  
+	                    <td class="py-0"><label for="Role">Role:</label></td>
+	                    <td class="py-0"><select  id="role" name="role">
+                                            <option>Select</option>
+                                            {% for rol in ROLELIST.status %}
+                                                <option>{{ rol.name  }}</option>
+                                            {% endfor %}
+            </select></td>
+	                    <td class="py-0"><label for="Org">Org:</label></td>
+	                    <td class="py-0"><input type="text" class="form-control" id="Org" ></td>
+                   </tr>  
+                   <tr>                  
+                        <td class="py-0"><label for="OU">OU:</label></td>
+                        <td class="py-0"><input type="text" class="form-control" id="OU" ></td>
+                        <td class="py-0"><label for="Department">Department:</label></td>
+                        <td class="py-0"><input type="text" class="form-control" id="Department" ></td>
+                   </tr> 
+                   <tr>                 
+                        <td class="py-0"><label for="Active">Active:</label></td>
+                        <td class="py-0"><input type="text" class="form-control" id="Active" ></td>
+                        <td class="py-0"><label for="OTP">OTP:</label></td>
+                        <td class="py-0"><input type="text" class="form-control" id="Department" ></td>
+                   </tr>
+                   <tr>                 
+                        <td class="py-0"><label for="maillogin">maillogin:</label></td>
+                        <td class="py-0"><input type="text" class="form-control" id="maillogin" ></td>
+                        <td class="py-0"><label for="WFC">WFC:</label></td>
+                        <td class="py-0"><input type="text" class="form-control" id="WFC" ></td>
+                   </tr> 
+                   <tr>                 
+                        <td class="py-0"><label for="password">password:</label></td>
+                        <td class="py-0"> <input type="password" class="form-control" id="password" name="password" required></td>
+                        
+                   </tr>   		        
+			</tbody> 
+		</table>
+	</div>
+	<div class="container-fluid" style="padding-top:1px">
+        <div class="row">
+            <div class="col-sm-3">
+                <button class="btn btn-primary btn-sm fa fa-plus"  type="submit"> &nbsp SAVE</button>
+            </div>
+            <div class="col-sm-7 justify-content-center">     
+            </div>
+            <div class="col-sm-2 justify-content-end">
+                <a class="btn btn-danger btn-sm fa fa-minus" href="#"> &nbsp CANCEL</a>
+            </div> 
+            </form>
+        </div>
+    
+{% endblock content-area %}
+
+
+<!--  <thead >
+
+
+ <table class="table">            
+            <tbody>                
+                  <tr  style="font-size:10px">                  
+                    <td class="py-0"><label for="Name">Name:</label></td>
+                    <td class="py-0"><input type="text" class="form-control" id="Name" style="font-size:10px"></td>
+                    <td class="py-0"><label for="Email">Email:</label></td>
+                    <td class="py-0"><input type="text" class="form-control" id="Email" style="font-size:10px"></td>
+                   </tr>
+                   <tr  style="font-size:10px">                  
+                    <td class="py-0"><label for="Name">Role:</label></td>
+                    <td class="py-0"><input type="text" class="form-control" id="Name" style="font-size:10px"></td>
+                    <td class="py-0"><label for="Email">Org:</label></td>
+                    <td class="py-0"><input type="text" class="form-control" id="Email" style="font-size:10px"></td>
+                   </tr>                        
+            </tbody> 
+        </table>
+                <tr style="background-color: #4CAF50;font-size:10px">
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Org</th>
+                    <th>OU</th>
+                    <th>Department</th>
+                    <th>Active</th>
+                    <th>OTP</th>                    
+                    <th>maillogin</th>
+                    <th>WFC</th>
+                    <th>Delete</th>
+                </tr>
+            </thead> 
+            
+            <td>
+                         <form action="{{duser}}" method="POST" 
+                                         enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <input type="hidden" id="username" name="username" value="{{l.username}}" 
+                                             class="form-control">
+                                              <td>{{ l.roles|join:"," }}</td>
+                    <td>{{ l.wfc.org }}</td>
+                    <td>{{ l.wfc.orgunit }}</td>
+                    <td>{{ l.wfc.dept }}</td>
+                    <td>{{ l.is_active }}</td>
+                    <td>{{ l.otp_mode }}</td>
+                    <td>{{ l.allowemaillogin }}</td>
+                    <td>{{ l.wfc.name }}</td>
+                    
+                            <button class="fa fa-remove" style="font-size:10px;color:red" 
+                                type="submit"  onclick="return confirm('Are you sure? you want to Delete User')">                                
+                            </button>
+                    </form>
+                    </td> 
+                  </tr>
+               
+                                             
+                                             -->

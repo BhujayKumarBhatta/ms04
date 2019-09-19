@@ -25,7 +25,7 @@ def adduser(request):
         wfc_list = tlclient.list_wfc()				
         template_data = {"ORGLIST":org_list,
                          "ROLELIST":role_list,"WFCLIST":wfc_list}
-        template_name =  'admin_pages/add_users.html'
+        template_name =  'admin_pages/add_user.html'
         web_page = validate_active_session(request, template_name, template_data)
         return web_page 
     if request.method == 'POST':    
