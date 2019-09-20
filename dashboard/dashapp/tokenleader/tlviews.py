@@ -50,7 +50,8 @@ def adduser(request):
         list_users = tlclient.list_users()
         #template_data = {"list_users": list_users,"STATUS_ADDUSER": status} 
         template_data = {"list_users": list_users.get('status'),"STATUS_ADDUSER": status }        
-        template_name = 'admin_pages/list_users.html'
+#         template_name = 'admin_pages/list_users.html'
+        template_name = 'admin_pages/status_modal.html'        
         web_page = validate_active_session(request, template_name, template_data)
         return web_page
 

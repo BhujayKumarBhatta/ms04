@@ -1,0 +1,13 @@
+{% extends "home.html" %}
+{% block content-area %}
+{% url 'dashapp:list_users' as luser%}
+<br>
+<div class="container" style="padding-top:10px">
+          <h5>Status: {{ STATUS_ADDUSER.status }}</h5>
+        </div>
+        
+        <div class="modal-footer">
+          <a type="button" class="btn btn-secondary" data-dismiss="modal" href="{{ luser }}">Close</a>
+        </div>
+</div>
+{% endblock content-area %}
