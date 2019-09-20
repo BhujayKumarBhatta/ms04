@@ -5,7 +5,8 @@
 {% url 'dashapp:list_ou' as lou %}
 {% url 'dashapp:list_wfc' as lwfc %}
 {% url 'dashapp:list_service' as lservice %}
-{% url 'dashapp:paperhouse_list_invoice' as list_invoices %}
+{% url 'dashapp:paperhouse_list_invoice' 'normal' as list_invoices %}
+{% url 'dashapp:paperhouse_list_invoice' 'admin' as list_invoices_admin %}
 	  <ul class="navbar-nav py-0"> 
 		    <!-- User Admin  -->
             <li class="nav-item dropdown py-0">
@@ -31,6 +32,7 @@
                   <a class="dropdown-item" href="#">pending for Infobahn</a>
                   <a class="dropdown-item" href="#">Closed</a>
                   <a class="dropdown-item" href="{{list_invoices}}">All</a>
+                  <a class="dropdown-item" href="{{list_invoices_admin}}">Invoice Admin</a>
 	            </div>
 	          </li> 
 	          

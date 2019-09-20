@@ -309,12 +309,22 @@ def penman_delete_events(request):
 
 
 
-def paperhouse_list_invoice(request):
+def paperhouse_list_invoice(request, listype):
     if 'uname' not in request.session :
       result = login(request)
     elif 'uname' in request.session :
-      result = paperhouse.list_invoices(request)
-    return result 
+        if listype == 'admin':
+            result = paperhouse.list_invoices(request, 'admin')
+        else:
+            result = paperhouse.list_invoices(request)
+    return result
+
+# def paperhouse_list_invoice_admin(request):
+#     if 'uname' not in request.session :
+#       result = login(request)
+#     elif 'uname' in request.session :
+#       result = paperhouse.list_invoices(request, "admin")
+#     return result 
 
 def paperhouse_delete_invoice(request):
     if 'uname' not in request.session :
