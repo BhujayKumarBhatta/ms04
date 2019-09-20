@@ -16,6 +16,10 @@
 	#edit-format select {font-size:10px;
                         height: 20px;
                         width: 100px}
+    #edit-format button {font-size:15px;
+                        height: 20px;
+                        width: 100px;
+                        font-color: olive}
 </style>
 
 
