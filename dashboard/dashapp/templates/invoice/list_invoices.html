@@ -1,0 +1,67 @@
+{% extends "home.html" %}
+{% block content-area %}
+{% url 'dashapp:paperhouse_list_invoice' as p_list_invoices %}
+{% url 'dashapp:add_invoices' as add_invoices %}
+
+    <div class="container-fluid" style="padding-top:7px">
+        <div class="row">
+            <div class="col-sm-3">
+                <a class="btn btn-primary btn-sm fa fa-plus" href="{{ p_list_invoices }}"> &nbsp add new invoices</a>
+            </div>
+            <div class="col-sm-7 justify-content-center">
+                <h5>List of All Invoices </h5>
+            </div>
+            <div class="col-sm-2 justify-content-end">
+                <a class="btn btn-danger btn-sm fa fa-minus" href="#"> &nbsp delete all users</a>
+            </div> 
+        </div>
+               
+        <table class="table table-striped table-hover">
+            <thead >
+                <tr style="background-color: #4CAF50;font-size:10px">
+			        <th>TSP</th>
+			        <th>Inv No</th>
+			        <th>Info ID</th>
+			        <th>Circuit ID</th>			        
+			        <th>Div</th>
+			        <th>Link Type</th>
+			        <th>Speed</th>
+			        <th>From Date</th>
+			        <th>To Date</th>			        
+			        <th>GST</th>
+			        <th>Amount</th>
+			        <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for l in PAPERHOUSE_list_invoices %}                
+			      <tr style="font-size:10px">			        
+			        <td>{{ l.xldata.tsp }}</td>
+			        <td>{{ l.xldata.invoiceno }}</td>
+			        <td>{{ l.xldata.infoid }}</td>
+			        <td>{{ l.xldata.circuitid }}</td>			        
+			        <td>{{ l.xldata.division }}</td>
+			        <td>{{ l.xldata.arc }}</td>
+			        <td>{{ l.xldata.speed }}</td>
+			        <td>{{ l.xldata.billingdatefrom }}</td>
+			        <td>{{ l.xldata.billingdateto }}</td>
+			        <td>{{ l.xldata.gstno }}</td>
+			        <td>{{ l.xldata.total }}</td>
+			        <td>{{ l.status }}</td>       
+			        
+			  
+			      </tr>
+			    {% endfor %}
+			</tbody>
+		</table>
+	</div>
+    
+{% endblock content-area %}
+
+
+<!--  {'is_active': 'Y', 'otp_mode': 'mail', 'allowemaillogin': 'N', 
+        'email': 'prasen.biswas@itc.in', 'created by': 'user1', 
+        'wfc': {'is_active': 'Y', 'org': 'org1', 
+                 'creation_date': '2019-07-04 15:03:08', 'created by': None, 'name': 'wfc1', 
+                 'orgunit': 'ou1', 'id': 1, 'department': 'dept1'}, 
+        'username': 'prasen', 'id': 6, 'roles': ['role1'], 'creation_date': '2019-07-08 12:55:16'} -->

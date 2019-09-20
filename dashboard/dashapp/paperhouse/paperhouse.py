@@ -23,6 +23,7 @@ from werkzeug.utils import secure_filename
 from dashapp.tokenleader import tllogin
 from django.db.transaction import non_atomic_requests
 from django.contrib.admin.models import CHANGE
+from dashapp.tokenleader.tllogin import validate_active_session
 
 
 sampleinvoice ={ "state": "","arc": "","billingdateto": "","remarks": "", 
@@ -43,9 +44,11 @@ def list_invoices(request):
         else:
             list_invoices = paperclient.list_invoices('all')
         message = json.dumps(list_invoices)
-        template_data = {"PAPERHOUSE_list_invoices": list_invoices } 
-        result = render(request, 'home.html', template_data)        
-        return result
+        template_data = {"PAPERHOUSE_list_invoices": list_invoices }        
+        template_name = 'invoice/list_invoices.html'
+        web_page = validate_active_session(request, template_name, template_data)
+        return web_page
+        
     
     
     
