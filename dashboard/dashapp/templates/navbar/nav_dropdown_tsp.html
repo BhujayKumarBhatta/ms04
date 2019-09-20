@@ -1,0 +1,28 @@
+{% url 'dashapp:list_users' as luser %}
+{% url 'dashapp:list_org' as lorg %}
+{% url 'dashapp:list_dept' as ldept %}
+{% url 'dashapp:list_role' as lrole %}
+{% url 'dashapp:list_ou' as lou %}
+{% url 'dashapp:list_wfc' as lwfc %}
+{% url 'dashapp:list_service' as lservice %}
+	  <ul class="navbar-nav py-0"> 
+		    	    
+		   <!-- Invoice  -->
+	          <li class="nav-item dropdown py-0">
+	            <a class="nav-link dropdown-toggle fas fa-tasks" href="#" id="navbardrop" data-toggle="dropdown">
+	              Invoices
+	            </a>
+	            <div class="dropdown-menu">
+	              <a class="dropdown-item" href="#">upload invoice</a>
+	              <a class="dropdown-item" href="#">In progress</a>
+	              <a class="dropdown-item" href="#">pending for tsp</a>
+	              <a class="dropdown-item" href="#">pending for ITC</a>
+	              <a class="dropdown-item" href="#">Closed</a>
+	              <a class="dropdown-item" href="#">All</a>
+	            </div>
+	          </li> 	        	        
+        </ul>
+  
+       
+
+		  

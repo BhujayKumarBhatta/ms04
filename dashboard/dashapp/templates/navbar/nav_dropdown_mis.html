@@ -1,0 +1,41 @@
+{% url 'dashapp:list_users' as luser %}
+{% url 'dashapp:list_org' as lorg %}
+{% url 'dashapp:list_dept' as ldept %}
+{% url 'dashapp:list_role' as lrole %}
+{% url 'dashapp:list_ou' as lou %}
+{% url 'dashapp:list_wfc' as lwfc %}
+{% url 'dashapp:list_service' as lservice %}
+	  <ul class="navbar-nav py-0"> 
+		    	    
+		   <!-- Invoice  -->
+	          <li class="nav-item dropdown py-0">
+	            <a class="nav-link dropdown-toggle fas fa-tasks" href="#" id="navbardrop" data-toggle="dropdown">
+	              Invoices
+	            </a>
+	            <div class="dropdown-menu">
+	              <a class="dropdown-item" href="#">upload invoice</a>
+	              <a class="dropdown-item" href="#">In progress</a>
+	              <a class="dropdown-item" href="#">pending for tsp</a>
+	              <a class="dropdown-item" href="#">pending for division</a>
+	              <a class="dropdown-item" href="#">pending for Infobahn</a>
+	              <a class="dropdown-item" href="#">Closed</a>
+	              <a class="dropdown-item" href="#">All</a>
+	            </div>
+	          </li> 
+	          
+	           <!-- Financial -->
+              <li class="nav-item dropdown py-0">
+                <a class="nav-link dropdown-toggle fas fa-calculator" href="#" id="navbardrop" data-toggle="dropdown">
+                  Financial
+                </a>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="#">Link 1</a>
+                  <a class="dropdown-item" href="#">Link 2</a>
+                  <a class="dropdown-item" href="#">Link 3</a>
+                </div>
+              </li> 	        	        
+        </ul>
+  
+       
+
+		  

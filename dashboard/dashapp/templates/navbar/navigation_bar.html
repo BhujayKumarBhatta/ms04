@@ -6,11 +6,11 @@
     
     <div class="container">
 	    {% if "role1"  in user_details.roles %}       
-		   {% include "nav_dropdown_admin.html" %}
+		   {% include "navbar/nav_dropdown_admin.html" %}
 		{% elif "TSP" in user_details.roles %}
-		   {% include "nav_dropdown_tsp.html" %}
+		   {% include "navbar/nav_dropdown_tsp.html" %}
 		{% elif "MIS" in user_details.roles %}
-	       {% include "nav_dropdown_mis.html" %}
+	       {% include "navbar/nav_dropdown_mis.html" %}
 	    {% else  %}
 	       <div class="nav-text  text-info" >
 	           No action for role {{ user_details.roles|join:"," }}
