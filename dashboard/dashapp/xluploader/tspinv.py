@@ -20,11 +20,12 @@ from django.conf import settings
 from django.core.files.storage import FileSystemStorage
 from werkzeug.utils import secure_filename
 from dashapp.tokenleader import tllogin
+from dashapp.tokenleader.tllogin import validate_active_session
 
 
 
 
-def downloadinvoicexlformat(request):
+def download_invoicexlformat(request):
     file_path = '/home/kkumar/tspb/xluploader/xluploader/tests/testdata/sample_inv_upload.xlsx'
     #file_path = '/tmp/media/sample_inv_upload.xlsx'
     if os.path.exists(file_path):
@@ -35,6 +36,7 @@ def downloadinvoicexlformat(request):
     raise Http404
 
 def invoice_upload(request):
+    template_name = "invoice/xlupload_invoice.html"
     try:
         if request.method == 'POST' and request.FILES['myfile']:
             myfile = request.FILES['myfile']
@@ -53,21 +55,22 @@ def invoice_upload(request):
             loaded_message = json.loads(message)
             if isinstance(loaded_message, list):
                 fs.delete(fname)
-            result = render(request, 'home.html', 
+            result = render(request, template_name, 
                                 { 'XL_uploaded_file_url': uploaded_file_url,
                                  "XL_VIEW_UPLOAD": "TRUE", 
                                  "XL_UPLOAD_STATUS":loaded_message})
             template_data = { "XL_uploaded_file_url" : uploaded_file_url                             
                                  ,"XL_VIEW_UPLOAD" : loaded_message
                                  ,"XL_UPLOAD_RESULT" : Upload_result}
-            result = render(request, 'home.html', template_data) 
+#             result = render(request, template_name, template_data) 
         if request.method == 'GET':          
             template_data = {"XL_VIEW_UPLOAD": "TRUE" }  
-            result = render(request, 'home.html', template_data) 
+#             result = render(request, template_name, template_data) 
     except Exception as exception:
         template_data = {"XL_VIEW_UPLOAD": "TRUE","EXCEPTION" :exception,"EXCEPTION_INFO" : sys.exc_info()[0] }  
-        result = render(request, 'home.html', template_data) 
-    return result     
+#         result = render(request, template_name, template_data) 
+    web_page = validate_active_session(request, template_name, template_data)
+    return web_page     
 ## UPDATE Invoice
 
  

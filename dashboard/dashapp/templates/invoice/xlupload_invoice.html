@@ -1,0 +1,66 @@
+{% extends "home.html" %}
+{% block content-area %}
+{% url 'dashapp:download_invoicexlformat'  as download_xl_format %}
+{% url 'dashapp:xluploader_invoice_upload'  as xlupload %}
+
+   <div class="table-wrapper">
+    <div class="table-title">
+        <div class="row">
+            <div class="col-sm-8"><h3>Invoice <b>Upload</b></h3></div>
+        </div>
+    </div>
+    <br />
+
+
+    <table align="center" width="90%" style="padding-left: 150px">
+        <tr>
+            <td>
+                {% if XL_UPLOAD_RESULT is not null %}
+                <div class="alert alert-success" role="alert">
+                    Invoice file Uploaded successfully. will be processed further.<br />
+                    {{XL_VIEW_UPLOAD}}
+                </div>
+                {% elif EXCEPTION is not null %}
+                <div class="alert alert-danger" role="alert">
+                    There is been an error while uploading a file, Please check the file format and server log. <br />
+                    {% if EXCEPTION_INFO is not null %}
+                    {{EXCEPTION_INFO}}
+                    {% endif %}
+                </div>
+                {% endif %}
+            </td>
+        </tr>
+    </table>
+    <div style="text-align:right">
+        <form action="{{download_xl_format}}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-link btn-md" style="font-weight:bold">Download Invoice Excel format</button>
+        </form>
+    </div>
+
+    <form method="post"  class="md-form" enctype="multipart/form-data">
+        {% csrf_token %}
+        <!--<input type="file" name="myfile">
+        <button type="submit">Upload</button>-->
+        <div class="file-field" style="width:400px">
+            <div class="btn btn-primary btn-sm float-left" style="width:400px">
+                <span>Choose Invoice file </span>
+                <input type="file" name="myfile" style="width:350px">
+            </div><br /><br />
+            <div class="file-path-wrapper" align="right">
+                <input class="file-path validate" type="submit" value="upload" placeholder="Upload Invoice xl file" style="width:150px">
+            </div>
+        </div> 
+    </form> 
+</div>
+
+    
+{% endblock content-area %}
+
+
+<!--  {'is_active': 'Y', 'otp_mode': 'mail', 'allowemaillogin': 'N', 
+        'email': 'prasen.biswas@itc.in', 'created by': 'user1', 
+        'wfc': {'is_active': 'Y', 'org': 'org1', 
+                 'creation_date': '2019-07-04 15:03:08', 'created by': None, 'name': 'wfc1', 
+                 'orgunit': 'ou1', 'id': 1, 'department': 'dept1'}, 
+        'username': 'prasen', 'id': 6, 'roles': ['role1'], 'creation_date': '2019-07-08 12:55:16'} -->

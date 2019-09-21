@@ -4,7 +4,11 @@
 {% url 'dashapp:list_role' as lrole %}
 {% url 'dashapp:list_ou' as lou %}
 {% url 'dashapp:list_wfc' as lwfc %}
-{% url 'dashapp:list_service' as lservice %}
+{% url 'dashapp:paperhouse_list_invoice' 'normal' as list_invoices %}
+{% url 'dashapp:xluploader_invoice_upload'  as xlupload %}
+
+
+
 	  <ul class="navbar-nav py-0"> 
 		    	    
 		   <!-- Invoice  -->
@@ -13,12 +17,12 @@
 	              Invoices
 	            </a>
 	            <div class="dropdown-menu">
-	              <a class="dropdown-item" href="#">upload invoice</a>
+	              <a class="dropdown-item" href="{{xlupload}}">upload invoice</a>
 	              <a class="dropdown-item" href="#">In progress</a>
 	              <a class="dropdown-item" href="#">pending for tsp</a>
 	              <a class="dropdown-item" href="#">pending for ITC</a>
 	              <a class="dropdown-item" href="#">Closed</a>
-	              <a class="dropdown-item" href="#">All</a>
+	              <a class="dropdown-item" href="{{list_invoices}}">All Invoices</a>
 	            </div>
 	          </li> 	        	        
         </ul>

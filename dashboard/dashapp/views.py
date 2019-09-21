@@ -291,6 +291,14 @@ def xluploader_invoice_upload(request):
         result = xluploadertspinv.invoice_upload(request)    
     return result
 
+def download_invoicexlformat(request):
+    if 'uname' not in request.session :
+        result = logout(request)
+    else:
+        result = xluploadertspinv.download_invoicexlformat(request)    
+    return result
+
+
 ############################# PEN and PAPER House#######################################
 
 def penman_list_events(request):
