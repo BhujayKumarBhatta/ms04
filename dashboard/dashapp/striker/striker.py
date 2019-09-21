@@ -17,6 +17,7 @@ from werkzeug.utils import secure_filename
 from dashapp.tokenleader import tllogin
 from django.db.transaction import non_atomic_requests
 from django.contrib.admin.models import CHANGE
+from dashapp.tokenleader.tllogin import validate_active_session
 
 # ======TSP=====
 # CREATE
@@ -35,6 +36,8 @@ from django.contrib.admin.models import CHANGE
 # PaymentMade
 
 
+
+
 sampleinvoice = { "state": "","arc": "","billingdateto": "","remarks": "", 
 "fullsiteaddress": "","customerid": "","servicetype": "","billingdatefrom": "", 
 "speed": "", "division": "","taxname": "","total": 0,"accountno": "","pin": 0, 
@@ -51,15 +54,22 @@ def list_events(request):
         result = render(request, 'home.html', template_data)        
         return result
     
-def list_responces(request):
+def list_exec_status(request, request_id):
     if request.method == 'GET': 
         tlclient = tllogin.prep_tlclient_from_session(request)        
         strikerclient=clientstriker(tlclient)
         list_responces = strikerclient.list_responses()
-                    
-        template_data = {"STRK_list_responces": list_responces } 
-        result = render(request, 'home.html', template_data)        
-        return result
+        if request_id != "all":
+            filtered_list = []
+            for l in list_responces:
+                rid = l.get('wfcdict').get('request_id')
+                if rid == request_id:
+                    filtered_list.append(l)
+            list_responces = filtered_list               
+        template_data = {"list_exec_status": list_responces } 
+        template_name =  'invoice/exec_status.html'        
+    web_page = validate_active_session(request, template_name, template_data)
+    return web_page
            
     
 def delete_responces(request):

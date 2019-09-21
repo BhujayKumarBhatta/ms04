@@ -79,7 +79,7 @@ urlpatterns = [path('', views.login, name='login'),
     path('tsp_list_invoice', views.tsp_list_invoice, name='tsp_list_invoice'),
     
     #striker
-    path('striker_list_responces', views.striker_list_responces, name='striker_list_responces'),
+    path('striker_list_responces/<slug:request_id>', views.striker_list_responces, name='striker_list_responces'),
     path('striker_delete_responces', views.striker_delete_responces, name='striker_delete_responces'),
     
     #,path('swagger-docs/', schema_view)

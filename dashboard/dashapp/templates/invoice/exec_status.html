@@ -1,0 +1,33 @@
+{% extends "home.html" %}
+{% block content-area %}
+{% url 'dashapp:striker_list_responces'  XL_VIEW_UPLOAD.request_id  as list_exec_stat %}
+
+   <div class="container-fluid" style="padding-top:7px">
+        <h4> Refresh the page after a while  to check progress</h4>
+               
+        <table class="table table-striped table-hover">
+            <thead >
+                <tr style="background-color: #4CAF50;font-size:10px">
+                    
+                    <th>Inv No</th>
+                    <th>Execution Status</th>
+                    <th>Time</th>                 
+                    
+                </tr>
+            </thead>
+            <tbody>
+                {% for l in list_exec_status %}                
+                  <tr style="font-size:10px">                   
+                    <td>{{ l.invoicenum }}</td>
+                    <td>{{ l.exec_status }}</td>
+                    <td>{{ l.wfcdict.timestamp }}</td>
+                                  
+                  </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    
+{% endblock content-area %}
+
+

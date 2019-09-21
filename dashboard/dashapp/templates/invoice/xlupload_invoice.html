@@ -2,6 +2,7 @@
 {% block content-area %}
 {% url 'dashapp:download_invoicexlformat'  as download_xl_format %}
 {% url 'dashapp:xluploader_invoice_upload'  as xlupload %}
+{% url 'dashapp:striker_list_responces'  XL_VIEW_UPLOAD.request_id  as list_exec_stat %}
 
    <div class="table-wrapper">
     <div class="table-title">
@@ -17,8 +18,10 @@
             <td>
                 {% if XL_UPLOAD_RESULT is not null %}
                 <div class="alert alert-success" role="alert">
-                    Invoice file Uploaded successfully. will be processed further.<br />
-                    {{XL_VIEW_UPLOAD}}
+                    Invoice file posted, progress can be checked by clicking on the request id.<br />
+                 
+                    <br>                    
+                    <a href="{{list_exec_stat}}">click to see  progress of request id:- {{ XL_VIEW_UPLOAD.request_id }}</a>
                 </div>
                 {% elif EXCEPTION is not null %}
                 <div class="alert alert-danger" role="alert">

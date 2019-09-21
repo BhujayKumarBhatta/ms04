@@ -349,11 +349,11 @@ def tsp_list_invoice(request):
     return result
 
 
-def striker_list_responces(request):
+def striker_list_responces(request, request_id):
     if 'uname' not in request.session :
       result = login(request)
     elif 'uname' in request.session :
-      result = striker.list_responces(request)
+      result = striker.list_exec_status(request, request_id)
     return result
 
 
