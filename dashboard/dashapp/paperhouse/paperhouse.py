@@ -33,22 +33,19 @@ sampleinvoice ={ "state": "","arc": "","billingdateto": "","remarks": "",
 "premiseno": "", "city": "","tsp": "","customername": "","slno": 0, 
 "premisename": "" ,"billingactivity": "" ,"Action": ""}
 
-def list_invoices(request, admin=None):
+def list_invoices(request, invoicenum, admin=None):
     if request.method == 'GET': 
         tlclient = tllogin.prep_tlclient_from_session(request)        
-        paperclient=clientpaperhouse(tlclient)
-        request.POST.get('invoiceno', '')
-        invoicenum = request.POST.get('invoiceno', '')
-        if invoicenum:         
-            list_invoices = paperclient.list_invoices(invoicenum)        
-        else:
-            list_invoices = paperclient.list_invoices('all')
-        message = json.dumps(list_invoices)
-        template_data = {"PAPERHOUSE_list_invoices": list_invoices }  
-        if admin:
+        paperclient=clientpaperhouse(tlclient)#               
+        list_invoices = paperclient.list_invoices(invoicenum)        
+        if invoicenum == 'all':
+            template_name = 'invoice/list_invoices.html'            
+        elif admin:
             template_name = 'invoice/list_invoices_admin.html'
         else:  
-            template_name = 'invoice/list_invoices.html'
+            template_name = 'invoice/base_read_invoice.html'
+        template_data = {"PAPERHOUSE_list_invoices": list_invoices }      
+        
         web_page = validate_active_session(request, template_name, template_data)
         return web_page
         

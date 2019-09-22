@@ -5,8 +5,8 @@
 {% url 'dashapp:list_ou' as lou %}
 {% url 'dashapp:list_wfc' as lwfc %}
 {% url 'dashapp:list_service' as lservice %}
-{% url 'dashapp:paperhouse_list_invoice' 'normal' as list_invoices %}
-{% url 'dashapp:paperhouse_list_invoice' 'admin' as list_invoices_admin %}
+{% url 'dashapp:paperhouse_list_invoice' 'all' 'normal' as list_invoices %}
+{% url 'dashapp:paperhouse_list_invoice' 'all' 'admin' as list_invoices_admin %}
 	  <ul class="navbar-nav py-0"> 
 		    <!-- User Admin  -->
             <li class="nav-item dropdown py-0">

@@ -1,0 +1,160 @@
+{% extends "home.html" %}
+{% block content-area %}
+{% with inv=PAPERHOUSE_list_invoices.0.xldata %}
+
+ <div class="container-fluid" style="padding-top:7px">
+    <form action="{{ aduser }}" method="post">
+         {% csrf_token %}            
+        <table class="table" id="edit-format">            
+          <tbody>   
+             <th><p>Link Details</p></th>  
+                 <tr>                    
+                     <td class="py-0">TSP Name</td>
+                     <td class="py-0 form-control" >
+                        {% block tsp %}    {{inv.tsp}}  {% endblock tsp %}</td>  
+                     <td class="py-0">speed</td>
+                     <td class="py-0 form-control">
+                        {% block speed %} {{inv.speed}} {% endblock speed %}</td>
+                 </tr>
+                 <tr>
+                     <td>Type</td>
+                     <td>{% block arc %} {{inv.arc}} {% endblock arc %}</td>
+                     <td>division</td>
+                     <td>{% block division %} {{inv.division}} {% endblock division %}</td>
+                 </tr>
+                 <tr>
+                    <td>servicetype</td>
+                     <td>{% block servicetype %} {{inv.servicetype}} {% endblock servicetype %}</td>
+                 </tr>
+           </tbody>
+         </table>
+         <table class="table" id="edit-format">
+            <tbody>
+                <th><p>Address Details</p></th>  
+                  <tr >
+                     <td>city</td>
+                     <td>{% block city %} {{inv.city}} {% endblock city %}</td>
+                     <td>state</td>
+                     <td>{% block state %} {{inv.state}} {% endblock state %}</td>
+                  </tr>
+                  <tr>
+                     <td>pin</td>
+                     <td>{% block pin %} {{inv.pin}} {% endblock pin %}</td>
+                     <td>premiseno</td>
+                     <td>{% block premiseno %} {{inv.premiseno}} {% endblock premiseno %}</td>
+                  </tr>
+                  <tr>
+                     <td>premisename</td>
+                     <td>{% block premisename %} {{inv.premisename}} {% endblock premisename %}</td>
+                     <td>siteid</td>
+                     <td>{% block siteid %} {{inv.siteid}} {% endblock siteid %}</td>
+                  </tr>
+                  <tr>
+                     <td>fullsiteaddress</td>
+                     <td>{% block fullsiteaddress %} {{inv.fullsiteaddress}} {% endblock fullsiteaddress %}</td>
+                  </tr>
+           </tbody>
+         </table>
+         <table class="table" id="edit-format">
+            <tbody>
+                <th><p>Invoice Details</p></th> 
+                <tr>
+                     <td>Invoice Number</td>
+                     <td>{% block invoiceno %} {{inv.invoiceno}} {% endblock invoiceno %}</td>
+                     <td>billingdatefrom</td>
+                     <td>{% block billingdatefrom %} {{inv.billingdatefrom}} {% endblock billingdatefrom %}</td>
+                 </tr>
+                 <tr>
+                     <td>billingdateto</td>
+                     <td>{% block billingdateto %} {{inv.billingdateto}} {% endblock billingdateto %}</td>
+                     <td>invoicedate</td>
+                     <td>{% block invoicedate %} {{inv.invoicedate}} {% endblock invoicedate %}</td>
+                 </tr>
+                 <tr>
+                     <td>gstno</td>
+                     <td>{% block gstno %} {{inv.gstno}} {% endblock gstno %}</td>
+                     <td>taxname</td>
+                     <td>{% block taxname %} {{inv.taxname}} {% endblock taxname %}</td>
+                 </tr>
+                 <tr>
+                     <td>total</td>
+                     <td>{% block total %} {{inv.total}} {% endblock total %}</td>
+                     <td>customerid</td>
+                     <td>{% block customerid %} {{inv.customerid}} {% endblock customerid %}</td>
+                 </tr>
+                 <tr>
+                     <td>customername</td>
+                     <td>{% block customername %} {{inv.customername}} {% endblock customername %}</td>
+                     <td>accountno</td>
+                     <td>{% block accountno %} {{inv.accountno}} {% endblock accountno %}</td>
+                </tr>
+           </tbody>
+         </table>
+         <table class="table" id="edit-format">
+            <tbody>
+                <th><p>Workflow Details</p></th>
+                    <tr>
+                     <td>action</td>
+                     <td>{% block action %} {{inv.action}} {% endblock action %}</td>
+                     <td>status</td>
+                     <td>{% block status %} {{inv.status}} {% endblock status %}</td>  
+                </tr>
+                </tbody>
+         </table>
+         <table class="table" id="edit-format">
+            <tbody>
+                <th>Remarks</p></th>
+                <tr>                             
+                    <td>{% block remarks %} {{inv.remarks}} {% endblock remarks %}</td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+</div>
+                
+
+{% endwith %}
+{% endblock content-area %}
+
+
+<!--  ======================================== CODE ENDs HERE ==========================================
+
+  slno = IntField(min_value=0, max_value=None, force_string=False, precision=0)
+    tsp = StringField(max_length=200, required=True)
+    customerid = StringField(max_length=30, required=True)
+    customername = StringField(max_length=20, required=True)
+    invoiceno = StringField(max_length=100, required=True)    
+    accountno = StringField(max_length=100, required=True)      
+    circuitid = StringField(max_length=100, required=True)
+    infoid = StringField(max_length=12, required=True)
+    speed = StringField(max_length=100, required=True)
+    arc = StringField(max_length=100, required=True)
+    gstno = StringField(max_length=100, required=True)
+    division = StringField(max_length=20, required=True)   
+    billingdatefrom = StringField(max_length=10, required=True) 
+    billingdateto = StringField(max_length=10, required=True)
+    invoicedate = StringField(max_length=10, required=True)
+    taxname = StringField(max_length=100, required=True)
+    total = IntField(min_value=0, max_value=None, force_string=False, precision=2)
+    servicetype = StringField(max_length=10, required=True)
+    city = StringField(max_length=10, required=True)
+    state = StringField(max_length=10, required=True)
+    pin = IntField(min_value=0, max_value=None, force_string=False, precision=2)
+    premiseno =  StringField(max_length=100, required=True)
+    premisename = StringField(max_length=100, required=True)
+    siteid = StringField(max_length=100, required=True)
+    fullsiteaddress = StringField(max_length=200, required=True)
+    remarks = StringField(max_length=200, required=True)
+    action = StringField(max_length=50, required=True)  
+    
+    class Invoice(Document):
+    ''' invoice have xldata and status
+    this single data status filed will be overwritten  each time a new event occurs
+    the entire event histroy will be stored in the event_histroy_list'''
+    invoiceno = StringField(max_length=200, required=True, unique=True)
+    status = StringField(max_length=200)
+    xldata = EmbeddedDocumentField(XlData)    
+    autochk = EmbeddedDocumentField(Autoresult)  
+
+                                             
+                                             -->

@@ -2,6 +2,7 @@
 {% block content-area %}
 {% url 'dashapp:add_invoices' as add_invoices %}
 
+
     <div class="container-fluid" style="padding-top:7px">
         {% block list_invoice_add_delete %}
         {% endblock list_invoice_add_delete %}
@@ -24,10 +25,13 @@
                 </tr>
             </thead>
             <tbody>
-                {% for l in PAPERHOUSE_list_invoices %}                
+                {% for l in PAPERHOUSE_list_invoices %}
 			      <tr style="font-size:10px">			        
 			        <td>{{ l.xldata.tsp }}</td>
-			        <td>{{ l.xldata.invoiceno }}</td>
+			        <td><a href="{% url 'dashapp:paperhouse_list_invoice' l.xldata.invoiceno 'normal' %}" >
+			                 {{ l.xldata.invoiceno }}
+			             </a>
+			        </td>
 			        <td>{{ l.xldata.infoid }}</td>
 			        <td>{{ l.xldata.circuitid }}</td>			        
 			        <td>{{ l.xldata.division }}</td>
