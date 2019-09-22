@@ -9,7 +9,8 @@
 	#edit-form td {height: 20px;
 	               border-bottom: 2px solid #ddd;
 	               padding: 1px;
-                   text-align: left;}
+                   text-align: left;
+                   font-size:10px;}
 	#edit-format input {font-size:10px;
 	                    height: 20px;
 	                    }
@@ -20,6 +21,50 @@
                         height: 20px;
                         width: 100px;
                         font-color: olive}
+                        
+#read-format  {padding-top:1px;
+                        }
+#read-format thead {height: 20px;
+                border-bottom: 2px solid #ddd;
+                padding: 1px;
+                text-align: center;
+                background-color: #ccc;
+                background: lightgray; 
+                width: 100%;
+                font-size:12px;
+                }
+
+                
+#read-format tr {font-size:10px;
+                padding: 0}
+                
+#read-format p {height: 20px;
+                border-bottom: 2px solid #ddd;
+                padding: 1px;
+                text-align: center;
+                background-color: #ccc;
+                width: 100%;
+                font-size:12px;
+                }
+#read-form td {
+	border: 0px;
+    padding:0; 
+    margin:0;
+    border-collapse: collapse;               
+    text-align: left;
+    font-size:10px;}
+#read-format input {font-size:10px;
+                    height: 20px;
+                    }
+#read-format select {font-size:10px;
+                    height: 20px;
+                    width: 100px}
+#read-format button {font-size:15px;
+                    height: 20px;
+                    width: 100px;
+                    font-color: olive}                
+    
 </style>
 
 
+border="1" width="100%" cellpadding="0" cellspacing="0" bgcolor=grey

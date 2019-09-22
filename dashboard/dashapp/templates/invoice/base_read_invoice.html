@@ -5,107 +5,185 @@
  <div class="container-fluid" style="padding-top:7px">
     <form action="{{ aduser }}" method="post">
          {% csrf_token %}            
-        <table class="table" id="edit-format">            
+        <table class="table " id="read-format" > 
+        <thead >
+            <div class="container-fluid" style="height:25px;background-color:#ddd">         
+                <p>Link Details</p>
+            </div>
+        </thead> 
+                        
           <tbody>   
-             <th><p>Link Details</p></th>  
+            
                  <tr>                    
                      <td class="py-0">TSP Name</td>
-                     <td class="py-0 form-control" >
-                        {% block tsp %}    {{inv.tsp}}  {% endblock tsp %}</td>  
+                     <td class="py-0" >
+                        {% block tsp %} 
+                        <input type="text" placeholder={{inv.tsp}} class="form-control" id="username" name="username" readonly></td>
+                        {% endblock tsp %}</td> 
+                     <td class="py-0"></td>
                      <td class="py-0">speed</td>
-                     <td class="py-0 form-control">
-                        {% block speed %} {{inv.speed}} {% endblock speed %}</td>
+                     <td class="py-0">
+                        {% block speed %} 
+                        <input type="text" placeholder={{inv.speed}} class="form-control" id="username" name="username" readonly></td>
+                         {% endblock speed %}</td>
                  </tr>
                  <tr>
-                     <td>Type</td>
-                     <td>{% block arc %} {{inv.arc}} {% endblock arc %}</td>
-                     <td>division</td>
-                     <td>{% block division %} {{inv.division}} {% endblock division %}</td>
+                     <td class="py-0">Type</td>
+                     <td class="py-0">{% block arc %}
+                     <input type="text" placeholder={{inv.arc}} class="form-control" id="username" name="username" readonly> 
+                     {% endblock arc %}</td>
+                     <td class="py-0"></td>
+                     <td class="py-0">division</td>
+                     <td class="py-0">{% block division %}
+                      <input type="text" placeholder={{inv.division}} class="form-control" id="username" name="username" readonly> 
+                      {% endblock division %}</td>
                  </tr>
                  <tr>
-                    <td>servicetype</td>
-                     <td>{% block servicetype %} {{inv.servicetype}} {% endblock servicetype %}</td>
+                    <td class="py-0">servicetype</td>
+                    <td class="py-0">{% block servicetype %}
+                    <input type="text" placeholder={{inv.servicetype}} class="form-control" id="username" name="username" readonly>  {% endblock servicetype %}</td>
                  </tr>
            </tbody>
          </table>
-         <table class="table" id="edit-format">
+         <table class="table" id="read-format">
+            <thead >
+	            <div class="container-fluid" style="height:25px;background-color:#ddd">         
+	                <p>Address Details</p>
+	            </div>
+            </thead> 
+            
             <tbody>
-                <th><p>Address Details</p></th>  
+                
                   <tr >
-                     <td>city</td>
-                     <td>{% block city %} {{inv.city}} {% endblock city %}</td>
-                     <td>state</td>
-                     <td>{% block state %} {{inv.state}} {% endblock state %}</td>
+                     <td class="py-0">city</td>
+                     <td class="py-0">{% block city %} 
+                     <input type="text" placeholder={{inv.city}} class="form-control" id="username" name="username" readonly> {% endblock city %}</td>
+                     <td class="py-0"></td>
+                     <td class="py-0">state</td>
+                     <td class="py-0">{% block state %}
+                     <input type="text" placeholder={{inv.state}} class="form-control" id="username" name="username" readonly> {% endblock state %}</td>
                   </tr>
                   <tr>
-                     <td>pin</td>
-                     <td>{% block pin %} {{inv.pin}} {% endblock pin %}</td>
-                     <td>premiseno</td>
-                     <td>{% block premiseno %} {{inv.premiseno}} {% endblock premiseno %}</td>
+                     <td class="py-0">pin</td>
+                     <td class="py-0">{% block pin %}
+                     <input type="text" placeholder={{inv.pin}} class="form-control" id="username" name="username" readonly>  {% endblock pin %}</td>
+                     <td class="py-0"></td>
+                     <td class="py-0">premiseno</td>
+                     <td class="py-0">{% block premiseno %}
+                     <input type="text" placeholder={{inv.premiseno}} class="form-control" id="username" name="username" readonly>  {% endblock premiseno %}</td>
                   </tr>
                   <tr>
-                     <td>premisename</td>
-                     <td>{% block premisename %} {{inv.premisename}} {% endblock premisename %}</td>
-                     <td>siteid</td>
-                     <td>{% block siteid %} {{inv.siteid}} {% endblock siteid %}</td>
+                     <td class="py-0">premisename</td>
+                     <td class="py-0">{% block premisename %}
+                     <input type="text" placeholder={{inv.premisename}} class="form-control" id="username" name="username" readonly>  {% endblock premisename %}</td>
+                     <td class="py-0"></td>
+                     <td class="py-0">siteid</td>
+                     <td class="py-0">{% block siteid %}
+                     <input type="text" placeholder={{inv.siteid}} class="form-control" id="username" name="username" readonly>  {% endblock siteid %}</td>
                   </tr>
                   <tr>
-                     <td>fullsiteaddress</td>
-                     <td>{% block fullsiteaddress %} {{inv.fullsiteaddress}} {% endblock fullsiteaddress %}</td>
+                     <td class="py-0">fullsiteaddress</td>
+                     <td class="py-0">{% block fullsiteaddress %}
+                     <input type="text" placeholder={{inv.fullsiteaddress}} class="form-control" id="username" name="username" readonly>  {% endblock fullsiteaddress %}</td>
                   </tr>
            </tbody>
          </table>
-         <table class="table" id="edit-format">
+         <table class="table" id="read-format">
+            <thead >
+                <div class="container-fluid" style="height:25px;background-color:#ddd">         
+                    <p>Invoice Details</p>
+                </div>
+            </thead> 
+            
             <tbody>
-                <th><p>Invoice Details</p></th> 
+                
                 <tr>
-                     <td>Invoice Number</td>
-                     <td>{% block invoiceno %} {{inv.invoiceno}} {% endblock invoiceno %}</td>
-                     <td>billingdatefrom</td>
-                     <td>{% block billingdatefrom %} {{inv.billingdatefrom}} {% endblock billingdatefrom %}</td>
+                     <td class="py-0">Invoice Number</td>
+                     <td class="py-0">{% block invoiceno %}
+                     <input type="text" placeholder={{inv.invoiceno}} class="form-control" id="username" name="username" readonly>  {% endblock invoiceno %}</td>
+                     <td class="py-0"></td>
+                     <td class="py-0">billingdatefrom</td>
+                     <td class="py-0">{% block billingdatefrom %}
+                     <input type="text" placeholder={{inv.billingdatefrom}}  class="form-control" id="username" name="username" readonly> {% endblock billingdatefrom %}</td>
                  </tr>
                  <tr>
-                     <td>billingdateto</td>
-                     <td>{% block billingdateto %} {{inv.billingdateto}} {% endblock billingdateto %}</td>
-                     <td>invoicedate</td>
-                     <td>{% block invoicedate %} {{inv.invoicedate}} {% endblock invoicedate %}</td>
+                     <td class="py-0">billingdateto</td>
+                     <td class="py-0">{% block billingdateto %}
+                     <input type="text" placeholder={{inv.billingdateto}} class="form-control" id="username" name="username" readonly>  {% endblock billingdateto %}</td>
+                     <td class="py-0"></td>
+                     <td class="py-0">invoicedate</td>
+                     <td class="py-0">{% block invoicedate %}
+                     <input type="text" placeholder={{inv.invoicedate}} class="form-control" id="username" name="username" readonly> {% endblock invoicedate %}</td>
                  </tr>
                  <tr>
-                     <td>gstno</td>
-                     <td>{% block gstno %} {{inv.gstno}} {% endblock gstno %}</td>
-                     <td>taxname</td>
-                     <td>{% block taxname %} {{inv.taxname}} {% endblock taxname %}</td>
+                     <td class="py-0">gstno</td>
+                     <td class="py-0">{% block gstno %}
+                     <input type="text" placeholder={{inv.gstno}} class="form-control" id="username" name="username" readonly> 
+                      {% endblock gstno %}</td>
+                     <td class="py-0"></td>
+                     <td class="py-0">taxname</td>
+                     <td class="py-0">{% block taxname %}
+                     <input type="text" placeholder={{inv.taxname}} class="form-control" id="username" name="username" readonly>
+                     {% endblock taxname %}</td>
                  </tr>
                  <tr>
-                     <td>total</td>
-                     <td>{% block total %} {{inv.total}} {% endblock total %}</td>
-                     <td>customerid</td>
-                     <td>{% block customerid %} {{inv.customerid}} {% endblock customerid %}</td>
+                     <td class="py-0">total</td>
+                     <td class="py-0">{% block total %}
+                     <input type="text" placeholder={{inv.total}} class="form-control" id="username" name="username" readonly>
+                     {% endblock total %}</td>
+                     <td class="py-0"></td>
+                     <td class="py-0">customerid</td>
+                     <td class="py-0">{% block customerid %}
+                     <input type="text" placeholder={{inv.customerid}} class="form-control" id="username" name="username" readonly>
+                     {% endblock customerid %}</td>
                  </tr>
                  <tr>
-                     <td>customername</td>
-                     <td>{% block customername %} {{inv.customername}} {% endblock customername %}</td>
+                     <td class="py-0">customername</td>
+                     <td class="py-0">{% block customername %}
+                     <input type="text" placeholder={{inv.customername}}  class="form-control" id="username" name="username" readonly>
+                     {% endblock customername %}</td>
+                     <td class="py-0"></td>
                      <td>accountno</td>
-                     <td>{% block accountno %} {{inv.accountno}} {% endblock accountno %}</td>
+                     <td>{% block accountno %}
+                     <input type="text" placeholder={{inv.accountno}} class="form-control" id="username" name="username" readonly>
+                     {% endblock accountno %}</td>
                 </tr>
            </tbody>
          </table>
-         <table class="table" id="edit-format">
+         <table class="table" id="read-format">
+            
+            <thead >
+                <div class="container-fluid" style="height:25px;background-color:#ddd">         
+                    <p>Workflow Details</p>
+                </div>
+            </thead> 
             <tbody>
-                <th><p>Workflow Details</p></th>
                     <tr>
-                     <td>action</td>
-                     <td>{% block action %} {{inv.action}} {% endblock action %}</td>
-                     <td>status</td>
-                     <td>{% block status %} {{inv.status}} {% endblock status %}</td>  
+                     <td class="py-0">action</td>
+                     <td class="py-0">{% block action %}
+                     <input type="text" placeholder={{inv.action}} class="form-control" id="username" name="username" readonly>
+                     {% endblock action %}</td>
+                     <td class="py-0"></td>
+                     <td class="py-0">status</td>
+                     <td class="py-0">{% block status %}
+                     <input type="text" placeholder={{PAPERHOUSE_list_invoices.0.status}} class="form-control" id="username" name="username" readonly> 
+                     {% endblock status %}</td>  
                 </tr>
                 </tbody>
          </table>
-         <table class="table" id="edit-format">
+         <table class="table" id="read-format">
+        
+         <thead >
+                <div class="container-fluid" style="height:25px;background-color:#ddd">         
+                    <p>Remarks Details</p>
+                </div>
+            </thead> 
             <tbody>
-                <th>Remarks</p></th>
+                
                 <tr>                             
-                    <td>{% block remarks %} {{inv.remarks}} {% endblock remarks %}</td>
+                    <td class="py-0">{% block remarks %}
+                    <input type="text" placeholder={{inv.remarks}}  class="form-control" id="username" name="username" readonly>
+                    {% endblock remarks %}</td>
                 </tr>
             </tbody>
         </table>
