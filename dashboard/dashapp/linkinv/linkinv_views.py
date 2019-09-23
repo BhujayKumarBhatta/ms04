@@ -2,7 +2,7 @@ from dashapp.tokenleader import tllogin
 from linkinvclient.client import LIClient
 from micros1client.client import MSClient
 from django.shortcuts import render
-
+from dashapp.tokenleader.tllogin import validate_active_session
 
     
 def list_links(request):
@@ -11,10 +11,10 @@ def list_links(request):
         lic = LIClient(tlclient)
         list_links = lic.list_links()
         #template_data = {"list_links": list_links.get('message') }
-        template_data = {"list_links": list_links } 
-        result = render(request, 'home.html', template_data)
-        #return HttpResponse(json.dumps(list_links))
-        return result
+        template_data = {"list_links": list_links }
+        template_name = "wanlinks/list_links.html"
+    web_page = validate_active_session(request, template_name, template_data)
+    return web_page  
 
 ################  NEW CHANGE 8 MAY 2019 ###################
 ###### PAYMENT
