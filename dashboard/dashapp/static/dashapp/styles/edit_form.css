@@ -22,11 +22,11 @@
                         width: 100px;
                         font-color: olive}
                         
-#read-format  {padding-top:1px;
+#read-format  {padding-top:0;
                         }
 #read-format thead {height: 20px;
                 border-bottom: 2px solid #ddd;
-                padding: 1px;
+                padding: 0;
                 text-align: center;
                 background-color: #ccc;
                 background: lightgray; 
@@ -38,12 +38,7 @@
 #read-format tr {font-size:10px;
                 padding: 0}
                 
-#read-format p {height: 20px;
-                border-bottom: 2px solid #ddd;
-                padding: 1px;
-                text-align: center;
-                background-color: #ccc;
-                width: 100%;
+#read-format p {text-align: center;
                 font-size:12px;
                 }
 #read-form td {

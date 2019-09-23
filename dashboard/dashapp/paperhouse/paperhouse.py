@@ -33,23 +33,81 @@ sampleinvoice ={ "state": "","arc": "","billingdateto": "","remarks": "",
 "premiseno": "", "city": "","tsp": "","customername": "","slno": 0, 
 "premisename": "" ,"billingactivity": "" ,"Action": ""}
 
-def list_invoices(request, invoicenum, admin=None):
+def list_invoices(request, invoicenum, mode, admin=None):
     if request.method == 'GET': 
         tlclient = tllogin.prep_tlclient_from_session(request)        
         paperclient=clientpaperhouse(tlclient)#               
         list_invoices = paperclient.list_invoices(invoicenum)        
-        if invoicenum == 'all':
+        if invoicenum == 'all' and mode =='read':
             template_name = 'invoice/list_invoices.html'            
-        elif admin:
+        elif admin and invoicenum == 'all' and mode == 'read':
             template_name = 'invoice/list_invoices_admin.html'
-        else:  
+        elif invoicenum != 'all' and mode == 'edit':
+            template_name = 'invoice/edit_invoice.html'
+        elif invoicenum != 'all' and mode == 'read':
             template_name = 'invoice/base_read_invoice.html'
-        template_data = {"PAPERHOUSE_list_invoices": list_invoices }      
-        
+            print(template_name)
+        edit_button, action_buttons = _get_all_buttons(request, list_invoices)
+        template_data = {"PAPERHOUSE_list_invoices": list_invoices,
+                         "edit_button": edit_button, "action_buttons": action_buttons }
         web_page = validate_active_session(request, template_name, template_data)
         return web_page
-        
     
+def _get_all_buttons(request, list_invoices):
+    role = request.session.get('session_user_details').get('roles')[0]
+    current_status = list_invoices[0].get('status')
+    edit_button = _get_edit_button(role, current_status)
+    action_buttons = _get_action_buttons(current_status)
+    return  edit_button, action_buttons
+    
+        
+def _get_edit_button(role, current_status): 
+    current_stat_for_tsp_edits = ["InfobahnRecommendedtoTSP", "InfobahnApproved", ]    
+    current_stat_for_infob_edits = ["InvoiceCreated", "TSPSubmmitedChange",
+                                    "DivisionRecommended", "TSPAcceptedChanges"]
+    current_stat_for_mis_edits = ["SentToDivision", "TSPCourierdHardCopy" , "HardCopyRecieved"]
+    if ( ( role == 'ITC' or role =='role1') and 
+         (current_status in current_stat_for_infob_edits) ):
+        edit_button = True
+    elif role == 'TSP' and current_status in current_stat_for_tsp_edits:
+        edit_button = True
+    elif role == 'MIS' and current_status in current_stat_for_mis_edits:
+        edit_button = True
+    else:
+        edit_button = False
+    return edit_button
+
+def _get_action_buttons(current_status):
+    if current_status == "InvoiceCreated":
+        button_list = ["InfobahnRecommendedtoTSP", "SentToDivision", ]
+    elif current_status == "InfobahnRecommendedtoTSP":
+        button_list = ["TSPAcceptedChanges", "TSPSubmmitedChange", ]
+    elif current_status == "TSPAcceptedChanges" or current_status == "TSPSubmmitedChange":
+        button_list = ["SentToDivision", ]
+    elif current_status == "SentToDivision":
+        button_list = ["DivisionRecommended", "DivisonApproved", "OverridenDivision", ]
+    elif current_status == "DivisionRecommended":
+        button_list = ["InfobahnRecommendedtoTSP", "OverridenDivision"]
+    elif current_status == "DivisonApproved" or current_status == "OverridenDivision":
+        button_list = ["InfobahnApproved",]
+    elif current_status == "InfobahnApproved":
+        button_list = ["TSPCourierdHardCopy", ]
+    elif current_status == "TSPCourierdHardCopy":
+        button_list = ["HardCopyRecieved", ]
+    elif current_status == "HardCopyRecieved":
+        button_list = ["PaymentMade", ]
+    else:
+        button_list = None
+    return button_list
+    
+    
+        
+        
+       
+    
+    
+        
+        
     
     
 def delete_invoices(request):

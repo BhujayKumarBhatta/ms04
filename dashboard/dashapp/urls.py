@@ -74,7 +74,7 @@ urlpatterns = [path('', views.login, name='login'),
     path('penman_list_events', views.penman_list_events, name='penman_list_events'),
     path('penman_delete_events', views.penman_delete_events, name='penman_delete_events'),       
     #paperhouse
-    path('paperhouse_list_invoice/<slug:invoicenum>/<slug:listype>', 
+    path('paperhouse_list_invoice/<slug:invoicenum>/<slug:mode>/<slug:listype>', 
          views.paperhouse_list_invoice, name='paperhouse_list_invoice'),   
     path('paperhouse_delete_invoice', views.paperhouse_delete_invoice, name='paperhouse_delete_invoice'),    
     path('tsp_list_invoice', views.tsp_list_invoice, name='tsp_list_invoice'),

@@ -1,9 +1,12 @@
 {% extends "home.html" %}
 {% block content-area %}
 {% with inv=PAPERHOUSE_list_invoices.0.xldata %}
+{% url 'dashapp:paperhouse_list_invoice' 'all' 'read' 'normal' as list_invoices %}
+{% url 'dashapp:paperhouse_list_invoice' inv.invoiceno 'edit' 'normal' as edit_invoices %}
+
 
  <div class="container-fluid" style="padding-top:7px">
-    <form action="{{ aduser }}" method="post">
+    <form action="#" method="post">
          {% csrf_token %}            
         <table class="table " id="read-format" > 
         <thead >
@@ -12,8 +15,7 @@
             </div>
         </thead> 
                         
-          <tbody>   
-            
+          <tbody> 
                  <tr>                    
                      <td class="py-0">TSP Name</td>
                      <td class="py-0" >
@@ -143,14 +145,32 @@
                      <input type="text" placeholder={{inv.customername}}  class="form-control" id="username" name="username" readonly>
                      {% endblock customername %}</td>
                      <td class="py-0"></td>
-                     <td>accountno</td>
-                     <td>{% block accountno %}
+                     <td class="py-0">accountno</td>
+                     <td class="py-0">{% block accountno %}
                      <input type="text" placeholder={{inv.accountno}} class="form-control" id="username" name="username" readonly>
                      {% endblock accountno %}</td>
                 </tr>
            </tbody>
          </table>
+         
          <table class="table" id="read-format">
+        
+         <thead >
+                <div class="container-fluid" style="height:25px;background-color:#ddd">         
+                    <p>Remarks Details</p>
+                </div>
+            </thead> 
+            <tbody>
+                
+                <tr>                             
+                    <td class="py-0">{% block remarks %}
+                    <input type="text" placeholder={{inv.remarks}}  class="form-control" id="username" name="username" readonly>
+                    {% endblock remarks %}</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <table class="table" id="read-format">
             
             <thead >
                 <div class="container-fluid" style="height:25px;background-color:#ddd">         
@@ -171,25 +191,28 @@
                 </tr>
                 </tbody>
          </table>
-         <table class="table" id="read-format">
-        
-         <thead >
-                <div class="container-fluid" style="height:25px;background-color:#ddd">         
-                    <p>Remarks Details</p>
-                </div>
-            </thead> 
-            <tbody>
-                
-                <tr>                             
-                    <td class="py-0">{% block remarks %}
-                    <input type="text" placeholder={{inv.remarks}}  class="form-control" id="username" name="username" readonly>
-                    {% endblock remarks %}</td>
-                </tr>
-            </tbody>
-        </table>
     </form>
 </div>
-                
+<!--  #############################Place for Buttons on the form ################################################ -->     
+{% block buttons %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col sm-1">
+            {% if edit_button %}
+                <a class="btn btn-primary btn-sm fa fa-edit" href="{{ edit_invoices }}"> Edit</a>  
+            {% endif %}     
+        </div>
+        <div class="col sm-10">
+             {{ edit_button }}
+             {{ action_buttons }}     
+        </div>
+        <div class="col sm-1">
+            <a class="btn btn-primary btn-sm fa fa-window-close" href="{{ list_invoices }}"> Close</a>        
+        </div>        
+    </div>   
+</div>    
+{% endblock buttons %}
+           
 
 {% endwith %}
 {% endblock content-area %}

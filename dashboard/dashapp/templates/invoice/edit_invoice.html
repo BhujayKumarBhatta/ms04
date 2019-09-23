@@ -1,0 +1,177 @@
+{% extends "invoice/base_read_invoice.html" %}
+
+{% with inv=PAPERHOUSE_list_invoices.0.xldata %}
+{% url 'dashapp:paperhouse_list_invoice' 'all' 'read' 'normal' as list_invoices %}
+ 
+ <p> switched to edit mode</p>
+   
+{% block tsp %} 
+    <input type="text" placeholder={{inv.tsp}} class="form-control" id="username" name="username" readonly>
+{% endblock tsp %}
+                     
+{% block speed %} 
+    <input type="text" placeholder={{inv.speed}} class="form-control" id="username" name="username">
+{% endblock speed %}
+                 
+{% block arc %}
+    <input type="text" placeholder={{inv.arc}} class="form-control" id="username" name="username"> 
+{% endblock arc %}
+
+{% block division %}
+     <input type="text" placeholder={{inv.division}} class="form-control" id="username" name="username"> 
+{% endblock division %}
+
+{% block servicetype %}
+   <input type="text" placeholder={{inv.servicetype}} class="form-control" id="username" name="username">  
+{% endblock servicetype %}
+    
+<!-- ####################Address section######################################################### -->       
+{% block city %} 
+    <input type="text" placeholder={{inv.city}} class="form-control" id="username" name="username"> 
+{% endblock city %}
+     
+{% block state %}
+    <input type="text" placeholder={{inv.state}} class="form-control" id="username" name="username"> 
+{% endblock state %}
+  
+{% block pin %}
+    <input type="text" placeholder={{inv.pin}} class="form-control" id="username" name="username">  
+{% endblock pin %}
+     
+{% block premiseno %}
+    <input type="text" placeholder={{inv.premiseno}} class="form-control" id="username" name="username">  
+{% endblock premiseno %}
+
+{% block premisename %}
+    <input type="text" placeholder={{inv.premisename}} class="form-control" id="username" name="username">
+{% endblock premisename %}
+
+{% block siteid %}
+    <input type="text" placeholder={{inv.siteid}} class="form-control" id="username" name="username">  
+{% endblock siteid %}
+
+{% block fullsiteaddress %}
+    <input type="text" placeholder={{inv.fullsiteaddress}} class="form-control" id="username" name="username">
+{% endblock fullsiteaddress %}
+     
+<!--  ########################################Invoice Billing section################################# -->                 
+{% block invoiceno %}
+    <input type="text" placeholder={{inv.invoiceno}} class="form-control" id="username" name="username" readonly>  
+{% endblock invoiceno %}
+
+{% block billingdatefrom %}
+    <input type="text" placeholder={{inv.billingdatefrom}}  class="form-control" id="username" name="username"> 
+{% endblock billingdatefrom %}
+
+{% block billingdateto %}
+    <input type="text" placeholder={{inv.billingdateto}} class="form-control" id="username" name="username">  
+{% endblock billingdateto %}
+
+{% block invoicedate %}
+    <input type="text" placeholder={{inv.invoicedate}} class="form-control" id="username" name="username" readonly> 
+{% endblock invoicedate %}
+
+{% block gstno %}
+    <input type="text" placeholder={{inv.gstno}} class="form-control" id="username" name="username"> 
+{% endblock gstno %}
+
+{% block taxname %}
+    <input type="text" placeholder={{inv.taxname}} class="form-control" id="username" name="username">
+{% endblock taxname %}
+
+{% block total %}
+    <input type="text" placeholder={{inv.total}} class="form-control" id="username" name="username">
+{% endblock total %}
+
+{% block customerid %}
+    <input type="text" placeholder={{inv.customerid}} class="form-control" id="username" name="username">
+{% endblock customerid %}
+
+{% block customername %}
+    <input type="text" placeholder={{inv.customername}}  class="form-control" id="username" name="username">
+{% endblock customername %}
+
+{% block accountno %}
+    <input type="text" placeholder={{inv.accountno}} class="form-control" id="username" name="username" readonly>
+{% endblock accountno %}
+
+<!--  ####################### remarks ############################################################### -->
+
+{% block remarks %}
+    <input type="text" placeholder={{inv.remarks}}  class="form-control" id="username" name="username">
+ {% endblock remarks %}
+
+<!-- ##################################################Workflow Details######################################## -->
+
+{% block action %}
+    <input type="text" placeholder={{inv.action}} class="form-control" id="username" name="username" readonly>
+{% endblock action %}
+
+{% block status %}
+    <input type="text" placeholder={{PAPERHOUSE_list_invoices.0.status}} class="form-control" id="username" name="username" readonly> 
+{% endblock status %}
+
+
+ 
+ 
+<!--  #############################Place for Buttons on the form ################################################ -->     
+{% block buttons %}
+<div class="container-fluid">
+    <div class="row">
+	    <div class="col sm-11">
+	             {{ edit_button }}
+	             {{ action_buttons }}     
+	    </div>
+        <div class="col sm-1">
+            <a class="btn btn-primary btn-sm fa fa-window-close" href="{{ list_invoices }}"> Close</a>        
+        </div>        
+    </div>   
+</div> 
+<br>  
+{% endblock buttons %}             
+
+{% endwith %}
+
+
+
+<!--  ======================================== CODE ENDs HERE ==========================================
+
+  slno = IntField(min_value=0, max_value=None, force_string=False, precision=0)
+    tsp = StringField(max_length=200, required=True)
+    customerid = StringField(max_length=30, required=True)
+    customername = StringField(max_length=20, required=True)
+    invoiceno = StringField(max_length=100, required=True)    
+    accountno = StringField(max_length=100, required=True)      
+    circuitid = StringField(max_length=100, required=True)
+    infoid = StringField(max_length=12, required=True)
+    speed = StringField(max_length=100, required=True)
+    arc = StringField(max_length=100, required=True)
+    gstno = StringField(max_length=100, required=True)
+    division = StringField(max_length=20, required=True)   
+    billingdatefrom = StringField(max_length=10, required=True) 
+    billingdateto = StringField(max_length=10, required=True)
+    invoicedate = StringField(max_length=10, required=True)
+    taxname = StringField(max_length=100, required=True)
+    total = IntField(min_value=0, max_value=None, force_string=False, precision=2)
+    servicetype = StringField(max_length=10, required=True)
+    city = StringField(max_length=10, required=True)
+    state = StringField(max_length=10, required=True)
+    pin = IntField(min_value=0, max_value=None, force_string=False, precision=2)
+    premiseno =  StringField(max_length=100, required=True)
+    premisename = StringField(max_length=100, required=True)
+    siteid = StringField(max_length=100, required=True)
+    fullsiteaddress = StringField(max_length=200, required=True)
+    remarks = StringField(max_length=200, required=True)
+    action = StringField(max_length=50, required=True)  
+    
+    class Invoice(Document):
+    ''' invoice have xldata and status
+    this single data status filed will be overwritten  each time a new event occurs
+    the entire event histroy will be stored in the event_histroy_list'''
+    invoiceno = StringField(max_length=200, required=True, unique=True)
+    status = StringField(max_length=200)
+    xldata = EmbeddedDocumentField(XlData)    
+    autochk = EmbeddedDocumentField(Autoresult)  
+
+                                             
+                                             -->

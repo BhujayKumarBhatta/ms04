@@ -1,5 +1,5 @@
 {% extends "invoice/list_invoices.html" %}
-{% url 'dashapp:paperhouse_list_invoice' as p_list_invoices %}
+{% url 'dashapp:paperhouse_list_invoice' 'all' 'read' 'admin' as p_list_invoices %}
 {% url 'dashapp:paperhouse_delete_invoice' as delete_invoices %}
 
 {% block list_invoice_add_delete %}

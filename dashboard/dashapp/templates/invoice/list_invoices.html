@@ -28,7 +28,7 @@
                 {% for l in PAPERHOUSE_list_invoices %}
 			      <tr style="font-size:10px">			        
 			        <td>{{ l.xldata.tsp }}</td>
-			        <td><a href="{% url 'dashapp:paperhouse_list_invoice' l.xldata.invoiceno 'normal' %}" >
+			        <td><a href="{% url 'dashapp:paperhouse_list_invoice' l.xldata.invoiceno 'read' 'normal' %}" >
 			                 {{ l.xldata.invoiceno }}
 			             </a>
 			        </td>
