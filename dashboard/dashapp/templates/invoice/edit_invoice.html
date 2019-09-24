@@ -4,12 +4,7 @@
 {% url 'dashapp:paperhouse_list_invoice' 'all' 'read' 'normal' as list_invoices %}
  
  <p> switched to edit mode</p>
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
- <script type="text/javascript">
-function setAction(btn){
-	alert(btn.id)
-}
-</script>
+ 
    
 {% block tsp %} 
     <input type="text" placeholder={{inv.tsp}} class="form-control" id="username" name="username" readonly>
@@ -108,26 +103,30 @@ function setAction(btn){
  {% endblock remarks %}
 
 <!-- ##################################################Workflow Details######################################## -->
-
 {% block action %}
-    <input type="text" placeholder={{inv.action}} class="form-control" id="username" name="username" readonly>
+    <input type="text" placeholder={{inv.action}} class="form-control" id="action" name="action" value={{inv.action}} readonly>
 {% endblock action %}
 
 {% block status %}
-    <input type="text" placeholder={{PAPERHOUSE_list_invoices.0.status}} class="form-control" id="username" name="username" readonly> 
+    <input type="text" placeholder={{PAPERHOUSE_list_invoices.0.status}} class="form-control" id="status" name="status" readonly> 
 {% endblock status %}
-
-
- 
  
 <!--  #############################Place for Buttons on the form ################################################ -->     
 {% block buttons %}
+<script type="text/javascript">
+        function setAction(btn){           
+            document.getElementById("action").value = btn.value
+            var next_action = document.getElementById("action").value
+            alert(next_action)
+        }
+</script>
+
 <div class="container-fluid">
     <div class="row">
     {% for btn_name in action_buttons %}
 	    <div class="col sm-1"> 
 	        <button class="btn btn-sm fa fa-send" type="submit" 
-	           name="{{btn_name}}" value="{{btn_name}}" onclick="setAction(this)"">
+	           name="{{btn_name}}" value="{{btn_name}}" onclick="setAction(this)">
 	           {{btn_name}}
 	        </button>
 	    </div>
