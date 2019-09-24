@@ -3,122 +3,133 @@
 {% with inv=PAPERHOUSE_list_invoices.0.xldata %}
 {% url 'dashapp:paperhouse_list_invoice' 'all' 'read' 'normal' as list_invoices %}
 {% url 'dashapp:striker_update_Invoice'  as update_invoice %}
-
+{% load jsonify_tag %}
  
  <p> switched to edit mode</p>
 
 {% block invform_start %}<form action="{{ update_invoice }}" method="post">{% endblock invform_start %} 
-  
+ 
+{% block infoid %} 
+    <input type="text" placeholder={{inv.infoid}} class="form-control" id="InfoID" name="InfoID" >
+{% endblock infoid %}
+
+{% block circuitid %} 
+    <input type="text" placeholder={{inv.circuitid}} class="form-control" id="CircuitID" name="CircuitID" >
+{% endblock circuitid %}
+
 {% block tsp %} 
-    <input type="text" placeholder={{inv.tsp}} class="form-control" id="tsp" name="tsp" readonly>
+    <input type="text" placeholder={{inv.tsp}} class="form-control" id="tsp" name="TSP" readonly>
 {% endblock tsp %}
                      
 {% block speed %} 
-    <input type="text" placeholder={{inv.speed}} class="form-control" id="speed}" name="speed}">
+    <input type="text" placeholder={{inv.speed}} class="form-control" id="speed" name="Speed">
 {% endblock speed %}
                  
 {% block arc %}
-    <input type="text" placeholder={{inv.arc}} class="form-control" id="arc" name="arc"> 
+    <input type="text" placeholder={{inv.arc}} class="form-control" id="arc" name="ARC"> 
 {% endblock arc %}
 
 {% block division %}
-     <input type="text" placeholder={{inv.division}} class="form-control" id="division" name="division"> 
+     <input type="text" placeholder={{inv.division}} class="form-control" id="division" name="Division"> 
 {% endblock division %}
 
 {% block servicetype %}
-   <input type="text" placeholder={{inv.servicetype}} class="form-control" id="servicetype" name="servicetype">  
+   <input type="text" placeholder={{inv.servicetype}} class="form-control" id="servicetype" name="ServiceType">  
 {% endblock servicetype %}
     
 <!-- ####################Address section######################################################### -->       
 {% block city %} 
-    <input type="text" placeholder={{inv.city}} class="form-control" id="city}" name="city}"> 
+    <input type="text" placeholder={{inv.city}} class="form-control" id="city" name="City"> 
 {% endblock city %}
      
 {% block state %}
-    <input type="text" placeholder={{inv.state}} class="form-control" id="state" name="state"> 
+    <input type="text" placeholder={{inv.state}} class="form-control" id="state" name="State"> 
 {% endblock state %}
   
 {% block pin %}
-    <input type="text" placeholder={{inv.pin}} class="form-control" id="pin" name="pin">  
+    <input type="text" placeholder={{inv.pin}} class="form-control" id="pin" name="PIN">  
 {% endblock pin %}
      
 {% block premiseno %}
-    <input type="text" placeholder={{inv.premiseno}} class="form-control" id="premiseno" name="premiseno">  
+    <input type="text" placeholder={{inv.premiseno}} class="form-control" id="premiseno" name="PremiseNo">  
 {% endblock premiseno %}
 
 {% block premisename %}
-    <input type="text" placeholder={{inv.premisename}} class="form-control" id="premisename" name="premisename">
+    <input type="text" placeholder={{inv.premisename}} class="form-control" id="premisename" name="PremiseName">
 {% endblock premisename %}
 
 {% block siteid %}
-    <input type="text" placeholder={{inv.siteid}} class="form-control" id="siteid" name="siteid">  
+    <input type="text" placeholder={{inv.siteid}} class="form-control" id="siteid" name="SiteID">  
 {% endblock siteid %}
 
 {% block fullsiteaddress %}
-    <input type="text" placeholder={{inv.fullsiteaddress}} class="form-control" id="fullsiteaddress" name="fullsiteaddress">
+    <input type="text" placeholder={{inv.fullsiteaddress}} class="form-control" id="fullsiteaddress" name="FullSiteAddress">
 {% endblock fullsiteaddress %}
      
 <!--  ########################################Invoice Billing section################################# -->                 
 {% block invoiceno %}
-    <input type="text" placeholder={{inv.invoiceno}} class="form-control" id="invoiceno" name="invoiceno" readonly>  
+    <input type="text" placeholder={{inv.invoiceno}} class="form-control" id="invoiceno" name="InvoiceNo" value={{inv.invoiceno}} readonly>  
 {% endblock invoiceno %}
 
 {% block billingdatefrom %}
-    <input type="text" placeholder={{inv.billingdatefrom}}  class="form-control" id="billingdatefrom" name="billingdatefrom"> 
+    <input type="text" placeholder={{inv.billingdatefrom}}  class="form-control" id="billingdatefrom" name="BillingDateFrom"> 
 {% endblock billingdatefrom %}
 
 {% block billingdateto %}
-    <input type="text" placeholder={{inv.billingdateto}} class="form-control" id="billingdateto" name="billingdateto">  
+    <input type="text" placeholder={{inv.billingdateto}} class="form-control" id="billingdateto" name="BillingDateTO">  
 {% endblock billingdateto %}
 
 {% block invoicedate %}
-    <input type="text" placeholder={{inv.invoicedate}} class="form-control" id="invoicedate" name="invoicedate" readonly> 
+    <input type="text" placeholder={{inv.invoicedate}} class="form-control" id="invoicedate" name="InvoiceDate" readonly> 
 {% endblock invoicedate %}
 
 {% block gstno %}
-    <input type="text" placeholder={{inv.gstno}} class="form-control" id="username" name="username"> 
+    <input type="text" placeholder={{inv.gstno}} class="form-control" id="GSTNo" name="GSTNo"> 
 {% endblock gstno %}
 
 {% block taxname %}
-    <input type="text" placeholder={{inv.taxname}} class="form-control" id="gstno" name="gstno">
+    <input type="text" placeholder={{inv.taxname}} class="form-control" id="gstno" name="TaxName">
 {% endblock taxname %}
 
 {% block total %}
-    <input type="text" placeholder={{inv.total}} class="form-control" id="total" name="total">
+    <input type="text" placeholder={{inv.total}} class="form-control" id="total" name="Total">
 {% endblock total %}
 
 {% block customerid %}
-    <input type="text" placeholder={{inv.customerid}} class="form-control" id="customerid" name="customerid">
+    <input type="text" placeholder={{inv.customerid}} class="form-control" id="customerid" name="CustomerID">
 {% endblock customerid %}
 
 {% block customername %}
-    <input type="text" placeholder={{inv.customername}}  class="form-control" id="customername" name="customername">
+    <input type="text" placeholder={{inv.customername}}  class="form-control" id="customername" name="CustomerName">
 {% endblock customername %}
 
 {% block accountno %}
-    <input type="text" placeholder={{inv.accountno}} class="form-control" id="accountno" name="accountno" readonly>
+    <input type="text" placeholder={{inv.accountno}} class="form-control" id="accountno" name="AccountNo" readonly>
 {% endblock accountno %}
 
 <!--  ####################### remarks ############################################################### -->
 
 {% block remarks %}
-    <input type="text" placeholder={{inv.remarks}}  class="form-control" id="remarks" name="remarks">
+    <input type="text" placeholder={{inv.remarks}}  class="form-control" id="remarks" name="REMARKS">
  {% endblock remarks %}
 
 <!-- ##################################################Workflow Details######################################## -->
 {% block action %}
-    <input type="text" placeholder={{inv.action}} class="form-control" id="action" name="action" value={{inv.action}} readonly>
+    <input type="text" placeholder={{inv.action}} class="form-control" id="action" name="Action" value={{inv.action}} readonly>
 {% endblock action %}
 
 {% block status %}
     <input type="text" placeholder={{PAPERHOUSE_list_invoices.0.status}} class="form-control" id="status" name="status" value={{PAPERHOUSE_list_invoices.0.status}} readonly> 
+    
 {% endblock status %}
+
+
  
 <!--  #############################Place for Buttons on the form ################################################ -->     
 {% block buttons %}
 <script type="text/javascript">
-        function setAction(btn){           
-            document.getElementById("action").value = btn.value
+        function setAction(btn){ 
+        	document.getElementById("action").value = btn.id
             var next_action = document.getElementById("action").value
             alert("initiating action: " + next_action)
         }
@@ -129,7 +140,7 @@
     {% for btn_name in action_buttons %}
 	    <div class="col sm-1"> 
 	        <button class="btn btn-sm fa fa-send" type="submit" 
-	           name="{{btn_name}}" value="{{btn_name}}" onclick="setAction(this)">
+	           name="last_data" id="{{btn_name}}" value="{{inv|myjsonify}}" onclick="setAction(this)">
 	           {{btn_name}}
 	        </button>
 	    </div>

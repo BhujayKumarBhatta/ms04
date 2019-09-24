@@ -29,6 +29,21 @@
                         <input type="text" placeholder={{inv.speed}} class="form-control" id="username" name="username" readonly></td>
                          {% endblock speed %}</td>
                  </tr>
+                 
+                 <tr>                    
+                     <td class="py-0">InfoBahn ID</td>
+                     <td class="py-0" >
+                        {% block infoid %} 
+                        <input type="text" placeholder={{inv.infoid}} class="form-control" id="InfoID" name="InfoID" readonly></td>
+                        {% endblock infoid %}</td> 
+                     <td class="py-0"></td>
+                     <td class="py-0">Circuit ID</td>
+                     <td class="py-0">
+                        {% block circuitid %} 
+                        <input type="text" placeholder={{inv.circuitid}} class="form-control" id="CircuitID" name="CircuitID" readonly></td>
+                         {% endblock circuitid %}</td>
+                 </tr>
+                 
                  <tr>
                      <td class="py-0">Type</td>
                      <td class="py-0">{% block arc %}

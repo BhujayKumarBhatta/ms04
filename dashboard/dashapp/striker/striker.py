@@ -90,11 +90,50 @@ def delete_responces(request):
 
 def update_invoice(request):
     if request.method == 'POST':
-        template_data = {"update_request": request.POST}
+        data =  _vaidate_data_invoice_update(request)     
+        template_data = {"update_request": data }
         template_name = "invoice/exec_status.html"
     web_page = validate_active_session(request, template_name, template_data)
     return web_page
 
+#############data validation before invoice update call ########################################
+def _vaidate_data_invoice_update(request):
+    rdict = request.POST.copy()
+    # remove extra keys which should not be part of xldata comparison
+    rdict.pop("csrfmiddlewaretoken")
+    prev_status = rdict.pop("status")
+    # query dict values are list , convert them as text, 
+    #simply reading the will return the last value from the list as per django doc
+    nrdict = {}
+    for k, v in rdict.items():            
+        nrdict[k] = v
+    #also pop the last_data key , which is now a text instead of list after the previous step
+    # and assign it to a var for later usage         
+    last_data = nrdict.pop('last_data')
+    #any value in the quey dict is a text hence send it trough myjsoify custom tag and json load here
+    last_data = json.loads(last_data)
+    print(type(last_data))
+    #filter only those keys and values that are not null
+    xl_data_wo_blank_values = {}
+    for k, v in nrdict.items():
+        if v:
+            xl_data_wo_blank_values[k] = v
+    #There should be at least one field value changed apart Action
+    inv_n_action = {"InvoiceNo": xl_data_wo_blank_values.pop("InvoiceNo"),
+                    "Action":xl_data_wo_blank_values.pop("Action")}
+    print("xl_data_wo_blank_values", xl_data_wo_blank_values)
+    #cross check that the values have changed from the last_data
+    if xl_data_wo_blank_values:
+        values_changed_from_last_time = {}
+        for k, v in xl_data_wo_blank_values.items():
+            print("last_data", type(last_data))
+            if v != last_data.get(k):
+                values_changed_from_last_time[k] = v
+        values_changed_from_last_time.update(inv_n_action)
+        return values_changed_from_last_time
+    
+#############END data validation before invoice update call ########################################
+        
 def customer_action(request):
     try:
         tlclient = tllogin.prep_tlclient_from_session(request)
@@ -170,4 +209,7 @@ def tsp_action(request):
         template_data = {"VIEW_CREATE_INVOICE": "TRUE","EXCEPTION" :exception,"EXCEPTION_INFO" : sys.exc_info()[0]}  
         result = render(request, 'home.html', template_data) 
     return result
+
+###################################
+
     
