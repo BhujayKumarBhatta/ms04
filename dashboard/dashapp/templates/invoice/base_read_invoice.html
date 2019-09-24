@@ -3,10 +3,10 @@
 {% with inv=PAPERHOUSE_list_invoices.0.xldata %}
 {% url 'dashapp:paperhouse_list_invoice' 'all' 'read' 'normal' as list_invoices %}
 {% url 'dashapp:paperhouse_list_invoice' inv.invoiceno 'edit' 'normal' as edit_invoices %}
-
+{% url 'dashapp:striker_update_Invoice'  as update_invoice %}
 
  <div class="container-fluid" style="padding-top:7px">
-    <form action="#" method="post">
+    {% block invform_start %}<form action="{{ update_invoice }}" method="post">{% endblock invform_start %}
          {% csrf_token %}            
         <table class="table " id="read-format" > 
         <thead >
@@ -191,28 +191,28 @@
                 </tr>
                 </tbody>
          </table>
+         <!--  #############################Place for Buttons on the form ################################################ -->     
+		{% block buttons %}
+		<div class="container-fluid">
+		    <div class="row">
+		        <div class="col sm-1">
+		            {% if edit_button %}
+		                <a class="btn btn-primary btn-sm fa fa-edit" href="{{ edit_invoices }}"> Edit</a>  
+		            {% endif %}     
+		        </div>
+		        <div class="col sm-10">
+		             {{ edit_button }}
+		             {{ action_buttons }}     
+		        </div>
+		        <div class="col sm-1">
+		            <a class="btn btn-primary btn-sm fa fa-window-close" href="{{ list_invoices }}"> Close</a>        
+		        </div>        
+		    </div>   
+		</div>    
+		{% endblock buttons %}
+         
     </form>
-</div>
-<!--  #############################Place for Buttons on the form ################################################ -->     
-{% block buttons %}
-<div class="container-fluid">
-    <div class="row">
-        <div class="col sm-1">
-            {% if edit_button %}
-                <a class="btn btn-primary btn-sm fa fa-edit" href="{{ edit_invoices }}"> Edit</a>  
-            {% endif %}     
-        </div>
-        <div class="col sm-10">
-             {{ edit_button }}
-             {{ action_buttons }}     
-        </div>
-        <div class="col sm-1">
-            <a class="btn btn-primary btn-sm fa fa-window-close" href="{{ list_invoices }}"> Close</a>        
-        </div>        
-    </div>   
-</div>    
-{% endblock buttons %}
-           
+</div>           
 
 {% endwith %}
 {% endblock content-area %}

@@ -366,5 +366,11 @@ def striker_delete_responces(request):
 
 ###################################################################
 
-
+def striker_update_Invoice(request):
+    if 'uname' not in request.session :
+      result = login(request)
+    elif 'uname' in request.session :
+      result = striker.update_invoice(request)
+    return result
+    
 

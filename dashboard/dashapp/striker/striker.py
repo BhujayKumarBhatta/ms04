@@ -88,6 +88,12 @@ def delete_responces(request):
         result = render(request, 'home.html', template_data)      
     return result    
 
+def update_invoice(request):
+    if request.method == 'POST':
+        template_data = {"update_request": request.POST}
+        template_name = "invoice/exec_status.html"
+    web_page = validate_active_session(request, template_name, template_data)
+    return web_page
 
 def customer_action(request):
     try:

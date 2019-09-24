@@ -2,74 +2,77 @@
 
 {% with inv=PAPERHOUSE_list_invoices.0.xldata %}
 {% url 'dashapp:paperhouse_list_invoice' 'all' 'read' 'normal' as list_invoices %}
+{% url 'dashapp:striker_update_Invoice'  as update_invoice %}
+
  
  <p> switched to edit mode</p>
- 
-   
+
+{% block invform_start %}<form action="{{ update_invoice }}" method="post">{% endblock invform_start %} 
+  
 {% block tsp %} 
-    <input type="text" placeholder={{inv.tsp}} class="form-control" id="username" name="username" readonly>
+    <input type="text" placeholder={{inv.tsp}} class="form-control" id="tsp" name="tsp" readonly>
 {% endblock tsp %}
                      
 {% block speed %} 
-    <input type="text" placeholder={{inv.speed}} class="form-control" id="username" name="username">
+    <input type="text" placeholder={{inv.speed}} class="form-control" id="speed}" name="speed}">
 {% endblock speed %}
                  
 {% block arc %}
-    <input type="text" placeholder={{inv.arc}} class="form-control" id="username" name="username"> 
+    <input type="text" placeholder={{inv.arc}} class="form-control" id="arc" name="arc"> 
 {% endblock arc %}
 
 {% block division %}
-     <input type="text" placeholder={{inv.division}} class="form-control" id="username" name="username"> 
+     <input type="text" placeholder={{inv.division}} class="form-control" id="division" name="division"> 
 {% endblock division %}
 
 {% block servicetype %}
-   <input type="text" placeholder={{inv.servicetype}} class="form-control" id="username" name="username">  
+   <input type="text" placeholder={{inv.servicetype}} class="form-control" id="servicetype" name="servicetype">  
 {% endblock servicetype %}
     
 <!-- ####################Address section######################################################### -->       
 {% block city %} 
-    <input type="text" placeholder={{inv.city}} class="form-control" id="username" name="username"> 
+    <input type="text" placeholder={{inv.city}} class="form-control" id="city}" name="city}"> 
 {% endblock city %}
      
 {% block state %}
-    <input type="text" placeholder={{inv.state}} class="form-control" id="username" name="username"> 
+    <input type="text" placeholder={{inv.state}} class="form-control" id="state" name="state"> 
 {% endblock state %}
   
 {% block pin %}
-    <input type="text" placeholder={{inv.pin}} class="form-control" id="username" name="username">  
+    <input type="text" placeholder={{inv.pin}} class="form-control" id="pin" name="pin">  
 {% endblock pin %}
      
 {% block premiseno %}
-    <input type="text" placeholder={{inv.premiseno}} class="form-control" id="username" name="username">  
+    <input type="text" placeholder={{inv.premiseno}} class="form-control" id="premiseno" name="premiseno">  
 {% endblock premiseno %}
 
 {% block premisename %}
-    <input type="text" placeholder={{inv.premisename}} class="form-control" id="username" name="username">
+    <input type="text" placeholder={{inv.premisename}} class="form-control" id="premisename" name="premisename">
 {% endblock premisename %}
 
 {% block siteid %}
-    <input type="text" placeholder={{inv.siteid}} class="form-control" id="username" name="username">  
+    <input type="text" placeholder={{inv.siteid}} class="form-control" id="siteid" name="siteid">  
 {% endblock siteid %}
 
 {% block fullsiteaddress %}
-    <input type="text" placeholder={{inv.fullsiteaddress}} class="form-control" id="username" name="username">
+    <input type="text" placeholder={{inv.fullsiteaddress}} class="form-control" id="fullsiteaddress" name="fullsiteaddress">
 {% endblock fullsiteaddress %}
      
 <!--  ########################################Invoice Billing section################################# -->                 
 {% block invoiceno %}
-    <input type="text" placeholder={{inv.invoiceno}} class="form-control" id="username" name="username" readonly>  
+    <input type="text" placeholder={{inv.invoiceno}} class="form-control" id="invoiceno" name="invoiceno" readonly>  
 {% endblock invoiceno %}
 
 {% block billingdatefrom %}
-    <input type="text" placeholder={{inv.billingdatefrom}}  class="form-control" id="username" name="username"> 
+    <input type="text" placeholder={{inv.billingdatefrom}}  class="form-control" id="billingdatefrom" name="billingdatefrom"> 
 {% endblock billingdatefrom %}
 
 {% block billingdateto %}
-    <input type="text" placeholder={{inv.billingdateto}} class="form-control" id="username" name="username">  
+    <input type="text" placeholder={{inv.billingdateto}} class="form-control" id="billingdateto" name="billingdateto">  
 {% endblock billingdateto %}
 
 {% block invoicedate %}
-    <input type="text" placeholder={{inv.invoicedate}} class="form-control" id="username" name="username" readonly> 
+    <input type="text" placeholder={{inv.invoicedate}} class="form-control" id="invoicedate" name="invoicedate" readonly> 
 {% endblock invoicedate %}
 
 {% block gstno %}
@@ -77,29 +80,29 @@
 {% endblock gstno %}
 
 {% block taxname %}
-    <input type="text" placeholder={{inv.taxname}} class="form-control" id="username" name="username">
+    <input type="text" placeholder={{inv.taxname}} class="form-control" id="gstno" name="gstno">
 {% endblock taxname %}
 
 {% block total %}
-    <input type="text" placeholder={{inv.total}} class="form-control" id="username" name="username">
+    <input type="text" placeholder={{inv.total}} class="form-control" id="total" name="total">
 {% endblock total %}
 
 {% block customerid %}
-    <input type="text" placeholder={{inv.customerid}} class="form-control" id="username" name="username">
+    <input type="text" placeholder={{inv.customerid}} class="form-control" id="customerid" name="customerid">
 {% endblock customerid %}
 
 {% block customername %}
-    <input type="text" placeholder={{inv.customername}}  class="form-control" id="username" name="username">
+    <input type="text" placeholder={{inv.customername}}  class="form-control" id="customername" name="customername">
 {% endblock customername %}
 
 {% block accountno %}
-    <input type="text" placeholder={{inv.accountno}} class="form-control" id="username" name="username" readonly>
+    <input type="text" placeholder={{inv.accountno}} class="form-control" id="accountno" name="accountno" readonly>
 {% endblock accountno %}
 
 <!--  ####################### remarks ############################################################### -->
 
 {% block remarks %}
-    <input type="text" placeholder={{inv.remarks}}  class="form-control" id="username" name="username">
+    <input type="text" placeholder={{inv.remarks}}  class="form-control" id="remarks" name="remarks">
  {% endblock remarks %}
 
 <!-- ##################################################Workflow Details######################################## -->
@@ -108,7 +111,7 @@
 {% endblock action %}
 
 {% block status %}
-    <input type="text" placeholder={{PAPERHOUSE_list_invoices.0.status}} class="form-control" id="status" name="status" readonly> 
+    <input type="text" placeholder={{PAPERHOUSE_list_invoices.0.status}} class="form-control" id="status" name="status" value={{PAPERHOUSE_list_invoices.0.status}} readonly> 
 {% endblock status %}
  
 <!--  #############################Place for Buttons on the form ################################################ -->     
@@ -117,7 +120,7 @@
         function setAction(btn){           
             document.getElementById("action").value = btn.value
             var next_action = document.getElementById("action").value
-            alert(next_action)
+            alert("initiating action: " + next_action)
         }
 </script>
 

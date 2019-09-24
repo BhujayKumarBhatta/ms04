@@ -82,6 +82,7 @@ urlpatterns = [path('', views.login, name='login'),
     #striker
     path('striker_list_responces/<slug:request_id>', views.striker_list_responces, name='striker_list_responces'),
     path('striker_delete_responces', views.striker_delete_responces, name='striker_delete_responces'),
+    path('striker_update_Invoice', views.striker_update_Invoice, name='striker_update_Invoice'),
     
     #,path('swagger-docs/', schema_view)
     #,path('docs/', include_docs_urls(title='TSP Billing'))
