@@ -4,6 +4,12 @@
 {% url 'dashapp:paperhouse_list_invoice' 'all' 'read' 'normal' as list_invoices %}
  
  <p> switched to edit mode</p>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+ <script type="text/javascript">
+function setAction(btn){
+	alert(btn.id)
+}
+</script>
    
 {% block tsp %} 
     <input type="text" placeholder={{inv.tsp}} class="form-control" id="username" name="username" readonly>
@@ -118,10 +124,14 @@
 {% block buttons %}
 <div class="container-fluid">
     <div class="row">
-	    <div class="col sm-11">
-	             {{ edit_button }}
-	             {{ action_buttons }}     
+    {% for btn_name in action_buttons %}
+	    <div class="col sm-1"> 
+	        <button class="btn btn-sm fa fa-send" type="submit" 
+	           name="{{btn_name}}" value="{{btn_name}}" onclick="setAction(this)"">
+	           {{btn_name}}
+	        </button>
 	    </div>
+	{% endfor %}
         <div class="col sm-1">
             <a class="btn btn-primary btn-sm fa fa-window-close" href="{{ list_invoices }}"> Close</a>        
         </div>        
@@ -136,42 +146,4 @@
 
 <!--  ======================================== CODE ENDs HERE ==========================================
 
-  slno = IntField(min_value=0, max_value=None, force_string=False, precision=0)
-    tsp = StringField(max_length=200, required=True)
-    customerid = StringField(max_length=30, required=True)
-    customername = StringField(max_length=20, required=True)
-    invoiceno = StringField(max_length=100, required=True)    
-    accountno = StringField(max_length=100, required=True)      
-    circuitid = StringField(max_length=100, required=True)
-    infoid = StringField(max_length=12, required=True)
-    speed = StringField(max_length=100, required=True)
-    arc = StringField(max_length=100, required=True)
-    gstno = StringField(max_length=100, required=True)
-    division = StringField(max_length=20, required=True)   
-    billingdatefrom = StringField(max_length=10, required=True) 
-    billingdateto = StringField(max_length=10, required=True)
-    invoicedate = StringField(max_length=10, required=True)
-    taxname = StringField(max_length=100, required=True)
-    total = IntField(min_value=0, max_value=None, force_string=False, precision=2)
-    servicetype = StringField(max_length=10, required=True)
-    city = StringField(max_length=10, required=True)
-    state = StringField(max_length=10, required=True)
-    pin = IntField(min_value=0, max_value=None, force_string=False, precision=2)
-    premiseno =  StringField(max_length=100, required=True)
-    premisename = StringField(max_length=100, required=True)
-    siteid = StringField(max_length=100, required=True)
-    fullsiteaddress = StringField(max_length=200, required=True)
-    remarks = StringField(max_length=200, required=True)
-    action = StringField(max_length=50, required=True)  
-    
-    class Invoice(Document):
-    ''' invoice have xldata and status
-    this single data status filed will be overwritten  each time a new event occurs
-    the entire event histroy will be stored in the event_histroy_list'''
-    invoiceno = StringField(max_length=200, required=True, unique=True)
-    status = StringField(max_length=200)
-    xldata = EmbeddedDocumentField(XlData)    
-    autochk = EmbeddedDocumentField(Autoresult)  
-
-                                             
-                                             -->
+  
