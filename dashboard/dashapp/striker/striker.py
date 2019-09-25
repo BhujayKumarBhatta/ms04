@@ -62,9 +62,12 @@ def list_exec_status(request, request_id):
         if request_id != "all":
             filtered_list = []
             for l in list_responces:
-                rid = l.get('wfcdict').get('request_id')
-                if rid == request_id:
-                    filtered_list.append(l)
+                print(type(l), l)
+                if l and "wfcdict" in l:                    
+                    rid = l.get('wfcdict').get('request_id')
+                    print("rid:" , rid)
+                    if rid == request_id:
+                        filtered_list.append(l)
             list_responces = filtered_list               
         template_data = {"list_exec_status": list_responces } 
         template_name =  'invoice/exec_status.html'        
@@ -106,12 +109,12 @@ def update_invoice(request, actionrole):
             elif actionrole in MIS_roles:
                 posting_result = strikerclient.division_action(data)
             else:
-                posting_result = ("Failed, User need to have one of "
-                                  "role from [role1, INFOBAHN, TSP, MIS]")
+                posting_result = {"save_status": "Failed, User need to have one of "
+                                  "role from [role1, INFOBAHN, TSP, MIS]"}
         else:
-            posting_result = "invalid data or no changes to update invoice"
+            posting_result = {"save_status": "invalid data or no changes to update invoice"}
     template_data = {"update_request": posting_result }
-    template_name = "invoice/exec_status.html"
+    template_name = "invoice/request_id_api_result.html"
     web_page = validate_active_session(request, template_name, template_data)
     return web_page
 

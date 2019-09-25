@@ -47,7 +47,10 @@ def list_invoices(request, invoicenum, mode, admin=None):
         elif invoicenum != 'all' and mode == 'read':
             template_name = 'invoice/base_read_invoice.html'
             print(template_name)
-        edit_button, action_buttons = _get_all_buttons(request, list_invoices)
+        if list_invoices:
+            edit_button, action_buttons = _get_all_buttons(request, list_invoices)
+        else:
+            edit_button, action_buttons = False, []
         template_data = {"PAPERHOUSE_list_invoices": list_invoices,
                          "edit_button": edit_button, "action_buttons": action_buttons }
         web_page = validate_active_session(request, template_name, template_data)
@@ -78,11 +81,11 @@ def _get_edit_button(role, current_status):
     return edit_button
 
 def _get_action_buttons(current_status):
-    if current_status == "InvoiceCreated":
+    if current_status == "InvoiceCreated" or current_status == "TSPSubmmitedChange":
         button_list = ["InfobahnRecommendedtoTSP", "SentToDivision", ]
     elif current_status == "InfobahnRecommendedtoTSP":
-        button_list = ["TSPAcceptedChanges", "TSPSubmmitedChange", ]
-    elif current_status == "TSPAcceptedChanges" or current_status == "TSPSubmmitedChange":
+        button_list = ["ACCEPT", "CHANGE", ]
+    elif current_status == "TSPAcceptedChanges":
         button_list = ["SentToDivision", ]
     elif current_status == "SentToDivision":
         button_list = ["DivisionRecommended", "DivisonApproved", "OverridenDivision", ]

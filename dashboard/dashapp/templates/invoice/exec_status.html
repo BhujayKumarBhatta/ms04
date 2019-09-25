@@ -20,13 +20,20 @@
                   <tr style="font-size:10px">                   
                     <td>{{ l.invoicenum }}</td>
                     <td>{{ l.exec_status }}</td>
+                    {% if l.wfcdict.timestamp  %}
                     <td>{{ l.wfcdict.timestamp }}</td>
-                                  
+                    {% elif l.wfcdict.time_stamp  %}
+                    <td>{{ l.wfcdict.time_stamp }}</td>
+                    {% else %}
+                     <td>key_error</td>  
+                     {% endif %}           
                   </tr>
+                  
                 {% endfor %}
             </tbody>
         </table>
     </div>
+    {{list_exec_status}}
     {{ update_request }}
     {{ update_request.customername }}
     
