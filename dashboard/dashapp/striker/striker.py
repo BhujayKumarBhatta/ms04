@@ -88,11 +88,30 @@ def delete_responces(request):
         result = render(request, 'home.html', template_data)      
     return result    
 
-def update_invoice(request):
+def update_invoice(request, actionrole):
     if request.method == 'POST':
-        data =  _vaidate_data_invoice_update(request)     
-        template_data = {"update_request": data }
-        template_name = "invoice/exec_status.html"
+        data = None
+        infobahn_roles = ["role1", "INFOBAHN"]
+        TSP_roles = ["TSP"]
+        MIS_roles = ["MIS"]
+        tlclient = tllogin.prep_tlclient_from_session(request)
+        strikerclient=clientstriker(tlclient)
+        vdata =  _vaidate_data_invoice_update(request)
+        if vdata:
+            data = [vdata, ]
+            if actionrole in infobahn_roles:
+                posting_result = strikerclient.customer_action(data)
+            elif actionrole in TSP_roles:
+                posting_result = strikerclient.tsp_action(data)
+            elif actionrole in MIS_roles:
+                posting_result = strikerclient.division_action(data)
+            else:
+                posting_result = ("Failed, User need to have one of "
+                                  "role from [role1, INFOBAHN, TSP, MIS]")
+        else:
+            posting_result = "invalid data or no changes to update invoice"
+    template_data = {"update_request": posting_result }
+    template_name = "invoice/exec_status.html"
     web_page = validate_active_session(request, template_name, template_data)
     return web_page
 

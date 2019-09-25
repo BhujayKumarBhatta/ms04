@@ -3,7 +3,7 @@
 {% with inv=PAPERHOUSE_list_invoices.0.xldata %}
 {% url 'dashapp:paperhouse_list_invoice' 'all' 'read' 'normal' as list_invoices %}
 {% url 'dashapp:paperhouse_list_invoice' inv.invoiceno 'edit' 'normal' as edit_invoices %}
-{% url 'dashapp:striker_update_Invoice'  as update_invoice %}
+{% url 'dashapp:striker_update_Invoice' user_details.roles.0  as update_invoice %}
 
  <div class="container-fluid" style="padding-top:7px">
     {% block invform_start %}<form action="{{ update_invoice }}" method="post">{% endblock invform_start %}
