@@ -185,8 +185,67 @@
             </tbody>
         </table>
         
-        <table class="table" id="read-format">
+ <!--  #############################Place for Buttons on the form ################################################ -->     
+<!-- ##BUTTONS   BUTTONS   BUTTONS#############################BUTTONS   BUTTONS   BUTTONS############################################### -->
+		{% block buttons %}
+		<div class="container-fluid">
+		    <div class="row">
+		        <div class="col sm-1">
+		            {% if edit_button %}
+		                <a class="btn btn-sm fa fa-edit" href="{{ edit_invoices }}"> Edit</a>  
+		            {% endif %}     
+		        </div>
+		        <div class="col sm-10">
+<!-- 		             {{ edit_button }} -->
+<!-- 		             {{ action_buttons }}      -->
+		        </div>
+		        <div class="col sm-1">
+		            <a class="btn  btn-sm fa fa-window-close" href="{{ list_invoices }}"> Close</a>        
+		        </div>        
+		    </div>   
+		</div>    
+		{% endblock buttons %}
+		<br><br>
+		
+<!-- Autocheck#############Autocheck ##########################Autocheck details ####################################### -->
+ <!-- ######################################################################################################## -->
+        {% if user_details.roles.0  == 'role1' or  user_details.roles.0  == 'ITC' %}
             
+		<table class="table" id="read-format">
+            <thead >
+                <div class="container-fluid" style="height:25px;background-color:#ddd">         
+                    <p>Autocheck With WAN Link Inventory </p>
+                </div>
+            </thead> 
+            <tbody>
+                    <tr>
+                     <td class="py-0"> Overall Verification Status</td>
+                     <td class="py-0">{% block autocheck_status %}
+                        {{ PAPERHOUSE_list_invoices.0.autochk.autocheck_status }}   
+                     {% endblock autocheck_status %}</td>
+                     <td class="py-0"></td>
+                     <td class="py-0">Inventory Check</td>
+                     <td class="py-0">{% block inventory_status %}
+                        {{ PAPERHOUSE_list_invoices.0.autochk.inventory_status }}   
+                     {% endblock inventory_status %}</td>
+                     <td class="py-0"></td>
+                     </tr>
+                     <tr>
+                     <td class="py-0">Secondary Database Check</td>
+                     <td class="py-0">{% block lnet_status %}
+                         {{ PAPERHOUSE_list_invoices.0.autochk.lnet_status }}
+                     {% endblock lnet_status %}</td> 
+                      <td class="py-0"></td>
+                     <td class="py-0">Bill of Material Check</td>
+                     <td class="py-0">{% block bom_comp_result %}
+                         {{ PAPERHOUSE_list_invoices.0.autochk.bom_comp_result }}
+                     {% endblock bom_comp_result %}</td>
+                </tr>
+                </tbody>
+              </table>
+              
+		
+		<table class="table" id="read-format">
             <thead >
                 <div class="container-fluid" style="height:25px;background-color:#ddd">         
                     <p>Workflow Details</p>
@@ -196,39 +255,21 @@
                     <tr>
                      <td class="py-0">action</td>
                      <td class="py-0">{% block action %}
-                     <input type="text" placeholder={{inv.action}} class="form-control" id="username" name="username" readonly>
+                     <input type="text" placeholder={{inv.action}} class="form-control" id="action" name="Action" readonly>
                      {% endblock action %}</td>
                      <td class="py-0"></td>
                      <td class="py-0">status</td>
                      <td class="py-0">{% block status %}
-                     <input type="text" placeholder={{PAPERHOUSE_list_invoices.0.status}} class="form-control" id="username" name="username" readonly> 
+                     <input type="text" placeholder={{PAPERHOUSE_list_invoices.0.status}} class="form-control" id="status" name="Status" readonly> 
                      {% endblock status %}</td>  
                 </tr>
                 </tbody>
          </table>
-         <!--  #############################Place for Buttons on the form ################################################ -->     
-		{% block buttons %}
-		<div class="container-fluid">
-		    <div class="row">
-		        <div class="col sm-1">
-		            {% if edit_button %}
-		                <a class="btn btn-primary btn-sm fa fa-edit" href="{{ edit_invoices }}"> Edit</a>  
-		            {% endif %}     
-		        </div>
-		        <div class="col sm-10">
-		             {{ edit_button }}
-		             {{ action_buttons }}     
-		        </div>
-		        <div class="col sm-1">
-		            <a class="btn btn-primary btn-sm fa fa-window-close" href="{{ list_invoices }}"> Close</a>        
-		        </div>        
-		    </div>   
-		</div>    
-		{% endblock buttons %}
-         
+         {% endif %}
     </form>
-</div>           
+</div>      
 
+ 
 {% endwith %}
 {% endblock content-area %}
 
