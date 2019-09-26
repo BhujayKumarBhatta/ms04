@@ -6,6 +6,7 @@
 {% url 'dashapp:striker_update_Invoice' user_details.roles.0  as update_invoice %}
 
 
+
  <div class="container-fluid" style="padding-top:7px">
     {% block invform_start %}<form action="{{ update_invoice }}" method="post">{% endblock invform_start %}
          {% csrf_token %}            
@@ -286,8 +287,11 @@
                  </tr>
                  {% for e in event_history %}
                  <tr>
-                     <td class="py-0"> {{ e.auditinfo.requestid }} </td>
-                     <td class="py-0"> {{ e.auditinfo.api_call_time_stamp }} </td>
+                     <td class="py-0"> 
+                     <a href="{% url 'dashapp:striker_list_responces'  e.auditinfo.requestid  %}">
+                     {{ e.auditinfo.requestid }}</a>
+                     </td>
+                     <td class="py-0"> {{ e.auditinfo.api_call_time_stamp|cut:"0"|cut:"." }} </td>
                      <td class="py-0"> {{ e.auditinfo.logged_in_user_email }} </td>
                      <td class="py-0"> {{ e.auditinfo.logged_in_user_org_unit }} </td>
                      <td class="py-0"> {{ e.event_name }} </td>
