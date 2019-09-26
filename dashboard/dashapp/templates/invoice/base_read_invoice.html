@@ -167,6 +167,25 @@
                 </tr>
            </tbody>
          </table>
+         <table class="table" id="read-format">
+            <thead >
+                <div class="container-fluid" style="height:25px;background-color:#ddd">         
+                    <p>Workflow Details</p>
+                </div>
+            </thead> 
+                    <tr>
+                     <td class="py-0">action</td>
+                     <td class="py-0">{% block action %}
+                     <input type="text" placeholder={{inv.action}} class="form-control"  readonly>
+                     {% endblock action %}</td>
+                     <td class="py-0"></td>
+                     <td class="py-0">status</td>
+                     <td class="py-0">{% block status %}
+                     <input type="text" placeholder={{PAPERHOUSE_list_invoices.0.status}} class="form-control"  readonly> 
+                     {% endblock status %}</td>  
+                </tr>
+                </tbody>
+         </table>
          
          <table class="table" id="read-format">
         
@@ -183,7 +202,9 @@
                     {% endblock remarks %}</td>
                 </tr>
             </tbody>
-        </table>
+        </table> 
+        
+       
         
  <!--  #############################Place for Buttons on the form ################################################ -->     
 <!-- ##BUTTONS   BUTTONS   BUTTONS#############################BUTTONS   BUTTONS   BUTTONS############################################### -->
@@ -242,29 +263,8 @@
                      {% endblock bom_comp_result %}</td>
                 </tr>
                 </tbody>
-              </table>
-              
-		
-		<table class="table" id="read-format">
-            <thead >
-                <div class="container-fluid" style="height:25px;background-color:#ddd">         
-                    <p>Workflow Details</p>
-                </div>
-            </thead> 
-            <tbody>
-                    <tr>
-                     <td class="py-0">action</td>
-                     <td class="py-0">{% block action %}
-                     <input type="text" placeholder={{inv.action}} class="form-control" id="action" name="Action" readonly>
-                     {% endblock action %}</td>
-                     <td class="py-0"></td>
-                     <td class="py-0">status</td>
-                     <td class="py-0">{% block status %}
-                     <input type="text" placeholder={{PAPERHOUSE_list_invoices.0.status}} class="form-control" id="status" name="Status" readonly> 
-                     {% endblock status %}</td>  
-                </tr>
-                </tbody>
-         </table>
+              </table>		
+            
          {% endif %}
     </form>
 </div>      
