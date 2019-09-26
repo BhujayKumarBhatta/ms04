@@ -11,6 +11,7 @@ from tokenleaderclient.client.client import Client
 
 from invstore_client.client import invstore_client
 from clientpaperhouse.client import clientpaperhouse
+from clientpenman.client import clientpenman
 
 from linkinvclient.client import LIClient
 from django.views.generic.edit import FormView
@@ -34,6 +35,7 @@ sampleinvoice ={ "state": "","arc": "","billingdateto": "","remarks": "",
 "premisename": "" ,"billingactivity": "" ,"Action": ""}
 
 def list_invoices(request, invoicenum, mode, admin=None):
+    list_events = []
     if request.method == 'GET': 
         tlclient = tllogin.prep_tlclient_from_session(request)        
         paperclient=clientpaperhouse(tlclient)#               
@@ -45,6 +47,9 @@ def list_invoices(request, invoicenum, mode, admin=None):
         elif invoicenum != 'all' and mode == 'edit':
             template_name = 'invoice/edit_invoice.html'
         elif invoicenum != 'all' and mode == 'read':
+            penclient=clientpenman(tlclient)      
+            list_events = penclient.list_events(invoicenum)
+            print(list_events)
             template_name = 'invoice/base_read_invoice.html'
             print(template_name)
         if list_invoices:
@@ -53,7 +58,7 @@ def list_invoices(request, invoicenum, mode, admin=None):
             accept_button, edit_button, action_buttons,  = False, False, []
         template_data = {"PAPERHOUSE_list_invoices": list_invoices,
                          "edit_button": edit_button, "action_buttons": action_buttons,
-                         "accept_button": accept_button }
+                         "accept_button": accept_button, "list_events": list_events }
         web_page = validate_active_session(request, template_name, template_data)
         return web_page
     

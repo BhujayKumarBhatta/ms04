@@ -32,6 +32,16 @@ sampleinvoice = { "state": "","arc": "","billingdateto": "","remarks": "",
 "premiseno": "", "city": "","tsp": "","customername": "","slno": 0, 
 "premisename": "" ,"billingactivity": "" ,"Action": ""}
 
+
+def list_events_by_inv(request, invoicenum):
+    if request.method == 'GET': 
+        tlclient = tllogin.prep_tlclient_from_session(request)        
+        penclient=clientpenman(tlclient)      
+        list_events = penclient.list_events(invoicenum)
+        template_data = {"PENMAN_list_invoices": list_events } 
+        result = render(request, 'event_list.html', template_data)        
+        return result
+
 def list_events(request):
     if request.method == 'GET': 
         tlclient = tllogin.prep_tlclient_from_session(request)        

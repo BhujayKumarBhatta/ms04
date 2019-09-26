@@ -1,9 +1,10 @@
 {% extends "home.html" %}
 {% block content-area %}
-{% with inv=PAPERHOUSE_list_invoices.0.xldata %}
+{% with inv=PAPERHOUSE_list_invoices.0.xldata  event_history=list_events.0.event_history_list%}
 {% url 'dashapp:paperhouse_list_invoice' 'all' 'read' 'normal' as list_invoices %}
 {% url 'dashapp:paperhouse_list_invoice' inv.invoiceno 'edit' 'normal' as edit_invoices %}
 {% url 'dashapp:striker_update_Invoice' user_details.roles.0  as update_invoice %}
+
 
  <div class="container-fluid" style="padding-top:7px">
     {% block invform_start %}<form action="{{ update_invoice }}" method="post">{% endblock invform_start %}
@@ -226,13 +227,13 @@
 		    </div>   
 		</div>    
 		{% endblock buttons %}
-		<br><br>
-		
-<!-- Autocheck#############Autocheck ##########################Autocheck details ####################################### -->
+    </form>
+    <br><br>
+    <!-- Autocheck#############Autocheck ##########################Autocheck details ####################################### -->
  <!-- ######################################################################################################## -->
         {% if user_details.roles.0  == 'role1' or  user_details.roles.0  == 'ITC' %}
             
-		<table class="table" id="read-format">
+        <table class="table" id="read-format">
             <thead >
                 <div class="container-fluid" style="height:25px;background-color:#ddd">         
                     <p>Autocheck With WAN Link Inventory </p>
@@ -263,13 +264,40 @@
                      {% endblock bom_comp_result %}</td>
                 </tr>
                 </tbody>
-              </table>		
-            
+              </table> 
+              <br>
+              <br>
+ <!-- ###################################################################################################
+############### ###HISTORY OF ALL THE PAST TRANCSCTIONS################################################# -->               
+            <table class="table" id="read-format">
+            <thead >
+                <div class="container-fluid" style="height:25px;background-color:#ddd">         
+                    <p> HISTORY OF ALL THE PAST TRANCSCTIONS </p>
+                </div>
+            </thead> 
+            <tbody>
+                 <tr>
+	                 <th>RequestID</th>
+	                 <th>DateTime</th>
+	                 <th>Email</th>
+	                 <th>Org</th>                    
+	                 <th>Activity</th>
+	                 <th>Data Changed </th>
+                 </tr>
+                 {% for e in event_history %}
+                 <tr>
+                     <td class="py-0"> {{ e.auditinfo.requestid }} </td>
+                     <td class="py-0"> {{ e.auditinfo.api_call_time_stamp }} </td>
+                     <td class="py-0"> {{ e.auditinfo.logged_in_user_email }} </td>
+                     <td class="py-0"> {{ e.auditinfo.logged_in_user_org_unit }} </td>
+                     <td class="py-0"> {{ e.event_name }} </td>
+                     <td class="py-0"> {{ e.eventdata }} </td>
+                </tr>
+                {% endfor  %}
+                </tbody>
+              </table>  
          {% endif %}
-    </form>
-</div>      
-
- 
+</div> 
 {% endwith %}
 {% endblock content-area %}
 
