@@ -45,6 +45,8 @@ def list_invoices(request, invoicenum, mode, admin=None):
         elif admin and invoicenum == 'all' and mode == 'read':
             template_name = 'invoice/list_invoices_admin.html'
         elif invoicenum != 'all' and mode == 'edit':
+            penclient=clientpenman(tlclient)      
+            list_events = penclient.list_events(invoicenum)
             template_name = 'invoice/edit_invoice.html'
         elif invoicenum != 'all' and mode == 'read':
             penclient=clientpenman(tlclient)      

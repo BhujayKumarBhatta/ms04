@@ -139,14 +139,14 @@
     <div class="row">
     {% for btn_name in action_buttons %}
 	    <div class="col sm-1"> 
-	        <button class="btn btn-sm fa fa-send" type="submit" 
+	        <button class="btn btn-sm  btn-block fa fa-send" type="submit" 
 	           name="last_data" id="{{btn_name}}" value="{{inv|myjsonify}}" onclick="setAction(this)">
 	           {{btn_name}}
 	        </button>
 	    </div>
 	{% endfor %}
         <div class="col sm-1">
-            <a class="btn  btn-sm fa fa-window-close" href="{{ list_invoices }}"> Close</a>        
+            <a class="btn  btn-sm btn-block fa fa-window-close" href="{{ list_invoices }}"> Close</a>        
         </div>        
     </div>   
 </div> 

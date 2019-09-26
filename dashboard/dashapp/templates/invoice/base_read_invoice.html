@@ -215,28 +215,42 @@
 		    <div class="row">
 		        <div class="col sm-1">
 		            {% if edit_button %}
-		                <a class="btn btn-sm fa fa-edit" href="{{ edit_invoices }}"> Edit</a>  
+		                <a class="btn btn-sm btn-block fa fa-edit " href="{{ edit_invoices }}"> Edit</a>  
 		            {% endif %}     
 		        </div>
-		        <div class="col sm-10">
+<!-- 		        <div class="col sm-10"> -->
 <!-- 		             {{ edit_button }} -->
 <!-- 		             {{ action_buttons }}      -->
-		        </div>
+<!-- 		        </div> -->
 		        <div class="col sm-1">
-		            <a class="btn  btn-sm fa fa-window-close" href="{{ list_invoices }}"> Close</a>        
+		            <a class="btn  btn-sm btn-block fa fa-window-close" href="{{ list_invoices }}"> Close</a>        
 		        </div>        
 		    </div>   
 		</div>    
 		{% endblock buttons %}
     </form>
     <br><br>
-    <!-- Autocheck#############Autocheck ##########################Autocheck details ####################################### -->
+    <!-- INFOBAHN BLOCK############ ADDITONAL BLOCK FOR INFOBAHN##########################<!-- Autocheck#############Autocheck ##########################Autocheck details ####################################### -->
  <!-- ######################################################################################################## -->
+ <!-- ######################################################################################################## -->
+        
         {% if user_details.roles.0  == 'role1' or  user_details.roles.0  == 'ITC' %}
-        <button type="button" class="btn btn btn-outline-secondary btn-block btn-sm" 
-                               data-toggle="collapse" data-target="#comparator">
-                            Show Result of Auto verification
-         </button>
+        <div class="row" >
+            <div class="col">
+	            <button type="button" class="btn btn btn-outline-secondary btn-block btn-sm" 
+	                               data-toggle="collapse" data-target="#comparator">
+	                            Show Result of Auto verification
+	            </button>
+            </div>
+             <div class="col">
+                 <button type="button" class="btn btn btn-outline-secondary btn-block btn-sm" 
+                               data-toggle="modal" data-target="#myModal">
+                            Show Past Transaction History
+                 </button>
+             </div>
+        </div>
+<!-- Autocheck#############Autocheck ##########################Autocheck details ####################################### -->
+ <!-- ######################################################################################################## -->        
         <div id="comparator" class="collapse" > 
 	        <table class="table" id="read-format">
 	            <thead >
@@ -274,15 +288,7 @@
               <br>
               <br>
  <!-- ###################################################################################################
-############### ###HISTORY OF ALL THE PAST TRANCSCTIONS################################################# -->               
-                    
-	                    <button type="button" class="btn btn btn-outline-secondary btn-block btn-sm" 
-	                           data-toggle="modal" data-target="#myModal">
-						    Show Past Transaction History
-						</button>
-	                  
-	            
-              
+############### ###HISTORY OF ALL THE PAST TRANCSCTIONS################################################# --> 
  <!-- ####converting to pop up box ######################################################################## -->  
  
 			  <div class="modal fade" id="myModal">
