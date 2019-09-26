@@ -233,73 +233,113 @@
     <!-- Autocheck#############Autocheck ##########################Autocheck details ####################################### -->
  <!-- ######################################################################################################## -->
         {% if user_details.roles.0  == 'role1' or  user_details.roles.0  == 'ITC' %}
-            
-        <table class="table" id="read-format">
-            <thead >
-                <div class="container-fluid" style="height:25px;background-color:#ddd">         
-                    <p>Autocheck With WAN Link Inventory </p>
-                </div>
-            </thead> 
-            <tbody>
-                    <tr>
-                     <td class="py-0"> Overall Verification Status</td>
-                     <td class="py-0">{% block autocheck_status %}
-                        {{ PAPERHOUSE_list_invoices.0.autochk.autocheck_status }}   
-                     {% endblock autocheck_status %}</td>
-                     <td class="py-0"></td>
-                     <td class="py-0">Inventory Check</td>
-                     <td class="py-0">{% block inventory_status %}
-                        {{ PAPERHOUSE_list_invoices.0.autochk.inventory_status }}   
-                     {% endblock inventory_status %}</td>
-                     <td class="py-0"></td>
-                     </tr>
-                     <tr>
-                     <td class="py-0">Secondary Database Check</td>
-                     <td class="py-0">{% block lnet_status %}
-                         {{ PAPERHOUSE_list_invoices.0.autochk.lnet_status }}
-                     {% endblock lnet_status %}</td> 
-                      <td class="py-0"></td>
-                     <td class="py-0">Bill of Material Check</td>
-                     <td class="py-0">{% block bom_comp_result %}
-                         {{ PAPERHOUSE_list_invoices.0.autochk.bom_comp_result }}
-                     {% endblock bom_comp_result %}</td>
-                </tr>
-                </tbody>
-              </table> 
+        <button type="button" class="btn btn btn-outline-secondary btn-block btn-sm" 
+                               data-toggle="collapse" data-target="#comparator">
+                            Show Result of Auto verification
+         </button>
+        <div id="comparator" class="collapse" > 
+	        <table class="table" id="read-format">
+	            <thead >
+	                <div class="container-fluid" style="height:25px;background-color:#ddd">         
+	                    <p>Autocheck With WAN Link Inventory </p>
+	                </div>
+	            </thead> 
+	            <tbody>
+	                    <tr>
+	                     <td class="py-0"> Overall Verification Status</td>
+	                     <td class="py-0">{% block autocheck_status %}
+	                        {{ PAPERHOUSE_list_invoices.0.autochk.autocheck_status }}   
+	                     {% endblock autocheck_status %}</td>
+	                     <td class="py-0"></td>
+	                     <td class="py-0">Inventory Check</td>
+	                     <td class="py-0">{% block inventory_status %}
+	                        {{ PAPERHOUSE_list_invoices.0.autochk.inventory_status }}   
+	                     {% endblock inventory_status %}</td>
+	                     <td class="py-0"></td>
+	                     </tr>
+	                     <tr>
+	                     <td class="py-0">Secondary Database Check</td>
+	                     <td class="py-0">{% block lnet_status %}
+	                         {{ PAPERHOUSE_list_invoices.0.autochk.lnet_status }}
+	                     {% endblock lnet_status %}</td> 
+	                      <td class="py-0"></td>
+	                     <td class="py-0">Bill of Material Check</td>
+	                     <td class="py-0">{% block bom_comp_result %}
+	                         {{ PAPERHOUSE_list_invoices.0.autochk.bom_comp_result }}
+	                     {% endblock bom_comp_result %}</td>
+	                </tr>
+	                </tbody>
+	              </table>
+              </div>
               <br>
               <br>
  <!-- ###################################################################################################
 ############### ###HISTORY OF ALL THE PAST TRANCSCTIONS################################################# -->               
-            <table class="table" id="read-format">
-            <thead >
-                <div class="container-fluid" style="height:25px;background-color:#ddd">         
-                    <p> HISTORY OF ALL THE PAST TRANCSCTIONS </p>
-                </div>
-            </thead> 
-            <tbody>
-                 <tr>
-	                 <th>RequestID</th>
-	                 <th>DateTime</th>
-	                 <th>Email</th>
-	                 <th>Org</th>                    
-	                 <th>Activity</th>
-	                 <th>Data Changed </th>
-                 </tr>
-                 {% for e in event_history %}
-                 <tr>
-                     <td class="py-0"> 
-                     <a href="{% url 'dashapp:striker_list_responces'  e.auditinfo.requestid  %}">
-                     {{ e.auditinfo.requestid }}</a>
-                     </td>
-                     <td class="py-0"> {{ e.auditinfo.api_call_time_stamp|cut:"0"|cut:"." }} </td>
-                     <td class="py-0"> {{ e.auditinfo.logged_in_user_email }} </td>
-                     <td class="py-0"> {{ e.auditinfo.logged_in_user_org_unit }} </td>
-                     <td class="py-0"> {{ e.event_name }} </td>
-                     <td class="py-0"> {{ e.eventdata }} </td>
-                </tr>
-                {% endfor  %}
+                    
+	                    <button type="button" class="btn btn btn-outline-secondary btn-block btn-sm" 
+	                           data-toggle="modal" data-target="#myModal">
+						    Show Past Transaction History
+						</button>
+	                  
+	            
+              
+ <!-- ####converting to pop up box ######################################################################## -->  
+ 
+			  <div class="modal fade" id="myModal">
+			    <div class="modal-dialog modal-xl">
+			      <div class="modal-content">      
+			       
+			        <div class="modal-header">
+			          <h4 class="modal-title">HISTORY OF ALL THE PAST TRANCSCTIONS</h4>
+			          <button type="button" class="close" data-dismiss="modal">&times;</button>
+			        </div>
+			        
+			        <!-- Modal body -->
+			        <div class="modal-body">
+			          <table class="table" id="read-format">
+			            <thead >
+			                <div class="container-fluid" style="height:25px;background-color:#ddd">         
+			                    <p> HISTORY OF ALL THE PAST TRANCSCTIONS </p>
+			                </div>
+			            </thead> 
+			            <tbody>
+			                 <tr>
+			                     <th>RequestID</th>
+			                     <th>DateTime</th>
+			                     <th>Email</th>
+			                     <th>Org</th>                    
+			                     <th>Activity</th>
+			                     <th>Data Changed </th>
+			                 </tr>
+			                 {% for e in event_history %}
+			                 <tr>
+			                     <td class="py-0"> 
+			                     <a href="{% url 'dashapp:striker_list_responces'  e.auditinfo.requestid  %}">
+			                     {{ e.auditinfo.requestid }}</a>
+			                     </td>
+			                     <td class="py-0"> {{ e.auditinfo.api_call_time_stamp|cut:"0"|cut:"." }} </td>
+			                     <td class="py-0"> {{ e.auditinfo.logged_in_user_email }} </td>
+			                     <td class="py-0"> {{ e.auditinfo.logged_in_user_org_unit }} </td>
+			                     <td class="py-0"> {{ e.event_name }} </td>
+			                     <td class="py-0"> {{ e.eventdata }} </td>
+			                </tr>
+			                {% endfor  %}
                 </tbody>
               </table>  
+              
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  
+</div>           
+              
          {% endif %}
 </div> 
 {% endwith %}
