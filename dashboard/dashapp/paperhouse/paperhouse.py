@@ -48,24 +48,26 @@ def list_invoices(request, invoicenum, mode, admin=None):
             template_name = 'invoice/base_read_invoice.html'
             print(template_name)
         if list_invoices:
-            edit_button, action_buttons = _get_all_buttons(request, list_invoices)
+            accept_button, edit_button, action_buttons = _get_all_buttons(request, list_invoices)
         else:
-            edit_button, action_buttons = False, []
+            accept_button, edit_button, action_buttons,  = False, False, []
         template_data = {"PAPERHOUSE_list_invoices": list_invoices,
-                         "edit_button": edit_button, "action_buttons": action_buttons }
+                         "edit_button": edit_button, "action_buttons": action_buttons,
+                         "accept_button": accept_button }
         web_page = validate_active_session(request, template_name, template_data)
         return web_page
     
 def _get_all_buttons(request, list_invoices):
     role = request.session.get('session_user_details').get('roles')[0]
     current_status = list_invoices[0].get('status')
-    edit_button = _get_edit_button(role, current_status)
+    accept_button, edit_button = _get_edit_button(role, current_status)
     action_buttons = _get_action_buttons(current_status)
-    return  edit_button, action_buttons
+    return  accept_button, edit_button, action_buttons
     
         
 def _get_edit_button(role, current_status): 
-    current_stat_for_tsp_edits = ["InfobahnRecommendedtoTSP", "InfobahnApproved", ]    
+    accept_button = False
+    current_stat_for_tsp_edits = ["InfobahnRecommendedtoTSP",  ]    
     current_stat_for_infob_edits = ["InvoiceCreated", "TSPSubmmitedChange",
                                     "DivisionRecommended", "TSPAcceptedChanges"]
     current_stat_for_mis_edits = ["SentToDivision", "TSPCourierdHardCopy" , "HardCopyRecieved"]
@@ -74,11 +76,12 @@ def _get_edit_button(role, current_status):
         edit_button = True
     elif role == 'TSP' and current_status in current_stat_for_tsp_edits:
         edit_button = True
+        accept_button = True
     elif role == 'MIS' and current_status in current_stat_for_mis_edits:
         edit_button = True
     else:
         edit_button = False
-    return edit_button
+    return accept_button, edit_button
 
 def _get_action_buttons(current_status):
     if current_status == "InvoiceCreated" or current_status == "TSPSubmmitedChange":

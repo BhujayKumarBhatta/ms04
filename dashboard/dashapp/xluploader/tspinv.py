@@ -27,12 +27,14 @@ from dashapp.tokenleader.tllogin import validate_active_session
 
 
 def download_invoicexlformat(request):
-    file_path = '/home/kkumar/tspb/xluploader/xluploader/tests/testdata/sample_inv_upload.xlsx'
-    #file_path = '/tmp/media/sample_inv_upload.xlsx'
-    if os.path.exists(file_path):
-        with open(file_path, 'rb') as fh:
+    xl_data_path = os.path.join(os.path.dirname(__file__),
+                               os.pardir, 'static', 'xlformat')
+    xl_file_path = os.path.join(xl_data_path, 'sample_inv_upload.xlsx')
+    print(xl_file_path) 
+    if os.path.exists(xl_file_path):
+        with open(xl_file_path, 'rb') as fh:
             response = HttpResponse(fh.read(), content_type="application/vnd.ms-excel")
-            response['Content-Disposition'] = 'inline; filename=' + os.path.basename(file_path)
+            response['Content-Disposition'] = 'inline; filename=' + os.path.basename(xl_file_path)
             return response
     raise Http404
 
