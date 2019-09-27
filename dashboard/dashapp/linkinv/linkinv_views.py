@@ -24,6 +24,24 @@ def list_ravl_link(request):
     template_data = {"list_ravl_link": list_ravl_link }
     template_name = "wanlinks/list_ravl_link.html"
     web_page = validate_active_session(request, template_name, template_data)
+    return web_page
+
+def add_ravl_link(request):
+    tlclient = tllogin.prep_tlclient_from_session(request)
+    lic = LIClient(tlclient)
+    list_ravl_link = lic.list_obj("Lnetlink","all","all")
+    template_data = {"list_ravl_link": list_ravl_link }
+    template_name = "wanlinks/list_ravl_link.html"
+    web_page = validate_active_session(request, template_name, template_data)
+    return web_page 
+
+def delete_ravl_link(request):
+    tlclient = tllogin.prep_tlclient_from_session(request)
+    lic = LIClient(tlclient)
+    list_ravl_link = lic.list_obj("Lnetlink","all","all")
+    template_data = {"list_ravl_link": list_ravl_link }
+    template_name = "wanlinks/list_ravl_link.html"
+    web_page = validate_active_session(request, template_name, template_data)
     return web_page 
 
 ################  NEW CHANGE 8 MAY 2019 ###################
@@ -114,7 +132,7 @@ def manageaddress(request):
     tlclient = tllogin.prep_tlclient_from_session(request)
     lic = LIClient(tlclient)
     if request.method == 'GET': 
-        template_data = {"manageaddress":"TRUE" }
+        template_data = {"manageaddress": "TRUE" }
         result = render(request, 'home.html',template_data)   
         return result
     if request.method == 'POST':
@@ -123,7 +141,7 @@ def manageaddress(request):
             addressid = int(addressid)
 ## Delete only if Address ID is available and and its greater than zero
             if addressid > 0 :
-                status = lic.delete_obj('Altaddress',addressid)  
+                status = lic.delete_obj('Altaddress', addressid)  
         else:
 ## Adding New address
             all_add = {"prem_name": "", "prem_no": 0, "state": "", "city": "", "pin": 0, "gstn": "", "sgst_rate": 0, "cgst_rate": 0}
@@ -152,36 +170,44 @@ def manageaddress(request):
 def managelocalnet(request):
     tlclient = tllogin.prep_tlclient_from_session(request)
     lic = LIClient(tlclient)
+    status = None
     if request.method == 'GET': 
         list_rate = lic.list_obj("Rate","all","all")        
         list_Altaddress = lic.list_obj("Altaddress","all","all")        
-        list_links_localnet = lic.list_links()
-        template_data = {"managelocalnet":"TRUE" ,"list_rate":list_rate,"list_Altaddress":list_Altaddress,"list_links_localnet":list_links_localnet}
-        result = render(request, 'home.html',template_data)     
-        return result
+        list_infobahn_links = lic.list_links()
+        template_data = {"list_rate":list_rate,
+                         "list_Altaddress":list_Altaddress,
+                         "list_infobahn_links": list_infobahn_links}
+        template_name = "wanlinks/add_ravl_link.html"
     if request.method == 'POST':
-        if request.POST['ADDDEL'] == "TRUE":
-            netlink_id = request.POST['netlink_id']          
-            netlinkid = int(netlink_id)
-            if netlinkid > 0 :
-                status = lic.delete_obj('Lnetlink',netlinkid)  
+        must_have = ["infoopsid", "altaddress_id", "rate_id", "last_payment_date"]
+        for m in must_have:
+            if m not in request.POST:
+                template_data = {"status": "form has not been filled up with all necessary data" }
+        lnet_d = {"infoopsid": "", "altaddress_id": 0, "rate_id": 0, "last_payment_date": ""}
+        lnet_d['infoopsid'] = request.POST.get('infoopsid')
+        lnet_d['altaddress_id'] = request.POST.get('altaddress_id')
+        lnet_d['rate_id'] = request.POST.get('rate_id')
+        lnet_d['last_payment_date'] = request.POST.get('last_payment_date')
+        status = lic.add_lnetlink(lnet_d) 
+        template_data = {"status": status }
+        template_name = "wanlinks/exec_status.html"
+    web_page = validate_active_session(request, template_name, template_data)
+    return web_page
+
+def delete_ravl(request, objname, infoopsid):
+    if request.method == "GET":
+        tlclient = tllogin.prep_tlclient_from_session(request)
+        lic = LIClient(tlclient)
+        if infoopsid:
+            status = lic.delete_obj(objname, infoopsid)
+            template_data = {"status": status }
         else:
-            lnet_d = {"infoopsid": "", "altaddress_id": 0, "rate_id": 0, "last_payment_date": ""}
-            lnet_d['infoopsid'] = request.POST['infoopsid_id']
-            lnet_d['altaddress_id'] = request.POST['altaddress_id']
-            lnet_d['rate_id'] = request.POST['rate_id']
-            lnet_d['last_payment_date'] = request.POST['last_payment_date']
-            status = lic.add_lnetlink(lnet_d)            
-    list_rate = lic.list_obj("Rate","all","all")
-    list_Payment = lic.list_obj("Payment","all","all")
-    list_Altaddress = lic.list_obj("Altaddress","all","all")
-    list_Lnetlink = lic.list_obj("Lnetlink","all","all")        
-    template_data = {"list_rate": list_rate
-                ,"list_Payment": list_Payment
-                ,"list_Altaddress": list_Altaddress
-                ,"list_Lnetlink": list_Lnetlink,"TEST" :"Success","STATUS" : status,"listobjects":"TRUE"}
-    result = render(request, 'home.html', template_data)                
-    return result
+            template_data = {"status": "No id supplied for deletion" }
+    template_name = "wanlinks/exec_status.html"
+    web_page = validate_active_session(request, template_name, template_data)
+    return web_page   
+        
 ###### LIST ALL
 
 

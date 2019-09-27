@@ -1,0 +1,71 @@
+{% extends "home.html" %}
+{% block content-area %}
+{% url 'dashapp:managelocalnet' as managelocalnet %}
+{% url 'dashapp:list_ravl_link'  as list_ravl_link %}
+
+    <div class="container-fluid" style="padding-top:7px">
+        <form action="{{ managelocalnet }}" method="post">
+           {% csrf_token %}            
+        <table class="table" id="edit-format">            
+            <tbody>   
+                  <th><p>Add New RAVL Link</p></th>             
+			      <tr >			        
+				        <td class="py-0"><label for="InfoID">InfoID:</label></td>
+                        <td class="py-0">
+                            <select  id="InfoID" name="infoopsid">
+                                <option>Select</option>
+                            {% for l in list_infobahn_links %}
+                                <option>{{ l.serial_no  }}</option>
+                            {% endfor %}
+                            </select>
+                        </td>
+                        
+			            <td class="py-0"><label for="SiteID">SiteID:</label></td>
+			            <td class="py-0">
+			                <select  id="SiteID" name="altaddress_id"> 
+			                    <option>Select</option>
+                               {% for a in list_Altaddress %}
+                                 <option>{{ a.id  }}</option>
+                               {% endfor %}
+                            </select>
+                        </td>
+			       </tr>
+			       
+			       <tr >                 
+                        <td class="py-0"><label for="RateID">RateID:</label></td>
+                        <td class="py-0">
+                            <select  id="RateID" name="rate_id">
+                                <option>Select</option>
+                            {% for r in list_rate %}
+                                <option>{{ r.id  }}</option>
+                            {% endfor %}
+                            </select>
+                        </td>
+                        
+                        <td class="py-0"><label for="last_payment_date">last_payment_date:</label></td>
+                        <td class="py-0">
+                            <input type="text" class="form-control" placeholder="dd-mm-yyyy"
+                                id="last_payment_date" name="last_payment_date" >
+                        </td>
+                   </tr>		        
+			</tbody> 
+		</table>
+	</div>
+	<div class="container-fluid" id="edit-format">
+        <div class="row">
+            <div class="col-sm-3">
+                <button class="btn btn-sm fa fa-plus"  type="submit"> &nbsp SAVE</button>
+            </div>
+            <div class="col-sm-7 justify-content-center">     
+            </div>
+            <div class="col-sm-2 justify-content-end">
+                <a class="btn  btn-sm fa fa-minus" href="{{ list_ravl_link }}"> &nbsp CANCEL</a>
+            </div> 
+            </form>
+        </div>
+        
+          
+{% endblock content-area %}
+
+
+<!--  ======================================== CODE ENDs HERE ==========================================    -->

@@ -1,0 +1,24 @@
+{% extends "home.html" %}
+{% block content-area %}
+{% url 'dashapp:striker_list_responces'  XL_VIEW_UPLOAD.request_id  as list_exec_stat %}
+{% url 'dashapp:paperhouse_list_invoice' 'all' 'read' 'normal' as list_invoices %}
+
+   <div class="container-fluid" id="edit-format">
+        <div class="row">
+            <div class="col-sm-9">
+                {{ status }}
+            </div>
+                        <div class="col-sm-2 justify-content-end">
+                <a class="btn  btn-sm fa fa-minus" href="{{ list_ravl_link }}"> &nbsp Close</a>
+            </div> 
+            </form>
+        </div>
+<!--     {{list_exec_status}} -->
+<!--     {{ update_request }} -->
+<!--     {{ update_request.customername }} -->
+    
+{% endblock content-area %}
+
+
+
+

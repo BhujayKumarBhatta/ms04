@@ -2,12 +2,13 @@
 {% block content-area %}
 {% url 'dashapp:adduser' as aduser%}
 {% url 'dashapp:delete_user' as duser %}
+{% url 'dashapp:managelocalnet' as managelocalnet %}
 
 
     <div class="container-fluid" style="padding-top:7px">
         <div class="row">
             <div class="col-sm-3">
-                <a class="btn btn-primary btn-sm fa fa-plus" href="{{ aduser }}"> &nbsp add new ravl</a>
+                <a class="btn btn-primary btn-sm fa fa-plus" href="{{ managelocalnet }}"> &nbsp add new ravl</a>
             </div>
             <div class="col-sm-7 justify-content-center">
                 <h5>RATE & ADDRSS VERIFIED LINKS</h5>
