@@ -8,6 +8,7 @@
 {% url 'dashapp:paperhouse_list_invoice' 'all' 'read' 'normal' as list_invoices %}
 {% url 'dashapp:paperhouse_list_invoice' 'all' 'read' 'admin' as list_invoices_admin %}
 {% url 'dashapp:list_links'  as list_links %}
+{% url 'dashapp:list_ravl_link'  as list_ravl_link %}
 
 	  <ul class="navbar-nav py-0"> 
 		    <!-- User Admin  -->
@@ -28,12 +29,12 @@
 	              Invoices
 	            </a>
 	            <div class="dropdown-menu">
+	              <a class="dropdown-item" href="{{list_invoices}}">All</a>
 	              <a class="dropdown-item" href="#">In progress</a>
                   <a class="dropdown-item" href="#">pending for tsp</a>
                   <a class="dropdown-item" href="#">pending for division</a>
                   <a class="dropdown-item" href="#">pending for Infobahn</a>
                   <a class="dropdown-item" href="#">Closed</a>
-                  <a class="dropdown-item" href="{{list_invoices}}">All</a>
                   <a class="dropdown-item" href="{{list_invoices_admin}}">Invoice Admin</a>
 	            </div>
 	          </li> 
@@ -44,9 +45,9 @@
                   Links
                 </a>
                 <div class="dropdown-menu">
-                  <a class="dropdown-item" href="{{list_links}}">list links</a>
-                  <a class="dropdown-item" href="#">Link 2</a>
-                  <a class="dropdown-item" href="#">Link 3</a>
+                  <a class="dropdown-item" href="{{ list_links }}">List Infoops links</a>
+                  <a class="dropdown-item" href="{{ list_ravl_link }}">Rate & Address verified links (RAVL)</a>
+                  <a class="dropdown-item" href="#">Future </a>
                 </div>
               </li> 
               

@@ -4,6 +4,7 @@ from micros1client.client import MSClient
 from django.shortcuts import render
 from dashapp.tokenleader.tllogin import validate_active_session
 
+
     
 def list_links(request):
     if request.method == 'GET': 
@@ -14,7 +15,16 @@ def list_links(request):
         template_data = {"list_links": list_links }
         template_name = "wanlinks/list_links.html"
     web_page = validate_active_session(request, template_name, template_data)
-    return web_page  
+    return web_page
+
+def list_ravl_link(request):
+    tlclient = tllogin.prep_tlclient_from_session(request)
+    lic = LIClient(tlclient)
+    list_ravl_link = lic.list_obj("Lnetlink","all","all")
+    template_data = {"list_ravl_link": list_ravl_link }
+    template_name = "wanlinks/list_ravl_link.html"
+    web_page = validate_active_session(request, template_name, template_data)
+    return web_page 
 
 ################  NEW CHANGE 8 MAY 2019 ###################
 ###### PAYMENT
@@ -173,6 +183,9 @@ def managelocalnet(request):
     result = render(request, 'home.html', template_data)                
     return result
 ###### LIST ALL
+
+
+    
 def listobjects(request):
     #if request.method == 'GET':
     tlclient = tllogin.prep_tlclient_from_session(request)

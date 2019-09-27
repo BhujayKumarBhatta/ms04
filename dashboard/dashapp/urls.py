@@ -19,6 +19,7 @@ from django.conf.urls.static import static
 ## End
 from django.urls import path
 from . import views
+from dashapp.linkinv import  linkinv_views
 #from rest_framework_swagger.views import get_swagger_view
 #from rest_framework.documentation import include_docs_urls
 
@@ -35,6 +36,8 @@ urlpatterns = [path('', views.login, name='login'),
     path('managerate', views.managerate, name='managerate'),
     path('managepayment', views.managepayment, name='managepayment'),
     path('listobjects', views.listobjects, name='listobjects'),
+    
+    path('list_ravl_link', linkinv_views.list_ravl_link, name='list_ravl_link'),
     
     path('list_test', views.list_links, name='list_test'),      
     #Token Leader

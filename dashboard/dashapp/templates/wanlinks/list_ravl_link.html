@@ -1,0 +1,80 @@
+{% extends "home.html" %}
+{% block content-area %}
+{% url 'dashapp:adduser' as aduser%}
+{% url 'dashapp:delete_user' as duser %}
+
+
+    <div class="container-fluid" style="padding-top:7px">
+        <div class="row">
+            <div class="col-sm-3">
+                <a class="btn btn-primary btn-sm fa fa-plus" href="{{ aduser }}"> &nbsp add new ravl</a>
+            </div>
+            <div class="col-sm-7 justify-content-center">
+                <h5>RATE & ADDRSS VERIFIED LINKS</h5>
+            </div>
+            <div class="col-sm-2 justify-content-end">
+                <a class="btn btn-danger btn-sm fa fa-minus" href="#"> &nbsp delete all ravl</a>
+            </div> 
+        </div>
+               
+        <table class="table table-striped table-hover">
+            <thead >
+                <tr style="background-color: #4CAF50;font-size:10px">
+			        <th>TSP</th>
+			        <th>LinkType</th>
+			        <th>RAVLID</th>
+			        <th>INFOID</th>
+			        <th>CIRCUITID</th>			        
+			        <th>SiteID</th>
+			        <th>RateID</th>
+			        <th>LifeCycle</th>
+			        <th>ActivityType</th> 
+			        <th>Rate/Y</th>
+			        <th>OTC</th>
+			        <th>Last Payment Date</th>
+			        <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for l in list_ravl_link %}
+			      <tr style="font-size:10px">			        
+			        <td>{{ l.rate.tsp }}</td>
+			        <td>{{ l.rate.linktype }}</td>
+			        <td>{{ l.id }}</td>
+			        <td>{{ l.infoopsid }}</td>
+			        <td>{{ l.circuitid }}</td>
+			        <td>{{ l.altaddress.id }}</td>
+			        <td>{{ l.rate.id }}</td>
+			        <td>{{ l.lifecycle_phase }}</td>
+			        <td>{{ l.rate.activity_type }}</td>
+			        <td>{{ l.rate.rate_per_year }}</td>
+			        <td>{{ l.rate.otc }}</td>
+			        <td>{{ l.last_payment_date }}</td>
+			        
+			        <td>
+			             <form action="{{duser}}" method="POST" 
+			                             enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <input type="hidden" id="username" name="username" value="{{l.username}}" 
+                                             class="form-control">
+                            <button class="fa fa-remove" style="font-size:10px;color:red" 
+                                type="submit"  onclick="return confirm('Are you sure? you want to Delete User')">                                
+                            </button>
+                    </form>
+			        </td> 
+			      </tr>
+			    {% endfor %}
+			</tbody>
+		</table>
+	</div>
+	
+    
+{% endblock content-area %}
+
+
+<!--  {'is_active': 'Y', 'otp_mode': 'mail', 'allowemaillogin': 'N', 
+        'email': 'prasen.biswas@itc.in', 'created by': 'user1', 
+        'wfc': {'is_active': 'Y', 'org': 'org1', 
+                 'creation_date': '2019-07-04 15:03:08', 'created by': None, 'name': 'wfc1', 
+                 'orgunit': 'ou1', 'id': 1, 'department': 'dept1'}, 
+        'username': 'prasen', 'id': 6, 'roles': ['role1'], 'creation_date': '2019-07-08 12:55:16'} -->
