@@ -3,6 +3,8 @@
 {% url 'dashapp:managelocalnet' as managelocalnet %}
 {% url 'dashapp:list_ravl_link'  as list_ravl_link %}
 
+
+
     <div class="container-fluid" style="padding-top:7px">
         <form action="{{ managelocalnet }}" method="post">
            {% csrf_token %}            

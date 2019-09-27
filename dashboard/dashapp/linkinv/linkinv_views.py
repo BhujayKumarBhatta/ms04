@@ -195,16 +195,18 @@ def managelocalnet(request):
     web_page = validate_active_session(request, template_name, template_data)
     return web_page
 
-def delete_ravl(request, objname, infoopsid):
+def delete_ravl(request, objname, objid):
     if request.method == "GET":
         tlclient = tllogin.prep_tlclient_from_session(request)
         lic = LIClient(tlclient)
-        if infoopsid:
-            status = lic.delete_obj(objname, infoopsid)
+        if objid:
+            status = lic.delete_obj(objname, objid)
             template_data = {"status": status }
         else:
             template_data = {"status": "No id supplied for deletion" }
-    template_name = "wanlinks/exec_status.html"
+    list_ravl_link = lic.list_obj("Lnetlink","all","all")
+    template_data = {"list_ravl_link": list_ravl_link }
+    template_name = "wanlinks/list_ravl_link.html"    
     web_page = validate_active_session(request, template_name, template_data)
     return web_page   
         

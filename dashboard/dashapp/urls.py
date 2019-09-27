@@ -38,6 +38,7 @@ urlpatterns = [path('', views.login, name='login'),
     path('listobjects', views.listobjects, name='listobjects'),
     
     path('list_ravl_link', linkinv_views.list_ravl_link, name='list_ravl_link'),
+    path('delete_ravl/<slug:objname>/<slug:objid>', linkinv_views.delete_ravl, name='delete_ravl'),
     
     path('list_test', views.list_links, name='list_test'),      
     #Token Leader

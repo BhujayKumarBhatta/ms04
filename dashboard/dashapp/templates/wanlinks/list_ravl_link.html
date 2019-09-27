@@ -5,6 +5,7 @@
 {% url 'dashapp:managelocalnet' as managelocalnet %}
 
 
+
     <div class="container-fluid" style="padding-top:7px">
         <div class="row">
             <div class="col-sm-3">
@@ -53,15 +54,9 @@
 			        <td>{{ l.last_payment_date }}</td>
 			        
 			        <td>
-			             <form action="{{duser}}" method="POST" 
-			                             enctype="multipart/form-data">
-                            {% csrf_token %}
-                            <input type="hidden" id="username" name="username" value="{{l.username}}" 
-                                             class="form-control">
-                            <button class="fa fa-remove" style="font-size:10px;color:red" 
-                                type="submit"  onclick="return confirm('Are you sure? you want to Delete User')">                                
-                            </button>
-                    </form>
+                       <a href="{% url 'dashapp:delete_ravl' 'Lnetlink' l.id  %}" class="button fa fa-remove" style="font-size:10px;color:red">
+                       </a>                                  
+                      
 			        </td> 
 			      </tr>
 			    {% endfor %}
