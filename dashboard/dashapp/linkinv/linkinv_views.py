@@ -17,14 +17,35 @@ def list_links(request):
     web_page = validate_active_session(request, template_name, template_data)
     return web_page
 
-def list_ravl_link(request):
+
+def list_ravl_obj(request, objname):
     tlclient = tllogin.prep_tlclient_from_session(request)
     lic = LIClient(tlclient)
-    list_ravl_link = lic.list_obj("Lnetlink","all","all")
-    template_data = {"list_ravl_link": list_ravl_link }
-    template_name = "wanlinks/list_ravl_link.html"
+    list_ravl_obj = lic.list_obj(objname,"all","all")
+    template_data = {"list_ravl_obj": list_ravl_obj }
+    if objname == "Lnetlink":
+        template_name = "wanlinks/list_ravl_link.html"
+    if objname == "Altaddress":
+        template_name = "wanlinks/list_ravl_addr.html"
     web_page = validate_active_session(request, template_name, template_data)
     return web_page
+
+def delete_ravl(request, objname, objid):
+    if request.method == "GET":
+        tlclient = tllogin.prep_tlclient_from_session(request)
+        lic = LIClient(tlclient)
+        if objid:
+            status = lic.delete_obj(objname, objid)
+            template_data = {"status": status }
+        else:
+            template_data = {"status": "No id supplied for deletion" }
+    list_ravl_link = lic.list_obj("Lnetlink","all","all")
+    template_data = {"list_ravl_link": list_ravl_link }
+    template_name = "wanlinks/list_ravl_link.html"    
+    web_page = validate_active_session(request, template_name, template_data)
+    return web_page 
+
+
 
 def add_ravl_link(request):
     tlclient = tllogin.prep_tlclient_from_session(request)
@@ -35,14 +56,7 @@ def add_ravl_link(request):
     web_page = validate_active_session(request, template_name, template_data)
     return web_page 
 
-def delete_ravl_link(request):
-    tlclient = tllogin.prep_tlclient_from_session(request)
-    lic = LIClient(tlclient)
-    list_ravl_link = lic.list_obj("Lnetlink","all","all")
-    template_data = {"list_ravl_link": list_ravl_link }
-    template_name = "wanlinks/list_ravl_link.html"
-    web_page = validate_active_session(request, template_name, template_data)
-    return web_page 
+
 
 ################  NEW CHANGE 8 MAY 2019 ###################
 ###### PAYMENT
@@ -269,3 +283,11 @@ def list_test(request):
         _param2 = request.GET['name']
         response = 'You are name is :' + _param1 + ' and from :' + _param2
         return HttpResponse(response)   
+# def list_ravl_link(request):
+#     tlclient = tllogin.prep_tlclient_from_session(request)
+#     lic = LIClient(tlclient)
+#     list_ravl_link = lic.list_obj("Lnetlink","all","all")
+#     template_data = {"list_ravl_link": list_ravl_link }
+#     template_name = "wanlinks/list_ravl_link.html"
+#     web_page = validate_active_session(request, template_name, template_data)
+#     return web_page

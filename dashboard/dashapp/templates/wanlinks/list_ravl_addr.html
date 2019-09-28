@@ -1,0 +1,65 @@
+{% extends "home.html" %}
+{% block content-area %}
+{% url 'dashapp:adduser' as aduser%}
+{% url 'dashapp:delete_user' as duser %}
+{% url 'dashapp:managelocalnet' as managelocalnet %}
+
+
+
+    <div class="container-fluid" style="padding-top:7px">
+        <div class="row">
+            <div class="col-sm-3">
+                <a class="btn btn-primary btn-sm fa fa-plus" href="{{ managelocalnet }}"> 
+                    &nbsp add new site
+                </a>
+            </div>
+            <div class="col-sm-7 justify-content-center">
+                <h5>ADDRSS </h5>
+            </div>
+            <div class="col-sm-2 justify-content-end">
+                <a class="btn btn-danger btn-sm fa fa-minus" href="#"> 
+                    &nbsp delete all sites
+                </a>
+            </div> 
+        </div>
+               
+        <table class="table table-striped table-hover">
+            <thead >
+                <tr style="background-color: #4CAF50;font-size:10px">
+			        <th>SiteID</th>
+			        <th>prem_name</th>
+			        <th>prem_no</th>
+			        <th>city</th>
+			        <th>state</th>	
+			        <th>pin</th>
+			        <th>gstn</th>
+			        <th>sgst_rate</th> 
+			        <th>cgst_rate/Y</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for l in list_ravl_obj %}
+			      <tr style="font-size:10px">
+			         <td>{{ l.id }}</td>			        
+			         <td>{{ l.prem_name }}</td>
+			         <td>{{ l.prem_no }}</td>
+			         <td>{{ l.city }}</td>
+			         <td>{{ l.state }}</td>
+			        <td>{{ l.pin }}</td>
+			        <td>{{ l.gstn}}</td>
+			        <td>{{ l.sgst_rate }}</td>
+			        <td>
+                       <a href="{% url 'dashapp:delete_ravl' 'Altaddress' l.id  %}" class="button fa fa-remove" style="font-size:10px;color:red">
+                       </a>                                  
+                      
+			        </td> 
+			      </tr>
+			    {% endfor %}
+			</tbody>
+		</table>
+	</div>
+	{{ list_ravl_obj }}
+    
+{% endblock content-area %}
+
+
