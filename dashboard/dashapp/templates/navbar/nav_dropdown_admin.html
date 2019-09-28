@@ -10,6 +10,8 @@
 {% url 'dashapp:list_links'  as list_links %}
 {% url 'dashapp:list_ravl_obj' "Lnetlink" as list_ravl_links %}
 {% url 'dashapp:list_ravl_obj' "Altaddress" as list_ravl_Altaddress %}
+{% url 'dashapp:list_ravl_obj' "Rate" as list_ravl_Rate %}
+{% url 'dashapp:list_ravl_obj' "Payment" as list_ravl_Payment %}
 
 
 	  <ul class="navbar-nav py-0"> 
@@ -60,8 +62,8 @@
                 </a>
                 <div class="dropdown-menu">
                   <a class="dropdown-item" href="{{ list_ravl_Altaddress }}">Site & GST </a>
-                  <a class="dropdown-item" href="#">Link 2</a>
-                  <a class="dropdown-item" href="#">Link 3</a>
+                  <a class="dropdown-item" href="{{ list_ravl_Rate }}">CITPC Rates 2</a>
+                  <a class="dropdown-item" href="{{ list_ravl_Payment }}">Payments to TSP</a>
                 </div>
               </li> 
         </ul>

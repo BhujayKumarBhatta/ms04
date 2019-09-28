@@ -1,0 +1,107 @@
+{% extends "home.html" %}
+{% block content-area %}
+{% url 'dashapp:list_ravl_obj' "Payment" as list_ravl_obj %}
+{% url 'dashapp:add_payment'  as add_payment %}
+
+
+
+ payment_dict = {"invoice_id": "", "billing_from": "01-01-2019", 
+                        "billing_to": "31-03-2019", "billing_type": "Installation",
+                        "amount": "0", "payment_date": "", "mode": "", "ref_no": "", 
+                        "status": "", "netlink_id": 0}
+
+    <div class="container-fluid" style="padding-top:7px">
+        <form action="{{ add_payment }}" method="post">
+           {% csrf_token %}            
+        <table class="table" id="edit-format">            
+            <tbody>   
+                  <th><p>update payment</p></th>             
+			      <tr >			        
+				        <td class="py-0"><label for="netlink_id">Payment For Link:</label></td>
+                        <td class="py-0">
+                           <select  id="netlink_id" name="netlink_id" required>
+                                <option>Select</option>
+                            {% for l in list_Lnetlink %}
+                                <option>{{ l.infoopsid  }}</option>
+                            {% endfor %}
+                            </select>
+                        </td>
+                        
+			            <td class="py-0"><label for="invoice_id">invoice_id:</label></td>
+			            <td class="py-0">
+			                <input type="text"  id="invoice_id" name="invoice_id" required> 
+                        </td>
+			       </tr>
+			       
+			       <tr >    
+                        <td class="py-0"><label for="payment_date">payment_date:</label></td>
+                        <td class="py-0">
+                            <input type="text" placeholder="dd-mm-yyyy"  id="payment_date" name="payment_date" required> 
+                        </td>
+                        
+                        <td class="py-0"><label for="mode">Payment Mode:</label></td>
+                        <td class="py-0">
+                            <select id="mode" name="mode" required> 
+                                <option> epayment </option>
+                                <option> Cheque </option>
+                        </td>
+                   </tr>
+                   
+                   <tr >                 
+                        <td class="py-0"><label for="ref_no">payment ref_no:</label></td>
+                        <td class="py-0">
+                            <input type="text" id="ref_no" name="ref_no"> 
+                        </td>
+                        
+                        <td class="py-0"><label for="amount">amount:</label></td>
+                        <td class="py-0">
+                            <input type="number" id="amount" name="amount"> 
+                        </td>
+                        
+                   </tr>
+                   
+                   <tr >                 
+                        <td class="py-0"><label for="billing_type">billing_type:</label></td>
+                        <td class="py-0">
+                            <input type="text" id="billing_type" name="billing_type"> 
+                        </td>
+                        
+                        <td class="py-0"><label for="status">payment status:</label></td>
+                        <td class="py-0">
+                            <input type="text" id="status" name="status"> 
+                        </td>
+                   </tr>
+                   
+                   <tr >                 
+                        <td class="py-0"><label for="billing_from">billing_from:</label></td>
+                        <td class="py-0">
+                            <input type="text" id="billing_from" name="billing_from" placeholder="dd-mm-yyyy"> 
+                        </td>
+                        
+                        <td class="py-0"><label for="billing_to">billing_to:</label></td>
+                        <td class="py-0">
+                            <input type="text" id="billing_to" name="billing_to" placeholder="dd-mm-yyyy"> 
+                        </td>
+                   </tr>
+                                      		        
+			</tbody> 
+		</table>
+	</div>
+	<div class="container-fluid" id="edit-format">
+        <div class="row">
+            <div class="col-sm-3">
+                <button class="btn btn-sm fa fa-plus"  type="submit"> &nbsp SAVE</button>
+            </div>
+            <div class="col-sm-7 justify-content-center">     
+            </div>
+            <div class="col-sm-2 justify-content-end">
+                <a class="btn  btn-sm fa fa-minus" href="{{ list_ravl_obj }}"> &nbsp CANCEL</a>
+            </div> 
+            </form>
+        </div>
+        
+          
+{% endblock content-area %}
+
+
+<!--  ======================================== CODE ENDs HERE ==========================================    -->

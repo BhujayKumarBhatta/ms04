@@ -29,17 +29,15 @@ urlpatterns = [path('', views.login, name='login'),
                path('logout', views.log_out, name='logout'),
     #Infops DB
     path('home2', views.home2, name='home2'),
-
-    path('list_links', views.list_links, name='list_links'),
-    path('managelocalnet', views.managelocalnet, name='managelocalnet'),
-    path('manageaddress', views.manageaddress, name='manageaddress'),
-    path('managerate', views.managerate, name='managerate'),
-    path('managepayment', views.managepayment, name='managepayment'),
-    path('listobjects', views.listobjects, name='listobjects'),
     
-#     path('list_ravl_link', linkinv_views.list_ravl_link, name='list_ravl_link'),
+    path('list_links', views.list_links, name='list_links'),
     path('list_ravl_obj/<slug:objname>', linkinv_views.list_ravl_obj, name='list_ravl_obj'),
     path('delete_ravl/<slug:objname>/<slug:objid>', linkinv_views.delete_ravl, name='delete_ravl'),
+    path('managelocalnet', views.managelocalnet, name='managelocalnet'),
+    path('add_address', linkinv_views.add_address, name='add_address'),
+    path('add_rate', linkinv_views.add_rate,  name='add_rate'),
+    path('add_payment', linkinv_views.add_payment,  name='add_payment'),
+    
     
     path('list_test', views.list_links, name='list_test'),      
     #Token Leader
@@ -91,6 +89,11 @@ urlpatterns = [path('', views.login, name='login'),
     
     #,path('swagger-docs/', schema_view)
     #,path('docs/', include_docs_urls(title='TSP Billing'))
+    
+    path('manageaddress', views.manageaddress, name='manageaddress'),
+    path('managerate', views.managerate, name='managerate'),
+    path('managepayment', views.managepayment, name='managepayment'),
+    path('listobjects', views.listobjects, name='listobjects'),
     ]
 
 

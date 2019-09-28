@@ -2,14 +2,14 @@
 {% block content-area %}
 {% url 'dashapp:adduser' as aduser%}
 {% url 'dashapp:delete_user' as duser %}
-{% url 'dashapp:managelocalnet' as managelocalnet %}
+{% url 'dashapp:add_address' as add_address %}
 
 
 
     <div class="container-fluid" style="padding-top:7px">
         <div class="row">
             <div class="col-sm-3">
-                <a class="btn btn-primary btn-sm fa fa-plus" href="{{ managelocalnet }}"> 
+                <a class="btn btn-primary btn-sm fa fa-plus" href="{{ add_address }}"> 
                     &nbsp add new site
                 </a>
             </div>
@@ -50,15 +50,14 @@
 			        <td>{{ l.sgst_rate }}</td>
 			        <td>
                        <a href="{% url 'dashapp:delete_ravl' 'Altaddress' l.id  %}" class="button fa fa-remove" style="font-size:10px;color:red">
-                       </a>                                  
-                      
+                       </a> 
 			        </td> 
 			      </tr>
 			    {% endfor %}
 			</tbody>
 		</table>
 	</div>
-	{{ list_ravl_obj }}
+	
     
 {% endblock content-area %}
 
