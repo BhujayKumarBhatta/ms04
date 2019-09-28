@@ -15,7 +15,7 @@
                 <h5>RATE & ADDRSS VERIFIED LINKS</h5>
             </div>
             <div class="col-sm-2 justify-content-end">
-                <a class="btn btn-danger btn-sm fa fa-minus" href="#"> &nbsp delete all ravl</a>
+                <a class="btn btn-danger btn-sm fa fa-minus" href="#"> &nbsp delete all</a>
             </div> 
         </div>
                
@@ -48,13 +48,20 @@
 			      <tr style="font-size:10px">			        
 			         <td>{{ infol.tsp_name }}</td>
 			         <td>{{ infol.circuit_ID }}</td>
-                     <td>{{ l.infoopsid }}</td>
+                     <td>                       
+                        <a href="#" data-toggle="modal" data-target="#infoops_data" >
+                            {{ l.infoopsid }}
+                        </a>
+                     </td>
 			         <td>{{ infol.link_type }}</td>
 			         <td > {{ infol.bandwidth}} </td>
 			         <td>{{ infol.lifecycle_phase }}</td>
 			         <td>{{ infol.division_name }}</td>
-			         		         
-			         <td>{{ l.altaddress.id }}</td>
+			         <td>
+			             <a href="#" data-toggle="modal" data-target="#site_data" >
+                            {{ l.altaddress.id }}
+                        </a>
+			         </td>
 			         <td>{{ l.altaddress.prem_name }}</td>
 			         <td>{{ l.altaddress.city }}</td>          
 			        
@@ -79,6 +86,81 @@
 		</table>
 	</div>
 	
+<!-- #############################MODAL FOR INFOOPS DATA ################################ -->
+	<div id="infoops_data" class="modal" >
+	<div class="modal-dialog">
+    <div class="modal-content">
+	
+	   <div class="modal-header">
+        <h4 class="modal-title">Infoops </h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      
+      <div class="modal-body">
+            <table class="table" id="read-format">
+                <thead >
+	                    <th class="py-0"> lifecycle_starts</th>
+	                    <th class="py-0"> commission_date</th>
+	                    <th class="py-0"> surrender_date</th>
+                </thead> 
+                
+                <tbody>
+                {% for l in list_ravl_obj %}
+                    {% for infol in list_infoops_links %}
+                        {% if l.infoopsid == infol.serial_no %}
+                    <tr>
+		                <td class="py-0"> {{ infol.lifecycle_start_date }} </td>
+		                <td class="py-0"> {{ infol.commission_date }} </td>
+		                <td class="py-0"> {{ infol.surrender_date }} </td>
+                    </tr>
+                      {% endif %}
+                  {% endfor %}
+                {% endfor %}
+                </tbody>
+             </table>
+        </div>
+      </div>
+      </div>
+      </div>
+      
+<!-- #############################MODAL FOR INFOOPS DATA ################################ -->
+    <div id="site_data" class="modal" >
+    <div class="modal-dialog">
+    <div class="modal-content">
+    
+       <div class="modal-header">
+        <h4 class="modal-title">Infoops </h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      
+      <div class="modal-body">
+            <table class="table" id="read-format">
+                <thead >
+                        <th class="py-0"> prem_no</th>
+                        <th class="py-0"> state</th>
+                        <th class="py-0"> pin</th>
+                        <th class="py-0"> gstn</th>
+                        <th class="py-0"> sgst</th>
+                        <th class="py-0"> cgst</th>
+                </thead> 
+                
+                <tbody>
+                    {% for l in list_ravl_obj %}
+                    <tr>
+                        <td class="py-0"> {{ l.altaddress.prem_no }} </td>
+                        <td class="py-0"> {{ l.altaddress.state }} </td>
+                        <td class="py-0"> {{ l.altaddress.pin }} </td>
+                        <td class="py-0"> {{ l.altaddress.gstn }} </td>
+                        <td class="py-0"> {{ l.altaddress.sgst_rate }} </td>
+                        <td class="py-0"> {{ l.altaddress.cgst_rate }} </td>
+                    </tr>
+                    {% endfor %}                    
+                </tbody>
+             </table>
+        </div>
+      </div>
+      </div>
+      </div>
     
 {% endblock content-area %}
 

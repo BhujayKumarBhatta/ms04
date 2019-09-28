@@ -12,7 +12,13 @@
             <tbody>   
                   <th><p>Add New RAVL Link</p></th>             
 			      <tr >			        
-				        <td class="py-0"><label for="InfoID">InfoID:</label></td>
+				        <td class="py-0">
+				            <label for="InfoID">
+				                <a href="#" data-toggle="modal" data-target="#infolink-data" >
+                                    InfoID:
+                                 </a>
+				            </label>
+				        </td>
                         <td class="py-0">
                             <select  id="InfoID" name="infoopsid">
                                 <option>Select</option>
@@ -22,7 +28,14 @@
                             </select>
                         </td>
                         
-			            <td class="py-0"><label for="SiteID">SiteID:</label></td>
+			            <td class="py-0">
+			                 <label for="SiteID">
+			                     <a href="#" data-toggle="modal" data-target="#site_data" >
+                                    SiteID:
+                                 </a>
+			                     
+			                 </label>
+			             </td>
 			            <td class="py-0">
 			                <select  id="SiteID" name="altaddress_id"> 
 			                    <option>Select</option>
@@ -34,7 +47,13 @@
 			       </tr>
 			       
 			       <tr >                 
-                        <td class="py-0"><label for="RateID">RateID:</label></td>
+                        <td class="py-0">
+                            <label for="RateID">
+                                <a href="#" data-toggle="modal" data-target="#rate_data" >
+                                    RateID:
+                                 </a>
+                            </label>
+                        </td>
                         <td class="py-0">
                             <select  id="RateID" name="rate_id">
                                 <option>Select</option>
@@ -65,7 +84,142 @@
             </div> 
             </form>
         </div>
-        
+
+
+
+<!-- #############################MODAL FOR INFOLINK  DATA ################################ -->
+    <div id="infolink-data" class="modal" >
+    <div class="modal-dialog">
+    <div class="modal-content">
+    
+       <div class="modal-header">
+        <h4 class="modal-title">Sites  </h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      
+      <div class="modal-body">
+            <table class="table" id="read-format">
+                <thead >
+                        <th class=py-0">InfoOps ID</th>
+                    <th class="py-0">Division</th>
+                    <th class="py-0">Link type</th>
+                    <th class="py-0"> Circuit ID</th>
+                    <th class="py-0"> Bandwidth</th>
+                    <th class="py-0"> tspname</th>
+                    <th class="py-0"> lifecycle_phase</th>
+                    <th class="py-0"> lifecycle_starts</th>
+                    <th class="py-0"> commission_date</th>
+                    <th class="py-0"> surrender_date</th>
+                    <th class="py-0" style="width:300px"> fa_end</th>
+                </thead> 
+                
+                <tbody>
+                    {% for link in list_infobahn_links %}
+                    <tr>
+                        <td class="py-0">{{ link.serial_no }}</td>
+		                <td class="py-0">{{ link.division_name }}</td>
+		                <td class="py-0">{{ link.link_type }} </td>
+		                <td class="py-0"> {{ link.circuit_ID }} </td>
+		                <td class="py-0"> {{ link.bandwidth}} </td>
+		                <td class="py-0"> {{ link.tsp_name }} </td>
+		                <td class="py-0"> {{ link.lifecycle_phase }} </td>
+		                <td class="py-0"> {{ link.lifecycle_start_date }} </td>
+		                <td class="py-0"> {{ link.commission_date }} </td>
+		                <td class="py-0"> {{ link.surrender_date }} </td>
+		                <td class="py-0" style="width:300px"> {{ link.fa_end }} </td>
+                    </tr>
+                    {% endfor %}                    
+                </tbody>
+             </table>
+        </div>
+      </div>
+      </div>
+      </div>
+
+
+<!-- #############################MODAL FOR address /site  DATA ################################ -->
+    <div id="site_data" class="modal" >
+    <div class="modal-dialog">
+    <div class="modal-content">
+    
+       <div class="modal-header">
+        <h4 class="modal-title">Sites  </h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      
+      <div class="modal-body">
+            <table class="table" id="read-format">
+                <thead >
+                        <th class="py-0"> siteid</th>
+                        <th class="py-0"> prem_name</th>
+                        <th class="py-0"> prem_no</th>
+                        <th class="py-0"> state</th>
+                        <th class="py-0"> pin</th>
+                        <th class="py-0"> gstn</th>
+                        <th class="py-0"> sgst</th>
+                        <th class="py-0"> cgst</th>
+                </thead> 
+                
+                <tbody>
+                    {% for l in list_Altaddress %}
+                    <tr>
+                        <td class="py-0"> {{ l.id }} </td>
+                        <td class="py-0"> {{ l.prem_name }} </td>
+                        <td class="py-0"> {{ l.prem_no }} </td>
+                        <td class="py-0"> {{ l.state }} </td>
+                        <td class="py-0"> {{ l.pin }} </td>
+                        <td class="py-0"> {{ l.gstn }} </td>
+                        <td class="py-0"> {{ l.sgst_rate }} </td>
+                        <td class="py-0"> {{ l.cgst_rate }} </td>
+                    </tr>
+                    {% endfor %}                    
+                </tbody>
+             </table>
+        </div>
+      </div>
+      </div>
+      </div>
+   
+   
+ <!-- #############################MODAL FOR RATE  DATA ################################ -->
+    <div id="rate_data" class="modal" >
+    <div class="modal-dialog">
+    <div class="modal-content">
+    
+       <div class="modal-header">
+        <h4 class="modal-title">Sites  </h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      
+      <div class="modal-body">
+            <table class="table" id="read-format">
+                <thead >
+                     <th>RateID</th>
+                    <th>TSP</th>
+                    <th>LinkType</th>
+                    <th>ActivityType</th>
+                    <th>OTC</th>    
+                    <th>rate_per_year</th>
+                   
+                </thead> 
+                
+                <tbody>
+                    {% for l in list_rate %}
+                    <tr>
+                        <td>{{ l.id }}</td>                 
+                     <td>{{ l.tsp }}</td>
+                     <td>{{ l.linktype }}</td>
+                     <td>{{ l.activity_type }}</td>
+                     <td>{{ l.otc }}</td>
+                    <td>{{ l.rate_per_year }}</td>
+                    </tr>
+                    {% endfor %}                    
+                </tbody>
+             </table>
+        </div>
+      </div>
+      </div>
+      </div>
           
 {% endblock content-area %}
 
