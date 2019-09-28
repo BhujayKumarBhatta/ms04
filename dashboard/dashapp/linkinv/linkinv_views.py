@@ -22,7 +22,9 @@ def list_ravl_obj(request, objname):
     tlclient = tllogin.prep_tlclient_from_session(request)
     lic = LIClient(tlclient)
     list_ravl_obj = lic.list_obj(objname,"all","all")
-    template_data = {"list_ravl_obj": list_ravl_obj }
+    list_infoops_links = lic.list_links()
+    template_data = {"list_ravl_obj": list_ravl_obj, 
+                     "list_infoops_links": list_infoops_links }
     if objname == "Lnetlink":
         template_name = "wanlinks/list_ravl_link.html"
     if objname == "Altaddress":

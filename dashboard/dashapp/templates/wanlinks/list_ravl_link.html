@@ -23,35 +23,48 @@
             <thead >
                 <tr style="background-color: #4CAF50;font-size:10px">
 			        <th>TSP</th>
+			        <th>CIRCUITID</th>
+                    <th>INFOID</th>
 			        <th>LinkType</th>
-			        <th>RAVLID</th>
-			        <th>INFOID</th>
-			        <th>CIRCUITID</th>			        
+			        <th>Bandwidth</th>
+			        <th>LifeCycle</th>			       
+			        <th>Division</th>
 			        <th>SiteID</th>
+			        <th>SiteName</th>
+			        <th>City</th>
 			        <th>RateID</th>
-			        <th>LifeCycle</th>
 			        <th>ActivityType</th> 
 			        <th>Rate/Y</th>
 			        <th>OTC</th>
 			        <th>Last Payment Date</th>
+			        <th>RAVLID</th>
 			        <th>Delete</th>
                 </tr>
             </thead>
             <tbody>
                 {% for l in list_ravl_obj %}
+                    {% for infol in list_infoops_links %}
+                        {% if l.infoopsid == infol.serial_no %}
 			      <tr style="font-size:10px">			        
-			        <td>{{ l.rate.tsp }}</td>
-			        <td>{{ l.rate.linktype }}</td>
-			        <td>{{ l.id }}</td>
-			        <td>{{ l.infoopsid }}</td>
-			        <td>{{ l.circuitid }}</td>
-			        <td>{{ l.altaddress.id }}</td>
+			         <td>{{ infol.tsp_name }}</td>
+			         <td>{{ infol.circuit_ID }}</td>
+                     <td>{{ l.infoopsid }}</td>
+			         <td>{{ infol.link_type }}</td>
+			         <td > {{ infol.bandwidth}} </td>
+			         <td>{{ infol.lifecycle_phase }}</td>
+			         <td>{{ infol.division_name }}</td>
+			         		         
+			         <td>{{ l.altaddress.id }}</td>
+			         <td>{{ l.altaddress.prem_name }}</td>
+			         <td>{{ l.altaddress.city }}</td>          
+			        
 			        <td>{{ l.rate.id }}</td>
-			        <td>{{ l.lifecycle_phase }}</td>
+			        
 			        <td>{{ l.rate.activity_type }}</td>
 			        <td>{{ l.rate.rate_per_year }}</td>
 			        <td>{{ l.rate.otc }}</td>
 			        <td>{{ l.last_payment_date }}</td>
+			         <td>{{ l.id }}</td>
 			        
 			        <td>
                        <a href="{% url 'dashapp:delete_ravl' 'Lnetlink' l.id  %}" class="button fa fa-remove" style="font-size:10px;color:red">
@@ -59,6 +72,8 @@
                       
 			        </td> 
 			      </tr>
+			      {% endif %}
+			      {% endfor %}
 			    {% endfor %}
 			</tbody>
 		</table>
