@@ -8,10 +8,10 @@
 {% url 'dashapp:paperhouse_list_invoice' 'all' 'read' 'normal' as list_invoices %}
 {% url 'dashapp:paperhouse_list_invoice' 'all' 'read' 'admin' as list_invoices_admin %}
 {% url 'dashapp:list_links'  as list_links %}
-{% url 'dashapp:list_ravl_obj' "Lnetlink" as list_ravl_links %}
-{% url 'dashapp:list_ravl_obj' "Altaddress" as list_ravl_Altaddress %}
-{% url 'dashapp:list_ravl_obj' "Rate" as list_ravl_Rate %}
-{% url 'dashapp:list_ravl_obj' "Payment" as list_ravl_Payment %}
+{% url 'dashapp:list_ravl_obj' "Lnetlink" user_details.roles.0 as list_ravl_links %}
+{% url 'dashapp:list_ravl_obj' "Altaddress" user_details.roles.0 as list_ravl_Altaddress %}
+{% url 'dashapp:list_ravl_obj' "Rate" user_details.roles.0 as list_ravl_Rate %}
+{% url 'dashapp:list_ravl_obj' "Payment" user_details.roles.0 as list_ravl_Payment %}
 
 
 	  <ul class="navbar-nav py-0"> 

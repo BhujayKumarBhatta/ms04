@@ -1,7 +1,7 @@
 {% extends "home.html" %}
 {% block content-area %}
-{% url 'dashapp:list_ravl_obj' "Altaddress" as list_ravl_obj %}
-{% url 'dashapp:list_ravl_link'  as list_ravl_link %}
+{% url 'dashapp:list_ravl_obj' "Altaddress" user_details.roles.0 as list_ravl_obj %}
+
 
     <div class="container-fluid" style="padding-top:7px">
         <form action="{{ list_ravl_link }}" method="post">

@@ -1,14 +1,11 @@
 {% extends "home.html" %}
 {% block content-area %}
-{% url 'dashapp:list_ravl_obj' "Payment" as list_ravl_obj %}
+{% url 'dashapp:list_ravl_obj' "Payment" user_details.roles.0 as list_ravl_obj %}
 {% url 'dashapp:add_payment'  as add_payment %}
 
 
 
- payment_dict = {"invoice_id": "", "billing_from": "01-01-2019", 
-                        "billing_to": "31-03-2019", "billing_type": "Installation",
-                        "amount": "0", "payment_date": "", "mode": "", "ref_no": "", 
-                        "status": "", "netlink_id": 0}
+
 
     <div class="container-fluid" style="padding-top:7px">
         <form action="{{ add_payment }}" method="post">

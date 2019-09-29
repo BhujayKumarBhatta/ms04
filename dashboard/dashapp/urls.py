@@ -31,7 +31,7 @@ urlpatterns = [path('', views.login, name='login'),
     path('home2', views.home2, name='home2'),
     
     path('list_links', views.list_links, name='list_links'),
-    path('list_ravl_obj/<slug:objname>', linkinv_views.list_ravl_obj, name='list_ravl_obj'),
+    path('list_ravl_obj/<slug:objname>/<slug:rolename>', linkinv_views.list_ravl_obj, name='list_ravl_obj'),
     path('delete_ravl/<slug:objname>/<slug:objid>', linkinv_views.delete_ravl, name='delete_ravl'),
     path('managelocalnet', views.managelocalnet, name='managelocalnet'),
     path('add_address', linkinv_views.add_address, name='add_address'),

@@ -2,11 +2,8 @@
 {% block content-area %}
 {% url 'dashapp:list_ravl_obj' "Rate" as list_ravl_obj %}
 {% url 'dashapp:add_rate'  as add_rate %}
-{% url 'dashapp:list_ravl_link'  as list_ravl_link %}
 
 
- must_have = ["tsp", "linktype", "otc", "activity_type",
-                     "rate_per_year",]
 
     <div class="container-fluid" style="padding-top:7px">
         <form action="{{ add_rate }}" method="post">
