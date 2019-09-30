@@ -1,11 +1,11 @@
 {% extends "home.html" %}
 {% block content-area %}
-{% url 'dashapp:addorg' as adorg%}
+{% url 'dashapp:add_org' as adorg%}
 {% url 'dashapp:delete_org' as dorg %}
     <div class="container-fluid" style="padding-top:7px">
         <div class="row">
             <div class="col-sm-3">
-                <a class="btn btn-primary btn-sm fa fa-plus" href="{{ aduser }}"> &nbsp add new Org</a>
+                <a class="btn btn-primary btn-sm fa fa-plus" href="{{ adorg }}"> &nbsp add new Org</a>
             </div>
             <div class="col-sm-7 justify-content-center">
                 <h5>List of registered Org in tokenleader</h5>
