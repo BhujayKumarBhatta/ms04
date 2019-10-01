@@ -104,7 +104,8 @@ def delete_org(request):
         #status = tlclient.delete_org(data)
         status = tlclient.delete_org(orgname)
         list_org = tlclient.list_org()
-        template_data = {"list_org": list_org.get('status'), "DELETE_STATUS": status}
+        template_data = {"list_org": list_org}
+#        template_data = {"list_org": list_org.get('status'), "DELETE_STATUS": status}
         template_name = 'admin_pages/list_org.html'
         web_page = validate_active_session(request, template_name, template_data)
         return web_page
