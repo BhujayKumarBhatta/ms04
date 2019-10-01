@@ -129,6 +129,15 @@ def list_dept(request):
         return web_page 
         		
 def add_dept(request):
+    if request.method == 'GET': 
+        tlclient = tllogin.prep_tlclient_from_session(request)
+        list_dept = tlclient.list_dept()
+        dept_list = tlclient.list_dept() 
+        template_data = {"DEPTLIST":dept_list}
+        template_name =  'admin_pages/add_dept.html'
+        web_page = validate_active_session(request, template_name, template_data)
+        return web_page 
+        
     if request.method == 'POST':
         tlclient = tllogin.prep_tlclient_from_session(request)
         deptname = request.POST['deptname']
@@ -139,8 +148,8 @@ def add_dept(request):
         status = tlclient.add_dept(deptname)
         list_dept = tlclient.list_dept()
         template_data = {"list_dept": list_dept }
-        result = render(request, 'home.html', template_data)
-        return result
+        web_page = validate_active_session(request, template_name, template_data)
+        return web_page
         		
 def delete_dept(request):
     if request.method == 'POST':
