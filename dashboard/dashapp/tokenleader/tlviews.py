@@ -72,8 +72,6 @@ def list_org(request):
     if request.method == 'GET': 
         tlclient = tllogin.prep_tlclient_from_session(request)
         list_org = tlclient.list_org()
-        list_org = json.dumps(list_org)
-        list_org = json.loads(list_org)
         template_data = {"list_org": list_org } 
         template_name = 'admin_pages/list_org.html'
         web_page = validate_active_session(request, template_name, template_data)       
@@ -83,7 +81,7 @@ def add_org(request):
     if request.method == 'POST':
         tlclient = tllogin.prep_tlclient_from_session(request)
         orgname = request.POST['orgname']
-        data = dict({"username": "","orgname": ""})
+        data = dict({"orgname": ""})
         #data = {"oname": "org2"}
         #data["username"] = username
         #data["oname"] = orgname         
@@ -91,8 +89,8 @@ def add_org(request):
         status = tlclient.add_org(orgname)
         list_org = tlclient.list_org()
         template_data = {"list_org": list_org }
-        result = render(request, 'home.html', template_data)
-        return result
+        web_page = validate_active_session(request, template_name, template_data)
+        return web_page 
             
 def delete_org(request):
     if request.method == 'POST':
