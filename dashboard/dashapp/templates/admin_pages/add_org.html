@@ -1,11 +1,11 @@
 {% extends "home.html" %}
 {% block content-area %}
-{% url 'dashapp:add_org' as adorg%}
+{% url 'dashapp:add_org' as addorg%}
 {% url 'dashapp:list_org' as lorg%}
 
 
     <div class="container-fluid" style="padding-top:7px">
-        <form action="{{ adorg }}" method="post">
+        <form action="{{ addorg }}" method="post">
            {% csrf_token %}            
         <table class="table" id="edit-format">            
             <tbody>   
@@ -15,22 +15,7 @@
 				        <td class="py-0"><input type="text" class="form-control" id="orgname" name="orgname" required></td>
 				   </tr>
 			       <tr>                  
-	                    <td class="py-0"><label for="Role">Role:</label></td>
-	                    <td class="py-0"><select  id="role" name="role"> <option>Select</option>
-		                                            {% for rol in ROLELIST.status %}
-		                                                <option>{{ rol.name  }}</option>
-		                                            {% endfor %}
-                                        </select>
-                        </td>
-                        <td class="py-0"><label for="WFC">WFC:</label></td>
-                        <td class="py-0"><select  id="wfc" name="wfc"> <option>Select</option>
-                                                {% for wfc in WFCLIST.status %}
-                                                    <option data-toggle="tooltip" data-placement="right" 
-                                                    title="{{wfc.org}}, {{wfc.orgunit}}, {{wfc.department}}">
-                                                    {{ wfc.name  }}
-                                                    </option>
-                                                {% endfor %}              
-                                          </select>
+	                    
                         </td>
 	                 
                   
