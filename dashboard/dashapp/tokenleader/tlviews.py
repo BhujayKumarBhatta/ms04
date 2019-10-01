@@ -89,7 +89,7 @@ def add_org(request):
         status = tlclient.add_org(orgname)
         list_org = tlclient.list_org()
         template_data = {"list_org": list_org}
-        template_name = 'admin_pages/status_modal.html'
+        template_name = 'admin_pages/list_org.html'
         web_page = validate_active_session(request, template_name, template_data)
         return web_page 
 
