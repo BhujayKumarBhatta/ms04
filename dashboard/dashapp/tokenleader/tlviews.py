@@ -4,18 +4,15 @@ from linkinvclient.client import LIClient
 from django.shortcuts import render
 from dashapp.tokenleader.tllogin import validate_active_session
 
-## Token Leader Module ****************************************************
-
 def list_users(request):
-    if request.method == 'GET':  
+    if request.method == 'GET': 
         tlclient = tllogin.prep_tlclient_from_session(request)
         list_users = tlclient.list_users()
         template_data = {"list_users": list_users.get('status')}
         template_name = 'admin_pages/list_users.html'
         web_page = validate_active_session(request, template_name, template_data)
         return web_page
-        
-#=========adduser pending        		
+
 def adduser(request):
     if request.method == 'GET': 
         tlclient = tllogin.prep_tlclient_from_session(request)
@@ -70,6 +67,46 @@ def delete_user(request):
         template_name = 'admin_pages/list_users.html'
         web_page = validate_active_session(request, template_name, template_data)
         return web_page
+        
+def list_org(request):
+    if request.method == 'GET': 
+        tlclient = tllogin.prep_tlclient_from_session(request)
+        list_org = tlclient.list_org()
+        list_org = json.dumps(list_org)
+        list_org = json.loads(list_org)
+        template_data = {"list_org": list_org } 
+        template_name = 'admin_pages/list_org.html'
+        web_page = validate_active_session(request, template_name, template_data)       
+        return web_page    
+          
+def add_org(request):
+    if request.method == 'POST':
+        tlclient = tllogin.prep_tlclient_from_session(request)
+        orgname = request.POST['orgname']
+        data = dict({"username": "","orgname": ""})
+        #data = {"oname": "org2"}
+        #data["username"] = username
+        #data["oname"] = orgname         
+        #status = tlclient.add_org(data)
+        status = tlclient.add_org(orgname)
+        list_org = tlclient.list_org()
+        template_data = {"list_org": list_org }
+        result = render(request, 'home.html', template_data)
+        return result
+            
+def delete_org(request):
+    if request.method == 'POST':
+        tlclient = tllogin.prep_tlclient_from_session(request)
+        orgname = request.POST['orgname']
+        data = dict({"orgname": ""})
+        #data = {"oname": "org2"}
+        data["oname"] = orgname 
+        #status = tlclient.delete_org(data)
+        status = tlclient.delete_org(orgname)
+        list_org = tlclient.list_org()
+        template_data = {"list_org": list_org ,"DELETE_STATUS":status}
+        result = render(request, 'home.html', template_data)
+        return result
 
 def list_dept(request):
     if request.method == 'GET': 
@@ -183,46 +220,7 @@ def delete_ou(request):
         list_ou = tlclient.list_ou()
         template_data = {"list_ou": list_ou ,"DELETE_STATUS":status}
         result = render(request, 'home.html', template_data)
-        return result
-        		
-def list_org(request):
-    if request.method == 'GET': 
-        tlclient = tllogin.prep_tlclient_from_session(request)
-        list_org = tlclient.list_org()
-        list_org = json.dumps(list_org)
-        list_org = json.loads(list_org)
-        template_data = {"list_org": list_org } 
-        result = render(request, 'home.html', template_data)         
-        return result      
-        		
-def add_org(request):
-    if request.method == 'POST':
-        tlclient = tllogin.prep_tlclient_from_session(request)
-        orgname = request.POST['orgname']
-        data = dict({"username": "","orgname": ""})
-        #data = {"oname": "org2"}
-        #data["username"] = username
-        #data["oname"] = orgname         
-        #status = tlclient.add_org(data)
-        status = tlclient.add_org(orgname)
-        list_org = tlclient.list_org()
-        template_data = {"list_org": list_org }
-        result = render(request, 'home.html', template_data)
-        return result
-        		
-def delete_org(request):
-    if request.method == 'POST':
-        tlclient = tllogin.prep_tlclient_from_session(request)
-        orgname = request.POST['orgname']
-        data = dict({"orgname": ""})
-        #data = {"oname": "org2"}
-        data["oname"] = orgname 
-        #status = tlclient.delete_org(data)
-        status = tlclient.delete_org(orgname)
-        list_org = tlclient.list_org()
-        template_data = {"list_org": list_org ,"DELETE_STATUS":status}
-        result = render(request, 'home.html', template_data)
-        return result
+        return result  		 		
 	
 def list_wfc(request):
     if request.method == 'GET': 
