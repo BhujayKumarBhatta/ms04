@@ -1,11 +1,11 @@
 {% extends "home.html" %}
 {% block content-area %}
-{% url 'dashapp:add_org' as adorg%}
+{% url 'dashapp:add_org' as addorg%}
 {% url 'dashapp:delete_org' as dorg %}
     <div class="container-fluid" style="padding-top:7px">
         <div class="row">
             <div class="col-sm-3">
-                <a class="btn btn-primary btn-sm fa fa-plus" href="{{ adorg }}"> &nbsp add new Org</a>
+                <a class="btn btn-primary btn-sm fa fa-plus" href="{{ addorg }}"> &nbsp add new Org</a>
             </div>
             <div class="col-sm-7 justify-content-center">
                 <h5>List of registered Org in tokenleader</h5>
@@ -30,7 +30,7 @@
 			             <form action="{{dorg}}" method="POST" 
 			                             enctype="multipart/form-data">
                             {% csrf_token %}
-                            <input type="text" id="orgname" name="orgname" value="{{t.name}}" 
+                            <input type="hidden" id="orgname" name="orgname" value="{{t.name}}" 
                                              class="form-control">
                             <button class="fa fa-remove" style="font-size:10px;color:red" 
                                 type="submit"  onclick="return confirm('Are you sure? you want to Delete User')">                                
