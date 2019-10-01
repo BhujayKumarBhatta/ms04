@@ -78,6 +78,15 @@ def list_org(request):
         return web_page    
           
 def add_org(request):
+    if request.method == 'GET': 
+        tlclient = tllogin.prep_tlclient_from_session(request)
+        list_org = tlclient.list_org()
+        org_list = tlclient.list_org() 
+        template_data = {"ORGLIST":org_list}
+        template_name =  'admin_pages/add_org.html'
+        web_page = validate_active_session(request, template_name, template_data)
+        return web_page 
+
     if request.method == 'POST':
         tlclient = tllogin.prep_tlclient_from_session(request)
         orgname = request.POST['orgname']
