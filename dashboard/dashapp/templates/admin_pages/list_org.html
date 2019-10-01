@@ -23,14 +23,14 @@
                 </tr>
             </thead>
             <tbody>
-                {% for l in list_org %}
+                {% for t in list_org %}
 			      <tr style="font-size:10px">			        
-			        <td>{{ l.org}}</td>
+			        <td>{{ t.orgname}}</td>
 			        <td>
 			             <form action="{{dorg}}" method="POST" 
 			                             enctype="multipart/form-data">
                             {% csrf_token %}
-                            <input type="hidden" id="oname" name="orgname" value="{{l.org}}" 
+                            <input type="hidden" id="oname" name="orgname" value="{{t.orgname}}" 
                                              class="form-control">
                             <button class="fa fa-remove" style="font-size:10px;color:red" 
                                 type="submit"  onclick="return confirm('Are you sure? you want to Delete User')">                                
