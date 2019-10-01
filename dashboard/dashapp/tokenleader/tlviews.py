@@ -92,7 +92,8 @@ def add_org(request):
         template_name = 'admin_pages/status_modal.html'
         web_page = validate_active_session(request, template_name, template_data)
         return web_page 
-            
+
+           
 def delete_org(request):
     if request.method == 'POST':
         tlclient = tllogin.prep_tlclient_from_session(request)
@@ -103,9 +104,10 @@ def delete_org(request):
         #status = tlclient.delete_org(data)
         status = tlclient.delete_org(orgname)
         list_org = tlclient.list_org()
-        template_data = {"list_org": list_org ,"DELETE_STATUS":status}
-        result = render(request, 'home.html', template_data)
-        return result
+        template_data = {"list_org": list_org.get('status'), "DELETE_STATUS": status}
+        template_name = 'admin_pages/list_org.html'
+        web_page = validate_active_session(request, template_name, template_data)
+        return web_page
 
 def list_dept(request):
     if request.method == 'GET': 
