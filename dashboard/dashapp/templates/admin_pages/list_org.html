@@ -18,34 +18,16 @@
         <table class="table table-striped table-hover">
             <thead >
                 <tr style="background-color: #4CAF50;font-size:10px">
-			        <th>Name</th>
-			        <th>Email</th>
-			        <th>Role</th>
-			        <th>Org</th>
-			        <th>OU</th>
-			        <th>Department</th>
-			        <th>Active</th>
-			        <th>OTP</th>			        
-			        <th>maillogin</th>
-			        <th>WFC</th>
+			        <th>Name</th>			        
 			        <th>Delete</th>
                 </tr>
             </thead>
             <tbody>
-                {% for l in list_users %}
+                {% for l in list_org %}
 			      <tr style="font-size:10px">			        
-			        <td>{{ l.username }}</td>
-			        <td>{{ l.email }}</td>
-			        <td>{{ l.roles|join:"," }}</td>
-			        <td>{{ l.wfc.org }}</td>
-			        <td>{{ l.wfc.orgunit }}</td>
-			        <td>{{ l.wfc.dept }}</td>
-			        <td>{{ l.is_active }}</td>
-			        <td>{{ l.otp_mode }}</td>
-			        <td>{{ l.allowemaillogin }}</td>
 			        <td>{{ l.wfc.name }}</td>
 			        <td>
-			             <form action="{{duser}}" method="POST" 
+			             <form action="{{dorg}}" method="POST" 
 			                             enctype="multipart/form-data">
                             {% csrf_token %}
                             <input type="hidden" id="username" name="username" value="{{l.username}}" 
