@@ -133,7 +133,7 @@ def add_dept(request):
         tlclient = tllogin.prep_tlclient_from_session(request)
         list_dept = tlclient.list_dept()
         dept_list = tlclient.list_dept() 
-        template_data = {"DEPTLIST":dept_list}
+        template_data = {"list_dept": list_dept }
         template_name =  'admin_pages/add_dept.html'
         web_page = validate_active_session(request, template_name, template_data)
         return web_page 
