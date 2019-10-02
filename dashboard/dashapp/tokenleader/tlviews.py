@@ -148,6 +148,7 @@ def add_dept(request):
         status = tlclient.add_dept(deptname)
         list_dept = tlclient.list_dept()
         template_data = {"list_dept": list_dept }
+        template_name = 'admin_pages/list_dept.html'
         web_page = validate_active_session(request, template_name, template_data)
         return web_page
         		
