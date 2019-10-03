@@ -163,8 +163,7 @@ def delete_dept(request):
         template_name = 'admin_pages/list_dept.html'
         web_page = validate_active_session(request, template_name, template_data)
         return web_page
-        
-
+ 
 def list_role(request):
     if request.method == 'GET': 
         tlclient = tllogin.prep_tlclient_from_session(request)
@@ -172,10 +171,20 @@ def list_role(request):
         list_role = json.dumps(list_role)
         list_role = json.loads(list_role)
         template_data = {"list_role": list_role } 
-        result = render(request, 'home.html', template_data)         
-        return result
-        		
+        template_name = 'admin_pages/list_role.html'
+        web_page = validate_active_session(request, template_name, template_data)       
+        return web_page        
+      		
 def add_role(request):
+    if request.method == 'GET': 
+        tlclient = tllogin.prep_tlclient_from_session(request)
+        list_role = tlclient.list_role()
+        role_list = tlclient.list_role() 
+        template_data = {"list_dept": list_role }
+        template_name =  'admin_pages/add_role.html'
+        web_page = validate_active_session(request, template_name, template_data)
+        return web_page
+        
     if request.method == 'POST':
         tlclient = tllogin.prep_tlclient_from_session(request)
         rolename = request.POST['rolename']
@@ -186,8 +195,9 @@ def add_role(request):
         status = tlclient.add_role(rolename)
         list_role = tlclient.list_role()
         template_data = {"list_role": list_role }
-        result = render(request, 'home.html', template_data)
-        return result
+        template_name = 'admin_pages/list_role.html'
+        web_page = validate_active_session(request, template_name, template_data)
+        return web_page  
         		
 def delete_role(request):
     if request.method == 'POST':
@@ -199,9 +209,10 @@ def delete_role(request):
         #status = tlclient.delete_role(data)
         status = tlclient.delete_role(rolename)
         list_role = tlclient.list_role()
-        template_data = {"list_role": list_role ,"DELETE_STATUS":status}
-        result = render(request, 'home.html', template_data)
-        return result
+        template_data = {"list_role": list_role}
+        template_name = 'admin_pages/list_role.html'
+        web_page = validate_active_session(request, template_name, template_data)       
+        return web_page 
 
 def list_ou(request):
     if request.method == 'GET': 
