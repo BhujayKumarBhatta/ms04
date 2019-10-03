@@ -168,8 +168,6 @@ def list_role(request):
     if request.method == 'GET': 
         tlclient = tllogin.prep_tlclient_from_session(request)
         list_role = tlclient.list_role()
-        list_role = json.dumps(list_role)
-        list_role = json.loads(list_role)
         template_data = {"list_role": list_role } 
         template_name = 'admin_pages/list_role.html'
         web_page = validate_active_session(request, template_name, template_data)       
@@ -218,13 +216,20 @@ def list_ou(request):
     if request.method == 'GET': 
         tlclient = tllogin.prep_tlclient_from_session(request)
         list_ou = tlclient.list_ou()
-        list_ou = json.dumps(list_ou)
-        list_ou = json.loads(list_ou)
         template_data = {"list_ou": list_ou } 
-        result = render(request, 'home.html', template_data)         
-        return result
+        template_name = 'admin_pages/list_ou.html'
+        web_page = validate_active_session(request, template_name, template_data)       
+        return web_page  
 
 def add_ou(request):
+    if request.method == 'GET': 
+        tlclient = tllogin.prep_tlclient_from_session(request)
+        list_ou = tlclient.list_ou()
+        template_data = {"list_ou": list_ou } 
+        template_name = 'admin_pages/list_ou.html'
+        web_page = validate_active_session(request, template_name, template_data)       
+        return web_page  
+        
     if request.method == 'POST':
         tlclient = tllogin.prep_tlclient_from_session(request)
         ouname = request.POST['ouname']
@@ -235,8 +240,9 @@ def add_ou(request):
         status = tlclient.add_orgunit(ouname)
         list_ou = tlclient.list_ou()
         template_data = {"list_ou": list_ou }
-        result = render(request, 'home.html', template_data)
-        return result
+        template_name = 'admin_pages/list_ou.html'
+        web_page = validate_active_session(request, template_name, template_data)
+        return web_page  
 
 def delete_ou(request):
     if request.method == 'POST':
@@ -248,9 +254,10 @@ def delete_ou(request):
         #status = tlclient.delete_ou(data)
         status = tlclient.delete_ou(ouname)
         list_ou = tlclient.list_ou()
-        template_data = {"list_ou": list_ou ,"DELETE_STATUS":status}
-        result = render(request, 'home.html', template_data)
-        return result  		 		
+        template_data = {"list_ou": list_ou}
+        template_name = 'admin_pages/list_ou.html'
+        web_page = validate_active_session(request, template_name, template_data)
+        return web_page  	 		
 	
 def list_wfc(request):
     if request.method == 'GET': 
