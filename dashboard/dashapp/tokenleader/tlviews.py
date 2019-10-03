@@ -114,7 +114,6 @@ def delete_org(request):
         status = tlclient.delete_org(orgname)
         list_org = tlclient.list_org()
         template_data = {"list_org": list_org}
-#        template_data = {"list_org": list_org.get('status'), "DELETE_STATUS": status}
         template_name = 'admin_pages/list_org.html'
         web_page = validate_active_session(request, template_name, template_data)
         return web_page
@@ -151,20 +150,20 @@ def add_dept(request):
         template_name = 'admin_pages/list_dept.html'
         web_page = validate_active_session(request, template_name, template_data)
         return web_page
-        		
+
 def delete_dept(request):
     if request.method == 'POST':
         tlclient = tllogin.prep_tlclient_from_session(request)
         deptname = request.POST['deptname']
         data = dict({"deptname": ""})
-        #data = {"deptname": "dept2"}
         data["deptname"] = deptname 
-        #status = tlclient.delete_dept(data)
         status = tlclient.delete_dept(deptname)
         list_dept = tlclient.list_dept()
-        template_data = {"list_dept": list_dept ,"DELETE_STATUS":status}
-        result = render(request, 'home.html', template_data)
-        return result
+        template_data = {"list_dept": list_dept}
+        template_name = 'admin_pages/list_dept.html'
+        web_page = validate_active_session(request, template_name, template_data)
+        return web_page
+        
 
 def list_role(request):
     if request.method == 'GET': 
