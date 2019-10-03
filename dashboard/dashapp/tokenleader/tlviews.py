@@ -237,7 +237,7 @@ def add_ou(request):
         #data = {"ouname": "ou2"}
         data["ouname"] = ouname 
         #status = tlclient.add_orgunit(data)
-        status = tlclient.add_ou(ouname)
+        status = tlclient.add_orgunit(ouname)
         list_ou = tlclient.list_ou()
         template_data = {"list_ou": list_ou }
         template_name = 'admin_pages/list_ou.html'
