@@ -1,11 +1,11 @@
 {% extends "home.html" %}
 {% block content-area %}
-{% url 'dashapp:add_role' as addrole%}
+{% url 'dashapp:add_role' as adrole%}
 {% url 'dashapp:list_role' as lrole%}
 
 
     <div class="container-fluid" style="padding-top:7px">
-        <form action="{{ addrole }}" method="post">
+        <form action="{{ adrole }}" method="post">
            {% csrf_token %}            
         <table class="table" id="edit-format">            
             <tbody>   
