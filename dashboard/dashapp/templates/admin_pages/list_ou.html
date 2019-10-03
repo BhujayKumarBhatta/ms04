@@ -24,14 +24,14 @@
                 </tr>
             </thead>
             <tbody>
-                {% for t in list_ou.status %}
+                {% for ou in list_ou.status %}
 			      <tr style="font-size:10px">			        
-			        <td>{{ t.name}}</td>
+			        <td>{{ ou.name}}</td>
 			        <td>
 			             <form action="{{dou}}" method="POST" 
 			                             enctype="multipart/form-data">
                             {% csrf_token %}
-                            <input type="hidden" id="ouname" name="ouname" value="{{t.name}}" 
+                            <input type="hidden" id="ouname" name="ouname" value="{{ou.name}}" 
                                              class="form-control">
                             <button class="fa fa-remove" style="font-size:10px;color:red" 
                                 type="submit"  onclick="return confirm('Are you sure? you want to Delete OU')">                                
