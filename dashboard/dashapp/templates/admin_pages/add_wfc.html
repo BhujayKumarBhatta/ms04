@@ -1,0 +1,90 @@
+{% extends "home.html" %}
+{% block content-area %}
+{% url 'dashapp:adduser' as aduser%}
+{% url 'dashapp:list_users' as luser%}
+
+
+    <div class="container-fluid" style="padding-top:7px">
+        <form action="{{ aduser }}" method="post">
+           {% csrf_token %}            
+        <table class="table" id="edit-format">            
+            <tbody>   
+                  <th><p>Add New User</p></th>             
+			      <tr >			        
+				        <td class="py-0"><label for="Name">Name:</label></td>
+				        <td class="py-0"><input type="text" class="form-control" id="username" name="username" required></td>
+				        <td class="py-0"><label for="Email">Email:</label></td>
+	                    <td class="py-0"><input type="email" class="form-control" id="email" name="email"></td>
+			       </tr>
+			       <tr>                  
+	                    <td class="py-0"><label for="Role">Role:</label></td>
+	                    <td class="py-0"><select  id="role" name="role"> <option>Select</option>
+		                                            {% for rol in ROLELIST.status %}
+		                                                <option>{{ rol.name  }}</option>
+		                                            {% endfor %}
+                                        </select>
+                        </td>
+                        <td class="py-0"><label for="WFC">WFC:</label></td>
+                        <td class="py-0"><select  id="wfc" name="wfc"> <option>Select</option>
+                                                {% for wfc in WFCLIST.status %}
+                                                    <option data-toggle="tooltip" data-placement="right" 
+                                                    title="{{wfc.org}}, {{wfc.orgunit}}, {{wfc.department}}">
+                                                    {{ wfc.name  }}
+                                                    </option>
+                                                {% endfor %}              
+                                          </select>
+                        </td>
+	                    
+                   </tr>  
+                   <tr>                 
+                        <td class="py-0"><label for="Active">Active:</label></td>
+                        <td class="py-0">
+                            <div class="form-check-inline">
+	                            <input type="radio" name="is_active" value="Y" checked> Y &nbsp &nbsp
+	                            <input type="radio" name="is_active" value="N" > N
+	                        </div>
+                        </td>
+                        <td class="py-0"><label for="OTP">OTP:</label></td>
+                        <td class="py-0">
+                            <div class="form-check-inline">
+                                <input type="checkbox" name="otpmode" value="mail" checked> mail &nbsp &nbsp
+                                <input type="checkbox" name="otpmode" value="sms" > sms
+                            </div>
+                         </td>
+                   </tr>
+                   <tr>                 
+                        <td class="py-0"><label for="maillogin">maillogin:</label></td>
+                        <td class="py-0">
+                            <div class="form-check-inline">
+                                <input type="radio" name="allowemaillogin" value="Y" checked> Y &nbsp &nbsp
+                                <input type="radio" name="allowemaillogin" value="N" > N
+                            </div></td>
+                        <td class="py-0"><label for="password">password:</label></td>
+                        <td class="py-0"> <input type="password" class="form-control" 
+                            id="password" name="password" required>
+                        </td>
+                   </tr> 
+                   <tr> 
+                   </tr>   		        
+			</tbody> 
+		</table>
+	</div>
+	
+
+	<div class="container-fluid" id="edit-format">
+        <div class="row">
+            <div class="col-sm-3">
+                <button class="btn btn-sm fa fa-plus"  type="submit"> &nbsp SAVE</button>
+            </div>
+            <div class="col-sm-7 justify-content-center">     
+            </div>
+            <div class="col-sm-2 justify-content-end">
+                <a class="btn  btn-sm fa fa-minus" href="{{ luser }}"> &nbsp CANCEL</a>
+            </div> 
+            </form>
+        </div>
+    
+{% endblock content-area %}
+
+
+<!--  ======================================== CODE ENDs HERE ==========================================    -->
