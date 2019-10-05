@@ -15,15 +15,15 @@
 				        <td class="py-0"><input type="text" class="form-control" id="wfcname" name="wfcname" required></td>
 				    </tr>
 			       <tr>                  
-	                    <td class="py-0"><label for="Role">Role:</label></td>
-	                    <td class="py-0"><select  id="role" name="role"> <option>Select</option>
-		                                            {% for rol in ROLELIST.status %}
-		                                                <option>{{ rol.name  }}</option>
+	                    <td class="py-0"><label for="Role">Org Name:</label></td>
+	                    <td class="py-0"><select  id="orgname" name="orgname"> <option>Select</option>
+		                                            {% for org in ORGLIST.status %}
+		                                                <option>{{ org.name  }}</option>
 		                                            {% endfor %}
                                         </select>
                         </td>
                         <td class="py-0"><label for="WFC">WFC:</label></td>
-                        <td class="py-0"><select  id="wfc" name="wfc"> <option>Select</option>
+                        <td class="py-0"><select  id="ouname" name="ouname"> <option>Select</option>
                                                 {% for wfc in WFCLIST.status %}
                                                     <option data-toggle="tooltip" data-placement="right" 
                                                     title="{{wfc.org}}, {{wfc.orgunit}}, {{wfc.department}}">
