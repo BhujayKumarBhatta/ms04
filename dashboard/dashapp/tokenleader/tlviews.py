@@ -309,8 +309,9 @@ def delete_wfc(request):
         status = tlclient.delete_wfc(wfcname)
         list_wfc = tlclient.list_wfc()
         template_data = {"delete_wfc": delete_wfc,"list_wfc": list_wfc,"DELETE_STATUS":status}
-        result = render(request, 'home.html', template_data)
-        return result
+        template_name = 'admin_pages/list_wfc.html'
+        web_page = validate_active_session(request, template_name, template_data)       
+        return web_page  
 
 
 ## End ****************************************************
