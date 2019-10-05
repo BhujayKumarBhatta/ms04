@@ -237,7 +237,7 @@ def add_ou(request):
         #data = {"ouname": "ou2"}
         data["ouname"] = ouname 
         #status = tlclient.add_orgunit(data)
-        status = tlclient.add_ou(ouname)
+        status = tlclient.add_orgunit(ouname)
         list_ou = tlclient.list_ou()
         template_data = {"list_ou": list_ou }
         template_name = 'admin_pages/list_ou.html'
@@ -258,16 +258,15 @@ def delete_ou(request):
         template_name = 'admin_pages/list_ou.html'
         web_page = validate_active_session(request, template_name, template_data)
         return web_page  	 		
-	
+
 def list_wfc(request):
     if request.method == 'GET': 
         tlclient = tllogin.prep_tlclient_from_session(request)
         list_wfc = tlclient.list_wfc()
-        list_wfc = json.dumps(list_wfc)
-        list_wfc = json.loads(list_wfc)
         template_data = {"list_wfc": list_wfc } 
-        result = render(request, 'home.html', template_data)         
-        return result      
+        template_name = 'admin_pages/list_wfc.html'
+        web_page = validate_active_session(request, template_name, template_data)       
+        return web_page  
         		
 def add_wfc(request):
     if request.method == 'GET': 
@@ -277,8 +276,10 @@ def add_wfc(request):
         list_ou = tlclient.list_ou()
         list_dept = tlclient.list_dept()				
         template_data = {"ADDWFC": "TRUE","ORGLIST":list_org,"OULIST":list_ou,"DEPTLIST":list_dept}  
-        result = render(request, 'home.html', template_data)        
-        return result   
+        template_name = 'admin_pages/list_wfc.html'
+        web_page = validate_active_session(request, template_name, template_data)       
+        return web_page  
+         
     if request.method == 'POST':    
         fname = request.POST.get('fname')
         orgname = request.POST.get('orgname')		
@@ -294,8 +295,9 @@ def add_wfc(request):
         status = tlclient.add_wfc(fname, orgname, ou_name, dept_name)
         list_wfc = tlclient.list_wfc()
         template_data = {"list_wfc": list_wfc } 
-        result = render(request, 'home.html', template_data)
-        return result
+        template_name = 'admin_pages/list_wfc.html'
+        web_page = validate_active_session(request, template_name, template_data)       
+        return web_page  
         		
 def delete_wfc(request):
     if request.method == 'POST':
