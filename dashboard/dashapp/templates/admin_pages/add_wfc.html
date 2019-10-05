@@ -1,7 +1,7 @@
 {% extends "home.html" %}
 {% block content-area %}
-{% url 'dashapp:add_wfc' as addwfc%}
-{% url 'dashapp:list_wfc' as lwfc%}
+{% url 'dashapp:add_wfc' as addwfc %}
+{% url 'dashapp:list_wfc' as lwfc %}
 
 
     <div class="container-fluid" style="padding-top:7px">
@@ -9,13 +9,11 @@
            {% csrf_token %}            
         <table class="table" id="edit-format">            
             <tbody>   
-                  <th><p>Add New User</p></th>             
+                  <th><p>Add wfc</p></th>             
 			      <tr >			        
 				        <td class="py-0"><label for="Name">Name:</label></td>
 				        <td class="py-0"><input type="text" class="form-control" id="wfcname" name="wfcname" required></td>
-				        <td class="py-0"><label for="Email">Email:</label></td>
-	                    <td class="py-0"><input type="email" class="form-control" id="email" name="email"></td>
-			       </tr>
+				    </tr>
 			       <tr>                  
 	                    <td class="py-0"><label for="Role">Role:</label></td>
 	                    <td class="py-0"><select  id="role" name="role"> <option>Select</option>
