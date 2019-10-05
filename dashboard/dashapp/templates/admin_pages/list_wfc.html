@@ -8,7 +8,7 @@
                 <a class="btn btn-primary btn-sm fa fa-plus" href="{{ addwfc }}"> &nbsp add new WFC</a>
             </div>
             <div class="col-sm-7 justify-content-center">
-                <h5>List of registered users in tokenleader</h5>
+                <h5>List of registered WFC in tokenleader</h5>
             </div>
             <div class="col-sm-2 justify-content-end">
                 <a class="btn btn-danger btn-sm fa fa-minus" href="#"> &nbsp delete all WFC</a>
@@ -23,15 +23,15 @@
                 </tr>
             </thead>
             <tbody>
-                {% for l in list_wfc %}
+                {% for g in list_wfc %}
 			      <tr style="font-size:10px">			        
 
-			        <td>{{ l.name }}</td>
+			        <td>{{ g.name }}</td>
 			        <td>
 			             <form action="{{duser}}" method="POST" 
 			                             enctype="multipart/form-data">
                             {% csrf_token %}
-                            <input type="hidden" id="wfcname" name="wfcname" value="{{l.name}}" 
+                            <input type="hidden" id="wfcname" name="wfcname" value="{{g.name}}" 
                                              class="form-control">
                             <button class="fa fa-remove" style="font-size:10px;color:red" 
                                 type="submit"  onclick="return confirm('Are you sure? you want to Delete WFC')">                                
