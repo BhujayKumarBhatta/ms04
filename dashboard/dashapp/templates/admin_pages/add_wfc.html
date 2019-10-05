@@ -24,11 +24,8 @@
                         </td>
                         <td class="py-0"><label for="WFC">WFC:</label></td>
                         <td class="py-0"><select  id="ouname" name="ouname"> <option>Select</option>
-                                                {% for wfc in WFCLIST.status %}
-                                                    <option data-toggle="tooltip" data-placement="right" 
-                                                    title="{{wfc.org}}, {{wfc.orgunit}}, {{wfc.department}}">
-                                                    {{ wfc.name  }}
-                                                    </option>
+                                                {% for r in OULIST.status %}
+                                                    <option>{{ r.name  }}</option>
                                                 {% endfor %}              
                                           </select>
                         </td>
