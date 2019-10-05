@@ -1,7 +1,7 @@
 {% extends "home.html" %}
 {% block content-area %}
-{% url 'dashapp:add_wfc' as addwfc%}
-{% url 'dashapp:delete_wfc' as dwfc%}
+{% url 'dashapp:add_wfc' as addwfc %}
+{% url 'dashapp:delete_wfc' as dwfc %}
     <div class="container-fluid" style="padding-top:7px">
         <div class="row">
             <div class="col-sm-3">
@@ -28,7 +28,7 @@
 
 			        <td>{{ g.name }}</td>
 			        <td>
-			             <form action="{{duser}}" method="POST" 
+			             <form action="{{dwfc}}" method="POST" 
 			                             enctype="multipart/form-data">
                             {% csrf_token %}
                             <input type="hidden" id="wfcname" name="wfcname" value="{{g.name}}" 
