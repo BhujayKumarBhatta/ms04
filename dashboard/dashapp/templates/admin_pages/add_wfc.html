@@ -17,14 +17,14 @@
 			       
 			       <tr>   
 			                    
-	                    <td class="py-0"><label for="Org">Org Name:</label></td>
+	                    <td class="py-0"><label for="orgname">Org Name:</label></td>
 	                    <td class="py-0"><select  id="orgname" name="orgname"> <option>Select</option>
 		                                            {% for org in ORGLIST.status %}
 		                                                <option>{{ org.name  }}</option>
 		                                            {% endfor %}
                                         </select>
                         </td>
-                        <td class="py-0"><label for="OU">OU Name:</label></td>
+                        <td class="py-0"><label for="ou_name">OU Name:</label></td>
                         <td class="py-0"><select  id="ouname" name="ouname"> <option>Select</option>
                                                 {% for r in OULIST.status %}
                                                     <option>{{ r.name  }}</option>
@@ -32,7 +32,7 @@
                                           </select>
                         </td>
 			       <tr>                  
-	                    <td class="py-0"><label for="Dept">Dept Name:</label></td>
+	                    <td class="py-0"><label for="dept_name">Dept Name:</label></td>
 	                    <td class="py-0"><select  id="deptname" name="deptname"> <option>Select</option>
 		                                            {% for dpt in DEPTLIST.status %}
 		                                                <option>{{ dpt.name  }}</option>
