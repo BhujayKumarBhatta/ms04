@@ -276,7 +276,7 @@ def add_wfc(request):
         list_ou = tlclient.list_ou()
         list_dept = tlclient.list_dept()				
         template_data = {"ADDWFC": "TRUE","ORGLIST":list_org,"OULIST":list_ou,"DEPTLIST":list_dept}  
-        template_name = 'admin_pages/list_wfc.html'
+        template_name = 'admin_pages/add_wfc.html'
         web_page = validate_active_session(request, template_name, template_data)       
         return web_page  
          
