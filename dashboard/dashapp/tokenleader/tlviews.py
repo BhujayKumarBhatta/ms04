@@ -226,7 +226,7 @@ def add_ou(request):
         tlclient = tllogin.prep_tlclient_from_session(request)
         list_ou = tlclient.list_ou()
         template_data = {"list_ou": list_ou } 
-        template_name = 'admin_pages/list_ou.html'
+        template_name = 'admin_pages/add_ou.html'
         web_page = validate_active_session(request, template_name, template_data)       
         return web_page  
         
