@@ -348,7 +348,7 @@ def list_service(request):
         tlclient = tllogin.prep_tlclient_from_session(request)
         list_services = tlclient.list_service()
         template_data = {"list_services": list_services }        
-        template_name = 'admin_pages/list_services.html'
+        template_name = 'admin_pages/list_service.html'
         web_page = validate_active_session(request, template_name, template_data)       
         return web_page  
     
