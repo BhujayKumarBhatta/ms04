@@ -347,11 +347,20 @@ def list_service(request):
     if request.method == 'GET':  
         tlclient = tllogin.prep_tlclient_from_session(request)
         list_services = tlclient.list_service()
-        template_data = {"list_services": list_services }
-        result = render(request, 'home.html', template_data)
-        return result
+        template_data = {"list_services": list_services }        
+        template_name = 'admin_pages/list_services.html'
+        web_page = validate_active_session(request, template_name, template_data)       
+        return web_page  
     
 def add_service(request):
+    if request.method == 'GET':  
+        tlclient = tllogin.prep_tlclient_from_session(request)
+        list_services = tlclient.list_service()
+        template_data = {"list_services": list_services }        
+        template_name = 'admin_pages/add_service.html'
+        web_page = validate_active_session(request, template_name, template_data)       
+        return web_page  
+        
     if request.method == 'POST':
         tlclient = tllogin.prep_tlclient_from_session(request)
         servicename = request.POST['servicename']
@@ -360,9 +369,9 @@ def add_service(request):
         urladmin = request.POST['urladmin']                
         status = tlclient.add_service(servicename,urlinternal, urlexternal ,urladmin)
         list_services = tlclient.list_service()
-        template_data = {"list_services": list_services ,'addstatus' : status}
-        result = render(request, 'home.html', template_data)
-        return result
+        template_data = {"list_services": list_services}
+        web_page = validate_active_session(request, template_name, template_data)       
+        return web_page  
 
 def delete_service(request):
     if request.method == 'GET': 
