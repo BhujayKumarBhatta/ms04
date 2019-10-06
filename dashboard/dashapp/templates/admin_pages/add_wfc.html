@@ -25,7 +25,7 @@
                                         </select>
                         </td>
                         <td class="py-0"><label for="ou_name">OU Name:</label></td>
-                        <td class="py-0"><select  id="ouname" name="ouname"> <option>Select</option>
+                        <td class="py-0"><select  id="ou_name" name="ou_name"> <option>Select</option>
                                                 {% for r in OULIST.status %}
                                                     <option>{{ r.name  }}</option>
                                                 {% endfor %}              
@@ -33,7 +33,7 @@
                         </td>
 			       <tr>                  
 	                    <td class="py-0"><label for="dept_name">Dept Name:</label></td>
-	                    <td class="py-0"><select  id="deptname" name="deptname"> <option>Select</option>
+	                    <td class="py-0"><select  id="dept_name" name="dept_name"> <option>Select</option>
 		                                            {% for dpt in DEPTLIST.status %}
 		                                                <option>{{ dpt.name  }}</option>
 		                                            {% endfor %}
