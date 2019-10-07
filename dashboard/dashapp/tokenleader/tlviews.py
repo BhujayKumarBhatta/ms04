@@ -373,6 +373,20 @@ def add_service(request):
         template_name = 'admin_pages/list_service.html'
         web_page = validate_active_session(request, template_name, template_data)       
         return web_page  
+        
+def delete_wfc(request):
+    if request.method == 'POST':
+        tlclient = tllogin.prep_tlclient_from_session(request)
+        wfcname = request.POST['wfcname']
+        data = dict({"wfcname": ""})
+        data["wfcname"] = wfcname 
+        #status = tlclient.delete_wfc(data)
+        status = tlclient.delete_wfc(wfcname)
+        list_wfc = tlclient.list_wfc()
+        template_data = {"delete_wfc": delete_wfc,"list_wfc": list_wfc,"DELETE_STATUS":status}
+        template_name = 'admin_pages/list_wfc.html'
+        web_page = validate_active_session(request, template_name, template_data)       
+        return web_page  
 
 def delete_service(request):
     if request.method == 'GET': 
@@ -380,7 +394,7 @@ def delete_service(request):
         servicename = request.POST['servicename']
         status = tlclient.delete_service(servicename)
         list_services = tlclient.list_service()
-        template_data = {"list_services": list_services ,'DELETE_STATUS' : status}
+        template_data = {"list_services": list_services }
         template_name = 'admin_pages/list_service.html'
         web_page = validate_active_session(request, template_name, template_data)       
         return web_page  
