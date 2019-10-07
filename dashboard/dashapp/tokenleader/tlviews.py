@@ -370,6 +370,7 @@ def add_service(request):
         status = tlclient.add_service(servicename,urlinternal, urlexternal ,urladmin)
         list_services = tlclient.list_service()
         template_data = {"list_services": list_services}
+        template_name = 'admin_pages/list_service.html'
         web_page = validate_active_session(request, template_name, template_data)       
         return web_page  
 
