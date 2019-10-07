@@ -381,5 +381,7 @@ def delete_service(request):
         status = tlclient.delete_service(servicename)
         list_services = tlclient.list_service()
         template_data = {"list_services": list_services ,'DELETE_STATUS' : status}
-        result = render(request, 'home.html', template_data)       
-        return result
+        template_name = 'admin_pages/list_service.html'
+        web_page = validate_active_session(request, template_name, template_data)       
+        return web_page  
+        
