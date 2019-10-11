@@ -92,23 +92,23 @@ def _get_edit_button(role, current_status):
 
 def _get_action_buttons(current_status):
     if current_status == "InvoiceCreated" or current_status == "TSPSubmmitedChange":
-        button_list = ["InfobahnRecommendedtoTSP", "SentToDivision", ]
+        button_list = ["InfobahnRecommendedtoTSP", "SentToDivision", "SaveAsDraft"]
     elif current_status == "InfobahnRecommendedtoTSP":
-        button_list = ["ACCEPT", "CHANGE", ]
+        button_list = ["ACCEPT", "CHANGE", "SaveAsDraft",]
     elif current_status == "TSPAcceptedChanges":
-        button_list = ["SentToDivision", ]
+        button_list = ["SentToDivision", "SaveAsDraft"]
     elif current_status == "SentToDivision":
-        button_list = ["DivisionRecommended", "DivisonApproved", "OverridenDivision", ]
+        button_list = ["DivisionRecommended", "DivisonApproved", "OverridenDivision", "SaveAsDraft" ]
     elif current_status == "DivisionRecommended":
-        button_list = ["InfobahnRecommendedtoTSP", "OverridenDivision"]
+        button_list = ["InfobahnRecommendedtoTSP", "OverridenDivision", "SaveAsDraft"]
     elif current_status == "DivisonApproved" or current_status == "OverridenDivision":
-        button_list = ["InfobahnApproved",]
+        button_list = ["InfobahnApproved", "SaveAsDraft"]
     elif current_status == "InfobahnApproved":
-        button_list = ["TSPCourierdHardCopy", ]
+        button_list = ["TSPCourierdHardCopy", "SaveAsDraft"]
     elif current_status == "TSPCourierdHardCopy":
-        button_list = ["HardCopyRecieved", ]
+        button_list = ["HardCopyRecieved", "SaveAsDraft"]
     elif current_status == "HardCopyRecieved":
-        button_list = ["PaymentMade", ]
+        button_list = ["PaymentMade", "SaveAsDraft"]
     else:
         button_list = None
     return button_list
