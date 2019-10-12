@@ -1,0 +1,40 @@
+{% extends "home.html" %}
+{% block content-area %}
+{% url 'dashapp:add_dept' as adpt%}
+{% url 'dashapp:list_dept' as ldept%}
+
+
+    <div class="container-fluid" style="padding-top:7px">
+        <form action="{{ adpt }}" method="post">
+           {% csrf_token %}            
+        <table class="table" id="edit-format">            
+            <tbody>   
+                  <th><p>Add New Department</p></th>             
+			      <tr >			        
+				        <td class="py-0"><label for="Name">Name:</label></td>
+				        <td class="py-0"><input type="text" class="form-control" id="deptname" name="deptname" required></td>
+				                
+	                                            
+                   <tr> 
+                   </tr>   		        
+			</tbody> 
+		</table>
+	</div>
+	
+	<div class="container-fluid" id="edit-format">
+        <div class="row">
+            <div class="col-sm-3">
+                <button class="btn btn-sm fa fa-plus"  type="submit"> &nbsp SAVE</button>
+            </div>
+            <div class="col-sm-7 justify-content-center">     
+            </div>
+            <div class="col-sm-2 justify-content-end">
+                <a class="btn  btn-sm fa fa-minus" href="{{ ldept }}"> &nbsp CANCEL</a>
+            </div> 
+            </form>
+        </div>
+    
+{% endblock content-area %}
+
+
+<!--  ======================================== CODE ENDs HERE ==========================================    -->

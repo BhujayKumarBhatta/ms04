@@ -1,0 +1,53 @@
+{% extends "home.html" %}
+{% block content-area %}
+{% url 'dashapp:add_service' as addservice %}
+{% url 'dashapp:list_service' as lservice %}
+
+
+    <div class="container-fluid" style="padding-top:7px">
+        <form action="{{ addservice }}" method="post">
+           {% csrf_token %}            
+        <table class="table" id="edit-format">            
+            <tbody>   
+                  <th><p>Add service</p></th>             
+			      <tr >			        
+				        <td class="py-0"><label for="servicename">Service Name:</label></td>
+				        <td class="py-0"><input type="text"  id="servicename" name="servicename" required></td>
+				    </tr>  
+			       
+			       <tr>   
+			                    
+	                    <td class="py-0"><label for="urladmin">Admin url:</label></td>
+	                    <td class="py-0"><input type="text"  id="urladmin" name="urladmin" required></td>
+                   <tr>     
+                        </td>
+                        <td class="py-0"><label for="urlinternal">Internal url:</label></td>
+                        <td class="py-0"><input type="text"  id="urlinternal" name="urlinternal" required></td>
+                        </td>
+			       <tr>                  
+	                    <td class="py-0"><label for="urlexternal">External url:</label></td>
+	                    <td class="py-0"><input type="text"  id="urlexternal" name="urlexternal" required></td>
+                   <tr> 
+                   </tr>   		        
+			</tbody> 
+		</table>
+	</div>
+	
+
+	<div class="container-fluid" id="edit-format">
+        <div class="row">
+            <div class="col-sm-3">
+                <button class="btn btn-sm fa fa-plus"  type="submit"> &nbsp SAVE</button>
+            </div>
+            <div class="col-sm-7 justify-content-center">     
+            </div>
+            <div class="col-sm-2 justify-content-end">
+                <a class="btn  btn-sm fa fa-minus" href="{{ lservice }}"> &nbsp CANCEL</a>
+            </div> 
+            </form>
+        </div>
+    
+{% endblock content-area %}
+
+
+<!--  ======================================== CODE ENDs HERE ==========================================    -->
