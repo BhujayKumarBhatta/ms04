@@ -101,7 +101,7 @@ def _get_action_buttons(current_status):
     elif current_status == "TSPAcceptedChanges":
         button_list = ["SentToDivision", "SaveAsDraft"]
     elif current_status == "SentToDivision":
-        button_list = ["DivisionRecommended", "DivisonApproved", "OverridenDivision", "SaveAsDraft" ]
+        button_list = ["DivisionRecommended", "DivisonApproved", "SaveAsDraft" ]
     elif current_status == "DivisionRecommended":
         button_list = ["InfobahnRecommendedtoTSP", "OverridenDivision", "SaveAsDraft"]
     elif current_status == "DivisonApproved" or current_status == "OverridenDivision":
