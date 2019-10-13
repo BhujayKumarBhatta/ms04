@@ -65,10 +65,13 @@ def list_invoices(request, invoicenum, mode, admin=None):
         return web_page
     
 def _get_all_buttons(request, list_invoices):
-    role = request.session.get('session_user_details').get('roles')[0]
-    current_status = list_invoices[0].get('status')
-    accept_button, edit_button = _get_edit_button(role, current_status)
-    action_buttons = _get_action_buttons(current_status)
+    try:
+        role = request.session.get('session_user_details').get('roles')[0]
+        current_status = list_invoices[0].get('status')
+        accept_button, edit_button = _get_edit_button(role, current_status)
+        action_buttons = _get_action_buttons(current_status)
+    except Exception as e:
+        accept_button, edit_button, action_buttons = e, e, e
     return  accept_button, edit_button, action_buttons
     
         
