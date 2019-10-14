@@ -102,7 +102,7 @@ def _get_edit_button(role, current_status):
     accept_button = False
     current_stat_for_tsp_edits = ["InfobahnRecommendedtoTSP",  ]    
     current_stat_for_infob_edits = ["InvoiceCreated", "TSPSubmmitedChange",
-                                    "DivisionRecommended", "TSPAcceptedChanges"]
+                                    "DivisionRecommended", "DivisionApproved", "TSPAcceptedChanges" ]
     current_stat_for_mis_edits = ["SentToDivision", "TSPCourierdHardCopy" , "HardCopyRecieved"]
     if ( ( role == 'ITC' or role =='role1') and 
          (current_status in current_stat_for_infob_edits) ):
