@@ -34,7 +34,7 @@ sampleinvoice ={ "state": "","arc": "","billingdateto": "","remarks": "",
 "premiseno": "", "city": "","tsp": "","customername": "","slno": 0, 
 "premisename": "" ,"billingactivity": "" ,"Action": ""}
 
-def list_invoices(request, invoicenum, mode, admin=None):
+def list_invoices(request, invoicenum, mode, admin=None, draft_list=None):
     list_events = []
     if request.method == 'GET': 
         tlclient = tllogin.prep_tlclient_from_session(request)        
@@ -63,6 +63,29 @@ def list_invoices(request, invoicenum, mode, admin=None):
                          "accept_button": accept_button, "list_events": list_events }
         web_page = validate_active_session(request, template_name, template_data)
         return web_page
+    
+# def list_ready_to_send(request, target):
+#     TSP_TO_INFOB_qualifier = []
+#     INFOB_TO_TSP_qualifier = []   
+#     INFOB_TO_MIS_qualifier = ["InvoiceCreated", "TSPSubmmitedChange", "TSPAcceptedChanges"]
+#     MIS_TO_INFOB_qualifier = ["SentToDivision",]
+#     tlclient = tllogin.prep_tlclient_from_session(request)        
+#     paperclient=clientpaperhouse(tlclient)#               
+#     list_invoices = paperclient.list_invoices('all')    
+#     save_as_draft_list  = []
+#     button_list = []
+#     for l in list_invoices:
+#         if l.get('action') == "SaveAsDraft":
+#             save_as_draft_list.append(l)
+#             if  l.get('status') in TSP_TO_INFOB_qualifier:
+#                 button_list = []
+#             elif  l.get('status') in INFOB_TO_TSP_qualifier:
+#                 filtered_list.append(l)
+#             elif  l.get('status') in INFOB_TO_MIS_qualifier:
+#                 filtered_list.append(l)
+#             elif l.get('status') in MIS_TO_INFOB_qualifier:
+#                 filtered_list.append(l)
+#     return filtered_list
     
 def _get_all_buttons(request, list_invoices):
     try:
@@ -101,10 +124,10 @@ def _get_action_buttons(current_status):
     elif current_status == "TSPAcceptedChanges":
         button_list = ["SentToDivision", "SaveAsDraft"]
     elif current_status == "SentToDivision":
-        button_list = ["DivisionRecommended", "DivisonApproved", "SaveAsDraft" ]
+        button_list = ["DivisionRecommended", "DivisionApproved", "SaveAsDraft" ]
     elif current_status == "DivisionRecommended":
         button_list = ["InfobahnRecommendedtoTSP", "OverridenDivision", "SaveAsDraft"]
-    elif current_status == "DivisonApproved" or current_status == "OverridenDivision":
+    elif current_status == "DivisionApproved" or current_status == "OverridenDivision":
         button_list = ["InfobahnApproved", "SaveAsDraft"]
     elif current_status == "InfobahnApproved":
         button_list = ["TSPCourierdHardCopy", "SaveAsDraft"]
