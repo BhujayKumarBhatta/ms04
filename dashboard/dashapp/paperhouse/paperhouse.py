@@ -81,7 +81,7 @@ def draft_list(request, role):
     draft_hardcopyrecieved = []
     draft_paymentmade = []
     for l in list_invoices:
-        if l.get('action') == "SaveAsDraft":
+        if l.get('xldata').get('action') == "SaveAsDraft":
             save_as_draft_list.append(l)
             ############### TSP
             if role == "TSP":
@@ -100,6 +100,7 @@ def draft_list(request, role):
             elif role in INFOB_roles:
                 if  l.get('status') == ["InvoiceCreated", "DivisionRecommended"]:
                     draft_Infob_to_tsp.append(l)
+                    button_list =  _get_action_buttons(l.get('status'))
                 elif  l.get('status') in ["InvoiceCreated", "TSPSubmmitedChange", 
                                           "TSPAcceptedChanges"] :
                     draft_Infob_to_mis.append(l)
@@ -121,9 +122,11 @@ def draft_list(request, role):
                     print("unknown status",  l.get('status'))
             else:
                 print("invalid role ",  role)
-    if button_list and  "SaveAsDraft" in button_list:
-        button_list.pop("SaveAsDraft")
-    
+    if button_list:
+        for  n in range(len(button_list)):
+            if button_list[n] == "SaveAsDraft":
+                button_list.pop(n)
+   
     template_name = 'invoice/list_drafts.html'
     template_data = { "PAPERHOUSE_list_invoices": save_as_draft_list,
                       "action_buttons": button_list,
@@ -135,7 +138,8 @@ def draft_list(request, role):
                       "draft_Infob_to_mis": draft_Infob_to_mis, 
                       "draft_mis_to_infob": draft_mis_to_infob,
                       "draft_hardcopyrecieved": draft_hardcopyrecieved,
-                      "draft_paymentmade": draft_paymentmade
+                      "draft_paymentmade": draft_paymentmade,                      
+                      
                     }
     web_page = validate_active_session(request, template_name, template_data)
     return web_page
