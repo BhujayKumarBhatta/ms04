@@ -20,6 +20,8 @@ from django.conf.urls.static import static
 from django.urls import path
 from . import views
 from dashapp.linkinv import  linkinv_views
+from dashapp.views import paperhouse_delete_invoice
+from dashapp.paperhouse import paperhouse
 #from rest_framework_swagger.views import get_swagger_view
 #from rest_framework.documentation import include_docs_urls
 
@@ -81,7 +83,8 @@ urlpatterns = [path('', views.login, name='login'),
          views.paperhouse_list_invoice, name='paperhouse_list_invoice'),   
     path('paperhouse_delete_invoice', views.paperhouse_delete_invoice, name='paperhouse_delete_invoice'),    
     path('tsp_list_invoice', views.tsp_list_invoice, name='tsp_list_invoice'),
-    
+    path('paperhouse_savedraft_list/<slug:role>', 
+         paperhouse.draft_list, name='paperhouse_savedraft_list'),   
     #striker
     path('striker_list_responces/<slug:request_id>', views.striker_list_responces, name='striker_list_responces'),
     path('striker_delete_responces', views.striker_delete_responces, name='striker_delete_responces'),

@@ -27,6 +27,8 @@ from django.contrib.admin.models import CHANGE
 from dashapp.tokenleader.tllogin import validate_active_session
 
 
+INFOB_roles = ['ITSS', "ITC", "role1", "INFOB", "infob"]
+
 sampleinvoice ={ "state": "","arc": "","billingdateto": "","remarks": "", 
 "fullsiteaddress": "","customerid": "","servicetype": "","billingdatefrom": "", 
 "speed": "", "division": "","taxname": "","total": 0,"accountno": "","pin": 0, 
@@ -64,28 +66,80 @@ def list_invoices(request, invoicenum, mode, admin=None, draft_list=None):
         web_page = validate_active_session(request, template_name, template_data)
         return web_page
     
-# def list_ready_to_send(request, target):
-#     TSP_TO_INFOB_qualifier = []
-#     INFOB_TO_TSP_qualifier = []   
-#     INFOB_TO_MIS_qualifier = ["InvoiceCreated", "TSPSubmmitedChange", "TSPAcceptedChanges"]
-#     MIS_TO_INFOB_qualifier = ["SentToDivision",]
-#     tlclient = tllogin.prep_tlclient_from_session(request)        
-#     paperclient=clientpaperhouse(tlclient)#               
-#     list_invoices = paperclient.list_invoices('all')    
-#     save_as_draft_list  = []
-#     button_list = []
-#     for l in list_invoices:
-#         if l.get('action') == "SaveAsDraft":
-#             save_as_draft_list.append(l)
-#             if  l.get('status') in TSP_TO_INFOB_qualifier:
-#                 button_list = []
-#             elif  l.get('status') in INFOB_TO_TSP_qualifier:
-#                 filtered_list.append(l)
-#             elif  l.get('status') in INFOB_TO_MIS_qualifier:
-#                 filtered_list.append(l)
-#             elif l.get('status') in MIS_TO_INFOB_qualifier:
-#                 filtered_list.append(l)
-#     return filtered_list
+def draft_list(request, role):
+    tlclient = tllogin.prep_tlclient_from_session(request)        
+    paperclient=clientpaperhouse(tlclient)#               
+    list_invoices = paperclient.list_invoices('all')    
+    save_as_draft_list  = []
+    button_list = []
+    draft_create = []
+    draft_tsp_to_Infob = []
+    draft_courierd = []
+    draft_Infob_to_tsp = []
+    draft_Infob_to_mis = []
+    draft_mis_to_infob = []
+    draft_hardcopyrecieved = []
+    draft_paymentmade = []
+    for l in list_invoices:
+        if l.get('action') == "SaveAsDraft":
+            save_as_draft_list.append(l)
+            ############### TSP
+            if role == "TSP":
+                if  l.get('status') == '' or  l.get('status') == None:
+                    draft_create.append(l)
+                    button_list =  _get_action_buttons(l.get('status'))
+                elif  l.get('status') == "InfobahnRecommendedtoTSP":
+                    draft_tsp_to_Infob.append(l)
+                    button_list =  _get_action_buttons(l.get('status'))
+                elif  l.get('status') == "InfobahnApproved":
+                    draft_courierd.append(l)
+                    button_list =  _get_action_buttons(l.get('status'))
+                else:
+                    print("unknown status",  l.get('status'))                 
+            ######## INFOB
+            elif role in INFOB_roles:
+                if  l.get('status') == ["InvoiceCreated", "DivisionRecommended"]:
+                    draft_Infob_to_tsp.append(l)
+                elif  l.get('status') in ["InvoiceCreated", "TSPSubmmitedChange", 
+                                          "TSPAcceptedChanges"] :
+                    draft_Infob_to_mis.append(l)
+                    button_list =  _get_action_buttons(l.get('status'))
+                else:
+                    print("unknown status",  l.get('status')) 
+            ##### MIS/DIVISION 
+            elif role == "MIS":                          
+                if  l.get('status') in ["SentToDivision"] :
+                    draft_mis_to_infob.append(l)
+                    button_list =  _get_action_buttons(l.get('status'))               
+                elif  l.get('status') in ["TSPCourierdHardCopy"] :
+                    draft_hardcopyrecieved.append(l)
+                    button_list =  _get_action_buttons(l.get('status'))
+                elif  l.get('status') in ["HardCopyRecieved"] :
+                    draft_paymentmade.append(l)
+                    button_list =  _get_action_buttons(l.get('status'))
+                else:
+                    print("unknown status",  l.get('status'))
+            else:
+                print("invalid role ",  role)
+    if button_list and  "SaveAsDraft" in button_list:
+        button_list.pop("SaveAsDraft")
+    
+    template_name = 'invoice/list_drafts.html'
+    template_data = { "PAPERHOUSE_list_invoices": save_as_draft_list,
+                      "action_buttons": button_list,
+                      "button_list":  button_list,
+                      "draft_create": draft_create,
+                      "draft_tsp_to_Infob": draft_tsp_to_Infob,
+                      "draft_courierd": draft_courierd,
+                      "draft_Infob_to_tsp": draft_Infob_to_tsp,
+                      "draft_Infob_to_mis": draft_Infob_to_mis, 
+                      "draft_mis_to_infob": draft_mis_to_infob,
+                      "draft_hardcopyrecieved": draft_hardcopyrecieved,
+                      "draft_paymentmade": draft_paymentmade
+                    }
+    web_page = validate_active_session(request, template_name, template_data)
+    return web_page
+
     
 def _get_all_buttons(request, list_invoices):
     try:
@@ -100,11 +154,12 @@ def _get_all_buttons(request, list_invoices):
         
 def _get_edit_button(role, current_status): 
     accept_button = False
-    current_stat_for_tsp_edits = ["InfobahnRecommendedtoTSP",  ]    
+    current_stat_for_tsp_edits = ["InfobahnRecommendedtoTSP", "InfobahnApproved" ]    
     current_stat_for_infob_edits = ["InvoiceCreated", "TSPSubmmitedChange",
                                     "DivisionRecommended", "DivisionApproved", "TSPAcceptedChanges" ]
     current_stat_for_mis_edits = ["SentToDivision", "TSPCourierdHardCopy" , "HardCopyRecieved"]
-    if ( ( role == 'ITC' or role =='role1') and 
+    
+    if ( ( role in INFOB_roles) and 
          (current_status in current_stat_for_infob_edits) ):
         edit_button = True
     elif role == 'TSP' and current_status in current_stat_for_tsp_edits:
