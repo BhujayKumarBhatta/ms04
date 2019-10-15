@@ -261,6 +261,7 @@ def update_from_draft_invoice(request, actionrole):
                 list_data.append(data)
                 
         if len(list_data) > 0 :
+            print("list_data................", list_data)
             if actionrole in infobahn_roles:
                 posting_result = strikerclient.customer_action(list_data)
             elif actionrole in TSP_roles:
