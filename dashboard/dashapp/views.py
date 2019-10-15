@@ -372,5 +372,12 @@ def striker_update_Invoice(request, actionrole):
     elif 'uname' in request.session :
       result = striker.update_invoice(request, actionrole)
     return result
+
+def striker_update_from_Draft(request, actionrole):
+    if 'uname' not in request.session :
+      result = login(request)
+    elif 'uname' in request.session :
+      result = striker.update_from_draft_invoice(request, actionrole)
+    return result
     
 

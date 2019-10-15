@@ -90,7 +90,7 @@ def draft_list(request, status):
         save_as_draft_list = [l for l in list_invoices if 
                      l.get('xldata').get('action') == "SaveAsDraft" and  l.get('status') == status ]
    
-        template_name = 'invoice/list_drafts.html'
+        template_name = 'invoice/post_from_drafts.html'
     else:
 #         #TODO: WE HAVE DEBUG WHY THIS IS NOT WORKING
 #         save_as_draft_list = [{"xldata": {"invoiceno": "invalid  status filter"},"status": "invalid  status filter"}]

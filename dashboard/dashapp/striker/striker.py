@@ -18,6 +18,7 @@ from dashapp.tokenleader import tllogin
 from django.db.transaction import non_atomic_requests
 from django.contrib.admin.models import CHANGE
 from dashapp.tokenleader.tllogin import validate_active_session
+from django.template.defaultfilters import length
 
 # ======TSP=====
 # CREATE
@@ -36,7 +37,13 @@ from dashapp.tokenleader.tllogin import validate_active_session
 # PaymentMade
 
 
-
+current_stat_for_tsp_edits = ["InfobahnRecommendedtoTSP", "InfobahnApproved" ]    
+current_stat_for_infob_edits = ["InvoiceCreated", "TSPSubmmitedChange",
+                                "DivisionRecommended", "DivisionApproved", "TSPAcceptedChanges" ]
+current_stat_for_mis_edits = ["SentToDivision", "TSPCourierdHardCopy" , "HardCopyRecieved"]
+current_stat_for_tsp_edits.extend(current_stat_for_infob_edits)
+current_stat_for_tsp_edits.extend(current_stat_for_mis_edits)
+status_list = current_stat_for_tsp_edits
 
 sampleinvoice = { "state": "","arc": "","billingdateto": "","remarks": "", 
 "fullsiteaddress": "","customerid": "","servicetype": "","billingdatefrom": "", 
@@ -234,4 +241,69 @@ def tsp_action(request):
 
 ###################################
 
+def update_from_draft_invoice(request, actionrole):
+    if request.method == 'POST':
+        data = None
+        infobahn_roles = ["role1", "INFOBAHN"] 
+        TSP_roles = ["TSP"]
+        MIS_roles = ["MIS"]
+        tlclient = tllogin.prep_tlclient_from_session(request)
+        strikerclient = clientstriker(tlclient)
+            
+        querydict = request.POST.copy()   
+        Action = querydict.get("status")
+        list_selected_invoices = querydict.getlist("invoices")
+        print("list_selected_invoices  and Action", list_selected_invoices, Action)
+        list_data= [] 
+        if (len(list_selected_invoices) > 0 and Action in status_list): 
+            for inv in list_selected_invoices:
+                data = {"InvoiceNo": inv,"Action": "UpdateFromDraft:"+Action}
+                list_data.append(data)
+                
+        if len(list_data) > 0 :
+            if actionrole in infobahn_roles:
+                posting_result = strikerclient.customer_action(list_data)
+            elif actionrole in TSP_roles:
+                posting_result = strikerclient.tsp_action(list_data)
+            elif actionrole in MIS_roles:
+                posting_result = strikerclient.division_action(list_data)
+            else:
+                posting_result = {"save_status": "Failed, User need to have one of "
+                                  "role from [role1, INFOBAHN, TSP, MIS]"}  
+        else:
+            posting_result = {"save_status": "Failed, No invoice selected"}                  
+               
+        return render(request, 'invoice/post_from_drafts.html', 
+                      { "selected_Action": querydict,
+                       "Selected_isinvoice" :list_data ,
+                       "posting_result":posting_result})
+
+
+#     template_data = {"update_request": posting_result }
+#     template_name = "invoice/request_id_api_result.html"
+#     web_page = validate_active_session(request, template_name, template_data)
+#     return web_page
+        
+#         rdict = request.POST.copy()
+        
+        #loop for all checked Invoices
+         
+        #for chk_ in request:
+        #if request.form.get("chk_"):
+#             data = {"InvoiceNo": ("InvoiceNo"),
+#                     "Action":("Action")}
+
+#         if actionrole in infobahn_roles:
+#                 posting_result = strikerclient.customer_action(data)
+#             elif actionrole in TSP_roles:
+#                 posting_result = strikerclient.tsp_action(data)
+#             elif actionrole in MIS_roles:
+#                 posting_result = strikerclient.division_action(data)
+#             else:
+#                 posting_result = {"save_status": "Failed, User need to have one of "
+#                                   "role from [role1, INFOBAHN, TSP, MIS]"}
+             
+                
+        
+        
     
