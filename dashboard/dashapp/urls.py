@@ -83,7 +83,7 @@ urlpatterns = [path('', views.login, name='login'),
          views.paperhouse_list_invoice, name='paperhouse_list_invoice'),   
     path('paperhouse_delete_invoice', views.paperhouse_delete_invoice, name='paperhouse_delete_invoice'),    
     path('tsp_list_invoice', views.tsp_list_invoice, name='tsp_list_invoice'),
-    path('paperhouse_savedraft_list/<slug:role>', 
+    path('paperhouse_savedraft_list/<slug:status>', 
          paperhouse.draft_list, name='paperhouse_savedraft_list'),   
     #striker
     path('striker_list_responces/<slug:request_id>', views.striker_list_responces, name='striker_list_responces'),
