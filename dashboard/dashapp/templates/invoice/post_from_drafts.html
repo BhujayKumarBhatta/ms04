@@ -1,10 +1,7 @@
 {% extends "home.html" %}
 {% block content-area %}
 {% url 'dashapp:striker_update_from_draft' user_details.roles.0  as update_from_draft %}
-selected_invoice -- {{list_selected_invoices}} 
-selected_Action --  {{selected_Action}}
-posting_result -- {{posting_result}}
-DATA -- {{Selected_isinvoice}}
+ 
 <form action="{{ update_from_draft }}" method="post">  
  {% csrf_token %} 
 <div class="container-fluid">

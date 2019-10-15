@@ -274,35 +274,11 @@ def update_from_draft_invoice(request, actionrole):
         else:
             posting_result = {"save_status": "Failed, No invoice selected"}                  
                
-        return render(request, 'invoice/post_from_drafts.html', 
-                      { "selected_Action": querydict,
-                       "Selected_isinvoice" :list_data ,
-                       "posting_result":posting_result})
-
-
-#     template_data = {"update_request": posting_result }
-#     template_name = "invoice/request_id_api_result.html"
-#     web_page = validate_active_session(request, template_name, template_data)
-#     return web_page
+    template_data = {"update_request": posting_result }
+    template_name = "invoice/request_id_api_result.html"
+    web_page = validate_active_session(request, template_name, template_data)
+    return web_page
         
-#         rdict = request.POST.copy()
-        
-        #loop for all checked Invoices
-         
-        #for chk_ in request:
-        #if request.form.get("chk_"):
-#             data = {"InvoiceNo": ("InvoiceNo"),
-#                     "Action":("Action")}
-
-#         if actionrole in infobahn_roles:
-#                 posting_result = strikerclient.customer_action(data)
-#             elif actionrole in TSP_roles:
-#                 posting_result = strikerclient.tsp_action(data)
-#             elif actionrole in MIS_roles:
-#                 posting_result = strikerclient.division_action(data)
-#             else:
-#                 posting_result = {"save_status": "Failed, User need to have one of "
-#                                   "role from [role1, INFOBAHN, TSP, MIS]"}
              
                 
         
