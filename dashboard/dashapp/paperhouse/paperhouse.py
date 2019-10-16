@@ -33,9 +33,10 @@ current_stat_for_tsp_edits = ["InfobahnRecommendedtoTSP", "InfobahnApproved" ]
 current_stat_for_infob_edits = ["InvoiceCreated", "TSPSubmmitedChange",
                                 "DivisionRecommended", "DivisionApproved", "TSPAcceptedChanges" ]
 current_stat_for_mis_edits = ["SentToDivision", "TSPCourierdHardCopy" , "HardCopyRecieved"]
-current_stat_for_tsp_edits.extend(current_stat_for_infob_edits)
-current_stat_for_tsp_edits.extend(current_stat_for_mis_edits)
-status_list = current_stat_for_tsp_edits
+temp_list = current_stat_for_tsp_edits.copy()
+temp_list.extend(current_stat_for_infob_edits)
+temp_list.extend(current_stat_for_mis_edits)
+status_list = temp_list
 
 sampleinvoice ={ "state": "","arc": "","billingdateto": "","remarks": "", 
 "fullsiteaddress": "","customerid": "","servicetype": "","billingdatefrom": "", 
@@ -136,6 +137,8 @@ def _get_edit_button(role, current_status):
          (current_status in current_stat_for_infob_edits) ):
         edit_button = True
     elif role == 'TSP' and current_status in current_stat_for_tsp_edits:
+        print("role, current status and current_status_for_tsp_edits", role, current_status,
+              current_stat_for_tsp_edits )
         edit_button = True
         accept_button = True
     elif role == 'MIS' and current_status in current_stat_for_mis_edits:
