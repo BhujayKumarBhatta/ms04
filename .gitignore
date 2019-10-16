@@ -5,6 +5,7 @@
 venv
 dist
 *.egg-info
+*.sqllite3
 db.sqlite3
 db.sqlite3
 .vs
@@ -13,3 +14,5 @@ db.sqlite3
 /dashboard/dashapp/micros1/invoiceresult.json
 /dashboard/~$sample-invoice-xl_MAY2019.xlsx
 /dashboard/sample-invoice-xl_MAY2019.xlsx
+/README.md
+/micros2_configs.yml

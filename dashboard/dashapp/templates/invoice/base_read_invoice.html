@@ -1,0 +1,395 @@
+{% extends "home.html" %}
+{% block content-area %}
+{% with inv=PAPERHOUSE_list_invoices.0.xldata  event_history=list_events.0.event_history_list%}
+{% url 'dashapp:paperhouse_list_invoice' 'all' 'read' 'normal' as list_invoices %}
+{% url 'dashapp:paperhouse_list_invoice' inv.invoiceno 'edit' 'normal' as edit_invoices %}
+{% url 'dashapp:striker_update_Invoice' user_details.roles.0  as update_invoice %}
+
+
+
+ <div class="container-fluid" style="padding-top:7px">
+    {% block invform_start %}<form action="{{ update_invoice }}" method="post">{% endblock invform_start %}
+         {% csrf_token %}            
+        <table class="table " id="read-format" > 
+        <thead >
+            <div class="container-fluid" style="height:25px;background-color:#ddd">         
+                <p>Link Details</p>
+            </div>
+        </thead> 
+                        
+          <tbody> 
+                 <tr>                    
+                     <td class="py-0">TSP Name</td>
+                     <td class="py-0" >
+                        {% block tsp %} 
+                        <input type="text" placeholder="{{inv.tsp}}" class="form-control" id="username" name="username" readonly></td>
+                        {% endblock tsp %}</td> 
+                     <td class="py-0"></td>
+                     <td class="py-0">speed</td>
+                     <td class="py-0">
+                        {% block speed %} 
+                        <input type="text" placeholder="{{inv.speed}}" class="form-control" id="username" name="username" readonly></td>
+                         {% endblock speed %}</td>
+                 </tr>
+                 
+                 <tr>                    
+                     <td class="py-0">InfoBahn ID</td>
+                     <td class="py-0" >
+                        {% block infoid %} 
+                        <input type="text" placeholder="{{inv.infoid}}" class="form-control" id="InfoID" name="InfoID" readonly></td>
+                        {% endblock infoid %}</td> 
+                     <td class="py-0"></td>
+                     <td class="py-0">Circuit ID</td>
+                     <td class="py-0">
+                        {% block circuitid %} 
+                        <input type="text" placeholder="{{inv.circuitid}}" class="form-control" id="CircuitID" name="CircuitID" readonly></td>
+                         {% endblock circuitid %}</td>
+                 </tr>
+                 
+                 <tr>
+                     <td class="py-0">Type</td>
+                     <td class="py-0">{% block arc %}
+                     <input type="text" placeholder="{{inv.arc}}" class="form-control" id="username" name="username" readonly> 
+                     {% endblock arc %}</td>
+                     <td class="py-0"></td>
+                     <td class="py-0">division</td>
+                     <td class="py-0">{% block division %}
+                      <input type="text" placeholder="{{inv.division}}" class="form-control" id="username" name="username" readonly> 
+                      {% endblock division %}</td>
+                 </tr>
+                 <tr>
+                    <td class="py-0">servicetype</td>
+                    <td class="py-0">{% block servicetype %}
+                    <input type="text" placeholder="{{inv.servicetype}}" class="form-control" id="username" name="username" readonly>  {% endblock servicetype %}</td>
+                 </tr>
+           </tbody>
+         </table>
+         <table class="table" id="read-format">
+            <thead >
+	            <div class="container-fluid" style="height:25px;background-color:#ddd">         
+	                <p>Address Details</p>
+	            </div>
+            </thead> 
+            
+            <tbody>
+                
+                  <tr >
+                     <td class="py-0">city</td>
+                     <td class="py-0">{% block city %} 
+                     <input type="text" placeholder="{{inv.city}}" class="form-control" id="username" name="username" readonly> {% endblock city %}</td>
+                     <td class="py-0"></td>
+                     <td class="py-0">state</td>
+                     <td class="py-0">{% block state %}
+                     <input type="text" placeholder="{{inv.state}}" class="form-control" id="username" name="username" readonly> {% endblock state %}</td>
+                  </tr>
+                  <tr>
+                     <td class="py-0">pin</td>
+                     <td class="py-0">{% block pin %}
+                     <input type="text" placeholder="{{inv.pin}}" class="form-control" id="username" name="username" readonly>  {% endblock pin %}</td>
+                     <td class="py-0"></td>
+                     <td class="py-0">premiseno</td>
+                     <td class="py-0">{% block premiseno %}
+                     <input type="text" placeholder="{{inv.premiseno}}" class="form-control" id="username" name="username" readonly>  {% endblock premiseno %}</td>
+                  </tr>
+                  <tr>
+                     <td class="py-0">premisename</td>
+                     <td class="py-0">{% block premisename %}
+                     <input type="text" placeholder="{{inv.premisename}}" class="form-control" id="username" name="username" readonly>  {% endblock premisename %}</td>
+                     <td class="py-0"></td>
+                     <td class="py-0">siteid</td>
+                     <td class="py-0">{% block siteid %}
+                     <input type="text" placeholder="{{inv.siteid}}" class="form-control" id="username" name="username" readonly>  {% endblock siteid %}</td>
+                  </tr>
+                  <tr>
+                     <td class="py-0">fullsiteaddress</td>
+                     <td class="py-0">{% block fullsiteaddress %}
+                     <input type="text" placeholder="{{inv.fullsiteaddress}}" class="form-control" id="username" name="username" readonly>  {% endblock fullsiteaddress %}</td>
+                  </tr>
+           </tbody>
+         </table>
+         <table class="table" id="read-format">
+            <thead >
+                <div class="container-fluid" style="height:25px;background-color:#ddd">         
+                    <p>Invoice Details</p>
+                </div>
+            </thead> 
+            
+            <tbody>
+                
+                <tr>
+                     <td class="py-0">Invoice Number</td>
+                     <td class="py-0">{% block invoiceno %}
+                     <input type="text" placeholder="{{inv.invoiceno}}" class="form-control" id="username" name="username" readonly>  {% endblock invoiceno %}</td>
+                     <td class="py-0"></td>
+                     <td class="py-0">billingdatefrom</td>
+                     <td class="py-0">{% block billingdatefrom %}
+                     <input type="text" placeholder="{{inv.billingdatefrom}}"  class="form-control" id="username" name="username" readonly> {% endblock billingdatefrom %}</td>
+                 </tr>
+                 <tr>
+                     <td class="py-0">billingdateto</td>
+                     <td class="py-0">{% block billingdateto %}
+                     <input type="text" placeholder="{{inv.billingdateto}}" class="form-control" id="username" name="username" readonly>  {% endblock billingdateto %}</td>
+                     <td class="py-0"></td>
+                     <td class="py-0">invoicedate</td>
+                     <td class="py-0">{% block invoicedate %}
+                     <input type="text" placeholder="{{inv.invoicedate}}" class="form-control" id="username" name="username" readonly> {% endblock invoicedate %}</td>
+                 </tr>
+                 <tr>
+                     <td class="py-0">gstno</td>
+                     <td class="py-0">{% block gstno %}
+                     <input type="text" placeholder="{{inv.gstno}}" class="form-control" id="username" name="username" readonly> 
+                      {% endblock gstno %}</td>
+                     <td class="py-0"></td>
+                     <td class="py-0">taxname</td>
+                     <td class="py-0">{% block taxname %}
+                     <input type="text" placeholder="{{inv.taxname}}" class="form-control" id="username" name="username" readonly>
+                     {% endblock taxname %}</td>
+                 </tr>
+                 <tr>
+                     <td class="py-0">total</td>
+                     <td class="py-0">{% block total %}
+                     <input type="text" placeholder="{{inv.total}}" class="form-control" id="username" name="username" readonly>
+                     {% endblock total %}</td>
+                     <td class="py-0"></td>
+                     <td class="py-0">customerid</td>
+                     <td class="py-0">{% block customerid %}
+                     <input type="text" placeholder="{{inv.customerid}}" class="form-control" id="username" name="username" readonly>
+                     {% endblock customerid %}</td>
+                 </tr>
+                 <tr>
+                     <td class="py-0">customername</td>
+                     <td class="py-0">{% block customername %}
+                     <input type="text" placeholder="{{inv.customername}}"  class="form-control" id="username" name="username" readonly>
+                     {% endblock customername %}</td>
+                     <td class="py-0"></td>
+                     <td class="py-0">accountno</td>
+                     <td class="py-0">{% block accountno %}
+                     <input type="text" placeholder="{{inv.accountno}}" class="form-control" id="username" name="username" readonly>
+                     {% endblock accountno %}</td>
+                </tr>
+           </tbody>
+         </table>
+         <table class="table" id="read-format">
+            <thead >
+                <div class="container-fluid" style="height:25px;background-color:#ddd">         
+                    <p>Workflow Details</p>
+                </div>
+            </thead> 
+                    <tr>
+                     <td class="py-0">action</td>
+                     <td class="py-0">{% block action %}
+                     <input type="text" placeholder="{{inv.action}}" class="form-control"  readonly>
+                     {% endblock action %}</td>
+                     <td class="py-0"></td>
+                     <td class="py-0">status</td>
+                     <td class="py-0">{% block status %}
+                     <input type="text" placeholder="{{PAPERHOUSE_list_invoices.0.status}}" class="form-control"  readonly> 
+                     {% endblock status %}</td>  
+                </tr>
+                </tbody>
+         </table>
+         
+         <table class="table" id="read-format">
+        
+         <thead >
+                <div class="container-fluid" style="height:25px;background-color:#ddd">         
+                    <p>Remarks Details</p>
+                </div>
+            </thead> 
+            <tbody>
+                
+                <tr>                             
+                    <td class="py-0">{% block remarks %}
+                    <input type="text" placeholder="{{inv.remarks}}"  class="form-control" id="username" name="username" readonly>
+                    {% endblock remarks %}</td>
+                </tr>
+            </tbody>
+        </table> 
+        
+       
+        
+ <!--  #############################Place for Buttons on the form ################################################ -->     
+<!-- ##BUTTONS   BUTTONS   BUTTONS#############################BUTTONS   BUTTONS   BUTTONS############################################### -->
+		{% block buttons %}
+		<div class="container-fluid">
+		    <div class="row">
+		        <div class="col sm-1">
+		            {% if edit_button %}
+		                <a class="btn btn-sm btn-block fa fa-edit " href="{{ edit_invoices }}"> Edit</a>  
+		            {% endif %}     
+		        </div>
+<!-- 		        <div class="col sm-10"> -->
+<!-- 		             {{ edit_button }} -->
+<!-- 		             {{ action_buttons }}      -->
+<!-- 		        </div> -->
+		        <div class="col sm-1">
+		            <a class="btn  btn-sm btn-block fa fa-window-close" href="{{ list_invoices }}"> Close</a>        
+		        </div>        
+		    </div>   
+		</div>    
+		{% endblock buttons %}
+    </form>
+    <br><br>
+    <!-- INFOBAHN BLOCK############ ADDITONAL BLOCK FOR INFOBAHN##########################<!-- Autocheck#############Autocheck ##########################Autocheck details ####################################### -->
+ <!-- ######################################################################################################## -->
+ <!-- ######################################################################################################## -->
+        
+        {% if user_details.roles.0  == 'role1' or  user_details.roles.0  == 'ITC' %}
+        <div class="row" >
+            <div class="col">
+	            <button type="button" class="btn btn btn-outline-secondary btn-block btn-sm" 
+	                               data-toggle="collapse" data-target="#comparator">
+	                            Show Result of Auto verification
+	            </button>
+            </div>
+             <div class="col">
+                 <button type="button" class="btn btn btn-outline-secondary btn-block btn-sm" 
+                               data-toggle="modal" data-target="#myModal">
+                            Show Past Transaction History
+                 </button>
+             </div>
+        </div>
+<!-- Autocheck#############Autocheck ##########################Autocheck details ####################################### -->
+ <!-- ######################################################################################################## -->        
+        <div id="comparator" class="collapse" > 
+	        <table class="table" id="read-format">
+	            <thead >
+	                <div class="container-fluid" style="height:25px;background-color:#ddd">         
+	                    <p>Autocheck With WAN Link Inventory </p>
+	                </div>
+	            </thead> 
+	            <tbody>
+	                    <tr>
+	                     <td class="py-0"> Overall Verification Status</td>
+	                     <td class="py-0">{% block autocheck_status %}
+	                        {{ PAPERHOUSE_list_invoices.0.autochk.autocheck_status }}   
+	                     {% endblock autocheck_status %}</td>
+	                     <td class="py-0"></td>
+	                     <td class="py-0">Inventory Check</td>
+	                     <td class="py-0">{% block inventory_status %}
+	                        {{ PAPERHOUSE_list_invoices.0.autochk.inventory_status }}   
+	                     {% endblock inventory_status %}</td>
+	                     <td class="py-0"></td>
+	                     </tr>
+	                     <tr>
+	                     <td class="py-0">Secondary Database Check</td>
+	                     <td class="py-0">{% block lnet_status %}
+	                         {{ PAPERHOUSE_list_invoices.0.autochk.lnet_status }}
+	                     {% endblock lnet_status %}</td> 
+	                      <td class="py-0"></td>
+	                     <td class="py-0">Bill of Material Check</td>
+	                     <td class="py-0">{% block bom_comp_result %}
+	                         {{ PAPERHOUSE_list_invoices.0.autochk.bom_comp_result }}
+	                     {% endblock bom_comp_result %}</td>
+	                </tr>
+	                </tbody>
+	              </table>
+              </div>
+              <br>
+              <br>
+ <!-- ###################################################################################################
+############### ###HISTORY OF ALL THE PAST TRANCSCTIONS################################################# --> 
+ <!-- ####converting to pop up box ######################################################################## -->  
+ 
+			  <div class="modal fade" id="myModal">
+			    <div class="modal-dialog modal-xl">
+			      <div class="modal-content">      
+			       
+			        <div class="modal-header">
+			          <h4 class="modal-title">HISTORY OF ALL THE PAST TRANCSCTIONS</h4>
+			          <button type="button" class="close" data-dismiss="modal">&times;</button>
+			        </div>
+			        
+			        <!-- Modal body -->
+			        <div class="modal-body">
+			          <table class="table" id="read-format">
+			            <thead >
+			                <div class="container-fluid" style="height:25px;background-color:#ddd">         
+			                    <p> HISTORY OF ALL THE PAST TRANCSCTIONS </p>
+			                </div>
+			            </thead> 
+			            <tbody>
+			                 <tr>
+			                     <th>RequestID</th>
+			                     <th>DateTime</th>
+			                     <th>Email</th>
+			                     <th>Org</th>                    
+			                     <th>Activity</th>
+			                     <th>Data Changed </th>
+			                 </tr>
+			                 {% for e in event_history %}
+			                 <tr>
+			                     <td class="py-0"> 
+			                     <a href="{% url 'dashapp:striker_list_responces'  e.auditinfo.requestid  %}">
+			                     {{ e.auditinfo.requestid }}</a>
+			                     </td>
+			                     <td class="py-0"> {{ e.auditinfo.api_call_time_stamp|cut:"0"|cut:"." }} </td>
+			                     <td class="py-0"> {{ e.auditinfo.logged_in_user_email }} </td>
+			                     <td class="py-0"> {{ e.auditinfo.logged_in_user_org_unit }} </td>
+			                     <td class="py-0"> {{ e.event_name }} </td>
+			                     <td class="py-0"> {{ e.eventdata }} </td>
+			                </tr>
+			                {% endfor  %}
+                </tbody>
+              </table>  
+              
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  
+</div>           
+              
+         {% endif %}
+</div> 
+{% endwith %}
+{% endblock content-area %}
+
+
+<!--  ======================================== CODE ENDs HERE ==========================================
+
+  slno = IntField(min_value=0, max_value=None, force_string=False, precision=0)
+    tsp = StringField(max_length=200, required=True)
+    customerid = StringField(max_length=30, required=True)
+    customername = StringField(max_length=20, required=True)
+    invoiceno = StringField(max_length=100, required=True)    
+    accountno = StringField(max_length=100, required=True)      
+    circuitid = StringField(max_length=100, required=True)
+    infoid = StringField(max_length=12, required=True)
+    speed = StringField(max_length=100, required=True)
+    arc = StringField(max_length=100, required=True)
+    gstno = StringField(max_length=100, required=True)
+    division = StringField(max_length=20, required=True)   
+    billingdatefrom = StringField(max_length=10, required=True) 
+    billingdateto = StringField(max_length=10, required=True)
+    invoicedate = StringField(max_length=10, required=True)
+    taxname = StringField(max_length=100, required=True)
+    total = IntField(min_value=0, max_value=None, force_string=False, precision=2)
+    servicetype = StringField(max_length=10, required=True)
+    city = StringField(max_length=10, required=True)
+    state = StringField(max_length=10, required=True)
+    pin = IntField(min_value=0, max_value=None, force_string=False, precision=2)
+    premiseno =  StringField(max_length=100, required=True)
+    premisename = StringField(max_length=100, required=True)
+    siteid = StringField(max_length=100, required=True)
+    fullsiteaddress = StringField(max_length=200, required=True)
+    remarks = StringField(max_length=200, required=True)
+    action = StringField(max_length=50, required=True)  
+    
+    class Invoice(Document):
+    ''' invoice have xldata and status
+    this single data status filed will be overwritten  each time a new event occurs
+    the entire event histroy will be stored in the event_histroy_list'''
+    invoiceno = StringField(max_length=200, required=True, unique=True)
+    status = StringField(max_length=200)
+    xldata = EmbeddedDocumentField(XlData)    
+    autochk = EmbeddedDocumentField(Autoresult)  
+
+                                             
+                                             -->

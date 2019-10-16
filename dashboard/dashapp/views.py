@@ -18,18 +18,28 @@ from werkzeug.utils import secure_filename
 from dashapp.tokenleader import tllogin
 from dashapp.linkinv import linkinv_views as linkv
 from dashapp.tokenleader import tlviews
-from dashapp.micros1 import tspinv
-from dashapp.micros2 import tspdivinv
 
-from dashapp.micros1.models import Invoice
-from dashapp.micros1.invoiceForm import invoiceForm
+from dashapp.xluploader import tspinv as xluploadertspinv
 
-from dashapp.micros1.invoiceForm import NameForm
+from dashapp.penman import penman
+from dashapp.paperhouse import paperhouse
+from dashapp.striker import striker
+
 
 def login(request):
     result = tllogin.login(request)
     return result
 
+def log_out(request):
+    print("i m inside lout out view")
+    template_name, template_data  = tllogin.logout(request)
+    return render(request, template_name, template_data)
+    
+# def home(request):
+#     session_user_details = request.session.get('session_user_details')
+#     template_data = {"user_details": session_user_details }   
+#     result = render(request, 'home.html', template_data)            
+#     return result
  
 def list_links(request):
     if 'uname' not in request.session :
@@ -204,125 +214,13 @@ def delete_wfc(request):
     		
 # TOKENLEADER ===========================================
 
-def list_invoices(request):
-    if 'uname' not in request.session :
-      result = login(request)
-    elif'uname' in request.session :
-      result = tspinv.list_invoices(request)
-    return result
 
-### Divisional Invoice Functionality START
-def list_divinvoices(request):
-    if 'uname' not in request.session :
-      result = login(request)
-    elif'uname' in request.session :
-      result = tspdivinv.list_divinvoices(request)
-    return result
-
-def invoicediv_delete(request):
-    if 'uname' not in request.session :
-        result = logout(request)
-    else:        
-        result = tspdivinv.invoicediv_delete(request)    
-    return result
 
 ### Divisional Invoice Functionality END
       
 
-def invoice_create(request):
-    if 'uname' not in request.session :
-        result = login(request)
-    else:
-        result = tspinv.invoice_create(request)
-    return result
- 
-
-def list_invoices_rcom(request):
-    if 'uname' not in request.session :
-      result = login(request)
-    else:
-      result = tspinv.list_invoice_rcom(request)
-    return result
-    
-    
-def invoice_delete(request):
-    if 'uname' not in request.session :
-        result = logout(request)
-    else:        
-        result = tspinv.invoice_delete(request)    
-    return result
-
-def invoice_upload(request):
-    if 'uname' not in request.session :
-        result = logout(request)
-    else:
-        result = tspinv.invoice_upload(request)    
-    return result
-
-def invoice_dwndformat(request):
-    if 'uname' not in request.session :
-        result = logout(request)
-    else:
-        result = tspinv.downloadinvoicexlformat(request)    
-    return result
 
 
-def view_upload(request):
-    if 'uname' not in request.session :
-        result = logout(request)
-    else:
-        result = tspinv.view_upload(request)
-    return reault
-
-def view_update_upload(request):
-    if 'uname' not in request.session :
-        result = logout(request)
-    else:
-        result = tspinv.view_update_upload(request)
-    return result
-
-def invoice_update_upload(request):
-    if 'uname' not in request.session :
-        result = logout(request)
-    else:
-        result = tspinv.invoice_update_upload(request)    
-    return result
-
-def invoice_rcom_upload(request):
-    if 'uname' not in request.session :
-        result = logout(request)
-    else:
-        result = tspinv.invoice_rcom_upload(request)    
-    return result
-
-def invoice_approvals(request):
-    if 'uname' not in request.session :
-        result = logout(request)
-    else:
-        result = tspinv.invoice_approvals(request)    
-    return result
-
-
-def invoice_approve(request):
-    if 'uname' not in request.session :
-        result = logout(request)
-    else:
-        result = tspinv.invoice_approve(request)    
-    return result
-
-def invoice_reject(request):
-    if 'uname' not in request.session :
-        result = logout(request)
-    else:
-        result = tspinv.invoice_reject(request)    
-    return result
-
-def sampleinvoice(request):
-    if 'uname' not in request.session :
-        result = logout(request)
-    else:
-        result = tspinv.sampleinvoice(request)    
-    return result
 
 def add_service(request):
     if 'uname' not in request.session :
@@ -383,7 +281,103 @@ def add_model(request):
         return render(request, "home.html", {'CREATE_INVOICE_FORM': form})
 
  
+############### Xluploader #########################################
+
+
+def xluploader_invoice_upload(request):
+    if 'uname' not in request.session :
+        result = logout(request)
+    else:
+        result = xluploadertspinv.invoice_upload(request)    
+    return result
+
+def download_invoicexlformat(request):
+    if 'uname' not in request.session :
+        result = logout(request)
+    else:
+        result = xluploadertspinv.download_invoicexlformat(request)    
+    return result
+
+
+############################# PEN and PAPER House#######################################
+
+def penman_list_events(request):
+    if 'uname' not in request.session :
+      result = login(request)
+    elif 'uname' in request.session :
+      result = penman.list_events(request)
+    return result
+
+def penman_delete_events(request):
+    if 'uname' not in request.session :
+      result = login(request)
+    elif 'uname' in request.session :
+      result = penman.delete_events(request)
+    return result
 
 
 
- 
+def paperhouse_list_invoice(request, invoicenum, mode, listype):
+    if 'uname' not in request.session :
+      result = login(request)
+    elif 'uname' in request.session :
+        if listype == 'admin':
+            result = paperhouse.list_invoices(request, invoicenum, mode, 'admin')
+        else:
+            result = paperhouse.list_invoices(request, invoicenum, mode)
+    return result
+
+# def paperhouse_list_invoice_admin(request):
+#     if 'uname' not in request.session :
+#       result = login(request)
+#     elif 'uname' in request.session :
+#       result = paperhouse.list_invoices(request, "admin")
+#     return result 
+
+def paperhouse_delete_invoice(request):
+    if 'uname' not in request.session :
+      result = login(request)
+    elif 'uname' in request.session :
+      result = paperhouse.delete_invoices(request)
+    return result
+
+def tsp_list_invoice(request):
+    if 'uname' not in request.session :
+      result = login(request)
+    elif 'uname' in request.session :
+      result = paperhouse.tsp_list_invoices(request)
+    return result
+
+
+def striker_list_responces(request, request_id):
+    if 'uname' not in request.session :
+      result = login(request)
+    elif 'uname' in request.session :
+      result = striker.list_exec_status(request, request_id)
+    return result
+
+
+def striker_delete_responces(request):
+    if 'uname' not in request.session :
+      result = login(request)
+    elif 'uname' in request.session :
+      result = striker.delete_responces(request)
+    return result
+
+###################################################################
+
+def striker_update_Invoice(request, actionrole):
+    if 'uname' not in request.session :
+      result = login(request)
+    elif 'uname' in request.session :
+      result = striker.update_invoice(request, actionrole)
+    return result
+
+def striker_update_from_Draft(request, actionrole):
+    if 'uname' not in request.session :
+      result = login(request)
+    elif 'uname' in request.session :
+      result = striker.update_from_draft_invoice(request, actionrole)
+    return result
+    
+

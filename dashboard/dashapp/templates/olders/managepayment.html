@@ -1,0 +1,74 @@
+<!--payment_dict = {"invoice_id": "", "billing_from": "01-01-2019", "billing_to": "31-03-2019", "billing_type": "Installation",
+        "amount": "0", "payment_date": "", "mode": "", "ref_no": "", "status": "", "netlink_id": 0}-->
+<form action="{% url 'dashapp:managepayment' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <div class="table-responsive" style="width:60%">
+        <div class="tim-row" id="tutorial">
+            <h4 class="text-left">Add Payment Details</h4>
+            <legend></legend>
+        </div>
+        <!--<form action="/action_page.php">-->
+        <div style="padding-left:100px">
+            <div class="form-group">
+                <label for="invoice_id">Invoice Number:</label>
+                <!--<input type="text" class="form-control" id="invoice_id" name="invoice_id">-->
+                <select class="form-control" id="invoice_id" name="invoice_id">
+                    <option>Select</option>
+                    {% for Inv in list_invoices_drp%}
+                    <option>{{ Inv.current_doc.xldata.invoiceno }}</option>
+                    {% endfor %}
+                </select>
+
+            </div>
+            <div class="form-group">
+                <label for="billing_from">Billing from:</label>
+                <input type="text" class="form-control" id="billing_from" name="billing_from">
+            </div>
+            <div class="form-group">
+                <label for="billing_to">Billing to:</label>
+                <input type="text" class="form-control" id="billing_to" name="billing_to">
+            </div>
+            <div class="form-group">
+                <label for="billing_type">Billing Type:</label>
+                <input type="text" class="form-control" id="billing_type" name="billing_type">
+            </div>
+            <div class="form-group">
+                <label for="amount">Amount:</label>
+                <input type="text" class="form-control" id="amount" name="amount">
+            </div>
+            <div class="form-group">
+                <label for="amount">payment_date:</label>
+                <input type="text" class="form-control" id="payment_date" name="payment_date">
+            </div>
+            <div class="form-group">
+                <label for="mode">Mode:</label>
+                <input type="text" class="form-control" id="mode" name="mode">
+            </div>
+            <div class="form-group">
+                <label for="ref_no">Reference Number:</label>
+                <input type="text" class="form-control" id="ref_no" name="ref_no">
+            </div>
+            <div class="form-group">
+                <label for="status">Status:</label>
+                <input type="text" class="form-control" id="status" name="status">
+            </div>
+            <div class="form-group">
+                <label for="netlink_id">Net Link Id:</label>
+                <!--<input type="text" class="form-control" id="netlink_id" name="netlink_id">-->
+                <select class="form-control" id="netlink_id" name="netlink_id">
+                    <option>Select</option>
+                    {% for lnk in list_Lnetlink%}
+                    <option>{{ lnk.id }}</option>
+                    {% endfor %}
+                </select>
+
+            </div>
+            <input type="hidden" id="ADDDEL" name="ADDDEL" value="FALSE">
+            <button type="submit" class="btn btn-success" style="width:300px">Save</button>
+            <br /><br />
+        </div>
+    </div>
+</form>
+
+Invoice -- {{list_invoices}}

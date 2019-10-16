@@ -1,0 +1,204 @@
+{% block content %}
+
+<style type="text/css">
+    .info, .success, .warning, .error, .validation {
+        border: 1px solid;
+        margin: 10px 0px;
+        padding: 5px 5px 10px 50px;
+        background-repeat: no-repeat;
+        background-position: 10px center;
+    }
+
+    .info {
+        color: #00529B;
+        background-color: #BDE5F8;
+        background-image: url('info.png');
+    }
+
+    .success {
+        color: #4F8A10;
+        background-color: #DFF2BF;
+        background-image: url('success.png');
+    }
+
+    .warning {
+        color: #9F6000;
+        background-color: #FEEFB3;
+        background-image: url('warning.png');
+    }
+
+    .error {
+        color: #D8000C;
+        background-color: #FFBABA;
+        background-image: url('error.png');
+    }
+</style>
+
+<div class="table-wrapper">
+    <div class="table-title">
+        <div class="row">
+            <div class="col-sm-8"><h3>Invoice Recommendations <b>Upload</b></h3></div>
+        </div>
+    </div>
+    <br />
+<div style="text-align:right">
+    <form action="{% url 'dashapp:invoice_dwndformat' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-link btn-md" style="font-weight:bold">Download Invoice Excel format</button>
+    </form>
+</div>
+    <table align="center" width="90%" style="padding-left: 150px">
+        <tr>
+            <td>
+                {% if UPLOAD_RESULT is not null %}
+                <div class="alert alert-success" role="alert">
+                    Invoice Recommondations file Upload is successfull.<br />
+
+                </div>
+                {% elif EXCEPTION is not null %}
+                <div class="alert alert-danger" role="alert">
+                    There is been an error while uploading a file, Please check the file format. <br />
+                    {% if EXCEPTION_INFO is not null %}
+                    {{EXCEPTION_INFO}}
+                    {% endif %}
+                </div>
+                {% endif %}
+            </td>
+        </tr>
+    </table>
+
+    <form method="post" class="md-form" enctype="multipart/form-data">
+        {% csrf_token %}
+        <!--<input type="file" name="myfile">
+        <button type="submit">Upload</button>-->
+        <div class="file-field" style="width:400px">
+            <div class="btn btn-primary btn-sm float-left" style="width:400px">
+                <span>Choose Invoice file </span>
+                <input type="file" name="myfile" style="width:350px">
+            </div><br /><br />
+            <div class="file-path-wrapper" align="right">
+                <input class="file-path validate" type="submit" value="upload" placeholder="Upload Invoice update xl file" style="width:150px">
+            </div>
+        </div>
+    </form>
+
+
+    {% if EXCEPTION is not null %}
+    <div class="row">
+
+    </div>
+    {% elif UPLOAD_RESULT is not null%}
+    <div class="table-wrapper">
+        <div class="table-title">
+            <div class="row">
+                <div class="col-sm-8"><h3>Upload status</h3></div>
+            </div>
+        </div>
+        <table class="table table-hover table-bordepink">
+            <thead>
+                <tr style="font-size:12px">
+                    <th>Invoice No</th>
+                    <th>Upload status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for s in UPLOAD_STATUS %}
+                <tr data-id="{{s.invoice_num}}" data-parent="0" data-level="1" style=" font-size:11px;font-weight:bold"
+                    class="{% if 'ready for verifiaction' in s.invoice_num or s.invoice_num == 'Passed' %}
+                            success
+                             {%else%}
+                            failed
+                            {% endif %}
+                            ">
+
+                    <td style="width:150px">{{ s.invoice_num }} </td>
+                    <td>
+                        {{ s.save_status }}
+                    </td>
+                </tr>
+                <tr data-id="{{ s.invoice_num }}_rcom" data-parent="{{ s.invoice_num}}" data-level="2"
+                    style=" background-color:lightcyan">
+                    <td colspan="10">
+                        <table class="table table-hover table-bordepink" style="padding-left:50px;font-size:9px">
+                            <tr class="{% if 'No link in inventory' in s.invoice_json.inventory_status or s.invoice_json.inventory_status != 'Passed' %}
+                            failed
+                             {%else%}
+                            success
+                            {% endif %}
+                            ">
+                                <td style="width:200px">Inventory Status :</td>
+                                <td style="font-weight:bold">
+                                    {{  s.invoice_json.inventory_status  }}
+                                </td>
+                            </tr>
+                            <tr class="{% if 'No link in ' in s.invoice_json.lnet_status or s.invoice_json.lnet_status != 'Passed' %}
+                            failed
+                             {%else%}
+                            success
+                            {% endif %}
+                            ">
+                                <td style="width:200px">Local Network Status : </td>
+                                <td style="font-weight:bold">
+                                    {{ s.invoice_json.lnet_status }}
+                                </td>
+                            </tr>
+                            <tr class="{% if 'No link in ' in s.autocheck_status.lnet_status or s.invoice_json.autocheck_status != 'Passed' %}
+                            failed
+                             {%else%}
+                            success
+                            {% endif %}
+                            ">
+                                <td style="width:200px">Auto Check Status : </td>
+                                <td style="font-weight:bold">
+                                    {{s.invoice_json.autocheck_status  }}
+                                </td>
+                            </tr>
+
+                            <tr><td colspan="10" style="font-weight:bold;text-align:center"> BOM Result</td></tr>
+                            <tr>
+                                <td colspan="10">
+                                    <div class="table-wrapper">
+                                        <table class="table table-hover table-bordepink">
+                                            <thead>
+                                            <th>Field</th>
+                                            <th>Invoice Value</th>
+                                            <th>Suggested value</th>
+                                            </thead>
+                                            {% for bom in s.invoice_json.bom_comp_result %}
+                                            <tr>
+                                                <td>{{bom.field}}</td>
+                                                <td style="width:250px">{{bom.invoice_value}}</td>
+                                                <td style="width:250px">{{bom.suggested_value}}</td>
+                                            </tr>
+                                            {% endfor %}
+                                        </table>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <!--<table class="table table-bordered">
+        <thead>
+            <tr style="font-size:12px">
+                <th> Invoice No</th>
+                <th>Upload status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in UPLOAD_RESULT %}
+            <tr style="font-size:11px">
+                <td>{{ item.invoice_num }} </td>
+                <td>{{ item.save_status }} </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>-->
+    </div>
+    {% endif %}
+    {% endblock %}
+
+</div>

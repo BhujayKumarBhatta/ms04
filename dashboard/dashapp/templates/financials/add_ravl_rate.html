@@ -1,0 +1,67 @@
+{% extends "home.html" %}
+{% block content-area %}
+{% url 'dashapp:list_ravl_obj' "Rate" as list_ravl_obj %}
+{% url 'dashapp:add_rate'  as add_rate %}
+
+
+
+    <div class="container-fluid" style="padding-top:7px">
+        <form action="{{ add_rate }}" method="post">
+           {% csrf_token %}            
+        <table class="table" id="edit-format">            
+            <tbody>   
+                  <th><p>Add New RAVL Link</p></th>             
+			      <tr >			        
+				        <td class="py-0"><label for="tsp">tsp:</label></td>
+                        <td class="py-0">
+                            <input type="text"  id="tsp" name="tsp">
+                        </td>
+                        
+			            <td class="py-0"><label for="linktype">linktype:</label></td>
+			            <td class="py-0">
+			                <input type="text"  id="linktype" name="linktype"> 
+                        </td>
+			       </tr>
+			       
+			       <tr >    
+                        <td class="py-0"><label for="otc">otc:</label></td>
+                        <td class="py-0">
+                            <input type="number" id="otc" name="otc"> 
+                        </td>
+                        
+                        <td class="py-0"><label for="activity_type">activity_type:</label></td>
+                        <td class="py-0">
+                            <input type="text" id="activity_type" name="activity_type" required> 
+                        </td>
+                   </tr>
+                   
+                   <tr >                 
+                        <td class="py-0"><label for="rate_per_year">rate_per_year:</label></td>
+                        <td class="py-0">
+                            <input type="number" id="rate_per_year" name="rate_per_year"> 
+                        </td>
+                        
+                        
+                   </tr>
+                                      		        
+			</tbody> 
+		</table>
+	</div>
+	<div class="container-fluid" id="edit-format">
+        <div class="row">
+            <div class="col-sm-3">
+                <button class="btn btn-sm fa fa-plus"  type="submit"> &nbsp SAVE</button>
+            </div>
+            <div class="col-sm-7 justify-content-center">     
+            </div>
+            <div class="col-sm-2 justify-content-end">
+                <a class="btn  btn-sm fa fa-minus" href="{{ list_ravl_obj }}"> &nbsp CANCEL</a>
+            </div> 
+            </form>
+        </div>
+        
+          
+{% endblock content-area %}
+
+
+<!--  ======================================== CODE ENDs HERE ==========================================    -->

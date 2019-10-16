@@ -1,0 +1,40 @@
+
+{% url 'dashapp:paperhouse_list_invoice' 'all' 'read' 'normal' as list_invoices %}
+{% url 'dashapp:xluploader_invoice_upload'  as xlupload %}
+{% url 'dashapp:list_ravl_obj' "Lnetlink" user_details.roles.0 as list_ravl_links %}
+{% url 'dashapp:paperhouse_savedraft_list'  "all" as list_draft %}
+	  <ul class="navbar-nav py-0"> 
+		    	    
+		   <!-- Invoice  -->
+	          <li class="nav-item dropdown py-0">
+	            <a class="nav-link dropdown-toggle fas fa-tasks" href="#" id="navbardrop" data-toggle="dropdown">
+	              Invoices
+	            </a>
+	            <div class="dropdown-menu">
+	              <a class="dropdown-item" href="{{xlupload}}">upload invoice</a>
+	              <a class="dropdown-item" href="{{list_invoices}}">All Invoices</a>
+	              <a class="dropdown-item" href="{{ list_draft }}">Saved as Draft </a>
+	              <a class="dropdown-item" href="#">In progress</a>
+	              <a class="dropdown-item" href="#">pending for tsp</a>
+	              <a class="dropdown-item" href="#">pending for ITC</a>
+	              <a class="dropdown-item" href="#">Closed</a>
+	              
+	            </div>
+	          </li> 
+	          
+	          <!-- Links -->
+              <li class="nav-item dropdown py-0">
+                <a class="nav-link dropdown-toggle fas fa-satellite-dish" href="#" id="navbardrop" data-toggle="dropdown">
+                   CKTID-INFOID MAP
+                </a>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="{{ list_ravl_links }}">
+                  CKTID-INFOID MAP</a>
+                  
+                </div>
+              </li> 	        	        
+        </ul>
+  
+       
+
+		  

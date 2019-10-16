@@ -1,0 +1,110 @@
+{% load i18n %}
+{% load l10n %}
+{% load static %}
+{% static "dashapp/images/automated-invoice-processing.jpeg" as photo1 %}
+{% static "dashapp/images/invoice-pic.jpeg" as photo2 %}
+{% static "dashapp/images/Utility-Bill-Processing-Services-617x260.jpg" as photo3 %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %} InfoBots web site {% endblock  %}</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    
+</head>
+
+
+<body>
+       
+	    <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top " >
+	    <!-- style="background-image: url('{{ photo3 }}')" -->
+		  <!-- Brand   data-spy="affix" data-offset-top="400" -->
+		  <a class="navbar-brand" href="#"> <span class="float-left">ITSS</span></a>
+		     
+		  {% block "nav-bar-content"  %} {% endblock %}
+		  <ul class="navbar-nav">  
+		
+		    <!-- Dropdown 1 -->
+		    <li class="nav-item dropdown">
+		      <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+		        Dropdown link
+		      </a>
+		      <div class="dropdown-menu">
+		        <a class="dropdown-item" href="#">Link 1</a>
+		        <a class="dropdown-item" href="#">Link 2</a>
+		        <a class="dropdown-item" href="#">Link 3</a>
+		      </div>
+		    </li>
+		    
+		   <!-- Dropdown 2 -->
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                Dropdown link
+              </a>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="#">Link 1</a>
+                <a class="dropdown-item" href="#">Link 2</a>
+                <a class="dropdown-item" href="#">Link 3</a>
+              </div>
+            </li>       
+	        
+	       
+		  </ul>
+		  <div class="nav-text  text-primary" >
+              INVOICE PROCESSING SYSTEM
+           </div>          
+           
+           
+           <ul class="navbar-nav justify-content-end">
+	           <li class="nav-item dropdown">
+	              <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+	                 {{ user_details.username }} 
+	              </a>
+	                   <div class="dropdown-menu">
+			                <p class="dropdown-item" > {{ user_details.wfc.org }}</p>
+			                <p class="dropdown-item"">{{ user_details.email }}</p>
+			                <a class="dropdown-item" href="#">log out</a>
+			           </div> 
+			    </li>
+			</ul>
+           
+		  
+	    </nav>
+	
+	
+	<!--  
+
+  {'email': 'user1', 'allowemaillogin': 'N', 
+  'wfc': {'name': 'wfc1', 'orgunit': 'ou1', 'department': 'dept1', 
+          'id': 1, 'creation_date': '2019-07-04 15:03:08', 'org': 'org1', 
+          'created by': None, 'is_active': 'Y'}, 
+   'roles': ['role1'], 
+   'username': 'user1', 
+   'id': 1, 'creation_date': '2019-07-04 15:04:09', 
+   'otp_mode': '', 'created by': None, 'is_active': 'Y'}
+-->
+   
+   <!--   <div id="sidebar" class="row">
+    {% block sidebar %}   {% endblock %}
+    </div> -->
+    
+    <div class="container-fluid">
+        <div class="jumbotron  jumbotron-fluid"  
+            style="background-image: url('{{ photo1 }}')" >
+            
+            {% block "content" %} 
+                 {{ user_details }}
+            {% endblock %}
+        </div> 
+     </div> 
+        
+    
+
+</body>
+
+
+</html>
