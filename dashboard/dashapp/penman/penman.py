@@ -61,7 +61,7 @@ def list_events(request):
         return web_page 
          
  
-             
+               
     
 def delete_events(request):
     tlclient = tllogin.prep_tlclient_from_session(request)

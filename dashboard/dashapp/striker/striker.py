@@ -94,11 +94,11 @@ def delete_responces(request):
         list_responces = strikerclient.list_responses()
         template_data = {"STRK_list_responces": list_responces ,"DEL_STRK_STATUS": status} 
         result = render(request, 'home.html', template_data) 
-          
+           
     template_name =  'invoice/exec_status.html'           
     template_data = {"list_exec_status": list_responces }      
     web_page = validate_active_session(request, template_name, template_data)
-    return web_page    
+    return web_page     
 
 def update_invoice(request, actionrole):
     if request.method == 'POST':

@@ -15,7 +15,7 @@ from clientpenman.client import clientpenman
 
 from linkinvclient.client import LIClient
 from django.views.generic.edit import FormView
-#from django.core.urlresolvers import reverse_lazy
+#from django.core.urlresolvers import reverse_lazy 
 from django.urls import reverse_lazy
 #File Storage
 from django.conf import settings
