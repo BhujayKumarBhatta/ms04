@@ -22,6 +22,7 @@ from . import views
 from dashapp.linkinv import  linkinv_views
 from dashapp.views import paperhouse_delete_invoice
 from dashapp.paperhouse import paperhouse
+from dashapp.penman import penman
 #from rest_framework_swagger.views import get_swagger_view
 #from rest_framework.documentation import include_docs_urls
 
@@ -76,7 +77,7 @@ urlpatterns = [path('', views.login, name='login'),
         
     
     #penman
-    path('penman_list_events', views.penman_list_events, name='penman_list_events'),
+    path('penman_list_events',penman.list_events, name='penman_list_events'),
     path('penman_delete_events', views.penman_delete_events, name='penman_delete_events'),       
     #paperhouse
     path('paperhouse_list_invoice/<slug:invoicenum>/<slug:mode>/<slug:listype>', 
@@ -99,6 +100,9 @@ urlpatterns = [path('', views.login, name='login'),
     path('managerate', views.managerate, name='managerate'),
     path('managepayment', views.managepayment, name='managepayment'),
     path('listobjects', views.listobjects, name='listobjects'),
+    
+    path('listdocs', views.listdocs, name='listdocs'),
+    
     ]
 
 

@@ -7,7 +7,8 @@
  
  <p> switched to edit mode</p>
 
-{% block invform_start %}<form action="{{ update_invoice }}" method="post">{% endblock invform_start %} 
+{% block invform_start %}
+<form action="{{ update_invoice }}" method="post">{% endblock invform_start %} 
  
 {% block infoid %} 
     <input type="text" placeholder="{{inv.infoid}}" class="form-control" id="InfoID" name="InfoID" >

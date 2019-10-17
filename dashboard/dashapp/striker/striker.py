@@ -66,6 +66,7 @@ def list_exec_status(request, request_id):
         tlclient = tllogin.prep_tlclient_from_session(request)        
         strikerclient=clientstriker(tlclient)
         list_responces = strikerclient.list_responses()
+        template_name =  'admin_pages/list_responses.html'
         if request_id != "all":
             filtered_list = []
             for l in list_responces:
@@ -75,9 +76,10 @@ def list_exec_status(request, request_id):
                     print("rid:" , rid)
                     if rid == request_id:
                         filtered_list.append(l)
-            list_responces = filtered_list               
+            list_responces = filtered_list     
+            template_name =  'invoice/exec_status.html'           
         template_data = {"list_exec_status": list_responces } 
-        template_name =  'invoice/exec_status.html'        
+                 
     web_page = validate_active_session(request, template_name, template_data)
     return web_page
            
@@ -91,12 +93,12 @@ def delete_responces(request):
         status = strikerclient.delete_response() 
         list_responces = strikerclient.list_responses()
         template_data = {"STRK_list_responces": list_responces ,"DEL_STRK_STATUS": status} 
-        result = render(request, 'home.html', template_data)   
-    else:        
-        list_responces = strikerclient.list_responses()  
-        template_data = {"STRK_list_responces": list_events } 
-        result = render(request, 'home.html', template_data)      
-    return result    
+        result = render(request, 'home.html', template_data) 
+          
+    template_name =  'invoice/exec_status.html'           
+    template_data = {"list_exec_status": list_responces }      
+    web_page = validate_active_session(request, template_name, template_data)
+    return web_page    
 
 def update_invoice(request, actionrole):
     if request.method == 'POST':

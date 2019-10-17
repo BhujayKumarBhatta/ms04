@@ -359,25 +359,37 @@ def striker_list_responces(request, request_id):
 
 def striker_delete_responces(request):
     if 'uname' not in request.session :
-      result = login(request)
+        result = login(request)
     elif 'uname' in request.session :
-      result = striker.delete_responces(request)
+        result = striker.delete_responces(request)
     return result
 
 ###################################################################
 
 def striker_update_Invoice(request, actionrole):
     if 'uname' not in request.session :
-      result = login(request)
+        result = login(request)
     elif 'uname' in request.session :
-      result = striker.update_invoice(request, actionrole)
+        result = striker.update_invoice(request, actionrole)
     return result
 
 def striker_update_from_Draft(request, actionrole):
     if 'uname' not in request.session :
-      result = login(request)
+        result = login(request)
     elif 'uname' in request.session :
-      result = striker.update_from_draft_invoice(request, actionrole)
+        result = striker.update_from_draft_invoice(request, actionrole)
     return result
+
+def listdocs(request):
+    if 'uname' not in request.session :
+        result = login(request)
+    elif 'uname' in request.session :
+        template_data = {"update_request": "" }
+        template_name = "admin_pages/docs_list.html"
+        web_page = striker.validate_active_session(request, template_name, template_data)
+    
+         
+    return web_page
+    
     
 
