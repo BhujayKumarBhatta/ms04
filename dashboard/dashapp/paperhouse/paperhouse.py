@@ -173,38 +173,28 @@ def _get_action_buttons(current_status):
     else:
         button_list = None
     return button_list
-    
-    
-        
-        
-       
-    
-    
-        
-        
-    
+   
     
 def delete_invoices(request):
     tlclient = tllogin.prep_tlclient_from_session(request)
     paperclient = clientpaperhouse(tlclient)
-    if request.method == 'POST':
-       
+    if request.method == 'POST':       
         invoicenum = request.POST['invoiceno']          
         invoiceno = int(invoicenum)
         if invoiceno and invoiceno > 0:
             status = paperclient.delete_invoices(invoicenum) 
         else:
             status = paperclient.delete_invoices('all') 
-        #template_data = {"DELETE_STATUS":"Working Delete","list_invoices":
-        #list_invoices,"ISDELETED":"TRUE" }         
-        list_invoices = paperclient.list_invoices('all')  
-        template_data = {"PAPERHOUSE_list_invoices": list_invoices ,"DEL_PAPER_INV_STATUS": status} 
-        result = render(request, 'home.html', template_data)   
-    else:        
-        list_invoices = paperclient.list_invoices('all')    
-        template_data = {"PAPERHOUSE_list_invoices": list_invoices } 
-        result = render(request, 'home.html', template_data)      
-    return result    
+         
+    list_invoices = paperclient.list_invoices('all')  
+    accept_button = []
+    template_name = 'admin_pages/list_invoices.html'    
+    template_data = {"PAPERHOUSE_list_invoices": list_invoices
+                     , "accept_button": accept_button
+                     ,"delete_status" : status}
+    web_page = validate_active_session(request, template_name, template_data)
+    return web_page  
+  
 
 
 def tsp_list_invoices(request):

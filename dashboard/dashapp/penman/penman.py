@@ -80,7 +80,7 @@ def delete_events(request):
     template_name = 'admin_pages/list_events.html'
     template_data = {"Penman_list_events": list_events,
                           "action_buttons": action_buttons, 
-                          "deletestatus" :status }
+                          "delete_status" :status }
     web_page = validate_active_session(request, template_name, template_data)
     return web_page    
     

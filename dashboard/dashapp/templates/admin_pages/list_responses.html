@@ -6,6 +6,17 @@
 
 <div class="container-fluid" style="padding-top:7px">
 
+ <table align="center" width="90%" style="padding-left: 150px">
+        <tr>
+            <td>
+                {% if delete_status is not null %}
+                <div class="alert alert-success" role="alert">
+                     Delete Status : {{delete_status}}
+                </div>                 
+                {% endif %}
+            </td>
+        </tr>
+    </table>
   
      <form action="{% url 'dashapp:striker_delete_responces' %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
