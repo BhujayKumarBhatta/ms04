@@ -34,21 +34,29 @@
             <thead >
                 <tr style="background-color: #4CAF50;font-size:10px">
                 
-                <th>Request ID , Status </th>
-                 <th> Execution Status</th>
+                <th>Invoice No/Request ID </th>
+                 <th> Exec Status/Wfc</th>
+                 <th> Status</th>
             </tr>
         </thead>
         <tbody>
          	 
-            {% for stat in list_exec_status%}
+            {% for stat in list_exec_status  %}
           
-              
-              
-           <tr data-id="{{ Inv.current_doc.xldata.invoiceno}}" data-parent="0" data-level="1" style="font-size:11px; ">
-                <td>{{ stat.request_id }}</td>
-                <td style="width:70%">{{ stat.save_status }}</td>
-            </tr>
             {%if 'exec_status' in stat  %}
+            <tr data-id="{{ Inv.current_doc.xldata.invoiceno}}" data-parent="0" data-level="1" style="font-size:11px; ">
+                <td >{{ stat.invoicenum }}</td>
+                 <td >{{ stat.wfcdict }}</td>
+                 <td >{{ stat.exec_status }}</td>
+            </tr>
+            
+            {%else%}  
+              
+           <tr style="background-color:lightgreen;font-size:10px" data-id="{{ Inv.current_doc.xldata.invoiceno}}" data-parent="0" data-level="1" style="font-size:11px; ">
+                <td>{{ stat.request_id }}</td>
+                <td colspan=2 style="width:70%">{{ stat.save_status }}</td>
+            </tr>
+            
 	             
             {% endif %}
           {% endfor %}
@@ -57,8 +65,10 @@
     </table>
     
 </div>
-    
+ 
 {% endblock content-area %}
+
+
 
 
 <!--  {'is_active': 'Y', 'otp_mode': 'mail', 'allowemaillogin': 'N', 
