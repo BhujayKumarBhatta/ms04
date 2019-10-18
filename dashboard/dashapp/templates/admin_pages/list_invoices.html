@@ -36,6 +36,7 @@
         <table class="table table-striped table-hover">
             <thead >
                 <tr style="background-color: #4CAF50;font-size:10px">
+                	<th></th>
 			        <th>TSP</th>
 			        <th>Inv No</th>
 		 	        <th>Info ID</th>
@@ -51,8 +52,18 @@
                 </tr>
             </thead>
             <tbody>
-                {% for l in PAPERHOUSE_list_invoices %}
-			      <tr style="font-size:10px">			        
+               {% for l in PAPERHOUSE_list_invoices %}
+			      <tr style="font-size:10px">
+			      <td>
+			      <form action="{% url 'dashapp:paperhouse_delete_invoice' %}" method="post" enctype="multipart/form-data">
+				        {% csrf_token %}
+				        <input type="hidden" id="invoiceno" name="invoiceno" value="{{ l.xldata.invoiceno }}">
+				           <button type="submit" class="btn btn-danger btn-bg fa fa-trash "
+			                onclick="return confirm('Are you sure? you want to delete Invoice : {{ l.xldata.invoiceno }} of {{ l.xldata.tsp }}.')" >
+			                 
+			                </button> 
+		         </form>
+			      </td>			        
 			        <td>{{ l.xldata.tsp }}</td>
 			        <td><a href="{% url 'dashapp:paperhouse_list_invoice' l.xldata.invoiceno 'read' 'normal' %}" >
 			                 {{ l.xldata.invoiceno }}
