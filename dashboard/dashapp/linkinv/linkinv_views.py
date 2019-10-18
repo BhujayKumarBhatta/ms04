@@ -25,8 +25,9 @@ def list_ravl_obj(request, objname, rolename):
     list_infoops_links = lic.list_links()
     template_data = {"list_ravl_obj": list_ravl_obj, 
                      "list_infoops_links": list_infoops_links }
+    itcroles = ["ITC", "role1", "MIS" ]
     if objname == "Lnetlink":
-        if rolename == "ITC" or rolename == "role1":
+        if rolename in itcroles:
             template_name = "wanlinks/list_ravl_link.html"
         elif rolename == "TSP":
             template_name = "wanlinks/tsp_list_ravl_link.html" 
@@ -135,6 +136,7 @@ def add_rate(request):
         rate_dict['otc'] = request.POST['otc']
         rate_dict['activity_type'] = request.POST['activity_type']
         rate_dict['rate_per_year'] = request.POST['rate_per_year']
+        rate_dict['bandwidth'] = request.POST['bandwidth']
         status = lic.add_rate(rate_dict)
         template_data = {"status": status }
         template_name = "wanlinks/exec_status.html"
