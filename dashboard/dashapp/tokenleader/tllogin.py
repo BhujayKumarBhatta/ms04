@@ -19,13 +19,14 @@ def prep_tlclient_from_session(request):
     if 'uname' and 'domain' in request.session:
         uname = request.session['uname']
         domain = request.session['domain']
+        print('got domain from session as:', domain)
         if 'psword' and not 'otp' in request.session:
             psword = request.session['psword']
             auth_config = Configs(tlusr=uname, tlpwd=psword, domain=domain)
         elif 'otp' in request.session:
             otp = request.session['otp']
             auth_config = Configs(tlusr=uname, otp=otp, domain=domain)
-        tlclient = Client(auth_config) 
+        tlclient = Client(auth_config)
         return   tlclient 
             
 
@@ -41,7 +42,8 @@ def login(request):
         domain = request.POST.get('domain', '')        
         request.session['uname'] = uname
         request.session['psword'] = psword
-        request.session['domain'] = domain        
+        request.session['domain'] = domain
+        print("pushed domain in session as:", domain, request.session['domain'])        
         request.session['last_clicked_on'] = datetime.now().timestamp()
         if request.POST.get('otp', ''):
             otp = request.POST.get('otp', '')
@@ -88,6 +90,8 @@ def logout(request):
     request.session['session_user_details'] = None
     request.session['uname'] = None
     request.session['psword'] = None
+    request.session['domain'] = None
+    request.session['otp'] = None
     request.session['last_clicked_on'] = None
     txt = "Logged out, session expired  please login again"
     template_data = {"mykey": txt }

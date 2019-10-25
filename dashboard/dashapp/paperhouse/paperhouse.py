@@ -48,7 +48,8 @@ sampleinvoice ={ "state": "","arc": "","billingdateto": "","remarks": "",
 def list_invoices(request, invoicenum, mode, admin=None):
     list_events = []
     if request.method == 'GET': 
-        tlclient = tllogin.prep_tlclient_from_session(request)        
+        tlclient = tllogin.prep_tlclient_from_session(request)
+        print("within list invoice tlcliet domain is :", tlclient.domain)        
         paperclient=clientpaperhouse(tlclient)#               
         list_invoices = paperclient.list_invoices(invoicenum)        
         if invoicenum == 'all' and mode =='read':

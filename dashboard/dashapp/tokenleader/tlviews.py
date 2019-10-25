@@ -7,6 +7,7 @@ from dashapp.tokenleader.tllogin import validate_active_session
 def list_users(request):
     if request.method == 'GET': 
         tlclient = tllogin.prep_tlclient_from_session(request)
+        print("within list user tlcliet domain is :", tlclient.domain)
         list_users = tlclient.list_users()
         template_data = {"list_users": list_users.get('status')}
         template_name = 'admin_pages/list_users.html'
