@@ -15,7 +15,7 @@ from clientpenman.client import clientpenman
 
 from linkinvclient.client import LIClient
 from django.views.generic.edit import FormView
-#from django.core.urlresolvers import reverse_lazy
+#from django.core.urlresolvers import reverse_lazy 
 from django.urls import reverse_lazy
 #File Storage
 from django.conf import settings
@@ -59,6 +59,8 @@ def list_invoices(request, invoicenum, mode, admin=None):
             penclient=clientpenman(tlclient)      
             list_events = penclient.list_events(invoicenum)
             template_name = 'invoice/edit_invoice.html'
+        elif admin and invoicenum == 'all' and mode == 'delete':
+            template_name = 'admin_pages/list_invoices.html'            
         elif invoicenum != 'all' and mode == 'read':
             penclient=clientpenman(tlclient)      
             list_events = penclient.list_events(invoicenum)
@@ -73,7 +75,9 @@ def list_invoices(request, invoicenum, mode, admin=None):
                          "edit_button": edit_button, "action_buttons": action_buttons,
                          "accept_button": accept_button, "list_events": list_events }
         web_page = validate_active_session(request, template_name, template_data)
-        return web_page    
+        return web_page 
+    
+   
     
     
 def draft_list(request, status):    
@@ -169,39 +173,28 @@ def _get_action_buttons(current_status):
     else:
         button_list = None
     return button_list
-    
-    
-        
-        
-       
-    
-    
-        
-        
-    
+   
     
 def delete_invoices(request):
-   if request.method == 'POST':
-        tlclient = tllogin.prep_tlclient_from_session(request)
-        paperclient = clientpaperhouse(tlclient)
+    tlclient = tllogin.prep_tlclient_from_session(request)
+    paperclient = clientpaperhouse(tlclient)
+    if request.method == 'POST':       
         invoicenum = request.POST['invoiceno']          
         invoiceno = int(invoicenum)
         if invoiceno and invoiceno > 0:
-             status = paperclient.delete_invoices(invoicenum) 
+            status = paperclient.delete_invoices(invoicenum) 
         else:
-             status = paperclient.delete_invoices('all') 
-        #template_data = {"DELETE_STATUS":"Working Delete","list_invoices":
-        #list_invoices,"ISDELETED":"TRUE" }         
-        list_invoices = paperclient.list_invoices('all')  
-        template_data = {"PAPERHOUSE_list_invoices": list_invoices ,"DEL_PAPER_INV_STATUS": status} 
-        result = render(request, 'home.html', template_data)   
-   else:
-       tlclient = tllogin.prep_tlclient_from_session(request)
-       MC1Client = paperclient(tlclient)
-       list_invoices = MC1Client.list_invoices('all')    
-       template_data = {"PAPERHOUSE_list_invoices": list_invoices } 
-       result = render(request, 'home.html', template_data)      
-   return result    
+            status = paperclient.delete_invoices('all') 
+         
+    list_invoices = paperclient.list_invoices('all')  
+    accept_button = []
+    template_name = 'admin_pages/list_invoices.html'    
+    template_data = {"PAPERHOUSE_list_invoices": list_invoices
+                     , "accept_button": accept_button
+                     ,"delete_status" : status}
+    web_page = validate_active_session(request, template_name, template_data)
+    return web_page  
+  
 
 
 def tsp_list_invoices(request):

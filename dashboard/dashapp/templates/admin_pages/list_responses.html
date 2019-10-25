@@ -1,0 +1,79 @@
+{% extends "home.html" %}
+{% block content-area %}
+{% url 'dashapp:penman_delete_events' as deleteevents %}
+{% url 'dashapp:striker_list_responces' 'all'  as listresponses %}
+
+
+<div class="container-fluid" style="padding-top:7px">
+
+ <table align="center" width="90%" style="padding-left: 150px">
+        <tr>
+            <td>
+                {% if delete_status is not null %}
+                <div class="alert alert-success" role="alert">
+                     Delete Status : {{delete_status}}
+                </div>                 
+                {% endif %}
+            </td>
+        </tr>
+    </table>
+  
+     <form action="{% url 'dashapp:striker_delete_responces' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="hidden" id="invoiceno" name="invoiceno" value="0">        
+        <div align="right">
+        <button type="submit" class="btn btn-danger btn-sm"
+                onclick="return confirm('Are you sure? you want to delete all Invoice Execution Statuses.\n This will Remove all invoice Execution Statuses from the system.')" >
+            Delete All Invoice Execution Statuses
+        </button>
+        </div>
+    </form>
+     
+    
+        <table class="table table-striped table-hover">
+            <thead >
+                <tr style="background-color: #4CAF50;font-size:10px">
+                
+                <th>Invoice No/Request ID </th>
+                 <th> Exec Status/Wfc</th>
+                 <th> Status</th>
+            </tr>
+        </thead>
+        <tbody>
+         	 
+            {% for stat in list_exec_status  %}
+          
+            {%if 'exec_status' in stat  %}
+            <tr data-id="{{ Inv.current_doc.xldata.invoiceno}}" data-parent="0" data-level="1" style="font-size:11px; ">
+                <td >{{ stat.invoicenum }}</td>
+                 <td >{{ stat.wfcdict }}</td>
+                 <td >{{ stat.exec_status }}</td>
+            </tr>
+            
+            {%else%}  
+              
+           <tr style="background-color:lightgreen;font-size:10px" data-id="{{ Inv.current_doc.xldata.invoiceno}}" data-parent="0" data-level="1" style="font-size:11px; ">
+                <td>{{ stat.request_id }}</td>
+                <td colspan=2 style="width:70%">{{ stat.save_status }}</td>
+            </tr>
+            
+	             
+            {% endif %}
+          {% endfor %}
+          
+        </tbody>
+    </table>
+    
+</div>
+ 
+{% endblock content-area %}
+
+
+
+
+<!--  {'is_active': 'Y', 'otp_mode': 'mail', 'allowemaillogin': 'N', 
+        'email': 'prasen.biswas@itc.in', 'created by': 'user1', 
+        'wfc': {'is_active': 'Y', 'org': 'org1', 
+                 'creation_date': '2019-07-04 15:03:08', 'created by': None, 'name': 'wfc1', 
+                 'orgunit': 'ou1', 'id': 1, 'department': 'dept1'}, 
+        'username': 'prasen', 'id': 6, 'roles': ['role1'], 'creation_date': '2019-07-08 12:55:16'} -->

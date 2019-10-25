@@ -36,7 +36,7 @@ from django.template.defaultfilters import length
 # HardCopyRecieved
 # PaymentMade
 
-
+change_required = ["TSPSubmmitedChange", "InfobahnRecommendedtoTSP", "DivisionRecommended", "SaveAsDraft"]
 current_stat_for_tsp_edits = ["InfobahnRecommendedtoTSP", "InfobahnApproved" ]    
 current_stat_for_infob_edits = ["InvoiceCreated", "TSPSubmmitedChange",
                                 "DivisionRecommended", "DivisionApproved", "TSPAcceptedChanges" ]
@@ -66,6 +66,7 @@ def list_exec_status(request, request_id):
         tlclient = tllogin.prep_tlclient_from_session(request)        
         strikerclient=clientstriker(tlclient)
         list_responces = strikerclient.list_responses()
+        template_name =  'admin_pages/list_responses.html'
         if request_id != "all":
             filtered_list = []
             for l in list_responces:
@@ -75,9 +76,10 @@ def list_exec_status(request, request_id):
                     print("rid:" , rid)
                     if rid == request_id:
                         filtered_list.append(l)
-            list_responces = filtered_list               
+            list_responces = filtered_list     
+            template_name =  'invoice/exec_status.html'           
         template_data = {"list_exec_status": list_responces } 
-        template_name =  'invoice/exec_status.html'        
+                 
     web_page = validate_active_session(request, template_name, template_data)
     return web_page
            
@@ -86,17 +88,13 @@ def delete_responces(request):
     tlclient = tllogin.prep_tlclient_from_session(request)
     strikerclient=clientstriker(tlclient)
     if request.method == 'POST':
-        #invoicenum = request.POST['invoiceno']          
-        #invoiceno = int(invoicenum)
         status = strikerclient.delete_response() 
-        list_responces = strikerclient.list_responses()
-        template_data = {"STRK_list_responces": list_responces ,"DEL_STRK_STATUS": status} 
-        result = render(request, 'home.html', template_data)   
-    else:        
-        list_responces = strikerclient.list_responses()  
-        template_data = {"STRK_list_responces": list_events } 
-        result = render(request, 'home.html', template_data)      
-    return result    
+    list_responces = strikerclient.list_responses()           
+    template_name =  'admin_pages/list_responses.html'           
+    template_data = {"list_exec_status": list_responces ,"delete_status": status}      
+    web_page = validate_active_session(request, template_name, template_data)
+    return web_page     
+
 
 def update_invoice(request, actionrole):
     if request.method == 'POST':
@@ -106,7 +104,7 @@ def update_invoice(request, actionrole):
         MIS_roles = ["MIS"]
         tlclient = tllogin.prep_tlclient_from_session(request)
         strikerclient=clientstriker(tlclient)
-        vdata =  _vaidate_data_invoice_update(request)
+        vdata , posting_result =  _vaidate_data_invoice_update(request)
         if vdata:
             data = [vdata, ]
             if actionrole in infobahn_roles:
@@ -118,9 +116,9 @@ def update_invoice(request, actionrole):
             else:
                 posting_result = {"save_status": "Failed, User need to have one of "
                                   "role from [role1, INFOBAHN, TSP, MIS]"}
-        else:
-            posting_result = {"save_status": "invalid data or no changes to update invoice"}
-    template_data = {"update_request": posting_result }
+#         else:
+#             posting_result = {"save_status": "invalid data or no changes to update invoice"}
+    template_data = {"update_request": posting_result,"vdata" : vdata , "keys" : posting_result }
     template_name = "invoice/request_id_api_result.html"
     web_page = validate_active_session(request, template_name, template_data)
     return web_page
@@ -152,14 +150,37 @@ def _vaidate_data_invoice_update(request):
                     "Action":xl_data_wo_blank_values.pop("Action")}
     print("xl_data_wo_blank_values", xl_data_wo_blank_values)
     #cross check that the values have changed from the last_data
-    if xl_data_wo_blank_values:
-        values_changed_from_last_time = {}
+# Old Code
+#     if xl_data_wo_blank_values:
+#         values_changed_from_last_time = {}
+#         for k, v in xl_data_wo_blank_values.items():
+#             print("last_data", type(last_data))
+#             if v != last_data.get(k):
+#                 values_changed_from_last_time[k] = v
+#         values_changed_from_last_time.update(inv_n_action)
+#         return values_changed_from_last_time
+     
+### CODE CHANGE 
+        
+    values_changed_from_last_time = {}
+    if xl_data_wo_blank_values:      
         for k, v in xl_data_wo_blank_values.items():
             print("last_data", type(last_data))
             if v != last_data.get(k):
                 values_changed_from_last_time[k] = v
         values_changed_from_last_time.update(inv_n_action)
-        return values_changed_from_last_time
+    Error_message = {"test":"test"}
+    if values_changed_from_last_time:
+        return values_changed_from_last_time, Error_message
+    else:
+        if inv_n_action["Action"] not in change_required:
+            Error_message= {"save_status": "Failed: Remarks is mandatory."}
+        elif inv_n_action["Action"] in change_required:
+            Error_message = {"save_status": "Failed: invalid data or no changes to update invoice."}
+            
+    return values_changed_from_last_time, Error_message
+    #return values_changed_from_last_time
+
     
 #############END data validation before invoice update call ########################################
         
