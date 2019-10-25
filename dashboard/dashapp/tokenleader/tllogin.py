@@ -16,10 +16,11 @@ from datetime import datetime, timedelta
 
 
 def prep_tlclient_from_session(request):
-    if 'uname' in request.session and 'psword' in request.session:
+    if 'uname' and 'psword' and 'domain' in request.session:
         uname = request.session['uname']
         psword = request.session['psword']
-        auth_config = Configs(tlusr=uname, tlpwd=psword)
+        domain = request.session['domain']
+        auth_config = Configs(tlusr=uname, tlpwd=psword, domain=domain)
         tlclient = Client(auth_config) 
         return   tlclient 
             
@@ -33,17 +34,25 @@ def login(request):
     elif request.method == 'POST':
         uname = request.POST.get('username', '')
         psword = request.POST.get('password', '')
+        domain = request.POST.get('domain', '')
         request.session['uname'] = uname
         request.session['psword'] = psword
+        request.session['domain'] = domain
         request.session['last_clicked_on'] = datetime.now().timestamp()
-        auth_config = Configs(tlusr=uname, tlpwd=psword)
+        auth_config = Configs(tlusr=uname, tlpwd=psword, domain=domain)
         tlclient = Client(auth_config)        
         auth_result = tlclient.get_token()        
         auth_result_json = json.dumps(auth_result)
-        if auth_result.get('status') != 'success':
+        print(auth_result_json)
+        if auth_result.get('status') != 'success' and auth_result.get('status') !='OTP_SENT' :
             txt = auth_result.get('message')  
             template_data = {"mykey": txt }          
-            result = render(request, 'login.html', template_data)            
+            result = render(request, 'login.html', template_data)
+        elif auth_result.get('status') == 'OTP_SENT':           
+            txt = 'OTP_SENT, please enter OTP'
+            print(txt)
+            template_data = {"mykey": txt, "otp_login": True}          
+            result = render(request, 'login_otp.html', template_data)           
         else:       
             #result = HttpResponse(auth_result_json)
             verified_token = tlclient.verify_token(auth_result.get('auth_token'))

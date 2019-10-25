@@ -1,0 +1,60 @@
+{% load i18n %}
+{% load l10n %}
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>TSP Billing | Login</title>
+	<meta charset="UTF-8">	 
+ 	<link rel='stylesheet' type='text/css' href='{% static "dashapp/css/util.css" %}'>
+	<link rel="stylesheet" type="text/css" href='{% static "dashapp/css/main.css" %}'>
+
+</head>
+<body>
+
+    <div class="limiter">
+        <div class="imgcontainer">
+            
+        </div>
+        <div class="container-login100">
+            <div class="wrap-login100">
+                <div class="login100-form-title" style="background-image: url('{% static 'dashapp/images/bg-01.jpg' %}');">
+                <span class="login100-form-title-1">
+                    Sign In
+                </span>
+            </div>
+
+                <form class="login100-form validate-form" action="{% url 'dashapp:login' %}"  method="post">
+                {% csrf_token %} 
+                    <div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
+                        <span class="label-input100">Username</span>
+                        <input class="input100" type="text" name="username" placeholder="Enter username">
+                        <span class="focus-input100"></span>
+                    </div>
+                    
+                     <div class="wrap-input100 m-b-18" >
+                        <span class="label-input100">OTP</span>
+                        <input class="input100" type="text" name="otp" placeholder="Enter OTP">
+                        <span class="focus-input100"></span>
+                    </div>
+
+                   
+                    <div class="container-login100-form-btn">
+                        <button class="login100-form-btn" type="submit">
+                            Login
+                        </button>
+                    </div>
+                    <br> <br> <br> <br> 
+                    <div class="login-result">
+						 {{ mykey }}
+						 </div>
+                </form>
+               
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>
