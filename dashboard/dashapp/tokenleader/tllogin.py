@@ -34,12 +34,17 @@ def login(request):
     elif request.method == 'POST':
         uname = request.POST.get('username', '')
         psword = request.POST.get('password', '')
-        domain = request.POST.get('domain', '')
+        domain = request.POST.get('domain', '')        
         request.session['uname'] = uname
         request.session['psword'] = psword
-        request.session['domain'] = domain
+        request.session['domain'] = domain        
         request.session['last_clicked_on'] = datetime.now().timestamp()
-        auth_config = Configs(tlusr=uname, tlpwd=psword, domain=domain)
+        if request.POST.get('otp', ''):
+            otp = request.POST.get('otp', '')
+            request.session['otp'] = otp
+            auth_config = Configs(tlusr=uname, otp=otp, domain=domain)
+        else:
+            auth_config = Configs(tlusr=uname, tlpwd=psword, domain=domain)
         tlclient = Client(auth_config)        
         auth_result = tlclient.get_token()        
         auth_result_json = json.dumps(auth_result)
@@ -51,7 +56,10 @@ def login(request):
         elif auth_result.get('status') == 'OTP_SENT':           
             txt = 'OTP_SENT, please enter OTP'
             print(txt)
-            template_data = {"mykey": txt, "otp_login": True}          
+            template_data = {"mykey": txt, 
+                             "otp_login": True,
+                             "domain": domain,
+                             "uname": uname}          
             result = render(request, 'login_otp.html', template_data)           
         else:       
             #result = HttpResponse(auth_result_json)

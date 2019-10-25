@@ -6,7 +6,7 @@
     
 
     <div class="container">
-	    {% if "role1" or "adminrole" or "INFOBAHN" or "ITSS" in user_details.roles %}       
+	    {% if "role1" in user_details.roles or "adminrole" in user_details.roles  or "INFOBAHN" in user_details.roles or "ITSS" in user_details.roles %}       
 
 		   {% include "navbar/nav_dropdown_admin.html" %}
 		{% elif "TSP" in user_details.roles %}
