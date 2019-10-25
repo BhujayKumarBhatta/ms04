@@ -16,11 +16,15 @@ from datetime import datetime, timedelta
 
 
 def prep_tlclient_from_session(request):
-    if 'uname' and 'psword' and 'domain' in request.session:
+    if 'uname' and 'domain' in request.session:
         uname = request.session['uname']
-        psword = request.session['psword']
         domain = request.session['domain']
-        auth_config = Configs(tlusr=uname, tlpwd=psword, domain=domain)
+        if 'psword' and not 'otp' in request.session:
+            psword = request.session['psword']
+            auth_config = Configs(tlusr=uname, tlpwd=psword, domain=domain)
+        elif 'otp' in request.session:
+            otp = request.session['otp']
+            auth_config = Configs(tlusr=uname, otp=otp, domain=domain)
         tlclient = Client(auth_config) 
         return   tlclient 
             
