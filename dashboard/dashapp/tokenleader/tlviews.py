@@ -44,7 +44,7 @@ def adduser(request):
         newuserdata["allowemaillogin"] = allowemaillogin
         tlclient = tllogin.prep_tlclient_from_session(request)
         #status = tlclient.add_user(newuserdata)
-        status = tlclient.add_user(username,password,email,roles,wfc,'mail')
+        status = tlclient.add_user(username,password,email,roles,wfc, otpmode)
         list_users = tlclient.list_users()
         #template_data = {"list_users": list_users,"STATUS_ADDUSER": status} 
         template_data = {"list_users": list_users.get('status'),"STATUS_ADDUSER": status }        
