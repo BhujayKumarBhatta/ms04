@@ -9,22 +9,18 @@ from datetime import datetime, timedelta
 #from .settings import EXPIRE_AFTER, PASSIVE_URLS, PASSIVE_URL_NAMES
 
 
-#class SubscribeView(FormView):
-#    template_name = 'subscribe-form.html'
-#    form_class = SubscribeForm
-#    success_url = reverse_lazy('form_data_valid')
-
-
 def prep_tlclient_from_session(request):
     if 'uname' and 'domain' in request.session:
-        uname = request.session['uname']
-        domain = request.session['domain']
-        print('got domain from session as:', domain)
-        if 'psword' and not 'otp' in request.session:
-            psword = request.session['psword']
+        uname = request.session.get('uname')
+        domain = request.session.get('domain')
+        psword = request.session.get('psword')
+        otp = request.session.get('otp')
+        #print('got domain, pasword, otp from session as:', domain, psword, otp)
+        if psword:
+            print("initializing tlclient with passowrd")
             auth_config = Configs(tlusr=uname, tlpwd=psword, domain=domain)
-        elif 'otp' in request.session:
-            otp = request.session['otp']
+        elif otp:
+            print("initializing tlclient with OTP")
             auth_config = Configs(tlusr=uname, otp=otp, domain=domain)
         tlclient = Client(auth_config)
         return   tlclient 

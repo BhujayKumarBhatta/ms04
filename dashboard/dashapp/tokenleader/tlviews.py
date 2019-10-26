@@ -8,6 +8,8 @@ def list_users(request):
     if request.method == 'GET': 
         tlclient = tllogin.prep_tlclient_from_session(request)
         print("within list user tlcliet domain is :", tlclient.domain)
+        print(tlclient.get_token())
+        print(tlclient.__dict__)
         list_users = tlclient.list_users()
         template_data = {"list_users": list_users.get('status')}
         template_name = 'admin_pages/list_users.html'
@@ -34,21 +36,11 @@ def adduser(request):
         wfc = request.POST.get('wfc')
         otpmode = request.POST.get('otpmode')
         allowemaillogin = request.POST.get('allowemaillogin')
-#         newuserdata = dict({"username": "", "email": "", "password": "", "wfc": "", "roles": [""]})
-#         newuserdata["username"]= username
-#         newuserdata["email"]= email
-#         newuserdata["wfc"]= wfc
-#         newuserdata["password"]= password
-#         newuserdata["roles"][0] = roles
-#         newuserdata["otpmode"] = otpmode
-#         newuserdata["allowemaillogin"] = allowemaillogin
         tlclient = tllogin.prep_tlclient_from_session(request)
-        #status = tlclient.add_user(newuserdata)
         status = tlclient.add_user(username,password,email,roles,wfc, otpmode)
         list_users = tlclient.list_users()
-        #template_data = {"list_users": list_users,"STATUS_ADDUSER": status} 
-        template_data = {"list_users": list_users.get('status'),"STATUS_ADDUSER": status }        
-#         template_name = 'admin_pages/list_users.html'
+        template_data = {"list_users": list_users.get('status'),
+                         "STATUS_ADDUSER": status }
         template_name = 'admin_pages/status_modal.html'        
         web_page = validate_active_session(request, template_name, template_data)
         return web_page
