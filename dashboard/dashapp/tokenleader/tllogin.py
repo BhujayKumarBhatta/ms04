@@ -60,7 +60,7 @@ def login(request):
             template_data = {"mykey": txt }          
             result = render(request, 'login.html', template_data)
         elif auth_result.get('status') == 'OTP_SENT':           
-            txt = 'OTP_SENT, please enter OTP'
+            txt = auth_result.get('message')
             print(txt)
             template_data = {"mykey": txt, 
                              "otp_login": True,
