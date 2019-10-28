@@ -9,7 +9,7 @@ from datetime import datetime, timedelta
 #from .settings import EXPIRE_AFTER, PASSIVE_URLS, PASSIVE_URL_NAMES
 
 
-def logout(request):
+def logout(request, expired_token=False):
     request.session['session_user_details'] = None
     request.session['uname'] = None
     request.session['psword'] = None
@@ -17,17 +17,25 @@ def logout(request):
     request.session['otp'] = None
     request.session['last_clicked_on'] = None
     txt = "Logged out, session expired  please login again"
+    if expired_token is True:
+        txt = "Logged out, Token expired  please login again"
     template_data = {"mykey": txt }
     template_name = 'login.html'
     print('forcing log out')
     return template_name, template_data
 
 
-def validate_token_status(request, tlclient, template_name, template_data):
+def _validate_tlclient_cache(tlclient):
+    '''tokenexpiry has to be higher than otp expiry
+    build that logic  '''
+    tlclient.get_token()
+    result = tlclient
     if (tlclient.cached_token and 
         tlclient.token.get("status") == "Signature expired"):
         print("Token expired, user need to relogin")
-        template_name, template_data = logout(request)
+        result = None
+    return result
+    
         
         
 def prep_tlclient_from_session(request):
@@ -43,8 +51,9 @@ def prep_tlclient_from_session(request):
         elif otp:
             print("initializing tlclient with OTP")
             auth_config = Configs(tlusr=uname, otp=otp, domain=domain)
-        tlclient = Client(auth_config, True)
-        return   tlclient        
+        tlclient_cache = Client(auth_config, True)
+        tlclient = _validate_tlclient_cache(tlclient_cache)
+        return  tlclient
             
 
 #This is serves both home and login page
@@ -104,7 +113,8 @@ def login(request):
     return result
 
 
-def validate_active_session(request, template_name, template_data):
+def validate_active_session(request, template_name, 
+                            template_data, expired_token=False):
     session_user_details = request.session.get('session_user_details') 
     s_login_time = request.session.get('last_clicked_on')
     session_expairy_seconds = 900
@@ -120,14 +130,19 @@ def validate_active_session(request, template_name, template_data):
         elpsed_time_in_sec = elapsed_time.total_seconds()
         print("logged in for sec:", elpsed_time_in_sec)
     
-        if (elpsed_time_in_sec > session_expairy_seconds) :
-            print('inside session  expiry block elapsed time:', elpsed_time_in_sec )
+        if (elpsed_time_in_sec > session_expairy_seconds): 
+            print('inside session  expiry block elapsed time:', 
+                  elpsed_time_in_sec )
             template_name, template_data = logout(request)
+        elif expired_token is True :
+            print('inside token  expiry block:')
+            template_name, template_data = logout(request, expired_token=True )
         else:
             request.session['last_clicked_on'] = datetime.now().timestamp()          
             user_data = {"user_details": session_user_details }
             template_data.update(user_data)
-            print('session is still active, elapsed time ', elpsed_time_in_sec)
+            print('session is still active, elapsed time ', 
+                  elpsed_time_in_sec)
     web_page = render(request, template_name, template_data)            
     return web_page
         

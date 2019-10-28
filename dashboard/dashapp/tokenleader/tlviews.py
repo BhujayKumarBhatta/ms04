@@ -4,20 +4,24 @@ from linkinvclient.client import LIClient
 from django.shortcuts import render
 from dashapp.tokenleader.tllogin import validate_active_session
 
+
 def list_users(request):
-    if request.method == 'GET': 
+    token_expiry, template_data, template_name = False, {}, {}
+    if request.method == 'GET':        
         tlclient = tllogin.prep_tlclient_from_session(request)
-        print("within list user tlcliet domain is :", tlclient.domain)
-        print(tlclient.get_token())
-        print(tlclient.__dict__)
-        list_users = tlclient.list_users()
-        template_data = {"list_users": list_users.get('status')}
-        template_name = 'admin_pages/list_users.html'
-        web_page = validate_active_session(request, template_name, template_data)
+        if tlclient:
+            list_users = tlclient.list_users()
+            template_data = {"list_users": list_users.get('status')}
+            template_name = 'admin_pages/list_users.html'
+        else:
+            token_expiry=True
+        web_page = validate_active_session(request, template_name,
+                                           template_data, token_expiry)
         return web_page
 
+
 def adduser(request):
-    if request.method == 'GET': 
+    if request.method == 'GET':
         tlclient = tllogin.prep_tlclient_from_session(request)
         list_users = tlclient.list_users()
         org_list = tlclient.list_org()
@@ -26,7 +30,8 @@ def adduser(request):
         template_data = {"ORGLIST":org_list,
                          "ROLELIST":role_list,"WFCLIST":wfc_list}
         template_name =  'admin_pages/add_user.html'
-        web_page = validate_active_session(request, template_name, template_data)
+        web_page = validate_active_session(request, template_name,
+                                           template_data)
         return web_page 
     if request.method == 'POST':    
         username = request.POST.get('username')
@@ -41,8 +46,9 @@ def adduser(request):
         list_users = tlclient.list_users()
         template_data = {"list_users": list_users.get('status'),
                          "STATUS_ADDUSER": status }
-        template_name = 'admin_pages/status_modal.html'        
-        web_page = validate_active_session(request, template_name, template_data)
+        template_name = 'admin_pages/status_modal.html'  
+        web_page = validate_active_session(request, template_name,
+                                           template_data, token_expiry)
         return web_page
 
 
@@ -58,8 +64,10 @@ def delete_user(request):
         list_users = tlclient.list_users()
         template_data = {"list_users": list_users.get('status'), "DELETE_STATUS": status}
         template_name = 'admin_pages/list_users.html'
-        web_page = validate_active_session(request, template_name, template_data)
+        web_page = validate_active_session(request, template_name, 
+                                           template_data)
         return web_page
+     
         
 def list_org(request):
     if request.method == 'GET': 
