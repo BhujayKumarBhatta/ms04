@@ -182,7 +182,7 @@ def validate_token_n_session():
             token_expiry, template_data, template_name = False, {}, {}
             tlclient = prep_tlclient_from_session(request)
             if tlclient:
-                web_page = f(request)
+                web_page = f(*args, **kwargs)
             else:
                 token_expiry=True
                 web_page = validate_active_session(request, template_name,
