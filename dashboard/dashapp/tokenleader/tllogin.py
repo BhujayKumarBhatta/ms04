@@ -1,4 +1,5 @@
 import json
+import functools
 from django.shortcuts import render
 from tokenleaderclient.configs.config_handler import Configs    
 from tokenleaderclient.client.client import Client
@@ -171,6 +172,28 @@ def validate_active_session(request, template_name,
 #    return result
 
 ############### END ######################
+
+
+
+def validate_token_n_session():
+    def decorator(f):
+        @functools.wraps(f)
+        def wrapper_functions(*args, **kwargs):
+            request = args[0]           
+            token_expiry, template_data, template_name = False, {}, {}
+            tlclient = prep_tlclient_from_session(request)
+            if tlclient:
+                web_page = f(request)
+            else:
+                token_expiry=True
+                web_page = validate_active_session(request, template_name,
+                                                   template_data, token_expiry)
+            return web_page
+        return wrapper_functions
+    return decorator
+
+
+
 '''
 How the auth_result look
 {'service_catalog': 

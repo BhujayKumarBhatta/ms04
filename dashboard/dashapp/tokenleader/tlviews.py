@@ -2,7 +2,7 @@ import json
 from dashapp.tokenleader import tllogin
 from linkinvclient.client import LIClient
 from django.shortcuts import render
-from dashapp.tokenleader.tllogin import validate_active_session
+from dashapp.tokenleader.tllogin import validate_active_session, validate_token_n_session
 
 
 def list_users(request):
@@ -48,7 +48,7 @@ def adduser(request):
                          "STATUS_ADDUSER": status }
         template_name = 'admin_pages/status_modal.html'  
         web_page = validate_active_session(request, template_name,
-                                           template_data, token_expiry)
+                                           template_data)
         return web_page
 
 
@@ -68,7 +68,7 @@ def delete_user(request):
                                            template_data)
         return web_page
      
-        
+@validate_token_n_session()      
 def list_org(request):
     if request.method == 'GET': 
         tlclient = tllogin.prep_tlclient_from_session(request)
