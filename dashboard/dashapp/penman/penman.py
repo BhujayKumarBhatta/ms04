@@ -24,7 +24,7 @@ from werkzeug.utils import secure_filename
 from dashapp.tokenleader import tllogin
 from django.db.transaction import non_atomic_requests
 from django.contrib.admin.models import CHANGE
-from dashapp.tokenleader.tllogin import validate_active_session
+from dashapp.tokenleader.tllogin import validate_active_session, validate_token_n_session
 
 sampleinvoice = { "state": "","arc": "","billingdateto": "","remarks": "", 
 "fullsiteaddress": "","customerid": "","servicetype": "","billingdatefrom": "", 
@@ -43,6 +43,7 @@ def list_events_by_inv(request, invoicenum):
         result = render(request, 'event_list.html', template_data)        
         return result
 
+@validate_token_n_session()
 def list_events(request):
     if request.method == 'GET': 
         tlclient = tllogin.prep_tlclient_from_session(request)        
@@ -62,7 +63,7 @@ def list_events(request):
          
  
                
-    
+@validate_token_n_session()    
 def delete_events(request):
     tlclient = tllogin.prep_tlclient_from_session(request)
     penclient=clientpenman(tlclient)

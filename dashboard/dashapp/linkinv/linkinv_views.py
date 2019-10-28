@@ -2,10 +2,10 @@ from dashapp.tokenleader import tllogin
 from linkinvclient.client import LIClient
 from micros1client.client import MSClient
 from django.shortcuts import render
-from dashapp.tokenleader.tllogin import validate_active_session
+from dashapp.tokenleader.tllogin import validate_active_session, validate_token_n_session
 
 
-    
+@validate_token_n_session()  
 def list_links(request):
     if request.method == 'GET': 
         tlclient = tllogin.prep_tlclient_from_session(request)
@@ -18,6 +18,7 @@ def list_links(request):
     return web_page
 
 
+@validate_token_n_session() 
 def list_ravl_obj(request, objname, rolename):
     tlclient = tllogin.prep_tlclient_from_session(request)
     lic = LIClient(tlclient)
@@ -40,7 +41,7 @@ def list_ravl_obj(request, objname, rolename):
     web_page = validate_active_session(request, template_name, template_data)
     return web_page
 
-
+@validate_token_n_session() 
 def delete_ravl(request, objname, objid):
     if request.method == "GET":
         tlclient = tllogin.prep_tlclient_from_session(request)
@@ -56,7 +57,7 @@ def delete_ravl(request, objname, objid):
     web_page = validate_active_session(request, template_name, template_data)
     return web_page 
 
-
+@validate_token_n_session() 
 def managelocalnet(request):
     tlclient = tllogin.prep_tlclient_from_session(request)
     lic = LIClient(tlclient)
@@ -85,7 +86,7 @@ def managelocalnet(request):
     web_page = validate_active_session(request, template_name, template_data)
     return web_page
 
-
+@validate_token_n_session() 
 def add_address(request):
     tlclient = tllogin.prep_tlclient_from_session(request)
     lic = LIClient(tlclient)
@@ -116,7 +117,7 @@ def add_address(request):
     web_page = validate_active_session(request, template_name, template_data)
     return web_page
 
-
+@validate_token_n_session() 
 def add_rate(request):
     tlclient = tllogin.prep_tlclient_from_session(request)
     lic = LIClient(tlclient)
@@ -143,7 +144,7 @@ def add_rate(request):
     web_page = validate_active_session(request, template_name, template_data)
     return web_page
 
-
+@validate_token_n_session() 
 def add_payment(request):
     tlclient = tllogin.prep_tlclient_from_session(request)
     lic = LIClient(tlclient)

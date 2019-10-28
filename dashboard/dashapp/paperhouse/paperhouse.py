@@ -24,7 +24,7 @@ from werkzeug.utils import secure_filename
 from dashapp.tokenleader import tllogin
 from django.db.transaction import non_atomic_requests
 from django.contrib.admin.models import CHANGE
-from dashapp.tokenleader.tllogin import validate_active_session
+from dashapp.tokenleader.tllogin import validate_active_session, validate_token_n_session
 import itertools
 
 
@@ -45,6 +45,8 @@ sampleinvoice ={ "state": "","arc": "","billingdateto": "","remarks": "",
 "premiseno": "", "city": "","tsp": "","customername": "","slno": 0, 
 "premisename": "" ,"billingactivity": "" ,"Action": ""}
 
+
+@validate_token_n_session()
 def list_invoices(request, invoicenum, mode, admin=None):
     list_events = []
     if request.method == 'GET': 
@@ -80,7 +82,7 @@ def list_invoices(request, invoicenum, mode, admin=None):
     
    
     
-    
+@validate_token_n_session()    
 def draft_list(request, status):    
     tlclient = tllogin.prep_tlclient_from_session(request)        
     paperclient=clientpaperhouse(tlclient)#               
@@ -175,7 +177,7 @@ def _get_action_buttons(current_status):
         button_list = None
     return button_list
    
-    
+@validate_token_n_session()    
 def delete_invoices(request):
     tlclient = tllogin.prep_tlclient_from_session(request)
     paperclient = clientpaperhouse(tlclient)
@@ -197,7 +199,7 @@ def delete_invoices(request):
     return web_page  
   
 
-
+@validate_token_n_session()
 def tsp_list_invoices(request):
     if request.method == 'GET': 
         tlclient = tllogin.prep_tlclient_from_session(request)        
