@@ -9,6 +9,27 @@ from datetime import datetime, timedelta
 #from .settings import EXPIRE_AFTER, PASSIVE_URLS, PASSIVE_URL_NAMES
 
 
+def logout(request):
+    request.session['session_user_details'] = None
+    request.session['uname'] = None
+    request.session['psword'] = None
+    request.session['domain'] = None
+    request.session['otp'] = None
+    request.session['last_clicked_on'] = None
+    txt = "Logged out, session expired  please login again"
+    template_data = {"mykey": txt }
+    template_name = 'login.html'
+    print('forcing log out')
+    return template_name, template_data
+
+
+def validate_token_status(request, tlclient, template_name, template_data):
+    if (tlclient.cached_token and 
+        tlclient.token.get("status") == "Signature expired"):
+        print("Token expired, user need to relogin")
+        template_name, template_data = logout(request)
+        
+        
 def prep_tlclient_from_session(request):
     if 'uname' and 'domain' in request.session:
         uname = request.session.get('uname')
@@ -22,8 +43,8 @@ def prep_tlclient_from_session(request):
         elif otp:
             print("initializing tlclient with OTP")
             auth_config = Configs(tlusr=uname, otp=otp, domain=domain)
-        tlclient = Client(auth_config)
-        return   tlclient 
+        tlclient = Client(auth_config, True)
+        return   tlclient        
             
 
 #This is serves both home and login page
@@ -81,19 +102,6 @@ def login(request):
                 result = render(request, 'home.html', template_data)
             
     return result
-
-def logout(request):
-    request.session['session_user_details'] = None
-    request.session['uname'] = None
-    request.session['psword'] = None
-    request.session['domain'] = None
-    request.session['otp'] = None
-    request.session['last_clicked_on'] = None
-    txt = "Logged out, session expired  please login again"
-    template_data = {"mykey": txt }
-    template_name = 'login.html'
-    print('forcing log out')
-    return template_name, template_data
 
 
 def validate_active_session(request, template_name, template_data):
