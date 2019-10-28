@@ -77,6 +77,7 @@ def list_org(request):
         template_name = 'admin_pages/list_org.html'
         web_page = validate_active_session(request, template_name, template_data)       
         return web_page    
+  
           
 def add_org(request):
     if request.method == 'GET': 
@@ -118,6 +119,7 @@ def delete_org(request):
         template_name = 'admin_pages/list_org.html'
         web_page = validate_active_session(request, template_name, template_data)
         return web_page
+
 
 def list_dept(request):
     if request.method == 'GET': 

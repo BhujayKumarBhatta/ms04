@@ -36,8 +36,7 @@ def _validate_tlclient_cache(tlclient):
         print("Token expired, user need to relogin")
         result = None
     return result
-    
-        
+     
         
 def prep_tlclient_from_session(request):
     if 'uname' and 'domain' in request.session:
