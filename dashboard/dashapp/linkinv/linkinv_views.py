@@ -26,7 +26,7 @@ def list_ravl_obj(request, objname, rolename):
     list_infoops_links = lic.list_links()
     template_data = {"list_ravl_obj": list_ravl_obj, 
                      "list_infoops_links": list_infoops_links }
-    itcroles = ["ITC", "role1", "MIS" ]
+    itcroles = ["ITC", "role1", "MIS", "ITSS", "INFOBAHN"]
     if objname == "Lnetlink":
         if rolename in itcroles:
             template_name = "wanlinks/list_ravl_link.html"
