@@ -4,8 +4,10 @@
      
     <a class="navbar-brand py-0 fas fa-home" style='font-size:20px;color:red' href="/">InfoVoice</a>
     
-    <div class="container"  >
-	    {% if "role1"  in user_details.roles %}       
+
+    <div class="container">
+	    {% if "role1" in user_details.roles or "adminrole" in user_details.roles  or "INFOBAHN" in user_details.roles or "ITSS" in user_details.roles %}       
+
 		   {% include "navbar/nav_dropdown_admin.html" %}
 		{% elif "TSP" in user_details.roles %}
 		   {% include "navbar/nav_dropdown_tsp.html" %}

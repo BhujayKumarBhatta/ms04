@@ -2,10 +2,10 @@ from dashapp.tokenleader import tllogin
 from linkinvclient.client import LIClient
 from micros1client.client import MSClient
 from django.shortcuts import render
-from dashapp.tokenleader.tllogin import validate_active_session
+from dashapp.tokenleader.tllogin import validate_active_session, validate_token_n_session
 
 
-    
+@validate_token_n_session()  
 def list_links(request):
     if request.method == 'GET': 
         tlclient = tllogin.prep_tlclient_from_session(request)
@@ -18,6 +18,7 @@ def list_links(request):
     return web_page
 
 
+@validate_token_n_session() 
 def list_ravl_obj(request, objname, rolename):
     tlclient = tllogin.prep_tlclient_from_session(request)
     lic = LIClient(tlclient)
@@ -25,8 +26,9 @@ def list_ravl_obj(request, objname, rolename):
     list_infoops_links = lic.list_links()
     template_data = {"list_ravl_obj": list_ravl_obj, 
                      "list_infoops_links": list_infoops_links }
+    itcroles = ["ITC", "role1", "MIS", "ITSS", "INFOBAHN"]
     if objname == "Lnetlink":
-        if rolename == "ITC" or rolename == "role1":
+        if rolename in itcroles:
             template_name = "wanlinks/list_ravl_link.html"
         elif rolename == "TSP":
             template_name = "wanlinks/tsp_list_ravl_link.html" 
@@ -39,7 +41,7 @@ def list_ravl_obj(request, objname, rolename):
     web_page = validate_active_session(request, template_name, template_data)
     return web_page
 
-
+@validate_token_n_session() 
 def delete_ravl(request, objname, objid):
     if request.method == "GET":
         tlclient = tllogin.prep_tlclient_from_session(request)
@@ -55,7 +57,7 @@ def delete_ravl(request, objname, objid):
     web_page = validate_active_session(request, template_name, template_data)
     return web_page 
 
-
+@validate_token_n_session() 
 def managelocalnet(request):
     tlclient = tllogin.prep_tlclient_from_session(request)
     lic = LIClient(tlclient)
@@ -84,7 +86,7 @@ def managelocalnet(request):
     web_page = validate_active_session(request, template_name, template_data)
     return web_page
 
-
+@validate_token_n_session() 
 def add_address(request):
     tlclient = tllogin.prep_tlclient_from_session(request)
     lic = LIClient(tlclient)
@@ -115,7 +117,7 @@ def add_address(request):
     web_page = validate_active_session(request, template_name, template_data)
     return web_page
 
-
+@validate_token_n_session() 
 def add_rate(request):
     tlclient = tllogin.prep_tlclient_from_session(request)
     lic = LIClient(tlclient)
@@ -135,13 +137,14 @@ def add_rate(request):
         rate_dict['otc'] = request.POST['otc']
         rate_dict['activity_type'] = request.POST['activity_type']
         rate_dict['rate_per_year'] = request.POST['rate_per_year']
+        rate_dict['bandwidth'] = request.POST['bandwidth']
         status = lic.add_rate(rate_dict)
         template_data = {"status": status }
         template_name = "wanlinks/exec_status.html"
     web_page = validate_active_session(request, template_name, template_data)
     return web_page
 
-
+@validate_token_n_session() 
 def add_payment(request):
     tlclient = tllogin.prep_tlclient_from_session(request)
     lic = LIClient(tlclient)

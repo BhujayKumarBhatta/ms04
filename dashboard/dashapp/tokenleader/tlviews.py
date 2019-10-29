@@ -2,19 +2,26 @@ import json
 from dashapp.tokenleader import tllogin
 from linkinvclient.client import LIClient
 from django.shortcuts import render
-from dashapp.tokenleader.tllogin import validate_active_session
+from dashapp.tokenleader.tllogin import validate_active_session, validate_token_n_session
+
 
 def list_users(request):
-    if request.method == 'GET': 
+    token_expiry, template_data, template_name = False, {}, {}
+    if request.method == 'GET':        
         tlclient = tllogin.prep_tlclient_from_session(request)
-        list_users = tlclient.list_users()
-        template_data = {"list_users": list_users.get('status')}
-        template_name = 'admin_pages/list_users.html'
-        web_page = validate_active_session(request, template_name, template_data)
+        if tlclient:
+            list_users = tlclient.list_users()
+            template_data = {"list_users": list_users.get('status')}
+            template_name = 'admin_pages/list_users.html'
+        else:
+            token_expiry=True
+        web_page = validate_active_session(request, template_name,
+                                           template_data, token_expiry)
         return web_page
 
+@validate_token_n_session() 
 def adduser(request):
-    if request.method == 'GET': 
+    if request.method == 'GET':
         tlclient = tllogin.prep_tlclient_from_session(request)
         list_users = tlclient.list_users()
         org_list = tlclient.list_org()
@@ -23,7 +30,8 @@ def adduser(request):
         template_data = {"ORGLIST":org_list,
                          "ROLELIST":role_list,"WFCLIST":wfc_list}
         template_name =  'admin_pages/add_user.html'
-        web_page = validate_active_session(request, template_name, template_data)
+        web_page = validate_active_session(request, template_name,
+                                           template_data)
         return web_page 
     if request.method == 'POST':    
         username = request.POST.get('username')
@@ -33,26 +41,17 @@ def adduser(request):
         wfc = request.POST.get('wfc')
         otpmode = request.POST.get('otpmode')
         allowemaillogin = request.POST.get('allowemaillogin')
-        newuserdata = dict({"username": "", "email": "", "password": "", "wfc": "", "roles": [""]})
-        newuserdata["username"]= username
-        newuserdata["email"]= email
-        newuserdata["wfc"]= wfc
-        newuserdata["password"]= password
-        newuserdata["roles"][0] = roles
-        newuserdata["otpmode"] = otpmode
-        newuserdata["allowemaillogin"] = allowemaillogin
         tlclient = tllogin.prep_tlclient_from_session(request)
-        #status = tlclient.add_user(newuserdata)
-        status = tlclient.add_user(username,password,email,roles,wfc,'mail')
+        status = tlclient.add_user(username,password,email,roles,wfc, otpmode)
         list_users = tlclient.list_users()
-        #template_data = {"list_users": list_users,"STATUS_ADDUSER": status} 
-        template_data = {"list_users": list_users.get('status'),"STATUS_ADDUSER": status }        
-#         template_name = 'admin_pages/list_users.html'
-        template_name = 'admin_pages/status_modal.html'        
-        web_page = validate_active_session(request, template_name, template_data)
+        template_data = {"list_users": list_users.get('status'),
+                         "STATUS_ADDUSER": status }
+        template_name = 'admin_pages/status_modal.html'  
+        web_page = validate_active_session(request, template_name,
+                                           template_data)
         return web_page
 
-
+@validate_token_n_session()
 def delete_user(request):
     if request.method == 'POST':
         tlclient = tllogin.prep_tlclient_from_session(request)
@@ -65,9 +64,12 @@ def delete_user(request):
         list_users = tlclient.list_users()
         template_data = {"list_users": list_users.get('status'), "DELETE_STATUS": status}
         template_name = 'admin_pages/list_users.html'
-        web_page = validate_active_session(request, template_name, template_data)
+        web_page = validate_active_session(request, template_name, 
+                                           template_data)
         return web_page
-        
+     
+     
+@validate_token_n_session()    
 def list_org(request):
     if request.method == 'GET': 
         tlclient = tllogin.prep_tlclient_from_session(request)
@@ -76,7 +78,8 @@ def list_org(request):
         template_name = 'admin_pages/list_org.html'
         web_page = validate_active_session(request, template_name, template_data)       
         return web_page    
-          
+  
+@validate_token_n_session()           
 def add_org(request):
     if request.method == 'GET': 
         tlclient = tllogin.prep_tlclient_from_session(request)
@@ -102,7 +105,7 @@ def add_org(request):
         web_page = validate_active_session(request, template_name, template_data)
         return web_page 
 
-           
+@validate_token_n_session()
 def delete_org(request):
     if request.method == 'POST':
         tlclient = tllogin.prep_tlclient_from_session(request)
@@ -117,7 +120,9 @@ def delete_org(request):
         template_name = 'admin_pages/list_org.html'
         web_page = validate_active_session(request, template_name, template_data)
         return web_page
+    
 
+@validate_token_n_session()
 def list_dept(request):
     if request.method == 'GET': 
         tlclient = tllogin.prep_tlclient_from_session(request)
@@ -126,7 +131,9 @@ def list_dept(request):
         template_name = 'admin_pages/list_dept.html'
         web_page = validate_active_session(request, template_name, template_data)       
         return web_page 
-        		
+    
+    
+@validate_token_n_session()       		
 def add_dept(request):
     if request.method == 'GET': 
         tlclient = tllogin.prep_tlclient_from_session(request)
@@ -151,6 +158,8 @@ def add_dept(request):
         web_page = validate_active_session(request, template_name, template_data)
         return web_page
 
+
+@validate_token_n_session()
 def delete_dept(request):
     if request.method == 'POST':
         tlclient = tllogin.prep_tlclient_from_session(request)
@@ -164,6 +173,8 @@ def delete_dept(request):
         web_page = validate_active_session(request, template_name, template_data)
         return web_page
  
+ 
+@validate_token_n_session()
 def list_role(request):
     if request.method == 'GET': 
         tlclient = tllogin.prep_tlclient_from_session(request)
@@ -172,7 +183,8 @@ def list_role(request):
         template_name = 'admin_pages/list_role.html'
         web_page = validate_active_session(request, template_name, template_data)       
         return web_page        
-      		
+ 
+@validate_token_n_session()      		
 def add_role(request):
     if request.method == 'GET': 
         tlclient = tllogin.prep_tlclient_from_session(request)
@@ -196,7 +208,9 @@ def add_role(request):
         template_name = 'admin_pages/list_role.html'
         web_page = validate_active_session(request, template_name, template_data)
         return web_page  
-        		
+
+
+@validate_token_n_session()        		
 def delete_role(request):
     if request.method == 'POST':
         tlclient = tllogin.prep_tlclient_from_session(request)
@@ -212,6 +226,8 @@ def delete_role(request):
         web_page = validate_active_session(request, template_name, template_data)       
         return web_page 
 
+
+@validate_token_n_session()
 def list_ou(request):
     if request.method == 'GET': 
         tlclient = tllogin.prep_tlclient_from_session(request)
@@ -221,6 +237,8 @@ def list_ou(request):
         web_page = validate_active_session(request, template_name, template_data)       
         return web_page  
 
+
+@validate_token_n_session()
 def add_ou(request):
     if request.method == 'GET': 
         tlclient = tllogin.prep_tlclient_from_session(request)
@@ -244,6 +262,8 @@ def add_ou(request):
         web_page = validate_active_session(request, template_name, template_data)
         return web_page  
 
+
+@validate_token_n_session()
 def delete_ou(request):
     if request.method == 'POST':
         tlclient = tllogin.prep_tlclient_from_session(request)
@@ -259,6 +279,8 @@ def delete_ou(request):
         web_page = validate_active_session(request, template_name, template_data)
         return web_page  	 		
 
+
+@validate_token_n_session()
 def list_wfc(request):
     if request.method == 'GET': 
         tlclient = tllogin.prep_tlclient_from_session(request)
@@ -267,7 +289,9 @@ def list_wfc(request):
         template_name = 'admin_pages/list_wfc.html'
         web_page = validate_active_session(request, template_name, template_data)       
         return web_page  
-        		
+
+
+@validate_token_n_session()        		
 def add_wfc(request):
     if request.method == 'GET': 
         tlclient = tllogin.prep_tlclient_from_session(request)
@@ -298,7 +322,9 @@ def add_wfc(request):
         template_name = 'admin_pages/list_wfc.html'
         web_page = validate_active_session(request, template_name, template_data)       
         return web_page  
-        		
+
+
+@validate_token_n_session()        		
 def delete_wfc(request):
     if request.method == 'POST':
         tlclient = tllogin.prep_tlclient_from_session(request)
