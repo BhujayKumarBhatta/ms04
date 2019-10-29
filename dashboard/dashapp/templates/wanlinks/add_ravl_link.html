@@ -89,7 +89,7 @@
 
 <!-- #############################MODAL FOR INFOLINK  DATA ################################ -->
     <div id="infolink-data" class="modal" >
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-xl">
     <div class="modal-content">
     
        <div class="modal-header">
@@ -108,8 +108,6 @@
                     <th class="py-0"> tspname</th>
                     <th class="py-0"> lifecycle_phase</th>
                     <th class="py-0"> lifecycle_starts</th>
-                    <th class="py-0"> commission_date</th>
-                    <th class="py-0"> surrender_date</th>
                     <th class="py-0" style="width:300px"> fa_end</th>
                 </thead> 
                 
@@ -124,8 +122,6 @@
 		                <td class="py-0"> {{ link.tsp_name }} </td>
 		                <td class="py-0"> {{ link.lifecycle_phase }} </td>
 		                <td class="py-0"> {{ link.lifecycle_start_date }} </td>
-		                <td class="py-0"> {{ link.commission_date }} </td>
-		                <td class="py-0"> {{ link.surrender_date }} </td>
 		                <td class="py-0" style="width:300px"> {{ link.fa_end }} </td>
                     </tr>
                     {% endfor %}                    
