@@ -29,6 +29,8 @@
 			        <th>maillogin</th>
 			        <th>WFC</th>
 			        <th>Delete</th>
+			        <th>reset pwd</th>
+			        <th>unlock</th>
                 </tr>
             </thead>
             <tbody>
@@ -55,6 +57,12 @@
                             </button>
                     </form>
 			        </td> 
+			        <td>
+			             <a href="{% url 'dashapp:reset_password' l.username l.wfc.org %}" >reset</a>
+			        </td>
+			        <td>
+                         <a href="{% url 'dashapp:unlock_user' l.username l.wfc.org %}" >unlock</a>
+                    </td>
 			      </tr>
 			    {% endfor %}
 			</tbody>

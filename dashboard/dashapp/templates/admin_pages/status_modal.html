@@ -4,7 +4,15 @@
 {% url 'dashapp:list_org' as lorg%}
 <br>
 <div class="container" style="padding-top:10px">
-          <h5>Status: {{ STATUS_ADDUSER.status }}</h5>
+          <h5>Status: 
+          {% if STATUS_ADDUSER.status %}
+          
+          {{ STATUS_ADDUSER.status }}
+          
+          {% else %}
+          {{ status }} 
+          {% endif %}
+           </h5>
         </div>
         
         <div class="modal-footer">

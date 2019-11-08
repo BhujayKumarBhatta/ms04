@@ -21,7 +21,7 @@ from django.conf import settings
 from django.core.files.storage import FileSystemStorage
 from werkzeug.utils import secure_filename
 from dashapp.tokenleader import tllogin
-from dashapp.tokenleader.tllogin import validate_active_session
+from dashapp.tokenleader.tllogin import validate_active_session, validate_token_n_session
 
 
 
@@ -50,6 +50,8 @@ def _get_execstat_by_reqid(tlclient, request_id):
             filtered_list.append(l)
     print(filtered_list)           
     return filtered_list
+
+
 
 def invoice_upload(request):
     template_name = "invoice/xlupload_invoice.html"

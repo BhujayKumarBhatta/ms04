@@ -18,6 +18,66 @@ def list_users(request):
         web_page = validate_active_session(request, template_name,
                                            template_data, token_expiry)
         return web_page
+    
+ 
+@validate_token_n_session()   
+def change_password(request):
+    template_data = {}
+    template_name = 'admin_pages/status_modal.html'
+    if request.method == 'GET':        
+        template_name = 'admin_pages/change_password.html' 
+    if request.method == 'POST': 
+        tlclient = tllogin.prep_tlclient_from_session(request)
+        username = tlclient.tl_username
+        domain = tlclient.domain #TODO: TO BE USED LATER WHEN USER IS TO BE IDENTIFIED BY DOMAIN
+        new_password = request.POST.get('new_password')
+        old_password = request.POST.get('old_password')
+        reconfirm_new_password = request.POST.get('reconfirm_new_password')
+        if new_password == reconfirm_new_password:
+            status = tlclient.change_password(username, new_password, old_password)
+        else:
+            status = "new password and re-confirm password doesn't match , please re-enter "
+        template_data = {"status": status }
+    web_page = validate_active_session(request, template_name,
+                                           template_data)
+    return web_page
+
+@validate_token_n_session()
+def reset_password(request, username, domain):
+    template_data = {}
+    template_name = 'admin_pages/status_modal.html'
+    if request.method == 'GET':        
+        template_name = 'admin_pages/reset_password.html' 
+    if request.method == 'POST': 
+        tlclient = tllogin.prep_tlclient_from_session(request)
+        username = username
+        domain = domain#TODO: TO BE USED LATER
+        new_password = request.POST.get('new_password')
+        reconfirm_new_password = request.POST.get('reconfirm_new_password')
+        if new_password == reconfirm_new_password:
+            status = tlclient.reset_password(username, new_password)
+        else:
+            status = "new password and re-confirm password doesn't match , please re-enter "
+        template_data = {"status": status }
+    web_page = validate_active_session(request, template_name,
+                                           template_data)
+    return web_page
+
+
+@validate_token_n_session()
+def unlock_user(request, username, domain):
+    template_data = {"status": "unexpected request type"}
+    template_name = 'admin_pages/status_modal.html'    
+    if request.method == 'GET': 
+        tlclient = tllogin.prep_tlclient_from_session(request)
+        username = username
+        domain = domain#TODO: TO BE USED LATER
+        status = tlclient.unlock_user(username)
+        template_data = {"status": status }
+    web_page = validate_active_session(request, template_name,
+                                           template_data)
+    return web_page
+
 
 @validate_token_n_session() 
 def adduser(request):

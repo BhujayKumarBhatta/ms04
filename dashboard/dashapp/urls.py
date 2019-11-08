@@ -19,6 +19,7 @@ from django.conf.urls.static import static
 ## End
 from django.urls import path
 from . import views
+from dashapp.tokenleader import tlviews
 from dashapp.linkinv import  linkinv_views
 from dashapp.views import paperhouse_delete_invoice
 from dashapp.paperhouse import paperhouse
@@ -63,6 +64,9 @@ urlpatterns = [path('', views.login, name='login'),
     path('list_users', views.list_users, name='list_users'),
     path('adduser', views.adduser, name='adduser'),
     path('delete_user', views.delete_user, name='delete_user'),
+    path('change_password', tlviews.change_password, name='change_password'),
+    path('reset_password/<slug:username>/<slug:domain>', tlviews.reset_password, name='reset_password'),
+    path('unlock_user/<slug:username>/<slug:domain>', tlviews.unlock_user, name='unlock_user'),
     
     path('list_service', views.list_service, name='list_service'),
     path('add_service', views.add_service, name='add_service'),
@@ -77,7 +81,7 @@ urlpatterns = [path('', views.login, name='login'),
         
     
     #penman
-    path('penman_list_events',penman.list_events, name='penman_list_events'),
+    path('penman_list_events', penman.list_events, name='penman_list_events'),
     path('penman_delete_events', views.penman_delete_events, name='penman_delete_events'),       
     #paperhouse
     path('paperhouse_list_invoice/<slug:invoicenum>/<slug:mode>/<slug:listype>', 
