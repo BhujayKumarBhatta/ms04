@@ -19,22 +19,29 @@ from django.conf.urls.static import static
 ## End
 from django.urls import path
 from . import views
+from dashapp.tokenleader import tlviews
+from dashapp.linkinv import  linkinv_views
+from dashapp.views import paperhouse_delete_invoice
+from dashapp.paperhouse import paperhouse
+from dashapp.penman import penman
 #from rest_framework_swagger.views import get_swagger_view
 #from rest_framework.documentation import include_docs_urls
 
 #schema_view = get_swagger_view(title='TSP Billing')
 app_name = 'dashapp'
 urlpatterns = [path('', views.login, name='login'),
-               path('', views.logout, name='logout'),
+               path('logout', views.log_out, name='logout'),
     #Infops DB
     path('home2', views.home2, name='home2'),
-
+    
     path('list_links', views.list_links, name='list_links'),
+    path('list_ravl_obj/<slug:objname>/<slug:rolename>', linkinv_views.list_ravl_obj, name='list_ravl_obj'),
+    path('delete_ravl/<slug:objname>/<slug:objid>', linkinv_views.delete_ravl, name='delete_ravl'),
     path('managelocalnet', views.managelocalnet, name='managelocalnet'),
-    path('manageaddress', views.manageaddress, name='manageaddress'),
-    path('managerate', views.managerate, name='managerate'),
-    path('managepayment', views.managepayment, name='managepayment'),
-    path('listobjects', views.listobjects, name='listobjects'),
+    path('add_address', linkinv_views.add_address, name='add_address'),
+    path('add_rate', linkinv_views.add_rate,  name='add_rate'),
+    path('add_payment', linkinv_views.add_payment,  name='add_payment'),
+    
     
     path('list_test', views.list_links, name='list_test'),      
     #Token Leader
@@ -57,62 +64,49 @@ urlpatterns = [path('', views.login, name='login'),
     path('list_users', views.list_users, name='list_users'),
     path('adduser', views.adduser, name='adduser'),
     path('delete_user', views.delete_user, name='delete_user'),
+    path('change_password', tlviews.change_password, name='change_password'),
+    path('reset_password/<slug:username>/<slug:domain>', tlviews.reset_password, name='reset_password'),
+    path('unlock_user/<slug:username>/<slug:domain>', tlviews.unlock_user, name='unlock_user'),
     
     path('list_service', views.list_service, name='list_service'),
     path('add_service', views.add_service, name='add_service'),
     path('delete_service', views.delete_service, name='delete_service'),
-    #Div Invoice
-    path('list_divinvoices', views.list_divinvoices, name='list_divinvoices'),
-    path('invoicediv_delete', views.invoicediv_delete, name='invoicediv_delete'),
-    #Invoice
-    path('sampleinvoice', views.sampleinvoice, name='sampleinvoice'),
-    path('list_invoices', views.list_invoices, name='list_invoices'),
-    path('list_invoices_rcom', views.list_invoices_rcom, name='list_invoices_rcom'),    
-    path('invoice_upload', views.invoice_upload, name='invoice_upload'),
-    path('view_upload', views.view_upload, name='view_upload'),
-    path('invoice_dwndformat', views.invoice_dwndformat, name='invoice_dwndformat'),   
-
-    path('invoice_update_upload', views.invoice_update_upload, name='invoice_update_upload')
-    ,path('invoice_rcom_upload', views.invoice_rcom_upload, name='invoice_rcom_upload')
-    ,path('add_model', views.add_model, name='add_model')    
-    ,path('invoice_delete', views.invoice_delete, name='invoice_delete')
-    ,path('invoice_create', views.invoice_create, name='invoice_create')
-    ,path('invoice_approvals', views.invoice_approvals, name='invoice_approvals')
-    ,path('invoice_approve', views.invoice_approve, name='invoice_approve')
-    ,path('invoice_reject', views.invoice_reject, name='invoice_reject')
+    
+  
     
     #XLuploader
-    ,path('xluploader_invoice_upload', views.xluploader_invoice_upload, name='xluploader_invoice_upload')
-    #INVStore
-    ,path('invstore_list_invoices', views.invstore_list_invoices, name='invstore_list_invoices')
-    ,path('invstore_list_invoice_bycurrent_lastorder', views.invstore_list_invoice_bycurrent_lastorder, name='invstore_list_invoice_bycurrent_lastorder')
-    ,path('invstore_list_invoice_byfield', views.invstore_list_invoice_byfield, name='invstore_list_invoice_byfield')
-    ,path('invstore_invoice_delete', views.invstore_invoice_delete, name='invstore_invoice_delete')
-    ,path('invstore_list_divinvoices', views.invstore_list_divinvoices, name='invstore_list_divinvoices')
-    ,path('invstore_list_stage1responces', views.invstore_list_stage1responces, name='invstore_list_stage1responces')
-    ,path('invstore_delete_stage1responces', views.invstore_delete_stage1responces, name='invstore_delete_stage1responces')
-    ,path('invstore_invoice_approve', views.invstore_invoice_approve, name='invstore_invoice_approve')
-    ,path('invstore_invoice_reject', views.invstore_invoice_reject, name='invstore_invoice_reject')
-    ,path('invstore_invoice_rcommendations', views.invstore_invoice_rcommendations, name='invstore_invoice_rcommendations')
-    ,path('list_invoice_divisional_invoices', views.list_invoice_divisional_invoices, name='list_invoice_divisional_invoices')
-    ,path('invstore_invoice_update', views.invstore_invoice_update, name='invstore_invoice_update')
-    ,path('invstore_invoice_accept', views.invstore_invoice_accept, name='invstore_invoice_accept')
     
+    path('xluploader_invoice_upload', views.xluploader_invoice_upload, name='xluploader_invoice_upload'),
+    path('download_invoicexlformat', views.download_invoicexlformat, name='download_invoicexlformat'),
+        
     
     #penman
-    ,path('penman_list_events', views.penman_list_events, name='penman_list_events')
-    ,path('penman_delete_events', views.penman_delete_events, name='penman_delete_events')        
+    path('penman_list_events', penman.list_events, name='penman_list_events'),
+    path('penman_delete_events', views.penman_delete_events, name='penman_delete_events'),       
     #paperhouse
-    ,path('paperhouse_list_invoice', views.paperhouse_list_invoice, name='paperhouse_list_invoice')    
-    ,path('paperhouse_delete_invoice', views.paperhouse_delete_invoice, name='paperhouse_delete_invoice')    
-    ,path('tsp_list_invoice', views.tsp_list_invoice, name='tsp_list_invoice')
-    
+    path('paperhouse_list_invoice/<slug:invoicenum>/<slug:mode>/<slug:listype>', 
+         views.paperhouse_list_invoice, name='paperhouse_list_invoice'),   
+    path('paperhouse_delete_invoice', views.paperhouse_delete_invoice, name='paperhouse_delete_invoice'),    
+    path('tsp_list_invoice', views.tsp_list_invoice, name='tsp_list_invoice'),
+    path('paperhouse_savedraft_list/<slug:status>', 
+         paperhouse.draft_list, name='paperhouse_savedraft_list'),   
     #striker
-    ,path('striker_list_responces', views.striker_list_responces, name='striker_list_responces')
-    ,path('striker_delete_responces', views.striker_delete_responces, name='striker_delete_responces')
+    path('striker_list_responces/<slug:request_id>', views.striker_list_responces, name='striker_list_responces'),
+    path('striker_delete_responces', views.striker_delete_responces, name='striker_delete_responces'),
+    path('striker_update_Invoice/<slug:actionrole>', views.striker_update_Invoice, name='striker_update_Invoice'),
+    path('striker_update_from_draft/<slug:actionrole>', views.striker_update_from_Draft, name='striker_update_from_draft'),
+    
     
     #,path('swagger-docs/', schema_view)
     #,path('docs/', include_docs_urls(title='TSP Billing'))
+    
+    path('manageaddress', views.manageaddress, name='manageaddress'),
+    path('managerate', views.managerate, name='managerate'),
+    path('managepayment', views.managepayment, name='managepayment'),
+    path('listobjects', views.listobjects, name='listobjects'),
+    
+    path('listdocs', views.listdocs, name='listdocs'),
+    
     ]
 
 

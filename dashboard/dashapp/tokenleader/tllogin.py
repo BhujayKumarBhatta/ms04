@@ -1,48 +1,108 @@
 import json
+import functools
 from django.shortcuts import render
 from tokenleaderclient.configs.config_handler import Configs    
 from tokenleaderclient.client.client import Client
 
 from django.conf import settings
 #from django.contrib import auth
-#from datetime import datetime, timedelta
+from datetime import datetime, timedelta
 #from .settings import EXPIRE_AFTER, PASSIVE_URLS, PASSIVE_URL_NAMES
 
 
-#class SubscribeView(FormView):
-#    template_name = 'subscribe-form.html'
-#    form_class = SubscribeForm
-#    success_url = reverse_lazy('form_data_valid')
+def logout(request, expired_token=False):
+    request.session['session_user_details'] = None
+    request.session['uname'] = None
+    request.session['psword'] = None
+    request.session['domain'] = None
+    request.session['otp'] = None
+    request.session['last_clicked_on'] = None
+    txt = "Logged out, session expired  please login again"
+    if expired_token is True:
+        txt = "Logged out, Token expired  please login again"
+    template_data = {"mykey": txt }
+    template_name = 'login.html'
+    print('forcing log out')
+    return template_name, template_data
 
 
+def _validate_tlclient_cache(tlclient):
+    '''tokenexpiry has to be higher than otp expiry
+    build that logic  '''
+    tlclient.get_token()
+    result = tlclient
+    if (tlclient.cached_token and 
+        tlclient.token.get("status") == "Signature expired"):
+        print("Token expired, user need to relogin")
+        result = None
+    return result
+     
+        
 def prep_tlclient_from_session(request):
-    if 'uname' in request.session and 'psword' in request.session:
-        uname = request.session['uname']
-        psword = request.session['psword']
-        auth_config = Configs(tlusr=uname, tlpwd=psword)
-        tlclient = Client(auth_config) 
-        return   tlclient 
+    if 'uname' and 'domain' in request.session:
+        uname = request.session.get('uname')
+        domain = request.session.get('domain')
+        psword = request.session.get('psword')
+        otp = request.session.get('otp')
+        #print('got domain, pasword, otp from session as:', domain, psword, otp)
+        if psword:
+            print("initializing tlclient with passowrd")
+            auth_config = Configs(tlusr=uname, tlpwd=psword, domain=domain)
+        elif otp:
+            print("initializing tlclient with OTP")
+            auth_config = Configs(tlusr=uname, otp=otp, domain=domain)
+        tlclient_cache = Client(auth_config, True)
+        tlclient = _validate_tlclient_cache(tlclient_cache)
+        return  tlclient
             
 
-# Create your views here.
+#This is serves both home and login page
 def login(request):    
-    if request.method == 'GET':   
-        txt = "Enter user name and password to get access to  dashboard"
-        template_data = {"mykey": txt }     
-        result = render(request, 'login.html', template_data)        
+    if request.method == 'GET':
+        #check if the session already has credentials
+        web_page = validate_active_session(request,'home.html', {} )
+        return web_page 
     elif request.method == 'POST':
         uname = request.POST.get('username', '')
         psword = request.POST.get('password', '')
+        domain = request.POST.get('domain', '')        
         request.session['uname'] = uname
         request.session['psword'] = psword
-        auth_config = Configs(tlusr=uname, tlpwd=psword)
+        request.session['domain'] = domain
+        print("pushed domain in session as:", domain, request.session['domain'])        
+        request.session['last_clicked_on'] = datetime.now().timestamp()
+        if request.POST.get('otp', ''):
+            otp = request.POST.get('otp', '')
+            request.session['otp'] = otp
+            auth_config = Configs(tlusr=uname, otp=otp, domain=domain)
+        else:
+            auth_config = Configs(tlusr=uname, tlpwd=psword, domain=domain)
         tlclient = Client(auth_config)        
         auth_result = tlclient.get_token()        
         auth_result_json = json.dumps(auth_result)
-        if auth_result.get('status') != 'success':
+        print(auth_result_json)
+        if ( auth_result.get('status') != 'success' and 
+             auth_result.get('status') !='OTP_SENT' and 
+             auth_result.get('status') != 'PwdNotChangedByFirstLoginError') :
             txt = auth_result.get('message')  
             template_data = {"mykey": txt }          
-            result = render(request, 'login.html', template_data)            
+            result = render(request, 'login.html', template_data)
+        elif auth_result.get('status') == 'OTP_SENT':           
+            txt = auth_result.get('message')
+            print(txt)
+            template_data = {"mykey": txt, 
+                             "otp_login": True,
+                             "domain": domain,
+                             "uname": uname}          
+            result = render(request, 'login_otp.html', template_data)
+        elif auth_result.get('status') == 'PwdNotChangedByFirstLoginError':
+            txt = auth_result.get('message')
+            print(txt)
+            template_data = {"mykey": txt,
+                             "domain": domain,
+                             "uname": uname}          
+            result = render(request, 'admin_pages/forced_change_password.html', template_data)
+                       
         else:       
             #result = HttpResponse(auth_result_json)
             verified_token = tlclient.verify_token(auth_result.get('auth_token'))
@@ -52,15 +112,50 @@ def login(request):
                 result = render(request, 'login.html', template_data) 
                 
             else:
+                user_details = verified_token.get('payload').get('sub')
                 template_data = {"service_catalog": auth_result.get('service_catalog'),
-                                "user_details": verified_token.get('payload').get('sub'),
+                                "user_details": user_details,
+                                "login_time": datetime.now()
                                 }           
-                
+                request.session['session_user_details'] = user_details
                 result = render(request, 'home.html', template_data)
             
     return result
 
 
+def validate_active_session(request, template_name, 
+                            template_data, expired_token=False):
+    session_user_details = request.session.get('session_user_details') 
+    s_login_time = request.session.get('last_clicked_on')
+    session_expairy_seconds = 900
+    elpsed_time_in_sec = 0
+    if not (s_login_time):
+        txt = "Enter user name and password to get access to  dashboard"
+        template_data = {"mykey": txt }
+        template_name = 'login.html' 
+        print(txt)
+    else:
+        logged_in_time = datetime.fromtimestamp(s_login_time)
+        elapsed_time = datetime.utcnow() - logged_in_time
+        elpsed_time_in_sec = elapsed_time.total_seconds()
+        print("logged in for sec:", elpsed_time_in_sec)
+    
+        if (elpsed_time_in_sec > session_expairy_seconds): 
+            print('inside session  expiry block elapsed time:', 
+                  elpsed_time_in_sec )
+            template_name, template_data = logout(request)
+        elif expired_token is True :
+            print('inside token  expiry block:')
+            template_name, template_data = logout(request, expired_token=True )
+        else:
+            request.session['last_clicked_on'] = datetime.now().timestamp()          
+            user_data = {"user_details": session_user_details }
+            template_data.update(user_data)
+            print('session is still active, elapsed time ', 
+                  elpsed_time_in_sec)
+    web_page = render(request, template_name, template_data)            
+    return web_page
+        
 
 ################ SESSION MANAGEMENT ######################
 #def get_expire_seconds(self, request):
@@ -86,6 +181,28 @@ def login(request):
 #    return result
 
 ############### END ######################
+
+
+
+def validate_token_n_session():
+    def decorator(f):
+        @functools.wraps(f)
+        def wrapper_functions(*args, **kwargs):
+            request = args[0]           
+            token_expiry, template_data, template_name = False, {}, {}
+            tlclient = prep_tlclient_from_session(request)
+            if tlclient:
+                web_page = f(*args, **kwargs)
+            else:
+                token_expiry=True
+                web_page = validate_active_session(request, template_name,
+                                                   template_data, token_expiry)
+            return web_page
+        return wrapper_functions
+    return decorator
+
+
+
 '''
 How the auth_result look
 {'service_catalog': 

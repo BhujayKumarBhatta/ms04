@@ -1,0 +1,74 @@
+{% extends "home.html" %}
+{% block content-area %}
+
+<div class="container-fluid">
+    <div class="row">
+    {% for btn_name in action_buttons %}
+        <div class="col sm-1"> 
+            <a href="{% url 'dashapp:paperhouse_savedraft_list'  btn_name  %}" class="btn btn-sm  btn-block fa fa-filter" >
+                Filter By {{btn_name}} 
+            </a>
+            
+        </div>
+    {% endfor %}
+                
+    </div>   
+</div> 
+<br>  
+    <div class="container-fluid" style="padding-top:7px">
+        {% block list_invoice_add_delete %}
+        {% endblock list_invoice_add_delete %}
+               
+        <table class="table table-striped table-hover">
+            <thead >
+                <tr style="background-color: #4CAF50;font-size:10px">
+			        <th>TSP</th>
+			        <th>Inv No</th>
+			        <th>Info ID</th>
+			        <th>Circuit ID</th>			        
+			        <th>Div</th>
+			        <th>Link Type</th>
+			        <th>Speed</th>
+			        <th>From Date</th>
+			        <th>To Date</th>			        
+			        <th>GST</th>
+			        <th>Amount</th>
+			        <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for l in PAPERHOUSE_list_invoices %}
+			      <tr style="font-size:10px">			        
+			        <td>{{ l.xldata.tsp }}</td>
+			        <td><a href="{% url 'dashapp:paperhouse_list_invoice' l.xldata.invoiceno 'read' 'normal' %}" >
+			                 {{ l.xldata.invoiceno }}
+			             </a>
+			        </td>
+			        <td>{{ l.xldata.infoid }}</td>
+			        <td>{{ l.xldata.circuitid }}</td>			        
+			        <td>{{ l.xldata.division }}</td>
+			        <td>{{ l.xldata.arc }}</td>
+			        <td>{{ l.xldata.speed }}</td>
+			        <td>{{ l.xldata.billingdatefrom }}</td>
+			        <td>{{ l.xldata.billingdateto }}</td>
+			        <td>{{ l.xldata.gstno }}</td>
+			        <td>{{ l.xldata.total }}</td>
+			        <td>{{ l.status }}</td>
+			        {% block delete_icon %}
+			        {% endblock delete_icon %}
+			  
+			      </tr>
+			    {% endfor %}
+			</tbody>
+		</table>
+	</div>
+    
+{% endblock content-area %}
+
+
+<!--  {'is_active': 'Y', 'otp_mode': 'mail', 'allowemaillogin': 'N', 
+        'email': 'prasen.biswas@itc.in', 'created by': 'user1', 
+        'wfc': {'is_active': 'Y', 'org': 'org1', 
+                 'creation_date': '2019-07-04 15:03:08', 'created by': None, 'name': 'wfc1', 
+                 'orgunit': 'ou1', 'id': 1, 'department': 'dept1'}, 
+        'username': 'prasen', 'id': 6, 'roles': ['role1'], 'creation_date': '2019-07-08 12:55:16'} -->

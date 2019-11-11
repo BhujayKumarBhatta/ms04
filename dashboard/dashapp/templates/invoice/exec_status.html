@@ -1,0 +1,61 @@
+{% extends "home.html" %}
+{% block content-area %}
+{% url 'dashapp:striker_list_responces'  XL_VIEW_UPLOAD.request_id  as list_exec_stat %}
+{% url 'dashapp:paperhouse_list_invoice' 'all' 'read' 'normal' as list_invoices %}
+
+   <div class="container-fluid" style="padding-top:7px">
+        <table class="table table-striped table-hover">
+            <thead >
+                <tr style="background-color: #4CAF50;font-size:10px">
+                    
+                    <th>Inv No</th>
+                    <th>Execution Status</th>
+                    <th>Time</th>                 
+                    
+                </tr>
+            </thead>
+            <tbody>
+                {% for l in list_exec_status %}                
+                  <tr style="font-size:10px">                   
+                    <td>
+                        <a href="{% url 'dashapp:paperhouse_list_invoice'  l.invoicenum 'read' 'normal' %}" >
+                             {{ l.invoicenum }}
+                         </a>
+                        
+                    </td>
+                    <td>{{ l.exec_status }}</td>
+                    {% if l.wfcdict.timestamp  %}
+                    <td>{{ l.wfcdict.timestamp }}</td>
+                    {% elif l.wfcdict.time_stamp  %}
+                    <td>{{ l.wfcdict.time_stamp }}</td>
+                    {% else %}
+                     <td>key_error</td>  
+                     {% endif %}           
+                  </tr>
+                  
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="container-fluid">
+	        <div class="row">
+	           <div class="col" >
+                    <a class="btn  btn-sm fa fa-window-close" href="{{ list_invoices }}"> Close</a>        
+                </div>
+                <div class="col">
+                    <p>If blank page or expected status is not found, try refresh the page after a while</p>        
+                </div>
+	        </div>
+	     </div>
+            
+          
+           
+    </div>
+<!--     {{list_exec_status}} -->
+<!--     {{ update_request }} -->
+<!--     {{ update_request.customername }} -->
+    
+{% endblock content-area %}
+
+
+
+

@@ -1,0 +1,213 @@
+<style type="text/css">
+    .failed {
+        color: #a94442;
+        background-color: #f2dede;
+        border-color: #ebccd1 ;
+        border-top-color: #e4b9c0
+    }
+
+    .success {
+        color: #3c763d;
+        background-color: #dff0d8;
+        border-color: #d6e9c6 ;
+        border-top-color: #c9e2b3
+    }
+
+    input[type=text] {
+        width: 100%;
+        margin: 1px 0;
+        box-sizing: border-box;
+        border: none;
+    }
+
+    body {
+        color: #404E67;
+        background: #F5F7FA;
+        font-family: 'Open Sans', sans-serif;
+    }
+
+    .table-wrapper {
+        width: 100%;
+        margin: 10px auto;
+        background: #fff;
+        padding: 5px;
+        box-shadow: 0 1px 1px rgba(0,0,0,.05);
+    }
+
+    .table-title {
+        padding-bottom: 5px;
+        margin: 0 0 5px;
+    }
+
+        .table-title h2 {
+            margin: 6px 0 0;
+            font-size: 22px;
+        }
+
+        .table-title .add-new {
+            float: right;
+            height: 30px;
+            font-weight: bold;
+            font-size: 12px;
+            text-shadow: none;
+            min-width: 100px;
+            border-radius: 50px;
+            line-height: 13px;
+        }
+
+            .table-title .add-new i {
+                margin-right: 4px;
+            }
+
+    table.table {
+        table-layout: inherit;
+    }
+
+        table.table tr th, table.table tr td {
+            border-color: #e9e9e9;
+        }
+
+        table.table th i {
+            font-size: 13px;
+            margin: 0 5px;
+            cursor: pointer;
+        }
+
+        table.table th:last-child {
+            width: 100px;
+        }
+
+        table.table td a {
+            cursor: pointer;
+            display: inline-block;
+            margin: 0 5px;
+            min-width: 24px;
+        }
+
+            table.table td a.add {
+                color: #27C46B;
+            }
+
+            table.table td a.edit {
+                color: #FFC107;
+            }
+
+            table.table td a.delete {
+                color: #E34724;
+            }
+
+        table.table td i {
+            font-size: 19px;
+        }
+
+        table.table td a.add i {
+            font-size: 24px;
+            margin-right: -1px;
+            position: relative;
+            top: 3px;
+        }
+
+        table.table .form-control {
+            height: 32px;
+            line-height: 32px;
+            box-shadow: none;
+            border-radius: 2px;
+        }
+
+            table.table .form-control.error {
+                border-color: #f50000;
+            }
+
+        table.table td .add {
+            display: none;
+        }
+
+
+
+    .treegrid-indent {
+        width: 0px;
+        height: 16px;
+        display: inline-block;
+        position: relative;
+    }
+
+    .treegrid-expander {
+        width: 0px;
+        height: 16px;
+        display: inline-block;
+        position: relative;
+        left: -17px;
+        cursor: pointer;
+    }
+
+    a.tooltip {
+        outline: none;
+    }
+
+        a.tooltip strong {
+            line-height: 30px;
+        }
+
+        a.tooltip:hover {
+            text-decoration: none;
+        }
+
+        a.tooltip span {
+            z-index: 10;
+            display: none;
+            padding: 14px 20px;
+            margin-top: -30px;
+            margin-left: 28px;
+            width: 300px;
+            line-height: 16px;
+        }
+
+        a.tooltip:hover span {
+            display: inline;
+            position: absolute;
+            color: #111;
+            border: 1px solid #DCA;
+            background: #fffAF0;
+        }
+
+    .callout {
+        z-index: 20;
+        position: absolute;
+        top: 30px;
+        border: 0;
+        left: -12px;
+    }
+
+    /*CSS3 extras*/
+    a.tooltip span {
+        border-radius: 4px;
+        box-shadow: 5px 5px 8px #CCC;
+    }
+
+
+    tr .spnTooltip {
+        z-index: 10;
+        display: none;
+        padding: 14px 20px;
+        margin-top: -30px;
+        margin-left: 28px;
+        width: 300px;
+        line-height: 16px;
+    }
+
+    tr:hover .spnTooltip {
+        display: inline;
+        position: absolute;
+        color: #111;
+        border: 1px solid #DCA;
+        background: #fffAF0;
+    }
+
+    .callout {
+        z-index: 20;
+        position: absolute;
+        top: 30px;
+        border: 0;
+        left: -12px;
+    }
+</style>

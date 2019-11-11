@@ -17,6 +17,8 @@ from werkzeug.utils import secure_filename
 from dashapp.tokenleader import tllogin
 from django.db.transaction import non_atomic_requests
 from django.contrib.admin.models import CHANGE
+from dashapp.tokenleader.tllogin import validate_active_session
+from django.template.defaultfilters import length
 
 # ======TSP=====
 # CREATE
@@ -34,6 +36,14 @@ from django.contrib.admin.models import CHANGE
 # HardCopyRecieved
 # PaymentMade
 
+change_required = ["TSPSubmmitedChange", "InfobahnRecommendedtoTSP", "DivisionRecommended", "SaveAsDraft"]
+current_stat_for_tsp_edits = ["InfobahnRecommendedtoTSP", "InfobahnApproved" ]    
+current_stat_for_infob_edits = ["InvoiceCreated", "TSPSubmmitedChange",
+                                "DivisionRecommended", "DivisionApproved", "TSPAcceptedChanges" ]
+current_stat_for_mis_edits = ["SentToDivision", "TSPCourierdHardCopy" , "HardCopyRecieved"]
+current_stat_for_tsp_edits.extend(current_stat_for_infob_edits)
+current_stat_for_tsp_edits.extend(current_stat_for_mis_edits)
+status_list = current_stat_for_tsp_edits
 
 sampleinvoice = { "state": "","arc": "","billingdateto": "","remarks": "", 
 "fullsiteaddress": "","customerid": "","servicetype": "","billingdatefrom": "", 
@@ -51,34 +61,129 @@ def list_events(request):
         result = render(request, 'home.html', template_data)        
         return result
     
-def list_responces(request):
+def list_exec_status(request, request_id):
     if request.method == 'GET': 
         tlclient = tllogin.prep_tlclient_from_session(request)        
         strikerclient=clientstriker(tlclient)
         list_responces = strikerclient.list_responses()
-                    
-        template_data = {"STRK_list_responces": list_responces } 
-        result = render(request, 'home.html', template_data)        
-        return result
+        template_name =  'admin_pages/list_responses.html'
+        if request_id != "all":
+            filtered_list = []
+            for l in list_responces:
+                print(type(l), l)
+                if l and "wfcdict" in l:                    
+                    rid = l.get('wfcdict').get('request_id')
+                    print("rid:" , rid)
+                    if rid == request_id:
+                        filtered_list.append(l)
+            list_responces = filtered_list     
+            template_name =  'invoice/exec_status.html'           
+        template_data = {"list_exec_status": list_responces } 
+                 
+    web_page = validate_active_session(request, template_name, template_data)
+    return web_page
            
     
 def delete_responces(request):
     tlclient = tllogin.prep_tlclient_from_session(request)
     strikerclient=clientstriker(tlclient)
     if request.method == 'POST':
-        #invoicenum = request.POST['invoiceno']          
-        #invoiceno = int(invoicenum)
         status = strikerclient.delete_response() 
-        list_responces = strikerclient.list_responses()
-        template_data = {"STRK_list_responces": list_responces ,"DEL_STRK_STATUS": status} 
-        result = render(request, 'home.html', template_data)   
-    else:        
-        list_responces = strikerclient.list_responses()  
-        template_data = {"STRK_list_responces": list_events } 
-        result = render(request, 'home.html', template_data)      
-    return result    
+    list_responces = strikerclient.list_responses()           
+    template_name =  'admin_pages/list_responses.html'           
+    template_data = {"list_exec_status": list_responces ,"delete_status": status}      
+    web_page = validate_active_session(request, template_name, template_data)
+    return web_page     
 
 
+def update_invoice(request, actionrole):
+    if request.method == 'POST':
+        data = None
+        infobahn_roles = ["role1", "INFOBAHN"]
+        TSP_roles = ["TSP"]
+        MIS_roles = ["MIS"]
+        tlclient = tllogin.prep_tlclient_from_session(request)
+        strikerclient=clientstriker(tlclient)
+        vdata , posting_result =  _vaidate_data_invoice_update(request)
+        if vdata:
+            data = [vdata, ]
+            if actionrole in infobahn_roles:
+                posting_result = strikerclient.customer_action(data)
+            elif actionrole in TSP_roles:
+                posting_result = strikerclient.tsp_action(data)
+            elif actionrole in MIS_roles:
+                posting_result = strikerclient.division_action(data)
+            else:
+                posting_result = {"save_status": "Failed, User need to have one of "
+                                  "role from [role1, INFOBAHN, TSP, MIS]"}
+#         else:
+#             posting_result = {"save_status": "invalid data or no changes to update invoice"}
+    template_data = {"update_request": posting_result,"vdata" : vdata , "keys" : posting_result }
+    template_name = "invoice/request_id_api_result.html"
+    web_page = validate_active_session(request, template_name, template_data)
+    return web_page
+
+#############data validation before invoice update call ########################################
+def _vaidate_data_invoice_update(request):
+    rdict = request.POST.copy()
+    # remove extra keys which should not be part of xldata comparison
+    rdict.pop("csrfmiddlewaretoken")
+    prev_status = rdict.pop("status")
+    # query dict values are list , convert them as text, 
+    #simply reading the will return the last value from the list as per django doc
+    nrdict = {}
+    for k, v in rdict.items():            
+        nrdict[k] = v
+    #also pop the last_data key , which is now a text instead of list after the previous step
+    # and assign it to a var for later usage         
+    last_data = nrdict.pop('last_data')
+    #any value in the quey dict is a text hence send it trough myjsoify custom tag and json load here
+    last_data = json.loads(last_data)
+    print(type(last_data))
+    #filter only those keys and values that are not null
+    xl_data_wo_blank_values = {}
+    for k, v in nrdict.items():
+        if v:
+            xl_data_wo_blank_values[k] = v
+    #There should be at least one field value changed apart Action
+    inv_n_action = {"InvoiceNo": xl_data_wo_blank_values.pop("InvoiceNo"),
+                    "Action":xl_data_wo_blank_values.pop("Action")}
+    print("xl_data_wo_blank_values", xl_data_wo_blank_values)
+    #cross check that the values have changed from the last_data
+# Old Code
+#     if xl_data_wo_blank_values:
+#         values_changed_from_last_time = {}
+#         for k, v in xl_data_wo_blank_values.items():
+#             print("last_data", type(last_data))
+#             if v != last_data.get(k):
+#                 values_changed_from_last_time[k] = v
+#         values_changed_from_last_time.update(inv_n_action)
+#         return values_changed_from_last_time
+     
+### CODE CHANGE 
+        
+    values_changed_from_last_time = {}
+    if xl_data_wo_blank_values:      
+        for k, v in xl_data_wo_blank_values.items():
+            print("last_data", type(last_data))
+            if v != last_data.get(k):
+                values_changed_from_last_time[k] = v
+        values_changed_from_last_time.update(inv_n_action)
+    Error_message = {"test":"test"}
+    if values_changed_from_last_time:
+        return values_changed_from_last_time, Error_message
+    else:
+        if inv_n_action["Action"] not in change_required:
+            Error_message= {"save_status": "Failed: Remarks is mandatory."}
+        elif inv_n_action["Action"] in change_required:
+            Error_message = {"save_status": "Failed: invalid data or no changes to update invoice."}
+            
+    return values_changed_from_last_time, Error_message
+    #return values_changed_from_last_time
+
+    
+#############END data validation before invoice update call ########################################
+        
 def customer_action(request):
     try:
         tlclient = tllogin.prep_tlclient_from_session(request)
@@ -154,4 +259,49 @@ def tsp_action(request):
         template_data = {"VIEW_CREATE_INVOICE": "TRUE","EXCEPTION" :exception,"EXCEPTION_INFO" : sys.exc_info()[0]}  
         result = render(request, 'home.html', template_data) 
     return result
+
+###################################
+
+def update_from_draft_invoice(request, actionrole):
+    if request.method == 'POST':
+        data = None
+        infobahn_roles = ["role1", "INFOBAHN"] 
+        TSP_roles = ["TSP"]
+        MIS_roles = ["MIS"]
+        tlclient = tllogin.prep_tlclient_from_session(request)
+        strikerclient = clientstriker(tlclient)
+            
+        querydict = request.POST.copy()   
+        Action = querydict.get("status")
+        list_selected_invoices = querydict.getlist("invoices")
+        print("list_selected_invoices  and Action", list_selected_invoices, Action)
+        list_data= [] 
+        if (len(list_selected_invoices) > 0 and Action in status_list): 
+            for inv in list_selected_invoices:
+                data = {"InvoiceNo": inv,"Action": "UpdateFromDraft:"+Action}
+                list_data.append(data)
+                
+        if len(list_data) > 0 :
+            print("list_data................", list_data)
+            if actionrole in infobahn_roles:
+                posting_result = strikerclient.customer_action(list_data)
+            elif actionrole in TSP_roles:
+                posting_result = strikerclient.tsp_action(list_data)
+            elif actionrole in MIS_roles:
+                posting_result = strikerclient.division_action(list_data)
+            else:
+                posting_result = {"save_status": "Failed, User need to have one of "
+                                  "role from [role1, INFOBAHN, TSP, MIS]"}  
+        else:
+            posting_result = {"save_status": "Failed, No invoice selected"}                  
+               
+    template_data = {"update_request": posting_result }
+    template_name = "invoice/request_id_api_result.html"
+    web_page = validate_active_session(request, template_name, template_data)
+    return web_page
+        
+             
+                
+        
+        
     

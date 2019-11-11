@@ -1,0 +1,171 @@
+{% extends "home.html" %}
+{% block content-area %}
+{% url 'dashapp:managelocalnet' as managelocalnet %}
+
+
+
+    <div class="container-fluid" style="padding-top:7px">
+        <div class="row">
+            <div class="col-sm-3">
+                <a class="btn btn-primary btn-sm fa fa-plus" href="{{ managelocalnet }}"> &nbsp add new ravl</a>
+            </div>
+            <div class="col-sm-7 justify-content-center">
+                <h5>RATE & ADDRSS VERIFIED LINKS</h5>
+            </div>
+            <div class="col-sm-2 justify-content-end">
+                <a class="btn btn-danger btn-sm fa fa-minus" href="#"> &nbsp delete all</a>
+            </div> 
+        </div>
+               
+        <table class="table table-striped table-hover">
+            <thead >
+                <tr style="background-color: #4CAF50;font-size:10px">
+			        <th>TSP</th>
+			        <th>CIRCUITID</th>
+                    <th>INFOID</th>
+			        <th>LinkType</th>
+			        <th>Bandwidth</th>
+			        <th>LifeCycle</th>			       
+			        <th>Division</th>
+			        <th>SiteID</th>
+			        <th>SiteName</th>
+			        <th>City</th>
+			        <th>RateID</th>
+			        <th>ActivityType</th> 
+			        <th>Rate/Y</th>
+			        <th>OTC</th>
+			        <th>Last Payment Date</th>
+			        <th>RAVLID</th>
+			        <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for l in list_ravl_obj %}
+                    {% for infol in list_infoops_links %}
+                        {% if l.infoopsid == infol.serial_no %}
+			      <tr style="font-size:10px">			        
+			         <td>{{ infol.tsp_name }}</td>
+			         <td>{{ infol.circuit_ID }}</td>
+                     <td>                       
+                        <a href="#" data-toggle="modal" data-target="#infoops_data" >
+                            {{ l.infoopsid }}
+                        </a>
+                     </td>
+			         <td>{{ infol.link_type }}</td>
+			         <td > {{ infol.bandwidth}} </td>
+			         <td>{{ infol.lifecycle_phase }}</td>
+			         <td>{{ infol.division_name }}</td>
+			         <td>
+			             <a href="#" data-toggle="modal" data-target="#site_data" >
+                            {{ l.altaddress.id }}
+                        </a>
+			         </td>
+			         <td>{{ l.altaddress.prem_name }}</td>
+			         <td>{{ l.altaddress.city }}</td>          
+			        
+			        <td>{{ l.rate.id }}</td>
+			        
+			        <td>{{ l.rate.activity_type }}</td>
+			        <td>{{ l.rate.rate_per_year }}</td>
+			        <td>{{ l.rate.otc }}</td>
+			        <td>{{ l.last_payment_date }}</td>
+			         <td>{{ l.id }}</td>
+			        
+			        <td>
+                       <a href="{% url 'dashapp:delete_ravl' 'Lnetlink' l.id  %}" class="button fa fa-remove" style="font-size:10px;color:red">
+                       </a>                                  
+                      
+			        </td> 
+			      </tr>
+			      {% endif %}
+			      {% endfor %}
+			    {% endfor %}
+			</tbody>
+		</table>
+	</div>
+	
+<!-- #############################MODAL FOR INFOOPS DATA ################################ -->
+	<div id="infoops_data" class="modal" >
+	<div class="modal-dialog">
+    <div class="modal-content">
+	
+	   <div class="modal-header">
+        <h4 class="modal-title">Infoops </h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      
+      <div class="modal-body">
+            <table class="table" id="read-format">
+                <thead >
+	                    <th class="py-0"> lifecycle_starts</th>
+	                    <th class="py-0"> commission_date</th>
+	                    <th class="py-0"> surrender_date</th>
+                </thead> 
+                
+                <tbody>
+                {% for l in list_ravl_obj %}
+                    {% for infol in list_infoops_links %}
+                        {% if l.infoopsid == infol.serial_no %}
+                    <tr>
+		                <td class="py-0"> {{ infol.lifecycle_start_date }} </td>
+		                <td class="py-0"> {{ infol.commission_date }} </td>
+		                <td class="py-0"> {{ infol.surrender_date }} </td>
+                    </tr>
+                      {% endif %}
+                  {% endfor %}
+                {% endfor %}
+                </tbody>
+             </table>
+        </div>
+      </div>
+      </div>
+      </div>
+      
+<!-- #############################MODAL FOR INFOOPS DATA ################################ -->
+    <div id="site_data" class="modal" >
+    <div class="modal-dialog">
+    <div class="modal-content">
+    
+       <div class="modal-header">
+        <h4 class="modal-title">Infoops </h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      
+      <div class="modal-body">
+            <table class="table" id="read-format">
+                <thead >
+                        <th class="py-0"> prem_no</th>
+                        <th class="py-0"> state</th>
+                        <th class="py-0"> pin</th>
+                        <th class="py-0"> gstn</th>
+                        <th class="py-0"> sgst</th>
+                        <th class="py-0"> cgst</th>
+                </thead> 
+                
+                <tbody>
+                    {% for l in list_ravl_obj %}
+                    <tr>
+                        <td class="py-0"> {{ l.altaddress.prem_no }} </td>
+                        <td class="py-0"> {{ l.altaddress.state }} </td>
+                        <td class="py-0"> {{ l.altaddress.pin }} </td>
+                        <td class="py-0"> {{ l.altaddress.gstn }} </td>
+                        <td class="py-0"> {{ l.altaddress.sgst_rate }} </td>
+                        <td class="py-0"> {{ l.altaddress.cgst_rate }} </td>
+                    </tr>
+                    {% endfor %}                    
+                </tbody>
+             </table>
+        </div>
+      </div>
+      </div>
+      </div>
+    
+{% endblock content-area %}
+
+
+<!--  {'is_active': 'Y', 'otp_mode': 'mail', 'allowemaillogin': 'N', 
+        'email': 'prasen.biswas@itc.in', 'created by': 'user1', 
+        'wfc': {'is_active': 'Y', 'org': 'org1', 
+                 'creation_date': '2019-07-04 15:03:08', 'created by': None, 'name': 'wfc1', 
+                 'orgunit': 'ou1', 'id': 1, 'department': 'dept1'}, 
+        'username': 'prasen', 'id': 6, 'roles': ['role1'], 'creation_date': '2019-07-08 12:55:16'} -->

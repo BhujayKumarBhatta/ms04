@@ -1,0 +1,65 @@
+{% extends "home.html" %}
+{% block content-area %}
+{% url 'dashapp:add_wfc' as addwfc %}
+{% url 'dashapp:list_wfc' as lwfc %}
+
+
+    <div class="container-fluid" style="padding-top:7px">
+        <form action="{{ addwfc }}" method="post">
+           {% csrf_token %}            
+        <table class="table" id="edit-format">            
+            <tbody>   
+                  <th><p>Add wfc</p></th>             
+			      <tr >			        
+				        <td class="py-0"><label for="fname">WFC Name:</label></td>
+				        <td class="py-0"><input type="text" class="form-control" id="fname" name="fname" required></td>
+				    </tr>  
+			       
+			       <tr>   
+			                    
+	                    <td class="py-0"><label for="orgname">Org Name:</label></td>
+	                    <td class="py-0"><select  id="orgname" name="orgname"> <option>Select</option>
+		                                            {% for org in ORGLIST.status %}
+		                                                <option>{{ org.name  }}</option>
+		                                            {% endfor %}
+                                        </select>
+                        </td>
+                        <td class="py-0"><label for="ou_name">OU Name:</label></td>
+                        <td class="py-0"><select  id="ou_name" name="ou_name"> <option>Select</option>
+                                                {% for r in OULIST.status %}
+                                                    <option>{{ r.name  }}</option>
+                                                {% endfor %}              
+                                          </select>
+                        </td>
+			       <tr>                  
+	                    <td class="py-0"><label for="dept_name">Dept Name:</label></td>
+	                    <td class="py-0"><select  id="dept_name" name="dept_name"> <option>Select</option>
+		                                            {% for dpt in DEPTLIST.status %}
+		                                                <option>{{ dpt.name  }}</option>
+		                                            {% endfor %}
+                                        </select>	                  
+                                    
+                   <tr> 
+                   </tr>   		        
+			</tbody> 
+		</table>
+	</div>
+	
+
+	<div class="container-fluid" id="edit-format">
+        <div class="row">
+            <div class="col-sm-3">
+                <button class="btn btn-sm fa fa-plus"  type="submit"> &nbsp SAVE</button>
+            </div>
+            <div class="col-sm-7 justify-content-center">     
+            </div>
+            <div class="col-sm-2 justify-content-end">
+                <a class="btn  btn-sm fa fa-minus" href="{{ lwfc }}"> &nbsp CANCEL</a>
+            </div> 
+            </form>
+        </div>
+    
+{% endblock content-area %}
+
+
+<!--  ======================================== CODE ENDs HERE ==========================================    -->

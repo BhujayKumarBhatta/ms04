@@ -1,0 +1,46 @@
+{% extends "invoice/list_invoices.html" %}
+{% url 'dashapp:paperhouse_list_invoice' 'all' 'read' 'admin' as p_list_invoices %}
+{% url 'dashapp:paperhouse_delete_invoice' as delete_invoices %}
+
+{% block list_invoice_add_delete %}
+<div class="container-fluid" style="padding-top:7px">
+        <div class="row">
+            <div class="col-sm-3">
+                <a class="btn btn-primary btn-sm fa fa-plus" href="{{ p_list_invoices }}"> &nbsp add new invoices</a>
+            </div>
+            <div class="col-sm-7 justify-content-center">
+                <h5>List of All Invoices </h5>
+            </div>
+            <div class="col-sm-2 justify-content-end">
+                <a class="btn btn-danger btn-sm fa fa-minus" href="{{delete_invoices}}"> &nbsp delete all</a>
+            </div> 
+        </div>
+{% endblock list_invoice_add_delete %}
+
+{% block delete_icon %}
+<td>
+     <form action="{{delete_single_invoice}}" method="POST" 
+                     enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="hidden" id="username" name="username" value="{{l.xldata.invoiceno }" 
+                         class="form-control">
+        <button class="fa fa-remove" style="font-size:10px;color:red" 
+            type="submit"  onclick="return confirm('Are you sure? you want to Delete User')">                                
+        </button>
+ </form>
+ </td> 
+{% endblock delete_icon %}
+
+
+
+    
+               
+        
+
+
+<!--  {'is_active': 'Y', 'otp_mode': 'mail', 'allowemaillogin': 'N', 
+        'email': 'prasen.biswas@itc.in', 'created by': 'user1', 
+        'wfc': {'is_active': 'Y', 'org': 'org1', 
+                 'creation_date': '2019-07-04 15:03:08', 'created by': None, 'name': 'wfc1', 
+                 'orgunit': 'ou1', 'id': 1, 'department': 'dept1'}, 
+        'username': 'prasen', 'id': 6, 'roles': ['role1'], 'creation_date': '2019-07-08 12:55:16'} -->
