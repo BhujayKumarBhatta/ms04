@@ -24,13 +24,22 @@
     <table align="center" width="90%" style="padding-left: 150px">
         <tr>
             <td>
-                {% if XL_UPLOAD_RESULT is not null %}
+                {% if XL_UPLOAD_RESULT is not null and XL_VIEW_UPLOAD.request_id  %}
                 <div class="alert alert-success" role="alert">
                     Invoice file posted, progress can be checked by clicking on the request id.<br />
                  
                     <br>                    
                     <a href="{{list_exec_stat}}">click to see  progress of request id:- {{ XL_VIEW_UPLOAD.request_id }}</a>
                 </div>
+                
+                {% elif "File could not be uploaded" in XL_UPLOAD_RESULT  %}
+                <div class="alert alert-danger" role="alert">
+                    Check the result to identify error type , correct then in excel file and repost<br />
+                    <br>
+                   {{ XL_UPLOAD_RESULT }}                    
+                </div>
+              
+                
                 {% elif EXCEPTION is not null %}
                 <div class="alert alert-danger" role="alert">
                     There is been an error while uploading a file, Please check the file format and server log. <br />
@@ -59,6 +68,8 @@
         </div> 
     </form> 
 </div>
+
+<br><br><br>
 
    upload_result: {{ XL_UPLOAD_RESULT }}
    <br>
