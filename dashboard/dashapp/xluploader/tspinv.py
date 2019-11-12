@@ -73,14 +73,18 @@ def invoice_upload(request):
             tlclient = tllogin.prep_tlclient_from_session(request)
             xluploadclient = xlupload_client(tlclient)        
             Upload_result = xluploadclient.xlupload(uploaded_file_url)
-            request_id = Upload_result.get("request_id")    
-            message = json.dumps(Upload_result)
-            loaded_message = json.loads(message)
-            if isinstance(loaded_message, list):
+            request_id = None
+            exec_stat = None
+            if Upload_result and isinstance(Upload_result, list):
+                request_id = Upload_result.get("request_id")              
+                message = json.dumps(Upload_result)
+                loaded_message = json.loads(message)
+            if isinstance(Upload_result, list):
                 fs.delete(fname)          
-            exec_stat = _get_execstat_by_reqid(tlclient, request_id)
+                exec_stat = _get_execstat_by_reqid(tlclient, request_id)
+            
             template_data = { "XL_uploaded_file_url" : uploaded_file_url,                             
-                              "XL_VIEW_UPLOAD" : loaded_message,
+                              "XL_VIEW_UPLOAD" : Upload_result,
                               "XL_UPLOAD_RESULT" : Upload_result,
                               "EXEC_STAT": exec_stat}
 
