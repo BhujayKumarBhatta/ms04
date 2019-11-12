@@ -44,7 +44,7 @@
     </table>
     
 
-    <form method="post"  class="md-form" enctype="multipart/form-data">
+    <form method="post" action="{{ xlupload }}" class="md-form" enctype="multipart/form-data">
         {% csrf_token %}
         <!--<input type="file" name="myfile">
         <button type="submit">Upload</button>-->
@@ -60,6 +60,11 @@
     </form> 
 </div>
 
+   upload_result: {{ XL_UPLOAD_RESULT }}
+   <br>
+    exception_info: {{EXCEPTION_INFO}}
+    <br>
+    exception: - {{ EXCEPTION  }}
     
 {% endblock content-area %}
 
