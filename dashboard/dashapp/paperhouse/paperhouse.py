@@ -53,7 +53,10 @@ def list_invoices(request, invoicenum, mode, admin=None):
         tlclient = tllogin.prep_tlclient_from_session(request)
         print("within list invoice tlcliet domain is :", tlclient.domain)        
         paperclient=clientpaperhouse(tlclient)#               
-        list_invoices = paperclient.list_invoices(invoicenum)        
+        list_invoices = paperclient.list_invoices(invoicenum)  
+        
+        
+        list_invoices_filtered = getinvoicebyrole(request, list_invoices)      
         if invoicenum == 'all' and mode =='read':
             template_name = 'invoice/list_invoices.html'            
         elif admin and invoicenum == 'all' and mode == 'read':
@@ -74,13 +77,34 @@ def list_invoices(request, invoicenum, mode, admin=None):
             accept_button, edit_button, action_buttons = _get_all_buttons(request, list_invoices)
         else:
             accept_button, edit_button, action_buttons,  = False, False, []
+            
+        ROLE = request.session.get('session_user_details').get('roles')[0]
         template_data = {"PAPERHOUSE_list_invoices": list_invoices,
                          "edit_button": edit_button, "action_buttons": action_buttons,
-                         "accept_button": accept_button, "list_events": list_events }
+                         "accept_button": accept_button, "list_events": list_events 
+                         ,"list_invoices_filtered" : list_invoices_filtered , "ROLE": ROLE}
         web_page = validate_active_session(request, template_name, template_data)
         return web_page 
     
-   
+
+def getinvoicebyrole(request, list_invoices):
+    role = request.session.get('session_user_details').get('roles')[0]
+    MIS_AllowedViewstatus =["SentToDivision", "TSPCourierdHardCopy" , "HardCopyRecieved"]
+    TSP_AllowedViewstatus =["InvoiceCreated", "InfobahnRecommendedtoTSP", "InfobahnApproved"]
+    #INFOB_AllowedViewstatus =["InvoiceCreated", "TSPSubmmitedChange" ]
+    list_invoices_filtered = list_invoices
+     
+    if role == "MIS":              
+        list_invoices_filtered = [inv for inv in list_invoices if inv['status'] in MIS_AllowedViewstatus]
+    elif role == "TSP":              
+        list_invoices_filtered = [inv for inv in list_invoices if inv['status'] in TSP_AllowedViewstatus]
+    #for INfob All are allowed for a while
+     #[inv for inv in list_invoices if inv['status'] in INFOB_AllowedViewstatus]
+    
+        
+        
+    return list_invoices_filtered
+ 
     
 @validate_token_n_session()    
 def draft_list(request, status):    
@@ -183,8 +207,8 @@ def delete_invoices(request):
     paperclient = clientpaperhouse(tlclient)
     if request.method == 'POST':       
         invoicenum = request.POST['invoiceno']          
-        invoiceno = int(invoicenum)
-        if invoiceno and invoiceno > 0:
+        #invoiceno = int(invoicenum)
+        if invoicenum and len(invoicenum) > 0:
             status = paperclient.delete_invoices(invoicenum) 
         else:
             status = paperclient.delete_invoices('all') 

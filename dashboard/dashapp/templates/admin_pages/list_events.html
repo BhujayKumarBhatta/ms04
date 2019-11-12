@@ -45,7 +45,7 @@
 				        {% csrf_token %}
 				        <input type="hidden" id="invoiceno" name="invoiceno" value="{{ Inv.eventdata.InvoiceNo }}">
 				           <button type="submit" class="btn btn-danger btn-bg fa fa-trash "
-			                onclick="return confirm('Are you sure? you want to delete Events of Inv.eventdata.InvoiceNo }} ')" >
+			                onclick="return confirm('Are you sure? you want to delete Events of {{ Inv.eventdata.InvoiceNo }} ')" >
 			                 
 			                </button> 
 		         </form>
