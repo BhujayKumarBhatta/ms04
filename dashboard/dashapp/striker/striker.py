@@ -17,7 +17,7 @@ from werkzeug.utils import secure_filename
 from dashapp.tokenleader import tllogin
 from django.db.transaction import non_atomic_requests
 from django.contrib.admin.models import CHANGE
-from dashapp.tokenleader.tllogin import validate_active_session
+from dashapp.tokenleader.tllogin import validate_active_session, validate_token_n_session
 from django.template.defaultfilters import length
 
 # ======TSP=====
@@ -52,15 +52,21 @@ sampleinvoice = { "state": "","arc": "","billingdateto": "","remarks": "",
 "premiseno": "", "city": "","tsp": "","customername": "","slno": 0, 
 "premisename": "" ,"billingactivity": "" ,"Action": ""}
 
+@validate_token_n_session()
 def list_events(request):
     if request.method == 'GET': 
         tlclient = tllogin.prep_tlclient_from_session(request)        
         strikerclient=clientstriker(tlclient)
         list_events = strikerclient.list_events()            
-        template_data = {"STRK_list_events": list_events } 
-        result = render(request, 'home.html', template_data)        
-        return result
+        template_data = {"STRK_list_events": list_events }
+        template_name = 'home.html'
+#         result = render(request, 'home.html', template_data)        
+#         return result
+        web_page = validate_active_session(request, template_name, template_data)
+        return web_page
     
+    
+@validate_token_n_session() 
 def list_exec_status(request, request_id):
     if request.method == 'GET': 
         tlclient = tllogin.prep_tlclient_from_session(request)        
@@ -83,7 +89,7 @@ def list_exec_status(request, request_id):
     web_page = validate_active_session(request, template_name, template_data)
     return web_page
            
-    
+@validate_token_n_session()  
 def delete_responces(request):
     tlclient = tllogin.prep_tlclient_from_session(request)
     strikerclient=clientstriker(tlclient)
@@ -95,7 +101,7 @@ def delete_responces(request):
     web_page = validate_active_session(request, template_name, template_data)
     return web_page     
 
-
+@validate_token_n_session()
 def update_invoice(request, actionrole):
     if request.method == 'POST':
         data = None
@@ -183,7 +189,7 @@ def _vaidate_data_invoice_update(request):
 
     
 #############END data validation before invoice update call ########################################
-        
+@validate_token_n_session()    
 def customer_action(request):
     try:
         tlclient = tllogin.prep_tlclient_from_session(request)
@@ -230,8 +236,9 @@ def trigger_action(data, action, request):
         cust_action_result = strikerclient.customer_action(dictinvoice)                    
         create_result_dump = json.dumps(cust_action_result)
         create_result_load = json.loads(create_result_dump)
-        return cust_action_result       
-                
+        return cust_action_result
+         
+@validate_token_n_session()              
 def tsp_action(request):
     try:
         tlclient = tllogin.prep_tlclient_from_session(request)
@@ -262,6 +269,7 @@ def tsp_action(request):
 
 ###################################
 
+@validate_token_n_session()
 def update_from_draft_invoice(request, actionrole):
     if request.method == 'POST':
         data = None
