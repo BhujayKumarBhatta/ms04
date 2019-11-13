@@ -25,6 +25,9 @@
                     Sign In
                 </span>
             </div>
+            <div class="login-result">
+                         {{ mykey }}
+                         </div>
 
                 <form class="login100-form validate-form" action="{% url 'dashapp:login' %}"  method="post">
                 {% csrf_token %} 

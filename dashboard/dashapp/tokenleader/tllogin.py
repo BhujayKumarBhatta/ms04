@@ -81,7 +81,9 @@ def login(request):
         auth_result = tlclient.get_token()        
         auth_result_json = json.dumps(auth_result)
         print(auth_result_json)
-        if auth_result.get('status') != 'success' and auth_result.get('status') !='OTP_SENT' :
+        if ( auth_result.get('status') != 'success' and 
+             auth_result.get('status') !='OTP_SENT' and 
+             auth_result.get('status') != 'PwdNotChangedByFirstLoginError') :
             txt = auth_result.get('message')  
             template_data = {"mykey": txt }          
             result = render(request, 'login.html', template_data)
@@ -92,7 +94,15 @@ def login(request):
                              "otp_login": True,
                              "domain": domain,
                              "uname": uname}          
-            result = render(request, 'login_otp.html', template_data)           
+            result = render(request, 'login_otp.html', template_data)
+        elif auth_result.get('status') == 'PwdNotChangedByFirstLoginError':
+            txt = auth_result.get('message')
+            print(txt)
+            template_data = {"mykey": txt,
+                             "domain": domain,
+                             "uname": uname}          
+            result = render(request, 'admin_pages/forced_change_password.html', template_data)
+                       
         else:       
             #result = HttpResponse(auth_result_json)
             verified_token = tlclient.verify_token(auth_result.get('auth_token'))
