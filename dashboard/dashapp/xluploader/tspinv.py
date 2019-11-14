@@ -52,7 +52,7 @@ def _get_execstat_by_reqid(tlclient, request_id):
     return filtered_list
 
 
-
+@validate_token_n_session()
 def invoice_upload(request):
     template_name = "invoice/xlupload_invoice.html"
     try:
