@@ -15,116 +15,116 @@
 <form action="{{ update_invoice }}" method="post">{% endblock invform_start %} 
  
 {% block infoid %} 
-    <input type="text"  required text="{{inv.infoid}}" class="form-control" id="InfoID" name="InfoID" >
+    <input type="text"  required value="{{inv.infoid}}" class="form-control" id="InfoID" name="InfoID" >
 {% endblock infoid %}
 
 {% block circuitid %} 
-    <input type="text"  required text="{{inv.circuitid}}" class="form-control" id="CircuitID" name="CircuitID" >
+    <input type="text"  required value="{{inv.circuitid}}" class="form-control" id="CircuitID" name="CircuitID" >
 {% endblock circuitid %}
 
 {% block tsp %} 
-   <input type="text"  required text="{{inv.tsp}}" class="form-control" id="tsp" name="TSP" readonly>
+   <input type="text"  required value="{{inv.tsp}}" class="form-control" id="tsp" name="TSP" readonly>
 {% endblock tsp %}
                      
 {% block speed %} 
-   <input type="text"  required text="{{inv.speed}}" class="form-control" id="speed" name="Speed">
+   <input type="text"  required value="{{inv.speed}}" class="form-control" id="speed" name="Speed">
 {% endblock speed %}
                  
 {% block arc %}
-   <input type="text"  required text="{{inv.arc}}" class="form-control" id="arc" name="ARC"> 
+   <input type="text"  required value="{{inv.arc}}" class="form-control" id="arc" name="ARC"> 
 {% endblock arc %}
 
 {% block division %}
-   <input type="text"   required text="{{inv.division}}" class="form-control" id="division" name="Division"> 
+   <input type="text"   required value="{{inv.division}}" class="form-control" id="division" name="Division"> 
 {% endblock division %}
 
 {% block servicetype %}
-   <input type="text"  required text="{{inv.servicetype}}" class="form-control" id="servicetype" name="ServiceType">  
+   <input type="text"  required value="{{inv.servicetype}}" class="form-control" id="servicetype" name="ServiceType">  
 {% endblock servicetype %}
     
 <!-- ####################Address section######################################################### -->       
 {% block city %} 
-    <input type="text" required text="{{inv.city}}" class="form-control" id="city" name="City"> 
+    <input type="text" required="true" value="{{inv.city}}" class="form-control" id="city" name="City"> 
 {% endblock city %}
      
 {% block state %}
-    <input type="text" required text="{{inv.state}}" class="form-control" id="state" name="State"> 
+    <input type="text" required value="{{inv.state}}" class="form-control" id="state" name="State"> 
 {% endblock state %}
   
 {% block pin %}
-    <input type="text" required text="{{inv.pin}}" class="form-control" id="pin" name="PIN">  
+    <input type="text" required value="{{inv.pin}}" class="form-control" id="pin" name="PIN">  
 {% endblock pin %}
      
 {% block premiseno %}
-    <input type="text" text="{{inv.premiseno}}" class="form-control" id="premiseno" name="PremiseNo">  
+    <input type="text" value="{{inv.premiseno}}" class="form-control" id="premiseno" name="PremiseNo">  
 {% endblock premiseno %}
 
 {% block premisename %}
-    <input type="text" text="{{inv.premisename}}" class="form-control" id="premisename" name="PremiseName">
+    <input type="text" value="{{inv.premisename}}" class="form-control" id="premisename" name="PremiseName">
 {% endblock premisename %}
 
 {% block siteid %}
-    <input type="text" required text="{{inv.siteid}}" class="form-control" id="siteid" name="SiteID">  
+    <input type="text" required value="{{inv.siteid}}" class="form-control" id="siteid" name="SiteID">  
 {% endblock siteid %}
 
 {% block fullsiteaddress %}
-    <input type="text" required text="{{inv.fullsiteaddress}}" class="form-control" id="fullsiteaddress" name="FullSiteAddress">
+    <input type="text" required value="{{inv.fullsiteaddress}}" class="form-control" id="fullsiteaddress" name="FullSiteAddress">
 {% endblock fullsiteaddress %}
      
 <!--  ########################################Invoice Billing section################################# -->                 
 {% block invoiceno %}
-    <input type="text" required text="{{inv.invoiceno}}" class="form-control" id="invoiceno" name="InvoiceNo" value={{inv.invoiceno}} readonly>  
+    <input type="text" required value="{{inv.invoiceno}}" class="form-control" id="invoiceno" name="InvoiceNo" value={{inv.invoiceno}} readonly>  
 {% endblock invoiceno %}
 
 {% block billingdatefrom %}
-    <input type="text"  required text="{{inv.billingdatefrom}}"  class="form-control" id="billingdatefrom" name="BillingDateFrom"> 
+    <input type="text"  required value="{{inv.billingdatefrom}}"  class="form-control" id="billingdatefrom" name="BillingDateFrom"> 
 {% endblock billingdatefrom %}
 
 {% block billingdateto %}
-    <input type="text" required text="{{inv.billingdateto}}" class="form-control" id="billingdateto" name="BillingDateTO">  
+    <input type="text" required value="{{inv.billingdateto}}" class="form-control" id="billingdateto" name="BillingDateTO">  
 {% endblock billingdateto %}
 
 {% block invoicedate %}
-    <input type="text" required text="{{inv.invoicedate}}" class="form-control" id="invoicedate" name="InvoiceDate" readonly> 
+    <input type="text" required value="{{inv.invoicedate}}" class="form-control" id="invoicedate" name="InvoiceDate" readonly> 
 {% endblock invoicedate %}
 
 {% block gstno %}
-    <input type="text" required text="{{inv.gstno}}" class="form-control" id="GSTNo" name="GSTNo"> 
+    <input type="text" required value="{{inv.gstno}}" class="form-control" id="GSTNo" name="GSTNo"> 
 {% endblock gstno %}
 
 {% block taxname %}
-    <input type="text" required text="{{inv.taxname}}" class="form-control" id="gstno" name="TaxName">
+    <input type="text" required value="{{inv.taxname}}" class="form-control" id="gstno" name="TaxName">
 {% endblock taxname %}
 
 {% block total %}
-    <input type="text" required text="{{inv.total}}" class="form-control" id="total" name="Total">
+    <input type="text" required value="{{inv.total}}" class="form-control" id="total" name="Total">
 {% endblock total %}
 
 {% block customerid %}
-    <input type="text" required text="{{inv.customerid}}" class="form-control" id="customerid" name="CustomerID">
+    <input type="text" required value="{{inv.customerid}}" class="form-control" id="customerid" name="CustomerID">
 {% endblock customerid %}
 
 {% block customername %}
-    <input type="text" required text="{{inv.customername}}"  class="form-control" id="customername" name="CustomerName">
+    <input type="text" required value="{{inv.customername}}"  class="form-control" id="customername" name="CustomerName">
 {% endblock customername %}
 
 {% block accountno %}
-    <input type="text" required text="{{inv.accountno}}" class="form-control" id="accountno" name="AccountNo" readonly>
+    <input type="text" required value="{{inv.accountno}}" class="form-control" id="accountno" name="AccountNo" readonly>
 {% endblock accountno %}
 
 <!--  ####################### remarks ############################################################### -->
 
 {% block remarks %}
-    <input type="text" required text="{{inv.remarks}}"  class="form-control" id="remarks" name="REMARKS">
+    <input type="text" required value="{{inv.remarks}}"  class="form-control" id="remarks" name="REMARKS">
  {% endblock remarks %}
 
 <!-- ##################################################Workflow Details######################################## -->
 {% block action %}
-    <input type="text" required text="{{inv.action}}" class="form-control" id="action" name="Action" value={{inv.action}} readonly>
+    <input type="text" required value="{{inv.action}}" class="form-control" id="action" name="Action" value={{inv.action}} readonly>
 {% endblock action %}
 
 {% block status %}
-    <input type="text" required text="{{PAPERHOUSE_list_invoices.0.status}}" class="form-control" id="status" name="status" value={{PAPERHOUSE_list_invoices.0.status}} readonly> 
+    <input type="text" required value="{{PAPERHOUSE_list_invoices.0.status}}" class="form-control" id="status" name="status" value={{PAPERHOUSE_list_invoices.0.status}} readonly> 
     
 {% endblock status %}
 

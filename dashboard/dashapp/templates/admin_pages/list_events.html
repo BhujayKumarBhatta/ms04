@@ -27,7 +27,8 @@
         </div> 
     </form>
     
-     
+  invoicenum - {{invoicenum}}
+  event_id - {{event_id}}   
  <table class="table table-striped table-hover">
   <thead>
           <tr style="background-color: #4CAF50;font-size:10px">
@@ -41,13 +42,13 @@
 	   {% for Inv in peninvoice.event_history_list%}
 	   <tr  style= "font-size:10px;" >
 			<td>
-			      <form action="{% url 'dashapp:penman_delete_events' %}" method="post" enctype="multipart/form-data">
+			      <form action="{% url 'dashapp:penman_delete_event' %}" method="post" enctype="multipart/form-data">
 				        {% csrf_token %}
 				        <input type="hidden" id="invoiceno" name="invoiceno" value="{{ Inv.eventdata.InvoiceNo }}">
+				        <input type="hidden" id="event_id" name="event_id" value="{{ Inv.event_id }}">
 				           <button type="submit" class="btn btn-danger btn-bg fa fa-trash "
-			                onclick="return confirm('Are you sure? you want to delete Events of {{ Inv.eventdata.InvoiceNo }} ')" >
-			                 
-			                </button> 
+			                onclick="return confirm('Are you sure? you want to delete Event- {{ Inv.event_name }} of {{ Inv.eventdata.InvoiceNo }} ')" >			                 
+			                </button>
 		         </form>
 			      </td>	
 			<td >{{ Inv.eventdata.InvoiceNo}} </td>
