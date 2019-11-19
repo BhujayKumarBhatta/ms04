@@ -316,6 +316,14 @@ def penman_delete_events(request):
     return result
 
 
+def penman_delete_event(request):
+    if 'uname' not in request.session :
+      result = login(request)
+    elif 'uname' in request.session :
+      result = penman.delete_event(request)
+    return result
+
+
 
 def paperhouse_list_invoice(request, invoicenum, mode, listype):
     if 'uname' not in request.session :
