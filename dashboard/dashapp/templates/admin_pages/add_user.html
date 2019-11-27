@@ -4,28 +4,40 @@
 {% url 'dashapp:list_users' as luser%}
 
 
-    <div class="container-fluid" style="padding-top:7px">
-        <form action="{{ aduser }}" method="post">
-           {% csrf_token %}            
-        <table class="table" id="edit-format">            
-            <tbody>   
-                  <th><p>Add New User</p></th>             
-			      <tr >			        
-				        <td class="py-0"><label for="Name">Name:</label></td>
-				        <td class="py-0"><input type="text" class="form-control" id="username" name="username" required></td>
-				        <td class="py-0"><label for="Email">Email:</label></td>
-	                    <td class="py-0"><input type="email" class="form-control" id="email" name="email"></td>
-			       </tr>
-			       <tr>                  
-	                    <td class="py-0"><label for="Role">Role:</label></td>
-	                    <td class="py-0"><select  id="role" name="role"> <option>Select</option>
+
+<form action="{{ aduser }}" method="post">{% csrf_token %}  
+        <div class="cotainer">
+	        <div class="row justify-content-center">
+	           <div class="col-md-8">
+                   <div class="card">
+                        <div class="card-header">Add New User</div>
+                        <div class="card-body">
+	 					    <div class="form-group row">
+                             <label for="username" class="col-md-4 col-form-label text-sm-right "> Name</label>
+                             <div class="col-md-8">
+                                 <input type="text" class="form-control" id="username" name="username" required>
+                             </div>
+			             	</div>
+			             	 <div class="form-group row">
+                             <label for="email" class="col-md-4 col-form-label text-sm-right "> Email</label>
+                             <div class="col-md-8">
+                                <input type="email" class="form-control" id="email" name="email">
+                             </div>
+			             	</div>
+			             	 <div class="form-group row">
+                             <label for="role" class="col-md-4 col-form-label text-sm-right "> Role</label>
+                             <div class="col-md-8">
+                                 <select  id="role" class="form-control" name="role"> <option>Select</option>
 		                                            {% for rol in ROLELIST.status %}
 		                                                <option>{{ rol.name  }}</option>
 		                                            {% endfor %}
                                         </select>
-                        </td>
-                        <td class="py-0"><label for="WFC">WFC:</label></td>
-                        <td class="py-0"><select  id="wfc" name="wfc"> <option>Select</option>
+                             </div>
+			             	</div>
+			             	 <div class="form-group row">
+                             <label for="wfc" class="col-md-4 col-form-label text-sm-right "> WFC</label>
+                             <div class="col-md-8">
+                                 <select  id="wfc" class="form-control" name="wfc"> <option>Select</option>
                                                 {% for wfc in WFCLIST.status %}
                                                     <option data-toggle="tooltip" data-placement="right" 
                                                     title="{{wfc.org}}, {{wfc.orgunit}}, {{wfc.department}}">
@@ -33,58 +45,62 @@
                                                     </option>
                                                 {% endfor %}              
                                           </select>
-                        </td>
-	                    
-                   </tr>  
-                   <tr>                 
-                        <td class="py-0"><label for="Active">Active:</label></td>
-                        <td class="py-0">
-                            <div class="form-check-inline">
-	                            <input type="radio" name="is_active" value="Y" checked> Y &nbsp &nbsp
-	                            <input type="radio" name="is_active" value="N" > N
+                             </div>
+			             	</div>
+			             	 <div class="form-group row">
+                             <label for="Active" class="col-md-4 col-form-label text-sm-right "> Active</label>
+                             <div class="col-md-8">
+                                  <div class="form-check-inline  "  >
+	                            <input type="radio"  name="is_active" value="Y" checked> Yes &nbsp &nbsp
+	                            <input type="radio" name="is_active" value="N" > No
 	                        </div>
-                        </td>
-                        <td class="py-0"><label for="OTP">OTP:</label></td>
-                        <td class="py-0">
-                            <div class="form-check-inline">
-                                <input type="radio" name="otpmode" value="mail" > mail &nbsp &nbsp
-                                <input type="radio" name="otpmode" value="sms" > sms &nbsp &nbsp
-                                <input type="radio" name="otpmode" value="show" > show
+                             </div>
+			             	</div>
+			             	
+			             	 <div class="form-group row">
+                             <label for="OTP" class="col-md-4 col-form-label text-sm-right "> OTP</label>
+                             <div class="col-md-8">
+                               <div class="form-check-inline  "  >
+                                <input type="radio" name="otpmode" value="mail" > Mail &nbsp &nbsp
+                                <input type="radio" name="otpmode" value="sms" > SMS &nbsp &nbsp
+                                <input type="radio" name="otpmode" value="show" > Show
                             </div>
-                         </td>
-                   </tr>
-                   <tr>                 
-                        <td class="py-0"><label for="maillogin">maillogin:</label></td>
-                        <td class="py-0">
-                            <div class="form-check-inline">
-                                <input type="radio" name="allowemaillogin" value="Y" checked> Y &nbsp &nbsp
-                                <input type="radio" name="allowemaillogin" value="N" > N
+                             </div>
+			             	</div>
+			             	 <div class="form-group row">
+                             <label for="maillogin" class="col-md-4 col-form-label text-sm-right "> Mail Login</label>
+                             <div class="col-md-8">
+                                   <div class="form-check-inline  "  >
+                                <input type="radio" name="allowemaillogin" value="Y" checked> Yes &nbsp &nbsp
+                                <input type="radio" name="allowemaillogin" value="N" > No
                             </div></td>
-                        <td class="py-0"><label for="password">password:</label></td>
-                        <td class="py-0"> <input type="password" class="form-control" 
-                            id="password" name="password" required>
-                        </td>
-                   </tr> 
-                   <tr> 
-                   </tr>   		        
-			</tbody> 
-		</table>
-	</div>
-	
-
-	<div class="container-fluid" id="edit-format">
-        <div class="row">
-            <div class="col-sm-3">
+                             </div>
+			             	</div>
+			             	 <div class="form-group row">
+                             <label for="password" class="col-md-4 col-form-label text-sm-right "> Password</label>
+                             <div class="col-md-8">
+                                 <input type="password" class="form-control" 
+                            					id="password" name="password" required>
+                             </div>
+			             	</div>
+			             	
+			             	 <div class="row">
+                                     <div class="col-sm-3">
                 <button class="btn btn-sm fa fa-plus"  type="submit"> &nbsp SAVE</button>
             </div>
-            <div class="col-sm-7 justify-content-center">     
+            <div class="col-sm-5 justify-content-center">     
             </div>
-            <div class="col-sm-2 justify-content-end">
+            <div class="col-sm-3 justify-content-end"  >
                 <a class="btn  btn-sm fa fa-minus" href="{{ luser }}"> &nbsp CANCEL</a>
-            </div> 
-            </form>
+            </div>
+                             </div>
+			             </div>			                
+		             </div>		             
+	             </div>
+             </div>
         </div>
-    
+        
+    </form>
 {% endblock content-area %}
 
 
