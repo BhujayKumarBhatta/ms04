@@ -92,18 +92,25 @@ def delete_event(request):
     tlclient = tllogin.prep_tlclient_from_session(request)
     penclient=clientpenman(tlclient)
     status = None
+    invoicenum = ""
+    event_id = ""
+    test = ""
+    
     if request.method == 'POST':
         invoicenum = request.POST['invoiceno']
         event_id = request.POST['event_id']
         if invoicenum  and len(invoicenum)  > 0 and event_id  and len(event_id)  > 0:
             status = penclient.delete_events_by_id(invoicenum, event_id)
+            test = "test-------------"
                         
     list_events = penclient.list_events('all')  
     action_buttons = ["DeleteAllInvoiceEvents"]
     template_name = 'admin_pages/list_events.html'
     template_data = {"Penman_list_events": list_events,
                           "action_buttons": action_buttons, 
-                          "delete_status" :status , "invoicenum": invoicenum, "event_id" : event_id}
+                          "delete_status" :status , "invoicenum": invoicenum
+                          , "event_id" : event_id
+                          ,"test": test}
     web_page = validate_active_session(request, template_name, template_data)
     return web_page
 
