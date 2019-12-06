@@ -19,7 +19,7 @@
    
       <form action="{% url 'dashapp:penman_delete_events' %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        <input type="hidden" id="invoiceno" name="invoiceno" value="0">        <div align="right">
+        <input type="hidden" id="invoiceno" name="invoiceno" value="all">        <div align="right">
         <button type="submit" class="btn btn-danger btn-sm"
                 onclick="return confirm('Are you sure? you want to delete all Invoice Events.\n This will Remove all invoice Events from the system.')" >
             Delete All Invoice Events

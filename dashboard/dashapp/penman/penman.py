@@ -71,9 +71,11 @@ def delete_events(request):
     if request.method == 'POST':
         invoicenum = request.POST['invoiceno']          
         #invoiceno = int(invoicenum)
-        if invoicenum  and len(invoicenum)  > 0:
-            status = penclient.delete_events(invoicenum)        
-        else:
+        if invoicenum  and len(invoicenum)  > 0 and invoicenum !='all':
+            status = penclient.delete_events(invoicenum)
+            print('received delete for invoice number ?', invoicenum)        
+        elif invoicenum =='all':
+            print('going to delete all ....')
             status = penclient.delete_events('all') 
             
     list_events = penclient.list_events('all')  
