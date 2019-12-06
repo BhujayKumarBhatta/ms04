@@ -18,7 +18,7 @@
     </table>
     <form action="{% url 'dashapp:paperhouse_delete_invoice' %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        <input type="hidden" id="invoiceno" name="invoiceno" value="0">
+        <input type="hidden" id="invoiceno" name="invoiceno" value="all">
         <div align="right">
         <button type="submit" class="btn btn-danger btn-sm"
                 onclick="return confirm('Are you sure? you want to delete all Invoices.\n This will Remove all invoices from the system.')"
@@ -29,7 +29,7 @@
     </form>
     
     
-        {% block list_invoice_add_delete %}
+        {% block list_invoice_add_delete  %}
         
         {% endblock list_invoice_add_delete %}
                
@@ -52,7 +52,7 @@
                 </tr>
             </thead>
             <tbody>
-               {% for l in PAPERHOUSE_list_invoices %}
+               {% for l in PAPERHOUSE_list_invoices reversed%}
 			      <tr style="font-size:10px">
 			      <td>
 			      <form action="{% url 'dashapp:paperhouse_delete_invoice' %}" method="post" enctype="multipart/form-data">

@@ -27,8 +27,10 @@
         </div> 
     </form>
     
-  invoicenum - {{invoicenum}}
-  event_id - {{event_id}}   
+  Invoicenum - {{invoicenum}}
+  Event_id - {{event_id}}  
+  Test - {{test}} 
+  Records are displaying in resent first sequence, (last modified displayed first)
  <table class="table table-striped table-hover">
   <thead>
           <tr style="background-color: #4CAF50;font-size:10px">
@@ -38,11 +40,11 @@
           <th>Created By</th>
           <th>Created On</th> 
   </thead>
-   {% for peninvoice in Penman_list_events%}
-	   {% for Inv in peninvoice.event_history_list%}
+   {% for peninvoice in Penman_list_events reversed%}
+	   {% for Inv in peninvoice.event_history_list %}
 	   <tr  style= "font-size:10px;" >
 			<td>
-			      <form action="{% url 'dashapp:penman_delete_event' %}" method="post" enctype="multipart/form-data">
+			      <form action="{% url 'dashapp:delete_event' %}" method="post" enctype="multipart/form-data">
 				        {% csrf_token %}
 				        <input type="hidden" id="invoiceno" name="invoiceno" value="{{ Inv.eventdata.InvoiceNo }}">
 				        <input type="hidden" id="event_id" name="event_id" value="{{ Inv.event_id }}">

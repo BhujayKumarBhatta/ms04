@@ -4,10 +4,10 @@
 {% url 'dashapp:list_service' as lservice %}
 
 
-    <div class="container-fluid" style="padding-top:7px">
+    <div class="container-fluid" style="padding-top:7px;width:60%">
         <form action="{{ addservice }}" method="post">
            {% csrf_token %}            
-        <table class="table" id="edit-format">            
+        <table class="table" id="edit-format" >            
             <tbody>   
                   <th><p>Add service</p></th>             
 			      <tr >			        
@@ -34,7 +34,7 @@
 	</div>
 	
 
-	<div class="container-fluid" id="edit-format">
+	<div class="container-fluid" id="edit-format" style="width:60%"> 
         <div class="row">
             <div class="col-sm-3">
                 <button class="btn btn-sm fa fa-plus"  type="submit"> &nbsp SAVE</button>
@@ -45,6 +45,7 @@
                 <a class="btn  btn-sm fa fa-minus" href="{{ lservice }}"> &nbsp CANCEL</a>
             </div> 
             </form>
+        </div>
         </div>
     
 {% endblock content-area %}

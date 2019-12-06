@@ -83,7 +83,7 @@ urlpatterns = [path('', views.login, name='login'),
     #penman
     path('penman_list_events', penman.list_events, name='penman_list_events'),
     path('penman_delete_events', views.penman_delete_events, name='penman_delete_events'),
-    path('penman_delete_event', views.penman_delete_event, name='penman_delete_event'),       
+    path('delete_event', views.penman_delete_event, name='delete_event'),       
     #paperhouse
     path('paperhouse_list_invoice/<slug:invoicenum>/<slug:mode>/<slug:listype>', 
          views.paperhouse_list_invoice, name='paperhouse_list_invoice'),   

@@ -89,8 +89,8 @@ def list_invoices(request, invoicenum, mode, admin=None):
 
 def getinvoicebyrole(request, list_invoices):
     role = request.session.get('session_user_details').get('roles')[0]
-    MIS_AllowedViewstatus =["SentToDivision", "TSPCourierdHardCopy" , "HardCopyRecieved"]
-    TSP_AllowedViewstatus =["InvoiceCreated", "InfobahnRecommendedtoTSP", "InfobahnApproved"]
+    MIS_AllowedViewstatus =["SentToDivision", "TSPCourierdHardCopy", "HardCopyRecieved"]
+    TSP_AllowedViewstatus =["InvoiceCreated", "TSPSubmmitedChange", "InfobahnRecommendedtoTSP", "InfobahnApproved"]
     #INFOB_AllowedViewstatus =["InvoiceCreated", "TSPSubmmitedChange" ]
     list_invoices_filtered = list_invoices
      
@@ -208,9 +208,9 @@ def delete_invoices(request):
     if request.method == 'POST':       
         invoicenum = request.POST['invoiceno']          
         #invoiceno = int(invoicenum)
-        if invoicenum and len(invoicenum) > 0:
+        if invoicenum and len(invoicenum) > 0 and invoicenum !='all':
             status = paperclient.delete_invoices(invoicenum) 
-        else:
+        elif invoicenum =='all':
             status = paperclient.delete_invoices('all') 
          
     list_invoices = paperclient.list_invoices('all')  
