@@ -208,9 +208,9 @@ def delete_invoices(request):
     if request.method == 'POST':       
         invoicenum = request.POST['invoiceno']          
         #invoiceno = int(invoicenum)
-        if invoicenum and len(invoicenum) > 0:
+        if invoicenum and len(invoicenum) > 0 and invoicenum !='all':
             status = paperclient.delete_invoices(invoicenum) 
-        else:
+        elif invoicenum =='all':
             status = paperclient.delete_invoices('all') 
          
     list_invoices = paperclient.list_invoices('all')  
