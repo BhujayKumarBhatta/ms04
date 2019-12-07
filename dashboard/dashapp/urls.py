@@ -31,6 +31,7 @@ from dashapp.penman import penman
 app_name = 'dashapp'
 urlpatterns = [path('', views.login, name='login'),
                path('logout', views.log_out, name='logout'),
+               path('signout', views.log_out, name='signout'),
     #Infops DB
     path('home2', views.home2, name='home2'),
     
