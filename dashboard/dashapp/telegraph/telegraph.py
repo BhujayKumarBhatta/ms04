@@ -3,6 +3,29 @@ from clienttelegraph.client import clienttelegraph
 from dashapp.tokenleader import tllogin
 from dashapp.tokenleader.tllogin import validate_active_session, validate_token_n_session
 
+
+@validate_token_n_session()
+def create_mailmap(request):
+    tlclient = tllogin.prep_tlclient_from_session(request)        
+    telegclient=clienttelegraph(tlclient)
+    if request.method == 'GET': 
+        template_name = "telegraph/create_mailmap.html"
+        template_data = {}
+    if request.method == 'POST':
+        must_have = ["status_name", "docid", "list_of_recpt_org", ]
+        for m in must_have:
+            if m not in request.POST:
+                status = "form has not been filled up with all necessary data" 
+        map_data = {"status_name": request.POST.get('status_name'),
+                    "docid": request.POST.get('docid'),
+                    "list_of_recpt_org": request.POST.get('list_of_recpt_org'),
+                    }
+        status = telegclient.create_mailmap(map_data)
+        template_name = "wanlinks/exec_status.html"
+        template_data = {"status": status }
+    web_page = validate_active_session(request, template_name, template_data)
+    return web_page
+
 @validate_token_n_session()
 def list_mailmap(request, status_name=None, docid=None):
     if request.method == 'GET': 

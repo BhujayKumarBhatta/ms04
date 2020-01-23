@@ -1,39 +1,56 @@
 {% extends "home.html" %}
 {% block content-area %}
-{% url 'dashapp:add_invoices' as add_invoices %}
-
+{% url 'dashapp:create_mailmap' as create_mailmap %}
 
     <div class="container-fluid" style="padding-top:7px">
         {% block list_invoice_add_delete %}
-
+        <div class="row">
+            <div class="col-sm-3">
+                <a class="btn btn-primary btn-sm fa fa-plus" href="{{ create_mailmap }}"> 
+                    &nbsp add new mailmap
+                </a>
+            </div>
+            <div class="col-sm-7 justify-content-center">
+                <h5>mail notification organization and receipients for each status </h5>
+            </div>
+            <div class="col-sm-2 justify-content-end">
+                <a class="btn btn-danger btn-sm fa fa-minus" href="#"> 
+                    &nbsp delete all mailmap
+                </a>
+            </div> 
+        </div>
         {% endblock list_invoice_add_delete %}
-        
-        {{ mail_map_all }}
-               
         <table class="table table-striped table-hover">
             <thead >
                 <tr style="background-color: #4CAF50;font-size:10px">
                     <th>Status_name</th>
                     <th>mail_map_id</th>
-                    <th></th>
-                    <th>Circuit ID</th>                 
-                    <th>Div</th>
-                    <th>Link Type</th>
-                    <th>Speed</th>
-                    <th>From Date</th>
-                    <th>To Date</th>                    
-                    <th>GST</th>
-                    <th>Amount</th>
-                    <th>Status</th>
+                    <th>Organization</th>
+                    <th>list of mail recipients</th>
+                    <th>edit</th>
+                    <th>delete</th>                      
                 </tr>
             </thead>
             <tbody>
                 {% for l in mail_map_all  %}
                   <tr style="font-size:10px">                   
                     <td>{{ l.status_name }}</td>
-                    <td></td>
-                    <td>{{ l.xldata.total }}</td>
-                    <td>{{ l.status }}</td>
+                    <td>{{ l.docid }}</td>
+                    <td></td><td></td>
+                    <td>
+                         <a class="fa fa-edit" style="font-size:10px;color:red"  href="{% url 'dashapp:list_mailmap_by_status' l.docid %}" ></a>
+                    </td>
+                    <td>
+                        <a class="fa fa-remove" style="font-size:10px;color:red"  href="{% url 'dashapp:list_mailmap_by_status' l.docid %}" ></a>                         
+                    </form>
+                    </td>  
+	                    {% for d in l.list_of_recpt_org %}
+	                       <tr style="font-size:10px">
+	                       <td></td><td></td>
+			                    <td>{{ d.org_name }}</td>
+			                    <td>{{ d.recipient_emails }}</td>
+		                    </tr>
+	                    {% endfor %}
                     {% block delete_icon %}
                     {% endblock delete_icon %}
               
@@ -45,10 +62,3 @@
     
 {% endblock content-area %}
 
-
-<!--  {'is_active': 'Y', 'otp_mode': 'mail', 'allowemaillogin': 'N', 
-        'email': 'prasen.biswas@itc.in', 'created by': 'user1', 
-        'wfc': {'is_active': 'Y', 'org': 'org1', 
-                 'creation_date': '2019-07-04 15:03:08', 'created by': None, 'name': 'wfc1', 
-                 'orgunit': 'ou1', 'id': 1, 'department': 'dept1'}, 
-        'username': 'prasen', 'id': 6, 'roles': ['role1'], 'creation_date': '2019-07-08 12:55:16'} -->

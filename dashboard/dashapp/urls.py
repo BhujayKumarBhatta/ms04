@@ -111,7 +111,7 @@ urlpatterns = [path('', views.login, name='login'),
     path('listdocs', views.listdocs, name='listdocs'),
     path('list_mailmap_by_status/<slug:status_name>', telegraph.list_mailmap, name='list_mailmap_by_status'),
     path('list_mailmap_by_docid/<slug:docid>', telegraph.list_mailmap, name='list_mailmap_by_docid'),
-    
+    path('create_mailmap', telegraph.create_mailmap, name='create_mailmap'),
     ]
 
 

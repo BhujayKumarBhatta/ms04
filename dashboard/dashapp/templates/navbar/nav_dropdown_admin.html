@@ -17,6 +17,7 @@
 {% url 'dashapp:listdocs' as listdocs %}
 {% url 'dashapp:penman_list_events' as listevents %}
 {% url 'dashapp:striker_list_responces' 'all' as listresponses %}
+{% url 'dashapp:list_mailmap_by_status' 'all' as list_mailmap_by_status %}
 
 
 	  <ul class="navbar-nav py-0"> 
@@ -34,7 +35,8 @@
                 <a class="dropdown-item" href="{{ lrole }}">Manage Role</a>
                 <a class="dropdown-item" href="{{ lou }}">Manage OU</a>
                 <a class="dropdown-item" href="{{ lwfc }}">Manage WFC</a>
-                <a class="dropdown-item" href="{{ lservice }}">Manage Catalog Service</a>                
+                <a class="dropdown-item" href="{{ lservice }}">Manage Catalog Service</a>
+                <a class="dropdown-item" href="{{ list_mailmap_by_status }}">Manage notification mail</a>                 
               </div>
             </li>
 		    
