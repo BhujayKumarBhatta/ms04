@@ -1,4 +1,4 @@
-
+import json
 from clienttelegraph.client import clienttelegraph
 from dashapp.tokenleader import tllogin
 from dashapp.tokenleader.tllogin import validate_active_session, validate_token_n_session
@@ -18,7 +18,7 @@ def create_mailmap(request):
                 status = "form has not been filled up with all necessary data" 
         map_data = {"status_name": request.POST.get('status_name'),
                     "docid": request.POST.get('docid'),
-                    "list_of_recpt_org": request.POST.get('list_of_recpt_org'),
+                    "list_of_recpt_org": json.loads(request.POST.get('list_of_recpt_org')),
                     }
         status = telegclient.create_mailmap(map_data)
         template_name = "wanlinks/exec_status.html"
