@@ -24,6 +24,7 @@ from dashapp.linkinv import  linkinv_views
 from dashapp.views import paperhouse_delete_invoice
 from dashapp.paperhouse import paperhouse
 from dashapp.penman import penman
+from dashapp.telegraph import telegraph
 #from rest_framework_swagger.views import get_swagger_view
 #from rest_framework.documentation import include_docs_urls
 
@@ -108,6 +109,8 @@ urlpatterns = [path('', views.login, name='login'),
     path('listobjects', views.listobjects, name='listobjects'),
     
     path('listdocs', views.listdocs, name='listdocs'),
+    path('list_mailmap_by_status/<slug:status_name>', telegraph.list_mailmap, name='list_mailmap_by_status'),
+    path('list_mailmap_by_docid/<slug:docid>', telegraph.list_mailmap, name='list_mailmap_by_docid'),
     
     ]
 
