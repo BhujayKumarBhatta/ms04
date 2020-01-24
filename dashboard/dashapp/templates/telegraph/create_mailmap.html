@@ -74,6 +74,7 @@ function updateList(json_list) {
     } else {
     	item["org_name"] = orgname
         item["recipient_emails"] = email_list
+        //TODO: check item by the org_name inside the json_list array before push 
         json_list.push(item)
         jsonString = JSON.stringify(json_list);
         alert(jsonString);
