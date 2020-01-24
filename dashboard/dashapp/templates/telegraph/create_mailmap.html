@@ -95,13 +95,14 @@ function updateList(json_list) {
     		} else {
     			alert('updating previous entry for this org');
     			json_list[oindex].recipient_emails = email_list
-    			$('#mapdisplay_table tr:not(:first)').remove();
+    			
     		}        
         jsonString = JSON.stringify(json_list);        
         $('#list_of_recpt_org').val(jsonString);
-        
+        //clear the table row before populating in next click to avoid cumalative additions
+        $('#mapdisplay_table tr:not(:first)').remove();
         $.each(json_list, function(i, item){
-        	var disp_row = '<tr><td>'+item.org_name+'</td><td>'+item.recipient_emails+'</td></tr>'
+        	var disp_row = '<tr><td>'+item.org_name+'</td><td>'+item.recipient_emails+'</td></tr>'        	
             $('#mapdisplay_table tr:last').after(disp_row);
         });
         
