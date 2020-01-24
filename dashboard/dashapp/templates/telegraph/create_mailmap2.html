@@ -1,0 +1,91 @@
+{% extends "home.html" %}
+{% block content-area %}
+{% url 'dashapp:add_dept' as adpt%}
+{% url 'dashapp:list_dept' as ldept%}
+
+ <!-- form action="#" method="post"-->
+      {% csrf_token %}  
+          <div class="container-fluid" style="padding-top:7px;width:60%">
+       
+                
+        <table class="table" id="edit-format" >            
+            <tbody>   
+                  <th><p>Add mapping for  org and recipients to workflow stage</p></th>             
+                  <tr >                 
+                        <td class="py-0"><label for="status_name">Workflow Status Name:</label></td>
+                        <td class="py-0">
+                            <select  id="status_name" name="status_name" required>
+                                <option>CREATED</option>
+                                <option>SentToDivision</option>
+                        </td>
+                  </tr>
+                  
+                   <tr>    
+                        </td>
+                        <td class="py-0"><label for="org_name">org_name:</label></td>
+                        <td class="py-0"><input type="text"  id="org_name" name="org_name" required></td>
+                        </td>
+                   </tr>
+                   
+                   <tr>                  
+                        <td class="py-0"><label for="recipient_emails">recipient_emails:</label></td>
+                        <td class="py-0">
+                          <input type="text"  id="recipient_emails" name="recipient_emails" placeholder="e.g. : john@abc.com, lisa@abc.com" required></td>
+                   <tr> 
+                   
+                   <tr><td>
+                   <button   name="add_to_list" id="add_to_list" value="add_to_list" class="btn btn-sm  btn-block fa fa-plus" >
+                   </button></td>
+                   <td>ad3nqsw`d_to_list</td>
+                   </tr>
+                   
+                   <tr>      
+                        <td class="py-0"><label for="list_of_recpt_org">organization to recipients map:</label></td>
+                        <td class="py-0"><input type="text"  id="list_of_recpt_org" name="list_of_recpt_org" readonly></td>
+                   </tr>
+            </tbody> 
+        </table>
+    </div>
+    
+   <br><br>
+    <div class="container-fluid" id="edit-format" style="width:60%"> 
+        <div class="row">
+            <div class="col-sm-3">
+                <button class="btn btn-sm fa fa-plus"  type="submit"> &nbsp SAVE</button>
+            </div>
+            <div class="col-sm-7 justify-content-center">     
+            </div>
+            <div class="col-sm-2 justify-content-end">
+                <a class="btn  btn-sm fa fa-minus" href="{{ lservice }}"> &nbsp CANCEL</a>
+            </div> 
+            </form>
+        </div>
+        </div>
+    
+</form>
+
+<script type="text/javascript">
+
+$('#add_to_list').click(function(event){
+	
+	if ($('#list_of_recpt_org[document_type]'.val() =='' ) {
+		var existing_list_of_recpt_org = [];
+		alert('empty exiting map'+ existing_list_of_recpt_org)
+		
+	} else {
+		var existing_list_of_recpt_org = $('#list_of_recpt_org'.val();
+		alert('found existing map'+ existing_list_of_recpt_org)
+				
+	}
+	
+	var existing_list_of_recpt_org = $('#list_of_recpt_org'.val();
+    alert('if cluase failed'+ existing_list_of_recpt_org)
+	
+});
+
+</script>
+
+{% endblock content-area %}
+
+
+

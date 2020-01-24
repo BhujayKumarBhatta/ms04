@@ -1,102 +1,103 @@
 {% extends "home.html" %}
 {% block content-area %}
-{% url 'dashapp:add_dept' as adpt%}
-{% url 'dashapp:list_dept' as ldept%}
+{% url 'dashapp:create_mailmap' as create_mailmap %}
 
- <form action="{{ adpt }}" method="post">
-      {% csrf_token %}  
-          <div class="container-fluid" style="padding-top:7px;width:60%">
-        <form action="{{ addservice }}" method="post">
-           {% csrf_token %}            
-        <table class="table" id="edit-format" >            
-            <tbody>   
-                  <th><p>Add mapping for  org and recipients to workflow stage</p></th>             
-                  <tr >                 
-                        <td class="py-0"><label for="status_name">Workflow Status Name:</label></td>
-                        <td class="py-0">
-                            <select  id="status_name" name="status_name" required>
-                                <option>CREATED</option>
-                                <option>SentToDivision</option>
-                        </td>
-                  </tr>
-                  
-                   <tr>    
-                        </td>
-                        <td class="py-0"><label for="org_name">org_name:</label></td>
-                        <td class="py-0"><input type="text"  id="org_name" name="org_name" required></td>
-                        </td>
-                   </tr>
-                   
-                   <tr>                  
-                        <td class="py-0"><label for="recipient_emails">recipient_emails:</label></td>
-                        <td class="py-0">
-                          <input type="text"  id="recipient_emails" name="recipient_emails" placeholder="e.g. : john@abc.com, lisa@abc.com" required></td>
-                   <tr> 
-                   
-                   <tr><td>
-                   <button   name="add_to_list" id="add_to_list" value="add_to_list" class="btn btn-sm  btn-block fa fa-plus" >
-                   </button></td>
-                   <td>ad3nqsw`d_to_list</td>
-                   </tr>
-                   
-                   <tr>      
-                        <td class="py-0"><label for="list_of_recpt_org">organization to recipients map:</label></td>
-                        <td class="py-0"><input type="text"  id="list_of_recpt_org" name="list_of_recpt_org" readonly></td>
-                   </tr>
-            </tbody> 
-        </table>
-    </div>
+ <form action= "{{ create_mailmap}}"  method="post">
+ {% csrf_token %}  
+     <div class="container-fluid" style="padding-top:7px;width:60%">
+     <table class="table" id="edit-format" >            
+         <tbody>   
+               <th><p>Add mapping for  org and recipients to workflow stage</p></th>             
+               <tr >                 
+                     <td class="py-0"><label for="status_name">Workflow Status Name:</label></td>
+                     <td class="py-0">
+                         <select  id="status_name" name="status_name" required>
+                             <option>CREATED</option>
+                             <option>InvoiceCreated</option>
+                             <option>SentToDivision</option>
+                             <option>TSPRecommended</option>
+                     </td>
+               </tr>
+               
+                <tr>    
+                     </td>
+                     <td class="py-0"><label for="org_name">org_name:</label></td>
+                     <td class="py-0"><input type="text"  id="org_name" name="org_name" required></td>
+                     </td>
+                </tr>
+                
+                <tr>                  
+                     <td class="py-0"><label for="recipient_emails">recipient_emails:</label></td>
+                     <td class="py-0">
+                       <input type="text"  id="recipient_emails" name="recipient_emails" placeholder="e.g. : john@abc.com, lisa@abc.com" required></td>
+                <tr> 
+                
+                <tr><td>
+                <a  href="#" id="add_to_list"  class="btn btn-sm  btn-block fa fa-plus" >
+                </a></td>
+                <td>click plus to add_to_list</td>
+                </tr>
+                
+                <tr>      
+                     <td class="py-0"><label for="list_of_recpt_org">organization to recipients map:</label></td>
+                     <td class="py-0"><input type="text"  id="list_of_recpt_org" name="list_of_recpt_org" readonly></td>
+                </tr>
+         </tbody> 
+     </table>
+ </div>
+ 
+<br><br>
+ <div class="container-fluid" id="edit-format" style="width:60%"> 
+   <div class="row">
+       <div class="col-sm-3">
+           <button class="btn btn-sm fa fa-plus"  type="submit"> &nbsp SAVE</button>
+       </div>
+       <div class="col-sm-7 justify-content-center">     
+       </div>
+       <div class="col-sm-2 justify-content-end">
+           <a class="btn  btn-sm fa fa-minus" href="{{ lservice }}"> &nbsp CANCEL</a>
+       </div> 
+       </form>
+   </div>
+   </div>
+
+
+
+<script type="text/javascript">
+
+function updateList(json_list) {	
+	var item = {};
+    var orgname = $('#org_name').val();
+    var email_list = $('#recipient_emails').val();
+    if ( (orgname == "" ) || (email_list == "")) {
+    	alert("insert a value for org and recipient list before clicking add")
+    } else {
+    	item["org_name"] = orgname
+        item["recipient_emails"] = email_list
+        json_list.push(item)
+        jsonString = JSON.stringify(json_list);
+        alert(jsonString);
+        $('#list_of_recpt_org').val(jsonString)
+    }
     
-   <br><br>
-    <div class="container-fluid" id="edit-format" style="width:60%"> 
-        <div class="row">
-            <div class="col-sm-3">
-                <button class="btn btn-sm fa fa-plus"  type="submit"> &nbsp SAVE</button>
-            </div>
-            <div class="col-sm-7 justify-content-center">     
-            </div>
-            <div class="col-sm-2 justify-content-end">
-                <a class="btn  btn-sm fa fa-minus" href="{{ lservice }}"> &nbsp CANCEL</a>
-            </div> 
-            </form>
-        </div>
-        </div>
-    
-</form>
+}
+
+$('#add_to_list').click(function(event){
+	var existing_list = $('#list_of_recpt_org').val();
+	if (existing_list == ""){		
+		var existing_list_json = []
+		updateList(existing_list_json)
+	}else {
+		existing_list_to_json = JSON.parse(existing_list)
+		updateList(existing_list_to_json)
+		
+	}
+	
+});
+
+</script>
 
 {% endblock content-area %}
 
 
 
-<!--  ======================================== CODE ENDs HERE ==========================================    -->
-
-<!-- 
-<div class="row ">
-               <div class="col-sm-8">
-                   <div class="card">
-                        <div class="card-header">Add New map for mail notification</div>
-                        <div class="card-body">
-                            <div class="form-group row">
-                             <label for="status_name" class="col-md-4 col-form-label text-sm-right "> Workflow Status Name</label>
-                             <div class="col-md-8">
-                                 <select  class="form-control input-sm" id="status_name" name="status_name" required >
-                                 <option> CREATED </option>
-                                 <option> SentToDivision </option>
-                             </div>
-                            </div>
-                             <div class="row">
-                                     <div class="col-sm-3">
-                <button class="btn btn-sm fa fa-plus"  type="submit"> &nbsp SAVE</button>
-            </div>
-            <div class="col-sm-5 justify-content-center">     
-            </div>
-            <div class="col-sm-3 justify-content-end"  >
-                <a class="btn  btn-sm fa fa-minus" href="{{ ldept }}"> &nbsp CANCEL</a>
-            </div>
-                             </div>
-                         </div>                         
-                     </div>                  
-                 </div>
-             </div>
-
- -->
