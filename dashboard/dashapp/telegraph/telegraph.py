@@ -45,6 +45,23 @@ def list_mailmap(request, status_name=None, docid=None):
                          "mail_map_by_status_or_id": mail_map_by_status_or_id}
         web_page = validate_active_session(request, template_name, template_data)
         return web_page 
+    
+@validate_token_n_session()
+def delete_mailmap(request, status_name):
+    tlclient = tllogin.prep_tlclient_from_session(request)        
+    telegclient=clienttelegraph(tlclient)
+    if request.method == 'GET':        
+        if status_name == 'all':
+            delete_status = telegclient.delete_mailmap_bystatus('all')
+        elif status_name != 'all':
+            delete_status = telegclient.delete_mailmap_bystatus(status_name)
+        mail_map_all = telegclient.list_mailmap_bystatus('all') 
+    template_data = {"mail_map_all": mail_map_all, 
+                     "delete_status": delete_status}
+    template_name = "telegraph/mailmap_list.html"
+    web_page = validate_active_session(request, template_name, template_data)
+    return web_page 
+        
          
  
 #                
