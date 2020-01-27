@@ -74,8 +74,9 @@ def update_mailmap(request, status_name):
     telegclient=clienttelegraph(tlclient)
     if request.method == 'GET':
         detail_mailmap = telegclient.list_mailmap_bystatus(status_name)
-        org_list = tlclient.list_org()
-        ou_list = tlclient.list_ou()
+        org_list = [d.get('name') for d in tlclient.list_org().get('status') ]      
+        ou_list = [d.get('name') for d in tlclient.list_ou().get('status') ]  
+        print(org_list, ".......", ou_list)
         org_n_ou_list = org_list + ou_list
         template_data = {"detail_mailmap": detail_mailmap, "org_n_ou_list": org_n_ou_list}
         template_name = "telegraph/update_mailmap.html"
