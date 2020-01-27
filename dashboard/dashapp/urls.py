@@ -113,6 +113,7 @@ urlpatterns = [path('', views.login, name='login'),
     path('list_mailmap_by_docid/<slug:docid>', telegraph.list_mailmap, name='list_mailmap_by_docid'),
     path('create_mailmap', telegraph.create_mailmap, name='create_mailmap'),
     path('delete_mailmap/<slug:status_name>', telegraph.delete_mailmap, name='delete_mailmap'),
+    path('update_mailmap/<slug:status_name>', telegraph.update_mailmap, name='update_mailmap'),
     ]
 
 

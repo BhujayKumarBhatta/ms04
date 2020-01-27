@@ -39,7 +39,7 @@
                     <td>{{ l.docid }}</td>
                     <td></td><td></td>
                     <td>
-                         <a class="fa fa-edit" style="font-size:10px;color:red"  href="{% url 'dashapp:list_mailmap_by_status' l.docid %}" ></a>
+                         <a class="fa fa-edit" style="font-size:10px;color:red"  href="{% url 'dashapp:update_mailmap' l.status_name %}" ></a>
                     </td>
                     <td>
                         <a class="fa fa-remove" style="font-size:10px;color:red"  href="{% url 'dashapp:delete_mailmap' l.status_name %}" ></a>                         

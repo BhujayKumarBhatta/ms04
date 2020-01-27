@@ -32,17 +32,17 @@ def list_mailmap(request, status_name=None, docid=None):
         tlclient = tllogin.prep_tlclient_from_session(request)        
         telegclient=clienttelegraph(tlclient)
         mail_map_all =[]
-        mail_map_by_status_or_id = {}
-        template_name = "telegraph/mailmap_detail.html"
+        detail_mailmap = {}
+        template_name = "telegraph/update_mailmap.html"
         if status_name and status_name == 'all':
             mail_map_all = telegclient.list_mailmap_bystatus('all')
             template_name = "telegraph/mailmap_list.html"
         elif status_name and status_name != 'all':
-            mail_map_by_status_or_id = telegclient.list_mailmap_bystatus(status_name)
+            detail_mailmap = telegclient.list_mailmap_bystatus(status_name)
         if docid:
-            mail_map_by_status_or_id = telegclient.list_mailmap_bydocid(docid)
+            detail_mailmap = telegclient.list_mailmap_bydocid(docid)
         template_data = {"mail_map_all": mail_map_all, 
-                         "mail_map_by_status_or_id": mail_map_by_status_or_id}
+                         "detail_mailmap": detail_mailmap}
         web_page = validate_active_session(request, template_name, template_data)
         return web_page 
     
@@ -60,7 +60,35 @@ def delete_mailmap(request, status_name):
                      "delete_status": delete_status}
     template_name = "telegraph/mailmap_list.html"
     web_page = validate_active_session(request, template_name, template_data)
-    return web_page 
+    return web_page
+
+
+@validate_token_n_session()
+def update_mailmap(request, status_name):
+    tlclient = tllogin.prep_tlclient_from_session(request)        
+    telegclient=clienttelegraph(tlclient)
+    if request.method == 'GET':
+        detail_mailmap = telegclient.list_mailmap_bystatus(status_name)
+        template_data = {"detail_mailmap": detail_mailmap }
+        template_name = "telegraph/update_mailmap.html"
+    if request.method == 'POST':
+        must_have = ["status_name", "docid", "list_of_recpt_org", ]
+        for m in must_have:
+            if m not in request.POST:
+                status = "form has not been filled up with all necessary data" 
+        map_data = {"status_name": request.POST.get('status_name'),
+                    "docid": request.POST.get('docid'),
+                    "list_of_recpt_org": json.loads(request.POST.get('list_of_recpt_org')),
+                    }
+        status = telegclient.update_mailmap(map_data)
+        mail_map_all = telegclient.list_mailmap_bystatus('all')
+        template_name = "telegraph/mailmap_list.html"
+        #template_name = "wanlinks/exec_status.html"
+        template_data = {"status": status, "mail_map_all": mail_map_all }
+    web_page = validate_active_session(request, template_name, template_data)
+    return web_page
+        
+    
         
          
  

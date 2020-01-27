@@ -1,0 +1,142 @@
+{% extends "home.html" %}
+{% block content-area %}
+{% url 'dashapp:update_mailmap' as update_mailmap %}
+
+
+<form action= "{{ update_mailmap }}"  method="post">
+ {% csrf_token %} 
+<div class="container-fluid" style="padding-top:7px;width:90%">
+    <div class="row">
+        <h5>update mapping for  org and recipients to workflow stage</h5>         
+    </div>
+    <br>
+    <div class="row">       
+        <table class="table" id="edit-format" >   
+            <thead></thead>        
+            <tbody>                 
+                <tr>                 
+                    <td class="py-0"><label for="status_name">Workflow Status Name:</label></td>
+                    <td class="py-0">
+                        <select  id="status_name" name="status_name"  required>
+                            <option  selected>{{ detail_mailmap.status_name }}</option>
+	                        <option>CREATED</option>
+	                        <option>InvoiceCreated</option>
+	                        <option>SentToDivision</option>
+	                        <option>TSPRecommended</option>
+	                    </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="py-0"><label for="org_name">org_name:</label></td>
+                    <td class="py-0"><input type="text"  id="org_name" name="org_name" required></td>
+                </tr>
+                <tr>                  
+                    <td class="py-0"><label for="recipient_emails">recipient_emails:</label></td>
+                    <td class="py-0">
+                        <input type="text"  id="recipient_emails" name="recipient_emails" placeholder="e.g. : john@abc.com, lisa@abc.com" required></td>
+                <tr> 
+            </tbody>
+        </table> 
+    </div>
+    
+    <div class="row">        
+        <a  href="#" id="add_to_list"  class="btn btn-sm  btn-block fa fa-plus" ><h5>click plus to add_to_list</h5></a>
+    </div>
+    
+    <div class="row">
+        <table id="mapdisplay_table"  class="table table-striped" id="edit-format">
+            <thead>
+                <th class="py-0" style="width:30%">Org Name </th>
+                <th class="py-0" style="width:70%; text-align:center">Mail address of Recipients</th>
+            </thead>
+        <tbody>
+            {% for item in  detail_mailmap.list_of_recpt_org  %}
+            <tr>
+                <td>{{ item.org_name }}</td>
+                <td>{{ item.recipient_emails }}</td>    
+            </tr>
+            {%  endfor %}      
+        </tbody>
+     </table>
+    </div>
+    
+    <div class="row">
+        <div class="col-sm-3">
+          <button class="btn btn-sm fa fa-plus"  type="submit"> &nbsp SAVE</button>
+        </div>
+        <div class="col-sm-7 justify-content-center">     
+        </div>
+        <div class="col-sm-2 justify-content-end">
+          <a class="btn  btn-sm fa fa-minus" href="{{ lservice }}"> &nbsp CANCEL</a>
+        </div>   
+    </div>
+    <br><br><br><br>
+    <div class="row">
+        <table class="table table-striped">
+	        <tr>      
+	            <td class="py-0"><label for="list_of_recpt_org">organization to recipients map:</label></td>
+	            <td class="py-0"><input type="text"  id="list_of_recpt_org" name="list_of_recpt_org" readonly></td>
+	         </tr>
+        </table>
+    </div>
+</div>
+</form>
+
+
+
+<script type="text/javascript">
+
+function updateList(json_list) {	
+	var item = {};
+    var orgname = $('#org_name').val();
+    var email_list = $('#recipient_emails').val();
+    if ( (orgname == "" ) || (email_list == "")) {
+    	alert("insert a value for org and recipient list before clicking add")
+    } else {
+    	item["org_name"] = orgname
+        item["recipient_emails"] = email_list
+        //check item by the org_name inside the json_list array before push
+        const oindex = json_list.findIndex(obj => obj.org_name === orgname);
+    	if (oindex === -1){    		
+    		json_list.push(item);
+    		} else {
+    			alert('updating previous entry for this org');
+    			json_list[oindex].recipient_emails = email_list
+    			
+    		}        
+        jsonString = JSON.stringify(json_list);        
+        $('#list_of_recpt_org').val(jsonString);
+        //clear the table row before populating in next click to avoid cumalative additions
+        $('#mapdisplay_table tr:not(:first)').remove();
+        $.each(json_list, function(i, item){
+        	var disp_row = '<tr><td>'+item.org_name+'</td><td>'+item.recipient_emails+'</td></tr>'        	
+            $('#mapdisplay_table tr:last').after(disp_row);
+        });
+        
+    }
+    
+}
+
+$('#add_to_list').click(function(event){
+	var existing_db_list = {{ detail_mailmap.list_of_recpt_org|safe}};	
+	var existing_list = $('#list_of_recpt_org').val();
+	if (existing_list == ""){		
+		//var existing_list_json = []
+		var existing_list_json = existing_db_list;
+		updateList(existing_list_json);
+	}else  {
+		existing_list_to_json = JSON.parse(existing_list);
+		updateList(existing_list_to_json);
+		
+	} 
+	
+});
+
+</script>
+
+
+
+{% endblock content-area %}
+
+
+
