@@ -16,17 +16,35 @@
                 <tr>                 
                     <td class="py-0"><label for="status_name">Workflow Status Name:</label></td>
                     <td class="py-0">
-                        <select  id="status_name" name="status_name" required>
-	                        <option>CREATED</option>
+                        <select  id="status_name" name="status_name" required>	                        
 	                        <option>InvoiceCreated</option>
+	                        <option>TSPSubmmitedChange</option>
+	                        <option>TSPAcceptedChanges</option>
+	                        <option>TSPCourierdHardCopy</option>
+	                        
+	                        <option>InfobahnRecommendedtoTSP</option>
 	                        <option>SentToDivision</option>
-	                        <option>TSPRecommended</option>
+	                        <option>InfobahnApproved</option>
+	                        <option>OverridenDivision</option>
+	                        
+	                        <option>DivisionRecommended</option>
+	                        <option>DivisionApproved</option>
+	                        <option>HardCopyRecieved</option>
+	                        <option>PaymentMade</option>
+	                        
 	                    </select>
                     </td>
                 </tr>
                 <tr>
                     <td class="py-0"><label for="org_name">org_name:</label></td>
-                    <td class="py-0"><input type="text"  id="org_name" name="org_name" required></td>
+                    <td class="py-0"><select  id="org_name" name="org_name" required>
+                        <option>INFOBAHN</option>
+	                    {% for item in  org_n_ou_list %}   
+	                       <option> {{ item }} </option>
+	                    {% endfor %}
+                     
+                    </td>
+                    
                 </tr>
                 <tr>                  
                     <td class="py-0"><label for="recipient_emails">recipient_emails:</label></td>
@@ -48,7 +66,7 @@
                 <th class="py-0" style="width:70%; text-align:center">Mail address of Recipients</th>
             </thead>
         <tbody>
-            <tr><td></td><td></td></tr>          
+            <tr><td></td><td></td></tr>
         </tbody>
      </table>
     </div>
