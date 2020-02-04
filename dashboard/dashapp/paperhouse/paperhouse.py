@@ -118,7 +118,7 @@ def draft_list(request, status):
         template_name = 'invoice/list_drafts.html'
     elif status in status_list:
         action_buttons = _get_action_buttons(status)
-        print(action_buttons)
+        print('got action buttons........',action_buttons)
         save_as_draft_list = [l for l in list_invoices if 
                      l.get('xldata').get('action') == "SaveAsDraft" and  l.get('status') == status ]
    

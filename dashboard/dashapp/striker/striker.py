@@ -38,12 +38,14 @@ from django.template.defaultfilters import length
 
 change_required = ["TSPSubmmitedChange", "InfobahnRecommendedtoTSP", "DivisionRecommended", "SaveAsDraft"]
 current_stat_for_tsp_edits = ["InfobahnRecommendedtoTSP", "InfobahnApproved" ]    
-current_stat_for_infob_edits = ["InvoiceCreated", "TSPSubmmitedChange",
-                                "DivisionRecommended", "DivisionApproved", "TSPAcceptedChanges" ]
+current_stat_for_infob_edits = ["InvoiceCreated", "TSPSubmmitedChange", "CHANGE", 
+                                "DivisionRecommended", "DivisionApproved", "TSPAcceptedChanges",
+                                "ACCEPT" ]
 current_stat_for_mis_edits = ["SentToDivision", "TSPCourierdHardCopy" , "HardCopyRecieved"]
-current_stat_for_tsp_edits.extend(current_stat_for_infob_edits)
-current_stat_for_tsp_edits.extend(current_stat_for_mis_edits)
-status_list = current_stat_for_tsp_edits
+temp_list = current_stat_for_tsp_edits.copy()
+temp_list.extend(current_stat_for_infob_edits)
+temp_list.extend(current_stat_for_mis_edits)
+status_list = temp_list
 
 sampleinvoice = { "state": "","arc": "","billingdateto": "","remarks": "", 
 "fullsiteaddress": "","customerid": "","servicetype": "","billingdatefrom": "", 
