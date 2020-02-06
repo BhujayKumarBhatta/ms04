@@ -72,33 +72,15 @@
             </thead> 
             
             <tbody>
-                
-                  <tr >
-                     <td class="py-0">city</td>
-                     <td class="py-0">{% block city %} 
-                     <input type="text" placeholder="{{inv.city}}" class="form-control" id="username" name="username" readonly> {% endblock city %}</td>
-                     <td class="py-0"></td>
-                     <td class="py-0">state</td>
-                     <td class="py-0">{% block state %}
-                     <input type="text" placeholder="{{inv.state}}" class="form-control" id="username" name="username" readonly> {% endblock state %}</td>
-                  </tr>
                   <tr>
-                     <td class="py-0">pin</td>
-                     <td class="py-0">{% block pin %}
-                     <input type="text" placeholder="{{inv.pin}}" class="form-control" id="username" name="username" readonly>  {% endblock pin %}</td>
-                     <td class="py-0"></td>
-                     <td class="py-0">premiseno</td>
-                     <td class="py-0">{% block premiseno %}
-                     <input type="text" placeholder="{{inv.premiseno}}" class="form-control" id="username" name="username" readonly>  {% endblock premiseno %}</td>
-                  </tr>
-                  <tr>
-                     <td class="py-0">premisename</td>
-                     <td class="py-0">{% block premisename %}
-                     <input type="text" placeholder="{{inv.premisename}}" class="form-control" id="username" name="username" readonly>  {% endblock premisename %}</td>
-                     <td class="py-0"></td>
+                     
                      <td class="py-0">siteid</td>
                      <td class="py-0">{% block siteid %}
-                     <input type="text" placeholder="{{inv.siteid}}" class="form-control" id="username" name="username" readonly>  {% endblock siteid %}</td>
+                     
+                     <a href="#" data-toggle="modal" data-target="#site_data" >
+                            {{ inv.siteid }}
+                        </a>
+                     <!-- input type="text" placeholder="{{inv.siteid}}" class="form-control" id="username" name="username" readonly-->  {% endblock siteid %}</td>
                   </tr>
                   <tr>
                      <td class="py-0">fullsiteaddress</td>
@@ -150,22 +132,7 @@
                      <td class="py-0">{% block total %}
                      <input type="text" placeholder="{{inv.total}}" class="form-control" id="username" name="username" readonly>
                      {% endblock total %}</td>
-                     <td class="py-0"></td>
-                     <td class="py-0">customerid</td>
-                     <td class="py-0">{% block customerid %}
-                     <input type="text" placeholder="{{inv.customerid}}" class="form-control" id="username" name="username" readonly>
-                     {% endblock customerid %}</td>
-                 </tr>
-                 <tr>
-                     <td class="py-0">customername</td>
-                     <td class="py-0">{% block customername %}
-                     <input type="text" placeholder="{{inv.customername}}"  class="form-control" id="username" name="username" readonly>
-                     {% endblock customername %}</td>
-                     <td class="py-0"></td>
-                     <td class="py-0">accountno</td>
-                     <td class="py-0">{% block accountno %}
-                     <input type="text" placeholder="{{inv.accountno}}" class="form-control" id="username" name="username" readonly>
-                     {% endblock accountno %}</td>
+                     
                 </tr>
            </tbody>
          </table>

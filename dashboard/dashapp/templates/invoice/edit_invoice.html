@@ -43,25 +43,6 @@
 {% endblock servicetype %}
     
 <!-- ####################Address section######################################################### -->       
-{% block city %} 
-    <input type="text" required="true" value="{{inv.city}}" class="form-control" id="city" name="City"> 
-{% endblock city %}
-     
-{% block state %}
-    <input type="text" required value="{{inv.state}}" class="form-control" id="state" name="State"> 
-{% endblock state %}
-  
-{% block pin %}
-    <input type="text" required value="{{inv.pin}}" class="form-control" id="pin" name="PIN">  
-{% endblock pin %}
-     
-{% block premiseno %}
-    <input type="text" value="{{inv.premiseno}}" class="form-control" id="premiseno" name="PremiseNo">  
-{% endblock premiseno %}
-
-{% block premisename %}
-    <input type="text" value="{{inv.premisename}}" class="form-control" id="premisename" name="PremiseName">
-{% endblock premisename %}
 
 {% block siteid %}
     <input type="text" required value="{{inv.siteid}}" class="form-control" id="siteid" name="SiteID">  
@@ -100,17 +81,6 @@
     <input type="text" required value="{{inv.total}}" class="form-control" id="total" name="Total">
 {% endblock total %}
 
-{% block customerid %}
-    <input type="text" required value="{{inv.customerid}}" class="form-control" id="customerid" name="CustomerID">
-{% endblock customerid %}
-
-{% block customername %}
-    <input type="text" required value="{{inv.customername}}"  class="form-control" id="customername" name="CustomerName">
-{% endblock customername %}
-
-{% block accountno %}
-    <input type="text" required value="{{inv.accountno}}" class="form-control" id="accountno" name="AccountNo" readonly>
-{% endblock accountno %}
 
 <!--  ####################### remarks ############################################################### -->
 

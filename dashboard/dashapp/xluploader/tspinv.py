@@ -29,7 +29,7 @@ from dashapp.tokenleader.tllogin import validate_active_session, validate_token_
 def download_invoicexlformat(request):
     xl_data_path = os.path.join(os.path.dirname(__file__),
                                os.pardir, 'static', 'xlformat')
-    xl_file_path = os.path.join(xl_data_path, 'sample_inv_upload.xlsx')
+    xl_file_path = os.path.join(xl_data_path, 'sample_inv_upload_v2.xlsx')
     print(xl_file_path) 
     if os.path.exists(xl_file_path):
         with open(xl_file_path, 'rb') as fh:
