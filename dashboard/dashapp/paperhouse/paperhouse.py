@@ -48,17 +48,46 @@ sampleinvoice ={ "state": "","arc": "","billingdateto": "","remarks": "",
 
 @validate_token_n_session()
 def list_invoices(request, invoicenum, mode, admin=None):
+    '''
+    aperhouse listing 
+
+there are two levels of control , 
+one is bucket level  control at the invoice object , 
+and list api shows bucket data  if data is present in the bucket 
+
+second is wheather a role  will be able to see invoices  
+for a particular status  which is controlled at the 
+dashboard  paperhosue – getinvoicebyrole function 
+which provides a filtered list . We have to reinspect the utility of this .
+MIS_AllowedViewstatus =["SentToDivision", 
+                            "DivisionApproved",
+                            "InfobahnApproved",
+                            "TSPCourierdHardCopy", 
+                            "HardCopyRecieved",
+                            "PaymentMade"]
+    
+TSP_AllowedViewstatus =["InvoiceCreated", 
+                            "TSPSubmmitedChange", 
+                            "TSPAcceptedChanges", 
+                            "InfobahnRecommendedtoTSP", 
+                            "InfobahnApproved",
+                            "TSPCourierdHardCopy",
+                            "HardCopyRecieved",
+                            "PaymentMade"]
+ '''
     list_events = []
     if request.method == 'GET': 
         tlclient = tllogin.prep_tlclient_from_session(request)
         print("within list invoice tlcliet domain is :", tlclient.domain)        
         paperclient=clientpaperhouse(tlclient)#               
-        list_invoices = paperclient.list_invoices(invoicenum)  
-        
-        
-        list_invoices_filtered = getinvoicebyrole(request, list_invoices)      
+        list_invoices = paperclient.list_invoices(invoicenum)
+        print('call to paperhouse list invoices ..', list_invoices)        
+        #examine why it was "list_invoices_filtered" : list_invoices ,
+        #filtering should be handled by the paperhouse backend api
+        list_invoices_filtered = getinvoicebyrole(request, list_invoices) 
+        print('after filter by role ..', list_invoices_filtered)      
         if invoicenum == 'all' and mode =='read':
-            template_name = 'invoice/list_invoices.html'            
+            template_name = 'invoice/list_invoices.html'                     
         elif admin and invoicenum == 'all' and mode == 'read':
             template_name = 'invoice/list_invoices_admin.html'
         elif invoicenum != 'all' and mode == 'edit':
@@ -79,18 +108,38 @@ def list_invoices(request, invoicenum, mode, admin=None):
             accept_button, edit_button, action_buttons,  = False, False, []
             
         ROLE = request.session.get('session_user_details').get('roles')[0]
-        template_data = {"PAPERHOUSE_list_invoices": list_invoices,
+        #examine why it was "list_invoices_filtered" : list_invoices ,
+        #filtering should be handled by the paperhouse backend api
+        template_data = {"PAPERHOUSE_list_invoices": list_invoices_filtered,
                          "edit_button": edit_button, "action_buttons": action_buttons,
                          "accept_button": accept_button, "list_events": list_events 
                          ,"list_invoices_filtered" : list_invoices_filtered , "ROLE": ROLE}
+#         template_data = {"PAPERHOUSE_list_invoices": list_invoices,
+#                          "edit_button": edit_button, "action_buttons": action_buttons,
+#                          "accept_button": accept_button, "list_events": list_events 
+#                          ,"list_invoices_filtered" : list_invoices , "ROLE": ROLE}
+        print('using template name..................', template_name)  
         web_page = validate_active_session(request, template_name, template_data)
         return web_page 
     
 
 def getinvoicebyrole(request, list_invoices):
     role = request.session.get('session_user_details').get('roles')[0]
-    MIS_AllowedViewstatus =["SentToDivision", "TSPCourierdHardCopy", "HardCopyRecieved"]
-    TSP_AllowedViewstatus =["InvoiceCreated", "TSPSubmmitedChange", "InfobahnRecommendedtoTSP", "InfobahnApproved"]
+    MIS_AllowedViewstatus =["SentToDivision", 
+                            "DivisionApproved",
+                            "InfobahnApproved",
+                            "TSPCourierdHardCopy", 
+                            "HardCopyRecieved",
+                            "PaymentMade"]
+    
+    TSP_AllowedViewstatus =["InvoiceCreated", 
+                            "TSPSubmmitedChange", 
+                            "TSPAcceptedChanges", 
+                            "InfobahnRecommendedtoTSP", 
+                            "InfobahnApproved",
+                            "TSPCourierdHardCopy",
+                            "HardCopyRecieved",
+                            "PaymentMade"]
     #INFOB_AllowedViewstatus =["InvoiceCreated", "TSPSubmmitedChange" ]
     list_invoices_filtered = list_invoices
      
