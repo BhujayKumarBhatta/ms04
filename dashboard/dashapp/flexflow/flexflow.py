@@ -50,3 +50,19 @@ def list_wfmobj(request, objname):
     template_name =  "admin_pages/general_list.html"
     web_page = validate_active_session(request, template_name, template_data)
     return web_page
+
+@validate_token_n_session()
+def delete_wfmobj(request, objname, filter_by_name):
+    tlclient = tllogin.prep_tlclient_from_session(request)
+    flexc = clientflexflow(tlclient)
+    objfields = flexc.get_wfmobj_keys(objname)
+    object_list = flexc.list_wfmasterObj(objname)         
+    result = flexc.delete_wfmasterObj_by_name(objname, filter_by_name)
+    object_list = flexc.list_wfmasterObj(objname) 
+    template_data = {"objname": objname,
+                     "objfields": objfields,
+                     "object_list": object_list,                    
+                     "result": result,}
+    template_name =  "admin_pages/general_list.html"
+    web_page = validate_active_session(request, template_name, template_data)
+    return web_page
