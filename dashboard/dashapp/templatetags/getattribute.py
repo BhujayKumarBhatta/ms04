@@ -7,7 +7,8 @@ register = template.Library()
 
 def getattribute(value, arg):
     """Gets an attribute of an object dynamically from a string name"""
-
+    if isinstance(value, dict):
+        return value.get(arg)
     if hasattr(value, str(arg)):
         return getattr(value, arg)
     elif hasattr(value, 'has_key') and value.has_key(arg):

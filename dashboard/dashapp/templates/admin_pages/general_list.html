@@ -1,12 +1,24 @@
 {% extends "home.html" %}
 {% block content-area %}
 {% load getattribute %}
-{% url 'dashapp:add_invoices' as add_invoices %}
+{% url 'dashapp:add_wfmobj'  objname as add_wfmobj %}
 
 
     <div class="container-fluid" style="padding-top:7px">
-        <p> "{{ objname }}" </p>
+        <h3> List of {{ objname }} </h3>
         {% block add_delete_button %}
+            <div class="row">
+                <div class="col-sm-3">
+                    <a class="btn btn-primary btn-sm fa fa-plus" href="{{ add_wfmobj }}">
+                         &nbsp Add {{ objname }}
+                     </a>
+                </div>
+                <div class="col-sm-5 justify-content-center">     
+                </div>
+                <div class="col-sm-3 justify-content-end"  >
+                    <a class="btn  btn-sm fa fa-minus" href="{{ ldept }}"> &nbsp Delete All </a>
+                </div>
+            </div>
 
         {% endblock add_delete_button %} 
                
@@ -22,14 +34,14 @@
                 {% for object in object_list reversed %}
                     <tr style="font-size:10px">      
                         {% for field_name in objfields %}
-                            <td>"{{ object.name}}"</td>
+                            <td>"{{ object|getattribute:field_name }}"</td>
                         {% endfor %}
                     </tr>
                 {% endfor %}
                   
             </tbody>
         </table>
-        <p>"{{ result }}"</p>
+        <p>{{ result }}</p>
     </div>
     
 {% endblock content-area %}
