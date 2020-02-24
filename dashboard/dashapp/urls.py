@@ -116,7 +116,8 @@ urlpatterns = [path('', views.login, name='login'),
     path('delete_mailmap/<slug:status_name>', telegraph.delete_mailmap, name='delete_mailmap'),
     path('update_mailmap/<slug:status_name>', telegraph.update_mailmap, name='update_mailmap'),
     
-    path('add_wfmobj/<slug:objname>', flexflow.add_wfmobj, name='add_wfmobj'),]
+    path('add_wfmobj/<slug:objname>', flexflow.add_wfmobj, name='add_wfmobj'),
+    path('list_wfmobj/<slug:objname>', flexflow.list_wfmobj, name='list_wfmobj'),]
 
 
 
