@@ -30,15 +30,19 @@
                 Settings
               </a> 
               <div class="dropdown-menu">
-                <a class="dropdown-item" href="{{ luser }}">Manage Users</a>
-                <a class="dropdown-item" href="{{ lorg }}">Manage Org</a>
-                <a class="dropdown-item" href="{{ ldept }}">Manage Dept</a>
-                <a class="dropdown-item" href="{{ lrole }}">Manage Role</a>
-                <a class="dropdown-item" href="{{ lou }}">Manage OU</a>
-                <a class="dropdown-item" href="{{ lwfc }}">Manage WFC</a>
-                <a class="dropdown-item" href="{{ lservice }}">Manage Catalog Service</a>
+                <a class="dropdown-item" href="{{ luser }}">Users</a>
+                <a class="dropdown-item" href="{{ lorg }}">Org</a>
+                <a class="dropdown-item" href="{{ ldept }}">Dept</a>
+                <a class="dropdown-item" href="{{ lrole }}">Role</a>
+                <a class="dropdown-item" href="{{ lou }}">OU</a>
+                <a class="dropdown-item" href="{{ lwfc }}">WFC</a>
+                <a class="dropdown-item" href="{{ lservice }}">Catalog Service</a>
                 <a class="dropdown-item" href="{{ list_mailmap_by_status }}">Manage notification mail</a>                 
-                <a class="dropdown-item" href="{% url 'dashapp:add_wfmobj' 'Wfstatus'%} ">Workflow status</a>
+                
+                <a class="dropdown-item" href="{% url 'dashapp:list_wfmobj' 'Doctype'%} "> Workflow Document Type</a>
+                <a class="dropdown-item" href="{% url 'dashapp:list_wfmobj' 'Wfstatus'%} "> Workflow status</a>
+                <a class="dropdown-item" href="{% url 'dashapp:list_wfmobj' 'Datadocfield'%} "> Fields in Document</a>
+                <a class="dropdown-item" href="{% url 'dashapp:list_wfmobj' 'Wfaction'%} "> Workflow Action Rules</a>
               </div>
             </li>
 		    

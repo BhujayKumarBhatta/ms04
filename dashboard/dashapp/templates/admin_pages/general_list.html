@@ -26,20 +26,20 @@
             <thead >
                 <tr style="background-color: #4CAF50;font-size:10px">
                     {% for field_name in objfields %}
-	                    <th>"{{ field_name }}"</th>
-	                    <th>delete</th>
+	                    <th>"{{ field_name }}"</th>	                    
 	                {% endfor %}
+	                <th>delete</th>
                 </tr>
             </thead>
             <tbody>
                 {% for object in object_list reversed %}
                     <tr style="font-size:10px">      
                         {% for field_name in objfields %}
-                            <td>"{{ object|getattribute:field_name }}"</td>                            
-                            <td>
-                                <a class="fa fa-remove" style="font-size:10px;color:red"  href="{% url 'dashapp:delete_wfmobj' objname object.name  %}" ></a>               
-                            </td>
+                            <td>"{{ object|getattribute:field_name }}"</td>
                         {% endfor %}
+                        <td>
+                                <a class="fa fa-remove" style="font-size:10px;color:red"  href="{% url 'dashapp:delete_wfmobj' objname object.name  %}" ></a>               
+                        </td>
                     </tr>
                 {% endfor %}
                   
