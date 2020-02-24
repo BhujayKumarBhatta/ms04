@@ -1,0 +1,43 @@
+{% extends "home.html" %}
+{% block content-area %}
+{% url 'dashapp:add_service' as addservice %}
+{% url 'dashapp:list_service' as lservice %}
+
+
+    <div class="container-fluid" style="padding-top:7px;width:60%">
+        <form action="{{ addservice }}" method="post">
+           {% csrf_token %}            
+        <table class="table" id="edit-format" > 
+                      
+            <tbody>   
+                  <th><p>Add "{{ objname }}" , result: "{{ result }}" </p></th> 
+                  {% for field in   objfields %}
+                  <tr>
+                    <td class="py-0"><label for="{{ field }}"> "{{ field }}":</label></td>
+                    <td class="py-0"><input type="text"  id="{{ field }}" name="{{ field }}" required></td>
+                  </tr>                  
+                  {% endfor %}        
+                     
+            </tbody> 
+        </table>
+    </div>
+    
+
+    <div class="container-fluid" id="edit-format" style="width:60%"> 
+        <div class="row">
+            <div class="col-sm-3">
+                <button class="btn btn-sm fa fa-plus"  type="submit"> &nbsp SAVE</button>
+            </div>
+            <div class="col-sm-7 justify-content-center">     
+            </div>
+            <div class="col-sm-2 justify-content-end">
+                <a class="btn  btn-sm fa fa-minus" href="{{ lservice }}"> &nbsp CANCEL</a>
+            </div> 
+            </form>
+        </div>
+        </div>
+    
+{% endblock content-area %}
+
+
+<!--  ======================================== CODE ENDs HERE ==========================================    -->

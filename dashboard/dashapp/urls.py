@@ -25,6 +25,7 @@ from dashapp.views import paperhouse_delete_invoice
 from dashapp.paperhouse import paperhouse
 from dashapp.penman import penman
 from dashapp.telegraph import telegraph
+from dashapp.flexflow import flexflow
 #from rest_framework_swagger.views import get_swagger_view
 #from rest_framework.documentation import include_docs_urls
 
@@ -114,7 +115,8 @@ urlpatterns = [path('', views.login, name='login'),
     path('create_mailmap', telegraph.create_mailmap, name='create_mailmap'),
     path('delete_mailmap/<slug:status_name>', telegraph.delete_mailmap, name='delete_mailmap'),
     path('update_mailmap/<slug:status_name>', telegraph.update_mailmap, name='update_mailmap'),
-    ]
+    
+    path('add_wfmobj/<slug:objname>', flexflow.add_wfmobj, name='add_wfmobj'),]
 
 
 
