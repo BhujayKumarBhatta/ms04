@@ -51,6 +51,33 @@ def list_wfmobj(request, objname):
     web_page = validate_active_session(request, template_name, template_data)
     return web_page
 
+
+@validate_token_n_session()
+def update_wfmobj(request, objname, filter_by_name):
+    tlclient = tllogin.prep_tlclient_from_session(request)
+    flexc = clientflexflow(tlclient)
+    objfields = flexc.get_wfmobj_keys(objname)
+    doctypes = flexc.list_wfmasterObj('Doctype')
+    wfstatus_list = flexc.list_wfmasterObj('Wfstatus')
+    result = None 
+    search_filter = {"name": filter_by_name}
+    object_detail = flexc.list_wfmasterObj_by_key_val(objname, 'name', filter_by_name)
+    for k, v in object_detail.items():
+        if k == "associated_doctype":
+            adt = {k: v.get("name")}
+            object_detail.update(adt)
+    template_data = {"objname": objname,
+                     "objfields": objfields,
+                     "doctypes": doctypes,
+                     "wfstatus_list": wfstatus_list,
+                     "object_detail": object_detail,                    
+                     "result": result,}
+    template_name =  "admin_pages/general_edit.html"
+    web_page = validate_active_session(request, template_name, template_data)
+    return web_page
+
+
+
 @validate_token_n_session()
 def delete_wfmobj(request, objname, filter_by_name):
     tlclient = tllogin.prep_tlclient_from_session(request)
