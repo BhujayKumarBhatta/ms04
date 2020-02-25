@@ -66,6 +66,18 @@ def update_wfmobj(request, objname, filter_by_name):
         if k == "associated_doctype":
             adt = {k: v.get("name")}
             object_detail.update(adt)
+        if k in  ["permitted_to_roles", "status_needed_edit"]:
+            strv = ','.join(v)
+            object_detail.update({k: strv})
+    if request.method == 'POST':
+        post_data = {}
+        for objfield in objfields:
+            objvalue = request.POST.get(objfield)
+            if  objvalue:
+                post_data.update({objfield: objvalue})
+        input_data = {"search_filter": search_filter,
+                      "update_data_dict": post_data}
+        result = flexc.update_wfmasterObj(objname, input_data)
     template_data = {"objname": objname,
                      "objfields": objfields,
                      "doctypes": doctypes,

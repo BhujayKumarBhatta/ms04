@@ -5,7 +5,7 @@
 
 
     <div class="container-fluid" style="padding-top:7px">
-        <h3> List of {{ objname }}s </h3>
+        <h3> List of {{ objname }} </h3>
         {% block add_delete_button %}
             <div class="row">
                 <div class="col-sm-3">
@@ -26,7 +26,7 @@
             <thead >
                 <tr style="background-color: #4CAF50;font-size:10px">
                     {% for field_name in objfields %}
-	                    <th>"{{ field_name }}"</th>	                    
+	                    <th>{{ field_name }}</th>	                    
 	                {% endfor %}
 	                <th>edit</th>
 	                <th>delete</th>
@@ -36,7 +36,7 @@
                 {% for object in object_list reversed %}
                     <tr style="font-size:10px">      
                         {% for field_name in objfields %}
-                            <td>"{{ object|getattribute:field_name }}"</td>
+                            <td>{{ object|getattribute:field_name }}</td>
                         {% endfor %}
                         <td>
                             <a class="fa fa-edit" style="font-size:10px;color:red"  href="{% url 'dashapp:update_wfmobj' objname object.name  %}" ></a>               
