@@ -89,7 +89,6 @@ def update_wfmobj(request, objname, filter_by_name):
     return web_page
 
 
-
 @validate_token_n_session()
 def delete_wfmobj(request, objname, filter_by_name):
     tlclient = tllogin.prep_tlclient_from_session(request)
