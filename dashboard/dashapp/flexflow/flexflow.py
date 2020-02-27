@@ -31,7 +31,7 @@ def xl_upload(request, wfdoctype):
             Upload_result = xluploadclient.upload_xl(wfdoctype, uploaded_file_url)
             request_id = None
             exec_stat = None
-            if Upload_result and isinstance(Upload_result, list):
+            if Upload_result and isinstance(Upload_result, dict):
                 request_id = Upload_result.get("request_id")              
                 message = json.dumps(Upload_result)
                 loaded_message = json.loads(message)
