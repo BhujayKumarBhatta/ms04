@@ -1,6 +1,6 @@
 
 {% url 'dashapp:paperhouse_list_invoice' 'all' 'read' 'normal' as list_invoices %}
-{% url 'dashapp:xluploader_invoice_upload'  as xlupload %}
+{% url 'dashapp:xluploader_invoice_upload' 'tspinvoice' as xlupload %}
 {% url 'dashapp:list_ravl_obj' "Lnetlink" user_details.roles.0 as list_ravl_links %}
 {% url 'dashapp:paperhouse_savedraft_list'  "all" as list_draft %}
 	  <ul class="navbar-nav py-0"> 

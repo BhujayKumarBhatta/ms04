@@ -79,7 +79,7 @@ urlpatterns = [path('', views.login, name='login'),
     
     #XLuploader
     
-    path('xluploader_invoice_upload', views.xluploader_invoice_upload, name='xluploader_invoice_upload'),
+    #path('xluploader_invoice_upload', views.xluploader_invoice_upload, name='xluploader_invoice_upload'),
     path('download_invoicexlformat', views.download_invoicexlformat, name='download_invoicexlformat'),
         
     
@@ -120,7 +120,7 @@ urlpatterns = [path('', views.login, name='login'),
     path('list_wfmobj/<slug:objname>', flexflow.list_wfmobj, name='list_wfmobj'),
     path('delete_wfmobj/<slug:objname>/<slug:filter_by_name>', flexflow.delete_wfmobj, name='delete_wfmobj'),
     path('update_wfmobj/<slug:objname>/<slug:filter_by_name>', flexflow.update_wfmobj, name='update_wfmobj'),
-    
+    path('xluploader_invoice_upload/<slug:wfdoctype>', flexflow.xl_upload, name='xluploader_invoice_upload'),
     ]
 
 
