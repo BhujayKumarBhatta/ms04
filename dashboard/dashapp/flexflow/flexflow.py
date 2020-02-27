@@ -75,6 +75,8 @@ def update_wfmobj(request, objname, filter_by_name):
             objvalue = request.POST.get(objfield)
             if  objvalue:
                 post_data.update({objfield: objvalue})
+            if objfield == "associated_doctype":
+                post_data.update( {objfield: {"name": objvalue}})
         input_data = {"search_filter": search_filter,
                       "update_data_dict": post_data}
         result = flexc.update_wfmasterObj(objname, input_data)
