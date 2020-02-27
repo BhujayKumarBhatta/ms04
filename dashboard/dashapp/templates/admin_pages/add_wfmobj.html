@@ -13,17 +13,23 @@
                   <th><p>Add "{{ objname }}"  </p></th> 
                   {% for field in   objfields %}
                   <tr>
-                    <td class="py-0"><label for="{{ field }}"> "{{ field }}":</label></td>
+                    <td class="py-0"><label for="{{ field }}"> {{ field }}:</label></td>
                     {% if field == "associated_doctype" %}
-                        <td class="py-0"><select  id="{{ field }}" name="{{ field }}" required>
-                            {% for dtype in doctypes %}
-                                <option value="{{ dtype.name }}" > "{{ dtype.name }}"</option>
-                            {% endfor %}</select></td>
+                        <td class="py-0">
+                            <select  id="{{ field }}" name="{{ field }}" required>
+                                {% for dtype in doctypes %}
+                                    <option value="{{ dtype.name }}" > {{ dtype.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </td>
                     {% elif field == "need_prev_status" or field == "need_current_status" or field == "leads_to_status" %}
-                        <td class="py-0"><select  id="{{ field }}" name="{{ field }}" required>
-                            {% for wfstat in wfstatus_list %}
-                                <option value="{{ dtype.name }}" > "{{ wfstat.name }}"</option>
-                            {% endfor %}</select></td>
+                        <td class="py-0">
+                            <select  id="{{ field }}" name="{{ field }}" required>
+	                            {% for wfstat in wfstatus_list %}
+	                                <option value="{{ wfstat.name }}" > {{ wfstat.name }}</option>
+	                            {% endfor %}
+	                         </select>
+                        </td>
                     {% elif field == "permitted_to_roles" %}                        
                         <td class="py-0"><input type="text"  id="{{ field }}" name="{{ field }}"  placeholder="Enter comma separated role names that you must have registered earlier" required></td>
                     {% elif field == "status_needed_edit" %}

@@ -14,20 +14,27 @@
                   <tr>
                     <td class="py-0"><label for="{{ field }}"> {{ field }}:</label></td>
                     {% if field == "associated_doctype" %}
-                        <td class="py-0"><select  id="{{ field }}" name="{{ field }}"  required>
-                            {% for dtype in doctypes %}
-                                <option value="{{ dtype.name }}" > {{ dtype.name }} </option>
-                                <option value="{{ object_detail|getattribute:field }}" selected> {{ object_detail|getattribute:field }} </option>
-                            {% endfor %}</select></td>
+                        <td class="py-0">
+                            <select  id="{{ field }}" name="{{ field }}"  required>
+	                            {% for dtype in doctypes %}
+	                                <option value="{{ dtype.name }}" > {{ dtype.name }} </option>
+	                                <option value="{{ object_detail|getattribute:field }}" selected> {{ object_detail|getattribute:field }} </option>
+	                            {% endfor %}
+	                        </select>
+	                    </td>
                     {% elif field == "need_prev_status" or field == "need_current_status" or field == "leads_to_status" %}
-                        <td class="py-0"><select  id="{{ field }}" name="{{ field }}" required>
-                            {% for wfstat in wfstatus_list %}
-                                <option value="{{ dtype.name }}" > {{ wfstat.name }} </option>
-                                <option  value="{{ object_detail|getattribute:field }}" selected>{{ object_detail|getattribute:field }}</option>
-                            {% endfor %}</select></td>
+                        <td class="py-0">
+                            <select  id="{{ field }}" name="{{ field }}" required>
+	                            {% for wfstat in wfstatus_list %}
+	                                <option value="{{ wfstat.name }}" > {{ wfstat.name }} </option>
+	                                <option  value="{{ object_detail|getattribute:field }}" selected>{{ object_detail|getattribute:field }}</option>
+	                            {% endfor %}
+	                        </select>
+	                    </td>
                     {% else %}
-                        <td class="py-0"><input type="text"  id="{{ field }}" name="{{ field }}" placeholder="{{ object_detail|getattribute:field }}" required></td>
-                    
+                        <td class="py-0">
+                            <input type="text"  id="{{ field }}" name="{{ field }}" placeholder="{{ object_detail|getattribute:field }}" required>
+                        </td>
                     {% endif %}
                     
                   </tr>
