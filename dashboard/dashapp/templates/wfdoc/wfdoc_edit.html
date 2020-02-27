@@ -1,0 +1,74 @@
+{% extends "home.html" %}
+{% block content-area %}
+{% load getattribute %}
+
+
+    <div class="container-fluid" style="padding-top:7px;width:60%">
+        <form action="" method="post">
+           {% csrf_token %}            
+        <table class="table" id="edit-format" > 
+            <thead>
+                <h5 style="text-align:center">  Edit {{ object_detail.associated_doctype }}  </h5>
+            </thead>      
+            <tbody>
+	            {% for field in data_fields %}
+	             <tr>
+	               <td class="py-0"><label for="{{ field }}"> {{ field }}:</label></td>
+	               <td class="py-0">
+	                  <input type="text"  id="{{ field }}" name="{{ field }}" placeholder="{{ object_detail.doc_data|getattribute:field }}" >
+	               </td>
+	             </tr>
+	            {% endfor %}
+            </tbody> 
+        </table>
+        
+        
+    </div>
+    
+
+    <div class="container-fluid" id="edit-format" style="width:60%"> 
+        <div class="row">
+            <div class="col-sm-3">
+                <button class="btn btn-sm fa fa-plus"  type="submit"> &nbsp SAVE</button>
+            </div>
+            <div class="col-sm-7 justify-content-center">     
+            </div>
+            <div class="col-sm-2 justify-content-end">
+                <a class="btn  btn-sm fa fa-minus" href=""> &nbsp CANCEL</a>
+            </div> 
+            </form>
+        </div>
+        <div class="row">
+         <div class="col-sm-12 justify-content-center"> 
+            {% if result %}
+            <p> "{{ result }}" </p>
+            {% endif %}
+         </div> 
+        </div>
+        </div>
+        
+<div class="container-fluid" style="padding-top:7px;width:60%">
+	<table class="table" id="edit-format">
+          <thead></thead>
+          <tbody>
+              <tr>
+                  <td class="py-0"><label for="current_status"> current_status:</label></td>
+                  <td class="py-0"><input type="text"  id="current_status" name="current_status" placeholder="{{ object_detail.current_status }}" readonly></td>
+                  <td class="py-0"><label for="prev_status"> prev_status:</label></td>
+                  <td class="py-0"><input type="text"  id="prev_status" name="prev_status" placeholder="{{ object_detail.prev_status }}" readonly></td>
+              </tr>
+              <tr>
+                  <td class="py-0"><label for="name"> unique id:</label></td>
+                  <td class="py-0"><input type="text"  id="name" name="name" placeholder="{{ object_detail.name }}" readonly></td>
+                  <td class="py-0"><label for="associated_doctype"> Workflow Type:</label></td>
+                  <td class="py-0"><input type="text"  id="associated_doctype" name="associated_doctype" placeholder="{{ object_detail.associated_doctype }}" readonly></td>
+              </tr>            
+          </tbody>        
+      </table>
+
+</div>
+    
+{% endblock content-area %}
+
+
+<!--  ======================================== CODE ENDs HERE ==========================================    -->

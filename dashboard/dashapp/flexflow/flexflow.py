@@ -61,6 +61,71 @@ def download_invoicexlformat(request):
             return response
     raise Http404
 
+@validate_token_n_session()
+def list_wfdoc(request):
+    tlclient = tllogin.prep_tlclient_from_session(request)
+    flexc = clientflexflow(tlclient) 
+    objfields = flexc.get_wfmobj_keys('Wfdoc')
+    object_list = flexc.list_wfmasterObj('Wfdoc')
+    if object_list:
+        anyObj = object_list[0]
+        doctype = anyObj.get('associated_doctype').get('name')
+        docdata_fields = [k for k in anyObj.get('doc_data').keys()] #TODO: order the keys as per config
+    template_data = {"objname": 'Wfdoc',
+                     "doctype": doctype,
+                     "docdata_fields": docdata_fields,
+                     "objfields": objfields,
+                     "object_list": object_list,}
+    template_name =  "wfdoc/wfdoc_list.html"
+    web_page = validate_active_session(request, template_name, template_data)
+    return web_page
+
+
+@validate_token_n_session()
+def update_wfdoc(request, filter_by_name):
+    tlclient = tllogin.prep_tlclient_from_session(request)
+    flexc = clientflexflow(tlclient)
+    objfields = flexc.get_wfmobj_keys('Wfdoc')
+    doctypes = flexc.list_wfmasterObj('Doctype')
+    wfstatus_list = flexc.list_wfmasterObj('Wfstatus')
+    result = None 
+    search_filter = {"name": filter_by_name}
+    object_detail = flexc.list_wfmasterObj_by_key_val('Wfdoc', 'name', filter_by_name)
+    for k, v in object_detail.items():
+        if k == "associated_doctype":
+            adt = {k: v.get("name")}
+            object_detail.update(adt)
+    data_fields = object_detail.get('doc_data').keys()
+#         if k in  ["permitted_to_roles", "status_needed_edit"]:
+#             strv = ','.join(v)
+#             object_detail.update({k: strv})
+    #actions_for_current_status = object_detail.actions_for_current_status , how do we get this ?
+    #editable_fields_at_current_status = object_detail.editable_fields_at_current_status
+    if request.method == 'POST':
+        post_data = {}
+        for objfield in objfields:
+            objvalue = request.POST.get(objfield)
+            if  objvalue:
+                post_data.update({objfield: objvalue})
+            if objfield == "associated_doctype":
+                post_data.update( {objfield: {"name": objvalue}})
+            if  objfield in  ["permitted_to_roles", "status_needed_edit"] :
+                objvalue = request.POST.get(objfield).split(',')
+                post_data.update( {objfield: objvalue})
+        input_data = {"search_filter": search_filter,
+                      "update_data_dict": post_data}
+        result = flexc.update_wfmasterObj('Wfdoc', input_data)
+    template_data = {"objname": 'Wfdoc',
+                     "data_fields": data_fields,
+                     "objfields": objfields,
+                     "doctypes": doctypes,
+                     "wfstatus_list": wfstatus_list,
+                     "object_detail": object_detail,                    
+                     "result": result,}
+    template_name =  "wfdoc/wfdoc_edit.html"
+    web_page = validate_active_session(request, template_name, template_data)
+    return web_page
+
 
 
 @validate_token_n_session()
