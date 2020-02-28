@@ -92,7 +92,8 @@ def update_wfdoc(request, filter_by_name):
     wfstatus_list = flexc.list_wfmasterObj('Wfstatus')
     result = None 
     search_filter = {"name": filter_by_name}
-    object_detail = flexc.list_wfmasterObj_by_key_val('Wfdoc', 'name', filter_by_name)
+    #object_detail = flexc.list_wfmasterObj_by_key_val('Wfdoc', 'name', filter_by_name)
+    object_detail = flexc.get_wfdoc_fulldetail(filter_by_name)
     for k, v in object_detail.items():
         if k == "associated_doctype":
             adt = {k: v.get("name")}

@@ -15,7 +15,11 @@
 	             <tr>
 	               <td class="py-0"><label for="{{ field }}"> {{ field }}:</label></td>
 	               <td class="py-0">
-	                  <input type="text"  id="{{ field }}" name="{{ field }}" placeholder="{{ object_detail.doc_data|getattribute:field }}" >
+	                   {% if field in object_detail.current_edit_fields %}
+	                       <input type="text"  id="{{ field }}" name="{{ field }}" placeholder="{{ object_detail.doc_data|getattribute:field }}" >
+	                   {% else %}
+	                       <input type="text"  id="{{ field }}" name="{{ field }}" placeholder="{{ object_detail.doc_data|getattribute:field }}" readonly>
+	                   {% endif %}
 	               </td>
 	             </tr>
 	            {% endfor %}
@@ -61,7 +65,7 @@
                   <td class="py-0"><label for="name"> unique id:</label></td>
                   <td class="py-0"><input type="text"  id="name" name="name" placeholder="{{ object_detail.name }}" readonly></td>
                   <td class="py-0"><label for="associated_doctype"> Workflow Type:</label></td>
-                  <td class="py-0"><input type="text"  id="associated_doctype" name="associated_doctype" placeholder="{{ object_detail.associated_doctype }}" readonly></td>
+                  <td class="py-0"><input type="text"  id="associated_doctype" name="associated_doctype" placeholder="{{ object_detail.current_edit_fields }}" readonly></td>
               </tr>            
           </tbody>        
       </table>
@@ -71,4 +75,7 @@
 {% endblock content-area %}
 
 
-<!--  ======================================== CODE ENDs HERE ==========================================    -->
+<!--  ======================================== CODE ENDs HERE ==========================================  
+object_detail.current_actions
+object_detail.current_edit_fields
+  -->
