@@ -63,6 +63,8 @@ def download_invoicexlformat(request):
 
 @validate_token_n_session()
 def list_wfdoc(request):
+    doctype = ''
+    docdata_fields = []
     tlclient = tllogin.prep_tlclient_from_session(request)
     flexc = clientflexflow(tlclient) 
     objfields = flexc.get_wfmobj_keys('Wfdoc')
@@ -72,7 +74,7 @@ def list_wfdoc(request):
         doctype = anyObj.get('associated_doctype').get('name')
         docdata_fields = [k for k in anyObj.get('doc_data').keys()] #TODO: order the keys as per config
     template_data = {"objname": 'Wfdoc',
-                     "doctype": doctype,
+                     "doctype": doctype, #local variable 'doctype' referenced before assignment
                      "docdata_fields": docdata_fields,
                      "objfields": objfields,
                      "object_list": object_list,}
