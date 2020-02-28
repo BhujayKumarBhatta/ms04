@@ -99,24 +99,31 @@ def update_wfdoc(request, filter_by_name):
             adt = {k: v.get("name")}
             object_detail.update(adt)
     data_fields = object_detail.get('doc_data').keys()
-#         if k in  ["permitted_to_roles", "status_needed_edit"]:
-#             strv = ','.join(v)
-#             object_detail.update({k: strv})
-    #actions_for_current_status = object_detail.actions_for_current_status , how do we get this ?
-    #editable_fields_at_current_status = object_detail.editable_fields_at_current_status
     if request.method == 'POST':
+        print('how request.POST', request.POST)
         post_data = {}
-        for objfield in objfields:
+        button_action = request.POST.get('button_action')
+        cfgAction = flexc.list_wfmasterObj_by_key_val('Wfaction', 'name', button_action)
+        print('button action , leads to status and current status are:', 
+              button_action , cfgAction.get('leads_to_status'), 
+              object_detail.get('current_status'))
+        post_data = {'prev_status': object_detail.get('current_status'),
+                     'current_status': cfgAction.get('leads_to_status'),
+                     }
+        existing_doc_data = object_detail.get('doc_data')
+        
+        print('existing_doc_data', existing_doc_data)
+        form_doc_data = {}
+        for objfield in existing_doc_data:
             objvalue = request.POST.get(objfield)
             if  objvalue:
-                post_data.update({objfield: objvalue})
-            if objfield == "associated_doctype":
-                post_data.update( {objfield: {"name": objvalue}})
-            if  objfield in  ["permitted_to_roles", "status_needed_edit"] :
-                objvalue = request.POST.get(objfield).split(',')
-                post_data.update( {objfield: objvalue})
+                form_doc_data.update({objfield: objvalue})
+        if form_doc_data: post_data.update({'doc_data': form_doc_data})       
+            
+           
         input_data = {"search_filter": search_filter,
                       "update_data_dict": post_data}
+        print('how is the post data ??????????????', input_data)
         result = flexc.update_wfmasterObj('Wfdoc', input_data)
     template_data = {"objname": 'Wfdoc',
                      "data_fields": data_fields,

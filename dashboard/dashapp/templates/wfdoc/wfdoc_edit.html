@@ -1,6 +1,7 @@
 {% extends "home.html" %}
 {% block content-area %}
 {% load getattribute %}
+{% url 'dashapp:list_wfdoc' as list_wfdoc %}
 
 
     <div class="container-fluid" style="padding-top:7px;width:60%">
@@ -29,19 +30,30 @@
         
     </div>
     
-
-    <div class="container-fluid" id="edit-format" style="width:60%"> 
-        <div class="row">
-            <div class="col-sm-3">
-                <button class="btn btn-sm fa fa-plus"  type="submit"> &nbsp SAVE</button>
-            </div>
-            <div class="col-sm-7 justify-content-center">     
-            </div>
-            <div class="col-sm-2 justify-content-end">
-                <a class="btn  btn-sm fa fa-minus" href=""> &nbsp CANCEL</a>
-            </div> 
-            </form>
+{% block buttons %}  
+<div class="container-fluid">
+    <div class="row">
+    {% for btn_name in object_detail.current_actions %}
+        <div class="col sm-1"> 
+            <button class="btn btn-sm  btn-block fa fa-send" type="submit" 
+               name="button_action" id="{{btn_name}}" value="{{btn_name}}" >
+               {{btn_name}}
+            </button>
         </div>
+    {% endfor %}
+        <div class="col sm-1">
+            <a class="btn  btn-sm btn-block fa fa-window-close" href="{{ list_wfdoc }}"> Close</a>        
+        </div>        
+    </div>   
+</div> 
+<br>  
+{% endblock buttons %}  
+</form>
+
+
+
+<div class="container-fluid" id="edit-format" style="width:60%">         
+      
         <div class="row">
          <div class="col-sm-12 justify-content-center"> 
             {% if result %}
@@ -50,10 +62,11 @@
          </div> 
         </div>
         </div>
-        
+
+<br><br><br><br><br>        
 <div class="container-fluid" style="padding-top:7px;width:60%">
 	<table class="table" id="edit-format">
-          <thead></thead>
+          <thead > <p>Internal for workflow purpose</p></thead>
           <tbody>
               <tr>
                   <td class="py-0"><label for="current_status"> current_status:</label></td>
@@ -78,4 +91,6 @@
 <!--  ======================================== CODE ENDs HERE ==========================================  
 object_detail.current_actions
 object_detail.current_edit_fields
+
+onclick="return setAction(this)"
   -->
