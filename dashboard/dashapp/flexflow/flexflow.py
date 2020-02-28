@@ -103,28 +103,29 @@ def update_wfdoc(request, filter_by_name):
         print('how request.POST', request.POST)
         post_data = {}
         button_action = request.POST.get('button_action')
-        cfgAction = flexc.list_wfmasterObj_by_key_val('Wfaction', 'name', button_action)
-        print('button action , leads to status and current status are:', 
-              button_action , cfgAction.get('leads_to_status'), 
-              object_detail.get('current_status'))
-        post_data = {'prev_status': object_detail.get('current_status'),
-                     'current_status': cfgAction.get('leads_to_status'),
-                     }
+#         cfgAction = flexc.list_wfmasterObj_by_key_val('Wfaction', 'name', button_action)
+#         print('button action , leads to status and current status are:', 
+#               button_action , cfgAction.get('leads_to_status'), 
+#               object_detail.get('current_status'))
+#         post_data = {'prev_status': object_detail.get('current_status'),
+#                      'current_status': cfgAction.get('leads_to_status'),
+#                      }
+        input_data = {"wfdoc_name": object_detail.get('name'),
+                    "intended_action": button_action}
         existing_doc_data = object_detail.get('doc_data')
-        
-        print('existing_doc_data', existing_doc_data)
+#         
+#         print('existing_doc_data', existing_doc_data)
         form_doc_data = {}
         for objfield in existing_doc_data:
             objvalue = request.POST.get(objfield)
             if  objvalue:
                 form_doc_data.update({objfield: objvalue})
-        if form_doc_data: post_data.update({'doc_data': form_doc_data})       
+        if form_doc_data: input_data.update({'doc_data': form_doc_data})       
             
            
-        input_data = {"search_filter": search_filter,
-                      "update_data_dict": post_data}
+        
         print('how is the post data ??????????????', input_data)
-        result = flexc.update_wfmasterObj('Wfdoc', input_data)
+        result = flexc.wfdoc_update(input_data)
     template_data = {"objname": 'Wfdoc',
                      "data_fields": data_fields,
                      "objfields": objfields,
