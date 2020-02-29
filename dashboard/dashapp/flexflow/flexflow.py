@@ -89,16 +89,20 @@ def update_wfdoc(request, filter_by_name):
     flexc = clientflexflow(tlclient)
     objfields = flexc.get_wfmobj_keys('Wfdoc')
     doctypes = flexc.list_wfmasterObj('Doctype')
-    wfstatus_list = flexc.list_wfmasterObj('Wfstatus')
-    result = None 
+    wfstatus_list = flexc.list_wfmasterObj('Wfstatus')    
+    data_fields = []
     search_filter = {"name": filter_by_name}
     #object_detail = flexc.list_wfmasterObj_by_key_val('Wfdoc', 'name', filter_by_name)
     object_detail = flexc.get_wfdoc_fulldetail(filter_by_name)
-    for k, v in object_detail.items():
-        if k == "associated_doctype":
-            adt = {k: v.get("name")}
-            object_detail.update(adt)
-    data_fields = object_detail.get('doc_data').keys()
+    result = object_detail
+    if isinstance(object_detail, dict):
+        for k, v in object_detail.items():
+            if k == "associated_doctype":
+                adt = {k: v.get("name")}
+                object_detail.update(adt)
+        if 'doc_data' in object_detail.keys():
+            data_fields = object_detail.get('doc_data').keys()
+            result = None
     if request.method == 'POST':
         print('how request.POST', request.POST)
         post_data = {}
