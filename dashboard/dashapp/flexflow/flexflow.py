@@ -89,7 +89,7 @@ def update_wfdoc(request, filter_by_name):
     flexc = clientflexflow(tlclient)
     objfields = flexc.get_wfmobj_keys('Wfdoc')
     doctypes = flexc.list_wfmasterObj('Doctype')
-    wfstatus_list = flexc.list_wfmasterObj('Wfstatus')    
+    wfstatus_list = flexc.list_wfmasterObj('Wfstatus')   # this line is not required 
     data_fields = []
     search_filter = {"name": filter_by_name}
     #object_detail = flexc.list_wfmasterObj_by_key_val('Wfdoc', 'name', filter_by_name)
