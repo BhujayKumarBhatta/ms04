@@ -62,7 +62,12 @@
          </div> 
         </div>
         </div>
-
+ 
+{% block audittrails %}
+{% include "wfdoc/audittrails.html" with audittrails=object_detail.audittrails  %}
+{% endblock %}
+        
+        
 <br><br><br><br><br>        
 <div class="container-fluid" style="padding-top:7px;width:60%">
 	<table class="table" id="edit-format">
