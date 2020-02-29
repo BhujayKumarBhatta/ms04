@@ -2,14 +2,16 @@
 	<table class="table" id="edit-format">
 		<thead > 
 		  <th> Timestamp   </th>
-		  <th> user  </th>		  
-		  <th> what Changed </th>
+		  <th> user  </th>
+		  <th> Action </th>		  
+		  <th> what Changed during this transaction</th>
 		</thead>		
 		<tbody>
 		  {% for rec in audittrails %}
 		    <tr>
 		      <td class="py-0"> {{ rec.time_stamp }} </td>
 		      <td class="py-0"> {{ rec.email }} </td>
+		      <td class="py-0"> {{ rec.action }} </td>
 		      <td class="py-0"> {{ rec.data }} </td>
 		    </tr>
 		   {% endfor  %} 
