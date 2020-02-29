@@ -87,11 +87,11 @@ def list_wfdoc(request):
 def update_wfdoc(request, filter_by_name):
     tlclient = tllogin.prep_tlclient_from_session(request)
     flexc = clientflexflow(tlclient)
-    objfields = flexc.get_wfmobj_keys('Wfdoc')
-    doctypes = flexc.list_wfmasterObj('Doctype')
-    wfstatus_list = flexc.list_wfmasterObj('Wfstatus')   # this line is not required 
+    #objfields = flexc.get_wfmobj_keys('Wfdoc')
+    #doctypes = flexc.list_wfmasterObj('Doctype')
+    #wfstatus_list = flexc.list_wfmasterObj('Wfstatus')   # this line is not required 
     data_fields = []
-    search_filter = {"name": filter_by_name}
+    #search_filter = {"name": filter_by_name}
     #object_detail = flexc.list_wfmasterObj_by_key_val('Wfdoc', 'name', filter_by_name)
     object_detail = flexc.get_wfdoc_fulldetail(filter_by_name)
     result = object_detail
@@ -120,9 +120,9 @@ def update_wfdoc(request, filter_by_name):
         result = flexc.wfdoc_update(input_data)
     template_data = {"objname": 'Wfdoc',
                      "data_fields": data_fields,
-                     "objfields": objfields,
-                     "doctypes": doctypes,
-                     "wfstatus_list": wfstatus_list,
+                     #"objfields": objfields,
+                     #"doctypes": doctypes,
+                     #"wfstatus_list": wfstatus_list,
                      "object_detail": object_detail,                    
                      "result": result,}
     template_name =  "wfdoc/wfdoc_edit.html"
