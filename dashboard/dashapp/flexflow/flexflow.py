@@ -145,7 +145,7 @@ def add_wfmobj(request, objname):
             objvalue = request.POST.get(objfield)
             if  objfield == "associated_doctype":
                 objvalue = {"name": request.POST.get(objfield)}
-            if  objfield in  ["permitted_to_roles", "status_needed_edit"] :
+            if  objfield in  ["permitted_to_roles", "status_needed_edit", "roles_to_view_audit"] :
                 objvalue = request.POST.get(objfield).split(',')
             post_data.update({objfield: objvalue})
         result = flexc.add_wfmasterObj(objname, [post_data])
@@ -205,7 +205,7 @@ def update_wfmobj(request, objname, filter_by_name):
                 post_data.update({objfield: objvalue})
             if objfield == "associated_doctype":
                 post_data.update( {objfield: {"name": objvalue}})
-            if  objfield in  ["permitted_to_roles", "status_needed_edit"] :
+            if  objfield in  ["permitted_to_roles", "status_needed_edit", "roles_to_view_audit"] :
                 objvalue = request.POST.get(objfield).split(',')
                 post_data.update( {objfield: objvalue})
         input_data = {"search_filter": search_filter,

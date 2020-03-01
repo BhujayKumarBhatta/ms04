@@ -64,7 +64,11 @@
         </div>
  
 {% block audittrails %}
-{% include "wfdoc/audittrails.html" with audittrails=object_detail.audittrails  %}
+    {% for role in user_details.roles %}
+        {% if role in object_detail.roles_to_view_audit %}
+            {% include "wfdoc/audittrails.html" with audittrails=object_detail.audittrails  %}
+        {% endif %}
+    {% endfor %}
 {% endblock %}
         
         
