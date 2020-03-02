@@ -20,6 +20,8 @@
 {% url 'dashapp:striker_list_responces' 'all' as listresponses %}
 {% url 'dashapp:list_mailmap_by_status' 'all' as list_mailmap_by_status %}
 {% url 'dashapp:list_wfdoc' 'tspinvoice' as list_flexflow_invoices %}
+{% url 'dashapp:list_doctypes'  as list_doctypes %}
+
 
 
 	  <ul class="navbar-nav py-0"> 
@@ -27,7 +29,7 @@
 		     
         </li>
             <li class="nav-item dropdown py-0">
-              <a class="nav-link dropdown-toggle fas fa-tools" href="#" id="navbardrop" data-toggle="dropdown">
+              <a class="nav-link dropdown-toggle fas fa-tools" href="{{ list_doctypes }}" id="navbardrop" data-toggle="dropdown">
                 Settings
               </a> 
               <div class="dropdown-menu">
@@ -44,6 +46,9 @@
                 <a class="dropdown-item" href="{% url 'dashapp:list_wfmobj' 'Wfstatus'%} "> Workflow status</a>
                 <a class="dropdown-item" href="{% url 'dashapp:list_wfmobj' 'Datadocfield'%} "> Fields in Document</a>
                 <a class="dropdown-item" href="{% url 'dashapp:list_wfmobj' 'Wfaction'%} "> Workflow Action Rules</a>
+                <a class="dropdown-item" href="{% url 'dashapp:list_wfdoc' 'Wfaction'%} "> Workflow Action Rules</a>
+                
+                <a class="dropdown-item" href="{{ list_doctypes }}"> Dynamic Workflow List</a>
               </div>
             </li>
 		    

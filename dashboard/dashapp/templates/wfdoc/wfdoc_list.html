@@ -1,8 +1,7 @@
 {% extends "home.html" %}
 {% block content-area %}
 {% load getattribute %}
-{% url 'dashapp:add_wfmobj'  objname as add_wfmobj %}
-{% url 'dashapp:create_wfdoc'  'tspinvoice' as create_wfdoc %}
+{% url 'dashapp:create_wfdoc'  doctype as create_wfdoc %}
 
 
     <div class="container-fluid" style="padding-top:7px">
