@@ -7,23 +7,36 @@ from werkzeug.utils import secure_filename
 from dashapp.tokenleader.tllogin import validate_active_session, validate_token_n_session
 from dashapp.tokenleader import tllogin
 from clientflexflow.client import clientflexflow
+from django.template.defaultfilters import lower
+
+
+def lower_key_dict(input_dict):
+    lower_dict = {}
+    for k, v in input_dict.items():
+        lower_dict.update({k.lower(): v})
+    return lower_dict
 
 
 @validate_token_n_session()
 def create_wfdoc(request, doctype):
+    result = None
     tlclient = tllogin.prep_tlclient_from_session(request)
     flexc = clientflexflow(tlclient)    
     doctype_full_dict = flexc.get_wfdoctype_fulldetail(doctype)
-    docdata_fields = doctype_full_dict.get('datadocfields')
-    template_data = {"doctype": doctype,
-                     "docdata_fields": docdata_fields,}
-    template_name =  "wfdoc/wfdoc_create.html"
+    docdata_fields = doctype_full_dict.get('datadocfields')    
     if request.method == 'POST':
-        print(request.POST)
+        post_data = {}   
+        for fdict in docdata_fields:
+            k = fdict.get('name').lower()
+            v = lower_key_dict(request.POST).get(k)
+            if v: post_data.update({k: v})
+        if post_data: result = flexc.create_wfdoc(doctype, post_data)
+    template_data = {"doctype": doctype,
+                     "docdata_fields": docdata_fields,
+                     "result": result}
+    template_name =  "wfdoc/wfdoc_create.html"        
     web_page = validate_active_session(request, template_name, template_data)
     return web_page
-    
-
 
 
 @validate_token_n_session()
