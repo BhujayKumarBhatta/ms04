@@ -31,6 +31,7 @@ def create_wfdoc(request, doctype):
             v = lower_key_dict(request.POST).get(k)
             if v: post_data.update({k: v})
         if post_data: result = flexc.create_wfdoc(doctype, post_data)
+        else: result = {"status": "aborted", "message": "Blank form can not be posted"}
     template_data = {"doctype": doctype,
                      "docdata_fields": docdata_fields,
                      "result": result}
