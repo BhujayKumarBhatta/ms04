@@ -9,6 +9,16 @@ from dashapp.tokenleader import tllogin
 from clientflexflow.client import clientflexflow
 
 
+@validate_token_n_session()
+def create_wfdoc(request, wfdoctype):
+    tlclient = tllogin.prep_tlclient_from_session(request)
+    flexc = clientflexflow(tlclient)
+    doctypeObj = flexc.list_wfmasterObj('Doctype', {"name": wfdoctype})
+    #wfstatus_list = flexc.list_wfmasterObj('Wfstatus')   # this line is not required 
+    data_fields = doctypeObj.datadocfields
+    print(data_fields)
+
+
 
 @validate_token_n_session()
 def xl_upload(request, wfdoctype):

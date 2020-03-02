@@ -120,6 +120,8 @@ urlpatterns = [path('', views.login, name='login'),
     path('list_wfmobj/<slug:objname>', flexflow.list_wfmobj, name='list_wfmobj'),
     path('delete_wfmobj/<slug:objname>/<slug:filter_by_name>', flexflow.delete_wfmobj, name='delete_wfmobj'),
     path('update_wfmobj/<slug:objname>/<slug:filter_by_name>', flexflow.update_wfmobj, name='update_wfmobj'),
+    
+    path('create_wfdoc/<slug:wfdoctype>', flexflow.create_wfdoc, name='create_wfdoc'),
     path('xluploader_invoice_upload/<slug:wfdoctype>', flexflow.xl_upload, name='xluploader_invoice_upload'),
     path('list_wfdoc', flexflow.list_wfdoc, name='list_wfdoc'),
     path('update_wfdoc/<slug:filter_by_name>', flexflow.update_wfdoc, name='update_wfdoc'),
