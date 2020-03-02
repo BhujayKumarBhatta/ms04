@@ -92,13 +92,14 @@ def download_invoicexlformat(request):
     raise Http404
 
 @validate_token_n_session()
-def list_wfdoc(request):
-    doctype = ''
+def list_wfdoc(request, doctype):
+    #doctype = ''
     docdata_fields = []
     tlclient = tllogin.prep_tlclient_from_session(request)
     flexc = clientflexflow(tlclient) 
     objfields = flexc.get_wfmobj_keys('Wfdoc')
-    object_list = flexc.list_wfmasterObj('Wfdoc')
+    object_list = flexc.list_wfdoc_by_doctype(doctype)
+    #object_list = flexc.list_wfmasterObj_by_key_val('Wfdoc', 'associated_doctype_name', doctype)
     if object_list:
         anyObj = object_list[0]
         doctype = anyObj.get('associated_doctype').get('name')
