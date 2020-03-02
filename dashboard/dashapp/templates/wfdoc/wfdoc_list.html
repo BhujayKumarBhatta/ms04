@@ -2,14 +2,15 @@
 {% block content-area %}
 {% load getattribute %}
 {% url 'dashapp:add_wfmobj'  objname as add_wfmobj %}
+{% url 'dashapp:create_wfdoc'  'tspinvoice' as create_wfdoc %}
 
 
     <div class="container-fluid" style="padding-top:7px">
-        <h3 style="text-align:center"> List of {{ doctype }} </h3>
+        <h3 style="text-align:center"> List of {{ create_wfdoc }} </h3>
         {% block add_delete_button %}
             <div class="row">
                 <div class="col-sm-3">
-                    <a class="btn btn-primary btn-sm fa fa-plus" href="{{ add_wfmobj }}">
+                    <a class="btn btn-primary btn-sm fa fa-plus" href="{{ create_wfdoc }}">
                          &nbsp Add {{ doctype }}
                      </a>
                 </div>

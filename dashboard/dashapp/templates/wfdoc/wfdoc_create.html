@@ -1,0 +1,79 @@
+{% extends "home.html" %}
+{% block content-area %}
+{% load getattribute %}
+{% url 'dashapp:list_wfdoc' as list_wfdoc %}
+{% url 'dashapp:create_wfdoc' doctype as create_wfdoc %}
+
+
+    <div class="container-fluid" style="padding-top:7px;width:60%">
+        <form action="" method="post">
+           {% csrf_token %}            
+        <table class="table" id="edit-format" > 
+            <thead>
+                <h5 style="text-align:center">  Create {{ doctype }}  </h5>
+            </thead>      
+            <tbody>
+	            {% for field_dict in docdata_fields %}
+	             <tr>
+	               <td class="py-0"><label for="{{ field_dict.name }}"> {{ field_dict.name }}:</label></td>
+	               <td class="py-0">
+	                   {% if "NewBorn" in field_dict.status_needed_edit %}
+	                       {% if  field_dict.ftype == "str" %}
+	                           <input type="text"  id="{{ field_dict.name }}" name="{{ field_dict.name }}"  >
+	                       {% elif field_dict.ftype == "int" %}
+	                           <input type=number  id="{{ field_dict.name }}" name="{{ field_dict.name }}"  >
+	                       {% endif %}
+	                   {% endif %}
+	               </td>
+	             </tr>
+	            {% endfor %}
+            </tbody> 
+        </table>
+        
+        
+    </div>
+    
+{% block buttons %}  
+<div class="container-fluid">
+    <div class="row">   
+        <div class="col sm-1"> 
+            <button class="btn btn-sm fa fa-plus"  type="submit"> &nbsp SAVE</button> 
+        </div>
+        <div class="col sm-1">
+            <a class="btn  btn-sm btn-block fa fa-minus" href="{{ list_wfdoc }}"> Close</a>        
+        </div>        
+    </div>   
+</div> 
+<br>  
+{% endblock buttons %}  
+</form>
+
+
+
+<div class="container-fluid" id="edit-format" style="width:60%">         
+      
+        <div class="row">
+         <div class="col-sm-12 justify-content-center"> 
+            {% if result %}
+            <p> "{{ result }}" </p>
+            {% endif %}
+         </div> 
+        </div>
+        </div>
+ 
+{% block audittrails %}
+   
+{% endblock %}
+        
+        
+
+    
+{% endblock content-area %}
+
+
+<!--  ======================================== CODE ENDs HERE ==========================================  
+object_detail.current_actions
+object_detail.current_edit_fields
+
+onclick="return setAction(this)"
+  -->

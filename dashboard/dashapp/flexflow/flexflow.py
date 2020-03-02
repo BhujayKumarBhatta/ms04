@@ -10,13 +10,19 @@ from clientflexflow.client import clientflexflow
 
 
 @validate_token_n_session()
-def create_wfdoc(request, wfdoctype):
+def create_wfdoc(request, doctype):
     tlclient = tllogin.prep_tlclient_from_session(request)
-    flexc = clientflexflow(tlclient)
-    doctypeObj = flexc.list_wfmasterObj('Doctype', {"name": wfdoctype})
-    #wfstatus_list = flexc.list_wfmasterObj('Wfstatus')   # this line is not required 
-    data_fields = doctypeObj.datadocfields
-    print(data_fields)
+    flexc = clientflexflow(tlclient)    
+    doctype_full_dict = flexc.get_wfdoctype_fulldetail(doctype)
+    docdata_fields = doctype_full_dict.get('datadocfields')
+    template_data = {"doctype": doctype,
+                     "docdata_fields": docdata_fields,}
+    template_name =  "wfdoc/wfdoc_create.html"
+    if request.method == 'POST':
+        print(request.POST)
+    web_page = validate_active_session(request, template_name, template_data)
+    return web_page
+    
 
 
 
