@@ -114,9 +114,10 @@ def list_wfdoc(request, doctype):
     tlclient = tllogin.prep_tlclient_from_session(request)
     flexc = clientflexflow(tlclient) 
     objfields = flexc.get_wfmobj_keys('Wfdoc')
-    object_list = flexc.list_wfdoc_by_doctype(doctype)
+    object_list = flexc.list_wfdoc_by_doctype(doctype)    
+    print('printing object list by doctype query from client .....', object_list)
     #object_list = flexc.list_wfmasterObj_by_key_val('Wfdoc', 'associated_doctype_name', doctype)
-    if object_list:
+    if object_list and isinstance(object_list, list):
         anyObj = object_list[0]
         if isinstance(anyObj.get('associated_doctype'), dict):
             doctype = anyObj.get('associated_doctype').get('name')
