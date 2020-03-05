@@ -147,7 +147,7 @@ def update_wfdoc(request, filter_by_name):
     result = object_detail
     if isinstance(object_detail, dict):
         for k, v in object_detail.items():
-            if k == "associated_doctype":
+            if k == "associated_doctype" and isinstance(v, dict):
                 adt = {k: v.get("name")}
                 object_detail.update(adt)
         if 'doc_data' in object_detail.keys():
