@@ -7,6 +7,7 @@
 {% url 'dashapp:list_ravl_obj' "Rate" user_details.roles.0 as list_ravl_Rate %}
 {% url 'dashapp:list_ravl_obj' "Payment" user_details.roles.0 as list_ravl_Payment %}
 {% url 'dashapp:paperhouse_savedraft_list'  "all" as list_draft %}
+{% url 'dashapp:list_wfdoc' 'tspinvoice' as list_flexflow_invoices %}
 
 
 	  <ul class="navbar-nav py-0"> 
@@ -16,7 +17,8 @@
 	            <a class="nav-link dropdown-toggle fas fa-tasks" href="#" id="navbardrop" data-toggle="dropdown">
 	              Invoices
 	            </a>
-	            <div class="dropdown-menu">	              
+	            <div class="dropdown-menu">	
+	            <a class="dropdown-item" href="{{ list_flexflow_invoices }}">flexflow invoices</a>             
 	              <a class="dropdown-item" href="{{list_invoices}}">All Invoices</a>
 	              <a class="dropdown-item" href="{{ list_draft }}">Saved as Draft </a>
 	            </div>

@@ -9,6 +9,12 @@ from dashapp.tokenleader import tllogin
 from clientflexflow.client import clientflexflow
 from django.template.defaultfilters import lower
 
+fields_for_text_to_list_conversion = [
+    "permitted_to_roles", 
+    "status_needed_edit", 
+    "roles_to_view_audit",
+    "hide_to_roles",
+    ]
 
 def lower_key_dict(input_dict):
     lower_dict = {}
@@ -112,7 +118,10 @@ def list_wfdoc(request, doctype):
     #object_list = flexc.list_wfmasterObj_by_key_val('Wfdoc', 'associated_doctype_name', doctype)
     if object_list:
         anyObj = object_list[0]
-        doctype = anyObj.get('associated_doctype').get('name')
+        if isinstance(anyObj.get('associated_doctype'), dict):
+            doctype = anyObj.get('associated_doctype').get('name')
+        else:
+            doctype = anyObj.get('associated_doctype')
         docdata_fields = [k for k in anyObj.get('doc_data').keys()] #TODO: order the keys as per config
     template_data = {"objname": 'Wfdoc',
                      "doctype": doctype, #local variable 'doctype' referenced before assignment
@@ -186,7 +195,7 @@ def add_wfmobj(request, objname):
             objvalue = request.POST.get(objfield)
             if  objfield == "associated_doctype":
                 objvalue = {"name": request.POST.get(objfield)}
-            if  objfield in  ["permitted_to_roles", "status_needed_edit", "roles_to_view_audit"] :
+            if  objfield in fields_for_text_to_list_conversion :
                 objvalue = request.POST.get(objfield).split(',')
             post_data.update({objfield: objvalue})
         result = flexc.add_wfmasterObj(objname, [post_data])
@@ -239,14 +248,14 @@ def update_wfmobj(request, objname, filter_by_name):
 #             strv = ','.join(v)
 #             object_detail.update({k: strv})
     if request.method == 'POST':
-        post_data = {}
+        post_data = object_detail
         for objfield in objfields:
             objvalue = request.POST.get(objfield)
             if  objvalue:
                 post_data.update({objfield: objvalue})
             if objfield == "associated_doctype":
                 post_data.update( {objfield: {"name": objvalue}})
-            if  objfield in  ["permitted_to_roles", "status_needed_edit", "roles_to_view_audit"] :
+            if  objfield in fields_for_text_to_list_conversion :
                 objvalue = request.POST.get(objfield).split(',')
                 post_data.update( {objfield: objvalue})
         input_data = {"search_filter": search_filter,
