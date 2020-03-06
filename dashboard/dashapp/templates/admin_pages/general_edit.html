@@ -22,7 +22,7 @@
 	                            {% endfor %}
 	                        </select>
 	                    </td>
-                    {% elif field == "need_prev_status" or field == "need_current_status" or field == "leads_to_status" %}
+                    {% elif field == "need_prev_status"  or field == "leads_to_status" %}
                         <td class="py-0">
                             <select  id="{{ field }}" name="{{ field }}" >
 	                            {% for wfstat in wfstatus_list %}

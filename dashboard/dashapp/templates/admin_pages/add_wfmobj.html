@@ -22,7 +22,7 @@
                                 {% endfor %}
                             </select>
                         </td>
-                    {% elif field == "need_prev_status" or field == "need_current_status" or field == "leads_to_status" %}
+                    {% elif field == "need_prev_status" or  field == "leads_to_status" %}
                         <td class="py-0">
                             <select  id="{{ field }}" name="{{ field }}" required>
 	                            {% for wfstat in wfstatus_list %}
@@ -42,7 +42,7 @@
                         <td class="py-0"><input type="text"  id="{{ field }}" name="{{ field }}"  placeholder=" number e.g. 10 or 20 " required></td>
                     
                     {% else %}
-                        <td class="py-0"><input type="text"  id="{{ field }}" name="{{ field }}"  required></td>
+                        <td class="py-0"><input type="text"  id="{{ field }}" name="{{ field }}"  ></td>
                     
                     {% endif %}
                     

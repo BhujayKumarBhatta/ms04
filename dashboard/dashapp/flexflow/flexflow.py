@@ -10,10 +10,12 @@ from clientflexflow.client import clientflexflow
 from django.template.defaultfilters import lower
 
 fields_for_text_to_list_conversion = [
+    "need_current_status",
     "permitted_to_roles", 
     "status_needed_edit", 
     "roles_to_view_audit",
     "hide_to_roles",
+    "undo_prev_hide_for",    
     ]
 
 def lower_key_dict(input_dict):
@@ -145,6 +147,7 @@ def update_wfdoc(request, filter_by_name):
     #search_filter = {"name": filter_by_name}
     #object_detail = flexc.list_wfmasterObj_by_key_val('Wfdoc', 'name', filter_by_name)
     object_detail = flexc.get_wfdoc_fulldetail(filter_by_name)
+    print('object_detail......................................',object_detail)
     result = object_detail
     if isinstance(object_detail, dict):
         for k, v in object_detail.items():
