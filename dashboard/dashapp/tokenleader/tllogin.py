@@ -125,7 +125,8 @@ def login(request):
 
 def validate_active_session(request, template_name, 
                             template_data, expired_token=False):
-    session_user_details = request.session.get('session_user_details') 
+    session_user_details = request.session.get('session_user_details')
+    print('session_user_details', session_user_details)
     s_login_time = request.session.get('last_clicked_on')
     session_expairy_seconds = 900
     elpsed_time_in_sec = 0

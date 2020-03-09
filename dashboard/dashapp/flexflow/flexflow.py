@@ -147,7 +147,7 @@ def update_wfdoc(request, filter_by_name):
     #search_filter = {"name": filter_by_name}
     #object_detail = flexc.list_wfmasterObj_by_key_val('Wfdoc', 'name', filter_by_name)
     object_detail = flexc.get_wfdoc_fulldetail(filter_by_name)
-    print('object_detail......................................',object_detail)
+    print('full_detials_of wfdoc: ',object_detail)
     result = object_detail
     if isinstance(object_detail, dict):
         for k, v in object_detail.items():
@@ -158,7 +158,7 @@ def update_wfdoc(request, filter_by_name):
             data_fields = object_detail.get('doc_data').keys()
             result = None
     if request.method == 'POST':
-        print('how request.POST', request.POST)
+        #print('how request.POST', request.POST)
         post_data = {}
         button_action = request.POST.get('button_action')
         input_data = {"wfdoc_name": object_detail.get('name'),
@@ -170,7 +170,7 @@ def update_wfdoc(request, filter_by_name):
             if  objvalue:
                 form_doc_data.update({objfield: objvalue})
         if form_doc_data: input_data.update({'doc_data': form_doc_data})
-        print('how is the post data ??????????????', input_data)
+        #print('how is the post data ??????????????', input_data)
         result = flexc.wfdoc_update(input_data)
     template_data = {"objname": 'Wfdoc',
                      "data_fields": data_fields,
