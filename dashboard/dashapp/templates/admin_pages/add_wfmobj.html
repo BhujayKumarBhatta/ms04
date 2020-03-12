@@ -40,6 +40,8 @@
                         <td class="py-0"><input type="text"  id="{{ field }}" name="{{ field }}"  placeholder="str or int " required></td>
                     {% elif field == "flength" %}
                         <td class="py-0"><input type="text"  id="{{ field }}" name="{{ field }}"  placeholder=" number e.g. 10 or 20 " required></td>
+                    {% elif field == "wcf_filter" %}
+                        <td class="py-0"><input type="text"  id="{{ field }}" name="{{ field }}"  placeholder="one of the follwing: org, ou , dept . Choose only one field for org and another for ou or dept " required></td>
                     
                     {% else %}
                         <td class="py-0"><input type="text"  id="{{ field }}" name="{{ field }}"  ></td>

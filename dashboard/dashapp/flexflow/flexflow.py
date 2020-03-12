@@ -15,7 +15,8 @@ fields_for_text_to_list_conversion = [
     "status_needed_edit", 
     "roles_to_view_audit",
     "hide_to_roles",
-    "undo_prev_hide_for",    
+    "undo_prev_hide_for",
+    "wfc_filter_to_roles",
     ]
 
 def lower_key_dict(input_dict):
