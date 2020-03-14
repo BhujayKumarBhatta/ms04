@@ -136,17 +136,23 @@ def list_wfdoc(request, doctype):
     web_page = validate_active_session(request, template_name, template_data)
     return web_page
 
+##############################################################################
+#this is a support function and should not be decorated
+######################################################################################
+def _superimpose_form_data_with_existing_data(object_detail, request):
+    form_doc_data = {}
+    existing_doc_data = object_detail.get('doc_data')
+    for objfield in existing_doc_data:
+        objvalue = request.POST.get(objfield)
+        if  objvalue:
+            form_doc_data.update({objfield: objvalue})
+    return form_doc_data
 
 @validate_token_n_session()
 def update_wfdoc(request, filter_by_name):
     tlclient = tllogin.prep_tlclient_from_session(request)
     flexc = clientflexflow(tlclient)
-    #objfields = flexc.get_wfmobj_keys('Wfdoc')
-    #doctypes = flexc.list_wfmasterObj('Doctype')
-    #wfstatus_list = flexc.list_wfmasterObj('Wfstatus')   # this line is not required 
     data_fields = []
-    #search_filter = {"name": filter_by_name}
-    #object_detail = flexc.list_wfmasterObj_by_key_val('Wfdoc', 'name', filter_by_name)
     object_detail = flexc.get_wfdoc_fulldetail(filter_by_name)
     print('full_detials_of wfdoc: ',object_detail)
     result = object_detail
@@ -159,20 +165,18 @@ def update_wfdoc(request, filter_by_name):
             data_fields = object_detail.get('doc_data').keys()
             result = None
     if request.method == 'POST':
-        #print('how request.POST', request.POST)
-        post_data = {}
         button_action = request.POST.get('button_action')
+        form_doc_data = _superimpose_form_data_with_existing_data(object_detail, request,)
         input_data = {"wfdoc_name": object_detail.get('name'),
-                    "intended_action": button_action}
-        existing_doc_data = object_detail.get('doc_data')
-        form_doc_data = {}
-        for objfield in existing_doc_data:
-            objvalue = request.POST.get(objfield)
-            if  objvalue:
-                form_doc_data.update({objfield: objvalue})
+                       "intended_action": button_action}
         if form_doc_data: input_data.update({'doc_data': form_doc_data})
-        #print('how is the post data ??????????????', input_data)
-        result = flexc.wfdoc_update(input_data)
+        if button_action.lower().strip() == "saveasdraft":
+            wfdoc_name =  object_detail.get('name')
+            doctype = object_detail.get("associated_doctype")
+            draft_data = {"draft_data": form_doc_data}
+            result = flexc.wfdoc_saveasdraft(doctype, wfdoc_name, draft_data)
+        else:
+            result = flexc.wfdoc_update(input_data)
     template_data = {"objname": 'Wfdoc',
                      "data_fields": data_fields,
                      #"objfields": objfields,
@@ -183,6 +187,20 @@ def update_wfdoc(request, filter_by_name):
     template_name =  "wfdoc/wfdoc_edit.html"
     web_page = validate_active_session(request, template_name, template_data)
     return web_page
+
+def abc():
+    
+    #search_filter = {"name": filter_by_name}
+    #object_detail = flexc.list_wfmasterObj_by_key_val('Wfdoc', 'name', filter_by_name)
+    #objfields = flexc.get_wfmobj_keys('Wfdoc')
+    #doctypes = flexc.list_wfmasterObj('Doctype')
+    #wfstatus_list = flexc.list_wfmasterObj('Wfstatus')   # this line is not required 
+    pass
+    
+
+def save_as_draft(button_action):
+    if button_action.lower().strip() == "saveasdraft":
+        pass
 
 
 
