@@ -30,6 +30,7 @@
                     {% for field_name in docdata_fields %}
 	                    <th>{{ field_name }}</th>
 	                {% endfor %}
+	                <th>has draft</th>
 	                <th>edit</th>
 	                <th>delete</th>
                 </tr>
@@ -43,6 +44,7 @@
                         {% for field_name in docdata_fields %}
                             <td>{{ docdata|getattribute:field_name }}</td>
                         {% endfor %}
+                        <td>{{ object.has_draft_for_roles }}</td>
                         <td>
                             <a class="fa fa-edit" style="font-size:10px;color:red"  href="{% url 'dashapp:update_wfdoc' object.name  %}" ></a>               
                         </td>

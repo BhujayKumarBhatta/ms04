@@ -196,12 +196,6 @@ def abc():
     #doctypes = flexc.list_wfmasterObj('Doctype')
     #wfstatus_list = flexc.list_wfmasterObj('Wfstatus')   # this line is not required 
     pass
-    
-
-def save_as_draft(button_action):
-    if button_action.lower().strip() == "saveasdraft":
-        pass
-
 
 
 @validate_token_n_session()
