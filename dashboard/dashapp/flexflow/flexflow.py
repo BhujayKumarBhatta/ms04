@@ -197,13 +197,18 @@ def list_drafts(request, doctype):
     flexc = clientflexflow(tlclient) 
     objfields = flexc.get_wfmobj_keys('Wfdoc')
     object_list = flexc.list_drafts(doctype)
+    print('draft lists...........', object_list)
     if object_list and isinstance(object_list, list):
-        anyObj = object_list[0]
+        for Obj in object_list:
+            if Obj.get('doc_data'):
+                anyObj = Obj
+                print('found object ', anyObj)
+                break
         if isinstance(anyObj.get('associated_doctype'), dict):
             doctype = anyObj.get('associated_doctype').get('name')
         else:
             doctype = anyObj.get('associated_doctype')
-        docdata_fields = [k for k in anyObj.get('doc_data').keys()] #TODO: order the keys as per config
+        docdata_fields = [k for k in anyObj.get('doc_data').keys() ] #TODO: order the keys as per config
     template_data = {"objname": 'Wfdoc',
                      "doctype": doctype, #local variable 'doctype' referenced before assignment
                      "docdata_fields": docdata_fields,

@@ -20,6 +20,7 @@
 {% url 'dashapp:striker_list_responces' 'all' as listresponses %}
 {% url 'dashapp:list_mailmap_by_status' 'all' as list_mailmap_by_status %}
 {% url 'dashapp:list_wfdoc' 'tspinvoice' as list_flexflow_invoices %}
+{% url 'dashapp:list_drafts' 'tspinvoice' as list_flexflow_drafts %}
 {% url 'dashapp:list_doctypes'  as list_doctypes %}
 
 
@@ -48,6 +49,7 @@
                 <a class="dropdown-item" href="{% url 'dashapp:list_wfmobj' 'Wfaction'%} "> Workflow Action Rules</a>
                                 
                 <a class="dropdown-item" href="{{ list_doctypes }}"> Dynamic Workflow List</a>
+                
               </div>
             </li>
 		    
@@ -58,6 +60,7 @@
 	            </a>
 	            <div class="dropdown-menu">
 	            <a class="dropdown-item" href="{{ list_flexflow_invoices }}">flexflow invoices</a>
+	            <a class="dropdown-item" href="{{ list_flexflow_drafts }}">flexflow draft</a>
 	              <a class="dropdown-item" href="{{list_invoices}}">All</a>
 	              <a class="dropdown-item" href="{{ list_draft }}">Saved as Draft </a>
 	              <a class="dropdown-item" href="#">Ready to Send MIS</a>
