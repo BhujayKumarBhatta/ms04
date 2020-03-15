@@ -188,6 +188,34 @@ def update_wfdoc(request, filter_by_name):
     web_page = validate_active_session(request, template_name, template_data)
     return web_page
 
+
+
+@validate_token_n_session()
+def list_drafts(request, doctype):
+    docdata_fields = []
+    tlclient = tllogin.prep_tlclient_from_session(request)
+    flexc = clientflexflow(tlclient) 
+    objfields = flexc.get_wfmobj_keys('Wfdoc')
+    object_list = flexc.list_drafts(doctype)
+    if object_list and isinstance(object_list, list):
+        anyObj = object_list[0]
+        if isinstance(anyObj.get('associated_doctype'), dict):
+            doctype = anyObj.get('associated_doctype').get('name')
+        else:
+            doctype = anyObj.get('associated_doctype')
+        docdata_fields = [k for k in anyObj.get('doc_data').keys()] #TODO: order the keys as per config
+    template_data = {"objname": 'Wfdoc',
+                     "doctype": doctype, #local variable 'doctype' referenced before assignment
+                     "docdata_fields": docdata_fields,
+                     "objfields": objfields,
+                     "object_list": object_list,}
+    template_name =  "wfdoc/draft_list.html"
+    web_page = validate_active_session(request, template_name, template_data)
+    return web_page
+
+
+
+
 def abc():
     
     #search_filter = {"name": filter_by_name}

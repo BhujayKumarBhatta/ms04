@@ -124,6 +124,7 @@ urlpatterns = [path('', views.login, name='login'),
     path('create_wfdoc/<slug:doctype>', flexflow.create_wfdoc, name='create_wfdoc'),
     path('xluploader_invoice_upload/<slug:wfdoctype>', flexflow.xl_upload, name='xluploader_invoice_upload'),
     path('list_wfdoc/<slug:doctype>', flexflow.list_wfdoc, name='list_wfdoc'),
+    path('list_drafts/<slug:doctype>', flexflow.list_drafts, name='list_drafts'),
     path('update_wfdoc/<slug:filter_by_name>', flexflow.update_wfdoc, name='update_wfdoc'),
     path('list_doctypes', flexflow.list_doctypes, name='list_doctypes'),
     ]
