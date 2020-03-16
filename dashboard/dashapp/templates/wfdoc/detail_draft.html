@@ -1,0 +1,105 @@
+{% extends "home.html" %}
+{% block content-area %}
+{% load getattribute %}
+{% url 'dashapp:list_wfdoc' as list_wfdoc %}
+
+
+    <div class="container-fluid" style="padding-top:7px;width:60%">
+        <form action="" method="post">
+           {% csrf_token %}            
+        <table class="table" id="edit-format" > 
+            <thead>
+                <h5 style="text-align:center">  Edit {{ object_detail.associated_doctype }}  </h5>
+            </thead>      
+            <tbody>
+	            {% for field in data_fields %}
+	             <tr>
+	               <td class="py-0"><label for="{{ field }}"> {{ field }}:</label></td>
+	               <td class="py-0">
+	                   {% if field in object_detail.current_edit_fields %}
+	                       <input type="text"  id="{{ field }}" name="{{ field }}" placeholder="{{ object_detail.doc_data|getattribute:field }}" >
+	                   {% else %}
+	                       <input type="text"  id="{{ field }}" name="{{ field }}" placeholder="{{ object_detail.doc_data|getattribute:field }}" readonly>
+	                   {% endif %}
+	               </td>
+	             </tr>
+	            {% endfor %}
+            </tbody> 
+        </table>
+        
+        
+    </div>
+    
+{% block buttons %}  
+<div class="container-fluid">
+    <div class="row">
+    {% for btn_name in object_detail.current_actions %}
+        <div class="col sm-1"> 
+            <button class="btn btn-sm  btn-block fa fa-send" type="submit" 
+               name="button_action" id="{{btn_name}}" value="{{btn_name}}" >
+               {{btn_name}}
+            </button>
+        </div>
+    {% endfor %}
+        <div class="col sm-1">
+            <a class="btn  btn-sm btn-block fa fa-window-close" href="{{ list_wfdoc }}"> Close</a>        
+        </div>        
+    </div>   
+</div> 
+<br>  
+{% endblock buttons %}  
+</form>
+
+
+
+<div class="container-fluid" id="edit-format" style="width:60%">         
+      
+        <div class="row">
+         <div class="col-sm-12 justify-content-center"> 
+            {% if result %}
+            <p> "{{ result }}" </p>
+            {% endif %}
+         </div> 
+        </div>
+        </div>
+ 
+{% block audittrails %}
+    {% for role in user_details.roles %}
+        {% if role in object_detail.roles_to_view_audit %}
+            {% include "wfdoc/audittrails.html" with audittrails=object_detail.audittrails  %}
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+        
+        
+<br><br><br><br><br>        
+<div class="container-fluid" style="padding-top:7px;width:60%">
+	<table class="table" id="edit-format">
+          <thead > <p>Internal for workflow purpose</p></thead>
+          <tbody>
+              <tr>
+                  <td class="py-0"><label for="current_status"> current_status:</label></td>
+                  <td class="py-0"><input type="text"  id="current_status" name="current_status" placeholder="{{ object_detail.current_status }}" readonly></td>
+                  <td class="py-0"><label for="prev_status"> prev_status:</label></td>
+                  <td class="py-0"><input type="text"  id="prev_status" name="prev_status" placeholder="{{ object_detail.prev_status }}" readonly></td>
+              </tr>
+              <tr>
+                  <td class="py-0"><label for="name"> unique id:</label></td>
+                  <td class="py-0"><input type="text"  id="name" name="name" placeholder="{{ object_detail.name }}" readonly></td>
+                  <td class="py-0"><label for="associated_doctype"> Workflow Type:</label></td>
+                  <td class="py-0"><input type="text"  id="associated_doctype" name="associated_doctype" placeholder="{{ object_detail.current_edit_fields }}" readonly></td>
+              </tr>            
+          </tbody>        
+      </table>
+
+</div>
+    
+{% endblock content-area %}
+
+
+<!--  ======================================== CODE ENDs HERE ==========================================  
+object_detail.current_actions
+object_detail.current_edit_fields
+
+onclick="return setAction(this)"
+  -->

@@ -136,6 +136,8 @@ def list_wfdoc(request, doctype):
     web_page = validate_active_session(request, template_name, template_data)
     return web_page
 
+
+
 ##############################################################################
 #this is a support function and should not be decorated
 ######################################################################################
@@ -218,7 +220,28 @@ def list_drafts(request, doctype):
     web_page = validate_active_session(request, template_name, template_data)
     return web_page
 
-
+@validate_token_n_session()
+def update_from_draft(request, filter_by_name):
+    tlclient = tllogin.prep_tlclient_from_session(request)
+    flexc = clientflexflow(tlclient)
+    data_fields = []
+    object_detail = flexc.detail_draft(filter_by_name, replace_orig_data=True)
+    result = object_detail
+    if isinstance(object_detail, dict):
+        for k, v in object_detail.items():
+            if k == "associated_doctype" and isinstance(v, dict):
+                adt = {k: v.get("name")}
+                object_detail.update(adt)
+        if 'doc_data' in object_detail.keys():
+            data_fields = object_detail.get('doc_data').keys()
+            result = None
+    template_data = {"objname": 'Wfdoc',
+                     "data_fields": data_fields,
+                     "object_detail": object_detail,                    
+                     "result": result,}
+    template_name =  "wfdoc/detail_draft.html"
+    web_page = validate_active_session(request, template_name, template_data)
+    return web_page
 
 
 def abc():

@@ -46,7 +46,7 @@
                         {% endfor %}
                         <td>{{ object.has_draft_for_roles }}</td>
                         <td>
-                            <a class="fa fa-edit" style="font-size:10px;color:red"  href="{% url 'dashapp:update_wfdoc' object.name  %}" ></a>               
+                            <a class="fa fa-edit" style="font-size:10px;color:red"  href="{% url 'dashapp:update_from_draft' object.name  %}" ></a>               
                         </td>
                         <td>
                             <a class="fa fa-remove" style="font-size:10px;color:red"  href="{% url 'dashapp:delete_wfmobj' objname object.name  %}" ></a>               
