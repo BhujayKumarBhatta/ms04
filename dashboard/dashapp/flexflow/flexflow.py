@@ -247,14 +247,15 @@ def update_from_draft(request, filter_by_name):
     if request.method == 'POST':
         button_action = request.POST.get('button_action')
         form_doc_data = _mix_prev_draft_with_form_data(draft_object_detail, request)
-        input_data = {"wfdoc_name": draft_object_detail.get('name'),
-                       "intended_action": button_action}
-        if form_doc_data: input_data.update({'doc_data': form_doc_data})# remember only the data which are changing are required as keys, the methids within flexflow workflow wiill be responsible to create the full data (old+new) for the update
+#         input_data = {"wfdoc_name": draft_object_detail.get('name'),
+#                        "intended_action": button_action}
+#         if form_doc_data: input_data.update({'doc_data': form_doc_data})# remember only the data which are changing are required as keys, the methids within flexflow workflow wiill be responsible to create the full data (old+new) for the update
         if button_action.lower().strip() == "saveasdraft":            
             result = _update_draft_data(flexc, draft_object_detail, form_doc_data)
         else:
             #use update from draft here
-            result = flexc.wfdoc_update(input_data)
+            result = flexc.action_from_draft(draft_object_detail.get('name'), 
+                                             button_action, form_doc_data)
     template_data = {"objname": 'Wfdoc',
                      "data_fields": data_fields,
                      "object_detail": draft_object_detail,                    
