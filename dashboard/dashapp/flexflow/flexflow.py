@@ -54,15 +54,15 @@ def _mix_prev_draft_with_form_data(draft_object_detail, request):
     existing_draft_data = draft_object_detail.get('doc_data')
     previous_draft_data = draft_object_detail.get('draft_data')
     existing_draft_data.update(previous_draft_data)
-    print('draft_data_with_previous_draft', existing_draft_data)
+    print('full detail_draft', existing_draft_data)
     for objfield in existing_draft_data:
         objvalue = request.POST.get(objfield)
         if  objvalue:
             form_doc_data.update({objfield: objvalue})
     print('form data current: ', form_doc_data)
-    form_doc_data.update(previous_draft_data)
-    print('form data with previous draft: ', form_doc_data)
-    return form_doc_data
+    previous_draft_data.update(form_doc_data)
+    print('form data with previous draft: ', previous_draft_data)
+    return previous_draft_data
 
 def _update_draft_data(flexc, draft_object_detail, form_doc_data):
     wfdoc_name =  draft_object_detail.get('name')
@@ -242,20 +242,18 @@ def update_from_draft(request, filter_by_name):
     tlclient = tllogin.prep_tlclient_from_session(request)
     flexc = clientflexflow(tlclient)    
     draft_object_detail = flexc.detail_draft(filter_by_name, replace_orig_data=True)
-    print('draft_object_detail:   ', draft_object_detail)
+    #print('draft_object_detail:   ', draft_object_detail)
     data_fields, result = _get_fieldnames_from_object(draft_object_detail)
     if request.method == 'POST':
         button_action = request.POST.get('button_action')
         form_doc_data = _mix_prev_draft_with_form_data(draft_object_detail, request)
-#         input_data = {"wfdoc_name": draft_object_detail.get('name'),
-#                        "intended_action": button_action}
-#         if form_doc_data: input_data.update({'doc_data': form_doc_data})# remember only the data which are changing are required as keys, the methids within flexflow workflow wiill be responsible to create the full data (old+new) for the update
+        #print('form_doc_data along with previous draft')
         if button_action.lower().strip() == "saveasdraft":            
             result = _update_draft_data(flexc, draft_object_detail, form_doc_data)
         else:
-            #use update from draft here
+            addl_input = {"addl_input": form_doc_data}
             result = flexc.action_from_draft(draft_object_detail.get('name'), 
-                                             button_action, form_doc_data)
+                                             button_action, addl_input)
     template_data = {"objname": 'Wfdoc',
                      "data_fields": data_fields,
                      "object_detail": draft_object_detail,                    
