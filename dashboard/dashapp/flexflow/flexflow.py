@@ -210,8 +210,9 @@ def update_wfdoc(request, filter_by_name):
     return web_page
 
 @validate_token_n_session()
-def list_drafts(request, doctype):
+def list_drafts(request, doctype, status_name_filter=None):
     docdata_fields = []
+    header_buttons = []
     tlclient = tllogin.prep_tlclient_from_session(request)
     flexc = clientflexflow(tlclient) 
     objfields = flexc.get_wfmobj_keys('Wfdoc')
@@ -221,20 +222,24 @@ def list_drafts(request, doctype):
         for Obj in object_list:
             if Obj.get('doc_data'):
                 anyObj = Obj
-                print('found object ', anyObj)
+                #print('found object ', anyObj)
                 break
         if isinstance(anyObj.get('associated_doctype'), dict):
             doctype = anyObj.get('associated_doctype').get('name')
         else:
             doctype = anyObj.get('associated_doctype')
         docdata_fields = [k for k in anyObj.get('doc_data').keys() ] #TODO: order the keys as per config
-        filter_actions = set([','.join(obj.get('current_actions')) for obj in object_list])
+        header_buttons = set([obj.get('current_status') for obj in object_list])
+        if status_name_filter:
+            object_list = [fltobjd for fltobjd in object_list if fltobjd.get('current_status') == status_name_filter]
+            header_buttons = []
+            
     template_data = {"objname": 'Wfdoc',
                      "doctype": doctype, #local variable 'doctype' referenced before assignment
                      "docdata_fields": docdata_fields,
                      "objfields": objfields,
                      "object_list": object_list,
-                     "filter_actions": filter_actions, 
+                     "header_buttons": header_buttons, 
                      }
     template_name =  "wfdoc/draft_list.html"
     web_page = validate_active_session(request, template_name, template_data)

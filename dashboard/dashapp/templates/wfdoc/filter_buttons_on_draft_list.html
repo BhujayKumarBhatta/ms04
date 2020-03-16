@@ -1,9 +1,9 @@
 <div class="container-fluid">
     <div class="row">
-    {% for btn_name in current_actions %}
-        <div class="col sm-1"> 
-            <a href="" class="btn btn-sm  btn-block fa fa-filter" >
-                Filter By {{btn_name}} 
+    {% for btn_name in header_buttons %}
+        <div class="col sm-1">            
+                <a href="{% url 'dashapp:filtered_list_drafts' doctype btn_name %}" class="btn btn-sm  btn-block fa fa-filter" >                    
+                {{btn_name}} 
             </a>
             
         </div>

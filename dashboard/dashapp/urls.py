@@ -128,7 +128,7 @@ urlpatterns = [path('', views.login, name='login'),
     path('update_wfdoc/<slug:filter_by_name>', flexflow.update_wfdoc, name='update_wfdoc'),
     path('list_doctypes', flexflow.list_doctypes, name='list_doctypes'),
     path('update_from_draft/<slug:filter_by_name>', flexflow.update_from_draft, name='update_from_draft'),
-    
+    path('filtered_list_drafts/<slug:doctype>/<slug:status_name_filter>', flexflow.list_drafts, name='filtered_list_drafts'),
     ]
 
 

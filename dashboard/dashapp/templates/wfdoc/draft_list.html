@@ -4,7 +4,7 @@
 {% url 'dashapp:create_wfdoc'  doctype as create_wfdoc %}
 
 
-    {% include "wfdoc/filter_buttons_on_draft_list.html" with current_actions=current_actions %}
+    {% include "wfdoc/filter_buttons_on_draft_list.html" with header_buttons=header_buttons doctype=doctype %}
                
         <table class="table table-striped table-hover">
             <thead >
