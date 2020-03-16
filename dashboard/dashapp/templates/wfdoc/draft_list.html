@@ -4,23 +4,7 @@
 {% url 'dashapp:create_wfdoc'  doctype as create_wfdoc %}
 
 
-    <div class="container-fluid" style="padding-top:7px">
-        <h3 style="text-align:center"> List of {{ doctype }} </h3>
-        {% block add_delete_button %}
-            <div class="row">
-                <div class="col-sm-3">
-                    <a class="btn btn-primary btn-sm fa fa-plus" href="{{ create_wfdoc }}">
-                         &nbsp Add {{ doctype }}
-                     </a>
-                </div>
-                <div class="col-sm-5 justify-content-center">     
-                </div>
-                <div class="col-sm-3 justify-content-end"  >
-                    <a class="btn  btn-sm fa fa-minus" href="{{ ldept }}"> &nbsp Delete All </a>
-                </div>
-            </div>
-
-        {% endblock add_delete_button %} 
+    {% include "wfdoc/filter_buttons_on_draft_list.html" with current_actions=current_actions %}
                
         <table class="table table-striped table-hover">
             <thead >

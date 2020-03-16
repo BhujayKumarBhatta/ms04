@@ -228,11 +228,14 @@ def list_drafts(request, doctype):
         else:
             doctype = anyObj.get('associated_doctype')
         docdata_fields = [k for k in anyObj.get('doc_data').keys() ] #TODO: order the keys as per config
+        filter_actions = set([','.join(obj.get('current_actions')) for obj in object_list])
     template_data = {"objname": 'Wfdoc',
                      "doctype": doctype, #local variable 'doctype' referenced before assignment
                      "docdata_fields": docdata_fields,
                      "objfields": objfields,
-                     "object_list": object_list,}
+                     "object_list": object_list,
+                     "filter_actions": filter_actions, 
+                     }
     template_name =  "wfdoc/draft_list.html"
     web_page = validate_active_session(request, template_name, template_data)
     return web_page
