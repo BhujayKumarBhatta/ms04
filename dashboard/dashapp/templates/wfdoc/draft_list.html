@@ -3,8 +3,19 @@
 {% block page_heading %} 
     <h4 style="text-align:center"> filter the {{ doctype }} drafts to take action  </h4> 
 {% endblock page_heading %}
+
 {% block header_buttons %}
-    {% include "wfdoc/filter_buttons_on_draft_list.html" with filter_buttons=filter_buttons doctype=doctype %}
+    <div class="container-fluid">
+    <div class="row">
+        {% for btn_name in filter_buttons %}
+            <div class="col sm-1">            
+                <a href="{% url 'dashapp:filtered_list_drafts' doctype btn_name %}" class="btn btn-sm  btn-block fa fa-filter" >                    
+                    {{btn_name}} 
+                </a>
+            </div>
+        {% endfor %}
+    </div>   
+</div>
 {% endblock header_buttons %}
 
 {% block draft_column_heading %}{% endblock draft_column_heading %}
@@ -16,6 +27,7 @@
     </td>
 {% endblock edit_icon %}
 {% block delete_icon_header %}{% endblock delete_icon_header %}
-{% block delete_icon %}{% endblock delete_icon %}     
+{% block delete_icon %}{% endblock delete_icon %} 
+ 
 
 

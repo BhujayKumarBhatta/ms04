@@ -1,17 +1,34 @@
 {% extends "wfdoc/draft_list.html" %}
-
-<form action="{{ update_from_draft }}" method="post">  
- {% csrf_token %} 
 {% block page_heading %} 
-    <h4 style="text-align:center"> select the  drafts and press action buttons in the header  </h4> 
+    <h4 style="text-align:center"> select the  drafts and press action buttons  </h4> 
 {% endblock page_heading %}
+
+
+   
 {% block header_buttons %}
-    {% include "wfdoc/filter_buttons_on_draft_list.html" with current_actions=current_actions doctype=doctype %}
-{% endblock header_buttons %}
+    {% block form_content_start %}
+        <form action="{% url 'dashapp:update_selected_fm_drafts'  %}" method="post"> {% csrf_token %}
+    {% endblock form_content_start %}
+
+	<div class="container-fluid">
+	    <div class="row">    
+	       {% for btn_name in current_actions %}
+	            <div class="col sm-1">            
+	                <button   name="btn_name" id="{{ btn_name }}" value="{{ btn_name }}" class="btn btn-sm  btn-block fa fa-send" >
+	                Submit {{btn_name}} 
+	            </button>
+	            </div>
+	        {% endfor %}
+	    </div>   
+	</div>
+	{% endblock header_buttons %}
 
 {% block select_chkbox_heading %}<td>Select</td>{% endblock select_chkbox_heading %}
 {% block select_chkbox %}
-    <td><input type="checkbox" id="chk_{{ object.name }}" name="wfdoc_name" value="{{ object.name }}" /></td>
+    <td><input type="checkbox" id="chk_{{ object.name }}" name="selected_wfdocs" value="{{ object.name }}" /></td>
 {% endblock select_chkbox %}
+{% block form_content_end %} </form>{% endblock form_content_end %}
+   
 
-</form>
+
+

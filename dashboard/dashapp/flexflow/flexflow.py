@@ -275,6 +275,18 @@ def update_from_draft(request, filter_by_name):
     return web_page
 
 @validate_token_n_session()
+def update_selected_fm_draft(request):
+    tlclient = tllogin.prep_tlclient_from_session(request)
+    flexc = clientflexflow(tlclient)
+    if request.method == 'POST':
+        querydict = request.POST.copy()
+        print('how the post result action from draft ', querydict)   
+        Action = querydict.get("btn_name")
+        list_selected_invoices = querydict.getlist("selected_wfdocs")
+        print("list_selected_invoices  and Action", list_selected_invoices, Action)
+        
+
+@validate_token_n_session()
 def add_wfmobj(request, objname):
     tlclient = tllogin.prep_tlclient_from_session(request)
     flexc = clientflexflow(tlclient) 

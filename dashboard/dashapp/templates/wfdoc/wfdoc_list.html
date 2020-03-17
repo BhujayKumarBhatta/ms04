@@ -9,7 +9,9 @@
       <h3 style="text-align:center"> List of {{ doctype }} </h3>
   {% endblock page_heading %}
   
+  
   {% block header_buttons %}
+    {% block form_content_start %}{% endblock form_content_start %}
       <div class="row">
           <div class="col-sm-3">
               <a class="btn btn-primary btn-sm fa fa-plus" href="{{ create_wfdoc }}">
@@ -86,7 +88,8 @@
      </tbody>
       {% endblock table_body %}
     </table>
-    {% endblock table_data %} 
+    {% endblock table_data %}
+    {% block form_content_end %}{% endblock form_content_end %}
     
     {% block result_display %}
     <p>{{ result }}</p>

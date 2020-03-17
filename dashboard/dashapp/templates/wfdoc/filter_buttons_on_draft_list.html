@@ -1,6 +1,5 @@
 <div class="container-fluid">
     <div class="row">
-    {% if filter_buttons %}
 	    {% for btn_name in filter_buttons %}
 	        <div class="col sm-1">            
 	            <a href="{% url 'dashapp:filtered_list_drafts' doctype btn_name %}" class="btn btn-sm  btn-block fa fa-filter" >                    
@@ -8,15 +7,5 @@
 	            </a>
 	        </div>
 	    {% endfor %}
-	{% elif current_actions %}
-	   {% for btn_name in current_actions %}
-            <div class="col sm-1">            
-                <button   name="btn_name" id="{{ btn_name }}" value="{{ btn_name }}" class="btn btn-sm  btn-block fa fa-send" >
-                Submit All  {{btn_name}} 
-            </button>
-            </div>
-        {% endfor %}
-	{% endif %}
-                
     </div>   
 </div>
