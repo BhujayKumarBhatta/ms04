@@ -1,9 +1,9 @@
 {% extends "wfdoc/draft_list.html" %}
+
+
 {% block page_heading %} 
     <h4 style="text-align:center"> select the  drafts and press action buttons  </h4> 
 {% endblock page_heading %}
-
-
    
 {% block header_buttons %}
     {% block form_content_start %}
@@ -21,13 +21,17 @@
 	        {% endfor %}
 	    </div>   
 	</div>
-	{% endblock header_buttons %}
+{% endblock header_buttons %}
 
 {% block select_chkbox_heading %}<td>Select</td>{% endblock select_chkbox_heading %}
+
 {% block select_chkbox %}
     <td><input type="checkbox" id="chk_{{ object.name }}" name="selected_wfdocs" value="{{ object.name }}" /></td>
 {% endblock select_chkbox %}
-{% block form_content_end %} </form>{% endblock form_content_end %}
+
+{% block form_content_end %} 
+    </form>
+{% endblock form_content_end %}
    
 
 

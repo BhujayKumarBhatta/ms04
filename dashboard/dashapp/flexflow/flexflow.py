@@ -9,6 +9,8 @@ from dashapp.tokenleader import tllogin
 from clientflexflow.client import clientflexflow
 from django.template.defaultfilters import lower
 from pip._internal import req
+from pip._internal.cli.cmdoptions import retries
+from django.shortcuts import redirect
 
 fields_for_text_to_list_conversion = [
     "need_current_status",
@@ -211,9 +213,7 @@ def update_wfdoc(request, filter_by_name):
 
 @validate_token_n_session()
 def list_drafts(request, doctype, status_name_filter=None):
-    docdata_fields = []
-    filter_buttons = []
-    current_actions = []
+    docdata_fields, filter_buttons, current_actions = [], [], []
     template_name =  "wfdoc/draft_list.html"
     tlclient = tllogin.prep_tlclient_from_session(request)
     flexc = clientflexflow(tlclient) 
@@ -281,10 +281,17 @@ def update_selected_fm_draft(request):
     if request.method == 'POST':
         querydict = request.POST.copy()
         print('how the post result action from draft ', querydict)   
-        Action = querydict.get("btn_name")
-        list_selected_invoices = querydict.getlist("selected_wfdocs")
-        print("list_selected_invoices  and Action", list_selected_invoices, Action)
-        
+        intended_action = querydict.get("btn_name")
+        wfdocs = querydict.getlist("selected_wfdocs")
+        print("list_selected_invoices  and Action", wfdocs, intended_action)
+        #data = {"intended_action": intended_action, "wfdocs": wfdocs}
+        result_list = flexc.update_all_from_drafts(intended_action, wfdocs)
+        print('result_list', result_list)
+        #return redirect('/list_wfdoc/')
+    template_data = {"status": result_list,}
+    template_name =  "admin_pages/status_modal.html"
+    web_page = validate_active_session(request, template_name, template_data)
+    return web_page  
 
 @validate_token_n_session()
 def add_wfmobj(request, objname):
